@@ -1,0 +1,44 @@
+# JNITCMS 2.0 Information for humans.txt
+
+/* COMPANY OWNER */
+	CEO: Lee seok chul
+	Contact: ceo [at] ltskorea.co.kr
+	Website: http://ltskorea.co.kr
+
+/* CMS FOUNDER*/
+	FOUNDER: Kim tae il 
+	Contact: crash0507 [at] naver.com
+	Website: http://www.t1media.kr
+
+/* DEVELOP TEAM */
+	Chef: Nam young gang
+	Contact: dael [at] daelity.com
+	Website: http://daelity.com
+
+	Developer: Heo jin seok
+	Contact: starpow1234 [at] ltskorea.co.kr
+
+	developer: Heo kyeong seon
+	Contact: hks4712 [at] ltskorea.co.kr
+
+	developer: na sung jea
+	Contact: good7188 [at] ltskorea.co.kr
+
+/* DESIGN TEAM */
+	Manager: Kin ji hye
+	Contact: shsh3996 [at] ltskorea.co.kr
+
+	Designer: Kim hyeon a
+	Contact: hao [at] ltskorea.co.kr
+
+/* THANKS */
+	eGovFramework
+	Website: http://www.egovframe.org
+		
+/* SITE */
+	Since: 2012/03/19
+	Last update:2013/06/22
+	Language: Korean
+	Standards: HTML5, CSS3,..
+	Components: eGovFramework, jQuery, Twitter Bootstrap
+	IDE: Eclipse, eGovframe2.5

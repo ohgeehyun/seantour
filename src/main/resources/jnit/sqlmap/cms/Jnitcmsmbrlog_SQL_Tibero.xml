@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitcmsmbrlog">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitcmsmbrlogSerarchVO" type="jnit.cms.mbrlog.JnitcmsmbrlogDefaultVO"/>
+
+	<resultMap id="jnitcmsmbrlog" class="jnit.cms.mbrlog.JnitcmsmbrlogVO">
+		<result property="mbrlogId" column="MBRLOG_ID" columnIndex="1"/>
+		<result property="mbrId" column="MBR_ID" columnIndex="2"/>
+		<result property="mbrlogContent" column="MBRLOG_CONTENT" columnIndex="3"/>
+		<result property="mbrlogStatus" column="MBRLOG_STATUS" columnIndex="4"/>
+		<result property="created" column="CREATED" columnIndex="5"/>
+		<result property="mbrNm" column="MBR_NM" columnIndex="6"/>
+		<result property="mbrLogin" column="MBR_LOGIN" columnIndex="7"/>
+		<result property="mbrIp" column="MBR_IP" columnIndex="8"/>
+		<result property="actMbrLogin" column="ACT_MBR_LOGIN" columnIndex="9"/>
+		<result property="mbrlogPath" column="MBRLOG_PATH" columnIndex="10"/>
+		<result property="mbrlogExt01" column="MBRLOG_EXT01" columnIndex="11"/>
+	</resultMap>
+
+	<insert id="jnitcmsmbrlogDAO.insertJnitcmsmbrlog_S">
+		<![CDATA[
+			INSERT INTO JNITCMSMBRLOG
+				( MBRLOG_ID
+				  , MBR_ID
+				  , MBRLOG_CONTENT
+				  , MBRLOG_STATUS
+				  , CREATED
+				  , MBR_NM
+				  , MBR_LOGIN
+				  , MBR_IP
+				  , ACT_MBR_LOGIN
+				  , MBRLOG_PATH
+				  , MBRLOG_EXT01 )
+			VALUES ( #mbrlogId#
+				  , #mbrId#
+				  , #mbrlogContent#
+				  , 0
+				  , SYSDATE
+				  , #mbrNm#
+				  , #mbrLogin#
+				  , #mbrIp#
+				  , #actMbrLogin#
+				  , #mbrlogPath#
+				  , #mbrlogExt01# )
+		]]>
+	</insert>
+
+	<update id="jnitcmsmbrlogDAO.updateJnitcmsmbrlog_S">
+		<![CDATA[
+			UPDATE JNITCMSMBRLOG
+			SET MBRLOG_ID=#mbrlogId#
+				, MBR_ID=#mbrId#
+				, MBRLOG_CONTENT=#mbrlogContent#
+				, MBRLOG_STATUS=#mbrlogStatus#
+				, MBR_NM=#mbrNm#
+				, MBR_LOGIN=#mbrLogin#
+				, MBR_IP=#mbrIp#
+				, ACT_MBR_LOGIN=#actMbrLogin#
+				, MBRLOG_PATH=#mbrlogPath#
+				, MBRLOG_EXT01=#mbrlogExt01#
+						WHERE MBRLOG_ID=#mbrlogId#
+				]]>
+	</update>
+
+	<delete id="jnitcmsmbrlogDAO.deleteJnitcmsmbrlog_S">
+		<![CDATA[
+			DELETE FROM JNITCMSMBRLOG
+						WHERE MBRLOG_ID=#mbrlogId#
+				]]>
+	</delete>
+
+	<select id="jnitcmsmbrlogDAO.selectJnitcmsmbrlog_S" resultMap="jnitcmsmbrlog">
+		<![CDATA[
+			SELECT
+				MBRLOG_ID
+				, MBR_ID
+				, MBRLOG_CONTENT
+				, MBRLOG_STATUS
+				, CREATED
+				, MBR_NM
+				, MBR_LOGIN
+				, MBR_IP
+				, ACT_MBR_LOGIN
+				, MBRLOG_PATH
+				, MBRLOG_EXT01
+			FROM JNITCMSMBRLOG
+						WHERE MBRLOG_ID=#mbrlogId#
+				]]>
+	</select>
+
+	<select id="jnitcmsmbrlogDAO.selectJnitcmsmbrlogList_D" parameterClass="jnitcmsmbrlogSerarchVO" resultClass="egovMap">
+		SELECT * FROM (
+			SELECT A.*, ROWNUM RNUM FROM (
+						SELECT
+										MBRLOG_ID
+										, MBR_ID
+										, MBRLOG_CONTENT
+										, MBRLOG_STATUS
+										<isEqual property="formatCondition" compareValue="0">
+										, CREATED
+										</isEqual>
+										<isEqual property="formatCondition" compareValue="1">
+										, TO_CHAR(CREATED,'yyyy-MM-dd hh24:mi:ss') AS CREATED
+										</isEqual>
+										, MBR_NM
+										, MBR_LOGIN
+										, MBR_IP
+										, ACT_MBR_LOGIN
+										, MBRLOG_PATH
+										, MBRLOG_EXT01
+								FROM JNITCMSMBRLOG
+						WHERE 1=1
+						<isEqual prepend="AND" property="searchCondition" compareValue="0">
+							MBRLOG_ID = #searchKeyword#
+						</isEqual>
+						<isEqual prepend="AND" property="searchCondition" compareValue="1">
+							MBR_ID LIKE '%' || #searchKeyword# || '%'
+						</isEqual>
+							ORDER BY MBRLOG_ID DESC
+			) A WHERE 1=1
+			<isEqual prepend="AND" property="pageYn" compareValue="Y">
+				ROWNUM <![CDATA[<=]]> #lastIndex#
+			</isEqual>
+		)WHERE 1=1
+		<isEqual prepend="AND" property="pageYn" compareValue="Y">
+			RNUM <![CDATA[>]]> #firstIndex#
+		</isEqual>
+	</select>
+	<select id="jnitcmsmbrlogDAO.selectJnitcmsmbrlogListTotCnt_S" parameterClass="jnitcmsmbrlogSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM JNITCMSMBRLOG
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				MBRLOG_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				MBR_ID LIKE '%' || #searchKeyword# || '%'
+			</isEqual>
+	</select>
+	<select id="jnitcmsmbrlogDAO.selectLeftcmsmbrlogList_D" parameterClass="jnitcmsmbrlogSerarchVO" resultClass="egovMap">
+		SELECT * FROM (
+			SELECT a.MBRLOG_ID
+				, a.MBR_ID
+				, a.MBRLOG_CONTENT
+				, a.MBRLOG_STATUS
+				, a.CREATED
+				, a.MBR_NM
+				, a.MBR_LOGIN
+				, a.MBR_IP
+				, a.ACT_MBR_LOGIN
+				, a.MBRLOG_PATH
+				, a.MBRLOG_EXT01
+				, b.MBR_NM
+				, ROWNUM RNUM FROM (
+					SELECT a.* FROM JNITCMSMBRLOG a
+
+					LEFT JOIN JNITCMSMBR b
+						ON a.MBR_ID = b.MBR_ID
+
+					WHERE 1=1
+					ORDER BY a.MBRLOG_ID DESC
+			) a
+
+			LEFT JOIN JNITCMSMBR b
+				ON a.MBR_ID = b.MBR_ID
+
+			WHERE 1=1
+
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				a.MBRLOG_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				a.MBR_ID LIKE '%' || #searchKeyword# || '%'
+			</isEqual>
+			<isEqual prepend="AND" property="pageYn" compareValue="Y">
+				ROWNUM <![CDATA[<=]]> #lastIndex#
+			</isEqual>
+		)WHERE 1=1
+		<isEqual prepend="AND" property="pageYn" compareValue="Y">
+			RNUM <![CDATA[>]]> #firstIndex#
+		</isEqual>
+	</select>
+	<select id="jnitcmsmbrlogDAO.selectLeftcmsmbrlogListTotCnt_S" parameterClass="jnitcmsmbrlogSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM JNITCMSMBRLOG a
+
+			LEFT JOIN JNITCMSMBR b
+				ON a.MBR_ID = b.MBR_ID
+
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				a.MBRLOG_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				a.MBR_ID LIKE '%' || #searchKeyword# || '%'
+			</isEqual>
+	</select>
+
+	<select id="jnitcmsmbrlogDAO.getLastIdJnitcmsmbrlog_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITCMSMBRLOG_ID'
+	</select>
+</sqlMap>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="JnitFilegoLogFailConfirm">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitFilegoLogFailConfirmSearchVO" type="jnit.filego.log.failConfirm.JnitFilegoLogFailConfirmDefaultVO"/>
+	
+	<resultMap id="jnitFilegoLogFailConfirm" class="jnit.filego.log.failConfirm.JnitFilegoLogFailConfirmVO">
+		<result property="jfflcSeq" column="JFFLC_SEQ" columnIndex="1"/>
+		<result property="jfflSeq" column="JFFL_SEQ" columnIndex="2"/>
+		<result property="jfflRequestUuid" column="JFFL_REQUEST_UUID" columnIndex="3"/>
+		<result property="jfflSender" column="JFFL_SENDER" columnIndex="4"/>
+		<result property="jfflReceiver" column="JFFL_RECEIVER" columnIndex="5"/>
+		<result property="jfflFilename" column="JFFL_FILENAME" columnIndex="6"/>
+		<result property="jfflMsg" column="JFFL_MSG" columnIndex="7"/>
+		<result property="created" column="CREATED" columnIndex="8"/>
+		<result property="confirmed" column="CONFIRMED" columnIndex="9"/>
+		<result property="confirmUserId" column="CONFIRM_USER_ID" columnIndex="10"/>
+	</resultMap>
+	
+	<sql id="jnitFilegoLogFailConfirmDAO.where">
+		WHERE 1 = 1
+		<isNotEmpty property="searchKeyword">
+			<isEqual property="searchCondition" compareValue="1">	<!-- SENDER -->
+				AND JFFL_SENDER LIKE CONCAT('%',#searchKeyword#, '%')
+			</isEqual>
+			<isEqual property="searchCondition" compareValue="2">	<!-- RECEIVER -->
+				AND JFFL_RECEIVER LIKE CONCAT('%',#searchKeyword#, '%')
+			</isEqual>
+			<isEqual property="searchCondition" compareValue="3">	<!-- FILENAME -->
+				AND JFFL_FILENAME LIKE CONCAT('%',#searchKeyword#, '%')
+			</isEqual>
+			<isEqual property="searchCondition" compareValue="4">	<!-- MSG -->
+				AND JFFL_MSG LIKE CONCAT('%',#searchKeyword#, '%')
+			</isEqual>
+			<isEqual property="searchCondition" compareValue="5">	<!-- CONFIRM_USER_ID -->
+				AND CONFIRM_USER_ID LIKE CONCAT('%',#searchKeyword#, '%')
+			</isEqual>
+		</isNotEmpty>
+		
+		<isEqual property="searchDateCondition" compareValue="0">
+			<isNotEmpty property="searchStartDate">					<!-- CREATED -->
+				<isNotEmpty prepend="AND" property="searchEndDate">
+					DATE_FORMAT(CREATED, '%Y-%m-%d') BETWEEN #searchStartDate# AND #searchEndDate#
+				</isNotEmpty>
+				<isEmpty prepend="AND" property="searchEndDate">
+					DATE_FORMAT(CREATED, '%Y-%m-%d') <![CDATA[>=]]> #searchStartDate#
+				</isEmpty>
+			</isNotEmpty>
+			<isEmpty property="searchStartDate">
+				<isNotEmpty prepend="AND" property="searchEndDate">
+					#searchEndDate# <![CDATA[>=]]> DATE_FORMAT(CREATED, '%Y-%m-%d')
+				</isNotEmpty>
+			</isEmpty>
+		</isEqual>
+		<isEqual property="searchDateCondition" compareValue="1">
+			<isNotEmpty property="searchStartDate">					<!-- CONFIRMED -->
+				<isNotEmpty prepend="AND" property="searchEndDate">
+					DATE_FORMAT(CONFIRMED, '%Y-%m-%d') BETWEEN #searchStartDate# AND #searchEndDate#
+				</isNotEmpty>
+				<isEmpty prepend="AND" property="searchEndDate">
+					DATE_FORMAT(CONFIRMED, '%Y-%m-%d') <![CDATA[>=]]> #searchStartDate#
+				</isEmpty>
+			</isNotEmpty>
+			<isEmpty property="searchStartDate">
+				<isNotEmpty prepend="AND" property="searchEndDate">
+					#searchEndDate# <![CDATA[>=]]> DATE_FORMAT(CONFIRMED, '%Y-%m-%d')
+				</isNotEmpty>
+			</isEmpty>
+		</isEqual>
+	</sql>
+	
+	<insert id="jnitFilegoLogFailConfirmDAO.insertJnitFilegoLogFailConfirm">
+		INSERT INTO JNIT_FILEGO_FAIL_LOG_CONFIRM (
+			JFFL_SEQ
+			, JFFL_REQUEST_UUID
+			, JFFL_SENDER
+			, JFFL_RECEIVER
+			, JFFL_FILENAME
+			, JFFL_MSG
+			, CREATED
+			, CONFIRMED
+			, CONFIRM_USER_ID
+		)
+		SELECT
+			JFFL_SEQ
+			, JFFL_REQUEST_UUID
+			, JFFL_SENDER
+			, JFFL_RECEIVER
+			, JFFL_FILENAME
+			, JFFL_MSG
+			, CREATED
+			, NOW()
+			, #confirmUserId#
+		FROM JNIT_FILEGO_FAIL_LOG
+		WHERE JFFL_SEQ = #jfflSeq#
+	</insert>
+	
+	<select id="jnitFilegoLogFailConfirmDAO.selectJnitFilegoLogFailConfirm" resultMap="jnitFilegoLogFailConfirm">
+		SELECT
+			JFFLC_SEQ
+			, JFFL_SEQ
+			, JFFL_REQUEST_UUID
+			, JFFL_SENDER
+			, JFFL_RECEIVER
+			, JFFL_FILENAME
+			, JFFL_MSG
+			, CREATED
+			, CONFIRMED
+			, CONFIRM_USER_ID
+		FROM JNIT_FILEGO_FAIL_LOG_CONFIRM
+		WHERE 1 = 1
+		AND JFFLC_SEQ = #jfflSeq#
+	</select>
+	
+	<select id="jnitFilegoLogFailConfirmDAO.selectListJnitFilegoLogFailConfirm" parameterClass="jnitFilegoLogFailConfirmSearchVO" resultClass="egovMap">
+		SELECT
+			JFFLC_SEQ
+			, JFFL_SEQ
+			, JFFL_REQUEST_UUID
+			, JFFL_SENDER
+			, JFFL_RECEIVER
+			, JFFL_FILENAME
+			, JFFL_MSG
+			, CREATED
+			, CONFIRMED
+			, CONFIRM_USER_ID
+		FROM JNIT_FILEGO_FAIL_LOG_CONFIRM
+		<include refid="jnitFilegoLogFailConfirmDAO.where"/>
+		ORDER BY JFFLC_SEQ DESC
+		LIMIT #firstIndex#,#recordCountPerPage#
+	</select>
+	
+	<select id="jnitFilegoLogFailConfirmDAO.selectListTotJnitFilegoLogFailConfirm" parameterClass="jnitFilegoLogFailConfirmSearchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+				FROM JNIT_FILEGO_FAIL_LOG_CONFIRM
+			<include refid="jnitFilegoLogFailConfirmDAO.where"/>
+	</select>
+</sqlMap>

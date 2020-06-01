@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitcmsmbrtype">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitcmsmbrtypeSerarchVO" type="jnit.cms.mbrtype.JnitcmsmbrtypeDefaultVO"/>
+	<typeAlias  alias="ComDefaultCodeVO" type="egovframework.com.cmm.ComDefaultCodeVO"/>
+	
+	<resultMap id="jnitcmsmbrtype" class="jnit.cms.mbrtype.JnitcmsmbrtypeVO">
+		<result property="typeId" column="TYPE_ID" columnIndex="1"/>
+		<result property="typeNm" column="TYPE_NM" columnIndex="2"/>
+		<result property="typeLv" column="TYPE_LV" columnIndex="3"/>
+		<result property="created" column="CREATED" columnIndex="4"/>
+		<result property="modified" column="MODIFIED" columnIndex="5"/>
+		<result property="isdel" column="ISDEL" columnIndex="6"/>
+		<result property="menuActive" column="MENU_ACTIVE" columnIndex="7"/>
+	</resultMap>
+	
+	<resultMap id="CmmCodeDetail" class="egovframework.com.cmm.service.CmmnDetailCode">
+		<result property="codeId"    	column="CODE_ID"   	columnIndex="1"/>
+		<result property="code"  		column="CODE" 		columnIndex="2"/>
+		<result property="codeNm"   	column="CODE_NM"  	columnIndex="3"/>
+		<result property="codeDc"   	column="CODE_DC"  	columnIndex="4"/>
+	</resultMap>
+	
+	<insert id="jnitcmsmbrtypeDAO.insertJnitcmsmbrtype_S">
+		<![CDATA[
+			INSERT INTO JNITCMSMBRTYPE 
+				( TYPE_ID
+				  , TYPE_NM
+				  , TYPE_LV
+				  , CREATED
+				  , MODIFIED
+				  , ISDEL 
+				  , MENU_ACTIVE)
+			VALUES ( #typeId#
+				  , #typeNm#
+				  , #typeLv#
+				  , NOW()
+				  , NOW()
+				  , #isdel# 
+				  , #menuActive#)
+		]]>
+	</insert>
+	
+	<update id="jnitcmsmbrtypeDAO.updateJnitcmsmbrtype_S">
+			UPDATE JNITCMSMBRTYPE
+			SET TYPE_LV=#typeLv#
+				<isNotEmpty property="typeNm">
+					,TYPE_NM=#typeNm#
+				</isNotEmpty>
+				, MODIFIED=NOW()
+                WHERE ISDEL=0 AND TYPE_ID=#typeId#
+	</update>
+	
+	<update id="jnitcmsmbrtypeDAO.updateJnitcmsmbrtype_tree">
+			UPDATE JNITCMSMBRTYPE
+			SET MENU_ACTIVE=#menuActive#
+				, MODIFIED=NOW()
+                WHERE ISDEL=0 AND TYPE_ID=#typeId#
+	</update>
+	
+	<update id="jnitcmsmbrtypeDAO.deleteJnitcmsmbrtype_S">
+		<![CDATA[
+			UPDATE JNITCMSMBRTYPE
+			SET ISDEL=1
+				, MODIFIED=NOW()
+                WHERE ISDEL=0 AND TYPE_ID=#typeId#
+		]]>
+	</update>
+	
+	<select id="jnitcmsmbrtypeDAO.selectJnitcmsmbrtype_S" resultMap="jnitcmsmbrtype">
+		<![CDATA[
+			SELECT
+				TYPE_ID
+				, TYPE_NM
+				, TYPE_LV
+				, CREATED
+				, MODIFIED
+				, ISDEL
+				, MENU_ACTIVE
+			FROM JNITCMSMBRTYPE
+                WHERE ISDEL=0 AND TYPE_ID=#typeId#
+		]]>
+	</select>
+	
+	<select id="jnitcmsmbrtypeDAO.selectJnitcmsmbrtypeList_D" parameterClass="jnitcmsmbrtypeSerarchVO" resultClass="egovMap">
+			SELECT
+								TYPE_ID
+								, TYPE_NM
+								, TYPE_LV
+								, CREATED
+								, MODIFIED
+								, ISDEL
+					FROM JNITCMSMBRTYPE
+			WHERE ISDEL=0
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				TYPE_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				TYPE_NM LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+				ORDER BY TYPE_ID DESC
+			limit #firstIndex#, #recordCountPerPage#	
+	</select>	
+	<select id="jnitcmsmbrtypeDAO.selectJnitcmsmbrtypeListTotCnt_S" parameterClass="jnitcmsmbrtypeSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM JNITCMSMBRTYPE
+			WHERE ISDEL=0
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				TYPE_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				TYPE_NM LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+	</select>
+	<select id="jnitcmsmbrtypeDAO.getLastIdJnitcmsmbrtype_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITCMSMBRTYPE_ID'
+	</select>
+
+    <select id="jnitcmsmbrtypeDAO.selectTypeIdDetail" parameterClass="ComDefaultCodeVO" resultMap="CmmCodeDetail">
+            <![CDATA[ 
+            SELECT 
+                "JNITCMSMBRTYPE"    CODE_ID, 
+                TYPE_ID     CODE, 
+                TYPE_NM     CODE_NM, 
+                TYPE_NM     CODE_DC
+            FROM 
+                JNITCMSMBRTYPE
+            WHERE ISDEL=0
+            ]]>
+            <isEqual prepend="AND" property="haveDetailCondition" compareValue="Y">
+                TYPE_ID  LIKE  #detailConditionValue#
+            </isEqual>
+            	ORDER BY TYPE_NM
+    </select>
+
+</sqlMap>

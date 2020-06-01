@@ -1,0 +1,17 @@
+ul.dynatree-container
+{
+	font-family: 굴림, 돋움, arial, helvetica;
+	font-size: 15px; /* font size should not be too big */
+	white-space: nowrap;
+	padding: 3px;
+	margin: 0px; /* issue 201 */
+	background-color: white;
+	border: none;
+	overflow: auto;
+	height: 100%; /* issue 263 */
+}
+div.list_content2{width:350px; height:100%; border:1px solid #a5a5a5; float:left;overflow:hidden;}
+div.view_content2{height:100%; border:1px solid #a5a5a5; overflow:hidden;}
+div.list_content2 {
+	background-color: white;
+}

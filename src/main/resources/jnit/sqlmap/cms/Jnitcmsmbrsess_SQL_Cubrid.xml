@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitcmsmbrsess">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitcmsmbrsessSerarchVO" type="jnit.cms.mbrsess.JnitcmsmbrsessDefaultVO"/>
+	
+	<resultMap id="jnitcmsmbrsess" class="jnit.cms.mbrsess.JnitcmsmbrsessVO">
+		<result property="mbrId" column="MBR_ID" columnIndex="1"/>
+		<result property="mbrSess" column="MBR_SESS" columnIndex="2"/>
+		<result property="sessLock" column="SESS_LOCK" columnIndex="3"/>
+		<result property="sessDate" column="SESS_DATE" columnIndex="4"/>
+	</resultMap>
+	
+	<insert id="jnitcmsmbrsessDAO.insertJnitcmsmbrsess_S">
+		<![CDATA[
+			INSERT INTO JNITCMSMBRSESS 
+				( MBR_ID
+				  , MBR_SESS
+				  , SESS_LOCK
+				  , SESS_DATE )
+			VALUES ( #mbrId#
+				  , #mbrSess#
+				  , 0
+				  , NOW() )
+		]]>
+	</insert>
+	
+	<update id="jnitcmsmbrsessDAO.updateJnitcmsmbrsess_S">
+		<![CDATA[
+			UPDATE JNITCMSMBRSESS
+			SET MBR_SESS=#mbrSess#
+				, SESS_LOCK=#sessLock#
+				, SESS_DATE=NOW()
+				WHERE MBR_ID=#mbrId#
+			]]>
+	</update>
+		
+	<select id="jnitcmsmbrsessDAO.selectJnitcmsmbrsess_S" resultMap="jnitcmsmbrsess">
+		<![CDATA[
+			SELECT
+				MBR_ID
+				, MBR_SESS
+				, SESS_LOCK
+				, SESS_DATE
+			FROM JNITCMSMBRSESS
+			WHERE MBR_ID=#mbrId#
+				]]>
+	</select>
+	
+	<select id="jnitcmsmbrsessDAO.selectJnitcmsmbrsessListTotCnt_S" parameterClass="jnitcmsmbrsessSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM JNITCMSMBRSESS
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				MBR_ID = #searchKeyword#
+			</isEqual>
+	</select>
+
+</sqlMap>

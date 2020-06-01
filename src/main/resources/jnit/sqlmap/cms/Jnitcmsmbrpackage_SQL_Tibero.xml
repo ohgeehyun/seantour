@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitcmsmbrpackage">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitcmsmbrpackageSerarchVO" type="jnit.cms.mbrpackage.JnitcmsmbrpackageDefaultVO"/>
+
+	<resultMap id="jnitcmsmbrpackage" class="jnit.cms.mbrpackage.JnitcmsmbrpackageVO">
+		<result property="packId" column="PACK_ID" columnIndex="1"/>
+		<result property="packageNm" column="PACKAGE_NM" columnIndex="2"/>
+		<result property="mbrAccess" column="MBR_ACCESS" columnIndex="3"/>
+		<result property="mbrDeny" column="MBR_DENY" columnIndex="4"/>
+		<result property="orgAccess" column="ORG_ACCESS" columnIndex="5"/>
+		<result property="orgDeny" column="ORG_DENY" columnIndex="6"/>
+		<result property="posAccess" column="POS_ACCESS" columnIndex="7"/>
+		<result property="posDeny" column="POS_DENY" columnIndex="8"/>
+		<result property="typeAccess" column="TYPE_ACCESS" columnIndex="9"/>
+		<result property="typeDeny" column="TYPE_DENY" columnIndex="10"/>
+		<result property="query" column="QUERY" columnIndex="11"/>
+		<result property="comment" column="COMMENT" columnIndex="12"/>
+		<result property="isdel" column="ISDEL" columnIndex="13"/>
+	</resultMap>
+
+	<insert id="jnitcmsmbrpackageDAO.insertJnitcmsmbrpackage_S">
+		<![CDATA[
+			INSERT INTO JNITCMSMBRPACKAGE
+				( PACK_ID
+				  , PACKAGE_NM
+				  , MBR_ACCESS
+				  , MBR_DENY
+				  , ORG_ACCESS
+				  , ORG_DENY
+				  , POS_ACCESS
+				  , POS_DENY
+				  , TYPE_ACCESS
+				  , TYPE_DENY
+				  , "QUERY"
+				  , "COMMENT"
+				  , ISDEL )
+			VALUES ( #packId#
+				  , #packageNm#
+				  , #mbrAccess#
+				  , #mbrDeny#
+				  , #orgAccess#
+				  , #orgDeny#
+				  , #posAccess#
+				  , #posDeny#
+				  , #typeAccess#
+				  , #typeDeny#
+				  , #query#
+				  , #comment#
+				  , #isdel# )
+		]]>
+	</insert>
+
+	<update id="jnitcmsmbrpackageDAO.updateJnitcmsmbrpackage_S">
+		<![CDATA[
+			UPDATE JNITCMSMBRPACKAGE
+			SET PACK_ID=#packId#
+				, PACKAGE_NM=#packageNm#
+				, MBR_ACCESS=#mbrAccess#
+				, MBR_DENY=#mbrDeny#
+				, ORG_ACCESS=#orgAccess#
+				, ORG_DENY=#orgDeny#
+				, POS_ACCESS=#posAccess#
+				, POS_DENY=#posDeny#
+				, TYPE_ACCESS=#typeAccess#
+				, TYPE_DENY=#typeDeny#
+				, "QUERY"=#query#
+				, "COMMENT"=#comment#
+				, ISDEL=#isdel#
+						WHERE PACK_ID=#packId#
+				]]>
+	</update>
+
+	<delete id="jnitcmsmbrpackageDAO.deleteJnitcmsmbrpackage_S">
+		<![CDATA[
+			UPDATE JNITCMSMBRPACKAGE
+				SET ISDEL = 1
+				WHERE PACK_ID=#packId#
+		]]>
+	</delete>
+
+	<select id="jnitcmsmbrpackageDAO.selectJnitcmsmbrpackage_S" resultMap="jnitcmsmbrpackage">
+		<![CDATA[
+			SELECT
+				PACK_ID
+				, PACKAGE_NM
+				, MBR_ACCESS
+				, MBR_DENY
+				, ORG_ACCESS
+				, ORG_DENY
+				, POS_ACCESS
+				, POS_DENY
+				, TYPE_ACCESS
+				, TYPE_DENY
+				, "QUERY"
+				, "COMMENT"
+				, ISDEL
+			FROM JNITCMSMBRPACKAGE
+				WHERE PACK_ID=#packId#
+		]]>
+	</select>
+
+	<select id="jnitcmsmbrpackageDAO.selectJnitcmsmbrpackageQuery" parameterClass="String" resultClass="String">
+		$query$
+	</select>
+
+	<select id="jnitcmsmbrpackageDAO.selectJnitcmsmbrpackageList_D" parameterClass="jnitcmsmbrpackageSerarchVO" resultClass="egovMap">
+		SELECT * FROM (
+			SELECT A.*, ROWNUM RNUM FROM (
+				SELECT
+					PACK_ID
+					, PACKAGE_NM
+					, MBR_ACCESS
+					, MBR_DENY
+					, ORG_ACCESS
+					, ORG_DENY
+					, POS_ACCESS
+					, POS_DENY
+					, TYPE_ACCESS
+					, TYPE_DENY
+					, "QUERY"
+					, "COMMENT"
+					, ISDEL
+				FROM JNITCMSMBRPACKAGE
+				WHERE 1=1
+				<isEqual prepend="AND" property="searchCondition" compareValue="0">
+					PACK_ID = #searchKeyword#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="1">
+					PACKAGE_NM LIKE '%' || #searchKeyword# || '%'
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="2">
+					COMMENT LIKE '%' || #searchKeyword# || '%'
+				</isEqual>
+				ORDER BY PACK_ID DESC
+
+		<![CDATA[
+			) A WHERE ROWNUM <= #lastIndex#
+		)WHERE RNUM > #firstIndex#
+		]]>
+	</select>
+
+	<select id="jnitcmsmbrpackageDAO.selectTotalAll" parameterClass="jnitcmsmbrpackageSerarchVO" resultClass="egovMap">
+		SELECT * FROM (
+			SELECT A.*, ROWNUM RNUM FROM (
+				SELECT
+					*
+				<isEqual property="searchCondition" compareValue="1">
+					FROM JNITCMSMBR
+				</isEqual>
+				<isEqual property="searchCondition" compareValue="2">
+					FROM JNITCMSORG
+				</isEqual>
+				<isEqual property="searchCondition" compareValue="3">
+					FROM JNITCMSPOS
+				</isEqual>
+				<isEqual property="searchCondition" compareValue="4">
+					FROM JNITCMSMBRTYPE
+				</isEqual>
+				WHERE 1=1
+				AND ISDEL = 0
+				<isEqual prepend="AND" property="searchCondition" compareValue="1">
+					MBR_LOGIN = #searchKeyword#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="2">
+					ORG_NM = #searchKeyword#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="3">
+					POS_NM = #searchKeyword#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="4">
+					TYPE_NM = #searchKeyword#
+				</isEqual>
+
+
+		<![CDATA[
+			) A WHERE ROWNUM <= #lastIndex#
+		)WHERE RNUM > #firstIndex#
+		]]>
+	</select>
+
+	<select id="jnitcmsmbrpackageDAO.selectJnitcmsmbrpackageListTotCnt_S" parameterClass="jnitcmsmbrpackageSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM JNITCMSMBRPACKAGE
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				PACK_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				PACKAGE_NM LIKE '%' || #searchKeyword# || '%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				COMMENT LIKE '%' || #searchKeyword# || '%'
+			</isEqual>
+	</select>
+	<select id="jnitcmsmbrpackageDAO.getLastIdJnitcmsmbrpackage_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITCMSMBRPACKAGE_ID'
+	</select>
+
+</sqlMap>

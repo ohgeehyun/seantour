@@ -1,0 +1,7 @@
+@charset "UTF-8";
+
+/* 기존 CMS 스타일시트 오어라이딩 코드 */
+table.table td.conts {
+	text-align: center;
+}	
+

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="BoardData">
+
+	<typeAlias  alias="BoardDataVO" type="jnit.board.data.JnitBoardDataVO"/>
+
+	<sql id="BoardDataDAO.where">
+		WHERE
+			ISDEL = 0
+			<isNotEmpty property="searchKeyword">
+				<isEqual property="searchCondition" compareValue="1">
+					AND DATA_ID = #searchKeyword#
+				</isEqual>
+				<isEqual property="searchCondition" compareValue="2">
+					AND DATA_NM LIKE CONCAT('%',#searchKeyword#,'%')
+				</isEqual>
+				<isEqual property="searchCondition" compareValue="boardIds">
+					AND DATA_BOARD_IDS LIKE CONCAT('%',#searchKeyword#,'%')
+				</isEqual>
+			</isNotEmpty>
+			<isEqual property="searchCondition" compareValue="boardIdsChk">
+				AND DATA_BOARD_IDS = #dataBoardIds#
+				AND DATA_ID != #dataId#
+				AND DATA_ORDER = #dataOrder#
+				AND DATA_CATEGORY = #dataCategory#
+			</isEqual>
+	</sql>
+
+	<sql id="BoardDataDAO.column">
+		DATA_ID		dataId
+		, DATA_NM		dataNm
+		, DATA_BOARD_IDS	dataBoardIds
+		, DATA_CATEGORY	dataCategory
+		, DATA_ORDER	dataOrder
+		, DATA_LIMIT	dataLimit
+		, CREATED		created
+		, MODIFIED		modified
+		, ISDEL			isdel
+	</sql>
+
+	<sql id="BoardDataDAO.table">
+	    JNITBOARDDATA
+	</sql>
+
+	<select id="BoardDataDAO.selectList" parameterClass="BoardDataVO" resultClass="BoardDataVO">
+		SELECT
+			<include refid="BoardDataDAO.column"/>
+		FROM
+			<include refid="BoardDataDAO.table"/>
+		<include refid="BoardDataDAO.where"/>
+		ORDER BY
+			DATA_ID DESC
+		<isNotEqual property="recordCountPerPage" compareValue="0">
+			limit #firstIndex#, #recordCountPerPage#
+		</isNotEqual>
+	</select>
+	<select id="BoardDataDAO.selectTot" parameterClass="BoardDataVO" resultClass="Integer">
+		SELECT
+			COUNT(*) AS TOTAL
+		FROM
+			<include refid="BoardDataDAO.table"/>
+		<include refid="BoardDataDAO.where"/>
+	</select>
+
+
+	<select id="BoardDataDAO.select" parameterClass="BoardDataVO" resultClass="BoardDataVO">
+		SELECT
+			<include refid="BoardDataDAO.column"/>
+		FROM
+			<include refid="BoardDataDAO.table"/>
+		WHERE
+			DATA_ID = #dataId#
+			AND ISDEL = 0
+	</select>
+
+	<insert id="BoardDataDAO.insert" parameterClass="BoardDataVO">
+		INSERT INTO JNITBOARDDATA (
+			DATA_ID,
+			DATA_NM,
+			DATA_BOARD_IDS,
+			DATA_CATEGORY,
+			DATA_ORDER,
+			DATA_LIMIT,
+			ISDEL,
+			CREATED,
+			MODIFIED
+		) VALUES (
+			#dataId#,
+			#dataNm#,
+			#dataBoardIds#,
+			#dataCategory#,
+			#dataOrder#,
+			#dataLimit#,
+			0,
+			NOW(),
+			NOW()
+		)
+	</insert>
+
+	<update id="BoardDataDAO.update" parameterClass="BoardDataVO">
+		UPDATE
+			JNITBOARDDATA
+		SET
+			DATA_ID = #dataId#,
+			DATA_NM = #dataNm#,
+			DATA_BOARD_IDS = #dataBoardIds#,
+			DATA_CATEGORY = #dataCategory#,
+			DATA_ORDER = #dataOrder#,
+			DATA_LIMIT = #dataLimit#,
+			MODIFIED = NOW()
+		WHERE
+			DATA_ID = #dataId#
+	</update>
+
+	<update id="BoardDataDAO.delete" parameterClass="BoardDataVO">
+		UPDATE
+			JNITBOARDDATA
+		SET
+			ISDEL = 1,
+			MODIFIED = NOW()
+		WHERE
+			DATA_ID = #dataId#
+	</update>
+
+</sqlMap>

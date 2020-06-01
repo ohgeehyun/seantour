@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitrsc">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitrscSerarchVO" type="jnit.rsc.JnitrscDefaultVO"/>
+
+	<resultMap id="jnitrsc" class="jnit.rsc.JnitrscVO">
+		<result property="rscId" column="RSC_ID" columnIndex="1"/>
+		<result property="rscMenu" column="RSC_MENU" columnIndex="2"/>
+		<result property="rscUrl" column="RSC_URL" columnIndex="3"/>
+		<result property="rscTotScore" column="RSC_TOT_SCORE" columnIndex="4"/>
+	</resultMap>
+
+	<insert id="jnitrscDAO.insertJnitrsc_S">
+		<![CDATA[
+			INSERT INTO JNITRSC
+				( RSC_ID
+				  , RSC_MENU
+				  , RSC_URL
+				  , RSC_TOT_SCORE )
+			VALUES ( #rscId#
+				  , #rscMenu#
+				  , #rscUrl#
+				  , #rscTotScore# )
+		]]>
+	</insert>
+
+	<update id="jnitrscDAO.updateJnitrsc_S">
+		<![CDATA[
+			UPDATE JNITRSC
+			SET RSC_TOT_SCORE=(SELECT SUM(DATA_SCORE) FROM JNITRSCDATA WHERE RSC_ID=#rscId#)
+                WHERE RSC_ID=#rscId#
+		]]>
+	</update>
+
+	<delete id="jnitrscDAO.deleteJnitrsc_S">
+		<![CDATA[
+			DELETE FROM JNITRSC
+                WHERE RSC_ID=#rscId#
+		]]>
+	</delete>
+
+	<select id="jnitrscDAO.selectJnitrsc_S" resultMap="jnitrsc">
+		<![CDATA[
+			SELECT
+				RSC_ID
+				, RSC_MENU
+				, RSC_URL
+				, RSC_TOT_SCORE
+			FROM JNITRSC
+                WHERE RSC_ID=#rscId#
+		]]>
+	</select>
+
+	<select id="jnitrscDAO.selectJnitrscList_D" parameterClass="jnitrscSerarchVO" resultClass="egovMap">
+			SELECT
+								RSC_ID
+								, RSC_MENU
+								, RSC_URL
+								, RSC_TOT_SCORE
+					FROM JNITRSC
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				RSC_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				RSC_MENU LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+				ORDER BY
+                RSC_ID DESC
+			limit #firstIndex#, #recordCountPerPage#
+	</select>
+	<select id="jnitrscDAO.selectJnitrscListTotCnt_S" parameterClass="jnitrscSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM JNITRSC
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				RSC_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				RSC_MENU LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				RSC_URL=#searchKeyword#
+			</isEqual>
+	</select>
+
+	<select id="jnitrscDAO.selectJnitrscByUrl_S" resultMap="jnitrsc">
+		<![CDATA[
+			SELECT
+				RSC_ID
+				, RSC_MENU
+				, RSC_URL
+				, RSC_TOT_SCORE
+			FROM JNITRSC
+                WHERE RSC_URL=#rscUrl#
+		]]>
+	</select>
+
+
+	<select id="jnitrscDAO.getLastIdJnitrsc_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITRSC_ID'
+	</select>
+
+</sqlMap>

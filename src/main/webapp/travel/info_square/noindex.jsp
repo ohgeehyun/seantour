@@ -1,0 +1,1 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%><script type="text/javascript">alert("해당 메뉴 하부에 등록된 콘텐츠 페이지가 존재하지 않거나,\n\n모든 하부콘텐츠가 메뉴 메뉴설정에 비노출설정이 되어\n\n있어 페이지를 정상적으로 호출할수 없습니다.\n\n관리자모드에 메뉴/콘텐츠관리를 확인해 주시기 바랍니다.");</script>

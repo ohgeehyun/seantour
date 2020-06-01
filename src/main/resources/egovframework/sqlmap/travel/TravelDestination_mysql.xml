@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="travelDestinationDAO">
+
+	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias alias="travelDestinationVO" type="geocni.travel.route.domain.TravelDestination" />
+
+	<resultMap id="travelDestination" class="geocni.travel.route.domain.TravelDestination">
+		<result property="destId" column="dest_id" columnIndex="1"/>
+		<result property="destTitle" column="dest_title" columnIndex="2"/>
+		<result property="destAdSlogan" column="dest_ad_slogan" columnIndex="3"/>
+		<result property="destRegion" column="dest_region" columnIndex="4"/>
+		<result property="destCategory" column="dest_category" columnIndex="5"/>
+		<result property="destWebsiteUrl" column="dest_website_url" columnIndex="6"/>
+		<result property="destImgPath" column="dest_img_path" columnIndex="7"/>
+		<result property="destPhone" column="dest_phone" columnIndex="8"/>
+		<result property="destAddress" column="dest_address" columnIndex="9"/>
+		<result property="destLocationAxis" column="dest_location_axis" columnIndex="10"/>
+		<result property="destAxisX" column="dest_axis_x" columnIndex="11"/>
+		<result property="destAxisY" column="dest_axis_y" columnIndex="12"/>
+		<result property="destFeature" column="dest_feature" columnIndex="13"/>
+		<result property="destInformation" column="dest_information" columnIndex="14"/>
+		<result property="destDescription" column="dest_description" columnIndex="15"/>
+		<result property="destVicinity" column="dest_vicinity" columnIndex="16"/>
+		<result property="destRecommPoint" column="dest_recomm_point" columnIndex="17"/>
+		<result property="destClipPoint" column="dest_clip_point" columnIndex="18"/>
+		<result property="destWriter" column="dest_writer" columnIndex="19"/>
+		<result property="destRegDatetime" column="dest_reg_datetime" columnIndex="20"/>
+	</resultMap>
+	
+	<insert id="travelDestinationDAO.insertTravelDestination">
+		<![CDATA[
+			INSERT INTO geo_destination ( 
+				  dest_id
+				, dest_title
+				, dest_ad_slogan
+				, dest_region
+				, dest_category
+				, dest_website_url
+				, dest_img_path
+				, dest_phone
+				, dest_address
+				, dest_axis_x
+				, dest_axis_y
+				, dest_description
+		]]>
+				<!-- , dest_location_axis
+				, dest_feature
+				, dest_information
+				, dest_vicinity -->
+		<![CDATA[
+				, dest_recomm_point
+				, dest_clip_point
+				, dest_writer
+				, dest_reg_datetime
+			) VALUES ( 
+				  #destId#
+				, #destTitle#
+				, #destAdSlogan#
+				, #destRegion#
+				, #destCategory#
+				, #destWebsiteUrl#
+				, #destImgPath#
+				, #destPhone#
+				, #destAddress#
+				, #destAxisX#
+				, #destAxisY#
+				, #destDescription#
+		]]>
+				<!-- , #destLocationAxis#
+				, #destFeature#
+				, #destInformation#
+				, #destVicinity# -->
+		<![CDATA[
+				, #destRecommPoint#
+				, #destClipPoint#
+				, #destWriter#
+				, NOW()
+			)
+		]]>
+	</insert>
+	
+	<update id="travelDestinationDAO.updateTravelDestination">
+		<![CDATA[
+			UPDATE geo_destination
+			SET 
+				  dest_title=#destTitle#
+				, dest_ad_slogan=#destAdSlogan#
+				, dest_region=#destRegion#
+				, dest_category=#destCategory#
+				, dest_website_url=#destWebsiteUrl#
+				, dest_img_path=#destImgPath#
+				, dest_phone=#destPhone#
+				, dest_address=#destAddress#
+				, dest_axis_x=#destAxisX#
+				, dest_axis_y=#destAxisY#
+		]]>
+				<!-- , dest_location_axis=#destLocationAxis#
+				, dest_feature=#destFeature#
+				, dest_information=#destInformation#
+				, dest_vicinity=#destVicinity#
+				, dest_recomm_point=#destRecommPoint#
+				, dest_clip_point=#destClipPoint#
+				, dest_writer=#destWriter# -->
+		<![CDATA[
+				, dest_description=#destDescription#
+			WHERE dest_id=#destId#
+		]]>
+	</update>
+	
+	<delete id="travelDestinationDAO.deleteTravelDestinationPhysically">
+	    <![CDATA[
+			DELETE FROM geo_destination
+            WHERE dest_id=#destId#
+		]]>
+	</delete>
+	
+	<select id="travelDestinationDAO.selectTravelDestination" resultClass="travelDestinationVO">
+		<![CDATA[
+			SELECT
+				  dest_id AS destId
+				, dest_title AS destTitle
+				, dest_ad_slogan AS destAdSlogan
+				, dest_region AS destRegion
+				, dest_category AS destCategory
+				, dest_website_url AS destWebsiteUrl
+				, dest_img_path AS destImgPath
+				, dest_phone AS destPhone
+				, dest_address AS destAddress
+				, dest_location_axis AS destLocationAxis
+				, dest_axis_x AS destAxisX
+				, dest_axis_y AS destAxisY
+				, dest_feature AS destFeature
+				, dest_information AS destInformation
+				, dest_description AS destDescription
+				, dest_vicinity AS destVicinity
+				, dest_recomm_point AS destRecommPoint
+				, dest_clip_point AS destClipPoint
+				, dest_writer AS destWriter
+				, dest_reg_datetime AS destRegDatetime
+				, dest_hit AS destHit
+			FROM geo_destination
+            WHERE dest_id=#destId#
+		]]>
+	</select>
+	
+	<select id="travelDestinationDAO.selectTravelDestinationList" parameterClass="travelDestinationVO" resultClass="travelDestinationVO">
+		<![CDATA[
+			SELECT
+				  dest_id AS destId
+				, dest_title AS destTitle
+				, dest_ad_slogan AS destAdSlogan
+				, dest_region AS destRegion
+				, dest_category AS destCategory
+				, dest_website_url AS destWebsiteUrl
+				, dest_img_path AS destImgPath
+				, dest_phone AS destPhone
+				, dest_address AS destAddress
+				, dest_location_axis AS destLocationAxis
+				, dest_axis_x AS destAxisX
+				, dest_axis_y AS destAxisY
+				, dest_feature AS destFeature
+				, dest_information AS destInformation
+				, dest_description AS destDescription
+				, dest_vicinity AS destVicinity
+				, dest_recomm_point AS destRecommPoint
+				, dest_clip_point AS destClipPoint
+				, dest_writer AS destWriter
+				, dest_reg_datetime AS destRegDatetime
+				, dest_hit AS destHit
+			FROM geo_destination
+			WHERE 1=1
+		]]>
+			<isNotEmpty property="destRegion" prepend="AND">
+				dest_region = #destRegion#
+			</isNotEmpty>
+			<isNotEmpty property="destCategory" prepend="AND">
+				dest_category = #destCategory#
+			</isNotEmpty>
+			<isNotEmpty property="searchKeyword" prepend="AND">
+				dest_title LIKE CONCAT('%',#searchKeyword#,'%')
+			</isNotEmpty>
+			<!-- 
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				dest_region = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				BOARD_ID LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				BOARD_ID = #cmtBoardId# AND BOARD_CNT_ID = #cmtBoardCntId#
+			</isEqual> 
+			--> 
+		<![CDATA[
+			ORDER BY dest_reg_datetime DESC, dest_id DESC
+            LIMIT #firstIndex#, #recordCountPerPage#
+		]]>
+	</select>	
+	<select id="travelDestinationDAO.selectTravelDestinationListCnt" parameterClass="travelDestinationVO" resultClass="int">
+		<![CDATA[
+			SELECT 
+				COUNT(*) totcnt
+			FROM geo_destination
+			WHERE 1=1
+		]]>
+			<isNotEmpty property="destRegion" prepend="AND">
+				dest_region = #destRegion#
+			</isNotEmpty>
+			<isNotEmpty property="destCategory" prepend="AND">
+				dest_category = #destCategory#
+			</isNotEmpty>
+			<isNotEmpty property="searchKeyword" prepend="AND">
+				dest_title LIKE CONCAT('%',#searchKeyword#,'%')
+			</isNotEmpty>
+	</select>
+
+	<select id="travelDestinationDAO.selectTravelDestinationRegionList" parameterClass="travelDestinationVO" resultClass="travelDestinationVO">
+		<![CDATA[
+			select distinct DEST_REGION as destRegion from geo_destination where DEST_REGION is not null order by DEST_REGION
+		]]>
+	</select>	
+
+</sqlMap>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitcmsboardhist">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitcmsboardhistSerarchVO" type="jnit.cms.boardhist.JnitcmsboardhistDefaultVO"/>
+	
+	<resultMap id="jnitcmsboardhist" class="jnit.cms.boardhist.JnitcmsboardhistVO">
+		<result property="siteId" column="SITE_ID" columnIndex="1"/>
+		<result property="mgmtId" column="MGMT_ID" columnIndex="2"/>
+		<result property="histId" column="HIST_ID" columnIndex="3"/>
+		<result property="content" column="CONTENT" columnIndex="4"/>
+		<result property="boardSkin" column="BOARD_SKIN" columnIndex="5"/>
+		<result property="mgmtActId" column="MGMT_ACT_ID" columnIndex="6"/>
+		<result property="mgmtActIp" column="MGMT_ACT_IP" columnIndex="7"/>
+		<result property="created" column="CREATED" columnIndex="8"/>		
+	</resultMap>
+	
+	<insert id="jnitcmsboardhistDAO.insertJnitcmsboardhist_S">
+		<![CDATA[
+			INSERT INTO JNITCMSBOARDHIST 
+				( SITE_ID
+				  , MGMT_ID
+				  , HIST_ID
+				  , CONTENT
+				  , BOARD_SKIN
+				  , MGMT_ACT_ID
+				  , MGMT_ACT_IP
+				  , CREATED )
+			VALUES ( #siteId#
+				  , #mgmtId#
+				  , #histId#
+				  , #content#
+				  , #boardSkin#
+				  , #mgmtActId#
+				  , #mgmtActIp#
+				  , NOW() )
+		]]>
+	</insert>
+	
+	<update id="jnitcmsboardhistDAO.updateJnitcmsboardhist_S">
+		<![CDATA[
+			UPDATE JNITCMSBOARDHIST
+			SET SITE_ID=#siteId#
+				, MGMT_ID=#mgmtId#
+				, HIST_ID=#histId#
+				, CONTENT=#content#
+				, BOARD_SKIN=#boardSkin#
+				, MGMT_ACT_ID=#mgmtActId#
+				, MGMT_ACT_IP=#mgmtActIp#
+				, CREATED=NOW()
+						WHERE HIST_ID=#histId#
+				]]>
+	</update>
+	
+	<delete id="jnitcmsboardhistDAO.deleteJnitcmsboardhist_S">
+		<![CDATA[
+			DELETE FROM JNITCMSBOARDHIST 
+						WHERE HIST_ID=#histId#
+				]]>
+	</delete>
+	
+	<select id="jnitcmsboardhistDAO.selectJnitcmsboardhist_S" resultMap="jnitcmsboardhist">
+		<![CDATA[
+			SELECT
+				SITE_ID
+				, MGMT_ID
+				, HIST_ID
+				, CONTENT
+				, BOARD_SKIN
+				, MGMT_ACT_ID
+				, MGMT_ACT_IP
+				, CREATED
+			FROM JNITCMSBOARDHIST
+						WHERE HIST_ID=#histId#
+				]]>
+	</select>
+	
+	<select id="jnitcmsboardhistDAO.selectJnitcmsboardhistList_D" parameterClass="jnitcmsboardhistSerarchVO" resultClass="egovMap">
+		
+				SELECT
+								SITE_ID
+								, MGMT_ID
+								, HIST_ID
+								, CONTENT
+								, BOARD_SKIN
+								, MGMT_ACT_ID
+								, MGMT_ACT_IP
+								, CREATED
+						FROM JNITCMSBOARDHIST
+				WHERE 1=1
+				<isEqual prepend="AND" property="siteIdYn" compareValue="Y">
+				    SITE_ID = #siteId#
+				</isEqual>
+				<isEqual prepend="AND" property="mgmtIdYn" compareValue="Y">
+				    MGMT_ID = #mgmtId#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="0">
+					SITE_ID = #searchKeyword#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="1">
+					MGMT_ID LIKE CONCAT('%',#searchKeyword#,'%')
+				</isEqual>
+					ORDER BY HIST_ID DESC
+				LIMIT #firstIndex#, #recordCountPerPage#	
+	</select>	
+	<select id="jnitcmsboardhistDAO.selectJnitcmsboardhistListTotCnt_S" parameterClass="jnitcmsboardhistSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM JNITCMSBOARDHIST
+			WHERE 1=1
+			<isEqual prepend="AND" property="siteIdYn" compareValue="Y">
+			    SITE_ID = #siteId#
+			</isEqual>
+			<isEqual prepend="AND" property="mgmtIdYn" compareValue="Y">
+			    MGMT_ID = #mgmtId#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				SITE_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				MGMT_ID LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+	</select>
+	<select id="jnitcmsboardhistDAO.getLastIdJnitcmsboardhist_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITCMSBOARDHIST_ID'
+	</select>
+
+</sqlMap>

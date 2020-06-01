@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<!-- jnit.mgov IDGEN -->
+ 
+	<!--  jnitsnsfeedIdGnrService -->
+	<bean name="jnitsmsmgovIdGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitsmsmgovIdGnrStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITSMSMGOV_ID"/>
+	</bean>
+	<bean name="jnitsmsmgovIdGnrStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="SMS" />
+		<property name="cipers" value="20" />
+		<property name="fillChar" value="0" />
+	</bean>
+
+	
+	<bean name="jnitMgovAddrGrpIdGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitMgovAddrGrpIdGnrStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITMGOVADDRGRP_ID"/>
+	</bean>
+	<bean name="jnitMgovAddrGrpIdGnrStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="GRP" />
+		<property name="cipers" value="10" />
+		<property name="fillChar" value="0" />
+	</bean>
+	
+	
+	<bean name="jnitMgovAddrListIdGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitMgovAddrListIdGnrStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITMGOVADDRLIST_ID"/>
+	</bean>
+	<bean name="jnitMgovAddrListIdGnrStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="LIST" />
+		<property name="cipers" value="10" />
+		<property name="fillChar" value="0" />
+	</bean>
+	
+</beans>

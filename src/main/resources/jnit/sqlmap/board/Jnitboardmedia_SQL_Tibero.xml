@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitboardmedia">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitboardmediaSerarchVO" type="jnit.board.media.JnitboardmediaDefaultVO"/>
+
+	<resultMap id="jnitboardmedia" class="jnit.board.media.JnitboardmediaVO">
+		<result property="jnitmediaId" column="JNITMEDIA_ID" columnIndex="1"/>
+		<result property="orgNm" column="ORG_NM" columnIndex="2"/>
+		<result property="dstNm" column="DST_NM" columnIndex="3"/>
+		<result property="successFlag" column="SUCCESS_FLAG" columnIndex="4"/>
+		<result property="created" column="CREATED" columnIndex="5"/>
+		<result property="modified" column="MODIFIED" columnIndex="6"/>
+		<result property="isdel" column="ISDEL" columnIndex="7"/>
+	</resultMap>
+
+	<insert id="JnitboardmediaDAO.insertJnitboardmedia_S">
+		<![CDATA[
+			INSERT INTO jnitboardmedia
+				( JNITMEDIA_ID
+				  , ORG_NM
+				  , DST_NM
+				  , SUCCESS_FLAG
+				  , CREATED
+				  , MODIFIED
+				  , ISDEL )
+			VALUES ( #jnitmediaId#
+				  , #orgNm#
+				  , #dstNm#
+				  , 0
+				  , SYSDATE
+				  , SYSDATE
+				  , 0 )
+		]]>
+	</insert>
+
+	<update id="JnitboardmediaDAO.updateJnitboardmedia_S">
+		<![CDATA[
+			UPDATE jnitboardmedia
+			SET  ORG_NM=#orgNm#
+				, DST_NM=#dstNm#
+				, SUCCESS_FLAG=#successFlag#
+                WHERE JNITMEDIA_ID=#jnitmediaId#
+		]]>
+	</update>
+
+	<delete id="JnitboardmediaDAO.deleteJnitboardmedia_S">
+		<![CDATA[
+			UPDATE jnitboardmedia
+			SET ISDEL=1
+                WHERE JNITMEDIA_ID=#jnitmediaId#
+		]]>
+	</delete>
+
+	<select id="JnitboardmediaDAO.selectJnitboardmedia_S" resultMap="jnitboardmedia">
+		<![CDATA[
+			SELECT
+				JNITMEDIA_ID
+				  , ORG_NM
+				  , DST_NM
+				  , SUCCESS_FLAG
+				  , CREATED
+				  , MODIFIED
+				  , ISDEL
+			FROM jnitboardmedia
+                WHERE JNITMEDIA_ID=#jnitmediaId#
+		]]>
+	</select>
+
+
+	<select id="JnitboardmediaDAO.selectJnitboardmediaList_D" parameterClass="jnitboardmediaSerarchVO" resultClass="egovMap">
+			SELECT
+				JNITMEDIA_ID
+				  , ORG_NM
+				  , DST_NM
+				  , SUCCESS_FLAG
+				  , CREATED
+				  , MODIFIED
+				  , ISDEL
+					FROM jnitboardmedia
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				JNITMEDIA_ID=#jnitmediaId#
+			</isEqual>
+				ORDER BY
+                JNITMEDIA_ID DESC
+			limit #firstIndex#, #recordCountPerPage#
+	</select>
+	<select id="JnitboardmediaDAO.selectJnitboardmediaListTotCnt_S" parameterClass="jnitboardmediaSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM jnitboardmedia
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				JNITMEDIA_ID=#jnitmediaId#
+			</isEqual>
+	</select>
+	<select id="JnitboardmediaDAO.getLastIdJnitboardfile_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITBOARDMEDIA_ID'
+	</select>
+
+</sqlMap>

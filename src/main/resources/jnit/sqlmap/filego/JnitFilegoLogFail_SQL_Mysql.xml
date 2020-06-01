@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="JnitFilegoLogFail">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitFilegoLogFailSearchVO" type="jnit.filego.log.fail.JnitFilegoLogFailDefaultVO"/>
+	
+	<resultMap id="jnitFilegoLogFail" class="jnit.filego.log.fail.JnitFilegoLogFailVO">
+		<result property="jfflSeq" column="JFFL_SEQ" columnIndex="1"/>
+		<result property="jfflRequestUuid" column="JFFL_REQUEST_UUID" columnIndex="2"/>
+		<result property="jfflSender" column="JFFL_SENDER" columnIndex="3"/>
+		<result property="jfflReceiver" column="JFFL_RECEIVER" columnIndex="4"/>
+		<result property="jfflFilename" column="JFFL_FILENAME" columnIndex="5"/>
+		<result property="jfflMsg" column="JFFL_MSG" columnIndex="6"/>
+		<result property="created" column="CREATED" columnIndex="7"/>
+	</resultMap>
+	
+	<sql id="jnitFilegoLogFailDAO.where">
+		WHERE 1 = 1
+		<isNotEmpty property="searchKeyword">
+			<isEqual property="searchCondition" compareValue="1">	<!-- SENDER -->
+				AND JFFL_SENDER LIKE CONCAT('%',#searchKeyword#, '%')
+			</isEqual>
+			<isEqual property="searchCondition" compareValue="2">	<!-- RECEIVER -->
+				AND JFFL_RECEIVER LIKE CONCAT('%',#searchKeyword#, '%')
+			</isEqual>
+			<isEqual property="searchCondition" compareValue="3">	<!-- FILENAME -->
+				AND JFFL_FILENAME LIKE CONCAT('%',#searchKeyword#, '%')
+			</isEqual>
+			<isEqual property="searchCondition" compareValue="4">	<!-- JFFL_MSG -->
+				AND JFFL_MSG LIKE CONCAT('%',#searchKeyword#, '%')
+			</isEqual>
+		</isNotEmpty>
+		
+		<isEqual property="searchDateCondition" compareValue="0">
+			<isNotEmpty property="searchStartDate">					<!-- CREATED -->
+				<isNotEmpty prepend="AND" property="searchEndDate">
+					DATE_FORMAT(CREATED, '%Y-%m-%d') BETWEEN #searchStartDate# AND #searchEndDate#
+				</isNotEmpty>
+				<isEmpty prepend="AND" property="searchEndDate">
+					DATE_FORMAT(CREATED, '%Y-%m-%d') <![CDATA[>=]]> #searchStartDate#
+				</isEmpty>
+			</isNotEmpty>
+			<isEmpty property="searchStartDate">
+				<isNotEmpty prepend="AND" property="searchEndDate">
+					#searchEndDate# <![CDATA[>=]]> DATE_FORMAT(CREATED, '%Y-%m-%d')
+				</isNotEmpty>
+			</isEmpty>
+		</isEqual>
+	</sql>
+	
+	<delete id="jnitFilegoLogFailDAO.jnitFilegoLogFailDelete">
+		DELETE FROM 
+			JNIT_FILEGO_FAIL_LOG
+		WHERE 1 = 1
+		AND JFFL_SEQ = #jfflSeq#
+	</delete>
+	
+	<select id="jnitFilegoLogFailDAO.selectJnitFilegoLogFail" resultMap="jnitFilegoLogFail">
+		SELECT
+			JFFL_SEQ
+			, JFFL_REQUEST_UUID
+			, JFFL_SENDER
+			, JFFL_RECEIVER
+			, JFFL_FILENAME
+			, JFFL_MSG
+			, CREATED
+		FROM JNIT_FILEGO_FAIL_LOG
+		WHERE 1 = 1
+		AND JFFL_SEQ = #jfflSeq#
+	</select>
+	
+	<select id="jnitFilegoLogFailDAO.selectListJnitFilegoLogFail" parameterClass="jnitFilegoLogFailSearchVO" resultClass="egovMap">
+		SELECT
+			JFFL_SEQ
+			, JFFL_REQUEST_UUID
+			, JFFL_SENDER
+			, JFFL_RECEIVER
+			, JFFL_FILENAME
+			, JFFL_MSG
+			, CREATED
+		FROM JNIT_FILEGO_FAIL_LOG
+		<include refid="jnitFilegoLogFailDAO.where"/>
+		ORDER BY JFFL_SEQ DESC
+		LIMIT #firstIndex#,#recordCountPerPage#
+	</select>
+	
+	<select id="jnitFilegoLogFailDAO.selectListTotJnitFilegoLogFail" parameterClass="jnitFilegoLogFailSearchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+				FROM JNIT_FILEGO_FAIL_LOG
+			<include refid="jnitFilegoLogFailDAO.where"/>
+	</select>
+</sqlMap>

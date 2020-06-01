@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitcmscntvt">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitcmscntvtSerarchVO" type="jnit.cms.cntvt.JnitcmscntvtDefaultVO"/>
+	
+	<resultMap id="jnitcmscntvt" class="jnit.cms.cntvt.JnitcmscntvtVO">
+		<result property="cntId" column="CNT_ID" columnIndex="1"/>
+		<result property="siteId" column="SITE_ID" columnIndex="2"/>
+		<result property="menuId" column="MENU_ID" columnIndex="3"/>
+		<result property="ismain" column="ISMAIN" columnIndex="4"/>
+		<result property="menuNm" column="MENU_NM" columnIndex="5"/>
+		<result property="menuPath" column="MENU_PATH" columnIndex="6"/>
+		<result property="pid" column="PID" columnIndex="7"/>
+		<result property="depth" column="DEPTH" columnIndex="8"/>
+		<result property="method" column="METHOD" columnIndex="9"/>
+		<result property="cntDesc" column="CNT_DESC" columnIndex="10"/>
+		<result property="cntSrc" column="CNT_SRC" columnIndex="11"/>
+		<result property="tplId" column="TPL_ID" columnIndex="12"/>
+		<result property="tplNm" column="TPL_NM" columnIndex="13"/>
+		<result property="created" column="CREATED" columnIndex="14"/>
+		<result property="modified" column="MODIFIED" columnIndex="15"/>
+		<result property="isdel" column="ISDEL" columnIndex="16"/>
+	</resultMap>
+	
+	<select id="jnitcmscntvtDAO.selectJnitcmscntvt_S" resultMap="jnitcmscntvt">
+		<![CDATA[
+			SELECT
+				CNT_ID
+				, SITE_ID
+				, MENU_ID
+				, ISMAIN
+				, MENU_NM
+				, MENU_PATH
+				, PID
+				, "DEPTH"
+				, "METHOD"
+				, CNT_DESC
+				, CNT_SRC
+				, TPL_ID
+				, TPL_NM
+				, CREATED
+				, MODIFIED
+				, ISDEL
+			FROM JNITCMSCNTVT
+            WHERE ISDEL=0
+            	AND SITE_ID = #siteId#
+               AND CNT_ID=#cntId#
+		]]>
+	</select>
+	
+	<select id="jnitcmscntvtDAO.selectJnitcmscntvtList_D" parameterClass="jnitcmscntvtSerarchVO" resultClass="egovMap">
+			SELECT
+								CNT_ID
+								, SITE_ID
+								, MENU_ID
+								, ISMAIN
+								, MENU_NM
+								, MENU_PATH
+								, PID
+								, "DEPTH"
+								, "METHOD"
+								, CNT_DESC
+								, CNT_SRC
+								, TPL_ID
+								, TPL_NM
+								, CREATED
+								, MODIFIED
+								, ISDEL
+					FROM JNITCMSCNTVT
+			WHERE ISDEL=0
+				AND SITE_ID = #siteId#
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				MENU_NM LIKE CONCAT('%',#searchKeyword#,'%')
+				OR
+				CNT_DESC LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				CNT_DESC LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+				ORDER BY "METHOD" ASC, CNT_ID DESC
+			limit #firstIndex#, #recordCountPerPage#	
+	</select>	
+	<select id="jnitcmscntvtDAO.selectJnitcmscntvtListTotCnt_S" parameterClass="jnitcmscntvtSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM JNITCMSCNTVT
+			WHERE ISDEL=0
+				AND SITE_ID = #siteId#
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				MENU_NM LIKE CONCAT('%',#searchKeyword#,'%')
+				OR
+				CNT_DESC LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				CNT_DESC LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+	</select>
+
+</sqlMap>

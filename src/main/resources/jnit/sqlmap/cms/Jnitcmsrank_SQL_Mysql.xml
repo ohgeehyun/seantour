@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitcmsrank">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitcmsrankSerarchVO" type="jnit.cms.rank.JnitcmsrankDefaultVO"/>
+	
+	<resultMap id="jnitcmsrank" class="jnit.cms.rank.JnitcmsrankVO">
+		<result property="rankId" column="RANK_ID" columnIndex="1"/>
+		<result property="rankName" column="RANK_NAME" columnIndex="2"/>
+		<result property="created" column="CREATED" columnIndex="3"/>
+		<result property="modified" column="MODIFIED" columnIndex="4"/>
+		<result property="isdel" column="ISDEL" columnIndex="5"/>
+		<result property="orgId" column="ORG_ID" columnIndex="6"/>
+		<result property="connectType" column="CONNECT_TYPE" columnIndex="7"/>
+	</resultMap>
+	
+	<insert id="jnitcmsrankDAO.insertJnitcmsrank_S">
+		<![CDATA[
+			INSERT INTO jnitcmsrank 
+				( RANK_ID
+				  , RANK_NAME
+				  , CREATED
+				  , MODIFIED
+				  , ISDEL
+				  , ORG_ID
+				  , CONNECT_TYPE )
+			VALUES ( #rankId#
+				  , #rankName#
+				  , NOW()
+				  , NOW()
+				  , #isdel#
+				  , #orgId#
+				  , #connectType# )
+		]]>
+	</insert>
+	<insert id="jnitcmsrankDAO.insertDbConnectrank_S">
+		<![CDATA[
+			INSERT INTO jnitcmsrank 
+				( RANK_ID
+				  , RANK_NAME
+				  , CREATED
+				  , MODIFIED
+				  , ISDEL
+				  , ORG_ID
+				  , CONNECT_TYPE )
+			VALUES ( #rankId#
+				  , #rankName#
+				  , NOW()
+				  , NOW()
+				  , #isdel#
+				  , #orgId#
+				  , #connectType# )
+		]]>
+	</insert>
+	
+	<update id="jnitcmsrankDAO.updateJnitcmsrank_S">
+		<![CDATA[
+			UPDATE jnitcmsrank
+			SET RANK_ID=#rankId#
+				, RANK_NAME=#rankName#				
+				, MODIFIED=NOW()
+				, ISDEL=#isdel#
+				, ORG_ID=#orgId#
+                WHERE RANK_ID=#rankId#
+		]]>
+	</update>
+	
+	<delete id="jnitcmsrankDAO.deleteJnitcmsrank_S">
+		<![CDATA[
+			UPDATE jnitcmsrank
+			 SET ISDEL = 1
+                WHERE RANK_ID=#rankId#
+		]]>
+	</delete>
+	
+	<select id="jnitcmsrankDAO.selectJnitcmsrank_S" resultMap="jnitcmsrank">
+		<![CDATA[
+			SELECT
+				RANK_ID
+				, RANK_NAME
+				, CREATED
+				, MODIFIED
+				, ISDEL
+				, ORG_ID
+				, CONNECT_TYPE
+			FROM jnitcmsrank
+                WHERE RANK_ID=#rankId#
+		]]>
+	</select>
+	
+	<select id="jnitcmsrankDAO.selectJnitcmsrankList_D" parameterClass="jnitcmsrankSerarchVO" resultClass="egovMap">
+			SELECT
+								RANK_ID
+								, RANK_NAME
+								, CREATED
+								, MODIFIED
+								, ISDEL
+								, ORG_ID
+								, CONNECT_TYPE
+					FROM jnitcmsrank
+			WHERE 1=1
+			AND ISDEL=0
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				RANK_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				RANK_NAME LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				ORG_ID = #orgId#
+			</isEqual>
+				ORDER BY 
+                RANK_ID DESC
+			limit #firstIndex#, #recordCountPerPage#	
+	</select>
+	<select id="jnitcmsrankDAO.selectLeftJoinrankList_D" parameterClass="jnitcmsrankSerarchVO" resultClass="egovMap">
+			SELECT
+								a.RANK_ID
+								, a.RANK_NAME
+								, a.CREATED
+								, a.MODIFIED
+								, a.ISDEL
+								, a.ORG_ID
+								, a.CONNECT_TYPE
+								, b.*
+					FROM jnitcmsrank a
+					LEFT JOIN jnitcmsorg b
+					ON a.ORG_ID = b.ORG_ID
+			WHERE a.ISDEL=0				
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				a.RANK_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				a.RANK_NAME LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				a.ORG_ID = #orgId#				
+			</isEqual>			
+			<isEqual prepend="AND" property="searchCondition" compareValue="3">
+				a.ORG_ID IS NOT NULL				
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="4">
+				a.ORG_ID = #searchKeyword#				
+			</isEqual>
+				ORDER BY 
+                a.RANK_ID DESC
+            <isEqual property="pageYn" compareValue="Y">
+            	limit #firstIndex#, #recordCountPerPage#    
+            </isEqual>    				
+	</select>	
+	<select id="jnitcmsrankDAO.selectJnitcmsrankListTotCnt_S" parameterClass="jnitcmsrankSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM jnitcmsrank
+			WHERE 1=1
+			AND ISDEL=0			
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				RANK_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				RANK_NAME LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="3">
+				ORG_ID IS NOT NULL				
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="4">
+				a.ORG_ID = #searchKeyword#				
+			</isEqual>
+	</select>
+	<select id="jnitcmsrankDAO.getLastIdJnitcmsrank_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITCMSRANK_ID'
+	</select>
+
+</sqlMap>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE form-validation PUBLIC 
+    "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1//EN" 
+    "http://jakarta.apache.org/commons/dtds/validator_1_1.dtd">
+
+<form-validation>
+
+    <formset>
+		<form name="jnitcultcourseVO">
+			<field property="courseNm" depends="required">
+        		<arg0 key="코스 명칭" />
+			</field>
+			
+			<field property="sigunId" depends="mask">
+        		<arg0 key="시/군" />
+				<arg name="mask" key="선택" resource="false"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[1-9]*$</var-value>
+				</var>
+				<msg name="mask" key="{0}을(를) 선택하세요."/>
+			</field>
+			
+		</form>
+    </formset>
+
+</form-validation>

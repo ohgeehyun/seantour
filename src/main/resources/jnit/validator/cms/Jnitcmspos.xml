@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE form-validation PUBLIC 
+    "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1//EN" 
+    "http://jakarta.apache.org/commons/dtds/validator_1_1.dtd">
+
+<form-validation>
+
+    <formset>
+		<form name="jnitcmsposVO">
+			<field property="posId" depends="required, minlength">
+        		<arg0 key="직급코드" />
+				<arg1 key="5" />
+				<var> 
+					<var-name>minlength</var-name> 
+					<var-value>5</var-value> 
+				</var>
+			</field>
+			<field property="posNm" depends="required, minlength">
+        		<arg0 key="직급명" />
+				<arg1 key="2" />
+				<var> 
+					<var-name>minlength</var-name> 
+					<var-value>2</var-value> 
+				</var>
+			</field>
+		</form>
+    </formset>
+
+</form-validation>

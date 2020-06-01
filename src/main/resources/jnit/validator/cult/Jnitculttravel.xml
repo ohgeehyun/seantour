@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE form-validation PUBLIC 
+    "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1//EN" 
+    "http://jakarta.apache.org/commons/dtds/validator_1_1.dtd">
+
+<form-validation>
+
+    <formset>
+		<form name="jnitculttravelVO">
+			<field property="travelNm" depends="required">
+        		<arg0 key="코스 명칭" />
+			</field>
+			
+			<field property="travelData" depends="required">
+        		<arg0 key="스팟코스 리스트" />
+			</field>
+		</form>
+    </formset>
+
+</form-validation>

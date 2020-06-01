@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitcmsorg">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitcmsorgSerarchVO" type="jnit.cms.org.JnitcmsorgDefaultVO"/>
+	<typeAlias  alias="ComDefaultCodeVO" type="egovframework.com.cmm.ComDefaultCodeVO"/>
+	
+	<resultMap id="jnitcmsorg" class="jnit.cms.org.JnitcmsorgVO">
+		<result property="orgId" column="ORG_ID" columnIndex="1"/>
+		<result property="orgNm" column="ORG_NM" columnIndex="2"/>
+		<result property="created" column="CREATED" columnIndex="3"/>
+		<result property="modified" column="MODIFIED" columnIndex="4"/>
+		<result property="isdel" column="ISDEL" columnIndex="5"/>
+		<result property="orgDeth" column="ORG_DETH" columnIndex="6"/>
+		<result property="orgRankOdr" column="ORG_RANK_ODR" columnIndex="7"/>
+		<result property="connectType" column="CONNECT_TYPE" columnIndex="8"/>
+		<result property="orgTel" column="ORG_TEL" columnIndex="9"/>
+		
+	</resultMap>
+	
+	<resultMap id="CmmCodeDetail" class="egovframework.com.cmm.service.CmmnDetailCode">
+		<result property="codeId"    	column="CODE_ID"   	columnIndex="1"/>
+		<result property="code"  		column="CODE" 		columnIndex="2"/>
+		<result property="codeNm"   	column="CODE_NM"  	columnIndex="3"/>
+		<result property="codeDc"   	column="CODE_DC"  	columnIndex="4"/>
+	</resultMap>
+	
+	<insert id="jnitcmsorgDAO.insertJnitcmsorg_S">
+		<![CDATA[
+			INSERT INTO JNITCMSORG 
+				( ORG_ID
+				  , ORG_NM
+				  , CREATED
+				  , MODIFIED
+				  , ISDEL
+				  , ORG_DETH
+				  , ORG_RANK_ODR
+				  , CONNECT_TYPE
+				  , ORG_TEL )
+			VALUES ( #orgId#
+				  , #orgNm#
+				  , NOW()
+				  , NOW()
+				  , #isdel#
+				  , #orgDeth#
+				  , 0
+				  , #connectType#
+				  , #orgTel# )
+		]]>
+	</insert>
+	<insert id="jnitcmsorgDAO.insertDbConnectorg_S">
+		<![CDATA[
+			INSERT INTO JNITCMSORG 
+				( ORG_ID
+				  , ORG_NM
+				  , CREATED
+				  , MODIFIED
+				  , ISDEL
+				  , ORG_DETH
+				  , ORG_RANK_ODR
+				  , CONNECT_TYPE
+				  , ORG_TEL )
+			VALUES ( #orgId#
+				  , #orgNm#
+				  , NOW()
+				  , NOW()
+				  , #isdel#
+				  , #orgDeth#
+				  , 0
+				  , #connectType#
+				  , #orgTel# )
+		]]>
+	</insert>
+	
+	<update id="jnitcmsorgDAO.updateJnitcmsorg_S">
+		<![CDATA[
+			UPDATE JNITCMSORG
+			SET ORG_NM=#orgNm#
+		]]>
+		<isNotEmpty property="isdel">
+		    , ISDEL=#isdel#
+		</isNotEmpty>
+		<![CDATA[
+				, MODIFIED=NOW()
+				, ORG_RANK_ODR=#orgRankOdr#
+				, ORG_TEL=#orgTel#				
+			WHERE ISDEL=0 AND 
+				ORG_ID=#orgId#
+		]]>	
+	</update>
+	
+	<update id="jnitcmsorgDAO.deleteJnitcmsorg_S">
+		<![CDATA[
+			UPDATE JNITCMSORG
+			SET MODIFIED=NOW()
+				, ISDEL=1
+			WHERE
+				ORG_ID=#orgId#
+			]]>
+	</update>
+	
+	<select id="jnitcmsorgDAO.selectJnitcmsorg_S" resultMap="jnitcmsorg">
+		<![CDATA[
+			SELECT
+				ORG_ID
+				, ORG_NM
+				, CREATED
+				, MODIFIED
+				, ISDEL
+				, ORG_DETH
+				, ORG_RANK_ODR
+				, CONNECT_TYPE
+				, ORG_TEL
+			FROM JNITCMSORG
+			WHERE ISDEL=0
+				AND	ORG_ID = #orgId#
+			]]>
+	</select>
+	
+	<select id="jnitcmsorgDAO.selectJnitcmsorgList_D" parameterClass="jnitcmsorgSerarchVO" resultClass="egovMap">
+SELECT * FROM (
+	SELECT A.*, ROWNUM RNUM FROM (
+				SELECT
+							 ORG_ID
+							, ORG_NM
+							, CREATED
+							, MODIFIED
+							, ISDEL
+							, ORG_DETH
+							, ORG_RANK_ODR
+							, CONNECT_TYPE
+							, ORG_TEL
+				FROM JNITCMSORG
+				WHERE ISDEL=0
+				<isEqual prepend="AND" property="searchCondition" compareValue="0">
+					ORG_ID = #searchKeyword#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="1">
+					ORG_NM LIKE '%'||#searchKeyword#||'%'
+				</isEqual>
+				ORDER BY ORG_ID DESC 
+<![CDATA[					
+	) A WHERE ROWNUM <= #lastIndex#
+)WHERE RNUM > #firstIndex#
+]]>
+				
+	</select>
+	<select id="jnitcmsorgDAO.selectorgList_D" parameterClass="jnitcmsorgSerarchVO" resultClass="egovMap">
+			SELECT
+								ORG_ID
+								, ORG_NM
+								, CREATED
+								, MODIFIED
+								, ISDEL
+								, ORG_DETH
+								, ORG_RANK_ODR
+								, CONNECT_TYPE
+								, ORG_TEL
+					FROM JNITCMSORG
+			WHERE ISDEL=0
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				ORG_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				ORG_NM LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				ORG_DETH = #searchKeyword#
+			</isEqual>
+				ORDER BY ORG_ID ASC
+	</select>	
+	<select id="jnitcmsorgDAO.selectJnitcmsorgListTotCnt_S" parameterClass="jnitcmsorgSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM JNITCMSORG
+			WHERE ISDEL=0
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				ORG_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				ORG_NM LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				ORG_DETH = #searchKeyword#
+			</isEqual>
+	</select>
+	<select id="jnitcmsorgDAO.getLastIdJnitcmsorg_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITCMSORG_ID'
+	</select>
+
+    <select id="jnitcmsorgDAO.selectOrgIdDetail" parameterClass="ComDefaultCodeVO" resultMap="CmmCodeDetail">
+            <![CDATA[ 
+            SELECT 
+                'JNITCMSORG'    CODE_ID, 
+                ORG_ID     CODE, 
+                ORG_NM     CODE_NM, 
+                ORG_NM     CODE_DC
+            FROM 
+                JNITCMSORG
+            WHERE ISDEL=0
+            ]]>
+            <isEqual prepend="AND" property="haveDetailCondition" compareValue="Y">
+                ORG_ID=#detailCondition#
+            </isEqual>
+            	ORDER BY ORG_NM
+    </select>
+
+</sqlMap>

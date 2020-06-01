@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitsmsmgov">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitsmsmgovSerarchVO" type="jnit.sms.mgov.JnitsmsmgovDefaultVO"/>
+	
+	<resultMap id="jnitsmsmgov" class="jnit.sms.mgov.JnitsmsmgovVO">
+		<result property="msgNo" column="MSG_NO" columnIndex="1"/>
+		<result property="msgKey" column="MSG_KEY" columnIndex="2"/>
+		<result property="msgUid" column="MSG_UID" columnIndex="3"/>
+		<result property="msgSendNo" column="MSG_SEND_NO" columnIndex="4"/>
+		<result property="msgRcvName" column="MSG_RCV_NAME" columnIndex="5"/>
+		<result property="msgRcvNo" column="MSG_RCV_NO" columnIndex="6"/>
+		<result property="msgType" column="MSG_TYPE" columnIndex="7"/>
+		<result property="msgType2" column="MSG_TYPE2" columnIndex="8"/>
+		<result property="msgSubject" column="MSG_SUBJECT" columnIndex="9"/>
+		<result property="msgTxt" column="MSG_TXT" columnIndex="10"/>
+		<result property="msgUrl" column="MSG_URL" columnIndex="11"/>
+		<result property="msgFile1" column="MSG_FILE1" columnIndex="12"/>
+		<result property="msgFile2" column="MSG_FILE2" columnIndex="13"/>
+		<result property="msgFile3" column="MSG_FILE3" columnIndex="14"/>
+		<result property="msgStatus" column="MSG_STATUS" columnIndex="15"/>
+		<result property="msgRststus" column="MSG_RSTSTUS" columnIndex="16"/>
+		<result property="msgTelco" column="MSG_TELCO" columnIndex="17"/>
+		<result property="msgCode" column="MSG_CODE" columnIndex="18"/>
+		<result property="msgTransDt" column="MSG_TRANS_DT" columnIndex="19"/>
+		<result property="msgSendDt" column="MSG_SEND_DT" columnIndex="20"/>
+		<result property="msgReptDt" column="MSG_REPT_DT" columnIndex="21"/>
+		<result property="msgRsltDt" column="MSG_RSLT_DT" columnIndex="22"/>
+		<result property="msgDate" column="MSG_DATE" columnIndex="23"/>
+	</resultMap>
+	
+	<insert id="jnitsmsmgovDAO.insertJnitsmsmgov_S">
+		<![CDATA[
+			INSERT INTO jnitsmsmgov 
+				(MSG_NO
+				  ,	MSG_KEY
+				  , MSG_UID
+				  , MSG_SEND_NO
+				  , MSG_RCV_NAME
+				  , MSG_RCV_NO
+				  , MSG_TYPE
+				  , MSG_TYPE2
+				  , MSG_SUBJECT
+				  , MSG_TXT
+				  , MSG_URL
+				  , MSG_FILE1
+				  , MSG_FILE2
+				  , MSG_FILE3
+				  , MSG_STATUS
+				  , MSG_RSTSTUS
+				  , MSG_TELCO
+				  , MSG_CODE
+				  , MSG_TRANS_DT
+				  , MSG_SEND_DT
+				  , MSG_REPT_DT
+				  , MSG_RSLT_DT
+				  , MSG_DATE )
+			VALUES ( #msgNo#
+				  , #msgKey#
+				  , #msgUid#
+				  , #msgSendNo#
+				  , #msgRcvName#
+				  , #msgRcvNo#
+				  , #msgType#
+				  , #msgType2#
+				  , #msgSubject#
+				  , #msgTxt#
+				  , #msgUrl#
+				  , #msgFile1#
+				  , #msgFile2#
+				  , #msgFile3#
+				  , #msgStatus#
+				  , #msgRststus#
+				  , #msgTelco#
+				  , #msgCode#
+				  , #msgTransDt#
+				  , #msgSendDt#
+				  , #msgReptDt#
+				  , #msgRsltDt#
+				  , SYSDATE )
+		]]>
+	</insert>
+	
+	<update id="jnitsmsmgovDAO.updateJnitsmsmgov_S">
+		<![CDATA[
+			UPDATE jnitsmsmgov
+			SET MSG_NO=#msgNo#
+				, MSG_KEY=#msgKey#
+				, MSG_UID=#msgUid#
+				, MSG_SEND_NO=#msgSendNo#
+				, MSG_RCV_NAME=#msgRcvName#
+				, MSG_RCV_NO=#msgRcvNo#
+				, MSG_TYPE=#msgType#
+				, MSG_TYPE2=#msgType2#
+				, MSG_SUBJECT=#msgSubject#
+				, MSG_TXT=#msgTxt#
+				, MSG_URL=#msgUrl#
+				, MSG_FILE1=#msgFile1#
+				, MSG_FILE2=#msgFile2#
+				, MSG_FILE3=#msgFile3#
+				, MSG_STATUS=#msgStatus#
+				, MSG_RSTSTUS=#msgRststus#
+				, MSG_TELCO=#msgTelco#
+				, MSG_CODE=#msgCode#
+				, MSG_TRANS_DT=#msgTransDt#
+				, MSG_SEND_DT=#msgSendDt#
+				, MSG_REPT_DT=#msgReptDt#
+				, MSG_RSLT_DT=#msgRsltDt#
+				, MSG_DATE=#msgDate#
+                WHERE MSG_NO=#msgNo#
+		]]>
+	</update>
+	
+	<delete id="jnitsmsmgovDAO.deleteJnitsmsmgov_S">
+		<![CDATA[
+			DELETE FROM jnitsmsmgov 
+                WHERE MSG_NO=#msgNo#
+		]]>
+	</delete>
+	
+	<select id="jnitsmsmgovDAO.selectJnitsmsmgov_S" resultMap="jnitsmsmgov">
+		<![CDATA[
+			SELECT
+				MSG_NO
+				, MSG_KEY
+				, MSG_UID
+				, MSG_SEND_NO
+				, MSG_RCV_NAME
+				, MSG_RCV_NO
+				, MSG_TYPE
+				, MSG_TYPE2
+				, MSG_SUBJECT
+				, MSG_TXT
+				, MSG_URL
+				, MSG_FILE1
+				, MSG_FILE2
+				, MSG_FILE3
+				, MSG_STATUS
+				, MSG_RSTSTUS
+				, MSG_TELCO
+				, MSG_CODE
+				, MSG_TRANS_DT
+				, MSG_SEND_DT
+				, MSG_REPT_DT
+				, MSG_RSLT_DT
+				, MSG_DATE
+			FROM jnitsmsmgov
+                WHERE MSG_NO=#msgNo#
+		]]>
+	</select>
+	
+	<select id="jnitsmsmgovDAO.selectJnitsmsmgovList_D" parameterClass="jnitsmsmgovSerarchVO" resultClass="egovMap">
+	    				SELECT
+								ROWNUM AS RNUM
+								, MSG_NO
+								, MSG_KEY
+								, MSG_UID
+								, MSG_SEND_NO
+								, MSG_RCV_NAME
+								, MSG_RCV_NO
+								, MSG_TYPE
+								, MSG_TYPE2
+								, MSG_SUBJECT
+								, DBMS_LOB.SUBSTR(MSG_TXT) AS MSG_TXT
+								, MSG_URL
+								, MSG_FILE1
+								, MSG_FILE2
+								, MSG_FILE3
+								, MSG_STATUS
+								, MSG_RSTSTUS
+								, MSG_TELCO
+								, MSG_CODE
+								, MSG_TRANS_DT
+								, MSG_SEND_DT
+								, MSG_REPT_DT
+								, MSG_RSLT_DT
+								, MSG_DATE
+					FROM (SELECT
+								ROWNUM AS RNUM
+								, MSG_NO
+								, MSG_KEY
+								, MSG_UID
+								, MSG_SEND_NO
+								, MSG_RCV_NAME
+								, MSG_RCV_NO
+								, MSG_TYPE
+								, MSG_TYPE2
+								, MSG_SUBJECT
+								, DBMS_LOB.SUBSTR(MSG_TXT) AS MSG_TXT
+								, MSG_URL
+								, MSG_FILE1
+								, MSG_FILE2
+								, MSG_FILE3
+								, MSG_STATUS
+								, MSG_RSTSTUS
+								, MSG_TELCO
+								, MSG_CODE
+								, MSG_TRANS_DT
+								, MSG_SEND_DT
+								, MSG_REPT_DT
+								, MSG_RSLT_DT
+								, MSG_DATE
+					FROM jnitsmsmgov
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				MSG_NO = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				MSG_KEY LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			ORDER BY 
+			MSG_NO DESC
+			) WHERE 1=1
+			<![CDATA[
+				AND RNUM > #firstIndex#
+				AND RNUM <= #firstIndex# + #recordCountPerPage#
+			]]>			
+	</select>	
+	<select id="jnitsmsmgovDAO.selectJnitsmsmgovListTotCnt_S" parameterClass="jnitsmsmgovSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM jnitsmsmgov
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				MSG_NO = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				MSG_KEY LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+	</select>
+	<select id="jnitsmsmgovDAO.getLastIdJnitsmsmgov_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITSMSMGOV_ID'
+	</select>
+
+</sqlMap>

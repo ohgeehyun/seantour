@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitcmsmgmtitem">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitcmsmgmtitemSerarchVO" type="jnit.cms.mgmtitem.JnitcmsmgmtitemDefaultVO"/>
+	
+	<resultMap id="jnitcmsmgmtitem" class="jnit.cms.mgmtitem.JnitcmsmgmtitemVO">
+		<result property="mgmtCategoryId" column="MGMT_CATEGORY_ID" columnIndex="1"/>
+		<result property="categoryId" column="CATEGORY_ID" columnIndex="2"/>
+		<result property="categoryNm" column="CATEGORY_NM" columnIndex="3"/>
+		<result property="categoryVal" column="CATEGORY_VAL" columnIndex="4"/>
+		<result property="categorySort" column="CATEGORY_SORT" columnIndex="5"/>
+		<result property="categorySource" column="CATEGORY_SOURCE" columnIndex="6"/>
+		<result property="modifiYn" column="MODIFI_YN" columnIndex="7"/>
+		<result property="isdel" column="ISDEL" columnIndex="8"/>
+	</resultMap>
+	
+	<insert id="jnitcmsmgmtitemDAO.insertJnitcmsmgmtitem_S">
+		<![CDATA[
+			INSERT INTO JNITCMSMGMTITEM 
+				( MGMT_CATEGORY_ID
+				  , CATEGORY_ID
+				  , CATEGORY_NM
+				  , CATEGORY_VAL
+				  , CATEGORY_SORT
+				  , CATEGORY_SOURCE
+				  , MODIFI_YN
+				  , ISDEL )
+			VALUES ( #mgmtCategoryId#
+				  , #categoryId#
+				  , #categoryNm#
+				  , #categoryVal#
+				  , #categorySort#
+				  , #categorySource#
+				  , #modifiYn#
+				  , #isdel# )
+		]]>
+	</insert>
+	
+	<update id="jnitcmsmgmtitemDAO.updateJnitcmsmgmtitem_S">		
+			UPDATE JNITCMSMGMTITEM
+			<isEqual property="updateCondition" compareValue="0">			    
+			<![CDATA[	
+			SET MGMT_CATEGORY_ID=#mgmtCategoryId#
+				, CATEGORY_ID=#categoryId#
+				, CATEGORY_NM=#categoryNm#
+				, CATEGORY_VAL=#categoryVal#
+				, CATEGORY_SORT=#categorySort#
+				, CATEGORY_SOURCE=#categorySource#
+				, MODIFI_YN=#modifiYn#
+				, ISDEL=#isdel#
+						WHERE CATEGORY_ID=#categoryId#
+				]]>
+			</isEqual>
+			<isEqual property="updateCondition" compareValue="1">			    
+			<![CDATA[
+			SET CATEGORY_NM=#categoryNm#
+						WHERE 1=1
+						AND MGMT_CATEGORY_ID=#mgmtCategoryId# 
+						AND CATEGORY_VAL=#categoryVal#
+				]]>
+			</isEqual>
+	</update>
+	
+	<delete id="jnitcmsmgmtitemDAO.deleteJnitcmsmgmtitem_S">
+	    <isEqual property="isdelYn" compareValue="N">
+	    <![CDATA[
+			DELETE FROM JNITCMSMGMTITEM
+						WHERE CATEGORY_ID=#categoryId#
+		]]>
+	    </isEqual>
+	    <isEqual property="isdelYn" compareValue="Y">
+	    <![CDATA[
+			UPDATE JNITCMSMGMTITEM
+					SET ISDEL=1	WHERE CATEGORY_ID=#categoryId#
+		]]>
+	    </isEqual>
+	</delete>
+	
+	<select id="jnitcmsmgmtitemDAO.selectJnitcmsmgmtitem_S" resultMap="jnitcmsmgmtitem">
+		<![CDATA[
+			SELECT
+				MGMT_CATEGORY_ID
+				, CATEGORY_ID
+				, CATEGORY_NM
+				, CATEGORY_VAL
+				, CATEGORY_SORT
+				, CATEGORY_SOURCE
+				, MODIFI_YN
+				, ISDEL
+		]]>
+		<isEqual property="selectCondition" compareValue="0">
+			FROM JNITCMSMGMTITEM
+						WHERE CATEGORY_ID=#categoryId#		    
+		</isEqual>
+		<isEqual property="selectCondition" compareValue="1">
+			FROM JNITCMSMGMTITEM
+						WHERE 1=1
+						AND MGMT_CATEGORY_ID=#mgmtCategoryId#
+						AND CATEGORY_VAL=#categoryVal#		    
+		</isEqual>
+	</select>
+	
+	<select id="jnitcmsmgmtitemDAO.selectJnitcmsmgmtitemList_D" parameterClass="jnitcmsmgmtitemSerarchVO" resultClass="egovMap">
+		SELECT * FROM (
+			SELECT A.*, ROWNUM RNUM FROM (
+						SELECT
+										MGMT_CATEGORY_ID
+										, CATEGORY_ID
+										, CATEGORY_NM
+										, CATEGORY_VAL
+										, CATEGORY_SORT
+										, CATEGORY_SOURCE
+				  						, MODIFI_YN
+										, ISDEL
+								FROM JNITCMSMGMTITEM
+						WHERE 1=1
+						<isEqual prepend="AND" property="isdelYn" compareValue="Y">
+						    ISDEL = 0
+						</isEqual>
+						<isNotEmpty prepend="AND" property="mgmtCategoryId">
+						    MGMT_CATEGORY_ID = #mgmtCategoryId#
+						</isNotEmpty>
+						<isEqual prepend="AND" property="searchCondition" compareValue="0">
+							MGMT_CATEGORY_ID = #searchKeyword#
+						</isEqual>
+						<isEqual prepend="AND" property="searchCondition" compareValue="1">
+							CATEGORY_NM LIKE CONCAT('%',#searchKeyword#,'%')
+						</isEqual>
+						<isEqual property="orderbyCondition" compareValue="0">
+							ORDER BY CATEGORY_ID DESC
+						</isEqual>
+						<isEqual property="orderbyCondition" compareValue="1">
+							ORDER BY CATEGORY_SORT ASC
+						</isEqual>
+			) A WHERE 1=1
+			<isEqual prepend="AND" property="pageYn" compareValue="Y">
+				ROWNUM <![CDATA[<=]]> #lastIndex#
+			</isEqual>
+		)WHERE 1=1
+		<isEqual prepend="AND" property="pageYn" compareValue="Y">
+			RNUM <![CDATA[>]]> #firstIndex#
+		</isEqual>
+	</select>	
+	<select id="jnitcmsmgmtitemDAO.selectJnitcmsmgmtitemListTotCnt_S" parameterClass="jnitcmsmgmtitemSerarchVO" resultClass="int">
+	    	<isEqual property="countCondition" compareValue="0">
+		    	SELECT COUNT(*) totcnt
+				FROM JNITCMSMGMTITEM
+				WHERE 1=1
+				<isEqual prepend="AND" property="isdelYn" compareValue="Y">
+				    ISDEL = 0
+				</isEqual>
+				<isNotEmpty prepend="AND" property="mgmtCategoryId">
+				    MGMT_CATEGORY_ID = #mgmtCategoryId#
+				</isNotEmpty>
+				<isEqual prepend="AND" property="searchCondition" compareValue="0">
+					MGMT_CATEGORY_ID = #searchKeyword#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="1">
+					CATEGORY_NM LIKE CONCAT('%',#searchKeyword#,'%')
+				</isEqual>    
+	    	</isEqual>
+	    	<isEqual property="countCondition" compareValue="1">
+	    	    SELECT MAX(CATEGORY_SORT) totcnt
+	    	    FROM JNITCMSMGMTITEM
+	    	    WHERE 1=1
+				<isEqual prepend="AND" property="isdelYn" compareValue="Y">
+				    ISDEL = 0
+				</isEqual>
+				<isNotEmpty prepend="AND" property="mgmtCategoryId">
+				    MGMT_CATEGORY_ID = #mgmtCategoryId#
+				</isNotEmpty>
+				<isEqual prepend="AND" property="searchCondition" compareValue="0">
+					MGMT_CATEGORY_ID = #searchKeyword#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="1">
+					CATEGORY_NM LIKE CONCAT('%',#searchKeyword#,'%')
+				</isEqual>
+	    	</isEqual>
+	</select>
+	<select id="jnitcmsmgmtitemDAO.getLastIdJnitcmsmgmtitem_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITCMSMGMTITEM_ID'
+	</select>
+
+</sqlMap>

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitebook">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitebookSerarchVO" type="jnit.ebook.JnitebookDefaultVO"/>
+
+	<resultMap id="jnitebook" class="jnit.ebook.JnitebookVO">
+		<result property="ebookId" column="EBOOK_ID" columnIndex="1"/>
+		<result property="ebookTitle" column="EBOOK_TITLE" columnIndex="2"/>
+		<result property="created" column="CREATED" columnIndex="3"/>
+		<result property="modified" column="MODIFIED" columnIndex="4"/>
+		<result property="pageWidth" column="PAGE_WIDTH" columnIndex="5"/>
+		<result property="pageHeight" column="PAGE_HEIGHT" columnIndex="6"/>
+		<result property="thumbYn" column="THUMB_YN" columnIndex="7"/>
+		<result property="thumbAotoHide" column="THUMB_AOTO_HIDE" columnIndex="8"/>
+		<result property="thumbWidth" column="THUMB_WIDTH" columnIndex="9"/>
+		<result property="thumbHeight" column="THUMB_HEIGHT" columnIndex="10"/>
+		<result property="shareLink" column="SHARE_LINK" columnIndex="11"/>
+		<result property="shareText" column="SHARE_TEXT" columnIndex="12"/>
+		<result property="shareVia" column="SHARE_VIA" columnIndex="13"/>
+		<result property="isdel" column="ISDEL" columnIndex="14"/>
+		<result property="ext01" column="EXT01" columnIndex="15"/>
+		<result property="ext02" column="EXT02" columnIndex="16"/>
+		<result property="ext03" column="EXT03" columnIndex="17"/>
+		<result property="ext04" column="EXT04" columnIndex="18"/>
+		<result property="ext05" column="EXT05" columnIndex="19"/>
+	</resultMap>
+
+	<insert id="jnitebookDAO.insertJnitebook_S">
+		<![CDATA[
+			INSERT INTO JNITEBOOK
+				( EBOOK_ID
+				  , EBOOK_TITLE
+				  , CREATED
+				  , MODIFIED
+				  , PAGE_WIDTH
+				  , PAGE_HEIGHT
+				  , THUMB_YN
+				  , THUMB_AOTO_HIDE
+				  , THUMB_WIDTH
+				  , THUMB_HEIGHT
+				  , SHARE_LINK
+				  , SHARE_TEXT
+				  , SHARE_VIA
+				  , ISDEL
+				  , EXT01
+				  , EXT02
+				  , EXT03
+				  , EXT04
+				  , EXT05 )
+			VALUES ( #ebookId#
+				  , #ebookTitle#
+				  , SYSDATE
+				  , SYSDATE
+				  , #pageWidth#
+				  , #pageHeight#
+				  , #thumbYn#
+				  , #thumbAotoHide#
+				  , #thumbWidth#
+				  , #thumbHeight#
+				  , #shareLink#
+				  , #shareText#
+				  , #shareVia#
+				  , 0
+				  , 1
+				  , #ext02#
+				  , #ext03#
+				  , #ext04#
+				  , #ext05# )
+		]]>
+	</insert>
+
+	<update id="jnitebookDAO.updateJnitebook_S">
+		<![CDATA[
+			UPDATE JNITEBOOK
+			SET EBOOK_ID=#ebookId#
+				, EBOOK_TITLE=#ebookTitle#
+				, MODIFIED=SYSDATE
+				, PAGE_WIDTH=#pageWidth#
+				, PAGE_HEIGHT=#pageHeight#
+				, THUMB_YN=#thumbYn#
+				, THUMB_AOTO_HIDE=#thumbAotoHide#
+				, THUMB_WIDTH=#thumbWidth#
+				, THUMB_HEIGHT=#thumbHeight#
+				, SHARE_LINK=#shareLink#
+				, SHARE_TEXT=#shareText#
+				, SHARE_VIA=#shareVia#
+				, ISDEL=#isdel#
+				, EXT01=#ext01#
+				, EXT02=#ext02#
+				, EXT03=#ext03#
+				, EXT04=#ext04#
+				, EXT05=#ext05#
+						WHERE EBOOK_ID=#ebookId#
+				]]>
+	</update>
+
+	<delete id="jnitebookDAO.deleteJnitebook_S">
+	    <isEqual property="isdelYn" compareValue="N">
+	    <![CDATA[
+			DELETE FROM JNITEBOOK
+						WHERE EBOOK_ID=#ebookId#
+		]]>
+	    </isEqual>
+	    <isEqual property="isdelYn" compareValue="Y">
+	    <![CDATA[
+			UPDATE JNITEBOOK
+				SET ISDEL = 1 WHERE EBOOK_ID=#ebookId#
+		]]>
+	    </isEqual>
+	</delete>
+
+	<select id="jnitebookDAO.selectJnitebook_S" resultMap="jnitebook">
+		<![CDATA[
+			SELECT
+				EBOOK_ID
+				, EBOOK_TITLE
+				, CREATED
+				, MODIFIED
+				, PAGE_WIDTH
+				, PAGE_HEIGHT
+				, THUMB_YN
+				, THUMB_AOTO_HIDE
+				, THUMB_WIDTH
+				, THUMB_HEIGHT
+				, SHARE_LINK
+				, SHARE_TEXT
+				, SHARE_VIA
+				, ISDEL
+				, EXT01
+				, EXT02
+				, EXT03
+				, EXT04
+				, EXT05
+			FROM JNITEBOOK
+						WHERE EBOOK_ID=#ebookId#
+				]]>
+	</select>
+
+	<select id="jnitebookDAO.selectJnitebookList_D" parameterClass="jnitebookSerarchVO" resultClass="egovMap">
+		SELECT * FROM (
+			SELECT A.*, ROWNUM RNUM FROM (
+							SELECT
+									EBOOK_ID
+									, EBOOK_TITLE
+									, CREATED
+									, MODIFIED
+									, PAGE_WIDTH
+									, PAGE_HEIGHT
+									, THUMB_YN
+									, THUMB_AOTO_HIDE
+									, THUMB_WIDTH
+									, THUMB_HEIGHT
+									, SHARE_LINK
+									, SHARE_TEXT
+									, SHARE_VIA
+									, ISDEL
+									, EXT01
+									, EXT02
+									, EXT03
+									, EXT04
+									, EXT05
+							FROM JNITEBOOK
+					WHERE 1=1
+					<isEqual prepend="AND" property="isdelYn" compareValue="Y">
+					    ISDEL = 0
+					</isEqual>
+					<isEqual prepend="AND" property="searchCondition" compareValue="0">
+						EBOOK_ID = #searchKeyword#
+					</isEqual>
+					<isEqual prepend="AND" property="searchCondition" compareValue="1">
+						EBOOK_TITLE LIKE '%' || #searchKeyword# || '%'
+					</isEqual>
+						ORDER BY EBOOK_ID DESC
+			) A WHERE 1=1
+			<isEqual prepend="AND" property="pageYn" compareValue="Y">
+				ROWNUM <![CDATA[<=]]> #lastIndex#
+			</isEqual>
+		)WHERE 1=1
+		<isEqual prepend="AND" property="pageYn" compareValue="Y">
+		    RNUM <![CDATA[>]]> #firstIndex#
+		</isEqual>
+	</select>
+	<select id="jnitebookDAO.selectJnitebookListTotCnt_S" parameterClass="jnitebookSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM JNITEBOOK
+			WHERE 1=1
+			<isEqual prepend="AND" property="isdelYn" compareValue="Y">
+			    ISDEL = 0
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				EBOOK_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				EBOOK_TITLE LIKE '%' || #searchKeyword# || '%'
+			</isEqual>
+	</select>
+	<select id="jnitebookDAO.getLastIdJnitebook_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITEBOOK_ID'
+	</select>
+
+</sqlMap>

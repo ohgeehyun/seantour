@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="travelRouteDAO">
+
+	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias alias="travelRouteVO" type="geocni.travel.route.domain.TravelRoute" />
+
+	<resultMap id="travelRoute" class="geocni.travel.route.domain.TravelRoute">
+		<result property="routId" column="rout_id" columnIndex="1"/>
+		<result property="routGroup" column="rout_group" columnIndex="2"/>
+		<result property="routRegMember" column="rout_reg_member" columnIndex="3"/>
+		<result property="routDays" column="rout_days" columnIndex="4"/>
+		<result property="routRegion" column="rout_region" columnIndex="5"/>
+		<result property="routStartPoint" column="rout_start_point" columnIndex="6"/>
+		<result property="routDestPoint" column="rout_dest_point" columnIndex="7"/>
+		<result property="routDescription" column="rout_description" columnIndex="8"/>
+		<result property="routStartAxis" column="rout_start_axis" columnIndex="9"/>
+		<result property="routDestAxis" column="rout_dest_axis" columnIndex="10"/>
+		<result property="routRegDate" column="rout_reg_date" columnIndex="11"/>
+		<result property="routRecomm" column="rout_recomm" columnIndex="12"/>
+		<result property="routHit" column="rout_hit" columnIndex="13"/>
+		<result property="routType" column="rout_type" columnIndex="14"/>
+		<result property="routOpen" column="rout_open" columnIndex="15"/>
+	</resultMap>
+	
+	<insert id="travelRouteDAO.insertTravelRoute">
+		<![CDATA[
+			INSERT INTO geo_travel_route (
+				  rout_id 
+				, rout_group
+				, rout_title
+				, rout_reg_member
+				, rout_days
+				, rout_region
+				, rout_start_point
+				, rout_dest_point
+				, rout_description
+				, rout_start_axis
+				, rout_dest_axis
+				, rout_type
+				, rout_reg_date 
+			) VALUES (
+				  #routId# 
+				, #routGroup#
+				, #routTitle#
+				, #routRegMember#
+				, #routDays#
+				, #routRegion#
+				, #routStartPoint#
+				, #routDestPoint#
+				, #routDescription#
+				, #routStartAxis#
+				, #routDestAxis#
+				, #routType#
+				, NOW()
+			)
+		]]>
+	</insert>
+	
+	<update id="travelRouteDAO.updateTravelRoute">
+		<![CDATA[
+			UPDATE geo_travel_route
+			SET 
+		]]>
+				<!-- , rout_group=#routGroup# -->
+				<!-- , rout_reg_member=#routRegMember# -->
+		<![CDATA[
+				  rout_title=#routTitle#
+				, rout_days=#routDays#
+				, rout_region=#routRegion#
+				, rout_start_point=#routStartPoint#
+				, rout_dest_point=#routDestPoint#
+				, rout_description=#routDescription#
+				, rout_start_axis=#routStartAxis#
+				, rout_dest_axis=#routDestAxis#
+			WHERE rout_id=#routId#
+		]]>
+				<!-- , rout_open=#routOpen# -->
+	</update>
+	
+	<delete id="travelRouteDAO.deleteTravelRoutePhysically">
+	    <![CDATA[
+			DELETE FROM geo_travel_route
+            WHERE 1=1
+		]]>
+			<isNotEmpty property="routId" prepend="AND">
+				rout_id=#routId#
+			</isNotEmpty>
+			<isNotEmpty property="routGroup" prepend="AND">
+				rout_group = #routGroup#
+			</isNotEmpty>
+	</delete>
+	
+	<select id="travelRouteDAO.selectTravelRouteInfoByGroup" parameterClass="java.lang.String" resultClass="travelRouteVO">
+		<![CDATA[
+			SELECT
+				  a.rout_id AS routId
+				, a.rout_group AS routGroup
+				, a.rout_title AS routTitle
+				, a.rout_reg_member AS routRegMember
+				, a.rout_days AS routDays
+				, a.rout_region AS routRegion
+				, a.rout_start_point AS routStartPoint
+				, a.rout_dest_point AS routDestPoint
+				, a.rout_description AS routDescription
+				, a.rout_start_axis AS routStartAxis
+				, a.rout_dest_axis AS routDestAxis
+				, a.rout_recomm AS routRecomm
+				, a.rout_hit AS routHit
+				, a.rout_type AS routType
+				, a.rout_open AS routOpen
+				, a.rout_reg_date  AS routRegDate 
+			FROM geo_travel_route
+            WHERE rout_group=#routGroup#
+            LIMIT 0,1
+		]]>
+	</select>
+	
+	<select id="travelRouteDAO.selectTravelRoute" parameterClass="travelRouteVO" resultClass="travelRouteVO">
+		<![CDATA[
+			SELECT
+				  a.rout_id AS routId
+				, a.rout_group AS routGroup
+				, a.rout_title AS routTitle
+				, a.rout_reg_member AS routRegMember
+				, a.rout_days AS routDays
+				, a.rout_region AS routRegion
+				, a.rout_start_point AS routStartPoint
+				, a.rout_dest_point AS routDestPoint
+				, a.rout_description AS routDescription
+				, a.rout_start_axis AS routStartAxis
+				, a.rout_dest_axis AS routDestAxis
+				, a.rout_recomm AS routRecomm
+				, a.rout_hit AS routHit
+				, a.rout_type AS routType
+				, a.rout_open AS routOpen
+				, a.rout_reg_date  AS routRegDate 
+				, b.mbr_nm AS routRegMemberNm
+			FROM geo_travel_route a
+				LEFT JOIN jnitcmsmbr b ON a.rout_reg_member=b.mbr_id
+            WHERE a.rout_id=#routId#
+		]]>
+	</select>
+	
+	<select id="travelRouteDAO.selectTravelRouteList" parameterClass="travelRouteVO" resultClass="travelRouteVO">
+		<![CDATA[
+			SELECT
+				  a.rout_id AS routId
+				, a.rout_group AS routGroup
+				, a.rout_title AS routTitle
+				, a.rout_reg_member AS routRegMember
+				, a.rout_days AS routDays
+				, a.rout_region AS routRegion
+				, a.rout_start_point AS routStartPoint
+				, a.rout_dest_point AS routDestPoint
+				, a.rout_description AS routDescription
+				, a.rout_start_axis AS routStartAxis
+				, a.rout_dest_axis AS routDestAxis
+				, a.rout_recomm AS routRecomm
+				, a.rout_hit AS routHit
+				, a.rout_type AS routType
+				, a.rout_open AS routOpen
+				, a.rout_reg_date  AS routRegDate
+				, b.mbr_nm AS routRegMemberNm
+			FROM geo_travel_route a
+				LEFT JOIN jnitcmsmbr b ON a.rout_reg_member=b.mbr_id
+			WHERE 1=1
+		]]>
+			<!-- <isEqual prepend="AND" property="isAdmin" compareValue="true">
+				<isEmpty property="routGroup" prepend="AND">
+					a.rout_days = '1'
+				</isEmpty>
+				<isNotEmpty property="routGroup" prepend="AND">
+					a.rout_group = #routGroup#
+				</isNotEmpty>
+			</isEqual> -->
+			<isNotEqual property="adminMode" compareValue="true">
+				<isEmpty property="routGroup" prepend="AND">
+					a.rout_days = '1'
+				</isEmpty>
+				<isNotEmpty property="routGroup" prepend="AND">
+					a.rout_group = #routGroup#
+				</isNotEmpty>
+			</isNotEqual>
+
+			<isNotEmpty property="routRegMember" prepend="AND">
+				a.rout_reg_member = #routRegMember#
+			</isNotEmpty>
+			
+			<isNotEmpty property="routRegion" prepend="AND">
+				a.rout_region = #routRegion#
+			</isNotEmpty>
+			<isNotEmpty property="searchKeyword" prepend="AND">
+				a.rout_title LIKE CONCAT('%',#searchKeyword#,'%')
+			</isNotEmpty>
+			<!-- 
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				CMT_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				BOARD_ID LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				BOARD_ID = #cmtBoardId# AND BOARD_CNT_ID = #cmtBoardCntId#
+			</isEqual> 
+			-->
+		<![CDATA[
+			ORDER BY rout_group DESC, rout_days ASC
+            LIMIT #firstIndex#, #recordCountPerPage#
+		]]>
+	</select>	
+	<select id="travelRouteDAO.selectTravelRouteListCnt" parameterClass="travelRouteVO" resultClass="int">
+		<![CDATA[
+			SELECT 
+				COUNT(*) totcnt
+			FROM geo_travel_route a
+			WHERE 1=1
+		]]>
+			<isNotEqual property="adminMode" compareValue="true">
+				<isEmpty property="routGroup" prepend="AND">
+					a.rout_days = '1'
+				</isEmpty>
+				<isNotEmpty property="routGroup" prepend="AND">
+					a.rout_group = #routGroup#
+				</isNotEmpty>
+			</isNotEqual>
+
+			<isNotEmpty property="routRegMember" prepend="AND">
+				a.rout_reg_member = #routRegMember#
+			</isNotEmpty>
+			
+			<isNotEmpty property="routRegion" prepend="AND">
+				a.rout_region = #routRegion#
+			</isNotEmpty>
+			<isNotEmpty property="searchKeyword" prepend="AND">
+				a.rout_title LIKE CONCAT('%',#searchKeyword#,'%')
+			</isNotEmpty>
+	</select>
+
+	<select id="travelRouteDAO.selectTravelRouteGroupList" resultClass="travelRouteVO">
+		<![CDATA[
+			SELECT
+				  DISTINCT rout_group AS routGroup
+				, rout_title AS routTitle
+			FROM geo_travel_route
+            ORDER BY rout_group
+		]]>
+	</select>
+	
+
+</sqlMap>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="JnitFilegoLogSuccess">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitFilegoLogSuccessSearchVO" type="jnit.filego.log.success.JnitFilegoLogSuccessDefaultVO"/>
+	
+	<resultMap id="jnitFilegoLogSuccess" class="jnit.filego.log.success.JnitFilegoLogSuccessVO">
+		<result property="jfslSeq" column="JFSL_SEQ" columnIndex="1"/>
+		<result property="jfslRequestUuid" column="JFSL_REQUEST_UUID" columnIndex="2"/>
+		<result property="jfslSender" column="JFSL_SENDER" columnIndex="3"/>
+		<result property="jfslReceiver" column="JFSL_RECEIVER" columnIndex="4"/>
+		<result property="jfslFilename" column="JFSL_FILENAME" columnIndex="5"/>
+		<result property="created" column="CREATED" columnIndex="6"/>
+	</resultMap>
+	
+	<sql id="jnitFilegoLogSuccessDAO.where">
+		WHERE 1 = 1
+		<isNotEmpty property="searchKeyword">
+			<isEqual property="searchCondition" compareValue="1">	<!-- SENDER -->
+				AND JFSL_SENDER LIKE CONCAT('%',#searchKeyword#, '%')
+			</isEqual>
+			<isEqual property="searchCondition" compareValue="2">	<!-- JFSL_RECEIVER -->
+				AND JFSL_RECEIVER LIKE CONCAT('%',#searchKeyword#, '%')
+			</isEqual>
+			<isEqual property="searchCondition" compareValue="3">	<!-- JFSL_FILENAME -->
+				AND JFSL_FILENAME LIKE CONCAT('%',#searchKeyword#, '%')
+			</isEqual>
+		</isNotEmpty>
+		
+		<isEqual property="searchDateCondition" compareValue="0">
+			<isNotEmpty property="searchStartDate">					<!-- CREATED -->
+				<isNotEmpty prepend="AND" property="searchEndDate">
+					DATE_FORMAT(CREATED, '%Y-%m-%d') BETWEEN #searchStartDate# AND #searchEndDate#
+				</isNotEmpty>
+				<isEmpty prepend="AND" property="searchEndDate">
+					DATE_FORMAT(CREATED, '%Y-%m-%d') <![CDATA[>=]]> #searchStartDate#
+				</isEmpty>
+			</isNotEmpty>
+			<isEmpty property="searchStartDate">
+				<isNotEmpty prepend="AND" property="searchEndDate">
+					#searchEndDate# <![CDATA[>=]]> DATE_FORMAT(CREATED, '%Y-%m-%d')
+				</isNotEmpty>
+			</isEmpty>
+		</isEqual>
+	</sql>
+	
+	<select id="jnitFilegoLogSuccessDAO.selectJnitFilegoLogSuccess" resultMap="jnitFilegoLogSuccess">
+		SELECT
+			JFSL_SEQ
+			, JFSL_REQUEST_UUID
+			, JFSL_SENDER
+			, JFSL_RECEIVER
+			, JFSL_FILENAME
+			, CREATED
+		FROM JNIT_FILEGO_SUCCESS_LOG
+		WHERE 1 = 1
+		AND JFSL_SEQ = #jfslSeq#
+		AND JFSL_REQUEST_UUID = #jfslRequestUuid#
+	</select>
+	
+	<select id="jnitFilegoLogSuccessDAO.selectListJnitFilegoLogSuccess" parameterClass="jnitFilegoLogSuccessSearchVO" resultClass="egovMap">
+		SELECT
+			JFSL_SEQ
+			, JFSL_REQUEST_UUID
+			, JFSL_SENDER
+			, JFSL_RECEIVER
+			, JFSL_FILENAME
+			, CREATED
+		FROM JNIT_FILEGO_SUCCESS_LOG
+		<include refid="jnitFilegoLogSuccessDAO.where"/>
+		ORDER BY JFSL_SEQ DESC
+		LIMIT #firstIndex#,#recordCountPerPage#
+	</select>
+	
+	<select id="jnitFilegoLogSuccessDAO.selectListTotJnitFilegoLogSuccess" parameterClass="jnitFilegoLogSuccessSearchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+				FROM JNIT_FILEGO_SUCCESS_LOG
+			<include refid="jnitFilegoLogSuccessDAO.where"/>
+	</select>
+</sqlMap>

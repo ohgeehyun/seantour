@@ -1,0 +1,61 @@
+@charset "utf-8";
+/*
+	반응형 css
+*/
+@media (max-width: 980px){
+#wrap, #header, #footer, #middle {width:100%;}
+#middle div.visual {width:96%;margin: 0px 2%;}
+#middle div.board {width:96%;margin: 20px 2% 0;}
+#middle div.allimy {width:96%;margin: 20px 2% 0;}
+
+#middle div.content_group {width:100%;}
+#middle div.content_group div.content_top {margin: 10px 2% 10px 2%;width: 96%;}
+#middle div.content_group div.content {margin: 10px 2% 10px 2%;width: 96%;}
+#leftMenu {display:none;}
+}
+
+
+@media (max-width: 580px){
+.member_box {margin: 30px auto 0;}
+}
+
+@media (max-width: 580px){
+div.content div.Jnit_sitemap ul.sitemap_Dept01 {width:48%;}
+div.content_group div.content div.research div.researchCount form ul li:first-child {width:83%;}
+div.Jnit_search_box {width: 80%;padding: 18px 0;}
+}
+
+@media (max-width: 480px){
+div.content_group div.content div.research div.researchCount form ul li:first-child {width:67%;margin-right: 2%;}
+div.content_group div.content div.contentAdmin div.adminArea dl dd {float:none;}
+div.content_group div.content .updateButton button.btn_info {width: 92%;}
+div.Jnit_search_box select {margin:0;width: 90%;}
+div.Jnit_search_box input {width: 84%;padding: 0 3%;margin-top: 10px;}
+div.Jnit_search_box button {margin-top: 10px;width: 90%;}
+/*로그인*/
+div.findGroup div.findForm p.findid01 label {width: 60px;}
+div.findGroup div.findForm p.findid01 input {padding: 4px 0px 6px 0px;width: 126px;}
+div.findGroup div.findForm p.findid01 a.findid_btn {margin-left: 60px;width: 126px;}
+div.findGroup div.findForm ul.loginList {width: 192px;}
+div.findGroup div.findForm ul.loginList li input[type="text"] {width: 82%;}
+/*회원*/
+.member_content .exeLogout {margin: 30px 0 0 0;}
+.member_content .exeLogout .exeLogoutForm input {width: 200px;margin-right:0;}
+.member_content .exeLogout .exeLogoutForm a {display:block;padding: 10px 0px;width: 200px;margin: 10px auto 0;}
+div.content .member_content input[type="text"] {width: 95%;padding: 1px 0;}
+.member_content table.member_join th, .member_content table.member_join td {line-height: 150%;}
+.member_content .login01 {width:100% ;margin:0;}
+.member_content .login01 .loginForm {padding: 25px 0px 15px 0px;}
+.member_content .login01 .loginForm ul.loginList {margin-left: 0px;}
+.member_content .login01 .loginForm p.loginBtn {margin-left: 60px;}
+.member_content .login01 .loginForm ul.loginList li label {width: 60px;}
+.member_content .login01 .loginForm .idpwFind {text-align: right;width: 237px;}
+.member_content .login01 .loginForm .idpwFind dt {float:none;}
+}
+
+@media (max-width: 320px){
+div.content div.Jnit_sitemap ul.sitemap_Dept01 {width:98%;}
+div.content_group div.content div.research div.researchCount form ol li {float: none;margin-bottom: 10px;}
+div.content_group div.content div.ccl {text-align: center;}
+div.content_group div.content div.ccl a {margin: 0 auto;float: none;}
+}

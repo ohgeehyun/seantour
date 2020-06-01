@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitsitestatelist">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias alias="ciMap" type="org.apache.commons.collections.map.CaseInsensitiveMap"/>
+
+	<!-- IP 테이블 INSERT -->
+	<insert id="jnitSiteStateDAO.insertIp" parameterClass="ciMap">
+		<![CDATA[
+			INSERT INTO JNITSITESTATELIST
+				(SITE 
+				 , IP )
+			VALUES (#sitePath#
+				  , #ip# )
+		]]>
+	</insert>
+	
+	<!-- IP테이블 데이터 제거 -->
+	<delete id="jnitSiteStateDAO.deleteIp">
+		<![CDATA[
+			DELETE FROM JNITSITESTATELIST
+		]]>
+	</delete>
+	
+	<!-- IP테이블에서 날짜 조회 ( 현재 사용 안함 ) -->
+	<select id="jnitSiteStateDAO.selectIp_Date" parameterClass="ciMap" resultClass="int">
+		<![CDATA[
+			SELECT
+				COUNT(*)
+			FROM JNITSITESTATELIST
+		]]>
+	</select>
+	
+	<!-- IP테이블에서 IP조회 -->
+	<select id="jnitSiteStateDAO.selectIp_Ip" parameterClass="ciMap" resultClass="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM (
+				SELECT
+					*
+				FROM JNITSITESTATELIST
+				WHERE 1=1
+				AND SITE = #sitePath#
+				AND IP = #ip#
+			)
+		]]>
+	</select>
+	
+	
+	
+	
+	<!-- STATE 테이블 INSERT -->
+	<insert id="jnitSiteStateDAO.insertState" parameterClass="ciMap">
+		<![CDATA[
+			INSERT INTO JNITSITESTATE 
+				( WHEN_DATE )
+			VALUES ( #whenDate# )
+		]]>
+	</insert>
+	
+	<!-- STATE 테이블 방문자 +1 -->
+	<update id="jnitSiteStateDAO.updateState" parameterClass="ciMap">
+		<![CDATA[
+			UPDATE JNITSITESTATE
+			SET "$sitePath$" = TO_NUMBER("$sitePath$")+1
+                WHERE WHEN_DATE=#whenDate#
+		]]>
+	</update>
+	
+	<!-- STATE테이블 컬럼 조회용 -->
+	<select id="jnitSiteStateDAO.selectState_Column" resultClass="ciMap">
+			SELECT 
+				*
+			FROM JNITSITESTATE
+			WHERE 1=1
+			AND ROWNUM = 1;
+	</select>
+
+	<!-- IP테이블에서 날짜 조회 -->
+	<select id="jnitSiteStateDAO.selectState_Date" parameterClass="ciMap" resultClass="int">
+		<![CDATA[
+			SELECT
+				COUNT(*)
+			FROM JNITSITESTATE
+			WHERE WHEN_DATE=#whenDate#
+		]]>
+	</select>
+	
+	<!-- totalSelect -->
+	<select id="jnitSiteStateDAO.selectTotal" parameterClass="cimap" resultClass="ciMap">
+		<![CDATA[
+			SELECT TOTAL, YESTERDAY, TODAY
+			FROM(SELECT NVL(SUM(TO_NUMBER("$sitePath$")), 0) AS TOTAL FROM JNITSITESTATE),
+			(SELECT NVL(SUM(TO_NUMBER("$sitePath$")),0) AS TODAY FROM JNITSITESTATE WHERE WHEN_DATE = TO_CHAR(SYSDATE, 'YYYY-MM-DD')),
+			(SELECT NVL(SUM(TO_NUMBER("$sitePath$")),0) AS YESTERDAY FROM JNITSITESTATE WHERE WHEN_DATE = TO_CHAR(SYSDATE-1, 'YYYY-MM-DD'))
+		]]>
+	</select>
+	
+</sqlMap>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitcmsdisseminatehistory">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitcmsdisseminatehistorySerarchVO" type="jnit.cms.disseminatehisotry.JnitcmsdisseminatehistoryDefaultVO"/>
+	
+	<resultMap id="jnitcmsdisseminatehistory" class="jnit.cms.disseminatehisotry.JnitcmsdisseminatehistoryVO">
+		<result property="historyId" column="HISTORY_ID" columnIndex="1"/>
+		<result property="siteId" column="SITE_ID" columnIndex="2"/>
+		<result property="menuId" column="MENU_ID" columnIndex="3"/>
+		<result property="cntId" column="CNT_ID" columnIndex="4"/>
+		<result property="contentPath" column="CONTENT_PATH" columnIndex="5"/>
+		<result property="disseminateType" column="DISSEMINATE_TYPE" columnIndex="6"/>
+		<result property="disseminateLine" column="DISSEMINATE_LINE" columnIndex="7"/>
+		<result property="mbrId" column="MBR_ID" columnIndex="8"/>
+		<result property="disseminateUserconfirm" column="DISSEMINATE_USERCONFIRM" columnIndex="9"/>
+		<result property="disseminateConfirm" column="DISSEMINATE_CONFIRM" columnIndex="10"/>
+		<result property="disseminateDay" column="DISSEMINATE_DAY" columnIndex="11"/>
+		<result property="disseminateCreated" column="DISSEMINATE_CREATED" columnIndex="12"/>
+		<result property="historyMemo" column="HISTORY_MEMO" columnIndex="13"/>
+	</resultMap>
+	
+	<insert id="jnitcmsdisseminatehistoryDAO.insertJnitcmsdisseminatehistory_S">
+		<![CDATA[
+			INSERT INTO jnitcmsdisseminatehistory 
+				( HISTORY_ID
+				  , SITE_ID
+				  , MENU_ID
+				  , CNT_ID
+				  , CONTENT_PATH
+				  , DISSEMINATE_TYPE
+				  , DISSEMINATE_LINE
+				  , MBR_ID
+				  , DISSEMINATE_USERCONFIRM
+				  , DISSEMINATE_CONFIRM
+				  , DISSEMINATE_DAY
+				  , DISSEMINATE_CREATED
+				  , HISTORY_MEMO )
+			VALUES ( #historyId#
+				  , #siteId#
+				  , #menuId#
+				  , #cntId#
+				  , #contentPath#
+				  , #disseminateType#
+				  , #disseminateLine#
+				  , #mbrId#
+				  , #disseminateUserconfirm#
+				  , #disseminateConfirm#
+				  , #disseminateDay#
+				  , NOW()
+				  , #historyMemo# )
+		]]>
+	</insert>
+	
+	<update id="jnitcmsdisseminatehistoryDAO.updateJnitcmsdisseminatehistory_S">
+		<![CDATA[
+			UPDATE jnitcmsdisseminatehistory
+			SET HISTORY_ID=#historyId#
+				, SITE_ID=#siteId#
+				, MENU_ID=#menuId#
+				, CNT_ID=#cntId#
+				, CONTENT_PATH=#contentPath#
+				, DISSEMINATE_TYPE=#disseminateType#
+				, DISSEMINATE_LINE=#disseminateLine#
+				, MBR_ID=#mbrId#
+				, DISSEMINATE_USERCONFIRM=#disseminateUserconfirm#
+				, DISSEMINATE_CONFIRM=#disseminateConfirm#
+				, DISSEMINATE_DAY=#disseminateDay#
+				, DISSEMINATE_CREATED=#disseminateCreated#
+				, HISTORY_MEMO=#historyMemo#
+						WHERE HISTORY_ID=#historyId#
+				]]>
+	</update>
+	
+	<delete id="jnitcmsdisseminatehistoryDAO.deleteJnitcmsdisseminatehistory_S">
+		<![CDATA[
+			DELETE FROM jnitcmsdisseminatehistory 
+						WHERE HISTORY_ID=#historyId#
+				]]>
+	</delete>
+	
+	<select id="jnitcmsdisseminatehistoryDAO.selectJnitcmsdisseminatehistory_S" resultMap="jnitcmsdisseminatehistory">
+		<![CDATA[
+			SELECT
+				HISTORY_ID
+				, SITE_ID
+				, MENU_ID
+				, CNT_ID
+				, CONTENT_PATH
+				, DISSEMINATE_TYPE
+				, DISSEMINATE_LINE
+				, MBR_ID
+				, DISSEMINATE_USERCONFIRM
+				, DISSEMINATE_CONFIRM
+				, DISSEMINATE_DAY
+				, DISSEMINATE_CREATED
+				, HISTORY_MEMO
+			FROM jnitcmsdisseminatehistory
+						WHERE HISTORY_ID=#historyId#
+				]]>
+	</select>
+	
+	<select id="jnitcmsdisseminatehistoryDAO.selectJnitcmsdisseminatehistoryList_D" parameterClass="jnitcmsdisseminatehistorySerarchVO" resultClass="egovMap">
+	    			SELECT
+							ROWNUM AS RNUM
+							, HISTORY_ID
+							, SITE_ID
+							, MENU_ID
+							, CNT_ID
+							, CONTENT_PATH
+							, DISSEMINATE_TYPE
+							, DISSEMINATE_LINE
+							, MBR_ID
+							, DISSEMINATE_USERCONFIRM
+							, DISSEMINATE_CONFIRM
+							, DISSEMINATE_DAY
+							, DISSEMINATE_CREATED
+							, HISTORY_MEMO
+ 					FROM( SELECT ROWNUM AS RNUM
+							, HISTORY_ID
+							, SITE_ID
+							, MENU_ID
+							, CNT_ID
+							, CONTENT_PATH
+							, DISSEMINATE_TYPE
+							, DISSEMINATE_LINE
+							, MBR_ID
+							, DISSEMINATE_USERCONFIRM
+							, DISSEMINATE_CONFIRM
+							, DISSEMINATE_DAY
+							, DISSEMINATE_CREATED
+							, HISTORY_MEMO
+ 					FROM jnitcmsdisseminatehistory
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				HISTORY_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				SITE_ID LIKE CONCAT ('%',#searchKeyword#,'%')
+			</isEqual>
+			)WHERE 1=1
+			<![CDATA[
+				AND RNUM > #firstIndex#
+				AND RNUM <= #firstIndex# + #recordCountPerPage#
+			]]>				
+				ORDER BY HISTORY_ID DESC					
+	</select>	
+	<select id="jnitcmsdisseminatehistoryDAO.selectJnitcmsdisseminatehistoryListTotCnt_S" parameterClass="jnitcmsdisseminatehistorySerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM jnitcmsdisseminatehistory
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				HISTORY_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				SITE_ID LIKE CONCAT ('%',#searchKeyword#,'%')
+			</isEqual>
+	</select>
+	<select id="jnitcmsdisseminatehistoryDAO.selectLeftJoinhistoryList_D" parameterClass="jnitcmsdisseminatehistorySerarchVO" resultClass="egovMap">
+	    SELECT * FROM (		
+			SELECT a.HISTORY_ID
+				, a.SITE_ID
+				, a.MENU_ID
+				, a.CNT_ID
+				, a.CONTENT_PATH
+				, a.DISSEMINATE_TYPE
+				, a.DISSEMINATE_LINE
+				, a.MBR_ID
+				, a.DISSEMINATE_USERCONFIRM
+				, a.DISSEMINATE_CONFIRM
+				, a.DISSEMINATE_DAY
+				, a.DISSEMINATE_CREATED
+				, a.HISTORY_MEMO
+				, b.SITE_NM
+				, c.MBR_NM
+				, ROWNUM RNUM FROM (
+					SELECT * FROM JNITCMSDISSEMINATEHISTORY 
+					ORDER BY HISTORY_ID DESC
+			) a
+			
+			LEFT JOIN jnitcmssite b
+			ON a.SITE_ID = b.SITE_ID
+			LEFT JOIN jnitcmsmbr c
+			ON a.MBR_ID =  c.MBR_ID	
+			
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				a.HISTORY_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				a.SITE_ID LIKE CONCAT ('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				a.CNT_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="pageYn" compareValue="Y">
+				ROWNUM <![CDATA[<=]]> #lastIndex#    
+			</isEqual>			
+			<!-- ORDER BY ROWNUM ASC -->		 			
+		)WHERE 1=1
+		<isEqual prepend="AND" property="pageYn" compareValue="Y">
+			RNUM <![CDATA[>]]> #firstIndex#
+		</isEqual>			
+	</select>
+	<select id="jnitcmsdisseminatehistoryDAO.selectLeftJoinListTotCnt_S" parameterClass="jnitcmsdisseminatehistorySerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM jnitcmsdisseminatehistory a
+			LEFT JOIN jnitcmssite b
+			ON a.SITE_ID = b.SITE_ID
+			LEFT JOIN jnitcmsmbr c
+			ON a.MBR_ID =  c.MBR_ID
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				a.HISTORY_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				a.SITE_ID LIKE CONCAT ('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				a.CNT_ID = #searchKeyword#
+			</isEqual>
+	</select>
+	<select id="jnitcmsdisseminatehistoryDAO.getLastIdJnitcmsdisseminatehistory_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITCMSDISSEMINATEHISTORY_ID'
+	</select>
+</sqlMap>

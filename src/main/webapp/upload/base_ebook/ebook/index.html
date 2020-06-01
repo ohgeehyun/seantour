@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<html>	
+	<head>				
+		<title>ebook</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=9,10" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />				
+		
+		<!-- start needed css style files -->
+		<link type="text/css" rel="stylesheet" href="css/pageflip.css">	
+		<link type="text/css" rel="stylesheet" href="css/pageflip-custom.css">	
+		<!-- end needed css style files -->
+
+		<!-- start needed js libraries -->
+		<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>	
+		<script type="text/javascript" src="js/pageflip5-min.js"></script>
+		<script type="text/javascript" src="js/key.js"></script>
+		<!-- end needed js libraries -->
+		
+		<!-- div fix for FullScale needed if the book have top margin -->
+		<style>.pageflip-container { padding-top: 1px; } </style>
+	</head>
+	<body>
+		<!-- start embed pageflip -->
+		<div id="pageflip"></div>
+		<!-- end embed pageflip -->
+		
+		<!-- start script needed to run pageflip -->
+		<script type="text/javascript">
+			var fileLocation = "meetpageflip/meetpageflip.html";
+			var filter = "win16|win32|win64|mac";
+			var isMobile = false;
+			if( navigator.platform  ){
+				if( filter.indexOf(navigator.platform.toLowerCase())<0 ){
+					fileLocation = "meetpageflip/mo_meetpageflip.html";
+					isMobile = true;
+				}
+			}
+			var $pageflip = $('#pageflip'),
+				pageflip = $pageflip.pageflip();
+
+			/* MEET PAGEFLIP CUSTOM FUNCTIONS */
+			var animmode = 1, 
+				animbtns = [ "#animateontop", "#animateonvisible" ],
+				loop = false,
+				rot = 0,
+				target,
+				zooming = false,
+				CustomPFEventHandler = {
+					onFlip: function( PN ) 	{ 
+						if( PN==18 ) $("#isflipping").addClass("selected");
+					},
+					onFlipEnd: function( PN ) {
+						if( PN==18 ) $("#isflipping").removeClass("selected");
+					},
+					onTop: function( PN ) {
+						if( PN==21 && animmode==0 ) startLoop();
+						if( PN==18 ) $("#isontop").addClass("selected");
+					},
+					onTopEnd: function( PN ) {
+						if( PN==21 && animmode==0 ) stopLoop();
+						if( PN==18 ) $("#isontop").removeClass("selected");
+					},
+					onLoad: function( PN ) {
+						if( PN==11 ) videoInit();
+						if( PN==18 ) setZoomFlag();
+					},
+					onUnload: function( PN ) {
+						if( PN==21 && animmode==1 ) stopLoop();
+					},
+					onHide: function( PN ) {
+						if( PN==21 && animmode==1 ) stopLoop();
+						if( PN==18 ) $("#isvisible").removeClass("selected");
+					},
+					onShow: function( PN ) {
+						if( PN==21 ) {
+							if( animmode==1 ) startLoop();
+							else setRot();
+							animation( animmode );
+						}
+						if( PN==18 ) $("#isvisible").addClass("selected");
+					},
+					onZoomIn: function( PN ) {
+						zooming = true;
+						setZoomFlag();
+					},
+					onZoomOut: function( PN ) {
+						zooming = false;
+						setZoomFlag();
+					}
+				};
+				
+			gotoPage = function( p ) {
+				pageflip.gotoPage( p, true );
+			}
+			videoPlay = function() {
+				var myVideo = document.getElementById("thevideo");
+				if (myVideo.paused) myVideo.play(); 
+				else myVideo.pause(); 
+			}
+			videoInit = function() {
+				//var myVideo = document.getElementById("thevideo");
+			}
+			selectFeature = function( f ) {
+				$(".features").addClass("off");
+				$("#feature"+f).removeClass("off");
+				$("#featurelist ul li").removeClass("selected");
+				$("#option"+f).addClass("selected");
+			}
+			animation = function( t ) {
+				animmode = t;
+				$(".animationcontrol").removeClass("selected");
+				$(animbtns[t]).addClass("selected");
+			}
+			theLoop = function() {
+				if( loop ) raf2( theLoop );
+				setRot();
+			}
+			setRot = function() {
+				$("#spiral").css( { transform: "rotate("+rot+"deg)" } );
+				rot = ( rot+4 )%360;
+			}
+			startLoop = function() {
+				if( !loop ) {
+					loop = true;
+					theLoop();
+				}
+			}
+			stopLoop = function() {
+				loop = false;
+			}
+			setZoomFlag = function() {
+				if( zooming ) $("#iszooming").addClass("selected");
+				else $("#iszooming").removeClass("selected");
+			}
+			window.raf2 = (function(){
+				return 	window.requestAnimationFrame       ||
+						window.webkitRequestAnimationFrame ||
+						window.mozRequestAnimationFrame    ||
+						function( callback ) {
+						window.setTimeout( callback, 100/6 );
+				};
+			})();
+			pageflip.setPFEventCallBack( CustomPFEventHandler );
+			/* END MEET PAGEFLIP CUSTOM FUNCTIONS */
+
+			
+			/* Initialize & Start Pageflip 5 */
+			$pageflip.pageflipInit( {
+				/* Configuration options */
+					PageDataFile: fileLocation, //파일위치
+					FullScreenEnabled: true,
+					
+					Margin: 32, //css 여백
+					MarginBottom: 64, //css 여백
+					AutoScale: true,
+					FullScale: true, //ebook 전체화면
+					AlwaysOpened: false, //ebook 항상 펼치기(바꾸지 마세요)					
+					CenterSinglePage: true, //센터 한 페이지 : 전면 및 후면 커버
+					
+					DropShadowOpacity: 0.3, //불투명도 값
+					FlipTopShadowOpacity: 0.2, //반전 페이지의 상단에 렌더링 그림자 CSS의 불투명도 값
+					FlipShadowOpacity: 0.2, //반전 페이지 뒤에 렌더링 그림자 CSS의 불투명도 값
+					HardFlipOpacity: 0.3, //하드 틀지 페이지의 상단에 렌더링 그림자 CSS의 불투명도 값
+					EmbossOpacity: 0.2, //비 하드 페이지의 상단에 렌더링 / 비활성화 엠 보스 효과를 사용
+					SecondaryDragArea: 32, //책의 측면에서 드래그 영역의 폭
+					Transparency: true, //투명 페이지 사용함 
+					AutoFlipLoop: 0, // -1 한번 , 0: 마지막페이지 에서 끝 , 1: 무한루프
+					
+					//StartAutoFlip:true, //시작시 바로 책넘기기
+					//AutoFlipInterval : 1000, 자동넘김 초제어
+					
+					ControlbarFile: "common/controlbar_svg.html", //ebook 하단 컨트롤러
+					GoogleAnalytics: false,
+					HashControl: true,
+					
+					ShareImageURL: "",
+					ShowCopyright: false, //ebook 하단 copy 표시
+					Copyright: Key.Copyright,
+					Key: Key.Key, //js - key.js key값
+					
+					/* Thumbnails 설정 */
+					ThumbnailsToFront: true, //책의 앞에 미리 배치
+					ThumbnailAlwaysCentered: true, //실제 페이지 썸네일은 항상 책을 중심으로
+					/* ebook config */
+					PageWidth: 450, //가운데 이미지가로크기
+					PageHeight: 600, //가운데 이미지세로크기
+					Thumbnails: true, //썸네일을 표시 할 수 있습니다					
+					ThumbnailsAutoHide: 10000, //자동 숨기기 썸네일을 표시 할 수 있습니다. 0 : 자동 숨기기 비활성화> 0 : 설정 자동 숨기기 타이머
+					ThumbnailsHidden: false,
+					ThumbnailWidth: 104,
+					ThumbnailHeight: 120,
+					ShareLink: "", //링크주소
+					ShareText: "", //메세지
+					ShareVia: "" //트위터
+				/* book ID - used as CSS class name */
+			}, "meetpageflip" );
+		</script>
+		<!-- end script needed to run pageflip -->
+	</body>
+</html>

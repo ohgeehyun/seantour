@@ -1,0 +1,636 @@
+{
+    "m01000000": {
+        "child": {
+            "m01010000": {
+                "child": {
+                	"m01010100": {
+                        "icon": "cog",
+                        "link": "/cms/config/default.do",
+                        "name": "일반설정",
+                        "active": true
+                    },
+                    "m01010200": {
+                        "icon": "cog",
+                        "link": "/cms/config/apiKey.do",
+                        "name": "주소 API 설정",
+                        "active": true
+                    },
+                    "m01010300": {
+                        "icon": "cog",
+                        "link": "/cms/config/item.do",
+                        "name": "회원가입항목설정",
+                        "active": true
+                    },
+                    "m01010400": {
+                        "icon": "cog",
+                        "link": "/cms/config/analytics.do",
+                        "name": "사이트통계설정",
+                        "active": true
+                    }
+                },
+                "icon": "cog",
+                "link": null,
+                "name": "기본설정",
+                "active": true
+            },
+            "m01020000": {
+                "child": null,
+                "icon": "lock",
+                "link": "/cms/config/secure.do",
+                "name": "보안설정",
+                "active": true
+            },
+            "m01030000": {
+                "child": null,
+                "icon": "ban-circle",
+                "link": "/cms/sub2/020101.do",
+                "name": "관리자 메뉴관리",
+                "active": true
+            },
+            "m01040000": {
+            	"child": null,
+                "icon": "desktop",
+                "link": "/cms/sub3/0101.do",
+                "name": "사이트설정",
+                "active": true
+            }
+        },
+        "icon": "cog",
+        "link": null,
+        "name": "환경설정",
+        "active": true
+    },
+    "m02000000": {
+        "child": {
+            "m02010000": {
+                "child": {
+                	"m02010100": {
+                        "icon": "sitemap",
+                        "link": "/cms/sub1/0101.do",
+                        "name": "직급설정",
+                        "active": true
+                    },
+                    "m02010200": {
+                        "icon": "sitemap",
+                        "link": "/cms/sub1/0201.do",
+                        "name": "부서설정",
+                        "active": true
+                    },
+                    "m02010300": {
+                        "icon": "sitemap",
+                        "link": "/cms/sub1/0401.do",
+                        "name": "직급분류설정"
+                    }
+                },
+                "icon": "sitemap",
+                "link": null,
+                "name": "조직관리",
+                "active": true
+            },
+            "m02020000": {
+                "child": {
+                    "m02020100": {
+                        "icon": "group",
+                        "link": "/cms/sub2/0101.do",
+                        "name": "회원관리",
+                        "active": true
+                    },
+                    "m02020200": {
+                        "icon": "group",
+                        "link": "/cms/sub2/0101.do?retTypeId=company",
+                        "name": "업체인증관리",
+                        "active": true
+                    },
+                    "m02020300": {
+                        "icon": "group",
+                        "link": "/cms/mbrlog/mbrlogList.do",
+                        "name": "회원개인정보수정이력",
+                        "active": true
+                    },
+                    "m02020400": {
+                        "icon": "group",
+                        "link": "/cms/sub2/0101.do?retTypeId=lock",
+                        "name": "lock회원관리",
+                        "active": true
+                    },
+                    "m02020500": {
+                        "icon": "sitemap",
+                        "link": "/cms/sub2/0201.do",
+                        "name": "유형관리",
+                        "active": true
+                    }
+                },
+                "icon": "group",
+                "link": null,
+                "name": "회원관리",
+                "active": true
+            }
+        },
+        "icon": "hdd",
+        "link": null,
+        "name": "회원관리",
+        "active": true
+    },
+    "m03000000": {
+        "child": {
+            "m03010000": {
+                "child": {
+                	"m03010100": {
+                        "icon": "time",
+                        "link": "/analytics.do?mode=time",
+                        "name": "시간별 방문자",
+                        "active": true
+                    },
+                    "m03010200": {
+                        "icon": "apple",
+                        "link": "/analytics.do?mode=browser",
+                        "name": "브라우저별 방문자",
+                        "active": true
+                    },
+                    "m03010300": {
+                        "icon": "desktop",
+                        "link": "/analytics.do?mode=os",
+                        "name": "OS별 방문자",
+                        "active": true
+                    },
+                    "m03010400": {
+                        "icon": "bar-chart",
+                        "link": "/analytics.do?mode=date",
+                        "name": "일별 방문자",
+                        "active": true
+                    },
+                    "m03010500": {
+                        "icon": "bar-chart",
+                        "link": "/analytics.do?mode=month",
+                        "name": "월별 방문자",
+                        "active": true
+                    },
+                    "m03010600": {
+                        "icon": "bar-chart",
+                        "link": "/analytics.do?mode=year",
+                        "name": "년별 방문자",
+                        "active": true
+                    },
+                    "m03010700": {
+                        "icon": "bar-chart",
+                        "link": "/analytics.do?mode=pageview",
+                        "name": "사이트별 통계",
+                        "active": true
+                    },
+                    "m03010800": {
+                        "icon": "bar-chart",
+                        "link": "/analytics.do?mode=popular",
+                        "name": "인기도 통계",
+                        "active": true
+                    }
+                },
+                "icon": "bar-chart",
+                "link": null,
+                "name": "구글연계통계",
+                "active": true
+            },
+            "m03020000": {
+                "child": null,
+                "icon": "book",
+                "link": "/login/logList.do",
+                "name": "관리자접속로그",
+                "active": true
+            }
+        },
+        "icon": "signal",
+        "link": null,
+        "name": "통계",
+        "active": true
+    },
+    "m04000000": {
+        "child": {
+            "m04010000": {
+                "child": {
+                	"m04010100": {
+                        "icon": "cog",
+                        "link": "/cms/sub4/0101.do",
+                        "name": "메인템플릿",
+                        "active": true
+                    },
+                	"m04010200": {
+                        "icon": "cog",
+                        "link": "/cms/sub4/0102.do",
+                        "name": "서브템플릿",
+                        "active": true
+                    },
+                    "m04010300": {
+                        "child": {
+                            "m04010301": {
+                                "icon": "cog",
+                                "link": "/cms/sub4/0104.do?tplType=C",
+                                "name": "로그인",
+                                "active": true
+                            },
+                            "m04010302": {
+                                "icon": "cog",
+                                "link": "/cms/sub4/0104.do?tplType=I",
+                                "name": "아이디찾기",
+                                "active": true
+                            },
+                            "m04010303": {
+                                "icon": "cog",
+                                "link": "/cms/sub4/0104.do?tplType=J",
+                                "name": "패스워드찾기",
+                                "active": true
+                            },
+                            "m04010304": {
+                                "icon": "cog",
+                                "link": "/cms/sub4/0104.do?tplType=M",
+                                "name": "비인증 아이디찾기",
+                                "active": true
+                            },
+                            "m04010305": {
+                                "icon": "cog",
+                                "link": "/cms/sub4/0104.do?tplType=M1",
+                                "name": "비인증 아이디찾기 결과",
+                                "active": true
+                            },
+                            "m04010306": {
+                                "icon": "cog",
+                                "link": "/cms/sub4/0104.do?tplType=N",
+                                "name": "비인증 패스워드찾기",
+                                "active": true
+                            },
+                            "m04010307": {
+                                "icon": "cog",
+                                "link": "/cms/sub4/0104.do?tplType=N1",
+                                "name": "비인증 패스워드찾기 결과",
+                                "active": true
+                            }
+                        },
+                        "icon": "off",
+                        "link": null,
+                        "name": "로그인템플릿",
+                        "active": true
+                    },
+                    "m04010400": {
+                        "child": {
+                            "m04010401": {
+                                "icon": "user",
+                                "link": "/cms/sub4/0104.do?tplType=K",
+                                "name": "회원구분양식",
+                                "active": true
+                            },
+                            "m04010403": {
+                                "icon": "user",
+                                "link": "/cms/sub4/0104.do?tplType=E",
+                                "name": "회원가입항목입력",
+                                "active": true
+                            },
+                            "m04010402": {
+                                "icon": "user",
+                                "link": "/cms/sub4/0104.do?tplType=D",
+                                "name": "회원약관동의",
+                                "active": true
+                            },
+                            "m04010405": {
+                                "icon": "user",
+                                "link": "/cms/sub4/0104.do?tplType=G",
+                                "name": "마이페이지",
+                                "active": true
+                            },
+                            "m04010404": {
+                                "icon": "user",
+                                "link": "/cms/sub4/0104.do?tplType=F",
+                                "name": "회원가입완료",
+                                "active": true
+                            },
+                            "m04010406": {
+                                "icon": "user",
+                                "link": "/cms/sub4/0104.do?tplType=H",
+                                "name": "회원탈퇴",
+                                "active": true
+                            }
+                        },
+                        "icon": "user",
+                        "link": null,
+                        "name": "회원템플릿",
+                        "active": true
+                    }
+                },
+                "icon": "cog",
+                "link": null,
+                "name": "템플릿관리",
+                "active": true
+            },
+            "m04020000": {
+                "child": {
+                	"m04020100": {
+                        "icon": "list",
+                        "link": "/cms/page/templateShortCut.do",
+                        "name": "콘텐츠영역 바로가기",
+                        "active": true
+                    },
+                    "m04020200": {
+                    	"child": {
+                    		"m04020201": {
+		                        "icon": "bar-chart",
+		                        "link": "/cms/rsc/page.do",
+		                        "name": "페이지평가통계",
+		                        "active": true
+		                    },
+		                    "m04020202": {
+		                        "icon": "code",
+		                        "link": "/cms/rsc/jspPage.do?bindType=addPage",
+		                        "name": "평가페이지디자인",
+		                        "active": true
+		                    },
+                    		"m04020203": {
+		                        "icon": "code",
+		                        "link": "/cms/rsc/jspPage.do?bindType=upPage",
+		                        "name": "결과페이지디자인",
+		                        "active": true
+		                    }
+                    	},
+                        "icon": "bar-chart",
+                        "link": null,
+                        "name": "페이지평가템플릿",
+                        "active": true
+                    },
+                    "m04020300": {
+                        "icon": "list",
+                        "link": "/cms/page/view.do?bindType=leftMenu",
+                        "name": "좌측메뉴",
+                        "active": true
+                    },
+                    "m04020400": {
+                        "icon": "th-large",
+                        "link": "/cms/page/view.do?bindType=topMenu",
+                        "name": "상단메뉴",
+                        "active": true
+                    },
+                    "m04020500": {
+                        "icon": "user",
+                        "link": "/cms/page/view.do?bindType=contentAdmin",
+                        "name": "콘텐츠담당표시",
+                        "active": true
+                    },
+                    "m04020600": {
+                        "icon": "wrench",
+                        "link": "/cms/page/view.do?bindType=updateButton",
+                        "name": "수정버튼표시",
+                        "active": true
+                    },
+                    "m04020700": {
+		                "child": null,
+		                "icon": "info-sign",
+		                "link": "/cms/page/view.do?bindType=sitemap",
+		                "name": "사이트맵디자인",
+		                "active": true
+		            },
+				},
+                "icon": "cog",
+                "link": "/cms/page/templateShortCut.do",
+                "name": "콘텐츠영역 템플릿",
+                "active": true
+			}
+        },
+        "icon": "file",
+        "link": null,
+        "name": "템플릿관리",
+        "active": true
+    },
+    "m05000000": {
+        "child": {
+            "m05010000": {
+                "child": null,
+                "icon": "file-text-alt",
+                "link": "/cms/sub10/0101.do",
+                "name": "메뉴/콘텐츠관리",
+                "active": true
+			},
+			"m05020000": {
+                "child": null,
+                "icon": "warning-sign",
+                "link": "/cms/sub8/0101.do",
+                "name": "웹접근성관리",
+                "active": true
+            },
+            "m05030000": {
+                "child": null,
+                "icon": "eye-open",
+                "link": "/cms/mgmt/list.do?mgmtType=css",
+                "name": "CSS관리",
+                "active": true
+            },
+            "m05040000": {
+                "child": null,
+                "icon": "cogs",
+                "link": "/cms/mgmt/list.do?mgmtType=js",
+                "name": "스크립트관리",
+                "active": true
+            },
+            "m05050000": {
+                "child": null,
+                "icon": "picture",
+                "link": "/cms/mgmt/list.do?mgmtType=img",
+                "name": "이미지관리",
+                "active": true
+            },
+            "m05060000": {
+                "child": null,
+                "icon": "facetime-video",
+                "link": "/cms/mgmt/list.do?mgmtType=video",
+                "name": "동영상관리",
+                "active": true
+            },
+            "m05070000": {
+                "child": null,
+                "icon": "save",
+                "link": "/cms/mgmt/list.do?mgmtType=file",
+                "name": "첨부파일관리",
+                "active": true
+            }
+		},
+	    "icon": "file-text-alt",
+	    "link": null,
+	    "name": "콘텐츠관리",
+	    "active": true
+	},
+	"m06000000": {
+        "child": {
+            "m06010000": {
+                "child": {
+	                "m06010100": {
+						"icon": "list",
+						"link": "/cms/board/list.do",
+						"name": "게시판설정",
+						"active": true
+					},
+					"m06010200": {
+                        "icon": "cogs",
+                        "link": "/cms/board/pageView.do",
+                        "name": "게시판공통스크립트",
+                        "active": true
+                    },
+                    "m06010300": {
+                        "icon": "code",
+                        "link": "/cms/board/skinList.do",
+                        "name": "게시판 디자인",
+                        "active": true
+                    },
+                    "m06010400": {
+		                "child": null,
+		                "icon": "file-text-alt",
+		                "link": "/cms/mgmt/board/list.do",
+		                "name": "게시글 관리",
+		                "active": true
+		            },
+		            "m06010500": {
+		                "child": {
+		                	"m06010501": {
+				                "child": null,
+				                "icon": "th-list",
+		                        "link": "/cms/mgmt/list.do?mgmtType=boardLatest",
+				                "name": "최근게시물디자인",
+				                "active": true
+				            },
+				            "m06010502": {
+				                "child": null,
+				                "icon": "cog",
+				                "link": "/jnit/boardData/index.do",
+				                "name": "최근게시물설정",
+				                "active": true
+				            }
+		                },
+		                "icon": "file-text-alt",
+		                "link": null,
+		                "name": "최근게시물 관리",
+		                "active": true
+		            }
+				},
+                "icon": "list-alt",
+                "link": null,
+                "name": "게시판관리",
+                "active": true
+			},
+			"m06020000": {
+                "child": {
+	                "m06020100": {
+						"icon": "copy",
+                        "link": "/cms/allim/groupList.do?type=banner",
+						"name": "배너설정",
+						"active": true
+					},
+					"m06020200": {
+						"child": {
+							"m06020201": {
+								"icon": "copy",
+                                "link": "/cms/page/view.do?bindType=bannerRolling",
+                                "name": "배너메인",
+                                "active": true
+							},
+							"m06020202": {
+								"icon": "code",
+                                "link": "/cms/page/view.do?bindType=bannerMore",
+                                "name": "배너더보기",
+                                "active": true
+							}
+						},
+						"icon": "code",
+                        "link": null,
+						"name": "배너디자인",
+						"active": true
+					}
+				},
+				"icon": "picture",
+                "link": null,
+                "name": "배너관리",
+                "active": true
+			},
+			"m06030000": {
+                "child": {
+	                "m06030100": {
+						"icon": "copy",
+                        "link": "/cms/allim/groupList.do?type=allim",
+						"name": "알리미설정",
+						"active": true
+					},
+					"m06030200": {
+						"icon": "code",
+						"link": "/cms/page/view.do?bindType=allimView",
+						"name": "알리미디자인",
+						"active": true
+					}
+				},
+				"icon": "picture",
+                "link": null,
+                "name": "알리미관리",
+                "active": true
+			},
+			"m06040000": {
+                "child": {
+	                "m06040100": {
+						"icon": "copy",
+                        "link": "/cms/allim/groupList.do?type=popup",
+						"name": "팝업설정",
+						"active": true
+					},
+					"m06040200": {
+						"icon": "code",
+						"link": "/cms/page/view.do?bindType=PopupView",
+						"name": "팝업디자인",
+						"active": true
+					}
+				},
+				"icon": "picture",
+                "link": null,
+                "name": "팝업관리",
+                "active": true
+			},
+			"m06050000": {
+				"icon": "search",
+                "link": "/cms/search/total.do",
+                "name": "통합검색관리",
+                "active": true
+			},
+			"m06060000": {
+                "child": {
+	                "m06060100": {
+						"icon": "envelope",
+                        "link": "/cms/config/sms.do",
+						"name": "SMS 설정",
+						"active": true
+					},
+					"m06060200": {
+						"icon": "envelope",
+                        "link": "/cms/sms/sendMessage.do",
+						"name": "SMS 보내기",
+						"active": true
+					},
+					"m06060300": {
+						"icon": "user",
+                        "link": "/cms/mgov/addrList.do",
+						"name": "SMS 주소록",
+						"active": true
+					},
+					"m06060400": {
+						"icon": "inbox",
+                        "link": "/cms/sms/list.do",
+						"name": "SMS 전송내역",
+						"active": true
+					},
+					"m06060500": {
+						"icon": "inbox",
+                        "link": "/cms/lms/list.do",
+						"name": "LMS 전송내역",
+						"active": true
+					}
+				},
+				"icon": "envelope",
+                "link": null,
+                "name": "SMS관리",
+                "active": true
+			},
+		},
+	    "icon": "th-large",
+	    "link": null,
+	    "name": "컴포넌트관리",
+	    "active": true
+	}
+}

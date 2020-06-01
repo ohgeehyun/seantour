@@ -1,0 +1,46 @@
+@charset "utf-8";
+
+ul{list-style:none;margin:0;padding:0;}
+li{list-style:none;}
+a{text-decoration:none;color:inherit;}
+
+#leftMenu{float:left;width:200px;background:#efefef;margin:0 20px 0 20px;}
+#leftMenu h2{float:left;width:176px;background:#fff;margin:10px;text-align:center;padding:20px 0;border:2px solid #bbb;}
+#leftMenu ul.leftMenuList{float:left;width:178px;background:#999;margin:0 0 10px 10px;border:1px solid #666;border-bottom:0;}
+#leftMenu ul.leftMenuList li{border-bottom:1px solid #666;}
+#leftMenu ul.leftMenuList li.on{background:#000;}
+#leftMenu ul.leftMenuList li.on > a{color:#fff;}
+#leftMenu ul.leftMenuList li a{color:#efefef;display:block;padding:5px;font-weight:bold;}
+#leftMenu ul.leftMenuList li ul{background:#fff;}
+#leftMenu ul.leftMenuList li ul li{border-bottom:0;}
+#leftMenu ul.leftMenuList li ul li a{font-weight:normal;font-size:13px;color:#222;padding:5px 15px;}
+
+div.content_group{float:left;width:740px;background:#bfbfbf;}
+div.content_group div.content_top{float:left;width:720px;margin:10px;background:#efefef;}
+div.content_group div.content_top h3{margin:10px;padding:30px 10px;background:#fff;}
+div.content_group div.content_top span#pageLinkNav{margin:10px;padding:5px;background:#dfdfdf;display:block;}
+div.content_group div.content_top ul.content_util{float:right;margin:0 10px 10px 0;}
+div.content_group div.content_top ul.content_util li{float:left;margin-left:5px;}
+div.content_group div.content_top ul.content_util li p{float:left;margin:0;}
+
+div.content_group div.content{float:left;width:720px;margin:10px;background:#efefef;}
+/*div.content_group div.content p{margin:10px;padding:20px 20px 10px;background:#fff;font-weight:bold;}*/
+
+div.content_group div.content div.qrcode{margin:10px;padding:20px 110px 27px 20px;background:#dfdfdf;font-weight:bold;position:relative;}
+div.content_group div.content div.qrcode p.qr_title{margin:0;padding:0;background:none;}
+div.content_group div.content div.qrcode p.txtQrcode{margin:0;padding:0;background:none;margin:10px;font-size:13px;font-weight:normal;letter-spacing:-1px;}
+div.content_group div.content div.qrcode a{display:block;position:absolute;right:10px;top:10px;border:1px solid #ccc;}
+div.content_group div.content div.qrcode div.qrZoom{position:absolute;right:-1px;top:-1px;border:1px solid #ccc;}
+
+
+div.content_group div.content div.ccl{margin:10px;padding:10px 20px;background:#dfdfdf;font-weight:bold;}
+div.content_group div.content div.ccl a{padding:5px;background:#fafafa;display:block;width:85px;border:1px solid #bbb;float:left;margin-right:10px;}
+div.content_group div.content div.ccl p{margin:0;padding:0;background:none;font-weight:normal;font-size:13px;letter-spacing:-1px;}
+
+div.content_group div.content div.contentAdmin{margin:10px;padding:10px 20px;background:#dfdfdf;}
+div.content_group div.content div.contentAdmin div.adminArea{width:100%;display:inline-block;}
+div.content_group div.content div.contentAdmin div.adminArea dl{margin:0;font-size:12px;letter-spacing:-1px;line-height:200%;}
+div.content_group div.content div.contentAdmin div.adminArea dl dt{font-weight:bold;float:left;margin-right:5px;}
+div.content_group div.content div.contentAdmin div.adminArea dl dd {float: left;margin-right: 30px;}
+
+div.content_group div.content .updateButton button.btn_info {width: 97%; text-align:center;display: block;margin: 0 auto 10px;border: 1px solid #999;background: #cccfd4;height: 30px;font-weight: bold;text-shadow: 1px 1px #fff;}

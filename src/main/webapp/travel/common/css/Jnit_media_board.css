@@ -1,0 +1,108 @@
+@charset "utf-8";
+/*
+	반응형 css
+*/
+
+
+@media (max-width: 780px){
+	/*모바일 갤러리 이미지*/
+	div.content_group div.content .m_boardWrap ul.m_gallery_list li {margin: 10px 2%;width: 44%;}
+	div.gallery > ul > li {margin: 1%;width: 21.5%;}
+}
+
+@media (max-width: 580px){
+
+	div.board-nav div.pagination ul li.first_page, div.board-nav div.pagination ul li.prev_page,div.board-nav div.pagination ul li.next_page, div.board-nav div.pagination ul li.last_page{height:17px;width:17px;}
+	div.board-nav div.pagination ul li.first_page a, div.board-nav div.pagination ul li.prev_page a,div.board-nav div.pagination ul li.next_page a, div.board-nav div.pagination ul li.last_page a{font-size:24px;padding:2px 0 0 0;height:15px;}
+	div.board-nav div.pagination ul li{width:15px;height:15px;}
+	div.board-nav div.pagination ul li a{height:15px;padding:0;}
+	div.board-nav div.pagination ul li.active{width:17px;height:17px;}
+	div.board-nav div.pagination ul li.active a{height:16px;padding:1px 0 0 0;}
+	
+	div.board-rss{display:none;}
+	.boardWrap .bbsList th.no, .boardWrap .bbsList td.no,
+	.boardWrap .bbsList th.category, .boardWrap .bbsList td.category, 
+	.boardWrap .bbsList th.hit, .boardWrap .bbsList td.hit, 
+	.boardWrap .bbsList th.file, .boardWrap .bbsList td.file {display:none;}
+
+	.boardWrap .bbsList th.writer, .boardWrap .bbsList td.writer {width: 40px;}
+
+	div.thumbnail table.table td.img {vertical-align: top;}
+
+	div.schedule div.calendar {float: none;width: 100%;}
+	div.schedule > div.calendar table.table td {height: 30px;}
+	div.schedule div.today_list {width: 96%;margin: 17px 2% 20px;}
+	div.todaySch {width: 96%;margin: -13px 2% 20px;padding:0;}
+	.faq .title a#linkEdit {text-align: center;width: 25px;float: right;margin-top: 5px;}
+	.boardWrap.faq .bbsList th.start {width: 18px;}
+	.faq .bgcolor span.a {margin-left: 0px;margin-right: 11px;}
+	.faq .bgcolor {padding-left: 52px;padding-right: 15px;}
+}
+
+@media (max-width: 480px){
+	
+	.btn_address{margin:5px 0 0 0;}
+
+	div.board-nav div.listbtn {display:block;width:100%;}
+	div.board-nav div.listbtn a, 
+	div.container-fluid div.listbtn a.btn{display:block;width: 139px;margin: 10px auto 0;text-align: center;}
+	/*서브*/
+	.board-search .form-search {margin: 10px;padding: 0;}
+	.board-search .form-search select {width: 164px;}
+	.board-search .form-search input.search-query {width: 146px;display: block;margin: 2px auto 0;}
+	.board-search .form-search button.btn {width: 164px;}	
+
+	.boardWrap .like {width: 123px;}
+	div.calendar table.bbsList td {height:50px;}
+	div.calendar table.bbsList td div.rel ul {display:none;}
+	div.viewbtn a.btn, div.writebtn a.btn, div.writebtn button.btn {display: block;margin: 4px 10px;text-align: center;}
+	div.writebtn button.btn {width: 93%;}
+	table span#upfileAdd, table span#GalleryupfileAdd {padding: 0px 3px 0px 3px;margin: 2px;display: block;}
+	table span#upfileDel {padding: 0px 1px;margin: 2px;display: block;}
+
+
+	div.gallery > ul > li {margin: 1%;width: 46.5%;}
+	div.movie table.table td div.preTxt {width: 98%;float: left;display: inline-block;}
+	div.movie table.table td div.moviePlayer {width: 100%;float: left;margin-top:30px;}
+	div.movie table.table td div.moviePlayer object#contentPlayer {width:100%;}
+	/*모바일 게시판 리스트*/
+	.m_boardWrap ul.m_list > li > a > p.m_content {margin: 0 10px 0 0;}
+	/*모바일 카테고리*/
+	.m_boardWrap .m_categoryGroup {text-align: center;}
+	.m_boardWrap .m_categoryGroup select.m_category {width: 50%;}
+	/*모바일 섬네일*/
+	.m_thumbnail ul.m_list li a div.thumb {margin-top: 5px;}
+	/*모바일 달력*/
+	.m_boardWrap #m_calendar_list table.m_calendar td {height: 38px;}
+	.m_boardWrap #m_calendar_list table.m_calendar td .rel ul {display: none;}
+	/*모바일 스케줄*/
+	div.schedule div.calendar {width:100%;}
+	/*모바일 하단 버튼*/
+	div.m_board_nav div.m_viewbtn a.m_btn, div.m_board_nav div.m_writebtn a.m_btn {display: block;margin: 4px 10px;text-align: center;}
+	/*모바일 파일첨부*/
+	.m_view div.m_file dl dt { float: none;}
+	.m_view div.m_file dl dd { margin-left: 10px;}
+	.bbsWrite label {display: block;}
+	div.m_write table span#upfileAdd {margin-bottom: 10px;margin-left: 5px;}
+	div.upfileElem input.selec_file {width:100%}
+	.m_write div.upfileWrap div.upfileElem {height: 55px;}
+	table.m_bbs_Cmt td.m_cmt_text, table.m_bbsCmt td.m_cmt_text {width: 70%;}
+	/*모바일 덧글버튼*/
+	.m_Jnit_boardCmt > ul li .editText td.m_cmt_btn a {padding: 8px 0px 11px;}
+	.m_Jnit_boardCmt > ul li ul.m_cmt_btn {float: left;width: 94%;}
+	.m_Jnit_boardCmt > ul li ul.m_cmt_btn li {display: block;width: 100%;}
+	.m_Jnit_boardCmt > ul li ul.m_cmt_btn li a {display: block;text-align: center;}
+}
+
+
+@media (max-width: 380px){
+	/*모바일 갤러리 리스트*/
+	div.content_group div.content .m_boardWrap ul.m_gallery_list li {margin: 10px 2%;width: 96%;}
+}
+@media (max-width: 320px){
+
+	div.gallery > ul > li {margin: 5%;width: 90%;}
+	/*묻고답하기 아이콘*/
+	.faq table.bbsList td.bgcolor span.txt {margin-left: 47px;}
+	
+}

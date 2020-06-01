@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitboardgood">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitboardgoodSerarchVO" type="jnit.board.good.JnitboardgoodDefaultVO"/>
+	
+	<resultMap id="jnitboardgood" class="jnit.board.good.JnitboardgoodVO">
+		<result property="idx" column="IDX" columnIndex="1"/>
+		<result property="boardId" column="BOARD_ID" columnIndex="2"/>
+		<result property="boardCntId" column="BOARD_CNT_ID" columnIndex="3"/>
+		<result property="mbrId" column="MBR_ID" columnIndex="4"/>
+		<result property="ipaddr" column="IPADDR" columnIndex="5"/>
+		<result property="created" column="CREATED" columnIndex="6"/>
+		<result property="modified" column="MODIFIED" columnIndex="7"/>
+		<result property="ext01" column="EXT01" columnIndex="8"/>
+		<result property="ext02" column="EXT02" columnIndex="9"/>
+		<result property="isdel" column="ISDEL" columnIndex="10"/>
+	</resultMap>
+	
+	<insert id="jnitboardgoodDAO.insertJnitboardgood_S">
+		<![CDATA[
+			INSERT INTO jnitboardgood 
+				( IDX
+				  , BOARD_ID
+				  , BOARD_CNT_ID
+				  , MBR_ID
+				  , IPADDR
+				  , CREATED
+				  , MODIFIED
+				  , EXT01
+				  , EXT02
+				  , ISDEL )
+			VALUES ( #idx#
+				  , #boardId#
+				  , #boardCntId#
+				  , #mbrId#
+				  , #ipaddr#
+				  , NOW()
+				  , NOW()
+				  , #ext01#
+				  , #ext02#
+				  , 0 )
+		]]>
+	</insert>
+	
+	<update id="jnitboardgoodDAO.updateJnitboardgood_S">
+		<![CDATA[
+			UPDATE jnitboardgood
+			SET IDX=#idx#
+				, BOARD_ID=#boardId#
+				, BOARD_CNT_ID=#boardCntId#
+				, MBR_ID=#mbrId#
+				, IPADDR=#ipaddr#
+				, MODIFIED=NOW()
+				, EXT01=#ext01#
+				, EXT02=#ext02#
+                WHERE IDX=#idx#
+		]]>
+	</update>
+	
+	<delete id="jnitboardgoodDAO.deleteJnitboardgood_S">
+		<![CDATA[
+			DELETE FROM jnitboardgood 
+                WHERE IDX=#idx#
+		]]>
+	</delete>
+	
+	<select id="jnitboardgoodDAO.selectJnitboardgood_S" resultMap="jnitboardgood">
+		<![CDATA[
+			SELECT
+				IDX
+				, BOARD_ID
+				, BOARD_CNT_ID
+				, MBR_ID
+				, IPADDR
+				, CREATED
+				, MODIFIED
+				, EXT01
+				, EXT02
+				, ISDEL
+			FROM jnitboardgood
+                WHERE IDX=#idx#
+		]]>
+	</select>
+	
+	<select id="jnitboardgoodDAO.selectJnitboardgoodList_D" parameterClass="jnitboardgoodSerarchVO" resultClass="egovMap">
+			SELECT
+								IDX
+								, BOARD_ID
+								, BOARD_CNT_ID
+								, MBR_ID
+								, IPADDR
+								, CREATED
+								, MODIFIED
+								, EXT01
+								, EXT02
+								, ISDEL
+					FROM jnitboardgood
+			WHERE 1=1 AND ISDEL = 0
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				IDX = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				BOARD_ID LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				BOARD_ID = #searchBoardId# AND BOARD_CNT_ID = #searchBoardCntId#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="3">
+				BOARD_ID = #searchBoardId# AND BOARD_CNT_ID = #searchBoardCntId# AND MBR_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="4">
+				BOARD_ID = #searchBoardId# AND BOARD_CNT_ID = #searchBoardCntId# AND IPADDR = #searchKeyword#
+			</isEqual>
+				ORDER BY 
+                IDX DESC
+	</select>	
+	<select id="jnitboardgoodDAO.selectJnitboardgoodListTotCnt_S" parameterClass="jnitboardgoodSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM jnitboardgood
+			WHERE 1=1 AND ISDEL = 0
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				IDX = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				BOARD_ID LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				BOARD_ID = #searchBoardId# AND BOARD_CNT_ID = #searchBoardCntId#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="3">
+				BOARD_ID = #searchBoardId# AND BOARD_CNT_ID = #searchBoardCntId# AND MBR_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="4">
+				BOARD_ID = #searchBoardId# AND BOARD_CNT_ID = #searchBoardCntId# AND IPADDR = #searchKeyword#
+			</isEqual>
+			
+	</select>
+	
+	<select id="jnitboardgoodDAO.getLastIdJnitboardgood_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITBOARDGOOD_ID'
+	</select>
+
+</sqlMap>

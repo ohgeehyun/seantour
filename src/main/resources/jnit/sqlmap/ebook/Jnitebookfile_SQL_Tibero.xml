@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitebookfile">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitebookfileSerarchVO" type="jnit.ebook.file.JnitebookfileDefaultVO"/>
+
+	<resultMap id="jnitebookfile" class="jnit.ebook.file.JnitebookfileVO">
+		<result property="ebookFileId" column="EBOOK_FILE_ID" columnIndex="1"/>
+		<result property="fileId" column="FILE_ID" columnIndex="2"/>
+		<result property="filePid" column="FILE_PID" columnIndex="3"/>
+		<result property="filePath" column="FILE_PATH" columnIndex="4"/>
+		<result property="fileNm" column="FILE_NM" columnIndex="5"/>
+		<result property="filePath2" column="FILE_PATH2" columnIndex="6"/>
+		<result property="fileNm2" column="FILE_NM2" columnIndex="7"/>
+		<result property="fileHtmlPath" column="FILE_HTML_PATH" columnIndex="8"/>
+		<result property="fileHtmlNm" column="FILE_HTML_NM" columnIndex="9"/>
+		<result property="fileNum" column="FILE_NUM" columnIndex="10"/>
+		<result property="fileType" column="FILE_TYPE" columnIndex="11"/>
+		<result property="fileClass" column="FILE_CLASS" columnIndex="12"/>
+		<result property="htmlFile" column="HTML_FILE" columnIndex="13"/>
+		<result property="backgroundFile" column="BACKGROUND_FILE" columnIndex="14"/>
+		<result property="disableEmbossing" column="DISABLE_EMBOSSING" columnIndex="15"/>
+		<result property="transparentPage" column="TRANSPARENT_PAGE" columnIndex="16"/>
+		<result property="pageNumber" column="PAGE_NUMBER" columnIndex="17"/>
+		<result property="pageName" column="PAGE_NAME" columnIndex="18"/>
+		<result property="pageLabel" column="PAGE_LABEL" columnIndex="19"/>
+		<result property="data" column="DATA" columnIndex="20"/>
+		<result property="thumbnailImage" column="THUMBNAIL_IMAGE" columnIndex="21"/>
+		<result property="dataUnload" column="DATA_UNLOAD" columnIndex="22"/>
+		<result property="uploadFile" column="UPLOAD_FILE" columnIndex="23"/>
+		<result property="content" column="CONTENT" columnIndex="24"/>
+		<result property="isdel" column="ISDEL" columnIndex="25"/>
+	</resultMap>
+
+	<insert id="jnitebookfileDAO.insertJnitebookfile_S">
+		<![CDATA[
+			INSERT INTO JNITEBOOKFILE
+				( EBOOK_FILE_ID
+				  , FILE_ID
+				  , FILE_PID
+				  , FILE_PATH
+				  , FILE_PATH2
+				  , FILE_NM
+				  , FILE_NM2
+				  , FILE_HTML_PATH
+				  , FILE_HTML_NM
+				  , FILE_NUM
+				  , FILE_TYPE
+				  , FILE_CLASS
+				  , HTML_FILE
+				  , BACKGROUND_FILE
+				  , DISABLE_EMBOSSING
+				  , TRANSPARENT_PAGE
+				  , PAGE_NUMBER
+				  , PAGE_NAME
+				  , PAGE_LABEL
+				  , DATA
+				  , THUMBNAIL_IMAGE
+				  , DATA_UNLOAD
+				  , UPLOAD_FILE
+				  , CONTENT
+				  , ISDEL )
+			VALUES ( #ebookFileId#
+				  , #fileId#
+				  , #filePid#
+				  , #filePath#
+				  , #filePath2#
+				  , #fileNm#
+				  , #fileNm2#
+				  , #fileHtmlPath#
+				  , #fileHtmlNm#
+				  , #fileNum#
+				  , #fileType#
+				  , #fileClass#
+				  , #htmlFile#
+				  , #backgroundFile#
+				  , #disableEmbossing#
+				  , #transparentPage#
+				  , #pageNumber#
+				  , #pageName#
+				  , #pageLabel#
+				  , #data#
+				  , #thumbnailImage#
+				  , #dataUnload#
+				  , #uploadFile#
+				  , #content#
+				  , 0 )
+		]]>
+	</insert>
+
+	<update id="jnitebookfileDAO.updateJnitebookfile_S">
+			UPDATE JNITEBOOKFILE
+			<isEqual property="updateCondition" compareValue="0">
+
+				SET EBOOK_FILE_ID=#ebookFileId#
+					, FILE_ID=#fileId#
+					, FILE_PID=#filePid#
+					<isNotEmpty property="backgroundFile">
+						, FILE_PATH=#filePath#
+						, FILE_NM=#fileNm#
+					</isNotEmpty>
+					<isNotEmpty property="thumbnailImage">
+						, FILE_NM2=#fileNm2#
+						, FILE_PATH2=#filePath2#
+					</isNotEmpty>
+					, FILE_HTML_PATH=#fileHtmlPath#
+					, FILE_HTML_NM=#fileHtmlNm#
+					, FILE_NUM=#fileNum#
+					, FILE_TYPE=#fileType#
+					, FILE_CLASS=#fileClass#
+				    , HTML_FILE=#htmlFile#
+
+				    <isNotEmpty property="backgroundFile">
+			  			, BACKGROUND_FILE=#backgroundFile#
+			  		</isNotEmpty>
+
+				  	, DISABLE_EMBOSSING=#disableEmbossing#
+				  	, TRANSPARENT_PAGE=#transparentPage#
+				  	, PAGE_NUMBER=#pageNumber#
+				  	, PAGE_NAME=#pageName#
+				  	, PAGE_LABEL=#pageLabel#
+				  	, DATA=#data#
+
+				  	<isNotEmpty property="thumbnailImage">
+				  		, THUMBNAIL_IMAGE=#thumbnailImage#
+				  	</isNotEmpty>
+				  	, DATA_UNLOAD=#dataUnload#
+				  	, UPLOAD_FILE=#uploadFile#
+				  	, CONTENT=#content#
+					, ISDEL=#isdel#
+
+				WHERE FILE_ID=#fileId#
+			</isEqual>
+			<isEqual property="updateCondition" compareValue="1">
+			<![CDATA[
+			    SET FILE_NUM=#fileNum#
+			]]>
+				WHERE FILE_ID=#fileId#
+			</isEqual>
+			<isEqual property="updateCondition" compareValue="2">
+				SET EBOOK_FILE_ID=#ebookFileId#
+					, FILE_ID=#fileId#
+					, FILE_PID=#filePid#
+
+					<isNotEmpty property="uploadFile">
+						, FILE_PATH=#filePath#
+						, FILE_NM=#fileNm#
+					</isNotEmpty>
+
+					, FILE_NUM=#fileNum#
+					, FILE_TYPE=#fileType#
+					, FILE_CLASS=#fileClass#
+				    , HTML_FILE=#htmlFile#
+				  	, DISABLE_EMBOSSING=#disableEmbossing#
+				  	, TRANSPARENT_PAGE=#transparentPage#
+				  	, PAGE_NUMBER=#pageNumber#
+				  	, PAGE_NAME=#pageName#
+				  	, PAGE_LABEL=#pageLabel#
+				  	, DATA=#data#
+				  	, DATA_UNLOAD=#dataUnload#
+				  	<isNotEmpty property="uploadFile">
+				  		, UPLOAD_FILE=#uploadFile#
+				  	</isNotEmpty>
+
+				  	, CONTENT=#content#
+					, ISDEL=#isdel#
+
+				WHERE FILE_ID=#fileId#
+			</isEqual>
+			<isEqual property="updateCondition" compareValue="3">
+				SET EBOOK_FILE_ID=#ebookFileId#
+					, FILE_ID=#fileId#
+					, FILE_PID=#filePid#
+					, FILE_NM=#fileNm#
+					, FILE_PATH=#filePath#
+					<isNotEmpty property="thumbnailImage">
+						, FILE_NM2=#fileNm2#
+						, FILE_PATH2=#filePath2#
+					</isNotEmpty>
+					<isNotEmpty property="htmlFile">
+						, FILE_HTML_PATH=#fileHtmlPath#
+						, FILE_HTML_NM=#fileHtmlNm#
+					</isNotEmpty>
+					, FILE_NUM=#fileNum#
+					, FILE_TYPE=#fileType#
+					, FILE_CLASS=#fileClass#
+					<isNotEmpty property="htmlFile">
+				    	, HTML_FILE=#htmlFile#
+				    </isNotEmpty>
+			  		, BACKGROUND_FILE=#backgroundFile#
+				  	, DISABLE_EMBOSSING=#disableEmbossing#
+				  	, TRANSPARENT_PAGE=#transparentPage#
+				  	, PAGE_NUMBER=#pageNumber#
+				  	, PAGE_NAME=#pageName#
+				  	, PAGE_LABEL=#pageLabel#
+				  	, DATA=#data#
+				  	<isNotEmpty property="thumbnailImage">
+				  		, THUMBNAIL_IMAGE=#thumbnailImage#
+				  	</isNotEmpty>
+				  	, DATA_UNLOAD=#dataUnload#
+				  	, CONTENT=#content#
+					, ISDEL=#isdel#
+				WHERE FILE_ID=#fileId#
+			</isEqual>
+			<isEqual property="updateCondition" compareValue="4">
+				SET EBOOK_FILE_ID=#ebookFileId#
+					, FILE_ID=#fileId#
+					, FILE_PID=#filePid#
+					, FILE_NM=#fileNm#
+					, FILE_PATH=#filePath#
+					<isNotEmpty property="thumbnailImage">
+						, FILE_NM2=#fileNm2#
+						, FILE_PATH2=#filePath2#
+					</isNotEmpty>
+					, FILE_HTML_PATH=#fileHtmlPath#
+					, FILE_HTML_NM=#fileHtmlNm#
+					, FILE_NUM=#fileNum#
+					, FILE_TYPE=#fileType#
+					, FILE_CLASS=#fileClass#
+				    , HTML_FILE=#htmlFile#
+			  		, BACKGROUND_FILE=#backgroundFile#
+				  	, DISABLE_EMBOSSING=#disableEmbossing#
+				  	, TRANSPARENT_PAGE=#transparentPage#
+				  	, PAGE_NUMBER=#pageNumber#
+				  	, PAGE_NAME=#pageName#
+				  	, PAGE_LABEL=#pageLabel#
+				  	, DATA=#data#
+				  	<isNotEmpty property="thumbnailImage">
+				  		, THUMBNAIL_IMAGE=#thumbnailImage#
+				  	</isNotEmpty>
+				  	, DATA_UNLOAD=#dataUnload#
+				  	, CONTENT=#content#
+					, ISDEL=#isdel#
+				WHERE FILE_ID=#fileId#
+			</isEqual>
+	</update>
+
+	<delete id="jnitebookfileDAO.deleteJnitebookfile_S">
+	    <isEqual property="isdelYn" compareValue="N">
+	    <![CDATA[
+			DELETE FROM JNITEBOOKFILE
+						WHERE FILE_ID=#fileId#
+		]]>
+	    </isEqual>
+	    <isEqual property="isdelYn" compareValue="Y">
+	    <![CDATA[
+			UPDATE JNITEBOOKFILE
+				SET ISDEL = 1 WHERE FILE_ID=#fileId#
+		]]>
+	    </isEqual>
+	</delete>
+
+	<select id="jnitebookfileDAO.selectJnitebookfile_S" resultMap="jnitebookfile">
+		<![CDATA[
+			SELECT
+				EBOOK_FILE_ID
+				, FILE_ID
+				, FILE_PID
+				, FILE_PATH
+				, FILE_PATH2
+				, FILE_NM
+				, FILE_NM2
+				, FILE_HTML_PATH
+				, FILE_HTML_NM
+				, FILE_NUM
+				, FILE_TYPE
+				, FILE_CLASS
+				, HTML_FILE
+				, BACKGROUND_FILE
+				, DISABLE_EMBOSSING
+				, TRANSPARENT_PAGE
+				, PAGE_NUMBER
+				, PAGE_NAME
+				, PAGE_LABEL
+				, DATA
+				, THUMBNAIL_IMAGE
+				, DATA_UNLOAD
+				, UPLOAD_FILE
+				, CONTENT
+				, ISDEL
+			FROM JNITEBOOKFILE
+		]]>
+		<isEqual property="fileIdYn" compareValue="Y">
+		    WHERE FILE_ID=#fileId#
+		</isEqual>
+		<isEqual property="selectCondition" compareValue="0">
+		    WHERE EBOOK_FILE_ID = #ebookFileId#
+		    AND FILE_NM LIKE '%' || #fileNm# || '%'
+		    AND ISDEL = 0
+		</isEqual>
+	</select>
+
+	<select id="jnitebookfileDAO.selectJnitebookfileList_D" parameterClass="jnitebookfileSerarchVO" resultClass="egovMap">
+		SELECT * FROM (
+			SELECT A.*, ROWNUM RNUM FROM (
+						SELECT
+										EBOOK_FILE_ID
+										, FILE_ID
+										, FILE_PID
+										, FILE_PATH
+										, FILE_PATH2
+										, FILE_NM
+										, FILE_NM2
+										, FILE_HTML_PATH
+										, FILE_HTML_NM
+										, FILE_NUM
+										, FILE_TYPE
+										, FILE_CLASS
+									  	, HTML_FILE
+									  	, BACKGROUND_FILE
+									  	, DISABLE_EMBOSSING
+									  	, TRANSPARENT_PAGE
+									  	, PAGE_NUMBER
+								  		, PAGE_NAME
+								  		, PAGE_LABEL
+									  	, DATA
+									  	, THUMBNAIL_IMAGE
+									  	, DATA_UNLOAD
+									  	, UPLOAD_FILE
+									  	, (TO_CLOB(DBMS_LOB.SUBSTR(CONTENT,2000,1))
+									  		|| TO_CLOB(DBMS_LOB.SUBSTR(CONTENT,2000,2001))
+									  		|| TO_CLOB(DBMS_LOB.SUBSTR(CONTENT,2000,4001))
+									  		|| TO_CLOB(DBMS_LOB.SUBSTR(CONTENT,2000,6001))
+									  		|| TO_CLOB(DBMS_LOB.SUBSTR(CONTENT,2000,8001))
+									  		|| TO_CLOB(DBMS_LOB.SUBSTR(CONTENT,2000,10001))
+									  		|| TO_CLOB(DBMS_LOB.SUBSTR(CONTENT,2000,12001))
+									  		|| TO_CLOB(DBMS_LOB.SUBSTR(CONTENT,2000,14001))
+									  		|| TO_CLOB(DBMS_LOB.SUBSTR(CONTENT,2000,16001))) AS CONTENT
+										, ISDEL
+								FROM JNITEBOOKFILE
+						WHERE 1=1
+						<isEqual prepend="AND" property="isdelYn" compareValue="Y">
+							ISDEL = 0
+						</isEqual>
+						<isEqual prepend="AND" property="ebookFileIdYn" compareValue="Y">
+						    EBOOK_FILE_ID = #ebookFileId#
+						</isEqual>
+						<isEqual prepend="AND" property="searchCondition" compareValue="0">
+							EBOOK_FILE_ID = #searchKeyword#
+						</isEqual>
+						<isEqual prepend="AND" property="searchCondition" compareValue="1">
+							FILE_ID LIKE '%' || #searchKeyword# || '%'
+						</isEqual>
+						<isEqual prepend="AND" property="searchCondition" compareValue="2">
+							FILE_NM LIKE '%' || #searchKeyword# || '%'
+						</isEqual>
+						<isEqual prepend="AND" property="searchCondition" compareValue="3">
+							 UPLOAD_FILE IS NULL
+						</isEqual>
+						<isEqual prepend="AND" property="searchCondition" compareValue="4">
+							 UPLOAD_FILE IS NOT NULL
+						</isEqual>
+						<isEqual property="orderbyCondition" compareValue="0">
+						    ORDER BY FILE_ID DESC
+						</isEqual>
+						<isEqual property="orderbyCondition" compareValue="1">
+						    ORDER BY FILE_ID,FILE_NUM ASC
+						</isEqual>
+			) A WHERE 1=1
+			<isEqual prepend="AND" property="pageYn" compareValue="Y">
+				ROWNUM <![CDATA[<=]]> #lastIndex#
+			</isEqual>
+		)WHERE 1=1
+		<isEqual prepend="AND" property="pageYn" compareValue="Y">
+			RNUM <![CDATA[>]]> #firstIndex#
+		</isEqual>
+	</select>
+	<select id="jnitebookfileDAO.selectJnitebookfileListTotCnt_S" parameterClass="jnitebookfileSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM JNITEBOOKFILE
+			WHERE 1=1
+			<isEqual prepend="AND" property="isdelYn" compareValue="Y">
+				ISDEL = 0
+			</isEqual>
+			<isEqual prepend="AND" property="ebookFileIdYn" compareValue="Y">
+			    EBOOK_FILE_ID = #ebookFileId#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				EBOOK_FILE_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				FILE_ID LIKE '%' || #searchKeyword# || '%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				FILE_NM LIKE '%' || #searchKeyword# || '%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="3">
+				 (BACKGROUND_FILE IS NOT NULL OR THUMBNAIL_IMAGE IS NOT NULL)
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="4">
+				 UPLOAD_FILE IS NOT NULL
+			</isEqual>
+	</select>
+	<select id="jnitebookfileDAO.getLastIdJnitebookfile_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITEBOOKFILE_ID'
+	</select>
+
+</sqlMap>

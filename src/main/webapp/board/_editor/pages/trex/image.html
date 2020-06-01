@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>이미지 첨부</title> 
+<script src="../../js/popup.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../js/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script src="../../../../js/jquery.form.js" type="text/javascript"></script>
+<link rel="stylesheet" href="../../css/popup.css" type="text/css"  charset="utf-8"/>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#upload').ajaxForm({
+		debug : false,
+        
+		beforeSerialize: function() {
+		},
+		beforeSubmit : function() {
+			alert("beforeSubmit");
+		}
+	});	
+	$('#btnUpload').click(function(e){
+		e.preventDefault;
+		if($("#file_0").val() == ""){
+			alert("파일을 입력해 주십시오");
+		}else{
+		
+			$('#upload').ajaxSubmit(function(data) {
+				alert("업로드 성공");
+				//console.log(data);
+				data = data.replace(/[<][^>]*[>]/gi, '');
+				//var result = JSON.parse(data);
+				var result = $.parseJSON(data); // under IE7 Patch by.Dael 2012.10.04
+				/*
+				data = data.replace(/[<][^>]*[>]/gi, '');
+				var jData = JSON.parse(data);
+				$('#result').html('Success - ' + jData.result);
+	
+	            jo.put("url", fileUrl);
+	            jo.put("filename", vo.getFileName());
+	            jo.put("size", vo.getSize());
+				*/
+				if (typeof(execAttach) == 'undefined') { //Virtual Function
+			        return;
+			    }
+				
+				var _mockdata = {
+					'imageurl': result.url,
+					'filename': result.filename,
+					'filesize': result.size,
+					'imagealign': 'C',
+					'originalurl': result.url,
+					'fileid': result.fileid,
+					'thumburl': result.url
+				};
+				execAttach(_mockdata);
+				closeWindow();			
+			});
+		}
+	});
+});
+// <![CDATA[
+	function done() {
+		if (typeof(execAttach) == 'undefined') { //Virtual Function
+	        return;
+	    }
+		
+		var _mockdata = {
+			'imageurl': 'http://cfile284.uf.daum.net/image/116E89154AA4F4E2838948',
+			'filename': 'editor_bi.gif',
+			'filesize': 640,
+			'imagealign': 'C',
+			'originalurl': 'http://cfile284.uf.daum.net/original/116E89154AA4F4E2838948',
+			'thumburl': 'http://cfile284.uf.daum.net/P150x100/116E89154AA4F4E2838948'
+		};
+		execAttach(_mockdata);
+		closeWindow();
+	}
+
+	function initUploader(){
+	    var _opener = PopupUtil.getOpener();
+	    if (!_opener) {
+	        alert('잘못된 경로로 접근하셨습니다.');
+	        return;
+	    }
+	    
+	    var _attacher = getAttacher('image', _opener);
+	    registerAction(_attacher);
+	}
+// ]]>
+</script>
+</head>
+<body onload="initUploader();">
+<form name="upload" id="upload" enctype="mulitpart/form-data" method="post" action="../../../../board/addFile.do">
+<input type="hidden" name="type" id="type" value="image" />
+<div class="wrapper">
+	<div class="header">
+		<h1>사진 첨부</h1>
+	</div>	
+	<div class="body">
+		<dl class="alert">
+		    <dt>사진 첨부 확인</dt>
+		    <dd>
+		    	<input type="file" name="file_0" id="file_0" />
+			</dd>
+		</dl>
+	</div>
+	<div class="footer">
+		<p><a href="#" onclick="closeWindow();" title="닫기" class="close">닫기</a></p>
+		<ul>
+			<li class="submit"><a id="btnUpload" href="#" title="등록" class="btnlink">등록</a> </li>
+			<li class="cancel"><a href="#" onclick="closeWindow();" title="취소" class="btnlink">취소</a></li>
+		</ul>
+	</div>
+</div>
+</form>
+</body>
+</html>

@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitcmsdisseminate">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitcmsdisseminateSerarchVO" type="jnit.cms.disseminate.JnitcmsdisseminateDefaultVO"/>
+
+	<resultMap id="jnitcmsdisseminate" class="jnit.cms.disseminate.JnitcmsdisseminateVO">
+		<result property="disseminateId" column="DISSEMINATE_ID" columnIndex="1"/>
+		<result property="siteId" column="SITE_ID" columnIndex="2"/>
+		<result property="menuId" column="MENU_ID" columnIndex="3"/>
+		<result property="cntId" column="CNT_ID" columnIndex="4"/>
+		<result property="contentPath" column="CONTENT_PATH" columnIndex="5"/>
+		<result property="disseminateType" column="DISSEMINATE_TYPE" columnIndex="6"/>
+		<result property="mbrId" column="MBR_ID" columnIndex="7"/>
+		<result property="disseminateConfirm" column="DISSEMINATE_CONFIRM" columnIndex="8"/>
+		<result property="disseminateMemo" column="DISSEMINATE_MEMO" columnIndex="9"/>
+		<result property="contentConfirm" column="CONTENT_CONFIRM" columnIndex="10"/>
+		<result property="disseminateDay" column="DISSEMINATE_DAY" columnIndex="11"/>
+		<result property="disseminateHistoryId" column="DISSEMINATE_HISTORY_ID" columnIndex="12"/>
+		<result property="disseminateName" column="DISSEMINATE_NAME" columnIndex="13"/>
+		<result property="disseminateNum" column="DISSEMINATE_NUM" columnIndex="14"/>
+		<result property="created" column="CREATED" columnIndex="15"/>
+		<result property="modified" column="MODIFIED" columnIndex="16"/>
+		<result property="isdel" column="ISDEL" columnIndex="17"/>
+		<result property="disseminateStand" column="DISSEMINATE_STAND" columnIndex="18"/>
+	</resultMap>
+
+	<insert id="jnitcmsdisseminateDAO.insertJnitcmsdisseminate_S">
+		<![CDATA[
+			INSERT INTO jnitcmsdisseminate
+				( DISSEMINATE_ID
+				  , SITE_ID
+				  , MENU_ID
+				  , CNT_ID
+				  , CONTENT_PATH
+				  , DISSEMINATE_TYPE
+				  , MBR_ID
+				  , DISSEMINATE_CONFIRM
+				  , DISSEMINATE_MEMO
+				  , CONTENT_CONFIRM
+				  , DISSEMINATE_DAY
+				  , DISSEMINATE_HISTORY_ID
+				  , DISSEMINATE_NAME
+				  , DISSEMINATE_NUM
+				  , CREATED
+				  , MODIFIED
+				  , ISDEL
+				  , DISSEMINATE_STAND )
+			VALUES ( #disseminateId#
+				  , #siteId#
+				  , #menuId#
+				  , #cntId#
+				  , #contentPath#
+				  , #disseminateType#
+				  , #mbrId#
+				  , #disseminateConfirm#
+				  , #disseminateMemo#
+				  , #contentConfirm#
+				  , #disseminateDay#
+				  , #disseminateHistoryId#
+				  , #disseminateName#
+				  , #disseminateNum#
+				  , SYSDATE
+				  , SYSDATE
+				  , 0
+				  , #disseminateStand# )
+		]]>
+	</insert>
+
+	<update id="jnitcmsdisseminateDAO.updateJnitcmsdisseminate_S">
+		<![CDATA[
+			UPDATE jnitcmsdisseminate
+			SET DISSEMINATE_ID=#disseminateId#
+				, SITE_ID=#siteId#
+				, MENU_ID=#menuId#
+				, CNT_ID=#cntId#
+				, CONTENT_PATH=#contentPath#
+				, DISSEMINATE_TYPE=#disseminateType#
+				, MBR_ID=#mbrId#
+				, DISSEMINATE_CONFIRM=#disseminateConfirm#
+				, DISSEMINATE_MEMO=#disseminateMemo#
+				, CONTENT_CONFIRM=#contentConfirm#
+				, DISSEMINATE_DAY=#disseminateDay#
+				, DISSEMINATE_HISTORY_ID=#disseminateHistoryId#
+				, DISSEMINATE_NAME=#disseminateName#
+				, MODIFIED=SYSDATE
+				, ISDEL=#isdel#
+		]]>
+		<isEqual property="isStand" compareValue="Y">
+		    <![CDATA[
+		    , DISSEMINATE_STAND=#disseminateStand#
+			]]>
+		</isEqual>
+		<isEqual property="isNum" compareValue="Y">
+		    <![CDATA[
+		    , DISSEMINATE_NUM=#disseminateNum#
+		    ]]>
+		</isEqual>
+		<dynamic prepend="WHERE">
+		    <isEqual property="disseminateIdYn" compareValue="Y">
+				<![CDATA[
+                	DISSEMINATE_ID=#disseminateId#
+				]]>
+		    </isEqual>
+		    <isEqual property="cntIdYn" compareValue="Y">
+		        <![CDATA[
+                	CNT_ID=#cntId#
+				]]>
+		    </isEqual>
+		    <isNotEmpty property="mbrId">
+			   <![CDATA[
+			   		AND MBR_ID = #mbrId#
+			   ]]>
+			</isNotEmpty>
+		</dynamic>
+	</update>
+	<update id="jnitcmsdisseminateDAO.updateNextdisseminate_S">
+		<![CDATA[
+			UPDATE jnitcmsdisseminate
+			SET DISSEMINATE_STAND=#disseminateStand#
+				, CONTENT_CONFIRM=#contentConfirm#
+                WHERE CNT_ID=#cntId#
+                AND ISDEL=0
+		]]>
+	</update>
+
+	<delete id="jnitcmsdisseminateDAO.deleteJnitcmsdisseminate_S">
+		<![CDATA[
+			DELETE FROM jnitcmsdisseminate
+                WHERE DISSEMINATE_ID=#disseminateId#
+		]]>
+	</delete>
+
+	<select id="jnitcmsdisseminateDAO.selectJnitcmsdisseminate_S" resultMap="jnitcmsdisseminate">
+		<![CDATA[
+			SELECT
+				DISSEMINATE_ID
+				, SITE_ID
+				, MENU_ID
+				, CNT_ID
+				, CONTENT_PATH
+				, DISSEMINATE_TYPE
+				, MBR_ID
+				, DISSEMINATE_CONFIRM
+				, DISSEMINATE_MEMO
+				, CONTENT_CONFIRM
+				, DISSEMINATE_DAY
+				, DISSEMINATE_HISTORY_ID
+				, DISSEMINATE_NAME
+				, DISSEMINATE_NUM
+				, CREATED
+				, MODIFIED
+				, ISDEL
+				, DISSEMINATE_STAND
+			FROM jnitcmsdisseminate
+		]]>
+		<dynamic prepend="WHERE">
+			<isNotEmpty property="disseminateId">
+			    <![CDATA[
+					DISSEMINATE_ID=#disseminateId#
+				]]>
+			</isNotEmpty>
+			<isNotEmpty property="cntId">
+			    <![CDATA[
+					CNT_ID=#cntId#
+			    ]]>
+			</isNotEmpty>
+			AND ISDEL = 0
+		</dynamic>
+
+	</select>
+	<select id="jnitcmsdisseminateDAO.selectdisseminate_S" resultMap="jnitcmsdisseminate">
+		<![CDATA[
+			SELECT
+				a.DISSEMINATE_ID
+				, a.SITE_ID
+				, a.MENU_ID
+				, a.CNT_ID
+				, a.CONTENT_PATH
+				, a.DISSEMINATE_TYPE
+				, a.MBR_ID
+				, a.DISSEMINATE_CONFIRM
+				, a.DISSEMINATE_MEMO
+				, a.CONTENT_CONFIRM
+				, a.DISSEMINATE_DAY
+				, a.DISSEMINATE_HISTORY_ID
+				, a.DISSEMINATE_NAME
+				, a.DISSEMINATE_NUM
+				, a.CREATED
+				, a.MODIFIED
+				, a.ISDEL
+				, a.DISSEMINATE_STAND
+				, b.*
+			FROM jnitcmsdisseminate a
+			LEFT JOIN jnitcmsmbr b
+			ON a.MBR_ID=b.MBR_ID
+			WHERE a.CNT_ID=#cntId#
+			AND a.DISSEMINATE_NUM=#disseminateNum#
+			AND a.ISDEL=0
+		]]>
+	</select>
+
+	<select id="jnitcmsdisseminateDAO.selectJnitcmsdisseminateList_D" parameterClass="jnitcmsdisseminateSerarchVO" resultClass="egovMap">
+	    SELECT * FROM (
+			SELECT A.*, ROWNUM RNUM FROM (
+								SELECT  DISSEMINATE_ID
+								, SITE_ID
+								, MENU_ID
+								, CNT_ID
+								, CONTENT_PATH
+								, DISSEMINATE_TYPE
+								, MBR_ID
+								, DISSEMINATE_CONFIRM
+								, DISSEMINATE_MEMO
+								, CONTENT_CONFIRM
+								, DISSEMINATE_DAY
+								, DISSEMINATE_HISTORY_ID
+								, DISSEMINATE_NAME
+								, DISSEMINATE_NUM
+								, CREATED
+								, MODIFIED
+								, ISDEL
+								, DISSEMINATE_STAND
+						FROM jnitcmsdisseminate
+					WHERE 1=1
+					AND ISDEL=0
+					<isEqual prepend="AND" property="searchCondition" compareValue="0">
+						DISSEMINATE_ID = #searchKeyword#
+					</isEqual>
+					<isEqual prepend="AND" property="searchCondition" compareValue="1">
+						SITE_ID LIKE '%'||#searchKeyword#||'%'
+					</isEqual>
+					<isEqual prepend="AND" property="searchCondition" compareValue="2">
+						CNT_ID = #searchKeyword#
+					</isEqual>
+					<isEqual prepend="AND" property="searchCondition" compareValue="3">
+						CNT_ID = #searchKeyword#
+						AND DISSEMINATE_TYPE = #searchKeyword2#
+					</isEqual>
+					<isEqual prepend="AND" property="searchCondition" compareValue="4">
+					   	TO_DATE(TO_CHAR(DISSEMINATE_DAY, 'YYYY-MM-DD'), 'YYYY-MM-DD') = TO_DATE(TO_CHAR(#toDay#, 'YYYY-MM-DD'), 'YYYY-MM-DD')
+					   	AND CONTENT_CONFIRM = 0
+						AND DISSEMINATE_TYPE = 1
+					</isEqual>
+					ORDER BY DISSEMINATE_ID ASC
+			 ) A WHERE 1=1
+			<isEqual prepend="AND" property="pageYn" compareValue="Y">
+				ROWNUM <![CDATA[<=]]> #lastIndex#
+			</isEqual>
+		)WHERE 1=1
+		<isEqual prepend="AND" property="pageYn" compareValue="Y">
+			RNUM <![CDATA[>]]> #firstIndex#
+		</isEqual>
+	</select>
+	<select id="jnitcmsdisseminateDAO.selectJnitcmsdisseminateListTotCnt_S" parameterClass="jnitcmsdisseminateSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM jnitcmsdisseminate
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				DISSEMINATE_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				SITE_ID LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				CNT_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="3">
+				CNT_ID = #searchKeyword#
+				AND DISSEMINATE_TYPE = #searchKeyword2#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="4">
+			   	DISSEMINATE_DAY = #toDay#
+			   	AND CONTENT_CONFIRM = 0
+				AND DISSEMINATE_TYPE = 1
+			</isEqual>
+	</select>
+	<select id="jnitcmsdisseminateDAO.selectdisseminateList_D" parameterClass="jnitcmsdisseminateSerarchVO" resultClass="egovMap">
+		SELECT * FROM (
+				SELECT a.DISSEMINATE_ID
+					, a.SITE_ID
+					, a.MENU_ID
+					, a.CNT_ID
+					, DBMS_LOB.SUBSTR(a.CONTENT_PATH) AS CONTENT_PATH
+					, a.DISSEMINATE_TYPE
+					, a.MBR_ID
+					, a.DISSEMINATE_CONFIRM
+					, a.DISSEMINATE_MEMO
+					, a.CONTENT_CONFIRM
+					, a.DISSEMINATE_DAY
+					, a.DISSEMINATE_HISTORY_ID
+					, a.DISSEMINATE_NAME
+					, a.DISSEMINATE_NUM
+					, a.CREATED
+					, a.MODIFIED
+					, a.ISDEL
+					, a.DISSEMINATE_STAND
+					, b.MBR_NM
+					, b.TYPE_ID
+					, c.ORG_NM
+					, d.POS_NM
+				, ROWNUM RNUM FROM (
+					SELECT * FROM JNITCMSDISSEMINATE
+					ORDER BY DISSEMINATE_ID DESC
+			) A
+
+			LEFT JOIN JNITCMSMBR b
+				ON a.MBR_ID=b.MBR_ID
+			LEFT JOIN JNITCMSORG c
+				ON b.org_Id=c.org_Id
+			LEFT JOIN JNITCMSPOS d
+				ON b.pos_id=d.pos_id
+			LEFT JOIN JNITCMSSITE e
+				ON a.SITE_ID=e.SITE_ID
+			LEFT JOIN JNITCMSMENU f
+				ON a.MENU_ID=f.MENU_ID
+			LEFT JOIN JNITCMSCNT g
+          		ON a.CNT_ID = g.CNT_ID
+
+			WHERE 1=1
+			<isEqual prepend="AND" property="isdelYn" compareValue="Y">
+			    a.ISDEL=0
+			    AND g.ISDEL=0
+			   	AND e.ISDEL=0
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				a.DISSEMINATE_ID = #searchKeyword#
+				AND a.ISDEL=0
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				a.SITE_ID LIKE '%'||#searchKeyword#||'%'
+				AND a.ISDEL=0
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				a.CNT_ID = #searchKeyword#
+				AND a.ISDEL=0
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="3">
+				a.MBR_ID = #searchKeyword#
+				AND a.DISSEMINATE_TYPE = #searchKeyword2#
+				AND a.DISSEMINATE_CONFIRM LIKE '%'||#searchKeyword3#||'%'
+				AND a.ISDEL=0
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="4">
+			    a.CNT_ID = #searchKeyword#
+				AND a.MBR_ID != #mbrId#
+				AND a.DISSEMINATE_NUM <![CDATA[ < ]]> #disseminateNum#
+				AND a.ISDEL=0
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="5">
+			    a.CNT_ID = #searchKeyword#
+				AND a.MBR_ID = #searchKeyword2#
+				AND a.ISDEL=0
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="6">
+			   	a.DISSEMINATE_ID = #searchKeyword#
+			</isEqual>
+
+			<isEqual prepend="AND" property="pageYn" compareValue="Y">
+				ROWNUM <![CDATA[<=]]> #lastIndex#
+			</isEqual>
+		)WHERE 1=1
+		<isEqual prepend="AND" property="pageYn" compareValue="Y">
+			RNUM <![CDATA[>]]> #firstIndex#
+		</isEqual>
+	</select>
+	<select id="jnitcmsdisseminateDAO.selectdisseminateListTotCnt_S" parameterClass="jnitcmsdisseminateSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+				FROM jnitcmsdisseminate a
+
+				LEFT JOIN jnitcmsmbr b
+					ON a.MBR_ID=b.MBR_ID
+				LEFT JOIN jnitcmsorg c
+					ON b.org_Id=c.org_Id
+				LEFT JOIN jnitcmspos d
+					ON b.pos_id=d.pos_id
+				LEFT JOIN jnitcmssite e
+					ON a.SITE_ID=e.SITE_ID
+				LEFT JOIN jnitcmsmenu f
+					ON a.MENU_ID=f.MENU_ID
+				LEFT JOIN JNITCMSCNT g
+          			ON a.CNT_ID = g.CNT_ID
+
+			WHERE 1=1
+			<isEqual prepend="AND" property="isdelYn" compareValue="Y">
+			    a.ISDEL=0
+			    AND g.ISDEL=0
+			    AND e.ISDEL=0
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				a.DISSEMINATE_ID = #searchKeyword#
+				AND a.ISDEL=0
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				a.SITE_ID LIKE '%'||#searchKeyword#||'%'
+				AND a.ISDEL=0
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				a.CNT_ID = #searchKeyword#
+				AND a.ISDEL=0
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="3">
+				a.MBR_ID = #searchKeyword#
+				AND a.DISSEMINATE_TYPE = #searchKeyword2#
+				AND e.ISDEL=0
+				AND f.ISDEL=0
+				AND a.DISSEMINATE_CONFIRM LIKE '%'||#searchKeyword3#||'%'
+				AND a.ISDEL=0
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="4">
+			    a.CNT_ID = #searchKeyword#
+				AND a.MBR_ID != #mbrId#
+				AND a.DISSEMINATE_NUM <![CDATA[ < ]]> #disseminateNum#
+				AND a.ISDEL=0
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="5">
+			    a.CNT_ID = #searchKeyword#
+				AND a.MBR_ID = #searchKeyword2#
+				AND a.ISDEL=0
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="6">
+			   	a.DISSEMINATE_ID = #searchKeyword#
+			</isEqual>
+	</select>
+	<select id="jnitcmsdisseminateDAO.maxTotCnt_S" parameterClass="jnitcmsdisseminateSerarchVO" resultClass="int">
+			SELECT MAX(DISSEMINATE_NUM) totcnt
+			FROM jnitcmsdisseminate
+			WHERE 1=1
+			AND ISDEL = 0
+			AND CNT_ID = #cntId#
+	</select>
+	<select id="jnitcmsdisseminateDAO.getLastIdJnitcmsdisseminate_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITCMSDISSEMINATE_ID'
+	</select>
+
+</sqlMap>

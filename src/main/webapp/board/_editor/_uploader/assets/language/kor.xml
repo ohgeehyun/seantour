@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<properties>
+	<comment>한국어 리소스</comment>
+	<entry key="FILE_SELECT_MESSAGE">
+		<message>등록하실 동영상 파일을 선택해 주세요</message>
+	</entry>
+	<entry key="TITLEIMAGE_SELECT_MESSAGE">
+		<message>대표이미지를 선택해주세요</message>
+	</entry>
+	<entry key="FILE_SELECT_REQUEST">
+		<message>파일을 선택해 주세요.</message>
+	</entry>
+	<entry key="COMPLETE_MESSAGE">
+		<message>완료 되었습니다 . 잠시만 기다려주세요</message>
+	</entry>
+
+
+
+	<!-- 필수  key 값 -->
+	<entry key="_UPLOADING">
+		<message>업로드 중입니다.</message>
+	</entry>
+	<entry key="_WATING">
+		<message>대기중입니다.</message>
+	</entry>
+	<entry key="_ANALYSIS">
+		<message>동영상 분석중입니다.</message>
+	</entry>
+	<entry key="_CAPTURE">
+		<message>대표이미지 추출중입니다.</message>
+	</entry>
+	<entry key="_ENCODING">
+		<message>인코딩 중입니다.</message>
+	</entry>
+	<entry key="_SAVING">
+		<message>스토리지에 저장 중입니다.</message>
+	</entry>
+
+
+
+
+	<!-- 경고창 메시지 -->
+	<entry key="SCHEDULER_RESULT_ERROR">
+		<message>분배 서버오류 입니다.\n관리자에게 문의 바랍니다.</message>
+	</entry>
+	<entry key="SCHEDULER_SECURITY_ERROR">
+		<message>사용 권한이 없습니다.\ncrossdomain.xml 를 확인하세요.</message>
+	</entry>
+	<entry key="SCHEDULER_IO_ERROR">
+		<message>분배 서버오류 입니다.\n분배 서버주소를 확인하세요.</message>
+	</entry>
+	<entry key="SCHEDULER_ERROR">
+		<message>분배 서버오류 입니다.\n관리자에게 문의 바랍니다.</message>
+	</entry>
+
+	<entry key="NOT_SUPPORT_FILETYPE">
+		<message>등록할 수 없는 파일형식입니다.</message>
+	</entry>
+	<entry key="FILESIZE_ERROR">
+		<message>등록할 수 있는 파일크기를 초과하였습니다.</message>
+	</entry>
+	<entry key="NO_MATCHING_SKEY">
+		<message>등록할 수 없는 키입니다.</message>
+	</entry>
+
+	<entry key="FILEUPLOAD_ERROR">
+		<message>동영상 업로드 중에 오류가 발생하였습니다.</message>
+	</entry>
+	<entry key="FILEUPLOAD_IO_ERROR">
+		<message>동영상 업로드 중에 오류가 발생하였습니다.\n 관리자에게 문의 바랍니다.</message>
+	</entry>
+	<entry key="FILEUPLOAD_SECURITY_ERROR">
+		<message>변환 서베에 사용 권한이 없습니다.\n crossdomain.xml 를 확인하세요.</message>
+	</entry>
+
+	<entry key="CAPTURE_FAIL">
+		<message>대표이미지 추출 실패하였습니다. \n재시도 또는 다른 동영상을 등록해주세요.</message>
+	</entry>
+	<entry key="CAPTURE_RETRY">
+		<message>재시도</message>
+	</entry>
+	<entry key="CAPTURE_CANCEL">
+		<message>취소</message>
+	</entry>
+
+	<entry key="ENCODE_FAIL">
+		<message>동영상 변환 실패 하였습니다. \n다른 동영상을 등록해주세요.</message>
+	</entry>
+	<entry key="ENCODE_UPLOAD_FAIL">
+		<message>변환된 동영상을 파일서버로 전송중에 오류가 발생하였습니다.\n관리자에게 문의 바랍니다.</message>
+	</entry>
+	<entry key="ENCODE_SERVER_ERROR">
+		<message>변환서버에 알수 없는 오류가 발생하였습니다.\n관리자에게 문의 바랍니다.</message>
+	</entry>
+
+
+</properties>

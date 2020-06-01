@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitsmsaddressbook">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitMgovAddrSerarchVO" type="jnit.mgov.addressbook.JnitMgovAddrDefaultVO"/>
+	<typeAlias  alias="jnitMgovAddrGrpVO" type="jnit.mgov.addressbook.JnitMgovAddrGrpVO"/>
+	<typeAlias  alias="jnitMgovAddrListVO" type="jnit.mgov.addressbook.JnitMgovAddrListVO"/>
+	
+	<insert id="jnitsmsaddressbookDAO.insertJnitMgovAddrGrp" parameterClass="jnitMgovAddrGrpVO">
+		<![CDATA[
+			INSERT INTO jnitmgovaddrgrp
+				( GRP_ID
+				  , GRP_NM
+				  , USER_MBR
+				  , CREATED
+				  , MODIFIED
+				  , ISDEL )
+			VALUES ( #grpId#
+					 , #grpNm#
+					 , #userMbr#
+					 , NOW()
+					 , #modified#
+					 , #isdel# )
+		]]>
+	</insert>
+	
+	<insert id="jnitsmsaddressbookDAO.insertJnitMgovAddrList" parameterClass="jnitMgovAddrListVO">
+		<![CDATA[
+			INSERT INTO jnitmgovaddrlist
+				( LIST_ID
+				  , GRP_ID
+				  , MBR_ID
+				  , MBR_NM
+				  , MBR_LOGIN
+				  , PHONE
+				  , PHONE2
+				  , POS_ID
+				  , POS_NM
+				  , ORG_ID
+				  , ORG_NM
+				  , MBRTYPE_ID
+				  , MBRTYPE_NM
+				  , CREATED
+				  , MODIFIED
+				  , ISDEL )
+			VALUES ( #listId#
+					 , #grpId#
+					 , #mbrId#
+					 , #mbrNm#
+					 , #mbrLogin#
+					 , #phone#
+					 , #phone2#
+					 , #posId#
+					 , #posNm#
+					 , #orgId#
+					 , #orgNm#
+					 , #mbrtypeId#
+					 , #mbrtypeNm#
+					 , NOW()
+					 , #modified#
+					 , #isdel# )
+		]]>
+	</insert>
+	
+	<delete id="jnitsmsaddressbookDAO.deleteJnitMgovAddrGrp" parameterClass="jnitMgovAddrGrpVO">
+		<![CDATA[
+			DELETE FROM jnitmgovaddrgrp
+                WHERE GRP_ID=#grpId#
+		]]>
+	</delete>
+	
+	<delete id="jnitsmsaddressbookDAO.deleteJnitMgovAddrList" parameterClass="jnitMgovAddrListVO">
+		<![CDATA[
+			DELETE FROM jnitmgovaddrlist
+                WHERE LIST_ID=#listId#
+		]]>
+	</delete>
+	
+	<select id="jnitsmsaddressbookDAO.selectJnitMgovAddrGrp" parameterClass="jnitMgovAddrSerarchVO" resultClass="egovMap">
+			SELECT
+				GRP_ID,
+				GRP_NM,
+				USER_MBR,
+				CREATED,
+				MODIFIED,
+				ISDEL				
+				FROM jnitmgovaddrgrp
+			WHERE 1=1
+			AND USER_MBR = #searchKeyword#
+			ORDER BY GRP_NM ASC
+	</select>
+	
+	<select id="jnitsmsaddressbookDAO.selectJnitMgovAddrList" parameterClass="jnitMgovAddrSerarchVO" resultClass="egovMap">
+			SELECT
+				LIST_ID
+				  , GRP_ID
+				  , MBR_Nm
+				  , MBR_ID
+				  , MBR_LOGIN
+				  , PHONE
+				  , PHONE2
+				  , POS_ID
+				  , POS_NM
+				  , ORG_ID
+				  , ORG_NM
+				  , MBRTYPE_ID
+				  , MBRTYPE_NM
+				  , CREATED
+				  , MODIFIED
+				  , ISDEL
+				FROM jnitmgovaddrlist
+			WHERE 1=1
+			AND GRP_ID = #searchKeyword#
+			ORDER BY MBR_LOGIN ASC
+	</select>
+	
+	<select id="jnitsmsaddressbookDAO.getLastIdJnitMgovAddrGrp" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITMGOVADDRGRP_ID'
+	</select>
+	
+	<select id="jnitsmsaddressbookDAO.getLastIdJnitMgovAddrList" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITMGOVADDRLIST_ID'
+	</select>
+
+</sqlMap>

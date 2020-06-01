@@ -1,0 +1,25 @@
+@charset "utf-8";
+
+/*사이트맵*/
+div.content div.Jnit_sitemap a {display: block;}
+div.content div.Jnit_sitemap a:hover {text-decoration: none;}
+div.content div.Jnit_sitemap ul li {background: none;padding: 0;}
+div.content div.Jnit_sitemap ul.sitemap_Dept01 {width: 32%;display: inline-block;vertical-align: top;margin-left: 0.8%;}
+div.content div.Jnit_sitemap ul.sitemap_Dept01 > li > a {background: #595959;color: #E9E9E9;padding: 12px 0px;font-size: 1.2em;text-align: center;}
+div.content div.Jnit_sitemap ul.sitemap_Dept01 > li > a:hover {color:#ffffff;}
+div.content div.Jnit_sitemap ul.sitemap_Dept02 {border-top: 3px solid #595959;margin-bottom: 50px;margin-top: 2px;border-bottom: 3px solid #595959;}
+div.content div.Jnit_sitemap ul.sitemap_Dept02 > li {margin: 0;padding: 0;}
+div.content div.Jnit_sitemap ul.sitemap_Dept02 > li > a {font-size: 1.1em;padding: 10px;border-top: 1px solid #E0E0E0;}
+div.content div.Jnit_sitemap ul.sitemap_Dept02 > li > a:hover {color: #9F9F9F;}
+div.content div.Jnit_sitemap ul.sitemap_Dept03 {background: #F5F5F5;padding: 5px 10px;margin: 5px 0px 8px;}
+div.content div.Jnit_sitemap ul.sitemap_Dept03 > li {list-style-type: square;margin: 0 0 0 18px;color: #7B7B7B;}
+div.content div.Jnit_sitemap ul.sitemap_Dept03 > li > a {padding: 5px 0px;}
+div.content div.Jnit_sitemap ul.sitemap_Dept03 > li > a:hover {color: #B3B3B3;}
+div.content div.Jnit_sitemap ul.sitemap_Dept04 {margin-left: -18px;background: #CED1D6;border-top: 2px solid #878787;border-bottom: 1px solid #878787;padding: 3px 0px;}
+div.content div.Jnit_sitemap ul.sitemap_Dept04 > li {list-style-type: circle;margin: 0 0 0 27px;color: #767676;}
+div.content div.Jnit_sitemap ul.sitemap_Dept04 > li > a {padding: 3px 0px;color: #636363;}
+div.content div.Jnit_sitemap ul.sitemap_Dept04 > li > a:hover {color: #2D2D2D;}
+div.content div.Jnit_sitemap ul.sitemap_Dept05 {margin: 0 2px 0 -25px;padding: 3px 5px;background: #858585;}
+div.content div.Jnit_sitemap ul.sitemap_Dept05 > li > a {color:#ffffff;border-top: 1px solid #C6C6C6;padding: 3px 0 0 8px;margin: 0 13px;}
+div.content div.Jnit_sitemap ul.sitemap_Dept05 > li:first-child > a {border-top:none;}
+div.content div.Jnit_sitemap ul.sitemap_Dept05 > li > a:hover {color: #E0E0E0;}

@@ -1,0 +1,1065 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitboarddb">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitboarddbSerarchVO" type="jnit.board.db.JnitboarddbDefaultVO"/>
+
+	<resultMap id="jnitboarddb" class="jnit.board.db.JnitboarddbVO">
+		<result property="boardId" column="BOARD_ID"/>
+		<result property="id" column="ID"/>
+		<result property="grp" column="GRP"/>
+		<result property="idx" column="IDX"/>
+		<result property="isSecret" column="IS_SECRET"/>
+		<result property="isNotice" column="IS_NOTICE"/>
+		<result property="isHtml" column="IS_HTML"/>
+		<result property="category" column="CATEGORY"/>
+		<result property="title" column="TITLE"/>
+		<result property="content" column="CONTENT"/>
+		<result property="password" column="PASSWORD"/>
+		<result property="ext01" column="EXT01"/>
+		<result property="ext02" column="EXT02"/>
+		<result property="ext03" column="EXT03"/>
+		<result property="ext04" column="EXT04"/>
+		<result property="ext05" column="EXT05"/>
+		<result property="ext06" column="EXT06"/>
+		<result property="ext07" column="EXT07"/>
+		<result property="ext08" column="EXT08"/>
+		<result property="ext09" column="EXT09"/>
+		<result property="ext10" column="EXT10"/>
+		<result property="ext11" column="EXT11"/>
+		<result property="ext12" column="EXT12"/>
+		<result property="ext13" column="EXT13"/>
+		<result property="ext14" column="EXT14"/>
+		<result property="ext15" column="EXT15"/>
+		<result property="ext16" column="EXT16"/>
+		<result property="ext17" column="EXT17"/>
+		<result property="ext18" column="EXT18"/>
+		<result property="ext19" column="EXT19"/>
+		<result property="ext20" column="EXT20"/>
+		<result property="date01" column="DATE01"/>
+		<result property="date02" column="DATE02"/>
+		<result property="hit" column="HIT"/>
+		<result property="writer" column="WRITER"/>
+		<result property="mbrId" column="MBR_ID"/>
+		<result property="mbrIp" column="MBR_IP"/>
+		<result property="created" column="CREATED"/>
+		<result property="modified" column="MODIFIED"/>
+		<result property="isdel" column="ISDEL"/>
+		<result property="active" column="ACTIVE"/>
+		<result property="tmp1" column="TMP1"/>
+		<result property="tmp2" column="TMP2"/>
+		<result property="tmp3" column="TMP3"/>
+		<result property="tmp4" column="TMP4"/>
+		<result property="tmp5" column="TMP5"/>
+	</resultMap>
+
+	<insert id="jnitboarddbDAO.insert_S">
+		<isNotEmpty property="boardId">
+		<![CDATA[
+			INSERT INTO $boardId$
+				( ID
+				  , GRP
+				  , IDX
+				  , IS_SECRET
+				  , IS_NOTICE
+				  , IS_HTML
+				  , CATEGORY
+				  , TITLE
+				  , CONTENT
+				  , PASSWORD
+				  , EXT01
+				  , EXT02
+				  , EXT03
+				  , EXT04
+				  , EXT05
+				  , EXT06
+				  , EXT07
+				  , EXT08
+				  , EXT09
+				  , EXT10
+				  , EXT11
+				  , EXT12
+				  , EXT13
+				  , EXT14
+				  , EXT15
+				  , EXT16
+				  , EXT17
+				  , EXT18
+				  , EXT19
+				  , EXT20
+				  , DATE01
+				  , DATE02
+				  , HIT
+				  , WRITER
+				  , MBR_ID
+				  , MBR_IP
+				  , CREATED
+				  , MODIFIED
+				  , ACTIVE
+				  , ISDEL
+				  , TMP1
+				  , TMP2
+				  , TMP3
+				  , TMP4
+				  , TMP5 )
+			VALUES ( #id#
+				  , #grp#
+				  , #idx#
+				  , #isSecret#
+				  , #isNotice#
+				  , #isHtml#
+				  , #category#
+				  , #title#
+				  , #content#
+				  , #password#
+				  , #ext01#
+				  , #ext02#
+				  , #ext03#
+				  , #ext04#
+				  , #ext05#
+				  , #ext06#
+				  , #ext07#
+				  , #ext08#
+				  , #ext09#
+				  , #ext10#
+				  , #ext11#
+				  , #ext12#
+				  , #ext13#
+				  , #ext14#
+				  , #ext15#
+				  , #ext16#
+				  , #ext17#
+				  , #ext18#
+				  , #ext19#
+				  , #ext20#
+				  , #date01#
+				  , #date02#
+				  , #hit#
+				  , #writer#
+				  , #mbrId#
+				  , #mbrIp#
+		]]>
+			<isEmpty property="created">
+				, NOW()
+			</isEmpty>
+			<isNotEmpty property="created">
+				, #created#
+			</isNotEmpty>
+			<isEmpty property="modified">
+				, NOW()
+			</isEmpty>
+			<isNotEmpty property="modified">
+				, #modified#
+			</isNotEmpty>
+		<![CDATA[
+				  , 1
+				  , #isdel#
+				  , #tmp1#
+				  , #tmp2#
+				  , #tmp3#
+				  , #tmp4#
+				  , #tmp5# )
+		]]>
+		</isNotEmpty>
+	</insert>
+
+	<update id="jnitboarddbDAO.update_S">
+		<isNotEmpty property="boardId">
+			UPDATE $boardId$
+			<isEqual property="updateCondition" compareValue="0">
+			SET IS_SECRET=#isSecret#
+				, IS_NOTICE=#isNotice#
+				, IS_HTML=#isHtml#
+				, CATEGORY=#category#
+				, TITLE=#title#
+				, CONTENT=#content#
+				, EXT01=#ext01#
+				, EXT02=#ext02#
+				, EXT03=#ext03#
+				, EXT04=#ext04#
+				, EXT05=#ext05#
+				, EXT06=#ext06#
+				, EXT07=#ext07#
+				, EXT08=#ext08#
+				, EXT09=#ext09#
+				, EXT10=#ext10#
+				, EXT11=#ext11#
+				, EXT12=#ext12#
+				, EXT13=#ext13#
+				, EXT14=#ext14#
+				, EXT15=#ext15#
+				, EXT16=#ext16#
+				, EXT17=#ext17#
+				, EXT18=#ext18#
+				, EXT19=#ext19#
+				, EXT20=#ext20#
+				, DATE01=#date01#
+				, DATE02=#date02#
+				, HIT=#hit#
+				, WRITER=#writer#
+				, MBR_IP=#mbrIp#
+			<isNotEmpty property="created">
+				, CREATED=#created#
+			</isNotEmpty>
+				, MODIFIED=NOW()
+				, ISDEL=#isdel#
+				, TMP1=#tmp1#
+				, TMP2=#tmp2#
+				, TMP3=#tmp3#
+				, TMP4=#tmp4#
+				, TMP5=#tmp5#
+                WHERE ID=#id#
+             </isEqual>
+             <isEqual property="updateCondition" compareValue="1">
+             SET IS_SECRET=#isSecret#
+				, IS_NOTICE=#isNotice#
+				, IS_HTML=#isHtml#
+				, CATEGORY=#category#
+				, TITLE=#title#
+				, CONTENT=#content#
+				, EXT01=#ext01#
+				, EXT02=#ext02#
+				, EXT03=#ext03#
+				, EXT04=#ext04#
+				, EXT05=#ext05#
+				, EXT06=#ext06#
+				, EXT07=#ext07#
+				, EXT08=#ext08#
+				, EXT09=#ext09#
+				, EXT10=#ext10#
+				, EXT11=#ext11#
+				, EXT12=#ext12#
+				, EXT13=#ext13#
+				, EXT14=#ext14#
+				, EXT15=#ext15#
+				, EXT16=#ext16#
+				, EXT17=#ext17#
+				, EXT18=#ext18#
+				, EXT19=#ext19#
+				, EXT20=#ext20#
+				, DATE01=#date01#
+				, DATE02=#date02#
+				, HIT=#hit#
+			<isNotEmpty property="created">
+				, CREATED=#created#
+			</isNotEmpty>
+				, MODIFIED=NOW()
+				, ISDEL=#isdel#
+				, TMP3=#tmp3#
+				, TMP4=#tmp4#
+				, TMP5=#tmp5#
+                 WHERE TMP1 = #tmp1#
+                 AND TMP2 = #tmp2#
+             </isEqual>
+		</isNotEmpty>
+	</update>
+
+	<update id="jnitboarddbDAO.hit_S">
+		<isNotEmpty property="boardId">
+			UPDATE $boardId$
+			<isEqual property="updateCondition" compareValue="0">
+			SET HIT=HIT+1
+                WHERE ID=#id#
+			</isEqual>
+			<isEqual property="updateCondition" compareValue="1">
+			SET HIT=HIT+1
+                WHERE TMP1=#tmp1#
+                AND TMP2=#id#
+			</isEqual>
+		</isNotEmpty>
+	</update>
+
+	<delete id="jnitboarddbDAO.delete_All">
+		<isNotEmpty property="boardId">
+			<![CDATA[
+				DELETE FROM $boardId$
+			]]>
+		</isNotEmpty>
+	</delete>
+
+	<delete id="jnitboarddbDAO.delete_S">
+		<isNotEmpty property="boardId">
+			<isEqual property="isdelYn" compareValue="N">
+				DELETE FROM $boardId$
+				<isEqual property="deleteCondition" compareValue="0">
+					WHERE ID=#id#
+				</isEqual>
+				<isEqual property="deleteCondition" compareValue="1">
+					WHERE TMP1 = #tmp1#
+				</isEqual>
+				<isEqual property="deleteCondition" compareValue="2">
+					WHERE TMP1 = #tmp1#
+					AND TMP2=#tmp2#
+				</isEqual>
+				<isEqual property="deleteCondition" compareValue="3">
+					WHERE GRP=#grp#
+				</isEqual>
+				<isEqual property="deleteCondition" compareValue="4">
+					WHERE IDX LIKE CONCAT(#idx#,'_%')
+				</isEqual>
+			</isEqual>
+			<isEqual property="isdelYn" compareValue="Y">
+				UPDATE $boardId$
+				SET ISDEL = 1
+				<isEqual property="deleteCondition" compareValue="0">
+					WHERE ID=#id#
+				</isEqual>
+				<isEqual property="deleteCondition" compareValue="1">
+					WHERE TMP1 = #tmp1#
+                 	AND TMP2 = #tmp2#
+				</isEqual>
+			</isEqual>
+		</isNotEmpty>
+	</delete>
+	<update id="jnitboarddbDAO.recovery_S">
+		<isNotEmpty property="boardId">
+			UPDATE $boardId$
+			SET ISDEL = '0'
+			<isEqual property="recoveryCondition" compareValue="0">
+			    WHERE ID=#id#
+			</isEqual>
+			<isEqual property="recoveryCondition" compareValue="1">
+			    WHERE TMP1 = #tmp1#
+                AND TMP2 = #tmp2#
+			</isEqual>
+		</isNotEmpty>
+	</update>
+
+	<select id="jnitboarddbDAO.selectAnonymous_S" resultMap="jnitboarddb">
+		<isNotEmpty property="boardId">
+			SELECT
+				'$boardId$' AS BOARD_ID
+				, ID
+				, GRP
+				, IDX
+				, IS_SECRET
+				, IS_NOTICE
+				, IS_HTML
+				, CATEGORY
+				, TITLE
+				, CONTENT
+				, PASSWORD
+				, EXT01
+				, EXT02
+				, EXT03
+				, EXT04
+				, EXT05
+				, EXT06
+				, EXT07
+				, EXT08
+				, EXT09
+				, EXT10
+				, EXT11
+				, EXT12
+				, EXT13
+				, EXT14
+				, EXT15
+				, EXT16
+				, EXT17
+				, EXT18
+				, EXT19
+				, EXT20
+				, DATE01
+				, DATE02
+				, HIT
+				, IF(WRITER = '', '익명', WRITER) AS WRITER
+				, MBR_ID
+				, MBR_IP
+				, CREATED
+				, MODIFIED
+				, ACTIVE
+				, ISDEL
+				, TMP1
+				, TMP2
+				, TMP3
+				, TMP4
+				, TMP5
+			FROM $boardId$
+			WHERE 1=1
+			<isNotEqual prepend="AND" property="id" compareValue="0">
+				ID=#id#
+			</isNotEqual>
+			<isEqual property="ext20" compareValue="modified">
+				ORDER BY CREATED DESC
+				LIMIT 0,1
+			</isEqual>
+		</isNotEmpty>
+	</select>
+
+
+	<select id="jnitboarddbDAO.select_S" resultMap="jnitboarddb">
+		<isNotEmpty property="boardId">
+			SELECT
+				'$boardId$' AS BOARD_ID
+				, ID
+				, GRP
+				, IDX
+				, IS_SECRET
+				, IS_NOTICE
+				, IS_HTML
+				, CATEGORY
+				, TITLE
+				, CONTENT
+				, PASSWORD
+				, EXT01
+				, EXT02
+				, EXT03
+				, EXT04
+				, EXT05
+				, EXT06
+				, EXT07
+				, EXT08
+				, EXT09
+				, EXT10
+				, EXT11
+				, EXT12
+				, EXT13
+				, EXT14
+				, EXT15
+				, EXT16
+				, EXT17
+				, EXT18
+				, EXT19
+				, EXT20
+				, DATE01
+				, DATE02
+				, HIT
+				<isEqual property="selectCondition" compareValue="0">
+				, IF(a.WRITER = '', b.MBR_NM, a.WRITER) AS WRITER
+				</isEqual>
+				<isEqual property="selectCondition" compareValue="1">
+				, IF(a.WRITER = '', '익명', a.WRITER) AS WRITER
+				</isEqual>
+				, a.MBR_ID
+				, a.MBR_IP
+				, a.CREATED
+				, a.MODIFIED
+				, a.ACTIVE
+				, a.ISDEL
+				, TMP1
+				, TMP2
+				, TMP3
+				, TMP4
+				, TMP5
+			<isEqual property="selectCondition" compareValue="0">
+				FROM $boardId$ a, JNITCMSMBR b
+                	WHERE ID=#id# AND b.MBR_ID=a.MBR_ID
+			</isEqual>
+			<isEqual property="selectCondition" compareValue="1">
+				FROM $boardId$ a
+	                WHERE ID=#id#
+			</isEqual>
+		</isNotEmpty>
+	</select>
+
+	<select id="jnitboarddbDAO.select_D" parameterClass="jnitboarddbSerarchVO" resultClass="egovMap" remapResults="true">
+		<isNotEmpty property="boardId">
+		    <isEqual property="orderbyCondition" compareValue="1">
+		        SELECT * FROM (
+		    </isEqual>
+						SELECT
+								'$boardId$' AS BOARD_ID
+								, a.ID
+								, a.GRP
+								, a.IDX
+								, a.IS_SECRET
+								, a.IS_NOTICE
+								, a.IS_HTML
+								, a.CATEGORY
+								, a.TITLE
+							<isEqual prepend=", " property="withContent" compareValue="1">
+								a.CONTENT
+							</isEqual>
+								, a.PASSWORD
+								, a.EXT01
+								, a.EXT02
+								, a.EXT03
+								, a.EXT04
+								, a.EXT05
+								, a.EXT06
+								, a.EXT07
+								, a.EXT08
+								, a.EXT09
+								, a.EXT10
+								, a.EXT11
+								, a.EXT12
+								, a.EXT13
+								, a.EXT14
+								, a.EXT15
+								, a.EXT16
+								, a.EXT17
+								, a.EXT18
+								, a.EXT19
+								, a.EXT20
+								, a.DATE01
+								, a.DATE02
+								, a.HIT
+								, IF(a.WRITER = '', b.MBR_NM, a.WRITER) AS WRITER
+								, a.MBR_ID
+								, a.MBR_IP
+								, a.CREATED
+								, a.MODIFIED
+								, a.ACTIVE
+								, a.ISDEL
+								, a.TMP1
+							    , a.TMP2
+							   	, a.TMP3
+							    , a.TMP4
+							    , a.TMP5
+							<isEqual property="withFile" compareValue="1">
+							    , IFNULL(c.FILE_ID,'') AS FILE_ID
+								, IFNULL(c.FILE_URL,'') AS FILE_URL
+								, IFNULL(c.FILE_PATH,'') AS FILE_PATH
+								, IFNULL(c.FILE_NM,'') AS FILE_NM
+								, IFNULL(c.FILE_ONM,'') AS FILE_ONM
+								, IFNULL(c.ISMAIN,'') AS ISMAIN
+								, IFNULL(c.EXT01,'') AS FILE_EXT01
+								, IFNULL(c.EXT01,'') AS FILE_EXT02
+							</isEqual>
+							<isEqual property="searchType" compareValue="minwon">
+								, IFNULL(d.MBR_ID,'') AS M_MBR_ID
+								, IFNULL(d.MBR_NM,'') AS M_MBR_NM
+								, IFNULL(d.TEL,'') AS M_TEL
+								, IFNULL(d.MOBILE,'') AS M_MOBILE
+								, IFNULL(d.EMAIL,'') AS M_EMAIL
+							</isEqual>
+							<isEqual property="searchType" compareValue="total">
+								, IFNULL(e.BOARD_GROUP,'') AS BOARD_GROUP
+							</isEqual>
+					FROM $boardId$ AS a
+						LEFT OUTER JOIN JNITCMSMBR AS b
+							on b.MBR_ID=a.MBR_ID
+					<isEqual property="withFile" compareValue="1">
+						LEFT OUTER JOIN jnitboardfile AS c
+						<isEqual property="latestYn" compareValue="N">
+							ON a.ID = c.BOARD_CNT_ID
+							AND c.BOARD_ID = '$boardId$'
+						</isEqual>
+						<isEqual property="latestYn" compareValue="Y">
+							ON a.TMP2 = c.BOARD_CNT_ID
+							AND c.BOARD_ID = a.TMP1
+						</isEqual>
+						AND c.ISMAIN = 1
+						AND c.ISDEL = 0
+					</isEqual>
+					<isEqual property="searchType" compareValue="minwon">
+						LEFT OUTER JOIN JNITCMSMBR AS d
+							on d.MBR_ID=a.EXT05
+					</isEqual>
+					<isEqual property="searchType" compareValue="total">
+						LEFT OUTER JOIN JNITBOARDINFO AS e
+							on e.BOARD_ID=a.TMP1
+					</isEqual>
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchType" compareValue="total">
+				BOARD_GROUP = #searchSite#
+			</isEqual>
+			<isNotEmpty prepend="AND" property="searchDate">
+			<![CDATA[
+				(
+				DATE_FORMAT (a.DATE01,'%Y-%m-%d') = DATE_FORMAT (#searchDate#,'%Y-%m-%d')
+				OR
+				(DATE_FORMAT (a.DATE01,'%Y-%m-%d') <= DATE_FORMAT (#searchDate#,'%Y-%m-%d')
+					AND
+				DATE_FORMAT (a.DATE02,'%Y-%m-%d') >= DATE_FORMAT (#searchDate#,'%Y-%m-%d'))
+				)
+			]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="searchMonth">
+			<![CDATA[
+				(DATE_FORMAT (a.DATE01,'%Y-%m') = DATE_FORMAT (#searchMonth#,'%Y-%m')
+				OR
+				(DATE_FORMAT (a.DATE01,'%Y-%m') <= DATE_FORMAT (#searchMonth#,'%Y-%m')
+					AND
+				DATE_FORMAT (a.DATE02,'%Y-%m') >= DATE_FORMAT (#searchMonth#,'%Y-%m'))
+				)
+			]]>
+			</isNotEmpty>
+			<isNotEqual prepend="AND" property="isAdmin" compareValue="true">
+			<![CDATA[
+				a.ISDEL != 1
+				AND
+				a.CREATED <= NOW()
+			]]>
+			</isNotEqual>
+			<isEqual prepend="AND" property="searchParents" compareValue="1">
+				(IDX IS NULL OR IDX = '')
+			</isEqual>
+			<isNotEmpty property="grp">
+				<isNotEqual prepend="AND" property="grp" compareValue="0">
+					(a.GRP = #grp# AND IDX IS NOT NULL AND IDX != '')
+				</isNotEqual>
+			</isNotEmpty>
+			<isEqual property="categoryCondition" compareValue="0">
+				<isNotEmpty prepend="AND" property="searchCategory">
+					a.CATEGORY = #searchCategory#
+				</isNotEmpty>
+			</isEqual>
+
+			<isEqual property="categoryCondition" compareValue="1">
+				<isNotEmpty property="selectList">
+					<iterate prepend="AND" property="selectList" open="(" conjunction="OR"  close=")">
+						a.CATEGORY = #selectList[]#
+					</iterate>
+				</isNotEmpty>
+			</isEqual>
+			<isEqual prepend="AND" property="idxCondition" compareValue="0">
+				a.IDX IS NULL
+			</isEqual>
+			<isEqual property="QueryYn" compareValue="Y">
+				$Query$
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="all">
+				(a.TITLE LIKE CONCAT('%',#searchKeyword#,'%')
+				OR
+				a.CONTENT LIKE CONCAT('%',#searchKeyword#,'%'))
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="writer">
+				a.WRITER LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchUseYn" compareValue="notice">
+				a.IS_NOTICE = 1
+			</isEqual>
+			<isEqual prepend="AND" property="searchUseYn" compareValue="NotNotice">
+				a.IS_NOTICE = 0
+			</isEqual>
+			<isNotEmpty prepend="AND" property="myBoardList">
+				a.MBR_ID = #myBoardList#
+			</isNotEmpty>
+			<isEqual prepend="AND" property="searchCondition" compareValue="title">
+				a.TITLE LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="content">
+				a.CONTENT LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="searchext01">
+				a.EXT01 LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="searchext02">
+				a.EXT02 LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="searchext03">
+				a.EXT03 LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="searchext04">
+				a.EXT04 LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="searchext05">
+				a.EXT05 LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="searchext06">
+				a.EXT06 LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="searchext07">
+				a.EXT07 LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="searchext08">
+				a.EXT08 LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="searchext09">
+				a.EXT09 LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="searchext10">
+				a.EXT10 LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="searchext11">
+				a.EXT11 LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="searchext12">
+				a.EXT12 LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="searchext13">
+				a.EXT13 LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="searchext14">
+				a.EXT14 LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="searchext15">
+				a.EXT15 LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="searchext16">
+				a.EXT16 LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="searchext17">
+				a.EXT17 LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="searchext18">
+				a.EXT18 LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="searchext19">
+				a.EXT19 LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="searchext20">
+				a.EXT20 LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="excel">
+				a.CREATED BETWEEN #createdStartDate# AND #createdEndDate#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="idx">
+				(IDX=#idx# OR IDX LIKE CONCAT(#idx#,'_%') )
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="idxNull">
+				(ID=#id# OR GRP=#id# )
+			</isEqual>
+				<isEqual property="withFile" compareValue="1">
+					GROUP BY a.ID
+				</isEqual>
+				ORDER BY
+				<isEqual property="orderbyHitYn" compareValue="Y">
+			  	    a.HIT DESC,
+			  	</isEqual>
+				<isEqual property="orderbyCondition" compareValue="0">
+					<isNotEmpty property="searchMonth">
+						a.DATE01 ASC,
+					</isNotEmpty>
+					<isEmpty property="searchDate">
+	                	a.GRP DESC, a.IDX ASC
+	                </isEmpty>
+	                <isNotEmpty property="searchDate">
+	                	a.DATE01 ASC
+	                </isNotEmpty>
+	            </isEqual>
+                <isEqual property="orderbyCondition" compareValue="1">
+                    a.TMP3 DESC, a.CREATED DESC
+                </isEqual>
+                <isEqual property="orderbyCondition" compareValue="2">
+                    a.CREATED ASC
+                </isEqual>
+                <isEmpty property="searchMonth">
+                	<isEqual property="pageYn" compareValue="Y">
+                		limit #firstIndex#, #recordCountPerPage#
+                	</isEqual>
+				</isEmpty>
+			<isEqual property="orderbyCondition" compareValue="1">
+				)
+			  	ORDER BY
+			  	<isEqual property="orderbyHitYn" compareValue="Y">
+			  	    HIT DESC,
+			  	</isEqual>
+			  	CREATED DESC, TMP3 DESC
+			</isEqual>
+			</isNotEmpty>
+	</select>
+	<select id="jnitboarddbDAO.selectListTotCnt_S" parameterClass="jnitboarddbSerarchVO" resultClass="int" >
+		<isNotEmpty property="boardId">
+		SELECT COUNT(*) totcnt
+			FROM $boardId$ AS a
+							LEFT OUTER JOIN JNITCMSMBR AS b
+								on b.MBR_ID=a.MBR_ID
+							<isEqual property="withFile" compareValue="1">
+								LEFT OUTER JOIN jnitboardfile AS c
+								<isEqual property="latestYn" compareValue="N">
+									ON a.ID = c.BOARD_CNT_ID
+									AND c.BOARD_ID = '$boardId$'
+								</isEqual>
+								<isEqual property="latestYn" compareValue="Y">
+									ON a.TMP2 = c.BOARD_CNT_ID
+									AND c.BOARD_ID = a.TMP1
+								</isEqual>
+								AND c.ISMAIN = 1
+								AND c.ISDEL = 0
+							</isEqual>
+							<isEqual property="searchType" compareValue="total">
+								LEFT OUTER JOIN JNITBOARDINFO AS e
+									on e.BOARD_ID=a.TMP1
+							</isEqual>
+				WHERE 1=1
+				<isEqual prepend="AND" property="searchType" compareValue="total">
+					BOARD_GROUP = #searchSite#
+				</isEqual>
+				<isNotEmpty prepend="AND" property="searchDate">
+				<![CDATA[
+					(
+					DATE_FORMAT (a.DATE01,'%Y-%m-%d') = DATE_FORMAT (#searchDate#,'%Y-%m-%d')
+					OR
+					(DATE_FORMAT (a.DATE01,'%Y-%m-%d') <= DATE_FORMAT (#searchDate#,'%Y-%m-%d')
+						AND
+					DATE_FORMAT (a.DATE02,'%Y-%m-%d') >= DATE_FORMAT (#searchDate#,'%Y-%m-%d'))
+					)
+				]]>
+				</isNotEmpty>
+				<isNotEmpty prepend="AND" property="searchMonth">
+				<![CDATA[
+					(DATE_FORMAT (a.DATE01,'%Y-%m') = DATE_FORMAT (#searchMonth#,'%Y-%m')
+					OR
+					(DATE_FORMAT (a.DATE01,'%Y-%m') <= DATE_FORMAT (#searchMonth#,'%Y-%m')
+						AND
+					DATE_FORMAT (a.DATE02,'%Y-%m') >= DATE_FORMAT (#searchMonth#,'%Y-%m'))
+					)
+				]]>
+				</isNotEmpty>
+				<isNotEqual prepend="AND" property="isAdmin" compareValue="true">
+				<![CDATA[
+					a.ISDEL != 1
+					AND
+					a.CREATED <= NOW()
+				]]>
+				</isNotEqual>
+				<isEqual prepend="AND" property="searchParents" compareValue="1">
+					(IDX IS NULL OR IDX = '')
+				</isEqual>
+				<isNotEmpty property="grp">
+					<isNotEqual prepend="AND" property="grp" compareValue="0">
+						(a.GRP = #grp# AND IDX IS NOT NULL AND IDX != '')
+					</isNotEqual>
+				</isNotEmpty>
+				<isEqual property="categoryCondition" compareValue="0">
+					<isNotEmpty prepend="AND" property="searchCategory">
+						a.CATEGORY = #searchCategory#
+					</isNotEmpty>
+				</isEqual>
+
+				<isEqual property="categoryCondition" compareValue="1">
+					<isNotEmpty property="selectList">
+						<iterate prepend="AND" property="selectList" open="(" conjunction="OR"  close=")">
+							a.CATEGORY = #selectList[]#
+						</iterate>
+					</isNotEmpty>
+				</isEqual>
+				<isEqual prepend="AND" property="idxCondition" compareValue="0">
+					a.IDX IS NULL
+				</isEqual>
+				<isEqual property="QueryYn" compareValue="Y">
+					$Query$
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="all">
+					(a.TITLE LIKE CONCAT('%',#searchKeyword#,'%')
+					OR
+					a.CONTENT LIKE CONCAT('%',#searchKeyword#,'%') )
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="writer">
+					a.WRITER LIKE CONCAT('%',#searchKeyword#,'%')
+				</isEqual>
+				<isEqual prepend="AND" property="searchUseYn" compareValue="notice">
+					a.IS_NOTICE = 1
+				</isEqual>
+				<isEqual prepend="AND" property="searchUseYn" compareValue="NotNotice">
+					a.IS_NOTICE = 0
+				</isEqual>
+				<isNotEmpty prepend="AND" property="myBoardList">
+					a.MBR_ID = #myBoardList#
+				</isNotEmpty>
+				<isEqual prepend="AND" property="searchCondition" compareValue="title">
+					a.TITLE LIKE CONCAT('%',#searchKeyword#,'%')
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="content">
+					a.CONTENT LIKE CONCAT('%',#searchKeyword#,'%')
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="searchext01">
+					a.EXT01 LIKE CONCAT('%',#searchKeyword#,'%')
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="searchext02">
+					a.EXT02 LIKE CONCAT('%',#searchKeyword#,'%')
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="searchext03">
+					a.EXT03 LIKE CONCAT('%',#searchKeyword#,'%')
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="searchext04">
+					a.EXT04 LIKE CONCAT('%',#searchKeyword#,'%')
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="searchext05">
+					a.EXT05 LIKE CONCAT('%',#searchKeyword#,'%')
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="searchext06">
+					a.EXT06 LIKE CONCAT('%',#searchKeyword#,'%')
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="searchext07">
+					a.EXT07 LIKE CONCAT('%',#searchKeyword#,'%')
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="searchext08">
+					a.EXT08 LIKE CONCAT('%',#searchKeyword#,'%')
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="searchext09">
+					a.EXT09 LIKE CONCAT('%',#searchKeyword#,'%')
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="searchext10">
+					a.EXT10 LIKE CONCAT('%',#searchKeyword#,'%')
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="searchext11">
+					a.EXT11 LIKE CONCAT('%',#searchKeyword#,'%')
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="searchext12">
+					a.EXT12 LIKE CONCAT('%',#searchKeyword#,'%')
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="searchext13">
+					a.EXT13 LIKE CONCAT('%',#searchKeyword#,'%')
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="searchext14">
+					a.EXT14 LIKE CONCAT('%',#searchKeyword#,'%')
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="searchext15">
+					a.EXT15 LIKE CONCAT('%',#searchKeyword#,'%')
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="searchext16">
+					a.EXT16 LIKE CONCAT('%',#searchKeyword#,'%')
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="searchext17">
+					a.EXT17 LIKE CONCAT('%',#searchKeyword#,'%')
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="searchext18">
+					a.EXT18 LIKE CONCAT('%',#searchKeyword#,'%')
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="searchext19">
+					a.EXT19 LIKE CONCAT('%',#searchKeyword#,'%')
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="searchext20">
+					a.EXT20 LIKE CONCAT('%',#searchKeyword#,'%')
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="excel">
+					a.CREATED BETWEEN #createdStartDate# AND #createdEndDate#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="idx">
+					(IDX=#idx# OR IDX LIKE CONCAT(#idx#,'_%') )
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="idxNull">
+					(ID=#id# OR GRP=#id# )
+				</isEqual>
+				<!-- <isEqual property="withFile" compareValue="1">
+					GROUP BY a.ID
+				</isEqual> -->
+		</isNotEmpty>
+	</select>
+
+	<select id="jnitboarddbDAO.selectPN_D" parameterClass="jnitboarddbSerarchVO" resultClass="egovMap" remapResults="true">
+		<isNotEmpty property="boardId">
+			SELECT
+				'$boardId$' AS BOARD_ID
+				, ID
+				, GRP
+				, IDX
+				, IS_SECRET
+				, IS_NOTICE
+				, IS_HTML
+				, CATEGORY
+				, TITLE
+				, CONTENT
+				, PASSWORD
+				, EXT01
+				, EXT02
+				, EXT03
+				, EXT04
+				, EXT05
+				, EXT06
+				, EXT07
+				, EXT08
+				, EXT09
+				, EXT10
+				, EXT11
+				, EXT12
+				, EXT13
+				, EXT14
+				, EXT15
+				, EXT16
+				, EXT17
+				, EXT18
+				, EXT19
+				, EXT20
+				, DATE01
+				, DATE02
+				, HIT
+				, CASE WHEN WRITER = '' THEN '익명' ELSE WRITER END AS WRITER
+				, MBR_ID
+				, MBR_IP
+				, CREATED
+				, MODIFIED
+				, ACTIVE
+				, ISDEL
+				, TMP1
+				, TMP2
+				, TMP3
+				, TMP4
+				, TMP5
+			FROM $boardId$
+			WHERE 1=1 AND IS_NOTICE = 0
+			<isNotEqual prepend="AND" property="isAdmin" compareValue="true">
+			<![CDATA[
+				ISDEL != 1
+				AND IS_SECRET = 0
+				AND DATE_FORMAT (CREATED,'%Y-%m-%d') <= NOW()
+			]]>
+			</isNotEqual>
+			<isEqual property="orderbyCondition" compareValue="0">
+				<isEqual prepend="AND" property="searchCondition" compareValue="prev">
+					<![CDATA[
+						GRP > #searchKeyword# AND IDX IS NULL ORDER BY id ASC
+					]]>
+					</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="next">
+					<![CDATA[
+						GRP < #searchKeyword# AND IDX IS NULL ORDER BY id DESC
+					]]>
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="now">
+					<![CDATA[
+						GRP = #searchKeyword# ORDER BY GRP DESC, IDX
+					]]>
+				</isEqual>
+			</isEqual>
+			<isEqual property="orderbyCondition" compareValue="1">
+				<isEqual prepend="AND" property="searchCondition" compareValue="prev">
+					<![CDATA[
+						CREATED > (select created from $boardId$ where grp=#searchKeyword# ) AND IDX IS NULL ORDER BY CREATED ASC
+					]]>
+					</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="next">
+					<![CDATA[
+						CREATED < (select created from $boardId$ where grp=#searchKeyword# ) AND IDX IS NULL ORDER BY CREATED DESC
+					]]>
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="now">
+					<![CDATA[
+						CREATED = (select created from $boardId$ where grp=#searchKeyword# ) AND IDX IS NULL
+					]]>
+				</isEqual>
+			</isEqual>
+			<isEqual property="orderbyCondition" compareValue="2">
+				<isEqual prepend="AND" property="searchCondition" compareValue="prev">
+					<![CDATA[
+						CREATED < (select created from $boardId$ where grp=#searchKeyword# ) AND IDX IS NULL ORDER BY CREATED DESC
+					]]>
+					</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="next">
+					<![CDATA[
+						CREATED > (select created from $boardId$ where grp=#searchKeyword# ) AND IDX IS NULL ORDER BY CREATED ASC
+					]]>
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="now">
+					<![CDATA[
+						CREATED = (select created from $boardId$ where grp=#searchKeyword# ) AND IDX IS NULL
+					]]>
+				</isEqual>
+			</isEqual>
+			LIMIT 1
+		</isNotEmpty>
+	</select>
+
+	<select id="jnitboarddbDAO.getLastIdJnitboard_S" resultClass="String">
+		<isNotEmpty property="boardId">
+			SELECT MAX(ID)+1 as NID FROM $boardId$
+		</isNotEmpty>
+	</select>
+	<select id="jnitboarddbDAO.getNextIdx_S" resultClass="String">
+		<isNotEmpty property="boardId">
+			SELECT
+			    CONCAT(SUBSTRING(A.IDX,1,LENGTH(A.IDX)-1), CHR(ASCII(RIGHT(A.IDX,1))+1)) AS IDX
+			FROM
+			    (SELECT
+			        GRP, IDX, LEFT(IDX, LENGTH(#idx#)) AS GID
+			    FROM
+			        $boardId$
+			    WHERE
+			        GRP = #grp#
+			            AND LENGTH(IDX) = LENGTH(#idx#) + 1
+			    ORDER BY IDX DESC) AS A
+			WHERE A.GID = #idx#
+			ORDER BY IDX DESC
+			LIMIT 0,1;
+		</isNotEmpty>
+	</select>
+
+</sqlMap>

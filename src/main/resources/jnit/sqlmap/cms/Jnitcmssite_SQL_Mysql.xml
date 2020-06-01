@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitcmssite">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitcmssiteSerarchVO" type="jnit.cms.site.JnitcmssiteDefaultVO"/>
+	<typeAlias  alias="ComDefaultCodeVO" type="egovframework.com.cmm.ComDefaultCodeVO"/>
+	
+	<resultMap id="jnitcmssite" class="jnit.cms.site.JnitcmssiteVO">
+		<result property="siteId" column="SITE_ID" columnIndex="1"/>
+		<result property="siteNm" column="SITE_NM" columnIndex="2"/>
+		<result property="sitePath" column="SITE_PATH" columnIndex="3"/>
+		<result property="siteOrd" column="SITE_ORD" columnIndex="4"/>
+		<result property="admMbrId" column="ADM_MBR_ID" columnIndex="5"/>
+		<result property="active" column="ACTIVE" columnIndex="6"/>
+		<result property="created" column="CREATED" columnIndex="7"/>
+		<result property="modified" column="MODIFIED" columnIndex="8"/>
+		<result property="isdel" column="ISDEL" columnIndex="9"/>
+	</resultMap>
+	
+	<resultMap id="CmmCodeDetail" class="egovframework.com.cmm.service.CmmnDetailCode">
+		<result property="codeId"    	column="CODE_ID"   	columnIndex="1"/>
+		<result property="code"  		column="CODE" 		columnIndex="2"/>
+		<result property="codeNm"   	column="CODE_NM"  	columnIndex="3"/>
+		<result property="codeDc"   	column="CODE_DC"  	columnIndex="4"/>
+	</resultMap>
+	
+	<insert id="jnitcmssiteDAO.insertJnitcmssite_S">
+		<![CDATA[
+			INSERT INTO JNITCMSSITE 
+				( SITE_ID
+				  , SITE_NM
+				  , SITE_PATH
+				  , SITE_ORD
+				  , ADM_MBR_ID
+				  , ACTIVE
+				  , CREATED
+				  , MODIFIED
+				  , ISDEL )
+			VALUES ( #siteId#
+				  , #siteNm#
+				  , #sitePath#
+				  , #siteOrd#
+				  , #admMbrId#
+				  , #active#
+				  , NOW()
+				  , NOW()
+				  , #isdel# )
+		]]>
+	</insert>
+	
+	<update id="jnitcmssiteDAO.updateJnitcmssite_S">
+		<![CDATA[
+			UPDATE JNITCMSSITE
+			SET SITE_NM=#siteNm#
+				, SITE_PATH=#sitePath#
+				, SITE_ORD=#siteOrd#
+				, ADM_MBR_ID=#admMbrId#
+				, ACTIVE=#active#
+				, MODIFIED=NOW()
+			WHERE
+				ISDEL=0
+				AND
+				SITE_ID=#siteId#
+			]]>
+	</update>
+	
+	<update id="jnitcmssiteDAO.deleteJnitcmssite_S">
+		<![CDATA[
+			UPDATE JNITCMSSITE
+			SET MODIFIED=NOW()
+				, ISDEL=1
+			WHERE
+				SITE_ID=#siteId# 
+			]]>
+	</update>
+	
+	<select id="jnitcmssiteDAO.selectJnitcmssite_S" resultMap="jnitcmssite">
+	    <isEqual property="selectCondition" compareValue="0">
+	    <![CDATA[
+			SELECT
+				SITE_ID
+				, SITE_NM
+				, SITE_PATH
+				, SITE_ORD
+				, ADM_MBR_ID
+				, ACTIVE
+				, CREATED
+				, MODIFIED
+				, ISDEL
+			FROM JNITCMSSITE
+			WHERE
+				ISDEL=0
+				AND
+				SITE_ID=#siteId#
+			]]>    
+	    </isEqual>
+		<isEqual property="selectCondition" compareValue="1">
+	    <![CDATA[
+			SELECT
+				SITE_ID
+				, SITE_NM
+				, SITE_PATH
+				, SITE_ORD
+				, ADM_MBR_ID
+				, ACTIVE
+				, CREATED
+				, MODIFIED
+				, ISDEL
+			FROM JNITCMSSITE
+			WHERE
+				ISDEL=0
+				AND SITE_PATH=#sitePath#
+			]]>
+	    </isEqual>
+	</select>
+	
+	<select id="jnitcmssiteDAO.selectJnitcmssiteList_D" parameterClass="jnitcmssiteSerarchVO" resultClass="egovMap">
+			SELECT
+					SITE_ID
+					, SITE_NM
+					, SITE_PATH
+					, SITE_ORD
+					, ADM_MBR_ID
+					, ACTIVE
+					, CREATED
+					, MODIFIED
+					, ISDEL
+					FROM JNITCMSSITE
+			WHERE ISDEL=0
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				SITE_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				SITE_NM LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+				ORDER BY SITE_ID DESC
+				limit #firstIndex#, #recordCountPerPage#	
+	</select>	
+	<select id="jnitcmssiteDAO.selectJnitcmssiteListTotCnt_S" parameterClass="jnitcmssiteSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM JNITCMSSITE
+			WHERE ISDEL=0
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				SITE_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				SITE_NM LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+	</select>
+	<select id="jnitcmssiteDAO.getLastIdJnitcmssite_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITCMSSITE_ID'
+	</select>
+	<select id="jnitcmssiteDAO.getNextOrdJnitcmssite_S" resultClass="int">
+			SELECT IFNULL(MAX(SITE_ORD)+1,0) AS ORD
+			FROM JNITCMSSITE
+	</select>
+
+    <select id="jnitcmssiteDAO.selectSiteIdDetail" parameterClass="ComDefaultCodeVO" resultMap="CmmCodeDetail">
+            <![CDATA[ 
+            SELECT 
+                "JNITCMSSITE"    CODE_ID, 
+                SITE_PATH     CODE, 
+                SITE_NM     CODE_NM, 
+                SITE_ID    CODE_DC
+            FROM 
+                JNITCMSSITE
+            WHERE ISDEL=0
+            ]]>
+            <isEqual prepend="AND" property="haveDetailCondition" compareValue="Y">
+                ACTIVE=#detailCondition#
+            </isEqual>
+            <isNotEmpty prepend="AND" property="limitAdmMbrId">
+                ADM_MBR_ID IN (#limitAdmMbrId#)
+            </isNotEmpty>
+            	ORDER BY SITE_ORD, SITE_NM
+    </select>
+
+</sqlMap>

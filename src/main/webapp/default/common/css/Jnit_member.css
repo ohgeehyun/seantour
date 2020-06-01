@@ -1,0 +1,41 @@
+@charset "utf-8";
+
+
+/*버튼 스타일*/
+div.content_group div.content .member_content p.btn {border:none;background-color: #Fcfcfc;color: #383838;padding:6px 17px 5px 17px;font-size:12px;border: 1px solid #C9C9C9;font-weight: bold;cursor: pointer;}
+.board-search .btn, .listbtn .btn {background-color: #f3f3f3;}
+
+.board-rss {position:relative;}
+.form-fed .btn {border: 1px solid #D6D6D6;padding:7px 8px;}
+
+/*마이페이지*/
+.member_content ul.nav-tabs { display: block; width: 100%; height: 27px; border-bottom: 1px solid #DFDFDF; margin-bottom: 20px;}
+.member_content ul.nav-tabs li a {float: left; padding: 5px 29px;border: 1px solid #E2E2E2;background: #F1F1F1;border-radius: 5px 5px 5px 5px;  -webkit-border-radius: 5px 5px 0px 2px;  -moz-border-radius: 5px;margin-right: -1px;}
+.member_content ul.nav-tabs li:hover a {background:#ffffff; }
+.member_content ul.nav-tabs li.active a { border-bottom: 1px solid #fff; background:#ffffff; }
+
+.member_content .member_join_form {padding: 0px 20px;}
+.member_content table.member_join {border: 1px solid #C4C4C4;}
+.member_content table.member_join th {background: #F4F4F4;text-align:center;}
+.member_content table.member_join th, .member_content table.member_join td {line-height: 30px;}
+.member_content table.member_join input {padding: 1px 8px;margin: 1px 4px;border: 1px solid #CCC;}
+div.tab-content .tab-pane.active, div.tab-content .tab-pane.active .tab-btn {display: block;}
+div.tab-content .tab-pane, div.tab-content .tab-pane .tab-btn {display: none;}
+
+/*회원가입*/
+.member_box {margin: 80px auto 0;width: 90%;}
+.member_box a.member_btn {display: block;float: left;margin-right: 20px;padding: 20px;border: 1px solid #D9D9D9;font-weight: bold;font-size: 1.4em;background: #F2F2F2;cursor: pointer;text-align:center}
+.member_box a.member_btn:hover {background: #E4E4E4;border: 1px solid #C9C9C9;}
+
+/*회원가입 약관동의*/
+.member_box textarea {padding: 20px}
+.member_box p.check {margin: 10px;}
+.member_box p.check input {margin-right: 5px;}
+.member_box div.membership_btn a  {display: block;width: 150px;margin: 30px auto;padding: 10px 20px;border: 1px solid #D9D9D9;font-weight: bold;font-size: 1.4em;background: #F2F2F2;cursor: pointer;text-align:center}
+.member_box div.membership_btn a:hover {background: #E4E4E4;border: 1px solid #C9C9C9;}
+
+
+/*회원탈퇴*/
+.member_content .exit_member {text-align: center;font-size: 2.0em;font-weight: bold;padding-top: 80px;color: #6F6F6F;line-height: 200%;}
+/*회원가입완료*/
+.member_content .join_member {text-align: center;font-size: 2.0em;font-weight: bold;padding-top: 80px;color: #6F6F6F;line-height: 200%;}

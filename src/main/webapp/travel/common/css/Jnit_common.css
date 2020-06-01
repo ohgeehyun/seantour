@@ -1,0 +1,32 @@
+@charset "utf-8";
+
+body{margin:0;padding:0;font-family:"맑은 고딕","Malgun Gothic";}
+	
+#wrap{width:1000px;margin:0 auto;padding:0;position:relative;}
+
+#header{width:1000px;margin:0;padding:0;background:#eee;float:left;}
+#header ul.util{float:right;height:20px;margin:0;list-style:none;}
+#header ul.util li{float:left;margin:0 5px;font-size:14px;list-style:none;}
+#header ul.util li a{letter-spacing:-1px;color:#555;text-decoration:none;margin:0 3px;}
+#header p.header_txt{float:left;width:100%;text-align:center;font-size:40px;font-weight:bold;padding:10px 0 30px 0;margin:0;}
+
+#middle{width:1000px;float:left;margin:0;padding:20px 0;background:#ddd;}
+
+
+#footer{width:1000px;float:left;margin:0;padding:30px 0;background:#333;font-size:40px;font-weight:bold;color:#fff;text-align:center;}
+
+
+
+
+
+/*맴버,로그인 공통 탬플릿*/
+div.member_content_group {position: relative;float: left;width: 1000px;background: #BFBFBF;}
+div.content_group div.content .member_content p {padding: 0;}
+ .member_content {min-height: 200px;padding: 10px;background: #ffffff;}
+div.content .member_content div.box p {margin: 0px;padding: 0px;background: none;font-weight: normal;}
+
+div.content_group div.content .member_content .modal {position: fixed;top: 50%;left: 50%;width: 500px;margin: -250px 0 0 -240px;background-color: #FFF;border: 1px solid #999;overflow: auto;}
+div.content_group div.content .member_content .modal.hide {display:none;}
+div.content_group div.content .member_content .modal-header {float: right;padding: 8px 0px 0px;background-color: #EFEFEF;height: 36px;}
+div.content_group div.content .member_content .modal-header button {font-size: 42px;width: 52px;padding: 0;margin-top: -10px;box-sizing: initial;border: none;background: initial;}
+div.content_group div.content .member_content .modal-body {max-height: 400px;padding: 15px;overflow-y: auto;}

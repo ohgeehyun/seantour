@@ -1,0 +1,10 @@
+CREATE TABLE `jnitboardmedia` (
+  `JNITMEDIA_ID` int(10) NOT NULL,
+  `ORG_NM` varchar(255) DEFAULT NULL,
+  `DST_NM` varchar(255) DEFAULT NULL,
+  `SUCCESS_FLAG` int(1) DEFAULT '0',
+  `CREATED` datetime DEFAULT NULL,
+  `MODIFIED` datetime DEFAULT NULL,
+  `ISDEL` int(1) DEFAULT '0',
+  PRIMARY KEY (`JNITMEDIA_ID`)
+);
