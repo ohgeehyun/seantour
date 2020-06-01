@@ -1,6 +1,8 @@
 package geocni.travel.route.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -11,25 +13,34 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import egovframework.com.cmm.EgovMessageSource;
+import egovframework.com.utl.fcc.service.EgovFormBasedFileVo;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import egovframework.rte.fdl.idgnr.EgovIdGnrService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import geocni.travel.common.TravelDefaultVO;
+import geocni.travel.common.files.domain.TravelFiles;
+import geocni.travel.common.files.service.TravelFilesService;
 import geocni.travel.route.dao.TravelDestinationDAO;
 import geocni.travel.route.domain.TravelDestination;
-//import geocni.utils.PaginationInfo;
 
 @Service("travelDestinationService")
 public class TravelDestinationServiceImpl extends EgovAbstractServiceImpl implements TravelDestinationService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TravelDestinationServiceImpl.class);
+    @SuppressWarnings("unused")
+	private static final Logger LOGGER = LoggerFactory.getLogger(TravelDestinationServiceImpl.class);
 
     @Resource(name="travelDestinationDAO")
     private TravelDestinationDAO travelDestinationDAO;
     
-    @Resource(name="travelRouteIdGnrService")    
-    private EgovIdGnrService routeIdGnrService;
+    @Resource(name="travelDestIdGnrService")    
+    private EgovIdGnrService destIdGnrService;
 
+    /*@Resource(name="travelFileIdGnrService")    
+    private EgovIdGnrService travelFileIdGnrService;*/
+    
+    @Resource(name = "travelFilesService")
+    private TravelFilesService travelFilesService;
+    
     @Resource(name="egovMessageSource")
 	private EgovMessageSource msgSrc;
 
@@ -44,28 +55,9 @@ public class TravelDestinationServiceImpl extends EgovAbstractServiceImpl implem
     	resultMap.put("paginationInfo", paginationInfo);
     	vo.setPageUnit(totCnt);
     	
-    	//List<?> resultList = travelDestinationDAO.selectTaxApplicationListByCond(vo);
+    	//List<?> resultList = travelDestinationDAO.selectTravelDestinationList(vo);
     	@SuppressWarnings("unchecked")
 		List<TravelDestination> list = (List<TravelDestination>) travelDestinationDAO.selectTravelDestinationList(vo);
-    	/*List<TravelDestination> resultList = new ArrayList<TravelDestination>();
-    	TravelDestination apps;
-		Iterator<TravelDestination> iter = list.iterator();
-		while (iter.hasNext()) {
-			apps = (TravelDestination)iter.next();
-			
-			if(apps.getFamilyInfo() != null && !"".equals(apps.getFamilyInfo())) {
-				Object familyObj = JSONValue.parse(apps.getFamilyInfo());
-				apps.setFamilyObj(familyObj);
-			}
-			if(apps.getAdjustedItems() != null && !"".equals(apps.getAdjustedItems())) {
-				Object itemsObj = JSONValue.parse(apps.getAdjustedItems());
-				apps.setItemsObj(itemsObj);
-			}
-			
-			resultList.add(apps);
-		}
-    	
-    	resultMap.put("resultList", resultList);*/
     	
     	resultMap.put("resultList", list);
     	
@@ -79,7 +71,11 @@ public class TravelDestinationServiceImpl extends EgovAbstractServiceImpl implem
 	public List<?> selectTravelDestinationList(TravelDestination vo) throws Exception {
     	return travelDestinationDAO.selectTravelDestinationList(vo);
 	}
-
+	@Override
+	public List<?> selectRecoDestinationlist(TravelDestination vo) throws Exception{
+		return travelDestinationDAO.selectRecoDestinationlist(vo);
+	}
+	
 	@Override
 	public int selectTravelDestinationListCnt(TravelDestination vo) throws Exception {
     	return travelDestinationDAO.selectTravelDestinationListCnt(vo);
@@ -91,10 +87,51 @@ public class TravelDestinationServiceImpl extends EgovAbstractServiceImpl implem
 	}
 
 	@Override
+	public TravelDestination selectTravelDestinationDetail(TravelDestination vo) throws Exception {
+		return travelDestinationDAO.selectTravelDestinationDetail(vo);
+	}
+	
+	@Override
 	public String insertTravelDestination(TravelDestination vo) throws Exception {
-    	String id = routeIdGnrService.getNextStringId();
-    	vo.setDestId(id);
-		return travelDestinationDAO.insertTravelDestination(vo);
+		String id = destIdGnrService.getNextStringId();
+		vo.setDestId(id);
+		travelDestinationDAO.insertTravelDestination(vo);
+    	return id;
+	}
+	
+	@Override
+	public String insertTravelDestination(TravelDestination vo, HashMap<String, EgovFormBasedFileVo> files) throws Exception {
+    	String id = this.insertTravelDestination(vo);
+
+    	if(!files.isEmpty()) {
+	    	List<TravelFiles> fileList = new ArrayList<>();
+			String uploadDir = "/upload/travel/destination";
+	    	Iterator<String> keys = files.keySet().iterator();
+	    	int serialNo = 0;
+	        while(keys.hasNext()) {
+	            String key = keys.next();
+	
+	            EgovFormBasedFileVo fileVo = files.get(key);
+	            String filePathUrl = uploadDir+"/"+fileVo.getPhysicalName();
+//	            int serialNo = Integer.valueOf(key.split("_")[1]);
+	            
+	        	TravelFiles travelFile = new TravelFiles();
+	        	travelFile.setImgRefId(id);
+	        	travelFile.setImgFileNo(serialNo);
+	        	travelFile.setImgFileName(fileVo.getFileName());
+	        	travelFile.setImgFilePath(filePathUrl);
+	        	travelFile.setImgFileSize(fileVo.getSize());
+	        	travelFile.setImgFileExt(fileVo.getContentType());
+	        	fileList.add(travelFile);
+	        	
+	        	serialNo++;
+	        }
+	        if(fileList.size() > 0) {
+	        	travelFilesService.insertTravelFiles(fileList);
+	        }
+    	}
+    	
+    	return id;
 	}
 
 	@Override
@@ -103,6 +140,11 @@ public class TravelDestinationServiceImpl extends EgovAbstractServiceImpl implem
 	}
 
 	@Override
+	public void updateTravelDestinationStatPoint(TravelDestination vo) throws Exception {
+		travelDestinationDAO.updateTravelDestinationStatPoint(vo);
+	}
+	
+	@Override
 	public void deleteTravelDestinationPhysically(TravelDestination vo) throws Exception {
 		travelDestinationDAO.deleteTravelDestinationPhysically(vo);
 	}
@@ -110,6 +152,97 @@ public class TravelDestinationServiceImpl extends EgovAbstractServiceImpl implem
 	@Override
 	public List<?> selectTravelDestinationRegionList(TravelDestination vo) throws Exception {
     	return travelDestinationDAO.selectTravelDestinationRegionList(vo);
+	}
+
+	@Override
+	public Map<String, List<String>> selectTravelDestiCategoryList(List<String> searchCatList) throws Exception {
+		@SuppressWarnings("unchecked")
+		List<Map<String,String>> catList = (List<Map<String, String>>) travelDestinationDAO.selectTravelDestiCategoryList(searchCatList);
+
+		Map<String, List<String>> newCateList = new HashMap<String,List<String>>();
+		List<String> list = new ArrayList<String>();
+
+		for (Map<String,String> map : catList) {
+			String name = map.get("dest_category");
+			String val = map.get("dest_tag");
+			if(!newCateList.containsKey(name)) {
+				list = new ArrayList<String>();
+			}
+			list.add(val);
+			newCateList.put(name, list);
+
+		}
+
+		return newCateList;
+	}
+
+	@Override
+	public Map<String,Integer> selectTravelDestinationStatsByTag(TravelDestination vo) throws Exception {
+		@SuppressWarnings("unchecked")
+		List<TravelDestination> list = (List<TravelDestination>) travelDestinationDAO.selectTravelDestinationStats(vo);
+		TravelDestination desti;
+		Iterator<TravelDestination> iter = list.iterator();
+		Map<String,Integer> tagMap = new HashMap<String,Integer>();
+		while (iter.hasNext()) {
+			desti = (TravelDestination)iter.next();
+			
+			if(desti.getDestTag() != null && !"".equals(desti.getDestTag())) {
+				String tag = desti.getDestTag(); 
+				if(tagMap.containsKey(tag)) {
+					tagMap.put(tag, tagMap.get(tag) + 1);
+				} else {
+					tagMap.put(tag, 1);
+				}
+			}
+		}
+		
+		return tagMap;
+	}
+	
+	@Override
+	public Map<String, Object> selectTravelDestinationStatsBySeason(TravelDestination vo) throws Exception {
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		vo.setRecordCountPerPage(5);
+		
+		vo.setDestSeason("봄");
+		List<?> springList = travelDestinationDAO.selectTravelDestinationStats(vo);
+		resultMap.put("springList",	springList);
+		
+		vo.setDestSeason("여름");
+		List<?> summerList = travelDestinationDAO.selectTravelDestinationStats(vo);
+		resultMap.put("summerList",	summerList);
+		
+		vo.setDestSeason("가을");
+		List<?> autumnList = travelDestinationDAO.selectTravelDestinationStats(vo);
+		resultMap.put("autumnList",	autumnList);
+		
+		vo.setDestSeason("겨울");
+		List<?> winterList = travelDestinationDAO.selectTravelDestinationStats(vo);
+		resultMap.put("winterList",	winterList);
+		
+		vo.setDestSeason(null);
+		vo.setDestRegion("경기");
+		@SuppressWarnings("unchecked")
+		List<TravelDestination> initRegion = (List<TravelDestination>) travelDestinationDAO.selectTravelDestinationStats(vo);
+		resultMap.put("initRegion",	initRegion.size() > 0 ? initRegion.get(0) : null);
+		
+		return resultMap;
+	}
+	
+	@Override
+	public TravelDestination selectTravelDestinationStatsByRegion(TravelDestination vo) throws Exception {
+		TravelDestination initRegion = new TravelDestination();
+		@SuppressWarnings("unchecked")
+		List<TravelDestination> initRegionList = (List<TravelDestination>) travelDestinationDAO.selectTravelDestinationStats(vo);
+		if(initRegionList != null && initRegionList.size() > 0) {
+			initRegion = initRegionList.get(0);
+		}
+		return initRegion;
+	}
+	
+	@Override
+	public List<?> selectTravelDestinationNearPointList(TravelDestination vo) throws Exception {
+    	return travelDestinationDAO.selectTravelDestinationNearPointList(vo);
 	}
 
 	private PaginationInfo makePagination(TravelDefaultVO vo) {
@@ -125,3 +258,4 @@ public class TravelDestinationServiceImpl extends EgovAbstractServiceImpl implem
 	}
 
 }
+

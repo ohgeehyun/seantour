@@ -1,9 +1,12 @@
 var map
-var marker_s, marekr_e, waypoint;
-var resultMarkerArr = [];
+var infoWindowArr = []; //팝업
+var resultMarkerArr = []; //마커
+var resultDrawArr = []; //폴리라인
 var drawInfoArr = []; //경로그림정보
-var resultInfoArr = [];
-var thumb_img_path = "https://www.seantour.com";
+var checkTraffic = []; //트래픽설정정보
+
+//var thumb_img_path = "https://www.seantour.com";
+var thumb_img_path = "";
 
 String.prototype.replaceHtmlEntites = function() {
 	var s = this;
@@ -15,63 +18,47 @@ String.prototype.replaceHtmlEntites = function() {
 };
 
 function initTmap(){
-	map = new Tmapv2.Map("map_wrap", {
-		// center: new Tmapv2.LatLng(37.405278291509404, 127.12074279785197), // 최초 표시 좌표
+	var mapObj = "map_wrap";
+	var height = "100%"
+   	if($("#media1023").css('display') != "none") {
+   		mapObj = "map_mob_wrap";
+   		height = "calc(100% - 45px)"
+   	}
+	map = new Tmapv2.Map(mapObj, {
+		center: new Tmapv2.LatLng(37.88459763, 127.73019333), // 최초 표시 좌표(강원)
 		width : "100%",
-		height : "100%",
-		zoom : 14,
+		height : height,
+		zoom : 12,
 		zoomControl : true,
 		scrollwheel : true,
 		// scaleBar : true,
 	});
 }
-
-function addMarkers(infoObj) {
-	var size = new Tmapv2.Size(24, 38);
-	// if (infoObj.pointType == "P") size = new Tmapv2.Size(8, 8);
-
-	var imgURL;
-	switch (infoObj.pointType) {
-		case "S":
-			// imgURL = 'http://tmapapis.sktelecom.com/upload/tmap/marker/pin_r_m_s.png';
-			imgURL = 'http://topopen.tmap.co.kr/imgs/start.png';
-			break;
-		case "E":
-			// imgURL = 'http://tmapapis.sktelecom.com/upload/tmap/marker/pin_r_m_e.png';
-			imgURL = 'http://topopen.tmap.co.kr/imgs/arrival.png';
-			break;
-		case "P":
-			imgURL = 'http://tmapapis.sktelecom.com/upload/tmap/marker/pin_b_m_p.png';
-			break;
-		default:
-			break;
-	};
-
-	if(infoObj.pointType == "P" && infoObj.pointNum) {
-		imgURL = 'http://tmapapis.sktelecom.com/upload/tmap/marker/pin_b_m_'+infoObj.pointNum+'.png';
+function closeMobileMap() {
+	$("#mob_map").removeClass('open');
+	$("div.mapBg").hide();
+}
+function setMapCenter(regionMap) {
+	var lon, lat;
+	if(regionMap) {
+		var region = regionMap.split(',');
+		if(region.length > 0) {
+			lon = String(region[1]);
+			lat = String(region[0]);
+		}
 	}
-
-
-	var marker_p = new Tmapv2.Marker({
-		position : new Tmapv2.LatLng(infoObj.lat, infoObj.lng),
-		icon : imgURL,
-		iconSize : size,
-		map : map
-	});
-
-	resultMarkerArr.push(marker_p);
+	if(map && lon && lat) {
+		map.setCenter(new Tmapv2.LatLng(lat,lon));
+	}
 }
 
-function setPointAndDrawing(lat, lon, status, idx) {
-	console.log("setPointAndDrawing.....");
+function setPointAndDrawRoutes(lat, lon, status, idx) {
+	// console.log("setPointAndDrawRoutes.....");
 	addMarkers({
 		lng : lon,
 		lat : lat,
 		pointType : status
 	});
-
-	// var startAxis = document.getElementById("startAxis").value;
-	// var destAxis = document.getElementById("destAxis").value;
 
 	var startAddr = $("input.start_word").eq(idx-1).val();
 	var endAddr = $("input.arrival_word").eq(idx-1).val();
@@ -86,24 +73,18 @@ function setPointAndDrawing(lat, lon, status, idx) {
 	// if (status != "S" && startAxis && destAxis) {
 	if (status == "E" && startAddr && endAddr) {
 
-		// 경유지(P) 관련 Marker는 경로 드로잉 이후 자동 생성되기에 생략
-		/*addMarkers({
-			lng : "126.91486146583102",
-			lat : "37.520081165736414",
-			pointType : "P"
-		});*/
 		var viaPoints = [];		
 		var tab_con = $("#day_lst li div.tab_con").eq(idx-1);
 		// tab_con.css("border", "1px solid red");
-		var item = tab_con.find('ul.tab_list li:not(.list-group-item)');
+		// var item = tab_con.find('ul.tab_list li:not(.list-group-item)');
+		var item = tab_con.find('ul.tab_list li:not(.list-group-item):not(.way-point-info)');
 	    item.each(function(index) {
 	    	var viaObj = {};
 			var lat = $(this).data('lat');
-			// console.log("lat", lat);
 			var lon = $(this).data('lon');
-			// console.log("lon", lon);
+
 			var pointId = $(this).data('destid');
-			// var pointName = $(this).data('destname');
+
 			viaObj['viaX'] = String(lon);
 			viaObj['viaY'] = String(lat);
 			viaObj['viaPointId'] = pointId;
@@ -112,10 +93,9 @@ function setPointAndDrawing(lat, lon, status, idx) {
 			viaPoints.push(viaObj);
 	    });
 
-		// getRP(startAxis, destAxis); // 출발-도착 단일 경로 드로잉 전용
-		// getRouteSequential(startAxis, destAxis);
 		if(item.length > 0) {
-			getRouteSequential(axisObj, viaPoints);
+			getRouteUsingViaPoints(axisObj, viaPoints, "Y"); //일반 경로안내 - 경유지, 교통정보 포함
+			// getRouteSequential(axisObj, viaPoints); //다중 경유지 30 - 무료서비스에서 일일트래픽 100건 제한
 		}
 
 	} else {
@@ -124,265 +104,159 @@ function setPointAndDrawing(lat, lon, status, idx) {
 	}
 }
 
-
-// function getRouteSequential(startAxis, destAxis) {
-function getRouteSequential(axisObj, viaPoints) {
-	var routeLayer; 
-
-	// var start = startAxis.split(",");
-	// var dest = destAxis.split(",");
-	// var startX = start[1];
-	// var startY = start[0];
-	// var endX = dest[1];
-	// var endY = dest[0];
-	var startX = axisObj.startX;
-	var startY = axisObj.startY;
-	var endX = axisObj.endX;
-	var endY = axisObj.endY;
-
-	var headers = {}; 
-	headers["appKey"]="l7xxdc2398be8423441f817695db47fd1e32";
-	headers["Content-Type"]="application/json";
-	
-	/*var param = JSON.stringify({
-		"startName" : "출발지",
-		"startX" : String(startX),
-		"startY" : String(startY),
-		"startTime" : "201708081103",
-		"endName" : "도착지",
-		"endX" : String(endX),
-		"endY" : String(endY),
-		"viaPoints" : [
-			{
-				"viaPointId" : "test01",
-				"viaPointName" : "name01",
-				"viaX" : "126.91486146583102" ,
-				"viaY" : "37.520081165736414" 
-			},
-		],
-		"reqCoordType" : "WGS84GEO",
-		"resCoordType" : "EPSG3857",
-		"searchOption": "0"
-	});*/
-	var paramObj = {
-		"startName" : "출발지",
-		"startX" : String(startX),
-		"startY" : String(startY),
-		"startTime" : "201708081103",
-		"endName" : "도착지",
-		"endX" : String(endX),
-		"endY" : String(endY),
-		"reqCoordType" : "WGS84GEO",
-		"resCoordType" : "EPSG3857",
-		"searchOption": "0"
-	};
-	paramObj.viaPoints = viaPoints;
-	var param = JSON.stringify(paramObj);
-	// console.dir(param);
-
-	$.ajax({
-		method:"POST",
-		url:"https://apis.openapi.sk.com/tmap/routes/routeSequential30?version=1&format=json",//
-		headers : headers,
-		async:false,
-		data:param,
-		success:function(response){
-
-			var resultData = response.properties;
-			var resultFeatures = response.features;
-			
-			// 결과 출력
-			/*var tDistance = "총 거리 : " + resultData.totalDistance + "km,  ";
-			var tTime = "총 시간 : " + resultData.totalTime + "분,  ";
-			var tFare = "총 요금 : " + resultData.totalFare + "원";
-			
-			$("#result").text(tDistance+tTime+tFare);*/
-			
-			//기존  라인 초기화
-			if(resultInfoArr.length>0){
-				for(var i in resultInfoArr){
-					resultInfoArr[i].setMap(null);
-				}
-				resultInfoArr=[];
-			}
-			if(resultMarkerArr.length>0){
-				for(var i in resultMarkerArr){
-					resultMarkerArr[i].setMap(null);
-				}
-				resultMarkerArr=[];
-			}
-			
-			for(var i in resultFeatures) {
-				var geometry = resultFeatures[i].geometry;
-				var properties = resultFeatures[i].properties;
-				var polyline_;
-				
-				drawInfoArr = [];
-				
-				if(geometry.type == "LineString") {
-					for(var j in geometry.coordinates){
-						// 경로들의 결과값(구간)들을 포인트 객체로 변환 
-						var latlng = new Tmapv2.Point(geometry.coordinates[j][0], geometry.coordinates[j][1]);
-						// 포인트 객체를 받아 좌표값으로 변환
-						var convertPoint = new Tmapv2.Projection.convertEPSG3857ToWGS84GEO(latlng);
-						// 포인트객체의 정보로 좌표값 변환 객체로 저장
-						var convertChange = new Tmapv2.LatLng(convertPoint._lat, convertPoint._lng);
-						
-						drawInfoArr.push(convertChange);
-					}
-
-					polyline_ = new Tmapv2.Polyline({
-						path : drawInfoArr,
-						strokeColor : "#FF0000",
-						strokeWeight: 6,
-						map : map
-					});
-					resultInfoArr.push(polyline_);
-					
-				}else{
-					// console.log("geometry.type", geometry.type);
-					
-					// 경로들의 결과값들을 포인트 객체로 변환 
-					var latlon = new Tmapv2.Point(geometry.coordinates[0], geometry.coordinates[1]);
-					// 포인트 객체를 받아 좌표값으로 다시 변환
-					var convertPoint = new Tmapv2.Projection.convertEPSG3857ToWGS84GEO(latlon);
-				  	
-					addMarkers({
-						lng : convertPoint._lng,
-						lat : convertPoint._lat,
-						pointType : properties.pointType
-					});
-				}
-			}
-			map.setZoom(12);
-
-		},
-		error:function(request,status,error){
-			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		}
-	});
-}
-
-
-//경로안내 요청 함수
-function getRP(startAxis, destAxis) {
-	var start = startAxis.split(",");
-	var dest = destAxis.split(",");
-	var startX = start[1];
-	var startY = start[0];
-	var endX = dest[1];
-	var endY = dest[0];
-
-	var s_latlng = new Tmapv2.LatLng (startY, startX); // 37.553756, 126.925356
-	var e_latlng = new Tmapv2.LatLng (endY, endX); // 37.554034, 126.975598
-	
-
-	// var passList = "127.04724656694417,37.524162226778515_127.10887300128256,37.5289781669373"; // temporary
-	var passList = "126.91486146583102,37.520081165736414"; // temporary
-	
-	var optionObj = {
-		startX : startX,
-		startY : startY,
-		endX : endX,
-		endY : endY,
-		reqCoordType:"WGS84GEO", // 요청 좌표계 옵셥 설정입니다.
-		resCoordType:"WGS84GEO",  // 응답 좌표계 옵셥 설정입니다.
-		// passList : passList, // passList를 사용한 다중경로안내 관련 API 버그가 있다
-		angle : "172",
-		searchOption : "0",
-		trafficInfo:"Y"
-	};
-
-	var params = {
-		onComplete: function() {
-			console.log(this._responseData); //json으로 데이터를 받은 정보들을 콘솔창에서 확인할 수 있습니다.
-		 
-			var jsonObject = new Tmapv2.extension.GeoJSON();
-			var jsonForm = jsonObject.rpTrafficRead(this._responseData);
-
-			//교통정보 표출시 생성되는 LineColor 입니다.
-		    var trafficColors = {
-
-		        // 사용자가 임의로 색상을 설정할 수 있습니다.
-		        // 교통정보 옵션 - 라인색상
-		        trafficDefaultColor:"#000000", //교통 정보가 없을 때
-		        trafficType1Color:"#009900", //원할
-		        trafficType2Color:"#7A8E0A", //서행
-		        trafficType3Color:"#8E8111",  //정체
-		        trafficType4Color:"#FF0000"  //정체
-		    };
-		    jsonObject.drawRouteByTraffic(map, jsonForm, trafficColors);
-			map.setCenter(new Tmapv2.LatLng(37.55676159947993,126.94734232774672));
-			map.setZoom(13);
-		},
-		onProgress: function() {
-
-		},
-		onError: function() {
-			alert("onError");
-		}
-	};
-	
-	// TData 객체 생성
-	var tData = new Tmapv2.extension.TData();
-
-	// TData 객체의 경로요청 함수
-	tData.getRoutePlanJson(s_latlng, e_latlng, optionObj, params);
-}
-
 function searchAddress(status, idx){
-	var pop = window.open("/travel/route/address.do?status="+status+"&idx="+idx,"pop","width=600,height=670, scrollbars=yes, resizable=yes");
+	var pop = window.open(contextPath+"/travel/route/searchpoint.do?status="+status+"&idx="+idx,"pop","width=600,height=670, scrollbars=yes, resizable=yes");
 }
 function addrCallBack(roadFullAddr, latitude, longitude, status, idx){
+   	var obj = $("#day_lst");
+   	if($("#media1023").css('display') != "none") {
+   		obj = $("dl.day_sc");
+   	}
+
 	var addrObj;
 	if (status == "E") {
-		// document.getElementById("arrival_address").value = roadFullAddr;
-		// document.getElementById("destAxis").value = latitude + ',' + longitude;
-		addrObj = $("input.arrival_word").eq(idx-1);
+		addrObj = $(obj).find("input.arrival_word").eq(idx-1);
 	} else {
-		// document.getElementById("start_address").value = roadFullAddr;
-		// document.getElementById("startAxis").value = latitude + ',' + longitude;
-		addrObj = $("input.start_word").eq(idx-1);
+		addrObj = $(obj).find("input.start_word").eq(idx-1);
 	}
 	addrObj.val(roadFullAddr);
 	addrObj.attr('data-lat', latitude);
 	addrObj.attr('data-lon', longitude);
 	
-	setPointAndDrawing(latitude, longitude, status, idx);
+   	if($("#media1023").css('display') == "none") {
+		setPointAndDrawRoutes(latitude, longitude, status, idx);
+	}
+}
+
+function setDestinationSticky(destAxisY, destAxisX, destTitle) {
+	var infoObj = {};
+	infoObj.lon = destAxisX;
+	infoObj.lat = destAxisY;
+	// infoObj.pointType = "P";
+	infoObj.pointNum = "0";
+	infoObj.infoWinTitle = destTitle;
+	setPointSticky(infoObj);
 }
 
 function getDestinationDetail(idx) {
 	// console.log("run discount");
-	$.get('/travel/destination/retrieveDestinationDetail.do?destId='+idx, function(data) {
-		// console.log(JSON.parse(data));
-		var obj = JSON.parse(data);
-		if(obj && obj.hasOwnProperty("destTitle")) {
-			var bx_tit = obj.destTitle;
-			var detail_txt = obj.destDescription;
-			var info_slogan = '<li>'+obj.destAdSlogan+ ' ' +obj.destTitle+'</li>';
-			var info_phone = '<li>전화번호 : '+obj.destPhone+'</li>';
-			var info_addr = '<li>주소 : '+obj.destAddress+'</li>';
-			var thumb_img = thumb_img_path + obj.destImgPath;
+	$.get(contextPath+'/travel/destination/retrieveDestinationDetail.do?destId='+idx, function(data) {
+		// console.log(data);
+		try {
+			var obj = JSON.parse(data);
+			if(obj && obj.hasOwnProperty("destTitle")) {
+				var bx_tit = obj.destTitle;
+				var detail_txt = obj.destInformation;
+				var info_slogan = '<li>'+obj.destAdSlogan+ ' ' +obj.destTitle+'</li>';
+				var info_phone = '<li>전화번호 : '+obj.destPhone+'</li>';
+				var info_addr = '<li>주소 : '+obj.destAddress+'</li>';
+				// var thumb_img = thumb_img_path + obj.destImgPath;
+				var thumb_img = contextPath+obj.destImgPath;
+				if(obj.travelFileList && obj.travelFileList.length > 0) {
+					thumb_img = contextPath+obj.travelFileList[0].imgFilePath;
+				}
 
-			$('#detail_info_area p.bx_tit').text(bx_tit);
-			$('#detail_info_area div.info_lst > ul').empty();
-			$('#detail_info_area div.info_lst > ul').append(info_slogan);
-			$('#detail_info_area div.info_lst > ul').append(info_phone);
-			$('#detail_info_area div.info_lst > ul').append(info_addr);
-			$('#detail_info_area div.detail_txt').text(detail_txt.replace(/(<([^>]+)>)/ig,"").replaceHtmlEntites());
-			$('#detail_info_area div.detail_txt').css('margin', '23px 25px');
-			// $('#detail_info_area div.detailzone ul.lst li').empty();
-			$('#detail_info_area div.detailzone ul.lst li img').attr("src", thumb_img);
-			$('#detail_info_area div.detailzone ul.lst li img').attr("alt", bx_tit);
-			$('#detail_info_area div.detailzone ul.lst li img').attr("width", 251);
-			$('#detail_info_area div.detailzone ul.lst li img').attr("height", 210);
+				$('#detail_info_area p.bx_tit').text(bx_tit);
+				$('#detail_info_area div.info_lst > ul').empty();
+				$('#detail_info_area div.info_lst > ul').append(info_slogan);
+				$('#detail_info_area div.info_lst > ul').append(info_phone);
+				$('#detail_info_area div.info_lst > ul').append(info_addr);
+				if(detail_txt == null || !detail_txt) {
+					$('#detail_info_area div.detail_txt').text('');
+				} else {
+					$('#detail_info_area div.detail_txt').text(detail_txt.replace(/(<([^>]+)>)/ig,"").replaceHtmlEntites());
+				}
+				$('#detail_info_area div.detail_txt').css('margin', '23px 25px');
+				// $('#detail_info_area div.detailzone ul.lst li').empty();
+				$('#detail_info_area div.detailzone ul.lst li img').attr("src", thumb_img);
+				$('#detail_info_area div.detailzone ul.lst li img').attr("alt", bx_tit);
+				$('#detail_info_area div.detailzone ul.lst li img').attr("width", 251);
+				$('#detail_info_area div.detailzone ul.lst li img').attr("height", 210);
 
-			$("#detail_info_area").show();
+				$("#detail_info_area").show();
+			} else {
+	    		throw new SyntaxError("요청내용을 조회하지 못함");
+			}
+		} catch (e) {
+			// console.log( e.name );
+			// console.log( e.message );
+			alert("일시적인 에러가 발생했습니다. 잠시 후 다시 시도해 주세요."); return false;
 		}
 	});
 }
 
-function getDestinationList(cate) {
+function getClipDestinationList(page) {
+	var pageNo = 1;
+	if(page) pageNo = page;
+
+	// var clipUserId = $("#routRegMember").val();
+	var clipUserId = $("input[name='routRegMember']").val();
+	if(!clipUserId) {
+		alert("회원전용 서비스 입니다.\n서비스 후에 이용해 주세요");
+		location.replace(contextPath+"/travel/login.jsp");
+	} else {
+	   	var reqUrl = contextPath+"/travel/member/retrieveClipDestinationList.do";
+		var formData = "clipUserId=" + clipUserId + "&pageIndex=" + pageNo;
+	    var promise = getAsyncDataList(reqUrl, formData);
+	    promise.success(function (data) {
+	    	setDestinationList(data, "getClipDestinationList");
+	    });
+	}
+}
+
+function initTagList() {
+	var tagObj = ("ul.normal-cat-list li label input[type=checkbox]");
+	if($("#media1023").css('display') != "none") tagObj = $("ul.mobile-cat-list li label input[type=checkbox]");
+	$(tagObj).each(function() {
+		$(this).prop('checked', false);
+	});
+	
+}
+
+function changeDestinationRegion(regionObj) {
+	
+	// var region = $("select[name='dest_region']").val();
+	var region = $(regionObj).val();
+	var regionMap = {};
+	regionMap["전국"] = "37.57478653,126.97629877";
+	regionMap["서울"] = "37.56689860,126.97871544";
+	regionMap["부산"] = "35.18040366,129.07442867";
+	regionMap["대구"] = "35.87115048,128.60183986";
+	regionMap["인천"] = "37.45512894,126.70524350";
+	regionMap["대전"] = "36.35085161,127.38340705";
+	regionMap["광주"] = "35.15900570,126.85309637";
+	regionMap["울산"] = "35.53872897,129.31087034";
+	regionMap["세종"] = "36.47961296,127.28882869";
+	regionMap["경기"] = "37.27368317,127.00969309";
+	regionMap["강원"] = "37.88459763,127.73019333";
+	regionMap["충북"] = "36.63473768,127.49158403";
+	regionMap["충남"] = "36.66044249,126.67207373";
+	regionMap["전북"] = "35.82090728,127.11047329";
+	regionMap["전남"] = "34.81659334,126.46055615";
+	regionMap["경북"] = "36.57509648,128.50877263";
+	regionMap["경남"] = "35.23641812,128.69107168";
+	regionMap["제주"] = "33.48854781,126.49866722";
+
+	setMapCenter(regionMap[region]);
+
+	initTagList();
+	getDestinationList('1');
+}
+
+function changeCategory(page, cate) {
+	initTagList();
+	getDestinationList(page, cate);
+}
+
+function getDestinationList(page, cate, tag_list) {
+	var tag_arr = [];
+	if(tag_list) tag_arr = tag_list;
+	var pageNo = 1;
+	if(page) pageNo = page;
+
+	var region = $("#travelRoute select[name='dest_region']").val();
+	if($("#media1023").css('display') != "none") region = $("#dest_region").val();
+
    	if(!cate) {
    		var cate_name = {};
    		cate_name["관광"] = "관광지";
@@ -390,7 +264,9 @@ function getDestinationList(cate) {
    		cate_name["레져"] = "체험";
    		cate_name["식당"] = "음식점";
    		cate_name["쇼핑"] = "쇼핑";
-   		$("a.cate-btn").each(function() {
+   		var catObj = $("li.normal-cat a.cate-btn");
+    	if($("#media1023").css('display') != "none") catObj = $("li.mobile-cat a.cate-btn");
+   		$(catObj).each(function() {
    			if($(this).hasClass('on')) {
    				cate = $(this).text();
    			}
@@ -398,91 +274,471 @@ function getDestinationList(cate) {
    		cate = cate_name[cate];
    	}
 
-   	var reqUrl = "/travel/destination/retrieveDestinationList.do";
-    var promise = getAsyncDataList(reqUrl, cate);
+	if(!tag_list) {
+		var tagObj = ("ul.normal-cat-list li label input[type=checkbox]");
+		if($("#media1023").css('display') != "none") tagObj = $("ul.mobile-cat-list li label input[type=checkbox]");
+		// $("ul.lst li label input[type=checkbox]").each(function() {
+		$(tagObj).each(function(idx) {
+			if($(this).is(":checked")) {
+				tag_arr.push($(this).val());
+			}
+		});
+	}
+
+   	var reqUrl = contextPath+"/travel/destination/retrieveDestinationList.do";
+	var formData = "destRegion=" + region + "&destCategory=" + cate + "&pageIndex=" + pageNo;
+	/*if($("#media1023").css('display') != "none") {
+		formData += "&pageUnit=5&pageSize=5";
+	}*/
+	if(tag_arr.length > 0) {
+		formData += "&destTag=" + tag_arr;
+	}
+
+    var promise = getAsyncDataList(reqUrl, formData);
     promise.success(function (data) {
-    	setDestinationList(data);
+    	
+    	if($("#media1023").css('display') == "none") {
+    		setDestinationList(data);
+    	} else {
+    		setDestinationListMobile(data);
+    	}
     });
 }
 
-function getAsyncDataList(reqUrl, cate) {
-	var region = $("select[name='dest_region']").val();
-	var formData = "destRegion=" + region + "&destCategory=" + cate;
-		// console.log("formData", formData);
+function getAsyncDataList(reqUrl, formData) {
+	/* for IE11 cache disabling
+	var timestamp = + new Date();
+	formData += "&rtime=" + timestamp;
+	*/
+	console.log("formData", formData);
     return $.ajax({
         type: "GET"
         , url: reqUrl
-        , data:formData
+        , data:encodeURI(formData)
+        , cache:false
         , contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
-        , error: function(data, status, err) { 
-            alert('서버와의 통신이 실패했습니다.');
+        , error: function(data, status, err) {
+        	console.log("data", data);
+        	console.log("status", status);
+        	console.log("err", err);
+            // alert('서버와의 통신이 실패했습니다.');
         }
     });
 }
-function setDestinationList(data) {
-	// console.log(data);
-	var obj = JSON.parse(data);
-	// console.log(obj.constructor); return;
-    if(obj.constructor !== Array){
-    	console.log("데이터를 가져오지 못했습니다."); return;
-    }else{
-        var lists = "";
-    	for(var i=0; i<obj.length; i++) {
-    		var destImgPath = obj[i]["destImgPath"] == null ? "https://seantour.com/seanfile/20170807/20170807185346259_0.jpg" : thumb_img_path + obj[i]["destImgPath"];
-			// lists += "<li data-lat=\""+obj[i]["destLocationAxis"].split(',')[0]+"\"  data-lon=\""+obj[i]["destLocationAxis"].split(',')[1]+"\"  data-destid=\""+obj[i]["destId"]+"\">";
-			lists += "<li data-lat=\""+obj[i]["destAxisY"]+"\"  data-lon=\""+obj[i]["destAxisX"]+"\"  data-destid=\""+obj[i]["destId"]+"\">";
-			lists += "<div class=\"img\"><img src=\""+destImgPath+"\" alt='"+obj[i]["destTitle"]+"' /></div>";
-			lists += "<div class=\"txt_box\">";
-			lists += "<p class=\"txt\">"+obj[i]["destTitle"]+"</p>";
-			lists += "<p class=\"sub\">"+obj[i]["destCategory"]+"</p>";
-			lists += "<a href=\"javascript:;\" class=\"more\" onclick=\"getDestinationDetail('"+obj[i]["destId"]+"');\">더보기</a>";
-			lists += "</div>";
-			lists += "<div class=\"icon_box\">";
-			lists += "<a href=\"#none\" class=\"ico_heart\">종아요</a>";
-			lists += "<a href=\"javascript:;\" class=\"ico_add\" onclick=\"addPoint(this);\">추가</a>";
-			lists += "<a href=\"javascript:;\" class=\"ico_close\" onclick=\"delPoint(this);\" class=\"ico_close\">닫기</a>";
-			lists += "</div>";
-			lists += "</li>";
+
+function setDestinationList(data, paginationType) {
+	// console.log(data); //return;
+	try {
+		var obj = JSON.parse(data);
+	    if(obj.constructor !== Object){
+	    	console.log("데이터를 가져오지 못했습니다.");
+    		throw new SyntaxError("데이터를 가져오지 못함");
+	    }else{
+	        var lists = "";
+	        var dest = obj.resultList;
+	    	for(var i=0; i<dest.length; i++) {
+	    		var destImgPath = (dest[i]["destImgPath"] == null || !dest[i]["destImgPath"] )? contextPath+"/images/travel/content/noimg.jpg" : contextPath+dest[i]["destImgPath"];
+				lists += "<li data-lat=\""+dest[i]["destAxisY"]+"\"  data-lon=\""+dest[i]["destAxisX"]+"\"  data-destid=\""+dest[i]["destId"]+"\">";
+				lists += "<div class=\"img\"><img src=\""+destImgPath+"\" alt='"+dest[i]["destTitle"]+"' /></div>";
+				lists += "<div class=\"txt_box\">";
+				lists += "<p class=\"txt\"><a href=\"javascript:;\" onclick=\"setDestinationSticky('"+dest[i]["destAxisY"]+"', '"+dest[i]["destAxisX"]+"', '"+dest[i]["destTitle"]+"');\">"+dest[i]["destTitle"]+"</a></p>";
+				lists += "<p class=\"sub\">"+dest[i]["destCategory"]+"</p>";
+				lists += "<a href=\"javascript:;\" class=\"more\" onclick=\"getDestinationDetail('"+dest[i]["destId"]+"');\">더보기</a>";
+				lists += "</div>";
+				lists += "<div class=\"icon_box\">";
+				lists += "<a href=\"#none\" class=\"ico_heart\">종아요</a>";
+				lists += "<a href=\"javascript:;\" class=\"ico_add\" onclick=\"addPoint(this);\">추가</a>";
+				lists += "<a href=\"javascript:;\" class=\"ico_close\" onclick=\"delPoint(this);\" class=\"ico_close\">닫기</a>";
+				lists += "</div>";
+				lists += "</li>";
+			}
+	       	$("ul.result_list").empty();
+	       	$("ul.result_list").append(lists);
+			//pagination
+	       	setPaginationInfo(obj.paginationInfo, paginationType);
+	    }
+	} catch (e) {
+		// console.log(e.name);
+		// console.log(e.message);
+		alert("일시적인 에러가 발생했습니다. 잠시 후 다시 시도해 주세요."); return false;
+	}
+}
+function setDestinationListMobile(data, paginationType) {
+	// console.log(data); return;
+	try {
+		var obj = JSON.parse(data);
+	    if(obj.constructor !== Object){
+	    	console.log("데이터를 가져오지 못했습니다.");
+	    	throw new SyntaxError("데이터를 가져오지 못함");
+	    }else{
+	        var lists = "";
+	        var dest = obj.resultList;
+	    	for(var i=0; i<dest.length; i++) {
+				lists += "<li data-lat=\""+dest[i]["destAxisY"]+"\" data-lon=\""+dest[i]["destAxisX"]+"\" data-destid=\""+dest[i]["destId"]+"\">";
+				lists += "<div class=\"day_box\">";
+				lists += "<a href=\"#none\" class=\"tbox\">";
+				lists += "<span class=\"sub\">"+dest[i]["destCategory"]+"</span>";
+				lists += "<span class=\"txt\">"+dest[i]["destTitle"]+"</span>";
+				lists += "</a>";
+				lists += "<div class=\"mob_detail_info_area\" style=\"display:none;\">";
+				lists += "<div class=\"tit_box\">";
+				lists += "<p>상세정보</p>";
+				lists += "</div>";
+				lists += "<div class=\"info_lst\">";
+				lists += "<ul>";
+				lists += "<li>전화번호 : "+dest[i]["destPhone"]+"</li>";
+				lists += "<li>주소 : "+dest[i]["destAddress"]+"</li>";
+				lists += "<li>명칭 : "+dest[i]["destTitle"]+"</li>";
+				lists += "</ul>";
+				lists += "</div>";
+				lists += "<div class=\"detail_txt\">"+(dest[i]["destInformation"] == null ? '' : dest[i]["destInformation"])+"</div>";
+				lists += "</div>";
+				lists += "<a href=\"javascript:;\" class=\"ico_add mob_plus\" onclick=\"addPointMobile(this);\">선택</a>";
+				lists += "</div>";
+				lists += "</li>";
+			}
+	       	$("#result_list").empty();
+	       	$("#result_list").append(lists);
+			//pagination
+	       	setPaginationInfo(obj.paginationInfo, paginationType);
+	    }
+	} catch (e) {
+		// console.log(e.name);
+		// console.log(e.message);
+		alert("일시적인 에러가 발생했습니다. 잠시 후 다시 시도해 주세요."); return false;
+	}
+}
+
+function setPaginationInfo(pageInfo, paginationType) {
+	var pageSize = pageInfo.pageSize;
+   	var totalPageCount = pageInfo.totalPageCount;
+   	var currentPageNo = pageInfo.currentPageNo;
+   	var firstPageNo = pageInfo.firstPageNo;
+   	var startPageNoOnList = pageInfo.firstPageNoOnPageList;
+   	var lastPageNoOnList = pageInfo.lastPageNoOnPageList;
+   	var lastPageNo = pageInfo.lastPageNo;
+
+   	var pageNavFuntion = "getDestinationList";
+   	if(paginationType) {
+   		pageNavFuntion = paginationType;
+   	}
+
+   	var pageEl = "";
+	pageEl += "<div class=\"pagination\">";
+	// if(startPageNoOnList > firstPageNo) { //원래 이게 맞는데 기존 전자정부 pagination 논리오류에 따른 표기오류결과와 UI를 맞추기 위해 아래와 같이 수정함
+	if(totalPageCount > pageSize) {
+		pageEl += "<a href=\"?pageIdx="+firstPageNo+"\" onclick=\""+pageNavFuntion+"("+firstPageNo+"); return false;\" title=\"처음페이지\" class=\"page_prevend\"><span>처음</span></a>&nbsp;";
+		pageEl += "<a href=\"?pageIdx="+(currentPageNo-1)+"\" onclick=\""+pageNavFuntion+"("+(currentPageNo-1)+"); return false;\" title=\"이전페이지\" class=\"page_prev\"><span>이전</span></a>&nbsp;";
+	}
+   	for(var no=startPageNoOnList; no<=lastPageNoOnList; no++) {
+   		if(currentPageNo == no) {
+			pageEl += "<strong title=\"현재페이지\">"+currentPageNo+"</strong>&nbsp;";
+   		} else {
+			pageEl += "<a href=\"?pageIdx="+no+"\" onclick=\""+pageNavFuntion+"("+no+"); return false;\" title=\""+no+"페이지\">"+no+"</a>&nbsp;";
+   		}
+	}
+	// if(lastPageNoOnList < lastPageNo) { //원래 이게 맞는데 기존 전자정부 pagination 논리오류에 따른 표기오류결과와 UI를 맞추기 위해 아래와 같이 수정함
+	if(totalPageCount > pageSize) {
+		pageEl += "<a href=\"?pageIdx="+(currentPageNo+1)+"\" onclick=\""+pageNavFuntion+"("+(currentPageNo+1)+"); return false;\" title=\"다음페이지\" class=\"page_next\"><span>다음</span></a>&nbsp;";
+		pageEl += "<a href=\"?pageIdx="+lastPageNo+"\" onclick=\""+pageNavFuntion+"("+lastPageNo+"); return false;\" title=\"마지막페이지\" class=\"page_nextend\"><span>마지막</span></a>";
+	}
+	pageEl += "</div>";
+	$("div.pagination").empty().append(pageEl);
+}
+
+function launchMap(idx) {
+	// $("#wizard").steps('next');
+	// $("#wizard").steps('next');
+	if(idx) {
+
+		var axisObj = {};
+		var viaPoints = [];		
+		var item = $("dl.day_sc:visible").eq(idx-1);
+		// var len = item.length;
+	    // item.each(function(index) {
+			
+			axisObj['startX'] = $(item).find("input.start_word").data('lon');
+			axisObj['startY'] = $(item).find("input.start_word").data('lat');
+			axisObj['endX'] = $(item).find("input.arrival_word").data('lon');
+			axisObj['endY'] = $(item).find("input.arrival_word").data('lat');
+
+			var viaCount = item.find("ul.day_list li:not(.way-point-info)").length;
+			// item.find("ul.day_list li").each(function() {
+			item.find("ul.day_list li:not(.way-point-info)").each(function() {
+				var lat = $(this).data('lat');
+				var lon = $(this).data('lon');
+				var pointId = $(this).data('destid');
+				viaPoints.push({
+					"viaX" : String(lon),
+					"viaY" : String(lat),
+					"viaPointId" : pointId,
+					"viaPointName" : pointId,
+				});
+			});
+
+	    // });
+
+		if(viaCount > 0) {
+			getRouteUsingViaPoints(axisObj, viaPoints, "Y"); //일반 경로안내 - 경유지, 교통정보 포함
+			// getRouteSequential(axisObj, viaPoints); //다중 경유지 30 - 무료서비스에서 일일트래픽 100건 제한
 		}
-       	$("ul.result_list").empty();
-       	$("ul.result_list").append(lists);
-    }
+	}
+
+}
+
+function addDayInput() {
+	var idx = $('.day_sc').index($('.day_sc:visible').last());
+	// console.log(idx);
+	var obj = $('.day_sc').eq(idx+1);
+	if(idx < 6) {
+		$(obj).show();
+		$(obj).find('dd.day_area').show();
+		animateScroll(obj);
+	} else {
+		// console.log('last');
+		return;
+	}
+}
+
+function searchPoint(idx) {
+	$("#wizard").steps('next');
+
+	$('.day_sc').each(function(index) {
+		if(index == (idx-1)) {
+			$(this).addClass("on");
+		} else {
+			$(this).removeClass("on");
+		}
+	});
+}
+
+function setPointSticky(infoObj) {
+	var lon = infoObj.lon;
+	var lat = infoObj.lat;
+	var pointType = infoObj.pointType;
+	var pointNum = infoObj.pointNum;
+	var infoWinTitle = infoObj.infoWinTitle;
+
+	var markerParam = {
+		lng : lon,
+		lat : lat
+	};
+	if(pointNum) {
+		markerParam.pointNum = pointNum;
+	} else {
+		markerParam.pointType = pointType;
+	}
+	addMarkers(markerParam);
+
+	var tit = infoWinTitle;
+	var content = "<div style='position: relative; border-bottom: 1px solid #dcdcdc; "+
+				  "line-height: 18px; padding: 3px; width: 150px; height: auto; text-align:center;'>"+
+				  "<span style='font-size: 12px; line-height: 15px;'>"+tit+"</span>"+
+				  "</div>";
+	//Popup 객체 생성.
+	var infoWindow = new Tmapv2.InfoWindow({
+		position: new Tmapv2.LatLng(lat,lon), //Popup 이 표출될 맵 좌표
+		content: content, //Popup 표시될 text
+		type: 2, //Popup의 type 설정.
+		map: map //Popup이 표시될 맵 객체
+	});
+	infoWindowArr.push(infoWindow);
+
+	map.setCenter(new Tmapv2.LatLng(lat,lon));
+	/* map.setZoom(10); //TMap.prototype.setZoom - setScaleOffset 
+	- Uncaught TypeError: n.screenPoint.equals is not a function */
+}
+
+function setWayPointInfo(curObj, items) {
+
+	var lat = $(curObj).data('lat');
+	var lon = $(curObj).data('lon');
+
+	var infoObj = {};
+	infoObj.lon = lon;
+	infoObj.lat = lat;
+	// infoObj.pointType = "P";
+	infoObj.pointNum = items.length;
+	// infoObj.pointNum = $(items).not('.way-point-info').length;
+	infoObj.infoWinTitle = $(curObj).find('p.txt').text();
+	setPointSticky(infoObj);
+
+	var axisObj = {};
+	axisObj["endY"] = lat;
+	axisObj["endX"] = lon;
+
+	if(items.length > 1) {
+	    var idx = items.length - 2;
+	    // var idx = $(items).not('.way-point-info').length - 2;
+	    // var prevObj = $(items).not('.way-point-info').eq(idx);
+	    var prevObj = $(items).eq(idx);
+		axisObj["startY"] = $(prevObj).data('lat');
+		axisObj["startX"] = $(prevObj).data('lon');
+		// axisObj["startId"] = items.eq(index-1).data('destid');
+		// axisObj["endId"] = $(this).data('destid');
+		// console.log(axisObj);
+		getDistance(axisObj, $(curObj));
+	} else {
+		var panel = $(curObj).closest('div.tab_con');
+		// console.log(panel);
+		// $(panel).css('border', '1px solid red');
+		var start_point = $(panel).find('input.start_word');
+		if($(start_point).val()) {
+			axisObj["startY"] = $(start_point).data('lat');
+			axisObj["startX"] = $(start_point).data('lon');
+			getDistance(axisObj, $(curObj));
+		}
+	}
+}
+
+function addPointByDrag(evt) {
+	// var items = evt.to.children;
+	var items = $(evt.to.children).not('.way-point-info');
+	// console.log(items.length);
+	/*$(item).each(function() {
+		console.log($(this));
+	});*/
+
+    var curObj = evt.item;
+
+	setWayPointInfo(curObj, items);
 }
 
 function addPoint(obj) {
+	var sortableObj = $('#day_lst li:not([style*="display: none"]) div.tab_con:not([style*="display: none"]) ul.tab_list');
 	var list_item = $(obj).parents("li");
-	// console.log(list_item);
-	// list_item.css("border", "2px solid red");
-	/*var lat = list_item.data('lat');
-	console.log("lat", lat);
-	var lon = list_item.data('lon');
-	console.log("lon", lon);*/
+	list_item.clone().appendTo(sortableObj);
 
-	list_item.clone().appendTo('#day_lst li div.tab_con:not([style*="display: none"]) ul.tab_list');
+    var curObj = $(sortableObj).children().not('.way-point-info').last();
+    var items = $(sortableObj).children().not('.way-point-info');
+
+	setWayPointInfo(curObj, items);
+	/*var lat = $(curObj).data('lat');
+	var lon = $(curObj).data('lon');
+
+	var infoObj = {};
+	infoObj.lon = lon;
+	infoObj.lat = lat;
+	// infoObj.pointType = "P";
+	infoObj.pointNum = items.length;
+	infoObj.infoWinTitle = $(curObj).find('p.txt').text();
+	setPointSticky(infoObj);
+
+	if(items.length > 1) {
+	    var idx = items.length - 2;
+		var axisObj = {};
+	    var prevObj = $(items).eq(idx);
+		axisObj["startY"] = $(prevObj).data('lat');
+		axisObj["startX"] = $(prevObj).data('lon');
+		// axisObj["startId"] = items.eq(index-1).data('destid');
+		axisObj["endY"] = lat;
+		axisObj["endX"] = lon;
+		// axisObj["endId"] = $(this).data('destid');
+		// console.log(axisObj);
+		getDistance(axisObj, $(curObj));
+	}*/
 }
 
-function delPoint(obj) {
+function addPointMobile(obj) {
+	// console.log(obj);	
+	var destObj;
+	var len;
+	$('.day_sc').each(function(index) {
+		if($(this).hasClass("on")) {
+			len = $(this).find("ul.day_list li").length + 1;
+			destObj = $(this).find("ul.day_list");
+			// $(this).css('border', '1px solid red');
+		}
+	});
+
+	if(destObj) {
+		var day_box = $(obj).closest("div.day_box")
+		var cate = day_box.find("span.sub").text();
+		var title = day_box.find("span.txt").text();
+		var liObj = $(day_box).closest("li");
+		var lat = $(liObj).data("lat");
+		var lon = $(liObj).data("lon");
+		var destid = $(liObj).data("destid");
+
+
+		var lists = "";
+		lists += "<li data-lat=\""+lat+"\" data-lon=\""+lon+"\" data-destid=\""+destid+"\">";
+		lists += "<span class=\"num\">"+len+"</span>";
+		lists += "<div class=\"day_box\">";
+		lists += "<a href=\"#none\" class=\"tbox\">";
+		lists += "<span class=\"sub\">"+cate+"</span>";
+		lists += "<span class=\"txt\">"+title+"</span>";
+		lists += "</a>";
+		lists += "<a href=\"javascript:;\" onclick=\"delPoint(this);\" class=\"delect\">삭제</a>";
+		lists += "</div>";
+		lists += "</li>";
+		// console.log(lists);
+		destObj.append(lists);
+
+		$("#wizard").steps('previous');
+
+		animateScroll(destObj);
+	}
+
+}
+/*function delPoint(obj) {
 	var list_item = $(obj).closest("li");
 	// list_item.css("border", "2px solid red");
 	list_item.remove();
+}*/
+function delPoint(obj) {
+	var list_item = $(obj).closest("li");
+	// $(list_item).css('border', '1px solid red');
+	$(list_item).prev(".way-point-info").remove();
+	$(list_item).remove();
+	clearMap();
 }
 
-function saveTravelRoute() {
+function animateScroll(obj) {
+	var offset = $(obj).offset();
+	$('html, body').animate({scrollTop : offset.top}, 400);
+	// $(document).scrollTop($(document).height()+500);
+}
+
+function saveTravelRoute(frmName) {
+	if(!$('#'+frmName+' input[name="routRegMember"]').val()) {
+		alert('회원 전용 서비스 입니다.\n로그인 후 이용해 주세요');
+		location.replace(contextPath+'/travel/login.jsp');
+		return false;
+	}
+
+	if(!$('#'+frmName+' input[name="routTitle"]').val()) {
+		alert("여행일정 제목을 입력해 주세요");
+		$('#'+frmName+' input[name="routTitle"]').focus();
+		return false;
+	}
+
 	if(confirm("작성된 여행일정을 저장하시겠습니까?\n출발지,도착지와 한 개 이상의 경로를 입력한 일정만 저장됩니다.")) {
 
-		var routTitle = $("#routTitle").val();
-		var routRegMember;
-		var routDays;
-		var routRegion = $("select[name='dest_region']").val();
-		var routStartPoint;
-		var routDestPoint;
-		var routDescription;
-		var routStartAxis;
-		var routDestAxis;
-		var routGroup = $("#routGroup").val();
+		var travelRouteObj = {};
+		var routId = $('#'+frmName+' input[name="routId"]').val();
+		var routTitle = $('#'+frmName+' input[name="routTitle"]').val();
+		// var routRegMember;
+		var routRegion = $('#'+frmName+' select[name="dest_region"]').val();
+		if(frmName == "travelRouteMobile") routRegion = $("#dest_region").val();
+		var routMemo = $('#'+frmName+' textarea[name="routMemo"]').val();
+		var routeDailyList = [];
 
-		$("#day_lst li div.tab_con").each(function(index) {
-			var routObj = {};
+		travelRouteObj["routTitle"] = routTitle;
+		travelRouteObj["routRegion"] = routRegion;
+		travelRouteObj["routMemo"] = routMemo;
+
+		var pointObj = $("#day_lst li div.tab_con");
+		if(frmName == "travelRouteMobile") pointObj = $("dl.day_sc");
+		// $("#day_lst li div.tab_con").each(function(index) {
+		$(pointObj).each(function(index) {
+			var routDays;
+			var routStartPoint;
+			var routStartAxis;
+			var routDestPoint;
+			var routDestAxis;
+			var routWayPoint;
+
 			var startAddr = $(this).find("input.start_word").val();
 			var endAddr   = $(this).find("input.arrival_word").val();
 			
@@ -491,52 +747,61 @@ function saveTravelRoute() {
 			var endX 	= $(this).find("input.arrival_word").data('lon');
 			var endY 	= $(this).find("input.arrival_word").data('lat');
 
-			var routId = $(this).find("ul.tab_list").data('routid');
-
-			var item = $(this).find('ul.tab_list li:not(.list-group-item)');
-			var description = "";
+			var itemObj = "ul.tab_list li:not(.list-group-item):not(.way-point-info)";
+			if(frmName == "travelRouteMobile") itemObj = $("ul.day_list li");
+			// var item = $(this).find('ul.tab_list li:not(.list-group-item):not(.way-point-info)');
+			var item = $(this).find(itemObj);
+			var wayPoint = "";
 			routDays = index + 1;
 
 		    item.each(function(idx) {
-		    	if(idx > 0) description += "|";
-				description += $(this).data('destid');
+		    	if(idx > 0) wayPoint += "|";
+				wayPoint += $(this).data('destid');
 		    });
 
 		    // 출발지 도착지 정보가 있고, 경유일정이 한 개 이상인 경우만 전송
 		    if(startAddr && endAddr && item.length > 0) {
-				routObj["routTitle"] = routTitle;
-				// routObj["routRegMember"] = ;
-				routObj["routDays"] = routDays;
-				routObj["routRegion"] = routRegion;
-				routObj["routStartPoint"] = startAddr;
-				routObj["routDestPoint"] = endAddr;
-				routObj["routDescription"] = description;
-				routObj["routStartAxis"] = startY + "," + startX;
-				routObj["routDestAxis"] = endY + "," + endX;
-
-			   	var reqUrl = "/travel/route/insertAsync.do";
-				if(routGroup) {
-					routObj["routGroup"] = routGroup;
-					if(routId) {
-						reqUrl = "/travel/route/updateAsync.do";
-						routObj["routId"] = routId;
-					}
-				}
-			    	console.dir(routObj);
-			    var promise = sendAsyncData(reqUrl, routObj);
-			    promise.success(function (data) {
-			    	console.log(data);
-			    	var obj = JSON.parse(data);
-			    	// $("#routGroup").val(obj.routGroup);
-			    	alert(obj.title + " " + obj.days+"일차 일정을 저장하였습니다.");
-			    });
-			    promise.error(function(request,status,error){
-					console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-				});
+				/*js 와 java 간 json object 인식방식 차이로 아래와 같이 작성함*/
+				travelRouteObj["routeDailyList["+ index +"].routDays"] = routDays;
+				travelRouteObj["routeDailyList["+ index +"].routStartPoint"] = startAddr;
+				travelRouteObj["routeDailyList["+ index +"].routStartAxis"] = startY + "," + startX;
+				travelRouteObj["routeDailyList["+ index +"].routDestPoint"] = endAddr;
+				travelRouteObj["routeDailyList["+ index +"].routDestAxis"] = endY + "," + endX;
+				travelRouteObj["routeDailyList["+ index +"].routWayPoint"] = wayPoint;
 		    }
-
 		});
-	
+
+	   	var reqUrl = contextPath+"/travel/route/insertAsync.do";
+    	var actionName = "저장";
+		if(routId) {
+			travelRouteObj["routId"] = routId;
+			reqUrl = contextPath+"/travel/route/updateAsync.do";
+    		actionName = "수정";
+		}
+	    console.dir(travelRouteObj);
+	    // var params = JSON.stringify(travelRouteObj);
+	    var promise = sendAsyncData(reqUrl, travelRouteObj);
+	    promise.success(function (data) {
+	    	// console.log(data);
+			try {
+		    	var obj = JSON.parse(data);
+		    	if(obj.status == "success") {
+					alert(obj.title + " " + "일정을 "+ actionName +"하였습니다.");
+					location.replace(contextPath+'/travel/member/myroute.do');
+		    	} else {
+		    		throw new Error("요청내용을 정상적으로 저장하지 못함");
+		    	}
+			} catch (e) {
+				// console.log(e.name);
+				// console.log(e.message);
+				alert("요청하신 "+ actionName +"을 완료하지 못했습니다. 잠시 후 다시 시도해 주세요."); return false;
+			}
+	    });
+	    promise.error(function(request,status,error){
+			// console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			alert("요청하신 "+ actionName +"을 완료하지 못했습니다. 관리자에게 문의해 주세요."); return false;
+		});
+
 	}
 }
 
@@ -545,6 +810,8 @@ function sendAsyncData(reqUrl, params) {
         type: "POST"
         , url: reqUrl
         , data:params
+		, async:false
+		, cache:false
         , contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
         , error: function(data, status, err) { 
             alert('서버와의 통신이 실패했습니다.');
@@ -552,47 +819,77 @@ function sendAsyncData(reqUrl, params) {
     });
 }
 
+function initRegisterLayer() {
+	location.reload();
+}
+
+function delDailyLayer() {
+	// $("#day_lst ul li:visible").last().css('border', '1px solid red');
+	// var dayObj = $("#day_lst>ul>li:visible").last();
+	if($('#day_lst>ul>li:not([style*="display: none"])').length > 1) {
+		var dayObj = $('#day_lst>ul>li:not([style*="display: none"])').last();
+		// console.log(dayObj.find("div.tab_con ul.tab_list"));
+		dayObj.find("div.tab_con ul.tab_list").empty();
+		dayObj.find("div.tab_con input[type=text]").each(function(){
+			$(this).val('');
+		});
+		dayObj.css('display', 'none');
+		// dayObj.css('border', '2px solid aqua');
+		// $("#day_lst>ul>li:visible").last().find('a.tabh').click();
+		// $('#day_lst>ul>li:not([style*="display: none"])').last().find('a.tabh').click();
+
+		// console.log($('#day_lst>ul>li:not([style*="display: none"])').length);
+
+		var newObj = $('#day_lst>ul>li:not([style*="display: none"])').last();
+		$(newObj).find("div").show();
+		$(".tabh").not($(this)).css("border", "none");
+		$(newObj).find(".tabh").css("border", "1px solid red");
+
+		var idx = $('#day_lst>ul>li:not([style*="display: none"])').index(newObj);
+		$("div.day_tit").find("span").text(idx+1);
+
+		clearMap();
+	}
+}
+
 $(function(){
 
-	// #day_lst li div.tab_con ul.tab_list li:not(.list-group-item)
-	$('#day_lst li div.tab_con ul.tab_list').bind('DOMNodeInserted', function() {
-	    // console.log($(this));
-	    // $(this).find('li:not(.list-group-item)').css("border", "2px solid red");
-	    var item = $(this).find('li:not(.list-group-item)');
-	    var len = item.length - 1;
-	    var show_lat, show_lon;
-	    item.each(function(index) {
-			var lat = $(this).data('lat');
-			// console.log("lat", lat);
-			var lon = $(this).data('lon');
-			// console.log("lon", lon);
-			
-			addMarkers({
-				lng : lon,
-				lat : lat,
-				pointType : "P",
-				pointNum : index + 1
-			});
-			if(len == index) {
-				show_lat = lat;
-				show_lon = lon;
+	$("ul.lst li label input[type=checkbox]:not(.check-all)").bind("click", function() {
+		var cat_box = $(this).closest("li.cat-box");
+		var category = cat_box.data('category');
+		var tag_list = [];
+		cat_box.find("input[type=checkbox]:not(.check-all)").each(function(idx) {
+			if($(this).is(":checked")) {
+				tag_list.push($(this).val());
 			}
-			var tit = $(this).find('p.txt').text();
-			var content = "<div style='position: relative; border-bottom: 1px solid #dcdcdc; line-height: 18px; padding: 3px; width: 150px; height: auto; text-align:center;'>"+
-						  "<span style='font-size: 12px; line-height: 15px;'>"+tit+"</span>"+
-						  "</div>";
-			//Popup 객체 생성.
-			infoWindow = new Tmapv2.InfoWindow({
-				position: new Tmapv2.LatLng(lat,lon), //Popup 이 표출될 맵 좌표
-				content: content, //Popup 표시될 text
-				type: 2, //Popup의 type 설정.
-				map: map //Popup이 표시될 맵 객체
+		});
+		// console.log(tag_list.toString());
+		getDestinationList(1, category, tag_list);
+		cat_box.find("div.cssSelect").removeClass("on");
+	});
+
+	$("ul.lst li label input.check-all").bind("click", function() {
+		var cat_box = $(this).closest("li.cat-box");
+		var category = cat_box.data('category');
+		var tag_list = [];
+		if($(this).is(":checked")) {
+			cat_box.find("input[type=checkbox]:not(.check-all)").each(function(idx) {
+				$(this).prop('checked', true);
+				tag_list.push($(this).val());
 			});
+			getDestinationList(1, category, tag_list);
+			cat_box.find("div.cssSelect").removeClass("on");
 
-
-	    });
-		map.setCenter(new Tmapv2.LatLng(show_lat,show_lon));
-		map.setZoom(10);
+		} else {
+			cat_box.find("input[type=checkbox]:not(.check-all)").each(function(idx) {
+				$(this).prop('checked', false);
+			});
+		}
+		// console.log(tag_list.toString());
 	});
 
 });
+
+/*$(window).on('resize', function () {
+	console.log('display ', $("#media1023").css('display'));
+});*/

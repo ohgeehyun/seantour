@@ -32,6 +32,7 @@
 	<bean id="jnitBoardRenderer" class="jnit.cms.JnitBoardPaginationRenderer"/>
 	<bean id="jnitDefaultRenderer" class="jnit.cms.JnitDefaultPaginationRenderer"/>
 	<bean id="travelFrontPaginationRenderer" class="geocni.utils.TravelFrontPaginationRenderer"/>
+	<bean id="travelBoardPaginationRenderer" class="geocni.utils.TravelBoardPaginationRenderer"/>
 	<bean class="egovframework.rte.ptl.mvc.tags.ui.pagination.DefaultPaginationManager" id="paginationManager">
 		<property name="rendererType">
 			<map>
@@ -42,6 +43,7 @@
 				<entry key="jnitBoard" value-ref="jnitBoardRenderer"/>
 				<entry key="jnitDefault" value-ref="jnitDefaultRenderer"/>
 				<entry key="travelFront" value-ref="travelFrontPaginationRenderer"/>
+				<entry key="travelBoard" value-ref="travelBoardPaginationRenderer"/>
 			</map>
 		</property>
 	</bean>

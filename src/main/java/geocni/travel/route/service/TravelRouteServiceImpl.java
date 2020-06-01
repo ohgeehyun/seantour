@@ -23,6 +23,7 @@ import geocni.travel.route.dao.TravelRouteDAO;
 import geocni.travel.route.domain.TravelDestination;
 import geocni.travel.route.domain.TravelRoute;
 //import geocni.utils.PaginationInfo;
+import geocni.travel.route.domain.TravelRouteDaily;
 
 @Service("travelRouteService")
 public class TravelRouteServiceImpl extends EgovAbstractServiceImpl implements TravelRouteService {
@@ -39,9 +40,6 @@ public class TravelRouteServiceImpl extends EgovAbstractServiceImpl implements T
     @Resource(name="travelRouteIdGnrService")    
     private EgovIdGnrService routeIdGnrService;
 
-    @Resource(name="travelRouteGroupIdGnrService")    
-    private EgovIdGnrService routeGroupIdGnrService;
-    
     @Resource(name="egovMessageSource")
 	private EgovMessageSource msgSrc;
 
@@ -72,28 +70,41 @@ public class TravelRouteServiceImpl extends EgovAbstractServiceImpl implements T
 
 	private List<TravelRoute> makeTravelRouteDescription(List<TravelRoute> list) throws Exception {
 		List<TravelRoute> resultList = new ArrayList<TravelRoute>();
-    	TravelRoute route;
-    	TravelDestination destination = new TravelDestination();
+    	TravelRoute travelRoute;
 		Iterator<TravelRoute> iter = list.iterator();
 		while (iter.hasNext()) {
-			route = (TravelRoute)iter.next();
+			travelRoute = (TravelRoute)iter.next();
 			
-			if(!NullUtil.isEmpty(route.getRoutDescription())) {
-				String[] descList = route.getRoutDescription().split("[|]");
-				
-				List<TravelDestination> lst = new ArrayList<TravelDestination>();
-				for(int i=0;descList.length > i ;i++){
-					destination.setDestId(descList[i]);
-					TravelDestination dest = new TravelDestination();
-					dest = travelDestinationDAO.selectTravelDestination(destination);
-					lst.add(dest);
-					if(dest != null && i==0) {
-						route.setRoutImgPath(dest.getDestImgPath());
+			List<TravelRouteDaily> dailyList = travelRoute.getRouteDailyList();
+			if(dailyList != null && dailyList.size() > 0) {
+				List<TravelRouteDaily> newDailyList = new ArrayList<TravelRouteDaily>();
+				TravelRouteDaily routeDaily;
+				for (TravelRouteDaily daily : dailyList) {
+					routeDaily = daily;
+					if(!NullUtil.isEmpty(daily.getRoutWayPoint())) {
+						String[] descList = daily.getRoutWayPoint().split("[|]");
+						
+						List<TravelDestination> destList = new ArrayList<TravelDestination>();
+						TravelDestination destination = new TravelDestination();
+						for(int i=0;descList.length > i ;i++){
+							destination.setDestId(descList[i]);
+							TravelDestination dest = new TravelDestination();
+							dest = travelDestinationDAO.selectTravelDestination(destination);
+							destList.add(dest);
+							/*if(dest != null && i==0) {
+								travelRoute.setRoutThumbPath(dest.getDestImgPath());
+							}*/
+						}
+	//					travelRoute.setWayPointList(destList);
+						routeDaily.setWayPointList(destList);
+						
+						newDailyList.add(routeDaily);
 					}
 				}
-				route.setRoutePointList(lst);
+				travelRoute.setRouteDailyList(newDailyList);
 			}
-			resultList.add(route);
+			
+			resultList.add(travelRoute);
 		}
 		return resultList;
 	}
@@ -114,63 +125,48 @@ public class TravelRouteServiceImpl extends EgovAbstractServiceImpl implements T
 	}
 
 	@Override
-	public TravelRoute selectTravelRouteInfoByGroup(String routGroup) throws Exception {
-
-    	TravelRoute route = null;
-    	try {
-			route= travelRouteDAO.selectTravelRouteInfoByGroup(routGroup);
-			TravelDestination destination = new TravelDestination();
-			
-			if(!NullUtil.isEmpty(route.getRoutDescription())) {
-				String[] descList = route.getRoutDescription().split("[|]");
-				
-				List<TravelDestination> lst = new ArrayList<TravelDestination>();
-				for(int i=0;descList.length > i ;i++){
-					destination.setDestId(descList[i]);
-					destination = travelDestinationDAO.selectTravelDestination(destination);
-					lst.add(destination);
-					if(destination != null && i==0) {
-						route.setRoutImgPath(destination.getDestImgPath());
-					}
-				}
-				route.setRoutePointList(lst);
-			}
-
-    	} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-    	return route;
+	public List<?> selectTravelRouteBestList(TravelRoute vo) throws Exception {
+    	return travelRouteDAO.selectTravelRouteList(vo);
 	}
 
 	@Override
 	public TravelRoute selectTravelRoute(TravelRoute vo) throws Exception {
 		
-		TravelRoute route = null;
+		TravelRoute travelRoute = null;
 		try {
-			route= travelRouteDAO.selectTravelRoute(vo);
-			TravelDestination destination = new TravelDestination();
+
+			travelRoute= travelRouteDAO.selectTravelRoute(vo);
 			
-			if(!NullUtil.isEmpty(route.getRoutDescription())) {
-				String[] descList = route.getRoutDescription().split("[|]");
-				
-				List<TravelDestination> lst = new ArrayList<TravelDestination>();
-				for(int i=0;descList.length > i ;i++){
-					destination.setDestId(descList[i]);
-					destination = travelDestinationDAO.selectTravelDestination(destination);
-					lst.add(destination);
-					if(destination != null && i==0) {
-						route.setRoutImgPath(destination.getDestImgPath());
+			List<TravelRouteDaily> dailyList = travelRoute.getRouteDailyList();
+			if(dailyList != null && dailyList.size() > 0) {
+				List<TravelRouteDaily> newDailyList = new ArrayList<TravelRouteDaily>();
+				TravelRouteDaily routeDaily;
+				for (TravelRouteDaily daily : dailyList) {
+					routeDaily = daily;
+					if(!NullUtil.isEmpty(daily.getRoutWayPoint())) {
+						String[] descList = daily.getRoutWayPoint().split("[|]");
+						
+						List<TravelDestination> destList = new ArrayList<TravelDestination>();
+						TravelDestination destination = new TravelDestination();
+						for(int i=0;descList.length > i ;i++){
+							destination.setDestId(descList[i]);
+							TravelDestination dest = new TravelDestination();
+							dest = travelDestinationDAO.selectTravelDestination(destination);
+							destList.add(dest);
+						}
+						routeDaily.setWayPointList(destList);
+						
+						newDailyList.add(routeDaily);
 					}
 				}
-				route.setRoutePointList(lst);
+				travelRoute.setRouteDailyList(newDailyList);
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return route;
+		return travelRoute;
 	}
 	
 	@Override
@@ -179,17 +175,38 @@ public class TravelRouteServiceImpl extends EgovAbstractServiceImpl implements T
 			String id = routeIdGnrService.getNextStringId();
 			vo.setRoutId(id);
 
-			if(NullUtil.isEmpty(vo.getRoutGroup())) {
-				String group = routeGroupIdGnrService.getNextStringId();
-				vo.setRoutGroup(group);
-			} else {
-				if(NullUtil.isEmpty(vo.getRoutTitle())) {
-					TravelRoute route = travelRouteDAO.selectTravelRouteInfoByGroup(vo.getRoutGroup());
-					vo.setRoutTitle(route.getRoutTitle());
+			//get 대표 썸네일 path 설정 후 insert
+			if(!NullUtil.isEmpty(vo.getRouteDailyList()) && vo.getRouteDailyList().size() > 0) {
+				TravelRouteDaily day = vo.getRouteDailyList().get(0);
+				String[] descList = day.getRoutWayPoint().split("[|]");
+				
+				TravelDestination dest = new TravelDestination();
+				dest.setDestId(descList[0]);
+				dest = travelDestinationDAO.selectTravelDestination(dest);
+				String thumbPath = "";
+				if(dest.getTravelFileList().size() > 0) {
+					thumbPath = dest.getTravelFileList().get(0).getImgFilePath(); 
+				} else {
+					thumbPath = dest.getDestImgPath();
 				}
+				vo.setRoutThumbPath(thumbPath);
 			}
 			travelRouteDAO.insertTravelRoute(vo);
-		} catch (Exception e) {
+
+			//일간 일정에 routId 설정 후 insert
+			List<TravelRouteDaily> dailyList = vo.getRouteDailyList();
+			if(dailyList != null && dailyList.size() > 0) {
+				List<TravelRouteDaily> newDailyList = new ArrayList<TravelRouteDaily>();
+				TravelRouteDaily routeDaily;
+				for (TravelRouteDaily daily : dailyList) {
+					routeDaily = daily;
+					routeDaily.setRoutId(id);
+					newDailyList.add(routeDaily);
+				}
+				travelRouteDAO.insertTravelRouteDaily(newDailyList);
+			}
+
+    	} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return vo;
@@ -197,19 +214,73 @@ public class TravelRouteServiceImpl extends EgovAbstractServiceImpl implements T
 
 	@Override
 	public void updateTravelRoute(TravelRoute vo) throws Exception {
+		//get 대표 썸네일 path 설정 후 insert
+		if(!NullUtil.isEmpty(vo.getRouteDailyList()) && vo.getRouteDailyList().size() > 0) {
+			TravelRouteDaily day = vo.getRouteDailyList().get(0);
+			String[] descList = day.getRoutWayPoint().split("[|]");
+			
+			TravelDestination dest = new TravelDestination();
+			dest.setDestId(descList[0]);
+			dest = travelDestinationDAO.selectTravelDestination(dest);
+			String thumbPath = "";
+			if(dest.getTravelFileList().size() > 0) {
+				thumbPath = dest.getTravelFileList().get(0).getImgFilePath(); 
+			} else {
+				thumbPath = dest.getDestImgPath();
+			}
+			vo.setRoutThumbPath(thumbPath);
+		}
 		travelRouteDAO.updateTravelRoute(vo);
+		
+		//개별 수정이 아닌 일괄 삭제 후 일괄 insert
+		travelRouteDAO.deleteTravelRouteDaily(vo);
+		
+		//일간 일정에 routId 설정 후 insert
+		List<TravelRouteDaily> dailyList = vo.getRouteDailyList();
+		if(dailyList != null && dailyList.size() > 0) {
+			List<TravelRouteDaily> newDailyList = new ArrayList<TravelRouteDaily>();
+			TravelRouteDaily routeDaily;
+			for (TravelRouteDaily daily : dailyList) {
+				routeDaily = daily;
+				routeDaily.setRoutId(vo.getRoutId());
+				newDailyList.add(routeDaily);
+			}
+			travelRouteDAO.insertTravelRouteDaily(newDailyList);
+		}
+
 	}
 
+	@Override
+	public void updateTravelRouteOpenStatus(TravelRoute vo) throws Exception {
+		travelRouteDAO.updateTravelRouteOpenStatus(vo);
+	}
+	
+	@Override
+	public void updateTravelRouteHitCount(String routId) throws Exception {
+		travelRouteDAO.updateTravelRouteHitCount(routId);
+	}
+	
 	@Override
 	public void deleteTravelRoutePhysically(TravelRoute vo) throws Exception {
 		travelRouteDAO.deleteTravelRoutePhysically(vo);
 	}
 
-    public List<?> selectTravelRouteGroupList() throws Exception {
-    	return travelRouteDAO.selectTravelRouteGroupList();
-    }
-    
-	
+	@Override
+	public List<?> selectTravelRouteStats(Integer recordCountPerPage) throws Exception {
+		@SuppressWarnings("unchecked")
+		List<String> routeList = (List<String>) travelRouteDAO.selectTravelRouteStats(recordCountPerPage);
+		
+		List<TravelDestination> destList = new ArrayList<TravelDestination>();
+		TravelDestination destination = new TravelDestination();
+		for(int i=0;routeList.size() > i ;i++){
+			destination.setDestId(routeList.get(i));
+			TravelDestination dest = new TravelDestination();
+			dest = travelDestinationDAO.selectTravelDestination(destination);
+			destList.add(dest);
+		}
+		return destList;
+	}
+
 	private PaginationInfo makePagination(TravelDefaultVO vo) {
 		PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(vo.getPageIndex());

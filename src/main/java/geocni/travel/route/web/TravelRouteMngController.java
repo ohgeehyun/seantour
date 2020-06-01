@@ -55,7 +55,7 @@ public class TravelRouteMngController {
 	@Autowired
     private DefaultBeanValidator beanValidator;
 
-	private String skinPath = "/travel/route/mng/";
+	private String skinPath = "travel/route/mng/";
 
 	@RequestMapping(value="list.do")
 	public String routeList(
@@ -70,7 +70,8 @@ public class TravelRouteMngController {
 		
 		travelRoute.setPageUnit(propertiesService.getInt("pageUnit"));
 		travelRoute.setPageSize(propertiesService.getInt("pageSize"));
-		travelRoute.setAdminMode(true);
+//		travelRoute.setAdminMode(true);
+		travelRoute.setRoutType("W");
 		
 		model.addAllAttributes(routeService.selectTravelRouteListMap(travelRoute));
 		status.setComplete();
@@ -82,7 +83,9 @@ public class TravelRouteMngController {
 
     @RequestMapping(value="register.do")
     public String registerTravelRoute(
-    		 @ModelAttribute("searchVO") TravelDefaultVO searchVO
+//    		 @ModelAttribute("searchVO") TravelDefaultVO searchVO
+//     		 @ModelAttribute("travelRoute") TravelRoute travelRoute
+     		 TravelRoute travelRoute
  			,TravelDestination travelDestination
             ,HttpServletRequest req
     		,ModelMap model) throws Exception {
@@ -95,18 +98,9 @@ public class TravelRouteMngController {
 	    	//JSON
 	    	model.addAllAttributes(AdminJSON(req, model));
 
-			List<?> groupList = routeService.selectTravelRouteGroupList();
-			model.addAttribute("groupList", groupList);
-	    	
 			List<?> regionList = destService.selectTravelDestinationRegionList(travelDestination);
 			model.addAttribute("regionList", regionList);
 			
-	    	travelDestination.setDestRegion("강원");
-	    	travelDestination.setDestCategory("관광지");
-	    	travelDestination.setRecordCountPerPage(1000);
-	    	List<?> destList = destService.selectTravelDestinationList(travelDestination);
-			model.addAttribute("destList", destList);
-	    	
 	        model.addAttribute("travelRoute", new TravelRoute());
 
 	        model.addAttribute("type", type);
@@ -118,26 +112,14 @@ public class TravelRouteMngController {
     		log.error(e.getMessage());
     	}
     	
-		/*
-		List<?> regionList = destService.selectTravelDestinationRegionList(travelDestination);
-		model.addAttribute("regionList", regionList);
-    	
-    	travelDestination.setDestRegion("강원");
-    	travelDestination.setDestCategory("관광지");
-    	List<?> destList = destService.selectTravelDestinationList(travelDestination);
-		model.addAttribute("destList", destList);
-    	
-    	model.addAttribute("thumbPath", "https://www.seantour.com");
-    	model.addAttribute("absPath", "/geocni/travel");
-    	*/
-
     	return skinPath + "register";
     }
 
     @RequestMapping(value="insert.do")
     public String insertTravelRoute(
-    		 @ModelAttribute("searchVO") TravelDefaultVO searchVO
-     		,@ModelAttribute("travelRoute") TravelRoute travelRoute
+//    		 @ModelAttribute("searchVO") TravelDefaultVO searchVO
+//     		 @ModelAttribute("travelRoute") TravelRoute travelRoute
+     		 TravelRoute travelRoute
             ,BindingResult bindingResult
             ,SessionStatus status
             ,HttpServletRequest req
@@ -145,10 +127,18 @@ public class TravelRouteMngController {
     	
     		try {
     			JnitcmsmbrVO loginVO = JnitMgovUtil.getLoginMember();
+    			if(NullUtil.isEmpty(loginVO.getMbrId())) {
+    				throw new NullPointerException();
+    			}
+
     			travelRoute.setRoutRegMember(loginVO.getMbrId());
     			
+    			travelRoute.setRoutType("W"); //일정 타입(''U''-사용자, ''W''-작가) --작가추천일정
+    			travelRoute.setRoutOpen("Y"); //공개 여부("Y"-공개, "N"-비공개) -- 작가추천일정은 기본이 공개
 				routeService.insertTravelRoute(travelRoute);
 
+    		} catch (NullPointerException e){
+    			e.printStackTrace();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -160,8 +150,8 @@ public class TravelRouteMngController {
     @RequestMapping(value="modify.do")
     public String modifyTravelRoute(
     		 @ModelAttribute("searchVO") TravelDefaultVO searchVO
+    		,TravelRoute travelRoute
  			,TravelDestination travelDestination
- 			,TravelRoute travelRoute
             ,HttpServletRequest req
     		,ModelMap model) throws Exception {
     	
@@ -173,18 +163,9 @@ public class TravelRouteMngController {
 	    	//JSON
 	    	model.addAllAttributes(AdminJSON(req, model));
 
-			List<?> groupList = routeService.selectTravelRouteGroupList();
-			model.addAttribute("groupList", groupList);
-	    	
 			List<?> regionList = destService.selectTravelDestinationRegionList(travelDestination);
 			model.addAttribute("regionList", regionList);
 			
-	    	travelDestination.setDestRegion("강원");
-	    	travelDestination.setDestCategory("관광지");
-	    	travelDestination.setRecordCountPerPage(1000);
-	    	List<?> destList = destService.selectTravelDestinationList(travelDestination);
-			model.addAttribute("destList", destList);
-	    	
 			travelRoute = routeService.selectTravelRoute(travelRoute);
 	        model.addAttribute("travelRoute", travelRoute);
 
@@ -202,8 +183,9 @@ public class TravelRouteMngController {
 
     @RequestMapping(value="update.do")
     public String updateTravelRoute(
-    		 @ModelAttribute("searchVO") TravelDefaultVO searchVO
-     		,@ModelAttribute("travelRoute") TravelRoute travelRoute
+//    		 @ModelAttribute("searchVO") TravelDefaultVO searchVO
+//     		,@ModelAttribute("travelRoute") TravelRoute travelRoute
+    		 TravelRoute travelRoute
             ,BindingResult bindingResult
             ,SessionStatus status
             ,HttpServletRequest req
@@ -240,6 +222,41 @@ public class TravelRouteMngController {
     		return "redirect:/cms/travel/route/list.do";
     }
     
+	@RequestMapping(value="searchDestination.do")
+	public String travelDestinationList(
+    		 @RequestParam(value="idx", required=false, defaultValue="0") Integer idx 
+			,TravelDestination travelDestination
+            ,SessionStatus status
+			,Model model) throws Exception {
+		
+		List<?> regionList = destService.selectTravelDestinationRegionList(travelDestination);
+		model.addAttribute("regionList", regionList);
+		
+		travelDestination.setPageUnit(propertiesService.getInt("pageUnit"));
+		travelDestination.setPageSize(propertiesService.getInt("pageSize"));
+
+		model.addAllAttributes(destService.selectTravelDestinationListMap(travelDestination));
+		status.setComplete();
+
+        model.addAttribute("travelDestination", travelDestination);
+        model.addAttribute("idx", idx);
+		
+		return skinPath + "searchDestination";
+	}
+
+    @RequestMapping(value="searchPoi.do")
+    public String searchPOI(
+    		 TravelRoute travelRoute
+    		,HttpServletRequest req
+    		,@RequestParam("status") String status
+    		,Model model) throws Exception {
+    	
+    	model.addAttribute("absPath", "/geocni/travel");
+    	model.addAttribute("status", status);
+    	
+    	return skinPath + "searchPoi";
+    }
+    
     /*@RequestMapping(value="address.do")
     public String searchAddress(
     		 TravelRoute travelRoute
@@ -255,20 +272,6 @@ public class TravelRouteMngController {
     	return skinPath + "address";
     }*/
 
-    @RequestMapping(value="searchPoi.do")
-    public String searchPOI(
-    		TravelRoute travelRoute
-    		,HttpServletRequest req
-    		,@RequestParam("status") String status
-    		,Model model) throws Exception {
-    	
-    	model.addAttribute("absPath", "/geocni/travel");
-    	model.addAttribute("status", status);
-    	
-    	return skinPath + "searchPoi";
-    }
-    
-    
     /**
      * AdminUtil을 제어한다.
      * @param request

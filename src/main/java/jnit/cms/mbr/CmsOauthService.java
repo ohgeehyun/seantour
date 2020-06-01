@@ -20,6 +20,9 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import egovframework.rte.fdl.cmmn.AbstractServiceImpl;
 import jnit.util.PathUtil;
 import net.sf.json.xml.XMLSerializer;
@@ -46,40 +49,44 @@ public class CmsOauthService extends AbstractServiceImpl {
 	public static final String GOOGLE	= "google"; 
 	public static final String TWITTER	= "twitter";
 	public static final String NAVER = "naver";
+	public static final String KAKAO = "kakao";
 
+	String redirectUrl			= "/callback.do";
 	
-	
-	String redirectUrl				= "/callback.do";
-	
-    String facebookOauthId			= "";
-    String facebookOauthSecret		= "";
-    String facebookOauthScope		= "user_about_me,user_birthday,user_photos,user_website,email";
-    String facebookRequestUrl		= "https://www.facebook.com/dialog/oauth";
-    String facebookTokenUrl			= "https://graph.facebook.com/oauth/access_token";
-    String facebookDataUrl			= "https://graph.facebook.com/me";
+    String facebookOauthId		= "";
+    String facebookOauthSecret	= "";
+    String facebookOauthScope	= "user_about_me,user_birthday,user_photos,user_website,email";
+    String facebookRequestUrl	= "https://www.facebook.com/dialog/oauth";
+    String facebookTokenUrl		= "https://graph.facebook.com/oauth/access_token";
+    String facebookDataUrl		= "https://graph.facebook.com/me";
     
-    String googleOauthId			= "";
-    String googleOauthSecret		= "";
-    String googleOauthScope			= "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email";
-    String googleRequestUrl			= "https://accounts.google.com/o/oauth2/auth";
-    String googleTokenUrl			= "https://accounts.google.com/o/oauth2/token";
-    String googleDataUrl			= "https://www.googleapis.com/oauth2/v1/userinfo";
+    String googleOauthId		= "";
+    String googleOauthSecret	= "";
+    String googleOauthScope		= "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email";
+    String googleRequestUrl		= "https://accounts.google.com/o/oauth2/auth";
+    String googleTokenUrl		= "https://accounts.google.com/o/oauth2/token";
+    String googleDataUrl		= "https://www.googleapis.com/oauth2/v1/userinfo";
     
-    String twitterOauthId			= "";
-    String twitterOauthSecret		= "";
-    String twitterOauthScope		= "";
-    String twitterRequestUrl		= "https://api.twitter.com/oauth/request_token";
-    String twitterTokenUrl			= "https://api.twitter.com/oauth/access_token";
-    String twitterDataUrl			= "https://api.twitter.com/1/account/verify_credentials.json";
+    String twitterOauthId		= "";
+    String twitterOauthSecret	= "";
+    String twitterOauthScope	= "";
+    String twitterRequestUrl	= "https://api.twitter.com/oauth/request_token";
+    String twitterTokenUrl		= "https://api.twitter.com/oauth/access_token";
+    String twitterDataUrl		= "https://api.twitter.com/1/account/verify_credentials.json";
 
-    String naverOauthId				= "";
-    String naverOauthSecret			= "";
-    String naverOauthScope			= "";
-    String naverRequestUrl			= "https://nid.naver.com/oauth2.0/authorize";
-    String naverTokenUrl			= "https://nid.naver.com/oauth2.0/token";
-    String naverDataUrl				= "https://openapi.naver.com/v1/nid/getUserProfile.xml";
+    String naverOauthId			= "";
+    String naverOauthSecret		= "";
+    String naverOauthScope		= "";
+    String naverRequestUrl		= "https://nid.naver.com/oauth2.0/authorize";
+    String naverTokenUrl		= "https://nid.naver.com/oauth2.0/token";
+    String naverDataUrl			= "https://openapi.naver.com/v1/nid/getUserProfile.xml";
     
-    
+    String kakaoOauthId			= "";
+    String kakaoOauthSecret		= "";
+    String kakaoOauthScope		= "profile";
+    String kakaoRequestUrl		= "https://kauth.kakao.com/oauth/authorize";
+    String kakaoTokenUrl		= "https://kauth.kakao.com/oauth/token";
+    String kakaoDataUrl			= "https://kapi.kakao.com/v2/user/me";
     
     /**
 	 * Vender에 보낼 Request 정보를 가져옴.
@@ -152,6 +159,14 @@ public class CmsOauthService extends AbstractServiceImpl {
     		venderInfo.put("tokenUrl",		naverTokenUrl);
     		venderInfo.put("dataUrl",		naverDataUrl);
     	}
+    	if( vender.equals(KAKAO) ){
+    		venderInfo.put("oauthId",		snslogin.getProperty("kakaoOauthId"));
+    		venderInfo.put("oauthSecret",	snslogin.getProperty("kakaoOauthSecret"));
+    		venderInfo.put("oauthScope",	kakaoOauthScope);
+    		venderInfo.put("requestUrl",	kakaoRequestUrl);
+    		venderInfo.put("tokenUrl",		kakaoTokenUrl);
+    		venderInfo.put("dataUrl",		kakaoDataUrl);
+    	}
     	return venderInfo;
     }
     
@@ -193,18 +208,18 @@ public class CmsOauthService extends AbstractServiceImpl {
     	log.debug("******acctoken content********");
 	   	log.debug(content);
 	   	log.debug("*********");
-    	if( vender.equals(FACEBOOK) ){
+    	if(vender.equals(FACEBOOK) ){
     		String tmp1[] = content.split("=");
     		String tmp2[] = tmp1[1].split("&");
     		token		= tmp2[0];
     	}
     	
-    	if( vender.equals(GOOGLE) ){
+    	if(vender.equals(GOOGLE) ){
     		JSONObject result = (JSONObject) new JSONParser().parse(content);
         	token = (String)result.get("access_token");
     	}
     	
-    	if( vender.equals(NAVER) ){
+    	if(vender.equals(NAVER) || vender.equals(KAKAO)){
     		JSONObject result = (JSONObject) new JSONParser().parse(content);
         	token = (String)result.get("access_token");
         	String refreshToken =  (String)result.get("refresh_token");
@@ -222,11 +237,12 @@ public class CmsOauthService extends AbstractServiceImpl {
     	HashMap<String, String> venderInfo = this.getVender(vender, request);
 		String oauthId			= venderInfo.get("oauthId");
 		String oauthSecret		= venderInfo.get("oauthSecret");
+		@SuppressWarnings("unused")
 		String oauthScope		= venderInfo.get("oauthScope");
 		String dataUrl			= venderInfo.get("dataUrl");
     	
 		String refreshToken = "";
-		if(vender.equals(NAVER)){//네이버는 acc 토큰과 refresh 토큰 2개가 있음
+		if(vender.equals(NAVER) || vender.equals(KAKAO)){//네이버는 acc 토큰과 refresh 토큰 2개가 있음
 			String[] tokenList = token.split(",");
 			token = tokenList[0];
 			refreshToken = tokenList[1];
@@ -317,17 +333,114 @@ public class CmsOauthService extends AbstractServiceImpl {
             	userData.put("email", (String)naverResult.getJSONObject("response").get("email"));
             	userData.put("picture", (String)naverResult.getJSONObject("response").get("profile_image"));
     		}
+
+    		
+    	} else if(vender.equals(KAKAO)){
+        	
+    		try{
+    			
+    			ObjectMapper mapper = new ObjectMapper();
+    			JsonNode userInfo = mapper.readTree(content);
+    			String kakao_id = userInfo.path("id").asText();
+    			JsonNode properties = userInfo.path("properties");
+    	        JsonNode kakao_account = userInfo.path("kakao_account");
+    	        String kakao_name = properties.path("nickname").asText();
+    	        String kakao_email = kakao_account.path("email").asText();
+    	        String kakao_picture = properties.path("profile_image").asText();
+    	        
+    			//userData.putAll(extractKakaoUserInfo(content));
+    			userData.put("id", kakao_id);
+    			userData.put("name", kakao_name);
+    			userData.put("email", kakao_email);
+    			userData.put("picture", kakao_picture);
+
+    		} catch (NullPointerException e){//토큰 만료 등 이슈 발생시 토큰을 다시 받는다.
+    			dataUrl="https://kauth.kakao.com/oauth/token?grant_type=refresh_token&client_id="+oauthId+"&client_secret="+oauthSecret+"&refresh_token="+refreshToken;
+    			urlData = new URL(dataUrl);
+    	    	conn = urlData.openConnection();
+    	    	
+    	    	buff = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+    	    	read = null;
+    	    	content ="";
+    	    	while((read = buff.readLine()) != null){
+    	    		content += read; 
+    	    	}
+    	    	JSONObject result = (JSONObject) new JSONParser().parse(content);
+            	token = (String)result.get("access_token");//access_token을 다시 받음
+            	
+            	dataUrl = venderInfo.get("dataUrl") + "?access_token=" + token;
+            	urlData = new URL(dataUrl);
+            	conn = urlData.openConnection();
+            	
+            	buff = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            	read = null;
+            	content ="";
+            	while((read = buff.readLine()) != null){
+            		content += read; 
+            	}
+    			//userData.putAll(extractKakaoUserInfo(content));
+    			ObjectMapper mapper = new ObjectMapper();
+    			JsonNode userInfo = mapper.readTree(content);
+    			String kakao_id = userInfo.path("id").asText();
+    			JsonNode properties = userInfo.path("properties");
+    	        JsonNode kakao_account = userInfo.path("kakao_account");
+    	        String kakao_name = properties.path("nickname").asText();
+    	        String kakao_email = kakao_account.path("email").asText();
+    	        String kakao_picture = properties.path("profile_image").asText();
+
+    	        userData.put("id", kakao_id);
+    			userData.put("name", kakao_name);
+    			userData.put("email", kakao_email);
+    			userData.put("picture", kakao_picture);
+    	        
+    		} catch(Exception e){//토큰 만료 등 이슈 발생시 토큰을 다시 받는다.
+    			dataUrl="https://kauth.kakao.com/oauth/token?grant_type=refresh_token&client_id="+oauthId+"&client_secret="+oauthSecret+"&refresh_token="+refreshToken;
+    			urlData = new URL(dataUrl);
+    	    	conn = urlData.openConnection();
+    	    	
+    	    	buff = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+    	    	read = null;
+    	    	content ="";
+    	    	while((read = buff.readLine()) != null){
+    	    		content += read; 
+    	    	}
+    	    	JSONObject result = (JSONObject) new JSONParser().parse(content);
+            	token = (String)result.get("access_token");//access_token을 다시 받음
+            	
+            	dataUrl = venderInfo.get("dataUrl") + "?access_token=" + token;
+            	urlData = new URL(dataUrl);
+            	conn = urlData.openConnection();
+            	
+            	buff = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            	read = null;
+            	content ="";
+            	while((read = buff.readLine()) != null){
+            		content += read; 
+            	}
+    			//userData.putAll(extractKakaoUserInfo(content));
+    			ObjectMapper mapper = new ObjectMapper();
+    			JsonNode userInfo = mapper.readTree(content);
+    			String kakao_id = userInfo.path("id").asText();
+    			JsonNode properties = userInfo.path("properties");
+    	        JsonNode kakao_account = userInfo.path("kakao_account");
+    	        String kakao_name = properties.path("nickname").asText();
+    	        String kakao_email = kakao_account.path("email").asText();
+    	        String kakao_picture = properties.path("profile_image").asText();
+
+    	        userData.put("id", kakao_id);
+    			userData.put("name", kakao_name);
+    			userData.put("email", kakao_email);
+    			userData.put("picture", kakao_picture);
+    		}
     	
-    	}else{
-    		JSONObject result = (JSONObject) new JSONParser().parse(content);
+    	} else {
+     		JSONObject result = (JSONObject) new JSONParser().parse(content);
     		userData.put("id", (String)result.get("id"));
         	userData.put("name", (String)result.get("name"));
         	userData.put("email", (String)result.get("email"));
         	userData.put("picture", (String)result.get("picture"));
         	
     	}
-		
-    	
     	
     	return userData;
     }

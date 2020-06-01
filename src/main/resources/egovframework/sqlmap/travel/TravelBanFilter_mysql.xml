@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="travelBanFilterDAO">
+
+	<typeAlias alias="travelBanFilters" type="geocni.travel.common.banfilter.domain.TravelBanFilters" />
+
+	<!-- 금칙어 관리 -->
+	<select id="travelBanFilterDAO.selectTravelBanFilterList" parameterClass="travelBanFilters" resultClass="travelBanFilters">
+		<![CDATA[
+			SELECT
+				  a.ban_word AS banWord
+				, a.created_at AS createdAt
+			FROM geo_ban_filters a
+			WHERE 1=1
+		]]>
+		<isNotEmpty property="searchKeyword" prepend="AND">
+			<![CDATA[	a.ban_word LIKE CONCAT('%',#searchKeyword#,'%')	]]>
+		</isNotEmpty>
+		<![CDATA[
+			ORDER BY created_at DESC
+            LIMIT #firstIndex#, #recordCountPerPage#
+		]]>
+	</select>	
+	<select id="travelBanFilterDAO.selectTravelBanFilterListCnt" parameterClass="travelBanFilters" resultClass="int">
+		<![CDATA[
+			SELECT 
+				COUNT(*) totcnt
+			FROM geo_ban_filters a
+			WHERE 1=1
+		]]>
+		<isNotEmpty property="searchKeyword" prepend="AND">
+			<![CDATA[	a.ban_word LIKE CONCAT('%',#searchKeyword#,'%')	]]>
+		</isNotEmpty>
+	</select>
+
+	<select id="travelBanFilterDAO.selectTravelBanFilterIncludeCnt" parameterClass="java.util.List" resultClass="int">
+		<![CDATA[
+			SELECT 
+				COUNT(*) totcnt
+			FROM geo_ban_filters
+			WHERE ban_word IN
+		]]>
+		<iterate conjunction="," open="(" close=")">
+		<![CDATA[	#banWordList[]#	]]>
+		</iterate>
+	</select>
+
+	<insert id="travelBanFilterDAO.upsertTravelBanFilter" parameterClass="java.util.List">
+		<![CDATA[
+			INSERT INTO geo_ban_filters (ban_word)  VALUES
+		]]>
+		<iterate conjunction=",">
+		<![CDATA[	(#banWordList[]#)	]]>
+		</iterate>
+		<![CDATA[
+			ON DUPLICATE KEY UPDATE created_at=now()
+		]]>
+	</insert>
+	
+	<delete id="travelBanFilterDAO.deleteTravelBanFilterPhysically" parameterClass="java.lang.String">
+	    <![CDATA[
+			DELETE FROM geo_ban_filters
+            WHERE ban_word=#delWord#
+		]]>
+	</delete>
+
+</sqlMap>

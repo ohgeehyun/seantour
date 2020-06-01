@@ -22,10 +22,9 @@ public class TravelDestinationDAO extends EgovComAbstractDAO {
     	return (TravelDestination) select("travelDestinationDAO.selectTravelDestination", vo);
     }
     
-    /*@SuppressWarnings("unchecked")
-	public Map<String,Object> selectTravelDestinationDetails(TravelDestination vo) throws Exception {
-    	return (Map<String, Object>) select("travelDestinationDAO.selectTravelDestinationDetails", vo);
-    }*/
+    public TravelDestination selectTravelDestinationDetail(TravelDestination vo) throws Exception {
+    	return (TravelDestination) select("travelDestinationDAO.selectTravelDestinationDetail", vo);
+    }
     
     public String insertTravelDestination(TravelDestination vo) throws Exception {
     	return (String)insert("travelDestinationDAO.insertTravelDestination", vo);
@@ -33,6 +32,10 @@ public class TravelDestinationDAO extends EgovComAbstractDAO {
     
     public void updateTravelDestination(TravelDestination vo) throws Exception {
     	update("travelDestinationDAO.updateTravelDestination", vo);
+    }
+    
+    public void updateTravelDestinationStatPoint(TravelDestination vo) throws Exception {
+    	update("travelDestinationDAO.updateTravelDestinationStatPoint", vo);
     }
     
     public void deleteTravelDestinationPhysically(TravelDestination vo) throws Exception {
@@ -46,5 +49,21 @@ public class TravelDestinationDAO extends EgovComAbstractDAO {
     public List<?> selectTravelDestinationRegionList(TravelDestination vo) throws Exception {
     	return list("travelDestinationDAO.selectTravelDestinationRegionList", vo);
     }
+    
+    public List<?> selectTravelDestiCategoryList(List<String> searchCatList) throws Exception {
+    	return list("travelDestinationDAO.selectTravelDestiCategoryList", searchCatList);
+    }
+    
+    public List<?> selectTravelDestinationStats(TravelDestination vo) throws Exception {
+    	return list("travelDestinationDAO.selectTravelDestinationStats", vo);
+    }
+    
+    public List<?> selectTravelDestinationNearPointList(TravelDestination vo) throws Exception {
+    	return list("travelDestinationDAO.selectTravelDestinationNearPointList", vo);
+    }
+    
+    public List<?> selectRecoDestinationlist(TravelDestination vo) throws Exception{
+		return list("travelDestinationDAO.selectRecoDestinationlist",vo);
+	}
     
 }

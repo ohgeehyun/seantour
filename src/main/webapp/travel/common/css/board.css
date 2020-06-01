@@ -1,51 +1,77 @@
 @charset "utf-8";
 
 
-img { max-width:100%; }
+
+
 
 /* **************************************** *
  * 텍스트 정렬(공통)
  * **************************************** */
+
 .tal{text-align:left !important;}
+
 .tac{text-align:center !important;}
+
 .tar{text-align:right !important;}
+
 .valm{vertical-align:middle !important;}
+
 .valt{vertical-align:top !important;}
+
 
 /* **************************************** *
  * 이미지 아이콘(공통)
  * **************************************** */
+
 .ico{padding:0 3px;}
 .ico img{max-width:100%;width:auto !important;vertical-align:middle;}
+
 
 /* **************************************** *
  * 버튼(공통)
  * **************************************** */
+
 /*기존 버튼(공통)*/
+
 .btnArea {margin:30px 0;font-size:13px;text-align:right}
+
 .btnArea:after {content:"";display:block;clear:both}
+
 
 
 .btn.lg{position:relative; display:inline-block; box-sizing:border-box; overflow:visible; margin:0; padding:0 40px;height:45px; margin:5px 3px; border:1px solid transparent; font-size:15px; line-height:45px; text-decoration:none !important; white-space:nowrap; text-align:center; vertical-align:middle; cursor:pointer; transition:all .3s;}
 .btn.black{background:#000;color:#fff;}
 .btn.gray{background:#999;color:#fff;}
+
 .btn.border{border:1px solid #222;color:#333;}
 
+
 .btn:hover,
+
 .btn:focus{opacity:.8; box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19);}
 
+
 @media screen and (max-width:768px){
-	.btn{height:35px;padding:0 30px;line-height:35px;font-size:14px;}
+	
+.btn{height:35px;padding:0 30px;line-height:35px;font-size:14px;}
+
 }	
+
 @media screen and (max-width:640px){
-	.btn{padding:0 20px;font-size:13px;}
+	
+.btn{padding:0 20px;font-size:13px;}
+
 }	
+
 
 /* **************************************** *
  * (기존 )이미지 파일첨부
  * **************************************** */
+
 .board_write table tbody td .btn-succes {width:100px;height:30px;line-height:30px;padding:0 7px;margin:0 5px;background:#c9a00f;transition:all 0.6s;color:#fff}
-.board_write table tbody td .btn-succes:hover,.board_write table tbody td .btn-succes:focus,.board_write table tbody td .btn-succes:active {background:#31b0d5}
+
+.board_write table tbody td .btn-succes:hover,.board_write table tbody td .btn-succes:focus,.board_write table tbody td 
+.btn-succes:active {background:#31b0d5}
 #uploadFileList_img .btn-info {float:left;width:85px;height:30px;line-height:30px;padding:0 7px;background:#5bc0de;color:#fff;transition:all 0.6s}
 #uploadFileList_img .btn-info:focus,#uploadFileList_img .btn-info:hover,#uploadFileList_img .btn-info:active {background:#31b0d5}
 #uploadFileList_img a {overflow:hidden;display:inline-block;width:50px;height:30px;padding:4px 7px;background:#de5b5b;color:#fff;text-align:center}
@@ -159,6 +185,8 @@ img { max-width:100%; }
 .board_list table tbody td {padding:15px 20px;border-top:1px solid #dcdee0}
 .board_list table tbody td img {vertical-align:middle}
 .board_list table tbody td.data a {font-size:13px;color:#ababac}
+.board_list td[data-table-type="brd_subject"]{text-align:left;}
+.board_list textarea.content{width:100%;} 
 @media screen and (max-width:768px){
     
     .board_list *[data-table-type="brd_number"],
@@ -335,6 +363,9 @@ img { max-width:100%; }
 .reviews_write{border-top:2px solid #222;border-bottom:3px solid #f6bdbf;}
 .reviews_write dl{border-bottom:1px solid #e6e6e6;}
 .reviews_write dl:after{content:'';display:block;clear:both;}
+.reviews_write dl.textarea_cont dt{width:0;}
+.reviews_write dl.textarea_cont dd{width:100%;}
+
 .reviews_write dl dt,
 .reviews_write dl dd{float:left;padding:20px 15px;min-height:71px;line-height:38px;}
 .reviews_write dl dt{width:15%;font-family: 'Arita_dotum_SemiBold';font-size:15px;color:#444;}
@@ -342,54 +373,15 @@ img { max-width:100%; }
 .reviews_write dl dd .input_tit{color:#0f9691;}
 .reviews_write dl dd .w100{width:100%;}
 .reviews_write dl.group dd{width:35%;}
-.file_input_textbox
-{
-float: left;
-width:30%;
-height:40px;
-}
- 
-.file_input_div
-{
-position: relative;
-width: 140px;
-height: 40px;
-overflow: hidden;
-}
- 
-.file_input_button
-{
-display:inline-block;
-margin-left:3px;
-width: 137px;
-height:40px;
-line-height:40px;
-position: absolute;
-top: 0px;
-background: #444;
-color: #fff;
-border:none;
-border-radius:0.2em;
 
-}
- 
-.file_input_hidden
-{
-font-size: 45px;
-position: absolute;
-right: 0px;
-top: 0px;
-opacity: 0;
- 
-filter: alpha(opacity=0);
--ms-filter: "alpha(opacity=0)";
--khtml-opacity: 0;
--moz-opacity: 0;
 
-}
+.fileBox .fileName {display:inline-block;width:190px;height:36px;padding-left:10px;margin-right:5px;line-height:36px;border:1px solid #aaa;background-color:#fff;vertical-align:middle}
+.fileBox .btn_file {display:inline-block;background:#7f7f7f;width:100px;height:36px;margin:0;font-size:0.8em;color:#fff;line-height:36px;text-align:center;vertical-align:middle}
+.fileBox input[type="file"] {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
 
-.privacy{width:100%;height:150px;border:2px solid #ddd; border-radius:0.2em;}
-.privacy.shorten{overflow-y:scroll;}
+.attach dt span a{display:inline-block;width:14px;height:14px;font-size:14px;font-weight:600;color:#fff;}
+.attach dt span#upfileAdd a{background:url(/travel/common/board/icon_plus.gif) no-repeat 0 0;}
+.attach dt span#upfileDel a{background:url(/travel/common/board/icon_plus.gif) no-repeat 0 0;}
 
 @media screen and (max-width:767px){
 	.reviews_write dl dt{width:20%;}
@@ -420,4 +412,3 @@ filter: alpha(opacity=0);
 @media screen and (max-width:420px){
 	.reviews_write dl dt, 
 	.reviews_write dl dd{min-height:60px;padding:10px 6px;}
-}

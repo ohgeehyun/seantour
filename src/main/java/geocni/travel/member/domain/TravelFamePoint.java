@@ -26,6 +26,9 @@ public class TravelFamePoint extends TravelDefaultVO {
     /*명성 지수 회원 이름*/
     private String fameUserNm;
     
+    /*명성 지수 회원 플픽*/
+    private String fameUserPic;
+    
     private List<TravelFameHistory> recommHistory;
 
 	public String getFameUserId() {
@@ -74,6 +77,14 @@ public class TravelFamePoint extends TravelDefaultVO {
 
 	public void setFameUserNm(String fameUserNm) {
 		this.fameUserNm = fameUserNm;
+	}
+
+	public String getFameUserPic() {
+		return fameUserPic;
+	}
+
+	public void setFameUserPic(String fameUserPic) {
+		this.fameUserPic = fameUserPic;
 	}
 
 	public List<TravelFameHistory> getRecommHistory() {

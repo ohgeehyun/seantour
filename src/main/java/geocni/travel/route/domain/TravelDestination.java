@@ -1,6 +1,10 @@
 package geocni.travel.route.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import geocni.travel.common.TravelDefaultVO;
+import geocni.travel.common.files.domain.TravelFiles;
 
 public class TravelDestination extends TravelDefaultVO {
 
@@ -16,6 +20,8 @@ public class TravelDestination extends TravelDefaultVO {
     
     private String destCategory;
     
+    private String destTag;
+    
     private String destWebsiteUrl;
     
     private String destImgPath;
@@ -23,8 +29,6 @@ public class TravelDestination extends TravelDefaultVO {
     private String destPhone;
     
     private String destAddress;
-    
-    private String destLocationAxis;
     
     private String destAxisX;
     
@@ -36,18 +40,30 @@ public class TravelDestination extends TravelDefaultVO {
     
     private String destDescription;
     
-    private String destVicinity;
+    private int destRecommPoint = 0;
     
-    private int destRecommPoint;
-    
-    private int destClipPoint;
+    private int destClipPoint = 0;
     
     private String destWriter;
     
     private String destRegDatetime;
     
-    private int destHit;
+    private int destHit = 0;
+    
+    private String destSeason;
 
+    private int myRecommCount = 0;
+    
+    private int myClipCount = 0;
+
+    private int distance = 10000;
+    
+    private String destUserId;
+
+    private List<String> destTagList;
+    
+    private List<TravelFiles> travelFileList;
+    
 	public String getDestId() {
 		return destId;
 	}
@@ -88,6 +104,14 @@ public class TravelDestination extends TravelDefaultVO {
 		this.destCategory = destCategory;
 	}
 
+	public String getDestTag() {
+		return destTag;
+	}
+
+	public void setDestTag(String destTag) {
+		this.destTag = destTag;
+	}
+
 	public String getDestWebsiteUrl() {
 		return destWebsiteUrl;
 	}
@@ -118,14 +142,6 @@ public class TravelDestination extends TravelDefaultVO {
 
 	public void setDestAddress(String destAddress) {
 		this.destAddress = destAddress;
-	}
-
-	public String getDestLocationAxis() {
-		return destLocationAxis;
-	}
-
-	public void setDestLocationAxis(String destLocationAxis) {
-		this.destLocationAxis = destLocationAxis;
 	}
 
 	public String getDestAxisX() {
@@ -168,14 +184,6 @@ public class TravelDestination extends TravelDefaultVO {
 		this.destDescription = destDescription;
 	}
 
-	public String getDestVicinity() {
-		return destVicinity;
-	}
-
-	public void setDestVicinity(String destVicinity) {
-		this.destVicinity = destVicinity;
-	}
-
 	public int getDestRecommPoint() {
 		return destRecommPoint;
 	}
@@ -214,6 +222,69 @@ public class TravelDestination extends TravelDefaultVO {
 
 	public void setDestHit(int destHit) {
 		this.destHit = destHit;
+	}
+
+	public String getDestSeason() {
+		return destSeason;
+	}
+
+	public void setDestSeason(String destSeason) {
+		this.destSeason = destSeason;
+	}
+
+	public int getMyRecommCount() {
+		return myRecommCount;
+	}
+
+	public void setMyRecommCount(int myRecommCount) {
+		this.myRecommCount = myRecommCount;
+	}
+
+	public int getMyClipCount() {
+		return myClipCount;
+	}
+
+	public void setMyClipCount(int myClipCount) {
+		this.myClipCount = myClipCount;
+	}
+
+	public int getDistance() {
+		return distance;
+	}
+
+	public void setDistance(int distance) {
+		this.distance = distance;
+	}
+
+	public String getDestUserId() {
+		return destUserId;
+	}
+
+	public void setDestUserId(String destUserId) {
+		this.destUserId = destUserId;
+	}
+
+	public List<String> getDestTagList() {
+		return destTagList;
+	}
+
+	public void setDestTagList(String destTagList) {
+		String[] aplIdxArr = destTagList.split(",");
+		
+		List<String> list = new ArrayList<String>();
+		for(int i=0;aplIdxArr.length > i ;i++){
+			list.add(aplIdxArr[i]);
+		}
+		
+		this.destTagList = list;
+	}
+
+	public List<TravelFiles> getTravelFileList() {
+		return travelFileList;
+	}
+
+	public void setTravelFileList(List<TravelFiles> travelFileList) {
+		this.travelFileList = travelFileList;
 	}
 
 }

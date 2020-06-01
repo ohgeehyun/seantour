@@ -4,11 +4,9 @@
 			<div class="inr">
 				<div class="foot_wrap">
 					<ul class="foot_util">
-						<li><a href="#none">개인정보처리방침</a></li>
-						<li><a href="#none">이메일무단수집거부</a></li>
-						<li><a href="#none">이용약관</a></li>
-						<li><a href="#none">고객의소리</a></li>
-						<li><a href="#none">사이트맵</a></li>
+						<li><a href="<c:url value='/travel/info_square/info_policy/index.jsp'/>">저작권정책</a></li>
+						 <li><a href="<c:url value='/travel/info_square/email/index.jsp'/>">이메일무단수집거부</a></li>
+						 <li><a href="<c:url value='/travel/info_square/faq_customer/index.jsp'/>">고객의소리</a></li>
 					</ul>
 					<ul class="foot_info">
 						<li>08588 서울특별시 금천구 가산디지털2로 53 한라시그마밸리 12층</li>
@@ -17,10 +15,10 @@
 					</ul>
 				</div>
 				<div class="footer_go">
-					<a href="#none" class="modipy">
-						수정정정요청
+					<a href="<c:url value='/travel/info_square/updateinfo/index.jsp'/>" class="modipy">
+						정보수정제안
 					</a>
-					<a  href="#none" class="notice">
+					<a  href="<c:url value='/travel/info_square/notice/index.jsp'/>" class="notice">
 						공지사항
 					</a>
 				</div>
@@ -29,3 +27,5 @@
 				</div>
 			</div>
 		</div>
+	
+

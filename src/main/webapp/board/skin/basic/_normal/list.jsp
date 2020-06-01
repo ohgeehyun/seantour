@@ -21,108 +21,25 @@
 <script type="text/javascript" src="/travel/common/js/aos.js"></script>
 <script type="text/javascript" src="/travel/common/js/common.js"></script>
 <script type="text/javascript" src="/travel/common/js/content.js"></script>
-
+<
+<!-- include 하여 css 및 js 정리 필요 정리 후 주석 까지 삭제 필요-->
 <body>
-	<div id="wrap">
-		<div id="accessibility"><a href="#content">본문 바로가기</a></div>
-		<!-- header -->
-		<div id="header" class="trans">
-				<h1 class="logo trans"><a href="/travel/index.jsp" class="trans">바다여행 |바다여행 일정만들기</a></h1>
-				<ul class="util_top trans">
-					<li><a href="/travel/login/index.jsp">로그인</a></li>
-                                	<li><a href="/travel/mypage/mypage_honor/index.jsp">마이페이지</a></li>
-				</ul>
-                <!-- GNB -->
-                <div class="gnb_wrap">
-                    <ul id="gnb">
-                        <li><a href="/travel/seantour/index.jsp">바다여행</a>
-                            <div>
-                                <ul>
-	                        		<li><a href="/travel/seantour/index.jsp">부산광역시</a></li>
-	                        		<li><a href="#none">대구광역시</a></li>
-	                        		<li><a href="#none">인천광역시</a></li>
-	                        		<li><a href="#none">대전광역시</a></li>
-	                        		<li><a href="#none">울산광역시</a></li>
-	                        		<li><a href="#none">경기도</a></li>
-	                        		<li><a href="#none">충청북도</a></li>
-	                        		<li><a href="#none">충정남도</a></li>
-	                        		<li><a href="#none">전라북도</a></li>
-	                        		<li><a href="#none">전라남도</a></li>
-	                        		<li><a href="#none">경상북도</a></li>
-	                        		<li><a href="#none">경상남도</a></li>
-	                        		<li><a href="#none">제주특별자치도</a></li>
-	                        	</ul>
-                            </div>
-                        </li>
-                        <li><a href="/travel/my_travel/index.jsp">나만의 여행지 만들기</a></li>
-                        <li><a href="/travel/recommendation/index.jsp">추천일정</a></li>
-                        <li><a href="/travel/honor/index.jsp">명성</a></li>
-                        <li><a href="/travel/info_square/index.jsp">정보광장</a>
-                            <div>
-                               <ul>
-	                                <li><a href="/travel/info_square/notice/index.jsp">공지사항</a></li>
-	                                <li><a href="/travel/info_square/faq/index.jsp">Q&A</a></li>
-	                                <li><a href="/travel/info_square/statistics/index.jsp">통계</a></li>
-	                                <li><a href="">개인정보처리방침</a></li>
-	                                <li><a href="">이용약관</a></li>
-	                            </ul>
-                            </div>
-                        </li>
-                    </ul>
-                 </div>
-                <!-- // GNB -->
-                <!-- 모바일 전체메뉴 -->
-                <div class="mobile_wholeview">
-                    <button type="button" class="btn_wv">전체메뉴</button>
-                    <div id="wholeView" class="open">
-                        <div class="wv_wrap">
-                            <div class="wv_wrap_head">
-                                <ul class="wv_util">
-                                <li><a href="/travel/login/index.jsp">로그인</a></li>
-                                	<li><a href="/travel/mypage/mypage_honor/index.jsp">마이페이지</a></li>
-								</ul>
-                                <button type="button" class="btn_close">전체메뉴 닫기</button>
-                            </div>
-                            <div class="nav">
-                                <ul id="gnb_mobile">
-                                    <li><a href="#">바다여행</a>
-                                    	<ul>
-                                    		<li><a href="#none">부산광역시</a></li>
-                                    		<li><a href="#none">대구광역시</a></li>
-                                    		<li><a href="#none">인천광역시</a></li>
-                                    		<li><a href="#none">대전광역시</a></li>
-                                    		<li><a href="#none">울산광역시</a></li>
-                                    		<li><a href="#none">경기도</a></li>
-                                    		<li><a href="#none">충청북도</a></li>
-                                    		<li><a href="#none">충정남도</a></li>
-                                    		<li><a href="#none">전라북도</a></li>
-                                    		<li><a href="#none">전라남도</a></li>
-                                    		<li><a href="#none">경상북도</a></li>
-                                    		<li><a href="#none">경상남도</a></li>
-                                    		<li><a href="#none">제주특별자치도</a></li>
-                                    	</ul>
-                                    </li>
-                                    <li><a href="/travel/my_travel/index.jsp">나만의 여행일정 만들기</a></li>
-                                    <li><a href="/travel/recommendation/index.jsp">추천여행일정</a></li>
-                                    <li><a href="/travel/honor/index.jsp">명성</a></li>
-                                    <li><a href="/travel/info_square/index.jsp">정보광장</a>
-                                       <ul>
-                                            <li><a href="/travel/info_square/notice/index.jsp">공지사항</a></li>
-			                                <li><a href="/travel/info_square/faq/index.jsp">Q&A</a></li>
-			                                <li><a href="/travel/info_square/statistics/index.jsp">통계</a></li>
-			                                <li><a href="">개인정보처리방침</a></li>
-			                                <li><a href="">이용약관</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="wvBg"></div>
-                    </div>
-                </div>
-                <!-- //모바일 전체메뉴 -->
-		      </div>
-		<!-- // header -->
+<div id="wrap" style="position:static;">   	
+    
+    <jsp:include page="/travel/include/header/index.jsp"></jsp:include>
+ 
+    <!-- End of header -->
+	<!-- middle -->
+	<!-- contaniner -->
+		<div id="container" >
+          
+        <jsp:include page="/travel/include/lnb01/index.jsp"></jsp:include>
+        <!--lnb부분 수정 동적 작업 완료 시 수정 필요--> 
+        <div id="content" class="cont_wrap ">
+      
+            <div class="cont_body content">
+              
+                       
 
 <form:form commandName="searchVO" name="bbsForm" id="bbsForm" method="get">
 <input type="hidden" name="mode" value="<c:out value="${mode}" />" />
@@ -138,47 +55,6 @@
 <input type="image" id="btnSubmit" src="<c:url value="/board/_common/img/btnMove.gif" />" alt="<%= JnitboardController.isLanguage("이동",lang) %>"/>
 </div>
 </c:if>
-
-<!-- contaniner -->
-<div id="container" >
-            <div class="section_visual sub01 trans400">
-                <div class="section_tit_box">
-		            <h2 class="tit trans300">추천여행일정</h2>
-		            <p class="txt trans300">틀별하고 즐거움이 가득한 국내 바다여행 여행지 추천</p>
-        		</div>
-            </div><!-- // section_visual -->
-
- <div class="section_lnb">
-             	<div class="inr">
-			        <ul id="lnb">
-			        	<li><a href="#none"><span class="sprh_com">HOME</span></a></li>
-			        	<li id="firstmenu"><!--<a href="/www/main"><span class="unfd sprh_com">홈</span></a>-->
-			                <a href="#none">추천여행일정<span class="unfd">같은 레벨 메뉴 보기</span></a>
-			                <div>
-			                    <ul>
-									<li><a href="#none">1차메뉴</a></li>
-									<li><a href="#none">1차메뉴</a></li>
-									<li><a href="#none">1차메뉴</a></li>
-									<li><a href="#none">1차메뉴</a></li>
-			                	</ul>
-			                </div>  
-			            </li>
-			            <li id="secondmenu">
-			                <a href="#none">작가 추전일정<span class="unfd sprh_com">같은 레벨 메뉴 보기</span></a>
-			                <div class="snb_wrap">
-			                   <ul class="snb">
-									<li><a href="#none">작가 추전일정</a></li>
-									<li><a href="#none">2차메뉴</a></li>
-									<li><a href="#none">2차메뉴</a></li>
-									<li><a href="#none">2차메뉴</a></li>
-									<li><a href="#none">2차메뉴</a></li>
-			                	</ul> 
-			                </div>
-			            </li>                       
-			         </ul>
-		         </div>
-    		</div><!-- // section_lnb -->
-
 
 <%-- <p class="total">
 	<c:choose>
@@ -427,6 +303,7 @@
 					</c:when>
 					<%--title--%>
 					<c:when test="${k == 'title'}">
+					</c:when>
 					<option value="title" <c:out value="${searchVO.searchCondition == 'title' ? 'selected=\"selected\"' : ''}" />><c:out value="${lbl['title']}" /></option>
 					</c:when>
 					<c:when test="${k == 'file'}">
@@ -465,41 +342,12 @@
 
 </form:form>
 
-	 <!-- footer -->
-		<div id="footer">
-			<div class="inr">
-				<div class="foot_wrap">
-					<ul class="foot_util">
-						<li><a href="#none">개인정보처리방침</a></li>
-						<li><a href="#none">이메일무단수집거부</a></li>
-						<li><a href="#none">이용약관</a></li>
-						<li><a href="#none">고객의소리</a></li>
-						<li><a href="#none">사이트맵</a></li>
-					</ul>
-					<ul class="foot_info">
-						<li>08588 서울특별시 금천구 가산디지털2로 53 한라시그마밸리 12층</li>
-						<li><strong class="color_light_red">080-500-8579</strong>(파도친구) 평일 09:00 ~ 18:00, 점심시간 12:00 ~ 13:00<br /> seantourfipa@gmail.com</li>
-						<li>(사) 전국어촌체험마을연합회 | 대표 권영환</li>
-					</ul>
-				</div>
-				<div class="footer_go">
-					<a href="#none" class="modipy">
-						수정정정요청
-					</a>
-					<a  href="#none" class="notice">
-						공지사항
-					</a>
-				</div>
-				<div class="skip_top">
-					<a href="#wrap"><div class="skip_top_btn"><span>TOP</span></div></a>
-				</div>
-			</div>
-		</div>
-		<!-- // Footer -->
-	</div>
-	<!-- // wrap -->
-</body>
+            
+            </div>  
+      </div>
+  </div>    
+    <!-- End of middle -->
+	<!-- footer -->
+ <jsp:include page="/travel/include/footer/index.jsp"></jsp:include>    <!-- End of footer -->
+  </div>
 </html>
-
-
-

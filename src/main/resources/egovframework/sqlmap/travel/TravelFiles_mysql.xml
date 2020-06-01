@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="travelFilesDAO">
+
+	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias alias="travelFiles" type="geocni.travel.common.files.domain.TravelFiles" />
+
+	<!-- 첨부 파일(이미지) 관리 -->
+	<insert id="travelFilesDAO.insertTravelFiles" parameterClass="java.util.List">
+		<![CDATA[
+			INSERT INTO geo_img_files (
+				  img_ref_id
+				, img_file_no
+				, img_file_name
+				, img_file_path
+				, img_file_size
+				, img_file_ext
+		    )  VALUES
+		]]>
+		<iterate conjunction=",">
+		<![CDATA[
+	        ( 
+				  #destImgList[].imgRefId#
+				, #destImgList[].imgFileNo#
+				, #destImgList[].imgFileName#
+				, #destImgList[].imgFilePath#
+				, #destImgList[].imgFileSize#
+				, #destImgList[].imgFileExt#
+			)
+		]]>
+		</iterate>
+	</insert>
+	
+	<update id="travelFilesDAO.updateTravelFiles">
+		<![CDATA[
+			UPDATE geo_img_files
+			SET 
+				  img_file_name=#imgFileName#
+				, img_file_path=#imgFilePath#
+				, img_file_size=#imgFileSize#
+				, img_file_ext=#imgFileExt#
+				, img_created_at=now()
+			WHERE 	img_ref_id=#imgRefId# 
+				AND img_file_no=#imgFileNo#
+		]]>
+	</update>
+	
+	<delete id="travelFilesDAO.deleteTravelFilesPhysically">
+	    <![CDATA[
+			DELETE FROM geo_img_files
+            WHERE img_ref_id=#imgRefId#
+		]]>
+	</delete>
+
+	<select id="travelFilesDAO.selectTravelFiles" parameterClass="travelFiles" resultClass="travelFiles">
+		<![CDATA[
+			SELECT
+				  a.img_ref_id AS imgRefId
+				, a.img_file_no AS imgFileNo
+				, a.img_file_name AS imgFileName
+				, a.img_file_path AS imgFilePath
+				, a.img_file_size AS imgFileSize
+				, a.img_file_ext AS imgFileExt
+				, a.img_created_at AS imgCreatedAt
+			FROM geo_img_files a
+            WHERE a.img_ref_id=#imgRefId# AND a.img_file_no=#imgFileNo#
+		]]>
+	</select>
+	
+	<select id="travelFilesDAO.selectTravelFilesList" parameterClass="travelFiles" resultClass="travelFiles">
+		<![CDATA[
+			SELECT
+				  a.img_ref_id AS imgRefId
+				, a.img_file_no AS imgFileNo
+				, a.img_file_name AS imgFileName
+				, a.img_file_path AS imgFilePath
+				, a.img_file_size AS imgFileSize
+				, a.img_file_ext AS imgFileExt
+				, a.img_created_at AS imgCreatedAt
+			FROM geo_img_files a
+			WHERE img_ref_id=#imgRefId#
+			ORDER BY fame_his_date DESC
+            LIMIT #firstIndex#, #recordCountPerPage#
+		]]>
+	</select>	
+	<select id="travelFilesDAO.selectTravelFilesListCnt" parameterClass="travelFiles" resultClass="int">
+		<![CDATA[
+			SELECT 
+				COUNT(*) totcnt
+			FROM geo_img_files a
+			WHERE img_ref_id=#imgRefId#
+		]]>
+	</select>
+
+
+</sqlMap>

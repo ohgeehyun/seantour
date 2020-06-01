@@ -1,122 +1,36 @@
-<% response.setHeader("Cache-Control","no-store"); response.setHeader("Pragma","no-cache"); response.setDateHeader("Expires",0); if (request.getProtocol().equals("HTTP/1.1")) { response.setHeader("Cache-Control", "no-cache"); } %><%@ page contentType="text/html; charset=utf-8" %><%@ include file='/_common/header.jsp' %><% /* cset_s */ %><% String servletPath = request.getServletPath(); %><% String[] Jnit_ServletPath = servletPath.split("/"); String Jnit_sitePath = Jnit_ServletPath[1]; %><c:set var="Jnit_sitePath" value="<%= Jnit_sitePath %>" scope="request"/><%@ page import="egovframework.com.utl.fcc.service.StringUtil"%><% String localYn = ""; if(StringUtil.isExistString(request.getRequestURL().toString(),"local")) localYn="Y"; %><c:set var="localYn" value="<%= localYn %>" scope="request" /><% /* cset_e */ %><% /*<!-- [-CONTENT-] -->*/ %><%
-/**
- *@version 3.2.0.1
- **/
-%>
-<%@ include file="/_common/stateCount.jsp" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
- <html lang="ko" class="skrollr skrollr-desktop">
+<% response.setHeader("Cache-Control","no-store"); response.setHeader("Pragma","no-cache"); response.setDateHeader("Expires",0); if (request.getProtocol().equals("HTTP/1.1")) { response.setHeader("Cache-Control", "no-cache"); } %><%@ page contentType="text/html; charset=utf-8" %><%@ include file='/_common/header.jsp' %><% /* cset_s */ %><% String servletPath = request.getServletPath(); %><% String[] Jnit_ServletPath = servletPath.split("/"); String Jnit_sitePath = Jnit_ServletPath[1]; %><c:set var="Jnit_sitePath" value="<%= Jnit_sitePath %>" scope="request"/><%@ page import="egovframework.com.utl.fcc.service.StringUtil"%><% String localYn = ""; if(StringUtil.isExistString(request.getRequestURL().toString(),"local")) localYn="Y"; %><c:set var="localYn" value="<%= localYn %>" scope="request" /><% /* cset_e */ %><% /*<!-- [-CONTENT-] -->*/ %><%@ include file="/_common/stateCount.jsp" %>
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-<title>해양레저</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width,maximum-scale=1,minimum-scale=1">
+
+
 <%@ include file="/travel/common/config/handing/cssHanding.jsp" %>
 
 <%@ include file="/travel/common/config/handing/jsHanding.jsp" %>
-</head>
 
+
+<%@ include file="/WEB-INF/jsp/travel/tpl/head.jsp" %>
+  </head>
 <body>
 	<div id="wrap">
 		<div id="accessibility"><a href="#content">본문 바로가기</a></div>
-		<!-- header -->
-		<div id="header" class="trans">
-				<h1 class="logo trans"><a href="/travel/index.jsp" class="trans">바다여행 |바다여행 일정만들기</a></h1>
-				<ul class="util_top trans">
-					<li><a href="/travel/login/index.jsp">로그인</a></li>
-					<li><a href="/travel/mypage/index.jsp">마이페이지</a></li>
-				</ul>
-                <!-- GNB -->
-                <div class="gnb_wrap">
-                    <ul id="gnb">
-                        <li><a href="/travel/destination/list.do">바다여행</a>
-                            <div>
-                                <ul>
-	                        		<li><a href="/travel/destination/list.do?destRegion=부산">부산광역시</a></li>
-	                        		<li><a href="/travel/destination/list.do?destRegion=대구">대구광역시</a></li>
-	                        		<li><a href="/travel/destination/list.do?destRegion=인천">인천광역시</a></li>
-	                        		<li><a href="/travel/destination/list.do?destRegion=대전">대전광역시</a></li>
-	                        		<li><a href="/travel/destination/list.do?destRegion=울산">울산광역시</a></li>
-	                        		<li><a href="/travel/destination/list.do?destRegion=경기">경기도</a></li>
-	                        		<li><a href="/travel/destination/list.do?destRegion=충북">충청북도</a></li>
-	                        		<li><a href="/travel/destination/list.do?destRegion=충남">충정남도</a></li>
-	                        		<li><a href="/travel/destination/list.do?destRegion=전북">전라북도</a></li>
-	                        		<li><a href="/travel/destination/list.do?destRegion=전남">전라남도</a></li>
-	                        		<li><a href="/travel/destination/list.do?destRegion=경북">경상북도</a></li>
-	                        		<li><a href="/travel/destination/list.do?destRegion=경남">경상남도</a></li>
-	                        		<li><a href="/travel/destination/list.do?destRegion=제주">제주특별자치도</a></li>
-	                        	</ul>
-                            </div>
-                        </li>
-                        <li><a href="/travel/route/register.do">나만의 여행지 만들기</a></li>
-                        <li><a href="/travel/route/list.do">추천일정</a></li>
-                        <li><a href="/travel/honor/index.jsp">명성</a></li>
-                        <li><a href="#">정보광장</a>
-                            <div>
-                               <ul>
-	                                <li><a href="/board/board.do?boardId=bbs_0000000000000014">공지사항</a></li>
-	                                <li><a href="/travel/info_square/faq/index.jsp">Q&A</a></li>
-	                                <li><a href="/travel/info_square/statistics/index.jsp">통계</a></li>
-	                                <li><a href="">개인정보처리방침</a></li>
-	                                <li><a href="">이용약관</a></li>
-	                            </ul>
-                            </div>
-                        </li>
-                    </ul>
-                 </div>
-                <!-- // GNB -->
-                <!-- 모바일 전체메뉴 -->
-                <div class="mobile_wholeview">
-                    <button type="button" class="btn_wv">전체메뉴</button>
-                    <div id="wholeView" class="open">
-                        <div class="wv_wrap">
-                            <div class="wv_wrap_head">
-                                <ul class="wv_util">
-                                	<li><a href="#none">로그인</a></li>
-                                	<li><a href="#none">마이페이지</a></li>
-								</ul>
-                                <button type="button" class="btn_close">전체메뉴 닫기</button>
-                            </div>
-                            <div class="nav">
-                                <ul id="gnb_mobile">
-                                    <li><a href="#">바다여행</a>
-                                    	<ul>
-                                    		<li><a href="/travel/destination/list.do?destRegion=부산">부산광역시</a></li>
-                                    		<li><a href="/travel/destination/list.do?destRegion=대구">대구광역시</a></li>
-                                    		<li><a href="/travel/destination/list.do?destRegion=인천">인천광역시</a></li>
-                                    		<li><a href="/travel/destination/list.do?destRegion=대전">대전광역시</a></li>
-                                    		<li><a href="/travel/destination/list.do?destRegion=울산">울산광역시</a></li>
-                                    		<li><a href="/travel/destination/list.do?destRegion=경기">경기도</a></li>
-                                    		<li><a href="/travel/destination/list.do?destRegion=충북">충청북도</a></li>
-                                    		<li><a href="/travel/destination/list.do?destRegion=충남">충정남도</a></li>
-                                    		<li><a href="/travel/destination/list.do?destRegion=전북">전라북도</a></li>
-                                    		<li><a href="/travel/destination/list.do?destRegion=전남">전라남도</a></li>
-                                    		<li><a href="/travel/destination/list.do?destRegion=경북">경상북도</a></li>
-                                    		<li><a href="/travel/destination/list.do?destRegion=경남">경상남도</a></li>
-                                    		<li><a href="/travel/destination/list.do?destRegion=제주">제주특별자치도</a></li>
-                                    	</ul>
-                                    </li>
-                                    <li><a href="/travel/route/register.do">나만의 여행일정 만들기</a></li>
-                                    <li><a href="/travel/route/list.do">추천여행일정</a></li>
-                                    <li><a href="/travel/honor/index.jsp">명성</a></li>
-                                    <li><a href="">정보광장</a>
-                                       <ul>
-                                            <li><a href="/travel/info_square/notice/index.jsp">공지사항</a></li>
-			                                <li><a href="/travel/info_square/faq/index.jsp">Q&A</a></li>
-			                                <li><a href="/travel/info_square/statistics/index.jsp">통계</a></li>
-			                                <li><a href="">개인정보처리방침</a></li>
-			                                <li><a href="">이용약관</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="wvBg"></div>
-                    </div>
+       <div class="dim-layer">
+          <div class="dimBg"></div>
+          <div id="layer2" class="pop-layer">
+            <div class="pop-container">
+              <div class="pop-conts">
+                <!--content //-->
+                <img src="/seantour_map/images/travel/main/event_popup.png" alt="SNS 친구초대 이벤트! SNS를 통해 친구를 초대하면 추첨을 통해 오누리 상품권을 드립니다. 바다여행을 좋아하는 친구들을 초대하고 온누리 상품권을 받으세요 이벤트기간:6월 한달간" />
+                <div class="btn-r">
+                  <a href="#" class="btn-layerClose">Close</a>
                 </div>
-                <!-- //모바일 전체메뉴 -->
-		      </div>
+                <!--// content-->
+              </div>
+            </div>
+          </div>
+        </div>
+		<!-- header -->
+			<%@ include file="/WEB-INF/jsp/travel/tpl/gnb.jsp" %>
 		<!-- // header -->
 	<!-- contaniner -->
 		<div id="container" >
@@ -130,78 +44,101 @@
 					<div class="main_visual_wrap">
 						<div class="main_visual_content">
 							<div class="main_visual_content_cell">
-								<div class="main_visual_content_cell_weather">
+								<!--<div class="main_visual_content_cell_weather">
 									<div class="weather">
-										<img src="/travel/common/images/main/icon_weather_01.png" alt=""/>
+
+                                   
+										<img src="${pageContext.request.contextPath}/travel/common/images/main/icon_weather_01.png" alt=''/>	
+
 										<span>7℃</span>
 									</div>
 									<div class="dust">
 										<dl>
-											<dt>미세먼지</dt>
-											<dd>좋음<img src="/travel/common/images/main/icon_dust_good.png" alt="좋음"/></dd>
+
+                                            <dt>미세먼지</dt>
+                                           <dd>좋음<img src="${pageContext.request.contextPath}/travel/common/images/main/icon_dust_good.png" alt='좋음'/></dd>
 										</dl>
 										<dl>
-											<dt>초미세먼지</dt>
-											<dd>나쁨<img src="/travel/common/images/main/icon_dust_bad.png" alt="나쁨"/></dd>
+                                            <dt>초미세먼지</dt>
+                                            <dd>나쁨<img src="${pageContext.request.contextPath}/travel/common/images/main/icon_dust_bad.png" alt='나쁨'/></dd>
+
 										</dl>
 									</div>
-								</div>
+											 <div class="vis-weather">
+     										   <p class="weather-date"></p>	
+   										</div>
+								</div>-->
 								  <div class="main_visual_content_cell_left">
 								 	<p class="tit">내가 만드는 <strong>바다여행</strong></p> 	 
 								 	<p class="sub_tit">
 								 		언제든 누구와든 함께 떠나기 좋은<br />
 										공기좋고 깨끗한 국내 바다여행 일정만들기
 								 	</p> 	 
-								  	<ul class="img_lst">
-								  		<li><img src="/travel/common/images/main/img_visual_s1.png" alt="해파랑공원" /></li>
-								  		<li><img src="/travel/common/images/main/img_visual_s2.png" alt="호미곶" /></li>
-								  		<li><img src="/travel/common/images/main/img_visual_s3.png" alt="주상절리" /></li>
+
+								  	<ul class="img_lst"> 
+								  		<li><img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual_s1.png" alt='해파랑공원'/></li>
+                                        <li><img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual_s2.png" alt='호미곶' /></li>
+                                        <li><img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual_s3.png" alt='주상절리'/></li>  
+
 								  	</ul>
 								  </div>
 								 
 								  <div class="main_visual_content_cell_right">
 								  	 <div class="main_visual_content_cell_right_inr">
-									  	 <div class="visual_arrow">
-										  	 <img src="/travel/common/images/main/img_visual_arrow.png" alt="" />
+									  	 <div class="visual_arrow">                                      
+                                                <img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual_arrow.png" alt='' />
+                                             
 										  </div>
-									  	 <a href="#none" class="point point1">인천광역시</a>
-									  	 <a href="#none" class="point point2">경기도</a>
-									  	 <a href="#none" class="point point3">강원도</a>
-									  	 <a href="#none" class="point point4">충청남도</a>
-									  	 <a href="#none" class="point point5">충청북도</a>
-									  	 <a href="#none" class="point point6">경상북도</a>
-									  	 <a href="#none" class="point point7">대구광역시</a>
-									  	 <a href="#none" class="point point8">울산광역시</a>
-									  	 <a href="#none" class="point point9">전라북도</a>
-									  	 <a href="#none" class="point point10">경상남도</a>
-									  	 <a href="#none" class="point point11">부산광역시</a>
-									  	 <a href="#none" class="point point12">전라남도</a>
-									  	 <a href="#none" class="point point13">제주특별시</a>
+                                          <!--  메인 지도 아이콘  class point 부분 css필요 -->
+                                          <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=강원" class='point point3'>강원도</a>
+                                          <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경기" class='point point2'>경기도</a>
+                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경남" class='point point10'>경상남도</a>
+                                          "<a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경북" class='point point6'>경상북도</a>
+                                          <!-- 	<li><a href="/travel/destination/list.do?destRegion=광주광역시">광주광역시</a></li> -->
+                                          <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=대구" class='point point7'>대구광역시</a>
+                                          <!-- <li><a href="/travel/destination/list.do?destRegion=대전">대전광역시</a></li> -->
+                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=부산" class='point point11'>부산광역시</a>
+                                		 <!-- <li><a href="/travel/destination/list.do?destRegion=서울">서울특별시</a></li>-->
+                                        <!-- <li><a href="/travel/destination/list.do?destRegion=세종">세종특별자치시</a></li> -->
+                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=울산" class='point point8'>울산광역시</a>
+                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=인천" class='point point1'>인천광역시</a>
+                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=전남" class='point point12'>전라남도</a>
+                                		 <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=전북" class='point point9'>전라북도</a>
+                                		 <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=제주" class='point point13'>제주특별시</a>
+                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=충남" class='point point4'>충청남도</a>
+                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=충북" class='point point5'>충청북도</a>
+
 									  </div>
 								  </div>
 								  <div class="spot_search">
 								  	<div class="cssSelect">
 								  		<button type="button">부산광역시</button>
 								  		<ul class="lst">
-								  			<li><a href="#none">부산광역시</a></li>
-								  			<li><a href="#none">대구광역시</a></li>
-								  			<li><a href="#none">인천광역시</a></li>
-								  			<li><a href="#none">대전광역시</a></li>
-								  			<li><a href="#none">울산광역시</a></li>
-								  			<li><a href="#none">경기도</a></li>
-								  			<li><a href="#none">충청북도</a></li>
-								  			<li><a href="#none">충청남도</a></li>
-								  			<li><a href="#none">전라북도</a></li>
-								  			<li><a href="#none">전라남도</a></li>
-								  			<li><a href="#none">경상북도</a></li>
-								  			<li><a href="#none">경상남도</a></li>
-								  			<li><a href="#none">제주특별자치도</a></li>
+								  		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=강원">강원도</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경기">경기도</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경남">경상남도</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경북">경상북도</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=광주">광주광역시</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=대구">경기도</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=대전">대전광역시</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=부산">부산광역시</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=서울">서울특별시</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=세종">세종특별자치시</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=울산">울산광역시</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=인천">인천광역시</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=전남">전라남도</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=전북">전라북도</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=제주">제주도</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=충남">충청남도</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=충북">충청북도</a></li>
+
 								  		</ul>
 							  		</div>
 								  </div>
 								  <div class="visual_go">
-								  		<a href="#none" class="button mv_btn01">여행일정 만들기</a>
-								  		<a href="#none" class="button mv_btn02">여행일정 검색</a>
+								  		<a href="${pageContext.request.contextPath}/travel/route/register.do" class="button mv_btn01">여행일정 만들기</a>
+								  		<a href="${pageContext.request.contextPath}/travel/route/list.do" class="button mv_btn02">여행일정 검색</a>
+
 								  </div>
 							</div>
 						</div>
@@ -214,54 +151,66 @@
 					    	<p class="event_sub_txt">바다여행을 좋아하는 친구들을 초대하면 추첨을 통해 온누리 상품권을 받으세요.</p>
 					    </div>
 					    <div class="event_btnbox">
-					    	<a href="#none" class="button">이벤트 보기</a>
+					    	<a href="#layer2" class="button btn-example">이벤트 보기</a>
 					    </div>
 				    </div>
 			    </div> <!-- // section01 -->  
 			    <div class="section02 aos-init aos-animate" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
 			    	<div class="minr">
-				    	<div class="tit_box">
+					<%-- 실제 데이터가 축적되면 이 부분부터 삭제 또는 주석 처리  --%>
+				    	<%-- <div class="tit_box">
 				    		<p class="txt">국내 인기 바다여행지를 추천해드립니다.</p>
 					        <p class="tit">베스트 <strong>여행 추천 일정</strong></p>
 					    </div>
-					    <div class="vest_recommend_box">
+						<div class="vest_recommend_box">
 					    	<div class="name_tit">BEST 여행일정</div>
 					    	<div class="col01">
-					    		<div class="img"><a href="#none"><img src="/travel/common/images/main/img_vest_photo01.jpg" alt="" /></a></div>
+
+					    		<div class="img"><a href="/seantour_map/travel/route/detail.do?routId=ROUT001165"><img src="${pageContext.request.contextPath}/images/travel/main/img_vest2_photo01.jpg" alt="" /></a></div>
+
 					    		<div class="tbox">
-					    			<span>[삼척]</span>
-					    			<p>맑고 깨끗한 삼척의<br />바다를 즐기다</p>
+					    			<span>[제주]</span>
+					    			<p>열린관광지로 향한<br />가벼운 발걸음</p>
 					    		</div>
 					    	</div>
 					    	<div class="col02">
 					    		<ul>
 					    			<li>
-					    				<a href="#none">
-						    				<span class="img"><img src="/travel/common/images/main/img_vest_photo02.jpg" alt="" /></span>
-						    				<span class="text"><span class="local">[부산]</span>부산의 바다를 제대로 감상하고 맛볼 수 있는 해운대..</span>
+					    				<a href="/seantour_map/travel/route/detail.do?routId=ROUT001112">
+
+						    				<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_vest2_photo02.jpg" alt="" /></span>
+						    				<span class="text"><span class="local">[전북]</span>시인이 꿈꾸던 ‘그 먼 나라’를 찾아</span>
 					    				</a>
 					    			</li>
 					    			<li>
-					    				<a href="#none">
-						    				<span class="img"><img src="/travel/common/images/main/img_vest_photo03.jpg" alt="" /></span>
-						    				<span class="text"><span class="local">[전남]</span>여수시 우주과학 체험여행</span>
+					    				<a href="/seantour_map/travel/route/detail.do?routId=ROUT001067">
+						    				<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_vest2_photo03.jpg" alt="" /></span>
+						    				<span class="text"><span class="local">[전남]</span>자연 그대로의 아름다움을 느끼는 여수여</span>
 					    				</a>
 					    			</li>
 					    			<li>
-					    				<a href="#none">
-						    				<span class="img"><img src="/travel/common/images/main/img_vest_photo04.jpg" alt="" /></span>
-						    				<span class="text"><span class="local">[경남]</span>공룡발자국 따라 떠나는 고성 바다여행</span>
+					    				<a href="/seantour_map/travel/route/detail.do?routId=ROUT001003">
+						    				<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_vest2_photo04.jpg" alt="" /></span>
+						    				<span class="text"><span class="local">[전남]</span>한적한 바닷길 따라 소등섬 한 바퀴</span>
 					    				</a>
 					    			</li>
 					    			<li>
-					    				<a href="#none">
-						    				<span class="img"><img src="/travel/common/images/main/img_vest_photo05.jpg" alt="" /></span>
-						    				<span class="text"><span class="local">[전남]</span>전남 여수시 우주과학 체험여행</span>
+					    				<a href="/seantour_map/travel/route/detail.do?routId=ROUT000943">
+						    				<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_vest2_photo05.jpg" alt="" /></span>
+						    				<span class="text"><span class="local">[부산]</span>부산 앞바다를 한눈에 아우르다</span>
 					    				</a>
 					    			</li>
 					    		</ul>
 					    	</div>
-					    </div>
+					    </div>  --%>
+					<%-- 실제 데이터가 축적되면 이 부분까지 삭제 또는 주석 처리  --%>
+					<%-- 실제 데이터가 축적되면 아래 c:import 영역을 주석 해제 바람--%>
+						<c:import url="/travel/route/bestlatest.do" charEncoding="utf-8">
+						    <c:param name="pageUnit" value="5" />
+						</c:import>
+					
+					
+					<%-- 
 					    <div class="writer_recommend_box">
 					    	<div class="name_tit">여행작가<br />추천일정</div>
 					    	<div class="tit_box">
@@ -275,7 +224,8 @@
 					    	<div class="main_writer_slider">
 								<div class="main_writer_item">
 							        <div class="main_writer_img">
-							            <img src="/travel/common/images/main/img_writer_photo01.jpg" alt="" />
+
+							            <img src="${pageContext.request.contextPath/travel/common/images/main/img_writer_photo01.jpg" alt="" />
 							        </div>
 							        <div class="main_writer_txt">
 							        	<p class="tit">
@@ -294,7 +244,7 @@
 								</div>
 								<div class="main_writer_item">
 							        <div class="main_writer_img">
-							            <img src="/travel/common/images/main/img_writer_photo01.jpg" alt="" />
+							            <img src="${pageContext.request.contextPath}/travel/common/images/main/img_writer_photo01.jpg" alt="" />
 							        </div>
 							        <div class="main_writer_txt">
 							        	<p class="tit">
@@ -308,12 +258,22 @@
 							        	</p>
 							        	<p class="more2"><a href="#none">자세히 보기</a></p>
 							        </div>
-								</div>
+								</div> 
 							</div>
 					    </div>
+					--%>
+						<c:import url="/travel/route/latest.do" charEncoding="utf-8">
+						    <c:param name="pageUnit" value="5" />
+						    <c:param name="titleLen" value="350" />
+						</c:import>
+
 			    	</div>
 			    </div><!-- // section02 --> 
-			    <div class="section03 aos-init aos-animate" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+			    <!-- section03 -->
+			    			<c:import url="/travel/destination/recolist.do" charEncoding="utf-8">			    			
+			    			</c:import>
+			    
+		  <%--   <div class="section03 aos-init aos-animate" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
 					<div class="minr">
 					    <div class="tit_box">
 					    	<p class="txt">다양한 해양레저 컨텐츠를 추천해드립니다.</p>
@@ -328,133 +288,116 @@
 								<div class="main_cont_item">
 							        <div class="main_cont_img">
 							        	<div class="inner">
-								            <img src="/travel/common/images/main/img_cont_photo01.jpg" alt="" />
+								            <img src="${pageContext.request.contextPath}/images/travel/main/img_cont3_photo01.jpg" alt="" />
 								            <div class="tbox">
-								            	<p class="sub">인천 소무의도</p>
-								            	<p class="tit">무의 바다누리길</p>
+								            	<p class="sub">부산</p>
+								            	<p class="tit">해운대삼포길</p>
 							            	</div>
-								            <div class="more"><a href="#none">자세히보기</a></div>
+								           <div class="more"><a href="/seantour_map/travel/destination/detail.do?destId=FCID112467">자세히보기</a></div>
 								            <div class="inner_box"></div>
 							            </div>
 							        </div>
-							        <div class="main_cont_txt">
+							        <!--<div class="main_cont_txt">
 							        	<p class="tit">
-							        		<span>무의 바다누리길</span>
+							        		<span>문탠로드</span>
 							        		여행코스
 							        	</p>
 							        	<div class="course">
 							        	<ul class="lst">
-							        		<li>광명항</li>
-							        		<li>소무의인도교</li>
-							        		<li>떼무리선착장</li>
-							        		<li>진입광장</li>
-							        		<li>부처깨미전망대</li>
-							        		<li>몽여해변</li>
-							        		<li>광명항</li>
-							        		<li>소무의인도교</li>
-							        		<li>떼무리선착장</li>
-							        		<li>진입광장</li>
-							        		<li>부처깨미전망대</li>
-							        		<li>몽여해변</li>
+							        		<li>누리마루 APEC하우스</li>
+							        		<li>해운대해수욕장</li>
+							        		<li>송정해수욕장</li>
+							        		<li>해동용궁사(부산)</li>
 							        	</ul>	
 							        	</div>
-							        </div>
+							        </div>-->
 								</div>
 								<div class="main_cont_item">
 							        <div class="main_cont_img">
 							        	<div class="inner">
-								            <img src="/travel/common/images/main/img_cont_photo01.jpg" alt="" />
+								            <img src="${pageContext.request.contextPath}/images/travel/main/img_cont3_photo02.jpg" alt="" />
 								            <div class="tbox">
-								            	<p class="sub">여수 금오도</p>
-								            	<p class="tit">비렁길 트레킹 여행</p>
+								            	<p class="sub">제주</p>
+								            	<p class="tit">제주올레8코스</p>
 							            	</div>
-								            <div class="more"><a href="#none">자세히보기</a></div>
+								             <div class="more"><a href="/seantour_map/travel/destination/detail.do?destId=FCID112458">자세히보기</a></div>
 								            <div class="inner_box"></div>
 							           </div>
 							        </div>
-							        <div class="main_cont_txt">
+							        <!--<div class="main_cont_txt">
 							        	<p class="tit">
-							        		<span>금오도 비렁길</span>
+							        		<span>이순신 유적지</span>
 							        		여행코스
 							        	</p>
 							        	<div class="course">
 							        	<ul class="lst">
-							        		<li>함구미</li>
-							        		<li>미역널방</li>
-							        		<li>송광사절터</li>
-							        		<li>신선대</li>
-							        		<li>두포</li>
+							        		<li>오동도</li>
+							        		<li>여수 진남관</li>
+							        		<li>향일암(여수)</li>
+							        		<li>돌산도</li>
 							        	</ul>	
 							        	</div>
-							        </div>
+							        </div>-->
 								</div>
 								<div class="main_cont_item">
 							        <div class="main_cont_img">
 							        	<div class="inner">
-								            <img src="/travel/common/images/main/img_cont_photo01.jpg" alt="" />
+								            <img src="${pageContext.request.contextPath}/images/travel/main/img_cont3_photo03.jpg" alt="" />
 								            <div class="tbox">
-								            	<p class="sub">인천 소무의도</p>
-								            	<p class="tit">무의 바다누리길</p>
+								            	<p class="sub">강원</p>
+								            	<p class="tit">아들바위 가는 길</p>
 							            	</div>
-								            <div class="more"><a href="#none">자세히보기</a></div>
+								            <div class="more"><a href="/seantour_map/travel/destination/detail.do?destId=FCID112447">자세히보기</a></div>
 								            <div class="inner_box"></div>
 							            </div>
 							        </div>
-							        <div class="main_cont_txt">
+							        <!--<div class="main_cont_txt">
 							        	<p class="tit">
-							        		<span>무의 바다누리길</span>
+							        		<span>바다를만나는 체험</span>
 							        		여행코스
 							        	</p>
 							        	<div class="course">
 							        	<ul class="lst">
-							        		<li>광명항</li>
-							        		<li>소무의인도교</li>
-							        		<li>떼무리선착장</li>
-							        		<li>진입광장</li>
-							        		<li>부처깨미전망대</li>
-							        		<li>몽여해변</li>
-							        		<li>광명항</li>
-							        		<li>소무의인도교</li>
-							        		<li>떼무리선착장</li>
-							        		<li>진입광장</li>
-							        		<li>부처깨미전망대</li>
-							        		<li>몽여해변</li>
+							        		<li>해양과학체험전시관(KORDIUM)</li>
+							        		<li>누에섬 등대전망대</li>
+							        		<li>안산어촌민속박물관</li>
+							        		<li>종현어촌체험마을</li>
 							        	</ul>	
 							        	</div>
-							        </div>
+							        </div>-->
 								</div>
 								<div class="main_cont_item">
 							        <div class="main_cont_img">
 							        	<div class="inner">
-								            <img src="/travel/common/images/main/img_cont_photo01.jpg" alt="" />
+								            <img src="${pageContext.request.contextPath}/images/travel/main/img_cont3_photo04.jpg" alt="" />
 								            <div class="tbox">
-								            	<p class="sub">여수 금오도</p>
-								            	<p class="tit">비렁길 트레킹 여행</p>
+								            	<p class="sub">전남</p>
+								            	<p class="tit">신비의 바닷길</p>
 							            	</div>
-								            <div class="more"><a href="#none">자세히보기</a></div>
+								            <div class="more"><a href="/seantour_map/travel/destination/detail.do?destId=FCID112444">자세히보기</a></div>
 								            <div class="inner_box"></div>
 							           </div>
 							        </div>
-							        <div class="main_cont_txt">
+							        <!--<div class="main_cont_txt">
 							        	<p class="tit">
-							        		<span>금오도 비렁길</span>
+							        		<span>블루로드</span>
 							        		여행코스
 							        	</p>
 							        	<div class="course">
 							        	<ul class="lst">
-							        		<li>함구미</li>
-							        		<li>미역널방</li>
-							        		<li>송광사절터</li>
-							        		<li>신선대</li>
-							        		<li>두포</li>
+							        		<li>고래불해수욕장</li>
+							        		<li>괴시리 전통마을</li>
+							        		<li>영덕해맞이공원</li>
+							        		<li>영덕풍력발전단지</li>
+							        		<li>강구항</li>
 							        	</ul>	
 							        	</div>
-							        </div>
+							        </div>-->
 								</div>
 							</div>
 						</div>
 					</div>
-				</div><!-- // section03 --> 
+				</div><!-- // section03 -->  --%>
 			    <div class="section04 aos-init aos-animate" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
 					<div class="minr">
 	                    <div class="main_event_wrap">
@@ -466,75 +409,75 @@
 	                        <div class="main_event_slider">
 								<div class="main_event_item">
 							        <figure>
-							            <img src="/travel/common/images/main/img_ev_photo01.jpg" alt="" />
+							            <img src="${pageContext.request.contextPath}/travel/common/images/main/img_ev_photo01.jpg" alt="" />
 							        </figure>
 							        <div class="main_event_txt">
-							        	<p class="tit"><a href="#none">부산크리스마스트리 문화 축제</a></p>
-							        	<p class="date">2020. 01. 21 ~ 2020. 01. 24</p>
+							        	<p class="tit"><a href="http://www.ulsanwhale.com/" target="_blank">울산 고래축제 2020</a></p>
+							        	<p class="date">2020. 06. 12 ~ 2020. 06. 14</p>
 							        	<p class="txt">
-							        		부산크리스마스트리문화축제가 11회째를 
-											맞이했다. 트리축제라는 이름처럼 빛의 향연이 
-											광복동 거리를 화려하게 수놓고, 문화축제라...
+							        		고래와 바다환경을 보호하며 자연과 인간이 공존
+											하는 축제를 만들기 위해 준비한 다양한 볼거리와
+											즐길거리로 관광객들에게 즐거움을 선사한다.
 							        	</p>
 							        </div>
 								</div>
 								<div class="main_event_item">
 							        <figure>
-							            <img src="/travel/common/images/main/img_ev_photo02.jpg" alt="" />
+							            <img src="${pageContext.request.contextPath}/travel/common/images/main/img_ev_photo02.jpg" alt="" />
 							        </figure>
 							        <div class="main_event_txt">
-							        	<p class="tit"><a href="#none">포천산정호수 썰매축제 2020</a></p>
-							        	<p class="date">2020. 01. 30</p>
+							        	<p class="tit"><a href="https://korean.visitkorea.or.kr/detail/fes_detail.do?cotid=b168f3c7-f528-4f49-9b37-9ead48400169" target="_blank">보령머드축제 2020</a></p>
+							        	<p class="date">2020. 07. 17 ~ 2020. 07. 26</p>
 							        	<p class="txt">
-							        		다채로운 볼거리와 즐길거리,먹거리가 가득한 
-											썰매축제에 가족,연인,친구와 함께 오셔서 
-											산정호수 풍경도 감상하시고,썰매축제에...
+							        		보령머드의 우수성을 알리고  대천해수욕장을
+											비롯한 지역 관광명소를 홍보코자 98년 7월에 
+											축제를 개최하였으며 세계적인 축제로 육성...
 							        	</p>
 							        </div>
 								</div>
 								<div class="main_event_item">
 							        <figure>
-							            <img src="/travel/common/images/main/img_ev_photo03.jpg" alt="" />
+							            <img src="${pageContext.request.contextPath}/travel/common/images/main/img_ev_photo03.jpg" alt="" />
 							        </figure>
-							        <div class="main_event_txt">
-							        	<p class="tit"><a href="#none">산정호수 윈터 페스타 2019</a></p>
-							        	<p class="date">2020. 02. 15 ~ 2020. 02. 18</p>
+							       <div class="main_event_txt">
+							        	<p class="tit"><a href="https://blog.naver.com/greenplugged/221936033625" target="_blank">그린플러그드 동해</a></p>
+							        	<p class="date">2020. 07. 25 ~ 2020. 07. 26</p>
 							        	<p class="txt">
-							        		꽁꽁 언 산정호수 위에서 즐기는 스릴만점
-											빙상체험 "산정호수 썰매축제"
+							        		동해에서만 만날 수 있는 ‘한여름의뮤토피아’에서
+											여러분과 함께 좋은 추억을 만들어 나가려 합니다.
 							        	</p>
 							        </div>
 								</div>
 								<div class="main_event_item">
 							        <figure>
-							            <img src="/travel/common/images/main/img_ev_photo01.jpg" alt="" />
+							            <img src="${pageContext.request.contextPath}/travel/common/images/main/img_ev_photo04.jpg" alt="" />
 							        </figure>
-							        <div class="main_event_txt">
-							        	<p class="tit"><a href="#none">부산크리스마스트리 문화 축제</a></p>
-							        	<p class="date">2020. 01. 21 ~ 2020. 01. 24</p>
+							       <div class="main_event_txt">
+							        	<p class="tit"><a href="https://korean.visitkorea.or.kr/detail/fes_detail.do?cotid=b2bee245-ad29-45a7-a1cb-10c548ed062b" target="_blank">통영한산대첩축제 2020</a></p>
+							        	<p class="date">2020. 08. 11 ~ 2020. 08. 15</p>
 							        	<p class="txt">
-							        		부산크리스마스트리문화축제가 11회째를 
-											맞이했다. 트리축제라는 이름처럼 빛의 향연이 
-											광복동 거리를 화려하게 수놓고, 문화축제라...
+							        		이순신 장군과 바다가 함께하는 축제답게 수군
+											체험 노젓기대회나 카누 노젓기대회 등 해양과
+											밀접한 다양하고 재미있는 프로그램을 제공한다.
 							        	</p>
 							        </div>
 								</div>
 								<div class="main_event_item">
 							        <figure>
-							            <img src="/travel/common/images/main/img_ev_photo01.jpg" alt="" />
+							            <img src="${pageContext.request.contextPath}/travel/common/images/main/img_ev_photo05.jpg" alt="" />
 							        </figure>
-							        <div class="main_event_txt">
-							        	<p class="tit"><a href="#none">부산크리스마스트리 문화 축제</a></p>
-							        	<p class="date">2020. 01. 21 ~ 2020. 01. 24</p>
-							        	<p class="txt">
-							        		부산크리스마스트리문화축제가 11회째를 
-											맞이했다. 트리축제라는 이름처럼 빛의 향연이 
-											광복동 거리를 화려하게 수놓고, 문화축제라...
-							        	</p>
-							        </div>
+							       <div class="main_event_txt">
+										<p class="tit"><a href="https://korean.visitkorea.or.kr/detail/fes_detail.do?cotid=1cb85c13-045c-413a-83bf-97d615064abe" target="_blank">화성 뱃놀이축제</a></p>
+										<p class="date">2020. 09. 11 ~ 2020. 09. 13</p>
+										<p class="txt">
+											화성시의 풍부한 문화관광 자원을 활용하여
+											승선체험, 육상 해상 체험프로그램과 캠핑장 등
+											다양한 부대 프로그램을 즐길 수 있는 국내 최고...
+										</p>
+									</div>
 								</div>
 							</div>
-							<div class="more"><a href="#none">축제일정 더보기</a></div>
+							<!--<div class="more"><a href="#none">축제일정 더보기</a></div>-->
 						</div>
 						<div class="fame_box">
 							<div class="txt_area">
@@ -547,7 +490,7 @@
 									홈페이 활동에 따라 올라가는 <br />
 									내 점수를 확인해보세요.
 								</p>
-								<p class="more2"><a href="#none">자세히보기</a></p>
+								<p class="more2"><a href="/seantour_map/travel/fame/ranking.do">자세히보기</a></p>
 							</div>
 							<ul class="fame_item">
 								<li>
@@ -595,37 +538,9 @@
 			<!--// cont_main -->
 		</div>
 		<!--// container -->
-	 <!-- footer -->
-		<div id="footer">
-			<div class="inr">
-				<div class="foot_wrap">
-					<ul class="foot_util">
-						<li><a href="#none">개인정보처리방침</a></li>
-						<li><a href="#none">이메일무단수집거부</a></li>
-						<li><a href="#none">이용약관</a></li>
-						<li><a href="#none">고객의소리</a></li>
-						<li><a href="#none">사이트맵</a></li>
-					</ul>
-					<ul class="foot_info">
-						<li>08588 서울특별시 금천구 가산디지털2로 53 한라시그마밸리 12층</li>
-						<li><strong class="color_light_red">080-500-8579</strong>(파도친구) 평일 09:00 ~ 18:00, 점심시간 12:00 ~ 13:00<br /> seantourfipa@gmail.com</li>
-						<li>(사) 전국어촌체험마을연합회 | 대표 권영환</li>
-					</ul>
-				</div>
-				<div class="footer_go">
-					<a href="#none" class="modipy">
-						수정정정요청
-					</a>
-					<a  href="#none" class="notice">
-						공지사항
-					</a>
-				</div>
-				<div class="skip_top">
-					<a href="#wrap"><div class="skip_top_btn"><span>TOP</span></div></a>
-				</div>
-			</div>
-		</div>
-		<!-- // Footer -->
+		<!-- footer -->
+		<%@ include file="/WEB-INF/jsp/travel/tpl/foot.jsp" %>
+		<!--//footer -->
 	</div>
 	<!-- // wrap -->
 </body>

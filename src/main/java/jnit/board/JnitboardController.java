@@ -397,7 +397,7 @@ public class JnitboardController {
 				if(localVO.getPermWrite()){
 					model.addAllAttributes(write(boardId, request, model, localVO));
 				}else{
-					error = isLanguage("권한이 없습니다.", lang);
+					/*error = isLanguage("권한이 없습니다.", lang);*/
 				}
 			}else{//답변글쓰기
 				modeStr = isLanguage("답변글 등록", lang);
@@ -1892,8 +1892,10 @@ public class JnitboardController {
 		JnitboardinfoVO jnitboardinfoVO = new JnitboardinfoVO();
 		jnitboardinfoVO.setBoardId(boardId);
 		jnitboardinfoVO = infoService.selectJnitboardinfo(jnitboardinfoVO);
+		
 		//String antisamyTinymce = request.getSession().getServletContext().getRealPath("") + SEPERATOR + "WEB-INF/classes/antisamy-tinymce-1.4.4.xml";
-		String antisamyTinymce = request.getSession().getServletContext().getRealPath("") + SEPERATOR + "WEB-INF/classes/antisamy-anythinggoes-1.4.4.xml";
+		//String antisamyTinymce = request.getSession().getServletContext().getRealPath("") + SEPERATOR + "WEB-INF/classes/antisamy-anythinggoes-1.4.4.xml";
+		String antisamyTinymce = this.getClass().getClassLoader().getResource("antisamy-anythinggoes-1.4.4.xml").getPath();
 
 		Policy policy = Policy.getInstance(antisamyTinymce);
 		AntiSamy as = new AntiSamy(); // Create AntiSamy object

@@ -286,6 +286,8 @@ public class CmsConfigController {
 			String twitterOauthSecret = NullUtil.nullString(request.getParameter("twitterOauthSecret"));
 			String naverOauthId = NullUtil.nullString(request.getParameter("naverOauthId"));
 			String naverOauthSecret = NullUtil.nullString(request.getParameter("naverOauthSecret"));
+			String kakaoOauthId = NullUtil.nullString(request.getParameter("kakaoOauthId"));
+			String kakaoOauthSecret = NullUtil.nullString(request.getParameter("kakaoOauthSecret"));
 			
 			
 			Properties props = new Properties();		
@@ -313,6 +315,12 @@ public class CmsConfigController {
 			}
 			if(!naverOauthSecret.equals("")){
 				props.setProperty("naverOauthSecret", naverOauthSecret);
+			}
+			if(!kakaoOauthId.equals("")){
+				props.setProperty("kakaoOauthId", kakaoOauthId);
+			}
+			if(!naverOauthSecret.equals("")){
+				props.setProperty("kakaoOauthSecret", kakaoOauthSecret);
 			}
 				
 			FileOutputStream fos = new FileOutputStream(defaultPath);

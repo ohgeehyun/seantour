@@ -65,7 +65,7 @@ $(document).ready(function(){
 /*-----------------------------------------------------------------*/
 // 나의 여행지 만들기 일정 추가
 /*-----------------------------------------------------------------*/
-$(function() {
+/*$(function() {
 	var v_c = 1;
 	var tab_mn =$(".day_lst > ul > li"); 
 	var tab_mn_div =$(".day_lst > ul > li > div");
@@ -76,6 +76,8 @@ $(function() {
 	$(".tabh").click(function(){
 		tab_mn_div.hide();
 		$(this).next("div").show();
+		$(this).css("border", "1px solid red");
+		$(".tabh").not($(this)).css("border", "none");
 	});
 	
 	
@@ -115,23 +117,12 @@ $(function() {
 	$(".day_delect").click(function(){
 		$(".tab_list > li:visible").hide();
 	});	
-});
+});*/
 /*-----------------------------------------------------------------*/
 // Box Slider
 /*-----------------------------------------------------------------*/
 $(function(){
 
-	//나만의 일정 만들기 상세페이지
-	var detailzone_slider = $('.detailzone .lst').bxSlider({
-			mode: 'fade',//슬라이드 효과설정
-			slideZIndex: 30,//
-			//auto: true,
-			autoHover: true,
-			autoControls: false,//paly, stop, puase 슬라이드 컨트롤 버튼
-			controls: false,
-			//autoStart: false,
-			pager: true
-	});
 	
 	//바다여행 상세페이지
 	var localzone_slider = $('.localzone .lst').bxSlider({
@@ -167,12 +158,12 @@ $(function(){
 /*-----------------------------------------------------------------*/
 $(function(){
 	$(".detail_info_area").hide();
-	$(".result_list .more").click(function(){
+	/*$(".result_list .more").click(function(){
 		//===============================
 		//DB에서 값을 가져와서 먼저 update 해놓을것 ajax.
 		//===============================
 		$(".detail_info_area").show();
-	});
+	});*/
 	
 	$(".detail_info_area .close").click(function(){
 		$(".detail_info_area").hide();
@@ -285,7 +276,7 @@ function faq_open(el)
 // drop and down
 /*-----------------------------------------------------------------*/
 
-$(function() {
+/*$(function() {
 	new Sortable(example3Left, {
 	     group: 'shared',
 	    animation: 150
@@ -331,9 +322,9 @@ $(function() {
 			put: false // Do not allow items to be put into this list
 	    },
 	    animation: 150
-	});*/
+	});
 	
-});
+});*/
 
 /*-----------------------------------------------------------------*/
 // 프로토 타입 slider
@@ -372,7 +363,7 @@ $(function() {
 /*-----------------------------------------------------------------*/
 // memo
 /*-----------------------------------------------------------------*/
-$(document).ready(function(){
+/*$(document).ready(function(){
 	$(".day_memo").click(function(){
 		$(this).siblings("div").slideToggle();
 	});
@@ -402,7 +393,7 @@ $.fn.center = function() {
 
 	return this;
 }
-
+*/
 
 
 /*-----------------------------------------------------------------*/
@@ -411,7 +402,7 @@ $.fn.center = function() {
 
 //faq형태
 
-$(document).ready(function(){
+/*$(document).ready(function(){
 	$(".day_sc dd").hide();
 	$(".day_sc:first dd").show();
 	$(".day_sc dt a").click(function(){
@@ -429,4 +420,4 @@ $(document).ready(function(){
 });
 		
 $(document).ready(function(){
-});
+});*/

@@ -45,37 +45,34 @@
 							<form:input path="searchKeyword" cssClass="txt" maxlength="50" />
 						</div>
 
-	                    <div class="widget-content nopadding" style="overflow: auto; height: 582px;">
+	                    <div class="widget-content nopadding" style="overflow: auto; height: 650px;">
 							<table class="table table-bordered table-striped table-hover" summary="그룹 테이블">
 								<thead>
 									<tr>
-										<th>일정그룹</th>
+										<th>대표이미지</th>
 										<th>일정제목</th>
-										<th>일차</th>
 										<th>지역</th>
-										<th>출발지</th>
-										<th>경유지</th>
-										<th>도착지</th>
+										<th>작성자</th>
+										<th>추천수</th>
+										<th>조회수</th>
+										<th>작성일</th>
 										<th>관리</th>
 									</tr>
 								</thead>
 								<tbody>		
 								<c:forEach var="result" items="${resultList}" varStatus="status">
 									<tr>
-										<td class="conts"><c:out value="${result.routGroup}"/></td>
-										<td class="conts"><c:out value="${result.routTitle}"/></td>
-										<td class="conts"><c:out value="${result.routDays}"/> 일차</td>
-										<td class="conts"><c:out value="${result.routRegion}"/></td>
-										<td class="conts"><c:out value="${result.routStartPoint}"/></td>
 										<td class="conts">
-											<c:forEach var="points" items="${result.routePointList}" varStatus="stat">
-												<span class="badge badge-small">
-													<c:out value="${stat.count}" />-<c:out value="${points.destTitle}" />
-												</span>
-													<c:if test="${not stat.last}"><i class="icon-arrow-right"></c:if> 
-											</c:forEach>
+											<%-- <c:set var="routThumbPath" value="${empty result.routThumbPath ? '/images/travel/content/noimg.jpg' : 'http://seantour.com'.concat(result.routThumbPath)}" /> --%>
+											<c:set var="routThumbPath" value="${empty result.routThumbPath ? '/images/travel/content/noimg.jpg' : result.routThumbPath}" />
+											<img src='<c:url value="${routThumbPath}"/>' alt='<c:out value="${result.routTitle}"/>' style="width:50px;height:40px;" />
 										</td>
-										<td class="conts"><c:out value="${result.routDestPoint}"/></td>
+										<td class="conts"><c:out value="${result.routTitle}"/></td>
+										<td class="conts"><c:out value="${result.routRegion}"/></td>
+										<td class="conts"><c:out value="${result.routRegMemberNm}"/></td>
+										<td class="conts"><c:out value="${result.routRecomm}"/></td>
+										<td class="conts"><c:out value="${result.routHit}"/></td>
+										<td class="conts"><c:out value="${fn:substring(result.routRegDate,0,10)}"/></td>
 										<td class="conts">
 											<a href="<c:url value="/cms/travel/route/modify.do?routId=${result.routId}&screenMode=up"/>" class="btn btn-small"><i class="icon-edit-sign"></i> 수정</a>
 											<%-- <a href="<c:url value="/cms/travel/route/delete.do?routId=${result.routId}"/>" class="btn btn-small"><i class="icon-trash"></i> 삭제</a> --%>
@@ -98,7 +95,7 @@
 	</div>
 </div>
 
-<link rel="stylesheet" type="text/css" href="/css/travel/cms.admin.css">
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/travel/cms.admin.css"/>">
 <script type="text/javascript">
 function fn_egov_link_page(pageNo){
 	document.getElementById("travelRoute").pageIndex.value = pageNo;

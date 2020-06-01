@@ -40,8 +40,8 @@
 		<c:if test="${empty error}">
 			<c:if test="${useSkeleton}">
 				<script type="text/javaScript">
-				<!--
-				$(document).ready(function(){					
+				
+				/* $(document).ready(function(){					
 					var pageTitle = document.title;
 					var boardTitle = "";
 					var splitTitle = pageTitle.split("<");
@@ -49,10 +49,10 @@
 					for(var i=0; i<splitTitle.length-1; i++){
 						boardTitle = boardTitle + splitTitle[i] + " <";
 					}
-				    boardTitle = boardTitle + splitTitle[splitTitle.length-1];
+				    boardTitle = boardTitle + splitTitle[splitTitlecd.length-1];
 					$(document).attr("title",boardTitle);
-				});
-				// -->
+				}); */
+				 
 				</script>
 				<c:if test="${boardinfoVO.useWyswyg == 1}">
 					<script type="text/javaScript">
@@ -76,7 +76,7 @@
 		</c:if>
 		<c:if test="${not empty error}">
 		<script type="text/javascript">
-		<!--
+	
 			//getSitePath = header.jsp
 			var returnUrl = "<%=request.getRequestURI()%>";			
 			<c:if test="${loginVO.mbrId != null}">

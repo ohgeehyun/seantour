@@ -7,6 +7,8 @@
 	<typeAlias alias="travelFamePoint" type="geocni.travel.member.domain.TravelFamePoint" />
 	<typeAlias alias="travelFameHistory" type="geocni.travel.member.domain.TravelFameHistory" />
 	<typeAlias alias="travelClipboard" type="geocni.travel.member.domain.TravelClipboard" />
+	<typeAlias alias="travelReaction" type="geocni.travel.member.domain.TravelReaction" />
+	<typeAlias alias="travelDestination" type="geocni.travel.route.domain.TravelDestination" />
 
 	<!-- 명성 적립 정보 -->
 	<insert id="travelMemberDAO.upsertTravelFamePoint">
@@ -29,14 +31,49 @@
 				, fame_reco_case=#fameRecoCase#
 				, fame_shared_case=#fameSharedCase#
 		]]>
+	</insert> 
+
+	<insert id="travelMemberDAO.upsertTravelFamePointByReco">
+		<![CDATA[
+			INSERT INTO geo_fame_point (
+				  fame_user_id
+				, fame_point_sum
+				, fame_reco_case
+			) VALUES (				
+				  #fameUserId#
+				, #famePointSum#
+				, 1
+			) ON DUPLICATE KEY UPDATE 
+				  fame_point_sum=(fame_point_sum + #famePointSum#)
+				, fame_reco_case=(fame_reco_case + 1)
+		]]>
 	</insert>
 	
+	<insert id="travelMemberDAO.upsertTravelFamePointByShare">
+		<![CDATA[
+			INSERT INTO geo_fame_point (
+				  fame_user_id
+				, fame_point_sum
+				, fame_shared_case
+			) VALUES (				
+				  #fameUserId#
+				, #famePointSum#
+				, 1
+			) ON DUPLICATE KEY UPDATE 
+				  fame_point_sum=(fame_point_sum + #famePointSum#)
+				, fame_shared_case=(fame_shared_case + 1)
+		]]>
+	</insert>
+
+	<update id="travelMemberDAO.updateTravelFamePointRanking">
+		<!-- 포인트 누적 순서대로 랭킹 재정렬 -->
+		<![CDATA[
+			SELECT @rank:=0;
+			UPDATE geo_fame_point SET fame_ranking=@rank:=@rank+1 ORDER BY fame_point_sum DESC 
+		]]>
+	</update> 
 	<!-- 
-	포인트 누적 순서대로 랭킹 재정렬
-	SELECT @rank:=0;
-	UPDATE geo_fame_point SET FAME_RANKING=@rank:=@rank+1 ORDER BY FAME_POINT_SUM desc ; 
-	-->
-	<!-- <update id="travelMemberDAO.updateTravelFamePoint">
+	<update id="travelMemberDAO.updateTravelFamePoint">
 		<![CDATA[
 			UPDATE geo_fame_point
 			SET 
@@ -46,7 +83,8 @@
 				, fame_shared_case=#fameSharedCase#
 			WHERE fame_user_id=#fameUserId#
 		]]>
-	</update> -->
+	</update> 
+	-->
 	
 	<delete id="travelMemberDAO.deleteTravelFamePointPhysically">
 	    <![CDATA[
@@ -116,6 +154,7 @@
 				, a.fame_reco_case AS fameRecoCase
 				, a.fame_shared_case AS fameSharedCase
 				, IFNULL(b.mbr_nm, '비회원') AS fameUserNm
+				, b.mbr_photo AS fameUserPic
 			FROM geo_fame_point a
 				LEFT JOIN jnitcmsmbr b ON a.fame_user_id=b.mbr_id
 			WHERE 1=1
@@ -208,6 +247,7 @@
 			FROM geo_fame_history a
 				LEFT JOIN jnitcmsmbr b ON a.fame_his_rec_user=b.mbr_id
 			WHERE 1=1
+				AND	a.fame_his_rec_user = #fameHisRecUser#
 		]]>
 			<!-- <isNotEqual property="adminMode" compareValue="true">
 				<isEmpty property="routGroup" prepend="AND">
@@ -235,6 +275,7 @@
 				COUNT(*) totcnt
 			FROM geo_fame_history a
 			WHERE 1=1
+				AND	a.fame_his_rec_user = #fameHisRecUser#
 		]]>
 			<!-- <isNotEqual property="adminMode" compareValue="true">
 				<isEmpty property="routGroup" prepend="AND">
@@ -252,6 +293,15 @@
 				a.rout_title LIKE CONCAT('%',#searchKeyword#,'%')
 			</isNotEmpty> -->
 	</select>
+
+	<select id="travelMemberDAO.selectTravelFameHistoryCntByUser" parameterClass="java.lang.String" resultClass="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM geo_fame_history 
+			WHERE fame_his_rec_user=#fameHisRecUser#
+				AND fame_his_type='L'	
+				AND DATE_FORMAT(fame_his_date, "%Y-%m-%d")=CURDATE()
+		]]>
+	</select>
 	<!--/명성 적립 내역 -->
 
 
@@ -260,6 +310,7 @@
 		<![CDATA[
 			INSERT INTO geo_clipboard (
 				  clip_id
+				, clip_page_id
 				, clip_title
 				, clip_page_url
 				, clip_thumb_path
@@ -267,6 +318,7 @@
 				, clip_reg_date
 			) VALUES (
 				  #clipId#
+				, #clipPageId#
 				, #clipTitle#
 				, #clipPageUrl#
 				, #clipThumbPath#
@@ -333,6 +385,9 @@
 				LEFT JOIN jnitcmsmbr c ON a.clip_user_id=c.mbr_id
 			WHERE 1=1
 		]]>
+			<isNotEmpty property="clipUserId" prepend="AND">
+			<![CDATA[	a.clip_user_id = #clipUserId#	]]>
+			</isNotEmpty>
 		<![CDATA[
 			ORDER BY clip_reg_date DESC
             LIMIT #firstIndex#, #recordCountPerPage#
@@ -345,7 +400,179 @@
 			FROM geo_clipboard a
 			WHERE 1=1
 		]]>
+			<isNotEmpty property="clipUserId" prepend="AND">
+			<![CDATA[	a.clip_user_id = #clipUserId#	]]>
+			</isNotEmpty>
 	</select>
+
+	<select id="travelMemberDAO.selectTravelClipDestinationList" parameterClass="travelClipboard" resultClass="travelDestination">
+		<![CDATA[
+			SELECT
+				  b.dest_id AS destId
+				, b.dest_title AS destTitle
+				, b.dest_ad_slogan AS destAdSlogan
+				, b.dest_region AS destRegion
+				, b.dest_category AS destCategory
+				, b.dest_tag AS destTag
+				, b.dest_website_url AS destWebsiteUrl
+				, b.dest_img_path AS destImgPath
+				, b.dest_phone AS destPhone
+				, b.dest_address AS destAddress
+				, b.dest_axis_x AS destAxisX
+				, b.dest_axis_y AS destAxisY
+				, b.dest_feature AS destFeature
+				, b.dest_information AS destInformation
+				, b.dest_description AS destDescription
+				, b.dest_recomm_point AS destRecommPoint
+				, b.dest_clip_point AS destClipPoint
+				, b.dest_writer AS destWriter
+				, b.dest_reg_datetime AS destRegDatetime
+				, b.dest_hit AS destHit
+			FROM geo_clipboard a
+				INNER JOIN geo_destination b ON a.clip_page_id=b.dest_id
+				INNER JOIN jnitcmsmbr c ON a.clip_user_id=c.mbr_id
+			WHERE 1=1
+		]]>
+			<isNotEmpty property="clipUserId" prepend="AND">
+			<![CDATA[	a.clip_user_id = #clipUserId#	]]>
+			</isNotEmpty>
+		<![CDATA[
+			ORDER BY clip_reg_date DESC
+            LIMIT #firstIndex#, #recordCountPerPage#
+		]]>
+	</select>	
+	<select id="travelMemberDAO.selectTravelClipDestinationListCnt" parameterClass="travelClipboard" resultClass="int">
+		<![CDATA[
+			SELECT 
+				COUNT(*) totcnt
+			FROM geo_clipboard a
+			WHERE 1=1
+		]]>
+			<isNotEmpty property="clipUserId" prepend="AND">
+			<![CDATA[	a.clip_user_id = #clipUserId#	]]>
+			</isNotEmpty>
+	</select>
+
+	<select id="travelMemberDAO.selectTravelClipboardCnt" parameterClass="travelClipboard" resultClass="int">
+		<![CDATA[
+			SELECT 
+				COUNT(*) clipCnt
+			FROM geo_clipboard
+			WHERE 1=1
+				AND clip_page_id=#clipPageId#
+				AND clip_user_id=#clipUserId#
+		]]>
+	</select>
+	
+	<delete id="travelMemberDAO.deleteclipboard">
+	    <![CDATA[
+			DELETE FROM geo_clipboard
+            WHERE clip_page_id=#clipPageId#
+            	AND clip_user_id=#clipUserId#
+		]]>
+	</delete>
 	<!--/클립보드 -->
+
+	<!-- 리액션 -->
+	<insert id="travelMemberDAO.insertTravelReaction">
+		<![CDATA[
+			INSERT INTO geo_reaction (
+				  rxn_id
+				, rxn_user_id
+				, rxn_target_id
+				, rxn_type
+				, rxn_reg_date
+			) VALUES (
+				  #rxnId#
+				, #rxnUserId#
+				, #rxnTargetId#
+				, #rxnType#
+				, NOW()
+			)
+		]]>
+	</insert>
+	
+	<update id="travelMemberDAO.updateTravelReaction">
+		<![CDATA[
+			UPDATE geo_reaction
+			SET 
+				  rxn_user_id=#rxnUserId#
+				, rxn_target_id=#rxnTargetId#
+				, rxn_type=#rxnType#
+			WHERE rxn_id=#rxnId#
+		]]>
+				<!-- , clip_reg_date=#clipRegDate# -->
+	</update>
+	
+	<delete id="travelMemberDAO.deleteTravelReactionPhysically">
+	    <![CDATA[
+			DELETE FROM geo_reaction
+            WHERE rxn_id=#rxnId#
+		]]>
+	</delete>
+	
+	<select id="travelMemberDAO.selectTravelReaction" parameterClass="travelReaction" resultClass="travelReaction">
+		<![CDATA[
+			SELECT
+				  a.rxn_id AS rxnId
+				, a.rxn_user_id AS rxnUserId
+				, a.rxn_target_id AS rxnTargetId
+				, a.rxn_type AS rxnType
+				, a.rxn_reg_date AS rxnRegDate
+				, b.mbr_nm AS rxnUserNm
+			FROM geo_reaction a
+				LEFT JOIN jnitcmsmbr b ON a.rxn_user_id=b.mbr_id
+            WHERE a.rxn_id=#rxnId#
+		]]>
+	</select>
+	
+	<select id="travelMemberDAO.selectTravelReactionList" parameterClass="travelReaction" resultClass="travelReaction">
+		<![CDATA[
+			SELECT
+				  a.rxn_id AS rxnId
+				, a.rxn_user_id AS rxnUserId
+				, a.rxn_target_id AS rxnTargetId
+				, a.rxn_type AS rxnType
+				, a.rxn_reg_date AS rxnRegDate
+				, b.mbr_nm AS rxnUserNm
+			FROM geo_reaction a
+				LEFT JOIN jnitcmsmbr b ON a.rxn_user_id=b.mbr_id
+			WHERE 1=1
+		]]>
+		<![CDATA[
+			ORDER BY clip_reg_date DESC
+            LIMIT #firstIndex#, #recordCountPerPage#
+		]]>
+	</select>	
+	<select id="travelMemberDAO.selectTravelReactionListCnt" parameterClass="travelReaction" resultClass="int">
+		<![CDATA[
+			SELECT 
+				COUNT(*) totcnt
+			FROM geo_reaction a
+			WHERE 1=1
+		]]>
+	</select>
+
+	<select id="travelMemberDAO.selectTravelReactionCnt" parameterClass="travelReaction" resultClass="int">
+		<![CDATA[
+			SELECT 
+				COUNT(*) rxnCnt
+			FROM geo_reaction
+			WHERE 1=1
+				AND rxn_user_id=#rxnUserId#
+				AND rxn_target_id=#rxnTargetId#
+				AND rxn_type=#rxnType#
+		]]>
+	</select>
+	
+	<delete id="travelMemberDAO.deleteLike">
+	    <![CDATA[
+			DELETE FROM geo_reaction
+            WHERE rxn_type=#rxnType#
+           	 AND rxn_target_id=#rxnTargetId#
+           	 AND rxn_user_id=#rxnUserId#
+		]]>
+	</delete>
+	<!--/리액션 -->
 
 </sqlMap>

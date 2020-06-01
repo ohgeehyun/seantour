@@ -12,6 +12,7 @@ import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 public class TravelFrontPaginationRenderer extends AbstractPaginationRenderer implements ServletContextAware{
 
+	@SuppressWarnings("unused")
 	private ServletContext servletContext;
 	
 	public TravelFrontPaginationRenderer() {

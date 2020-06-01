@@ -1,47 +1,9 @@
-<% response.setHeader("Cache-Control","no-store"); response.setHeader("Pragma","no-cache"); response.setDateHeader("Expires",0); if (request.getProtocol().equals("HTTP/1.1")) { response.setHeader("Cache-Control", "no-cache"); } %><%@ page contentType="text/html; charset=utf-8" %><%@ include file='/_common/header.jsp' %><%@ include file='/travel/_tpls/B/TPL_000127_S.jsp' %><% /*<!-- [-CONTENT-] -->*/ %><!-- contaniner -->
-		<div id="container" >
-            <div class="section_visual sub01 trans400">
-                <div class="section_tit_box">
-		            <h2 class="tit trans300">추천여행일정</h2>
-		            <p class="txt trans300">특별하고 즐거움이 가득한 국내 바다여행 여행지 추천</p>
-        		</div>
-            </div><!-- // section_visual -->
-             <div class="section_lnb">
-             	<div class="inr">
-			        <ul id="lnb">
-			        	<li><a href="#none"><span class="sprh_com">HOME</span></a></li>
-			        	<li id="firstmenu"><!--<a href="/www/main"><span class="unfd sprh_com">홈</span></a>-->
-			                <a href="#none">추천여행일정<span class="unfd">같은 레벨 메뉴 보기</span></a>
-			                <div>
-			                    <ul>
-									<li><a href="#none">1차메뉴</a></li>
-									<li><a href="#none">1차메뉴</a></li>
-									<li><a href="#none">1차메뉴</a></li>
-									<li><a href="#none">1차메뉴</a></li>
-			                	</ul>
-			                </div>  
-			            </li>
-			            <li id="secondmenu">
-			                <a href="#none">작가 추전일정<span class="unfd sprh_com">같은 레벨 메뉴 보기</span></a>
-			                <div class="snb_wrap">
-			                   <ul class="snb">
-									<li><a href="#none">작가 추전일정</a></li>
-									<li><a href="#none">2차메뉴</a></li>
-									<li><a href="#none">2차메뉴</a></li>
-									<li><a href="#none">2차메뉴</a></li>
-									<li><a href="#none">2차메뉴</a></li>
-			                	</ul> 
-			                </div>
-			            </li>                       
-			         </ul>
-		         </div>
-    		</div><!-- // section_lnb -->
-
-
-         <div id="content" class="cont_wrap">
+<% response.setHeader("Cache-Control","no-store"); response.setHeader("Pragma","no-cache"); response.setDateHeader("Expires",0); if (request.getProtocol().equals("HTTP/1.1")) { response.setHeader("Cache-Control", "no-cache"); } %><%@ page contentType="text/html; charset=utf-8" %><%@ include file='/_common/header.jsp' %><%@ include file='/travel/_tpls/B/TPL_000132_S.jsp' %><% /*<!-- [-CONTENT-] -->*/ %><div id="content" class="cont_wrap">
             <!--<div class="cont_head">
                 <h2 class="title">센터현황</h2>
             </div><!-- cont_head -->
+            
+			<%@ include file="/WEB-INF/jsp/travel/tpl/navigation.jsp" %>
             <div class="cont_body">
 	            <div class="inr">
 	               <!--<div class="tabmenu colum4">
@@ -90,27 +52,27 @@
 									<li>
 										<span clss="num">1</span>
 										<span class="tit">부산해운대</span>
-										<span class="img"><img src="/travel/common/images/content/img_statistic01.jpg" alt="" /></span>
+										<span class="img"><img src="/images/travel/content/img_statistic01.jpg" alt="" /></span>
 									</li>
 									<li>
 										<span clss="num">2</span>
 										<span class="tit">태종대</span>
-										<span class="img"><img src="/travel/common/images/content/img_statistic02.jpg" alt="" /></span>
+										<span class="img"><img src="/images/travel/content/img_statistic02.jpg" alt="" /></span>
 									</li>
 									<li>
 										<span clss="num">3</span>
 										<span class="tit">백제역사유적지구</span>
-										<span class="img"><img src="/travel/common/images/content/img_statistic03.jpg" alt="" /></span>
+										<span class="img"><img src="/images/travel/content/img_statistic03.jpg" alt="" /></span>
 									</li>
 									<li>
 										<span clss="num">4</span>
 										<span class="tit">해수욕장</span>
-										<span class="img"><img src="/travel/common/images/content/img_statistic04.jpg" alt="" /></span>
+										<span class="img"><img src="/images/travel/content/img_statistic04.jpg" alt="" /></span>
 									</li>
 									<li>
 										<span clss="num">5</span>
 										<span class="tit">울산바위섬</span>
-										<span class="img"><img src="/travel/common/images/content/img_statistic05.jpg" alt="" /></span>
+										<span class="img"><img src="/images/travel/content/img_statistic05.jpg" alt="" /></span>
 									</li>
 								</ul>
 							</div>
@@ -120,27 +82,27 @@
 									<li>
 										<span clss="num">1</span>
 										<span class="tit">부산해운대</span>
-										<span class="img"><img src="/travel/common/images/content/img_statistic01.jpg" alt="" /></span>
+										<span class="img"><img src="/images/travel/content/img_statistic01.jpg" alt="" /></span>
 									</li>
 									<li>
 										<span clss="num">2</span>
 										<span class="tit">태종대</span>
-										<span class="img"><img src="/travel/common/images/content/img_statistic02.jpg" alt="" /></span>
+										<span class="img"><img src="/images/travel/content/img_statistic02.jpg" alt="" /></span>
 									</li>
 									<li>
 										<span clss="num">3</span>
 										<span class="tit">백제역사유적지구</span>
-										<span class="img"><img src="/travel/common/images/content/img_statistic03.jpg" alt="" /></span>
+										<span class="img"><img src="/images/travel/content/img_statistic03.jpg" alt="" /></span>
 									</li>
 									<li>
 										<span clss="num">4</span>
 										<span class="tit">해수욕장</span>
-										<span class="img"><img src="/travel/common/images/content/img_statistic04.jpg" alt="" /></span>
+										<span class="img"><img src="/images/travel/content/img_statistic04.jpg" alt="" /></span>
 									</li>
 									<li>
 										<span clss="num">5</span>
 										<span class="tit">울산바위섬</span>
-										<span class="img"><img src="/travel/common/images/content/img_statistic05.jpg" alt="" /></span>
+										<span class="img"><img src="/images/travel/content/img_statistic05.jpg" alt="" /></span>
 									</li>
 								</ul>
 							</div>
@@ -150,27 +112,27 @@
 									<li>
 										<span clss="num">1</span>
 										<span class="tit">부산해운대</span>
-										<span class="img"><img src="/travel/common/images/content/img_statistic01.jpg" alt="" /></span>
+										<span class="img"><img src="/images/travel/content/img_statistic01.jpg" alt="" /></span>
 									</li>
 									<li>
 										<span clss="num">2</span>
 										<span class="tit">태종대</span>
-										<span class="img"><img src="/travel/common/images/content/img_statistic02.jpg" alt="" /></span>
+										<span class="img"><img src="/images/travel/content/img_statistic02.jpg" alt="" /></span>
 									</li>
 									<li>
 										<span clss="num">3</span>
 										<span class="tit">백제역사유적지구</span>
-										<span class="img"><img src="/travel/common/images/content/img_statistic03.jpg" alt="" /></span>
+										<span class="img"><img src="/images/travel/content/img_statistic03.jpg" alt="" /></span>
 									</li>
 									<li>
 										<span clss="num">4</span>
 										<span class="tit">해수욕장</span>
-										<span class="img"><img src="/travel/common/images/content/img_statistic04.jpg" alt="" /></span>
+										<span class="img"><img src="/images/travel/content/img_statistic04.jpg" alt="" /></span>
 									</li>
 									<li>
 										<span clss="num">5</span>
 										<span class="tit">울산바위섬</span>
-										<span class="img"><img src="/travel/common/images/content/img_statistic05.jpg" alt="" /></span>
+										<span class="img"><img src="/images/travel/content/img_statistic05.jpg" alt="" /></span>
 									</li>
 								</ul>
 							</div>
@@ -180,27 +142,27 @@
 									<li>
 										<span clss="num">1</span>
 										<span class="tit">부산해운대</span>
-										<span class="img"><img src="/travel/common/images/content/img_statistic01.jpg" alt="" /></span>
+										<span class="img"><img src="/images/travel/content/img_statistic01.jpg" alt="" /></span>
 									</li>
 									<li>
 										<span clss="num">2</span>
 										<span class="tit">태종대</span>
-										<span class="img"><img src="/travel/common/images/content/img_statistic02.jpg" alt="" /></span>
+										<span class="img"><img src="/images/travel/content/img_statistic02.jpg" alt="" /></span>
 									</li>
 									<li>
 										<span clss="num">3</span>
 										<span class="tit">백제역사유적지구</span>
-										<span class="img"><img src="/travel/common/images/content/img_statistic03.jpg" alt="" /></span>
+										<span class="img"><img src="/images/travel/content/img_statistic03.jpg" alt="" /></span>
 									</li>
 									<li>
 										<span clss="num">4</span>
 										<span class="tit">해수욕장</span>
-										<span class="img"><img src="/travel/common/images/content/img_statistic04.jpg" alt="" /></span>
+										<span class="img"><img src="/images/travel/content/img_statistic04.jpg" alt="" /></span>
 									</li>
 									<li>
 										<span clss="num">5</span>
 										<span class="tit">울산바위섬</span>
-										<span class="img"><img src="/travel/common/images/content/img_statistic05.jpg" alt="" /></span>
+										<span class="img"><img src="/images/travel/content/img_statistic05.jpg" alt="" /></span>
 									</li>
 								</ul>
 							</div>
@@ -217,13 +179,13 @@
 										 var status = 'status';
 										//지도 온표시
 										$("#Map area").click(function(){
-											$("#map-image").attr("src", "/travel/common/images/content/map_"+$(this).attr("class")+".png");
+											$("#map-image").attr("src", "/images/travel/content/map_"+$(this).attr("class")+".png");
 											//console.log($(this).attr("class"));
 										});
 									});	
 								</script>
 								<div class="selection_map"> 
-									<img src="/travel/common/images/content/map_map01.png" alt="" usemap="#Map" border="0" id="map-image" />
+									<img src="/images/travel/content/map_map01.png" alt="" usemap="#Map" border="0" id="map-image" />
 							        <map name="Map" id="Map">
 							          <area shape="poly" coords="119,21,93,33,76,32,69,38,69,47,63,56,51,74,63,113,78,117,103,90,115,104,134,112,116,134,90,137,71,146,70,162,129,188,174,153,172,104,148,94,146,41,118,21" href="#" id="map01" class="map01"><!--경기도-->
 							          <area shape="poly" coords="132,14,121,20,148,38,150,92,177,104,174,151,191,154,201,143,254,164,318,152,318,135,295,115,295,96,261,62,263,36,238,8,218,8,207,17" href="#" id="map02" class="map02"><!--강원도-->
@@ -244,15 +206,15 @@
 							          <area shape="poly" coords="101,529,79,528,65,536,54,534,40,550,40,565,49,569,58,572,70,566,102,565,118,553,118,544" href="#" id="map16" class="map16"><!-- 제주특별시-->
 							      </map>
 								</div>
-								<script src="/travel/common/js/jquery.rwdImageMaps.min.js"></script>
+								<script src="/js/travel/jquery.rwdImageMaps.min.js"></script>
 								<script>
 								$(document).ready(function(e) {
 									$('img[usemap]').rwdImageMaps();
 								});
 								</script>
 								<div class="map_status map01">
-									<h4 class="tit"><img src="/travel/common/images/content/local_tit_jn.png" alt="전라남도 추천 여행지" /></h4>
-									<div class="img"><img src="/travel/common/images/content/img_map_jn.png" alt="여수 해상 케이블카" />
+									<h4 class="tit"><img src="/images/travel/content/local_tit_jn.png" alt="전라남도 추천 여행지" /></h4>
+									<div class="img"><img src="/images/travel/content/img_map_jn.png" alt="여수 해상 케이블카" />
 										<a href="#none" class="btn">자세히보기</a>
 									</div>
 									<div class="t_box">
@@ -261,8 +223,8 @@
 									</div>
 								</div>		
 								<div class="map_status map02">
-									<h4 class="tit"><img src="/travel/common/images/content/local_tit_jn.png" alt="전라남도 추천 여행지" /></h4>
-									<div class="img"><img src="/travel/common/images/content/img_map_jn.png" alt="여수 해상 케이블카" />
+									<h4 class="tit"><img src="/images/travel/content/local_tit_jn.png" alt="전라남도 추천 여행지" /></h4>
+									<div class="img"><img src="/images/travel/content/img_map_jn.png" alt="여수 해상 케이블카" />
 										<a href="#none" class="btn">자세히보기</a>
 									</div>
 									<div class="t_box">
@@ -274,9 +236,9 @@
 							
 						</div><!-- //recommend_box2 -->						
 						<div class="recommend_box type2">
-							<link href='/travel/common/css/landing.css' rel='stylesheet'>
-					        <link href='/travel/common/css/landing.mosaic.css' rel='stylesheet'>
-					        <script src="/travel/common/js/mosaic.js"></script>
+							<link href='/css/travel/landing.css' rel='stylesheet'>
+					        <link href='/css/travel/landing.mosaic.css' rel='stylesheet'>
+					        <script src="/js/travel/mosaic.js"></script>
 					        <script>
 					            $(document).ready(function() {
 					                var test = {size: 1200, columns: 10};
@@ -297,7 +259,7 @@
 					        </script>
 							<div id="mosaic-grid" class="mosaic-grid">
 								<div class="mosaic-tile sizer width-2 height-2 test mob1 a">
-									<img src="/travel/common/images/content/img_season01.jpg" alt="" />
+									<img src="/images/travel/content/img_season01.jpg" alt="" />
 									<div class="over">
 										<a href="#none">
 											<span class="tit">#경남</span>
@@ -307,7 +269,7 @@
 									</div>
 								</div>
 					            <div class="mosaic-tile width-5 height-2 test mob2 a">
-					            	<img src="/travel/common/images/content/img_season02.jpg" alt="" />
+					            	<img src="/images/travel/content/img_season02.jpg" alt="" />
 					            	<div class="over">
 										<a href="#none">
 											<span class="tit">#경남</span>
@@ -317,7 +279,7 @@
 									</div>
 				            	</div>
 					            <div class="mosaic-tile width-3 height-2 test mob3 a">
-					            	<img src="/travel/common/images/content/img_season03.jpg" alt="" />
+					            	<img src="/images/travel/content/img_season03.jpg" alt="" />
 					            	<div class="over">
 										<a href="#none">
 											<span class="tit">#경남</span>
@@ -327,7 +289,7 @@
 									</div>
 				            	</div>
 					            <div class="mosaic-tile width-2 height-2 test mob4 a" style="margin-left:1%;">
-					            	<img src="/travel/common/images/content/img_season04.jpg" alt="" />
+					            	<img src="/images/travel/content/img_season04.jpg" alt="" />
 					            	<div class="over">
 										<a href="#none">
 											<span class="tit">#경남</span>
@@ -337,7 +299,7 @@
 									</div>
 				            	</div>
 					            <div class="mosaic-tile height-2 width-2 test mob5 a">
-					            	<img src="/travel/common/images/content/img_season05.jpg" alt="" />
+					            	<img src="/images/travel/content/img_season05.jpg" alt="" />
 					            	<div class="over">
 										<a href="#none">
 											<span class="tit">#경남</span>
@@ -347,7 +309,7 @@
 									</div>
 				            	</div>
 					            <div class="mosaic-tile height-2 width-6 test mob6 a">
-					            	<img src="/travel/common/images/content/img_season06.jpg" alt="" />
+					            	<img src="/images/travel/content/img_season06.jpg" alt="" />
 					            	<div class="over">
 										<a href="#none">
 											<span class="tit">#경남</span>
@@ -363,4 +325,5 @@
 				</div>
             </div><!-- cont_body -->
         </div><!-- // cont_wrap -->
-        </div><% /*<!-- /[-CONTENT-] -->*/ %><%@ include file='/travel/_tpls/B/TPL_000127_E.jsp' %>
+        </div>
+        <!--// container --><% /*<!-- /[-CONTENT-] -->*/ %><%@ include file='/travel/_tpls/B/TPL_000132_E.jsp' %>

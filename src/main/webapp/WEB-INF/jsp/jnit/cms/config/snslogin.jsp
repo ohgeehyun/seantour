@@ -63,6 +63,14 @@ $(document).ready(function(){
 	                                       <th>naverClientSecret</th>
 	                                       <td><input type="text" name="naverOauthSecret" style="width:330px" value="<c:out value='${snslogin["naverOauthSecret"]}'/>" /></td>
 	                                   </tr>
+	                                   <tr>
+	                                       <th>kakaoRESTApiKey</th>
+	                                       <td><input type="text" name="kakaoOauthId" style="width:330px" value="<c:out value='${snslogin["kakaoOauthId"]}'/>" /></td>
+	                                   </tr>
+	                                   <tr>
+	                                       <th>kakaoClientSecret</th>
+	                                       <td><input type="text" name="kakaoOauthSecret" style="width:330px" value="<c:out value='${snslogin["kakaoOauthSecret"]}'/>" /></td>
+	                                   </tr>
 	                               </tbody>
 	                           </table>
                         </div>

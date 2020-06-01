@@ -12,6 +12,7 @@ response.setHeader("Cache-Control", "no-cache");
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <script type='text/javascript'>
-	opener.location.reload(true);
+	// opener.location.reload(true);
+	opener.location.replace("<c:url value='/'/>");
 	this.close(); 
 </script>

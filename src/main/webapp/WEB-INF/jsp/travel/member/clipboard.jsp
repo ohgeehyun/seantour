@@ -30,12 +30,16 @@
 						 <div class="local_lst">
 							<ul>
 							<c:forEach var="result" items="${resultList}" varStatus="status">	
+								<%-- <c:set var="clipThumbPath" value="${empty result.clipThumbPath ? '/images/travel/content/noimg.jpg' : 'http://seantour.com'.concat(result.clipThumbPath)}" /> --%>
+								<c:set var="clipThumbPath" value="${empty result.clipThumbPath ? '/images/travel/content/noimg.jpg' : result.clipThumbPath}" />
 								<li>
 									<div class="img">
-										<img src='http://seantour.com<c:out value="${result.clipThumbPath}"/>' alt='<c:out value="${fn:split(result.clipTitle,'|')[1]}"/>' />
+										<a href='<c:url value="/travel/destination/detail.do?destId=${result.clipPageId}"/>'>
+											<img src='<c:url value="${clipThumbPath}"/>' alt='<c:out value="${fn:split(result.clipTitle,'|')[1]}"/>' />
+										</a>
 									</div>
 									<div class="tbox">
-										<p class="tit"><a href='/travel/destination/detail.do?destId=<c:out value="${result.clipPageId}"/>'><span class="flag01"><c:out value="${fn:split(result.clipTitle,'|')[0]}"/></span><c:out value="${fn:split(result.clipTitle,'|')[1]}"/></a></p>
+										<p class="tit"><a href='<c:url value="/travel/destination/detail.do?destId=${result.clipPageId}"/>'><span class="flag01"><c:out value="${fn:split(result.clipTitle,'|')[0]}"/></span><c:out value="${fn:split(result.clipTitle,'|')[1]}"/></a></p>
 										<p class="location"><c:out value="${result.clipPageUrl}"/></p>
 									</div>
 								</li>

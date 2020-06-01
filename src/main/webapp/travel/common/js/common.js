@@ -43,7 +43,7 @@ $(function(){
 /*-----------------------------------------------------------------*/
 $(function(){
 	var hdOffset = $( '#header').offset();
-	console.log(hdOffset);
+	// console.log(hdOffset);
 	var scrollTop = 100;
 	$( window ).scroll( function() {
 	  //if ( $( document ).scrollTop() > hdOffset.top ) {
@@ -155,7 +155,7 @@ $(function(){
 	
 	//상단 이미지 클릭시 처리	
 	$(".cssSelect").prev("a").click(function(){
-		console.log($(".cssSelect").prev("a").index($(this)));
+		//console.log($(".cssSelect").prev("a").index($(this)));
 		index = $(".cssSelect").prev("a").index($(this));
 		
 		//이미지 표시
@@ -178,7 +178,7 @@ $(function(){
 	});
 	
 	
-	/*var contTab = $('.tab_mn');
+	var contTab = $('.tab_mn');
 	function onSelectContTab(e){
 		e.preventDefault();
 		var t = $(this);
@@ -188,7 +188,7 @@ $(function(){
 		
 		t.parents('.tab_mn:first').attr('class','tab_mn '+myclass);
 	}
-	contTab.find('>li>a').click(onSelectContTab);*/
+	contTab.find('>li>a').click(onSelectContTab);
 });
 
 /*-----------------------------------------------------------------*/
@@ -357,7 +357,7 @@ $(function(){
 	var sltRelated_a = sltRelatedList.find(">li>a");	
 	
 	// Show
-	/*sltRelatedButton.click(function() {
+	sltRelatedButton.click(function() {
 		$(this).parents(".cssSelect:first").toggleClass("on");
 	});
 	// Hide
@@ -371,13 +371,12 @@ $(function(){
 	sltRelated_a.bind("focus hover", function() {
 		sltRelated_a.removeClass("hover");
 		$(this).toggleClass("hover");
-	});*/
+	});
 });
 
 /*-----------------------------------------------------------------*/
 // Box Slider
 /*-----------------------------------------------------------------*/
-
 $(function(){
 
 	//rolling img

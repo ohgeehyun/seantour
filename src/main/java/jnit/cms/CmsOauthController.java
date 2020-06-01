@@ -19,6 +19,7 @@ import org.springframework.web.util.CookieGenerator;
 import egovframework.com.cmm.service.EgovProperties;
 import egovframework.com.utl.fcc.service.NullUtil;
 import egovframework.com.utl.sim.service.EgovFileScrty;
+import geocni.travel.common.TravelFameManager;
 import jnit.cms.mbr.CmsOauthService;
 import jnit.cms.mbr.JnitcmsmbrService;
 import jnit.cms.mbr.JnitcmsmbrVO;
@@ -48,6 +49,7 @@ public class CmsOauthController {
 	public static final String GOOGLE	= "google"; 
 	public static final String TWITTER	= "twitter";
 	public static final String NAVER	= "naver";
+	public static final String KAKAO	= "kakao";
 	private final static String deDug = EgovProperties.getProperty("Globals.Debug");
 
 	String code ="";
@@ -63,6 +65,11 @@ public class CmsOauthController {
 		if(vender.equals("twitter"))	vd = TWITTER;
 		if(vender.equals("naver")){
 			vd = NAVER;
+			String state = generateState();
+			request.getSession().setAttribute("state", state);
+		}
+		if(vender.equals("kakao")){
+			vd = KAKAO;
 			String state = generateState();
 			request.getSession().setAttribute("state", state);
 		}
@@ -88,17 +95,21 @@ public class CmsOauthController {
 			vd = FACEBOOK;
 			vc = "30026";
 		}
+		if(vender.equals("naver")) {
+			vd = NAVER;
+			vc = "30033";
+		}
 		if(vender.equals("google"))	{
 			vd = GOOGLE;
-			vc = "30036";
+			vc = "30034";
+		}
+		if(vender.equals("kakao")) {
+			vd = KAKAO;
+			vc = "30035";
 		}
 		if(vender.equals("twitter")) {
 			vd = TWITTER;
-			vc = "30035";
-		}
-		if(vender.equals("naver")) {
-			vd = NAVER;
-			vc = "30037";
+			vc = "30036";
 		}
 		
 		code = NullUtil.nullString(request.getParameter("code"));
@@ -277,10 +288,15 @@ public class CmsOauthController {
         	mbrtypeVO.setTypeId(resVO.getTypeId());
         	mbrtypeVO = jnitcmsmbrtypeService.selectJnitcmsmbrtype(mbrtypeVO);
         	resVO.setTypeVO(mbrtypeVO);
+        	// 2-1. 로그인 정보를 세션에 저장
         	request.getSession().setAttribute("loginVO", resVO);
         	if("true".equals(deDug)) log.debug(request.getParameter("returnUrl"));
         	
-        	// 2-1. 로그인 정보를 세션에 저장
+			log.debug("Logged In by oAuth=================================");
+	    	//로그인 실적에 따른 명성 히스토리 업데이트
+    		TravelFameManager fameManager = new TravelFameManager(resVO.getMbrId(), "LOGIN", request);
+    		Thread thread = new Thread(fameManager);
+    		thread.start();
         	
         	if(request.getParameter("returnUrl") == null) {
         		return "redirect:/";
@@ -320,6 +336,7 @@ public class CmsOauthController {
 			cg.setCookieMaxAge(0);
 			cg.setCookiePath("/"); 
 
+			@SuppressWarnings("unused")
 			HashMap<String, String> snsLogin = new HashMap<String, String>();
 
 			

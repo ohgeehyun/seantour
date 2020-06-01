@@ -1,4 +1,4 @@
-<%--2020년 16월 16일1시 59분 서브템플릿에서 수정되었습니다. 직접 수정하지마세요 --%><%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%><%@ page import="jnit.cms.handler.CmsServletPathProperty" %>
+<%--2020년 20월 12일8시 39분 서브템플릿에서 수정되었습니다. 직접 수정하지마세요 --%><%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%><%@ page import="jnit.cms.handler.CmsServletPathProperty" %>
 <% String servletPathHanding = request.getServletPath(); %>
 <% if(!"".equals(CmsServletPathProperty.getProp(servletPathHanding,"metaTitle"))){%><meta name="title" content="<%= CmsServletPathProperty.getProp(servletPathHanding,"metaTitle") %>" /><% } %>
 <% if(!"".equals(CmsServletPathProperty.getProp(servletPathHanding,"metaSubject"))){%><meta name="subject" content="<%= CmsServletPathProperty.getProp(servletPathHanding,"metaSubject") %>" /><% } %>

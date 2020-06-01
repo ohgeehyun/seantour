@@ -209,7 +209,7 @@ body {-webkit-text-size-adjust:none;}
   
     [class$="inr"]{max-width:100%;padding:0 20px;}
     
-    #header #gnb{padding:0 16% 0 28%;}
+    #header #gnb{padding:0 16% 0 27%;}
    	.cont_wrap{min-width:100%;}
  
 	 /* section_lnb */
@@ -405,7 +405,7 @@ body {-webkit-text-size-adjust:none;}
 
 @media screen and (max-width:640px){
     
-    #header h1.logo>a{width:;height:19px;}
+    #header h1.logo>a{height:24px;}
     
     #wholeView .wv_wrap{width:300px;}
    	

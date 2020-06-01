@@ -27,11 +27,24 @@
 		               		<div class="my_info_box">
 		               			<div class="info">
 		               				<div class="name_tit">
-		               					<div class="img"><img src="/images/travel/content/img_recommend01.jpg" alt='<c:out value="${loginVO.mbrNm}"/>님 프로필 이미지' /></div>
+		               					<div class="img"><img src='<c:url value="${not empty loginVO.mbrPhoto ? loginVO.mbrPhoto : '/images/travel/content/img_recommend01.jpg'}"/>' alt='<c:out value="${loginVO.mbrNm}"/>님 프로필 이미지' /></div>
+		               				<c:set var="fameRankingLevel" value="초보여행자" />
+		               			<c:if test="${famePoint.famePointSum gt 300 and famePoint.famePointSum le 600}">
+		               				<c:set var="fameRankingLevel" value="중급여행자" />
+		               			</c:if>		
+		               			<c:if test="${famePoint.famePointSum gt 600 and famePoint.famePointSum le 900}">
+		               				<c:set var="fameRankingLevel" value="마스터여행자" />
+		               			</c:if>		
+		               			<c:if test="${famePoint.famePointSum gt 900 and famePoint.famePointSum le 1200}">
+		               				<c:set var="fameRankingLevel" value="여행가이드" />
+		               			</c:if>
+		               			<c:if test="${famePoint.famePointSum gt 1200}">
+		               				<c:set var="fameRankingLevel" value="여행의 신" />
+		               			</c:if>
 		               					<div class="name">
 		               						<%-- <p class="my"><span>홍길동</span>님</p> --%>
 		               						<p class="my"><span><c:out value="${loginVO.mbrNm}"/></span>님</p>
-		               						<p clss="step">초보여행자 회원</p>
+		               						<p clss="step"><c:out value="${fameRankingLevel}"/> 회원</p>
 		               					</div>
 	               					</div>
 	               					<ul class="info_lst">
@@ -39,13 +52,17 @@
 	               						<li><strong>이름</strong><p><c:out value="${loginVO.mbrNm}"/></p></li>
 	               						<li><strong>휴대폰</strong><p><c:out value="${loginVO.mobile}"/></p></li>
 	               					</ul>
-	               					<div class="btn"><a href='/travel/member/modify.do?mbrId=<c:out value="${loginVO.mbrId}"/>' class="button border">내정보 수정</a></div>
+	               					<!-- <div class="btn">-->
+	               						<%------------------- 소셜 로그인만 이용하는 경우 내 정보를 수정할 수 없다 ----------------------------------------
+	               						<a href='<c:url value="/travel/member/modify.do?mbrId=${loginVO.mbrId}"/>' class="button border">내정보 수정</a>
+	               						--------------------- 소셜 로그인만 이용하는 경우 내 정보를 수정할 수 없다 --------------------------------------%>
+	               					<!-- </div> -->
 		               			</div>
 		               			<div class="fame">
 		               				<div class="myfameArea">
 			               				<div class="myfame">
 			               					<p class="tit">나의 명성점수</p>
-			               					<strong class="score"><c:out value="${famePoint.famePointSum}"/>P</strong>
+			               					<strong class="score" id="fame_point_sum"><c:out value="${famePoint.famePointSum}"/>P</strong>
 		               					</div>
 		               					<div id="myProgress">
 		               						<div>
@@ -66,11 +83,13 @@
 		               							<p class="tit_num"><c:out value="${famePoint.fameRanking}"/>등</p>
 		               						</li>
 		               						<li>
-		               							<p class="tit">내글 추천수</p>
+		               							<p class="tit">내 콘텐츠 추천수</p>
 		               							<p class="tit_num"><c:out value="${famePoint.fameRecoCase}"/>건</p>
 		               						</li>
 		               						<li>
-		               							<p class="tit">내글 공유 수</p>
+		               							<%-- <p class="tit">내글 공유 수</p> --%>
+		               							<%-- 내글 공유 수(공유받은 수) ==> 콘텐츠(여행지) 공유한 수로 로직변경 --%>
+		               							<p class="tit">콘텐츠 공유수</p>
 		               							<p class="tit_num"><c:out value="${famePoint.fameSharedCase}"/>건</p>
 		               						</li>
 		               					</ul>
@@ -143,9 +162,6 @@
 }
 </style>
 <script type="text/javascript">
-var i = 0;
-var width = 10;
-
 function fn_egov_link_page(pageNo){
 	document.getElementById("recommHistory").pageIndex.value = pageNo;
 	document.getElementById("recommHistory").action = "<c:url value='/travel/member/mypage.do'/>";
@@ -153,37 +169,41 @@ function fn_egov_link_page(pageNo){
 }
 
 function move() {
-  	if (i == 0) {
-    	i = 1;
-    	var elem = document.getElementById("myBar");
-    	var elemBox = document.getElementById("myProgress");
-    	var id = setInterval(frame, 10);
-    	function frame() {
-      		if (width >= 100) {
-        		clearInterval(id);
-        		i = 0;
-      		} else {
-        		width++;
-        		elem.style.width = width + "%";
-        		afterMove();
-      		}
-    	}
+	var width = 1;
+	var famePoint = 300;
+	// var famePoint = parseInt($.trim($("#fame_point_sum").text()));
+	var limit = Math.ceil((famePoint / 900) * 100);
+	console.log(limit);
+	var elem = document.getElementById("myBar");
+	var elemBox = document.getElementById("myProgress");
+	var id = setInterval(frame, 10);
+	function frame() {
+  		if (width >= limit) {
+    		clearInterval(id);
+  		} else {
+    		width++;
+    		elem.style.width = width + "%";
+    		afterMove(famePoint);
+    		// console.log(width);
+  		}
 	}
 }
-function afterMove(){
-	if (width >= 0 && width <33.33) {
+function afterMove(famePoint){
+	if (famePoint >= 0) {
 		$("#myProgress").addClass('on1');
-	} else if(width >= 33.33 && width <66.66) {
+	}
+	if(famePoint >= 300) {
 		$("#myProgress").addClass('on2');
-	} else if(width >= 66.66 && width < 100) {
+	}
+	if(famePoint >= 600) {
 		$("#myProgress").addClass('on3');
-	} else {
+	}
+	if(famePoint >= 900) {
 		$("#myProgress").addClass('on4');
 	}
 }
+
 $(function(){
-	// var i = 0;
-	// var width = 10;
 	move();
 });
 </script>

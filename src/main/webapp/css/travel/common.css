@@ -57,13 +57,13 @@ label{display:inline-block; box-sizing:border-box; width:auto; vertical-align:mi
     height:20px;
     margin:0 10px 0 0;
     vertical-align:middle;
-    background:url(/images/travel/brd/bg_radio.png) 0 0 no-repeat;
+    background:url(/seantour_map/images/travel/brd/bg_radio.png) 0 0 no-repeat;
     cursor:pointer;
 }
 
 .cont_body input[type="radio"]:checked + label span {
 	z-index:100;
-     background:url(/images/travel/brd/bg_radio_check.png) 0 0 no-repeat;
+     background:url(/seantour_map/images/travel/brd/bg_radio_check.png) 0 0 no-repeat;
 }
 
 
@@ -102,7 +102,7 @@ label{display:inline-block; box-sizing:border-box; width:auto; vertical-align:mi
 .tbl tbody td .tit{font-family: 'Proxima Nova';font-size:18px;font-weight:600;color:#3249a0;}
 .tbl tbody td .euquip_lst{}
 .tbl tbody td .euquip_lst li{position:relative;padding-left:12px;font-size:14px;color:#666;}
-.tbl tbody td .euquip_lst li:before{content:'';display:inline-block;position:absolute;top:8px;left:0;width:5px;height:5px;background:url(/images/travel/content/ico_eq_lst.png) no-repeat 0 0;}
+.tbl tbody td .euquip_lst li:before{content:'';display:inline-block;position:absolute;top:8px;left:0;width:5px;height:5px;background:url(/seantour_map/images/travel/content/ico_eq_lst.png) no-repeat 0 0;}
 .tbl tbody td .euquip_lst li .font_red{color:#f02372;}
 .tbl th:first-child,
 .tbl td:first-child{border-left-color:transparent;}

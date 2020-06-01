@@ -9,16 +9,16 @@ public class TravelFameHistory extends TravelDefaultVO {
     /*명성 적립 ID*/
     private String fameHisId;
     
-    /*명성 적립 포인트*/
+    /*명성 적립 포인트(L-10, R-100, S-50, F-200)*/
     private int fameHisPoint = 0;
     
-    /*명성 적립 타입*/
+    /*명성 적립 타입(L-홈페이지로그인접속, R-여행일정추천됨, S-여행지SNS공유함, F-인기추천여행일정으로선정됨)*/
     private String fameHisType;
     
     /*명성 적립 내역*/
     private String fameHisItem;
     
-    /*명성 추천인 아이디*/
+    /*명성 적립 아이디*/
     private String fameHisRecUser;
     
     /*명성 적립 일시*/

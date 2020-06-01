@@ -21,28 +21,35 @@
         	<div id="content" class="cont_wrap">
 
 			<form:form commandName="travelRoute" method="post">            
-				<form:hidden path="routGroup" />
+				<form:hidden path="routId" />
 	            <div class="cont_body">
 		            <div class="inr">
 						<h3 class="fame_tit">나의 여행일정</h3>
 						<div class="recommend_lst">
 							<ul>
-							<c:forEach var="result" items="${resultList}" varStatus="status">	
+							<c:forEach var="result" items="${resultList}" varStatus="status">
+								<%-- <c:set var="routThumbPath" value="${empty result.routThumbPath ? '/images/travel/content/noimg.jpg' : 'http://seantour.com'.concat(result.routThumbPath)}" /> --%>
+								<c:set var="routThumbPath" value="${empty result.routThumbPath ? '/images/travel/content/noimg.jpg' : result.routThumbPath}" />
 								<li>
 									<div class="img">
-										<img src='http://seantour.com<c:out value="${result.routImgPath}"/>' alt='<c:out value="${result.routTitle}"/>' />
+										<a href='<c:url value="/travel/route/detail.do?routId=${result.routId}"/>'>
+											<img src='<c:url value="${routThumbPath}"/>' alt='<c:out value="${result.routTitle}"/>' />
+										</a>
 									</div>
-									<div class="txt"><a href='/travel/route/detail.do?routGroup=<c:out value="${result.routGroup}"/>'><c:out value="${result.routTitle}"/></a></div>
+									<div class="txt"><a href='<c:url value="/travel/route/detail.do?routId=${result.routId}"/>'><c:out value="${result.routTitle}"/></a></div>
 									<div class="info btnarea">
 										<span class="name"><c:out value="${result.routRegMemberNm}"/></span>
 										<ul class="lst">
-											<li><a href='/travel/route/modify.do?routGroup=<c:out value="${result.routGroup}"/>'>수정</a></li>
-											<li><a href="javascript:;" onclick="deleteItem('<c:out value="${result.routGroup}"/>');">삭제</a></li>
+											<li><a href='<c:url value="/travel/route/modify.do?routId=${result.routId}"/>'>수정</a></li>
+											<li><a href="javascript:;" onclick="deleteItem('<c:out value="${result.routId}"/>');">삭제</a></li>
 										</ul>
 									</div>
 								</li>
 								<%-- <c:if test="${(status.count % 4) eq '0'}"></li><li></c:if> --%>
 							</c:forEach>
+							<c:if test="${fn:length(resultList) eq 0}">
+								<li class="none"><div>등록된 일정이 없습니다</div></li>
+							</c:if>
 							</ul>
 						</div>
 						<ui:pagination paginationInfo="${paginationInfo}" type="travelFront" jsFunction="getItemList" />
@@ -72,9 +79,9 @@ function getItemList(pageNo){
 	document.getElementById("travelRoute").action = "<c:url value='/travel/member/clipboard.do'/>";
    	document.getElementById("travelRoute").submit();
 }
-function deleteItem(routGroup){
+function deleteItem(routId){
 	if(confirm("삭제하시겠습니까?")) {
-		document.getElementById("travelRoute").routGroup.value = routGroup;
+		document.getElementById("travelRoute").routId.value = routId;
 		document.getElementById("travelRoute").action = "<c:url value='/travel/route/delete.do'/>";
 	   	document.getElementById("travelRoute").submit();
 	}

@@ -54,7 +54,9 @@
 
 /* line 73, C:/Users/ariel_000/Documents/Web/Mosaic/Mosaic/css/mosaic.scss */
 .mosaic-tile.width-5 {
-  width: 48.5%; }
+  width: 48.5%;
+  margin-left:0 !important;
+   }
 
 /* line 77, C:/Users/ariel_000/Documents/Web/Mosaic/Mosaic/css/mosaic.scss */
 .mosaic-tile.width-6 {

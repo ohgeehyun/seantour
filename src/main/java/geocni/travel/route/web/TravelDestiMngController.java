@@ -1,5 +1,9 @@
 package geocni.travel.route.web;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -15,23 +19,25 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import egovframework.com.cmm.EgovMessageSource;
+import egovframework.com.utl.fcc.service.EgovFileUploadUtil;
+import egovframework.com.utl.fcc.service.EgovFormBasedFileVo;
 import egovframework.com.utl.fcc.service.NullUtil;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import geocni.travel.common.TravelDefaultVO;
+import geocni.travel.common.files.domain.TravelFiles;
+import geocni.travel.common.files.service.TravelFilesService;
 import geocni.travel.route.domain.TravelDestination;
 import geocni.travel.route.service.TravelDestinationService;
 import geocni.travel.route.service.TravelRouteService;
 import jnit.cms.AdminUtil;
 import jnit.cms.mbr.JnitcmsmbrVO;
 import jnit.mgov.module.JnitMgovUtil;
+import jnit.util.PathUtil;
 
 @Controller
 @SessionAttributes(types=TravelDestination.class)
@@ -46,6 +52,9 @@ public class TravelDestiMngController {
     @Resource(name = "travelDestinationService")
     private TravelDestinationService destService;
 
+    @Resource(name = "travelFilesService")
+    private TravelFilesService travelFilesService;
+    
 	@Resource(name = "propertiesService")
     protected EgovPropertyService propertiesService;
 
@@ -56,8 +65,17 @@ public class TravelDestiMngController {
 	@Autowired
     private DefaultBeanValidator beanValidator;
 
-	private String skinPath = "/travel/destination/mng/";
+    private long maxFileSize = 1024 * 1024 * 10;
+	
+	private String skinPath = "travel/destination/mng/";
 
+	private @ModelAttribute("travelDestination") 
+	TravelDestination selectTravelDestination(
+			TravelDestination travelDestination) throws Exception {
+		
+		return travelDestination = destService.selectTravelDestination(travelDestination);
+	}
+	
 	@RequestMapping(value="list.do")
 	public String travelDestinationList(
 			 @ModelAttribute("searchVO") TravelDefaultVO searchVO
@@ -97,7 +115,9 @@ public class TravelDestiMngController {
 			List<?> regionList = destService.selectTravelDestinationRegionList(travelDestination);
 			model.addAttribute("regionList", regionList);
 			
-	        model.addAttribute("travelDestination", travelDestination);
+			if(!model.containsAttribute("travelDestination")) {
+				model.addAttribute("travelDestination", new TravelDestination());
+			}
 
 	        model.addAttribute("type", type);
 	        model.addAttribute("grpId", grpId);
@@ -117,25 +137,43 @@ public class TravelDestiMngController {
      		,@ModelAttribute("travelDestination") TravelDestination travelDestination
             ,BindingResult bindingResult
             ,SessionStatus status
-            ,HttpServletRequest req
+            ,HttpServletRequest request
     		,Model model) throws Exception {
     	
 		try {
 			JnitcmsmbrVO loginVO = JnitMgovUtil.getLoginMember();
 			travelDestination.setDestWriter(loginVO.getMbrId());
+
+			/******** 파일업로드 ********/
+			String uploadDir = "/upload/travel/destination";
+	    	String root = PathUtil.getRealPath(request);
+	    	String fileDir = root + uploadDir;
 			
-			@SuppressWarnings("unused")
-			String routId = destService.insertTravelDestination(travelDestination);
+        	HashMap<String, EgovFormBasedFileVo> files = null;
+    		EgovFileUploadUtil.type = "noSubPath";
+        	files = EgovFileUploadUtil.uploadFormFiles(request, fileDir, maxFileSize);
+            /**** 멀티파일업로드 위해 코드 수정 ********
+            if(files.get("upfile") != null){
+            	EgovFormBasedFileVo vo = files.get("upfile");
+
+            	String filePathUrl = uploadDir+"/"+vo.getPhysicalName();
+            	travelDestination.setDestImgPath(filePathUrl);
+            }***********************************************************/
+            EgovFileUploadUtil.type = null;
+			/******** 파일업로드 ********/
+			
+			destService.insertTravelDestination(travelDestination, files);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		status.setComplete();
 		
 		return "redirect:/cms/travel/destination/list.do";
     }
 
     @RequestMapping(value="modify.do")
-    public String modifyTravelRoute(
+    public String modifyTravelDestination(
     		 @ModelAttribute("searchVO") TravelDefaultVO searchVO
  			,TravelDestination travelDestination
             ,HttpServletRequest req
@@ -152,7 +190,7 @@ public class TravelDestiMngController {
 			List<?> regionList = destService.selectTravelDestinationRegionList(travelDestination);
 			model.addAttribute("regionList", regionList);
 			
-			travelDestination = destService.selectTravelDestination(travelDestination);
+			travelDestination = destService.selectTravelDestinationDetail(travelDestination);
 	        model.addAttribute("travelDestination", travelDestination);
 
 	        model.addAttribute("type", type);
@@ -168,22 +206,88 @@ public class TravelDestiMngController {
     }
 
     @RequestMapping(value="update.do", method=RequestMethod.POST)
-    public String updateTravelRoute(
+    public String updateTravelDestination(
     		 @ModelAttribute("searchVO") TravelDefaultVO searchVO
       		,@ModelAttribute("travelDestination") TravelDestination travelDestination
             ,BindingResult bindingResult
             ,SessionStatus status
-            ,HttpServletRequest req
+            ,HttpServletRequest request
     		,Model model) throws Exception {
     	
     		try {
 
+    			/******** 파일업로드 ********/
+    			String uploadDir = "/upload/travel/destination";
+    	    	String root = PathUtil.getRealPath(request);
+    	    	String fileDir = root + uploadDir;
+    			
+            	HashMap<String, EgovFormBasedFileVo> files = null;
+        		EgovFileUploadUtil.type = "noSubPath";
+        		files = EgovFileUploadUtil.uploadFormFiles(request, fileDir, maxFileSize);
+                /**** 멀티파일업로드 위해 코드 수정 ********
+                if(files.get("upfile") != null){
+                	//원본파일 삭제
+                	File file = new File(root + travelDestination.getDestImgPath());
+                	if(file.exists()){
+                		file.delete();
+                	}
+
+                	EgovFormBasedFileVo vo = files.get("upfile");
+                	//상대경로
+                	String filePathUrl = uploadDir+"/"+vo.getPhysicalName();
+                	travelDestination.setDestImgPath(filePathUrl);
+            	}***********************************************************/
+        		List<TravelFiles> oldFileList = travelDestination.getTravelFileList();
+            	if(!files.isEmpty()) {
+        	    	List<TravelFiles> fileList = new ArrayList<>();
+//        			String uploadDir = "/upload/travel/destination";
+        	    	Iterator<String> keys = files.keySet().iterator();
+        	    	int serialNo = oldFileList.size();
+        	        while(keys.hasNext()) {
+        	            String key = keys.next();
+        	
+        	            EgovFormBasedFileVo fileVo = files.get(key);
+        	            String filePathUrl = uploadDir+"/"+fileVo.getPhysicalName();
+        	            int idx = Integer.valueOf(key.split("_")[1]);
+        	            
+        	            TravelFiles travelFile = new TravelFiles();
+        	            travelFile.setImgRefId(travelDestination.getDestId());
+        	            travelFile.setImgFileNo(serialNo);
+        	            travelFile.setImgFileName(fileVo.getFileName());
+        	            travelFile.setImgFilePath(filePathUrl);
+        	            travelFile.setImgFileSize(fileVo.getSize());
+        	            travelFile.setImgFileExt(fileVo.getContentType());
+        	            
+        	            if(oldFileList.size() > idx) {
+        	            	TravelFiles oldFile = oldFileList.get(idx);
+        	            	//원본파일 삭제
+        	            	File file = new File(root + oldFile.getImgFilePath());
+        	            	if(file.exists()){
+        	            		file.delete();
+        	            	}
+        	            	travelFile.setImgFileNo(idx);
+        	            	travelFilesService.updateTravelFiles(travelFile);
+        	            } else {
+        	            	fileList.add(travelFile);
+        	            }
+        	        	serialNo++;
+        	        }
+
+        	        if(fileList.size() > 0) {
+        	        	travelFilesService.insertTravelFiles(fileList);
+        	        }
+            	}
+        		EgovFileUploadUtil.type = null;
+    			/******** 파일업로드 ********/
+    			
     			destService.updateTravelDestination(travelDestination);
 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			
+    		status.setComplete();
+    		
     		return "redirect:/cms/travel/destination/list.do";
     }
     
@@ -192,11 +296,21 @@ public class TravelDestiMngController {
     		 @ModelAttribute("searchVO") TravelDefaultVO searchVO
      		,TravelDestination travelDestination
             ,SessionStatus status
-            ,HttpServletRequest req
+            ,HttpServletRequest request
     		,Model model) throws Exception {
     	
     		try {
-
+    			//첨부파일 삭제
+    			String realPath = PathUtil.getRealPath(request);
+    			travelDestination = destService.selectTravelDestination(travelDestination);
+    			if(travelDestination.getTravelFileList().size() > 0) {
+    				travelFilesService.deleteTravelFilesPhysically(travelDestination.getTravelFileList(), realPath);
+    			}
+            	File file = new File(realPath + travelDestination.getDestImgPath());
+            	if(file.exists()){
+            		file.delete();
+            	}
+    			
     			destService.deleteTravelDestinationPhysically(travelDestination);
 
 			} catch (Exception e) {
@@ -207,42 +321,6 @@ public class TravelDestiMngController {
     		return "redirect:/cms/travel/destination/list.do";
     }
     
-	@ResponseBody
-	@RequestMapping(value="retrieveDestinationList.do", produces="application/text;charset=utf8")
-	public String retrieveDestinationList(
-			 TravelDestination travelDestination
-            ,HttpServletRequest req
-			,Model model) throws Exception {
-		
-		travelDestination.setRecordCountPerPage(1000);
-    	List<?> destList = destService.selectTravelDestinationList(travelDestination);
-
-		ObjectMapper mapper = new ObjectMapper();
-		String dest = mapper.writeValueAsString(destList);
-		return dest;
-		
-	}
-    
-	@ResponseBody
-	@RequestMapping(value="retrieveDestinationDetail.do", produces="application/text;charset=utf8")
-	//public Map<String,Object> retrieveDestinationDetail(
-	public String retrieveDestinationDetail(
-			TravelDestination travelDestination
-			,HttpServletRequest req
-			,Model model) throws Exception {
-		
-		//Map<String,Object> rtMap = new HashMap<String, Object>();
-		/*TravelDestination detail = destinationService.selectTravelDestination(travelDestination);
-		rtMap.put("detail", detail);
-    	return rtMap;*/
-		
-		TravelDestination detail = destService.selectTravelDestination(travelDestination);
-		ObjectMapper mapper = new ObjectMapper();
-		String dest = mapper.writeValueAsString(detail);
-		return dest;
-		
-	}
-	
     /**
      * AdminUtil을 제어한다.
      * @param request

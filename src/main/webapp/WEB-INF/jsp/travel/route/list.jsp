@@ -26,12 +26,12 @@
 		               <div class="tabmenu colum2">
 							<a href="#none">추천일정<span class="unfd sprh_com"></span></a>
 							<ul>
-								<li><a href="#none" class="on"><span>작가 추천일정</span></a></li>
-								<li><a href="#none" ><span>베스트 추천일정</span></a></li>
+								<li><a href="<c:url value='/travel/route/list.do'/>" <c:if test="${open ne 'Y'}">class="on"</c:if>><span>작가 추천일정</span></a></li>
+								<li><a href="<c:url value='/travel/route/list.do?open=Y'/>" <c:if test="${open eq 'Y'}">class="on"</c:if>><span>내가 올리는 추천일정</span></a></li>
 							</ul>
 						</div>
 		            	<div class="bbsSrch">
-							<fieldset form="board">
+							<fieldset>
 								<legend>검색</legend>
 								<select class="select" name="searchCondition" id="searchCondition" onchange="fn_egov_link_page(1);">
 									<%-- <option value="">선택</option> --%>
@@ -44,20 +44,37 @@
 		               
 						<div class="page_num">
 							<p>총 게시물 <span><c:out value="${allCnt}" /></span>건</p>
+						<c:if test="${fn:length(resultList) eq 0}">
+							<p style="margin:0 auto;text-align:center;"><span>등록된 일정이 없습니다</span></p>
+						</c:if>
 						</div>
 						 <div class="recommend_lst">
 							<ul>
 							<c:forEach var="result" items="${resultList}" varStatus="status">
+								<%-- <c:set var="routThumbPath" value="${empty result.routThumbPath ? '/images/travel/content/noimg.jpg' : 'http://seantour.com'.concat(result.routThumbPath)}" /> --%>
+								<c:set var="routThumbPath" value="${empty result.routThumbPath ? '/images/travel/content/noimg.jpg' : result.routThumbPath}" />
 								<li>
 									<div class="img">
-										<%-- <span class="title">부산여행 전문작가 추천</span> --%>
-										<span class="title"><c:out value="${result.routRegion}"/>여행 전문작가 추천</span>
-										<%-- <img src="./images/content/img_recommend01.jpg" alt="" /> --%>
-										<img src='http://seantour.com<c:out value="${result.routImgPath}"/>' alt='<c:out value="${result.routTitle}"/>' />
-									</div>
+									 	<a href='<c:url value="/travel/route/detail.do?routId=${result.routId}"/>'>
+											<%-- <span class="title">부산여행 전문작가 추천</span> --%>
+											<c:choose>
+											<c:when test="${open ne 'Y'}">
+											<span class="title">
+											<c:out value="${result.routRegion}"/>여행
+											</span>
+												<img src='<c:url value="${routThumbPath}"/>' alt='<c:out value="${result.routTitle}"/>' />
+										</a>
+										</div>
+										</c:when>	
+										<c:otherwise>
+										 	<img src='<c:url value="${routThumbPath}"/>' alt='<c:out value="${result.routTitle}"/>' />
+										 </a>
+										</div>
+										</c:otherwise>
+										</c:choose>
 									<div class="txt">
-										<%-- <a href='/travel/route/detail.do?routId=<c:out value="${result.routId}"/>'><c:out value="${result.routTitle}"/> --%>
-										<a href='/travel/route/detail.do?routGroup=<c:out value="${result.routGroup}"/>'><c:out value="${result.routTitle}"/></a>
+										<%-- <a href='/travel/route/detail.do?routId=<c:out value="${result.routId}"/>'><c:out value="${result.routTitle}"/></a> --%>
+										<a href='<c:url value="/travel/route/detail.do?routId=${result.routId}"/>'><c:out value="${result.routTitle}"/></a>
 									</div>
 									<div class="info">
 										<span class="name"><c:out value="${result.routRegMemberNm}"/></span>
@@ -95,17 +112,19 @@
 		<!--//footer -->
 	</div>
 	<!-- // wrap -->
+	<!-- <style type="text/css">
+	.local_lst li .tbox .tit span {
+		width: 60px;
+	}
+	</style> -->
+	<script>
+	function fn_egov_link_page(pageNo){
+		document.getElementById("travelRoute").pageIndex.value = pageNo;
+		document.getElementById("travelRoute").action = "<c:url value='/travel/route/list.do'/>";
+	   	document.getElementById("travelRoute").submit();
+	}
+	</script>
 </body>
-<style type="text/css">
-.local_lst li .tbox .tit span {
-	width: 60px;
-}
-</style>
-<script type="text/javascript">
-function fn_egov_link_page(pageNo){
-	document.getElementById("travelRoute").pageIndex.value = pageNo;
-	document.getElementById("travelRoute").action = "<c:url value='/travel/route/list.do'/>";
-   	document.getElementById("travelRoute").submit();
-}
-</script>
+
+
 </html>

@@ -1,6 +1,8 @@
 package geocni.travel.route.web;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +24,6 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
 
 import egovframework.com.cmm.EgovMessageSource;
 import egovframework.com.utl.fcc.service.NullUtil;
-import egovframework.rte.fdl.idgnr.EgovIdGnrService;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import geocni.travel.common.TravelDefaultVO;
 import geocni.travel.route.domain.TravelDestination;
@@ -50,34 +51,87 @@ public class TravelRouteController {
 	@Resource(name="egovMessageSource")
     private EgovMessageSource msgSrc;
     
-    @Resource(name="travelRouteGroupIdGnrService")    
-    private EgovIdGnrService routeGroupIdGnrService;
-    
     @SuppressWarnings("unused")
 	@Autowired
     private DefaultBeanValidator beanValidator;
 
 	private Log log = LogFactory.getLog(getClass());
 	
-	private String skinPath = "/travel/route/";
+	private String skinPath = "travel/route/";
 
 	@RequestMapping(value="list.do")
 	public String routeList(
 			 TravelRoute travelRoute
+			,@RequestParam(value="open", required=false)String open
             ,SessionStatus status
 			,Model model) throws Exception {
 		
-		travelRoute.setPageUnit(propertiesService.getInt("pageUnit"));
+		if(open != null && "Y".equals(open)) {
+			/*JnitcmsmbrVO loginVO = JnitMgovUtil.getLoginMember();
+			if(NullUtil.isEmpty(loginVO.getMbrId())) {
+				return "redirect:/travel/login.jsp";
+			}
+			travelRoute.setRoutRegMember(loginVO.getMbrId());*/
+			
+			travelRoute.setRoutType("U");
+			travelRoute.setRoutOpen(open);
+		} else {
+			travelRoute.setRoutType("W");
+		}
+
+		//travelRoute.setPageUnit(propertiesService.getInt("pageUnit"));
+		travelRoute.setPageUnit(9);
 		travelRoute.setPageSize(propertiesService.getInt("pageSize"));
 
 		model.addAllAttributes(routeService.selectTravelRouteListMap(travelRoute));
 		status.setComplete();
 		
         model.addAttribute("travelRoute", travelRoute);
+        model.addAttribute("open", open);
 		
 		return skinPath + "list";
 	}
 
+	@RequestMapping(value="bestlatest.do")
+	public String routeBestLatestList(
+			 TravelRoute travelRoute
+			,SessionStatus status
+			,Model model) throws Exception {
+		
+		travelRoute.setRecordCountPerPage(travelRoute.getPageUnit());
+		travelRoute.setRoutType("U");
+//		travelRoute.setRoutType("W"); //데이터부족상황에서 임시 설정
+		travelRoute.setRoutOpen("Y");
+		
+		List<?> resultList = routeService.selectTravelRouteBestList(travelRoute);
+		model.addAttribute("resultList", resultList);
+		status.setComplete();
+		
+//		model.addAttribute("travelRoute", travelRoute);
+		
+		return skinPath + "bestlatest";
+	}
+	
+	@RequestMapping(value="latest.do")
+	public String routeLatestList(
+			 TravelRoute travelRoute
+			,@RequestParam(value="titleLen",required=false, defaultValue="350")String titleLen
+			,SessionStatus status
+			,Model model) throws Exception {
+		
+		//travelRoute.setPageUnit(propertiesService.getInt("pageUnit"));
+		travelRoute.setPageSize(propertiesService.getInt("pageSize"));
+		travelRoute.setRoutType("W");
+		
+		model.addAllAttributes(routeService.selectTravelRouteListMap(travelRoute));
+		status.setComplete();
+		
+		model.addAttribute("titleLen", titleLen);
+//		model.addAttribute("travelRoute", travelRoute);
+		
+		return skinPath + "latest";
+	}
+	
     @RequestMapping(value="detail.do")
     public String destinationDetail(
     		 @ModelAttribute("searchVO") TravelDefaultVO searchVO
@@ -87,25 +141,13 @@ public class TravelRouteController {
     	
     	try{
 
-			/*travelRoute = routeService.selectTravelRoute(travelRoute);
-			if(!NullUtil.isEmpty(travelRoute.getRoutDescription())) {
-		    	TravelDestination destination = new TravelDestination();
-				String[] descList = travelRoute.getRoutDescription().split("[|]");
-				
-				List<TravelDestination> lst = new ArrayList<TravelDestination>();
-				for(int i=0;descList.length > i ;i++){
-					destination.setDestId(descList[i]);
-					destination = destService.selectTravelDestination(destination);
-					lst.add(destination);
-				}
-				travelRoute.setRoutePointList(lst);
-			}
-			model.addAttribute("travelRoute", travelRoute);*/
+    		if(NullUtil.isEmpty(travelRoute.getRoutId())) {
+    			throw new NullPointerException("조회 대상 정보가 없습니다");
+    		}
 
-    		travelRoute.setPageUnit(1000);
-    		travelRoute.setPageSize(propertiesService.getInt("pageSize"));
+    		routeService.updateTravelRouteHitCount(travelRoute.getRoutId());
 
-    		model.addAllAttributes(routeService.selectTravelRouteListMap(travelRoute));
+    		model.addAttribute("travelRoute", routeService.selectTravelRoute(travelRoute));
 
     	} catch (NullPointerException e){
 			log.error(e.getMessage());
@@ -123,51 +165,52 @@ public class TravelRouteController {
             ,HttpServletRequest req
             ,SessionStatus status
     		,Model model) throws Exception {
+
+    	String viewPath = skinPath + "register";
+    	/*Device device = DeviceUtils.getCurrentDevice(req);
+    	
+    	if(device != null && (device.isMobile() || device.isTablet())) {
+    		viewPath = skinPath + "register_mob";
+    		travelDestination.setPageUnit(5);
+    		travelDestination.setPageSize(5);
+
+    	} else {*/
+    		travelDestination.setPageUnit(6);
+    		travelDestination.setPageSize(10);
+    	/*}*/
     	
     	try{
 	
 			List<?> regionList = destService.selectTravelDestinationRegionList(travelDestination);
 			model.addAttribute("regionList", regionList);
 	    	
+			List<String> searchCatList = new ArrayList<>();
+			searchCatList.add("관광지");
+			searchCatList.add("숙박");
+			searchCatList.add("체험");
+			searchCatList.add("음식점");
+			searchCatList.add("쇼핑");
+			Map<?,?> catList = destService.selectTravelDestiCategoryList(searchCatList);
+			model.addAttribute("catList", catList);
+			
 	    	travelDestination.setDestRegion("강원");
 	    	travelDestination.setDestCategory("관광지");
-	    	List<?> destList = destService.selectTravelDestinationList(travelDestination);
-			model.addAttribute("destList", destList);
+			model.addAllAttributes(destService.selectTravelDestinationListMap(travelDestination));
 	    	
-			String groupId = routeGroupIdGnrService.getNextStringId();
-			model.addAttribute("groupId", groupId);
-			
-	    	model.addAttribute("thumbPath", "https://www.seantour.com");
-	    	model.addAttribute("absPath", "/geocni/travel");
-	
+//	    	model.addAttribute("thumbPath", "https://www.seantour.com");
+	    	model.addAttribute("thumbPath", "");
+//	    	model.addAttribute("absPath", "/geocni/travel");
+
+			travelRoute.setRoutRegion(travelDestination.getDestRegion());
+	        model.addAttribute("travelRoute", travelRoute);
+	    	
     	} catch (NullPointerException e){
 			log.error(e.getMessage());
     	}catch(Exception e){
     		log.error(e.getMessage());
     	}
-    	return skinPath + "register";
-    }
-
-    @RequestMapping(value="insert.do", method=RequestMethod.POST)
-    public String insertApplication(
-    		 @ModelAttribute("travelRoute") TravelRoute travelRoute
-            ,BindingResult bindingResult
-            ,SessionStatus status
-            ,HttpServletRequest req
-    		,Model model) throws Exception {
     	
-		try {
-			
-			JnitcmsmbrVO loginVO = JnitMgovUtil.getLoginMember();
-			travelRoute.setRoutRegMember(loginVO.getMbrId());
-			
-			routeService.insertTravelRoute(travelRoute);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return "redirect:/cms/travel/route/list.do";
+    	return viewPath;
     }
 
 	@ResponseBody
@@ -181,22 +224,22 @@ public class TravelRouteController {
 		try {
 			JnitcmsmbrVO loginVO = JnitMgovUtil.getLoginMember();
 			travelRoute.setRoutRegMember(loginVO.getMbrId());
-			//TODO: 임시
+
 			if(NullUtil.isEmpty(loginVO.getMbrId())) {
-				travelRoute.setRoutRegMember("MBR_0000000001");
+				throw new NullPointerException();
 			}
 			
+			travelRoute.setRoutType("U"); //일정 타입(''U''-사용자, ''W''-작가)
+			travelRoute.setRoutOpen("N"); //공개 여부("Y"-공개, "N"-비공개)
 			travelRoute = routeService.insertTravelRoute(travelRoute);
 
 			JSON.put("status", "success");
-			JSON.put("routGroup", travelRoute.getRoutGroup());
 			JSON.put("routId", travelRoute.getRoutId());
-			JSON.put("days", travelRoute.getRoutDays());
 			JSON.put("title", travelRoute.getRoutTitle());
-			JSON.put("description", travelRoute.getRoutDescription());
-		
+
 		} catch (NullPointerException e){
 			JSON.put("status", "error");
+			JSON.put("result", e.getMessage());
 		} catch (Exception e) {
 			JSON.put("status", "error");
 		}
@@ -206,12 +249,56 @@ public class TravelRouteController {
     	
     }
     
+    @RequestMapping(value="insert.do", method=RequestMethod.POST)
+    public String insertTravelRoute(
+    		 @ModelAttribute("travelRoute") TravelRoute travelRoute
+            ,BindingResult bindingResult
+            ,SessionStatus status
+            ,HttpServletRequest req
+    		,Model model) throws Exception {
+    	
+		try {
+			
+			JnitcmsmbrVO loginVO = JnitMgovUtil.getLoginMember();
+			travelRoute.setRoutRegMember(loginVO.getMbrId());
+
+			if(NullUtil.isEmpty(loginVO.getMbrId())) {
+				throw new NullPointerException();
+			}
+			
+			travelRoute.setRoutType("U"); //일정 타입(''U''-사용자, ''W''-작가)
+			travelRoute.setRoutOpen("N"); //공개 여부("Y"-공개, "N"-비공개)
+			travelRoute = routeService.insertTravelRoute(travelRoute);
+
+		} catch (NullPointerException e){
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "redirect:/cms/travel/route/list.do";
+    }
+
     @RequestMapping(value="modify.do")
     public String modifyTravelRoute(
-    		 @ModelAttribute("travelRoute") TravelRoute travelRoute
+    		 @ModelAttribute("searchVO") TravelDefaultVO searchVO
+    		,TravelRoute travelRoute
  			,TravelDestination travelDestination
             ,HttpServletRequest req
     		,ModelMap model) throws Exception {
+    	
+    	String viewPath = skinPath + "register";
+    	/*Device device = DeviceUtils.getCurrentDevice(req);
+    	
+    	if(device != null && (device.isMobile() || device.isTablet())) {
+    		viewPath = skinPath + "register_mob";
+    		travelDestination.setPageUnit(5);
+    		travelDestination.setPageSize(5);
+
+    	} else {*/
+    		travelDestination.setPageUnit(6);
+    		travelDestination.setPageSize(10);
+    	/*}*/
     	
     	try{
 
@@ -220,17 +307,26 @@ public class TravelRouteController {
         	
         	travelDestination.setDestRegion("강원");
         	travelDestination.setDestCategory("관광지");
-        	List<?> destList = destService.selectTravelDestinationList(travelDestination);
-    		model.addAttribute("destList", destList);
+			model.addAllAttributes(destService.selectTravelDestinationListMap(travelDestination));
         	
-        	
-        	model.addAttribute("thumbPath", "https://www.seantour.com");
-        	model.addAttribute("absPath", "/geocni/travel");
-	    	
-//			travelRoute = routeService.selectTravelRoute(travelRoute);
-        	@SuppressWarnings("unchecked")
-			List<TravelRoute> routeList = (List<TravelRoute>) routeService.selectTravelRouteList(travelRoute);
-	        model.addAttribute("routeList", routeList);
+//        	model.addAttribute("thumbPath", "https://www.seantour.com");
+        	model.addAttribute("thumbPath", "");
+//        	model.addAttribute("absPath", "/geocni/travel");
+
+        	travelRoute = routeService.selectTravelRoute(travelRoute);
+
+        	JnitcmsmbrVO loginVO = JnitMgovUtil.getLoginMember();
+			travelRoute.setRoutRegMember(loginVO.getMbrId());
+
+			if(NullUtil.isEmpty(loginVO.getMbrId())) {
+				throw new NullPointerException();
+			} else {
+				if(!loginVO.getMbrId().equals(travelRoute.getRoutRegMember())) {
+					return "redirect:/";
+				} else {
+					model.addAttribute("travelRoute", travelRoute);
+				}
+			}
 
     	} catch (NullPointerException e){
 			log.error(e.getMessage());
@@ -238,7 +334,7 @@ public class TravelRouteController {
     		log.error(e.getMessage());
     	}
     	
-    	return skinPath + "register";
+    	return viewPath;
     }
 
 	@ResponseBody
@@ -253,27 +349,35 @@ public class TravelRouteController {
 			
 			JnitcmsmbrVO loginVO = JnitMgovUtil.getLoginMember();
 			travelRoute.setRoutRegMember(loginVO.getMbrId());
-			//TODO: 임시
+
 			if(NullUtil.isEmpty(loginVO.getMbrId())) {
-				travelRoute.setRoutRegMember("MBR_0000000002");
-			}
-			
-			if(NullUtil.isEmpty(travelRoute.getRoutId()) || NullUtil.isEmpty(travelRoute.getRoutGroup())) {
 				throw new NullPointerException();
 			}
 			
-//			routeService.insertTravelRoute(travelRoute);
+			if(NullUtil.isEmpty(travelRoute.getRoutId()) 
+					|| NullUtil.isEmpty(travelRoute.getRoutId())) {
+				throw new NullPointerException();
+			}
+			
+			TravelRoute route = new TravelRoute();
+			route.setRoutId(travelRoute.getRoutId());
+			route = routeService.selectTravelRoute(route);
+			if(NullUtil.isEmpty(route.getRoutRegMember()) 
+					|| !route.getRoutRegMember().equals(travelRoute.getRoutRegMember())) {
+				throw new Exception();
+			}
+			
+			travelRoute.setRoutType("U"); //일정 타입(''U''-사용자, ''W''-작가)
+			travelRoute.setRoutOpen("N"); //공개 여부("Y"-공개, "N"-비공개)
 			routeService.updateTravelRoute(travelRoute);
 
 			JSON.put("status", "success");
-			JSON.put("routGroup", travelRoute.getRoutGroup());
 			JSON.put("routId", travelRoute.getRoutId());
-			JSON.put("days", travelRoute.getRoutDays());
 			JSON.put("title", travelRoute.getRoutTitle());
-			JSON.put("description", travelRoute.getRoutDescription());
 		
 		} catch (NullPointerException e){
-			JSON.put("status", "error - There is no routId or routGroup");
+			JSON.put("status", "error");
+			JSON.put("result", e.getMessage());
 		} catch (Exception e) {
 			JSON.put("status", "error");
 		}
@@ -294,7 +398,30 @@ public class TravelRouteController {
     	
     		try {
 
-				routeService.updateTravelRoute(travelRoute);
+    			JnitcmsmbrVO loginVO = JnitMgovUtil.getLoginMember();
+    			travelRoute.setRoutRegMember(loginVO.getMbrId());
+
+    			if(NullUtil.isEmpty(loginVO.getMbrId())) {
+    				throw new NullPointerException();
+    			}
+    			
+    			if(NullUtil.isEmpty(travelRoute.getRoutId()) 
+    					|| NullUtil.isEmpty(travelRoute.getRoutId())) {
+    				throw new NullPointerException();
+    			}
+    			
+    			TravelRoute route = new TravelRoute();
+    			route.setRoutId(travelRoute.getRoutId());
+    			route = routeService.selectTravelRoute(route);
+    			if(NullUtil.isEmpty(route.getRoutRegMember()) 
+    					|| !route.getRoutRegMember().equals(travelRoute.getRoutRegMember())) {
+    				throw new Exception();
+    			}
+    			
+    			travelRoute.setRoutType("U"); //일정 타입(''U''-사용자, ''W''-작가)
+    			travelRoute.setRoutOpen("N"); //공개 여부("Y"-공개, "N"-비공개)
+
+    			routeService.updateTravelRoute(travelRoute);
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -311,7 +438,7 @@ public class TravelRouteController {
     		,Model model) throws Exception {
     	
     		try {
-    			if(NullUtil.isEmpty(travelRoute.getRoutGroup())) {
+   				if(NullUtil.isEmpty(travelRoute.getRoutId())) {
     				return "redirect:/travel/member/myroute.do";
     			} else {
     				routeService.deleteTravelRoutePhysically(travelRoute);
@@ -333,13 +460,25 @@ public class TravelRouteController {
             ,@RequestParam("idx") String idx
     		,Model model) throws Exception {
     	
-    	model.addAttribute("absPath", "/geocni/travel");
+//    	model.addAttribute("absPath", "/geocni/travel");
     	model.addAttribute("status", status);
     	model.addAttribute("idx", idx);
 
     	return skinPath + "address";
     }
 
-    
+    @RequestMapping(value="searchpoint.do")
+    public String searchPoint(
+    		 HttpServletRequest req
+    		,@RequestParam("status") String status
+            ,@RequestParam("idx") String idx
+    		,Model model) throws Exception {
+    	
+//    	model.addAttribute("absPath", "/geocni/travel");
+    	model.addAttribute("status", status);
+    	model.addAttribute("idx", idx);
+    	
+    	return skinPath + "searchPoint";
+    }
     
 }

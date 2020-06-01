@@ -439,6 +439,39 @@
 .login_area a.kakao_lg:before{background:url(../images/content/icon_kakao.jpg) no-repeat 0 0;}
 .login_area a.google_lg:before{background:url(../images/content/icon_google.jpg) no-repeat 0 0;}
 
+/* **************************************** *
+ * 개인정보처리방침
+ * **************************************** */
+.policy_list{}
+.policy_list>li{margin-bottom:20px;padding-left:15px;text-indent:-22px;font-size:18px;}
+.policy_list>li p{margin:15px 0;padding:22px 15px;background:#f7f7f7;font-size:16px;text-indent:0;}
+
+.email_notice {background:#f3f3f3; padding:40px 30px;text-align:center;}
+.email_notice .emp {margin:30px 0px 20px; font-size:34px; color:#cf161e; font-weight: bold;}
+.email_notice .txt{text-align:left;font-weight:600;}
+.email_row{margin-top:20px;}
+.email_row .tit{position:relative;margin-bottom:10px;padding-left:15px;font-weight:600;}
+.email_row .tit:before{content:'';display:inline-block;position:absolute;top:7px;left:0;width:10px;height:10px;background:#545454;}
+.email_row .lst li{padding-left:15px;text-indent:-18px;font-size:15px;}
+
+@media screen and (max-width:1024px){
+	.policy_list li{font-size:16px;}
+	.policy_list li p{font-size:14px;}
+	
+	.email_notice .emp{margin:20px 0 10px;font-size:28px;}
+	.email_notice .txt{font-size:15px;}
+}
+@media screen and (max-width:768px){
+	.policy_list li{font-size:14px;}
+	.policy_list li p{font-size:12px;}
+	
+	.email_notice{padding:25px 20px;}
+	.email_notice .emp{margin:15px 0 10px;font-size:23px;}
+	.email_notice .txt{font-size:13px;}
+	.email_row .tit{font-size:14px;}
+	.email_row .tit:before{top:5px;width:7px;height:7px;}
+	.email_row .lst li{font-size:13px;}
+}
 
 
 

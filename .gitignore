@@ -41,6 +41,9 @@ src/main/webapp/cms/import/cmstest_content_admin.jsp
 src/main/webapp/cms/import/cmstest_content_admin_code.jsp
 src/main/webapp/cms/import/cmstest_updateButton.jsp
 src/main/webapp/cms/import/cmstest_updateButton_code.jsp
-src/main/resources/egovframework/egovProps/globals.properties
-src/main/resources/egovframework/egovProps/globals.properties
-src/main/resources/egovframework/egovProps/globals.properties
+src/main/webapp/upload/travel/*
+src/test/java/*
+src/main/webapp/travel/common/config/handing/jsHanding.jsp
+src/main/webapp/travel/common/config/handing/cssHanding.jsp
+src/main/webapp/travel/common/config/handing/cssHanding.jsp
+src/main/webapp/travel/common/config/handing/jsHanding.jsp

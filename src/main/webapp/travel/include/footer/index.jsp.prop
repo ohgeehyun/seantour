@@ -1,5 +1,5 @@
-#MENU_00055 (by Jnitcms 3.5)
-#Thu Apr 16 18:17:09 KST 2020
+#MENU_00054 (by Jnitcms 3.5)
+#Tue Apr 21 14:57:44 KST 2020
 pageNavTitle=footer&lt; include&lt; travel
 admId2=
 pageTitle=footer
@@ -8,13 +8,13 @@ admTel2=
 admTel=
 pageCode=4b20acf3fc48facc3c3b896d11b972d75a462fcb847244fabd791758e61
 cntId=CNT_0000000000000037
-pageHash=70cc17469732bd15ab6de4a922e1f6c3acda4cd465adf684cf74dbb1ef86a494
+pageHash=f961dd6c6927df44e88e4b3f0ff8615dff6b5cc41c7a3584bdc74c0c1d4cea9
 pageImgTitle=footer
-menuId=MENU_00055
+menuId=MENU_00054
 pageLinkNav=<span id\='pageLinkNav'><a href\='/travel' class\='menu-home'><span>Home</span></a> <span class\='gt'> &gt; </span> <a href\='/travel/include'><span>include</span></a> <span class\='gt'> &gt; </span> <span class\='menu-active'>footer</span></span>
 subTitle=
 pageCcl=100
-cntModified=2020-04-16
+cntModified=2020-04-21
 tplId=\ 
 admId=MBR_0000000001
 siteId=SITE_00007

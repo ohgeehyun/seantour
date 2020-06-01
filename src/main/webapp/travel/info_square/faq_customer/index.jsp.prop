@@ -1,33 +1,24 @@
 #MENU_00031 (by Jnitcms 3.5)
-#Wed Apr 08 10:24:01 KST 2020
-metaBuild=2020.04.08
+#Tue May 12 21:10:05 KST 2020
 pageNavTitle=Q&A_\uACE0\uAC1D\uC758\uC18C\uB9AC&lt; \uC815\uBCF4\uAD11\uC7A5&lt; travel
 admId2=
 pageTitle=Q&A_\uACE0\uAC1D\uC758\uC18C\uB9AC
 admNm=
 admTel2=
-metaClassification=
 admTel=
-metaSubject=
 pageCode=a0f250bad677b8b5946fb17495b54028595ba040821af948e98f4dbc8aec74
 cntId=CNT_0000000000000019
-pageHash=c9aa98f9bff68e785fcd9d807fbdcb79309edf725c73a824c81ff470e640166c
-metaKeyword=
+pageHash=cbcee15e62c9f584ffdd7af4ffb82f569228ffb1a15c2bde6615fe9a5f3e53
 pageImgTitle=Q&A_\uACE0\uAC1D\uC758\uC18C\uB9AC
-metaTitle=Q&A_\uACE0\uAC1D\uC758\uC18C\uB9AC
-metaLanguage=
 menuId=MENU_00031
 pageLinkNav=<span id\='pageLinkNav'><a href\='/travel' class\='menu-home'><span>Home</span></a> <span class\='gt'> &gt; </span> <a href\='/travel/info_square'><span>\uC815\uBCF4\uAD11\uC7A5</span></a> <span class\='gt'> &gt; </span> <span class\='menu-active'>Q&A_\uACE0\uAC1D\uC758\uC18C\uB9AC</span></span>
 subTitle=
 pageCcl=100
-cntModified=2020-04-08
-tplId=TPL_000127
-metaDescription=
+cntModified=2020-05-12
+tplId=TPL_000138
 admId=
 siteId=SITE_00007
 pageNav=<span class\='menu-home'>Home</span> <span class\="gt"> &gt; </span> \uC815\uBCF4\uAD11\uC7A5 <span class\="gt"> &gt; </span> <span class\='menu-active'>Q&A_\uACE0\uAC1D\uC758\uC18C\uB9AC</span>
-robotYn=
+robotYn=0
 indexGet=Y
-menuPath=/travel/info_square/faq_customer
 admNm2=
-metaReply=

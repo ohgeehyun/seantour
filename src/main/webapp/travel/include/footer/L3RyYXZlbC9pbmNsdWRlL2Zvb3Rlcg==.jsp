@@ -1,13 +1,12 @@
 <% response.setHeader("Cache-Control","no-store"); response.setHeader("Pragma","no-cache"); response.setDateHeader("Expires",0); if (request.getProtocol().equals("HTTP/1.1")) { response.setHeader("Cache-Control", "no-cache"); } %><%@ page contentType="text/html; charset=utf-8" %><%@ include file='/_common/header.jsp' %><% /*<!-- [-CONTENT-] -->*/ %><!-- footer -->
-		<div id="footer">
+<div id="footer">
 			<div class="inr">
 				<div class="foot_wrap">
 					<ul class="foot_util">
-						<li><a href="/travel/info_square/NULL/index.jsp">개인정보처리방침</a></li>
-						<li><a href="/travel/info_square//NULL/index.jsp">이메일무단수집거부</a></li>
-						<li><a href="/travel/info_square//NULL/index.jsp">이용약관</a></li>
-						<li><a href="/travel/info_square/faq_customer/index.jsp">고객의소리</a></li>
-						<!--<li><a href="#none">사이트맵</a></li>-->
+							 <li><a href="/travel/info_square/info_policy/index.jsp">개인정보처리방침</a></li>
+						 	<li><a href="/travel/info_square/email/index.jsp">이메일무단수집거부</a></li>
+						 <li><a href="/board/board.do?boardId=bbs_0000000000000020">고객의소리</a></li>
+					 <li><a href="/travel/info_square/termsofuse/index.jsp">이용약관</a></li>
 					</ul>
 					<ul class="foot_info">
 						<li>08588 서울특별시 금천구 가산디지털2로 53 한라시그마밸리 12층</li>
@@ -16,10 +15,10 @@
 					</ul>
 				</div>
 				<div class="footer_go">
-					<a href="/travel/info_square/updateinfo/index.jsp" class="modipy">
+					<a href="/board/board.do?boardId=bbs_0000000000000021" class="modipy">
 						수정정정요청
 					</a>
-					<a  href="/travel/info_square/notice/index.jsp" class="notice">
+					<a  href="/board/board.do?boardId=bbs_0000000000000014" class="notice">
 						공지사항
 					</a>
 				</div>
@@ -28,4 +27,5 @@
 				</div>
 			</div>
 		</div>
+
 		<!-- // Footer --><% /*<!-- /[-CONTENT-] -->*/ %>

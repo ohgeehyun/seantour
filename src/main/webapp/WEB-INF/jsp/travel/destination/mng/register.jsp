@@ -16,7 +16,7 @@
            	<div class="span12">
                	<div class="widget-box">
                    	<div class="widget-title">
-                   		<h3>그룹 <c:out value='${registerFlag}'/></h3>
+                   		<h3>여행지 <c:out value='${registerFlag}'/></h3>
                    		<a href="<c:url value="/cms/travel/destination/list.do"/>?grpId=${grpId}&type=${type}" class="btn btn-small"><i class="icon-repeat"></i> 되돌아가기</a>
                    		<a href="javascript:;" onclick="registerRoute();" class="btn btn-small"><i class="icon-ok-sign"></i> <c:out value='${registerFlag}'/></a>
 						<c:if test="${not empty travelDestination.destId}">
@@ -24,12 +24,13 @@
 						</c:if> 
                     </div>
 					<div class="widget-content nopadding">
-						<form:form commandName="travelDestination">
+						<form:form commandName="travelDestination" enctype="multipart/form-data">
 							<form:hidden path="destId" />
-							<%-- <form:hidden path="routDescription" />
+							<form:hidden path="destImgPath" />
+							<%-- <form:hidden path="routWayPoint" />
 							<form:hidden path="routStartAxis" />
 							<form:hidden path="routDestAxis" /> --%>
-							<table class="table table-bordered table-striped th_left" summary="그룹 테이블">
+							<table class="table table-bordered table-striped th_left" summary="여행지 <c:out value='${registerFlag}'/> 테이블">
 								<c:if test="${not empty travelDestination.destId}">
 									<input type="hidden" name="screenMode" value="up" />
 									<input type="hidden" id="registerFlag" value="update">
@@ -82,10 +83,69 @@
 									</td>
 								</tr>
 								<tr>
-									<th>첨부이미지</th>
+									<th>
+										첨부이미지
+										<%-- 
+										<a href="javascript:;" onClick="addUploadField(this);" class="btn btn-small"><i class="icon-plus"></i></a>
+										<a href="javascript:;" onClick="delUploadField(this);" class="btn btn-small"><i class="icon-remove"></i></a> 
+										--%>
+									</th>
 									<td>
-										<form:input path="destImgPath" cssClass="txt" />
-										&nbsp;<form:errors path="destImgPath" />
+										<%-- <form:input path="destImgPath" cssClass="txt" />
+										&nbsp;<form:errors path="destImgPath" /> --%>
+										<c:if test="${not empty travelDestination.destImgPath}"><span style="color:yellow;"><i class="icon-info-sign"></i> 기존 시스템에서 이전된 파일입니다.</span></c:if>
+										<c:if test="${not empty travelDestination.destImgPath}">
+											<div style="margin:10px 3px;">
+												<%-- <p><i class="icon-info-sign"></i> 첨부파일을 수정하려면 새로운 파일을 선택해 주세요</p> --%>
+												<img src="${travelDestination.destImgPath}" style="width:300px;height:200px;">
+											</div>
+										</c:if>	
+										<c:if test="${not empty travelDestination.destId}"><span style="color:red;"><i class="icon-info-sign"></i> 첨부파일을 수정하려면 새로운 파일을 선택해 주세요</span></c:if>
+										<div>
+											<c:if test="${fn:length(travelDestination.travelFileList) > 0}">
+												<div style="margin:10px 3px;">
+													<%-- <p><i class="icon-info-sign"></i> 첨부파일을 수정하려면 새로운 파일을 선택해 주세요</p> --%>
+													<img src="${travelDestination.travelFileList[0].imgFilePath}" style="width:300px;height:200px;">
+												</div>
+											</c:if>	
+											<input type="file" name="upfile_0" />
+										</div>
+										<div>
+											<c:if test="${fn:length(travelDestination.travelFileList) > 1}">
+												<div style="margin:10px 3px;">
+													<%-- <p><i class="icon-info-sign"></i> 첨부파일을 수정하려면 새로운 파일을 선택해 주세요</p> --%>
+													<img src="${travelDestination.travelFileList[1].imgFilePath}" style="width:300px;height:200px;">
+												</div>
+											</c:if>	
+											<input type="file" name="upfile_1" />
+										</div>
+										<div>
+											<c:if test="${fn:length(travelDestination.travelFileList) > 2}">
+												<div style="margin:10px 3px;">
+													<%-- <p><i class="icon-info-sign"></i> 첨부파일을 수정하려면 새로운 파일을 선택해 주세요</p> --%>
+													<img src="${travelDestination.travelFileList[2].imgFilePath}" style="width:300px;height:200px;">
+												</div>
+											</c:if>	
+											<input type="file" name="upfile_2" />
+										</div>
+										<div>
+											<c:if test="${fn:length(travelDestination.travelFileList) > 3}">
+												<div style="margin:10px 3px;">
+													<%-- <p><i class="icon-info-sign"></i> 첨부파일을 수정하려면 새로운 파일을 선택해 주세요</p> --%>
+													<img src="${travelDestination.travelFileList[3].imgFilePath}" style="width:300px;height:200px;">
+												</div>
+											</c:if>	
+											<input type="file" name="upfile_3" />
+										</div>
+										<div>
+											<c:if test="${fn:length(travelDestination.travelFileList) > 4}">
+												<div style="margin:10px 3px;">
+													<%-- <p><i class="icon-info-sign"></i> 첨부파일을 수정하려면 새로운 파일을 선택해 주세요</p> --%>
+													<img src="${travelDestination.travelFileList[4].imgFilePath}" style="width:300px;height:200px;">
+												</div>
+											</c:if>	
+											<input type="file" name="upfile_4" />
+										</div>
 									</td>
 								</tr>
 								<tr>
@@ -105,10 +165,9 @@
 								<tr>
 									<th>좌표</th>
 									<td>
-										<%-- <form:input path="destLocationAxis" cssClass="span9" /> --%>
 										<form:input path="destAxisY" cssClass="uneditable-input" readonly="true" />
 										<form:input path="destAxisX" cssClass="uneditable-input" readonly="true" />
-										&nbsp;<form:errors path="destLocationAxis" />
+										&nbsp;<form:errors path="destAxisY" /> <form:errors path="destAxisX" />
 									</td>
 								</tr>
 								<%-- <tr>
@@ -126,10 +185,17 @@
 									</td>
 								</tr> --%>
 								<tr>
+									<th>계절</th>
+									<td>
+										<form:input path="destSeason" cssClass="span9" placeholder="여러 계절인 경우 쉼표로 구분해서 입력 예) 봄,여름,가을,겨울" />
+										&nbsp;<form:errors path="destSeason" />
+									</td>
+								</tr>
+								<tr>
 									<th>설명</th>
 									<td>
-										<form:textarea path="destDescription" cols="20" rows="10" cssClass="span11"/>
-										&nbsp;<form:errors path="destDescription" />
+										<form:textarea path="destInformation" cols="20" rows="10" cssClass="span11"/>
+										&nbsp;<form:errors path="destInformation" />
 									</td>
 								</tr>
 							</table>
@@ -144,19 +210,30 @@
 	</div>
 </div>
 
-<link rel="stylesheet" type="text/css" href="/css/travel/cms.admin.css">
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/travel/cms.admin.css"/>">
 <script type="text/javascript">
+function addUploadField(obj) {
+	var fld = $(obj).closest("div.upfiles");
+	var clone = fld.clone();
+	clone.find('input[name=upfile]').val('');
+	clone.find('a.btn').remove();
+	fld.after(clone);
+}
+function delUploadField(obj) {
+	var fld = $("div.upfiles").last().remove();
+}
+
 function deleteDestination(){
 	// var registerFlag = document.getElementById("registerFlag").value;
 	var frm = document.getElementById("travelDestination");
-	frm.action = "/cms/travel/destination/delete.do";
+	frm.action = "<c:url value="/cms/travel/destination/delete.do"/>";
 	frm.submit();
 }
 function registerRoute(){
 	var registerFlag = document.getElementById("registerFlag").value;
 	var frm = document.getElementById("travelDestination");
 	// frm.action = "/cms/travel/destination/"+registerFlag+".do?type="+type+"&grpId="+grpId;
-	frm.action = "/cms/travel/destination/"+registerFlag+".do";
+	frm.action = "<c:url value="/cms/travel/destination/"/>"+registerFlag+".do";
 	frm.submit();
 }
 
@@ -167,11 +244,11 @@ function addPoint() {
 }
 function delPoint(obj) {
 	$(obj).closest('div.detailzone').remove();
-	setDescriptionValue();
+	setWayPointValue();
 }
 
 function getDestinationList() {
-   	var reqUrl = "/travel/destination/retrieveDestinationList.do";
+   	var reqUrl = "<c:url value="/travel/destination/retrieveDestinationList.do"/>";
     var promise = getAsyncDataList(reqUrl);
     promise.success(function (data) {
     	setDestinationList(data);
@@ -184,7 +261,7 @@ function getAsyncDataList(reqUrl) {
     return $.ajax({
         type: "GET"
         , url: reqUrl
-        , data:formData
+        , data:encodeURI(formData)
         , contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
         , error: function(data, status, err) { 
             alert('서버와의 통신이 실패했습니다.');
@@ -193,50 +270,68 @@ function getAsyncDataList(reqUrl) {
 }
 function setDestinationList(data) {
 	// console.log(data);
-	var obj = JSON.parse(data);
-	// console.log(obj.constructor); return;
-    if(obj.constructor !== Array){
-    	console.log("데이터를 가져오지 못했습니다."); return;
-    }else{
-        var lists = "";
-    	for(var i=0; i<obj.length; i++) {
-			lists += "<option value=\""+obj[i]["destId"]+"\">"+obj[i]["destTitle"]+"</option>";
-		}
-       	$("#routDestination").empty();
-       	$("#routDestination").append(lists);
-    }
+	try {
+		var obj = JSON.parse(data);
+		// console.log(obj.constructor); return;
+	    if(obj.constructor !== Array){
+	    	console.log("데이터를 가져오지 못했습니다.");
+	    	throw new SyntaxError("데이터를 가져오지 못함");
+	    }else{
+	        var lists = "";
+	    	for(var i=0; i<obj.length; i++) {
+				lists += "<option value=\""+obj[i]["destId"]+"\">"+obj[i]["destTitle"]+"</option>";
+			}
+	       	$("#routDestination").empty();
+	       	$("#routDestination").append(lists);
+	    }
+	} catch (e) {
+		// console.log(e.name);
+		// console.log(e.message);
+		alert("일시적인 에러가 발생했습니다. 잠시 후 다시 시도해 주세요."); return false;
+	}
 }
 function getDestinationDetail(idx) {
 	// var thumb_img_path = "https://www.seantour.com";
 	var destId = idx ? idx : $("#routDestination option:selected").val();
-	$.get('/travel/destination/retrieveDestinationDetail.do?destId='+destId, function(data) {
-		var obj = JSON.parse(data);
-		if(obj && obj.hasOwnProperty("destTitle")) {
-
-			setDescriptionList(obj);
-
-			setDescriptionValue();
+	$.get('<c:url value="/travel/destination/retrieveDestinationDetail.do"/>?destId='+destId, function(data) {
+		try {
+			var obj = JSON.parse(data);
+			if(obj && obj.hasOwnProperty("destTitle")) {
+				setWayPointList(obj);
+				setWayPointValue();
+			} else {
+	    		throw new SyntaxError("요청내용을 조회하지 못함");
+			}
+		} catch (e) {
+			// console.log(e.name);
+			// console.log(e.message);
+			alert("일시적인 에러가 발생했습니다. 잠시 후 다시 시도해 주세요."); return false;
 		}
 	});
 }
-function setDescriptionValue() {
-	var routDescription = "";
+function setWayPointValue() {
+	var routWayPoint = "";
 	$(".detailzone").each(function(index){
 		if (index > 0) {
-			routDescription += "|" + $(this).data('destid');
+			routWayPoint += "|" + $(this).data('destid');
 		} else {
-			routDescription += $(this).data('destid');
+			routWayPoint += $(this).data('destid');
 		}
 	});
-	$("#routDescription").val(routDescription);
+	$("#routWayPoint").val(routWayPoint);
 }
 
-function setDescriptionList(obj) {
-	var thumb_img_path = "https://www.seantour.com";
+function setWayPointList(obj) {
+	//var thumb_img_path = "https://www.seantour.com";
+	var thumb_img = "obj.destImgPath";
+	if(obj.travelFileList && obj.travelFileList.length > 0) {
+		thumb_img = obj.travelFileList[0].imgFilePath;
+	}
 	var contents = 
 		"<div class=\"detailzone\" data-destid=\""+obj.destId+"\">"+
 			"<ul class=\"lst\">"+
-				"<li><img src=\""+thumb_img_path + obj.destImgPath+"\" alt=\""+obj.destTitle+"\" style=\"width:450px;height:300px;\" /></li>"+
+				// "<li><img src=\""+thumb_img_path + obj.destImgPath+"\" alt=\""+obj.destTitle+"\" style=\"width:450px;height:300px;\" /></li>"+
+				"<li><img src=\""+thumb_img+"\" alt=\""+obj.destTitle+"\" style=\"width:450px;height:300px;\" /></li>"+
 			"</ul>"+
 			"<ul>"+
 				"<li>명칭 : "+obj.destTitle+"</li>"+
@@ -258,7 +353,7 @@ function addrCallBack(roadFullAddr, latitude, longitude, objId){
 $(function(){
 
 	$("#routRegion, #destCategory").bind("change",function(){
-	   	var reqUrl = "/travel/destination/retrieveDestinationList.do";
+	   	var reqUrl = "<c:url value="/travel/destination/retrieveDestinationList.do"/>";
 	    var promise = getAsyncDataList(reqUrl);
 	    promise.success(function (data) {
 	    	setDestinationList(data);
@@ -267,21 +362,22 @@ $(function(){
 
 	$("#destAddress").bind("click",function(){
 		var status = $(this).attr('id');
-		window.open("/travel/route/address.do?status="+status+"&idx=","pop","width=600,height=650, scrollbars=yes, resizable=yes");
+		window.open("<c:url value="/travel/route/address.do"/>?status="+status+"&idx=","pop","width=600,height=650, scrollbars=yes, resizable=yes");
 	});
 
-	console.log("screen-mode", $("#content").data('screen-mode'));
+	// console.log("screen-mode", $("#content").data('screen-mode'));
 
-	var routDescription = $("#routDescription").val();
+	var routWayPoint = $("#routWayPoint").val();
 	var destId = $("#destId").val();
-	// if($("#content").data('screen-mode') == "up" && routDescription) {
-	if(destId && routDescription) {
-		var descArr = routDescription.split("|");
+	// if($("#content").data('screen-mode') == "up" && routWayPoint) {
+	if(destId && routWayPoint) {
+		var descArr = routWayPoint.split("|");
 		for (i=0; i < descArr.length; i++){
 			getDestinationDetail(descArr[i]);
 		}
 	}
 
+	// $("input[type=file]").uniform({useID: false});
 });
 
 </script>

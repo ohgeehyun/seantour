@@ -47,12 +47,14 @@
 								<option value="쇼핑" <c:if test="${travelDestination.destCategory eq '쇼핑'}">selected</c:if>>쇼핑</option>
 							</select>
 							<form:input path="searchKeyword" cssClass="txt" maxlength="50" />
+							<p style="color:red;margin:5px"><i class="icon-info-sign"></i> 데이터베이스 이전 및 첨부파일 이전작업 마무리 이전까지는 신규업로드 이미지가 목록에서 표시되지 않습니다. 수정화면에서 이미지가 보이면 정상적으로 업로드된 것입니다.</p>
 						</div>
 
-	                    <div class="widget-content nopadding" style="overflow: auto; height: 582px;">
+	                    <div class="widget-content nopadding" style="overflow: auto; height: 650px;">
 							<table class="table table-bordered table-striped table-hover" summary="그룹 테이블">
 								<thead>
 									<tr>
+										<th>대표이미지</th>
 										<th>명칭</th>
 										<th>부제</th>
 										<th>지역</th>
@@ -72,6 +74,15 @@
 								<tbody>		
 								<c:forEach var="result" items="${resultList}" varStatus="status">
 									<tr>
+										<td class="conts">
+										<c:if test="${fn:length(result.travelFileList) eq 0}">
+											<c:set var="destImgPath" value="${empty result.destImgPath ? '/images/travel/content/noimg.jpg' : result.destImgPath}" />
+											<img src='<c:url value="${destImgPath}"/>' alt='<c:out value="${result.destTitle}"/>' style="width:50px;height:40px;" />
+										</c:if>	
+										<c:if test="${fn:length(result.travelFileList) gt 0}">
+											<img src='<c:out value="${result.travelFileList[0].imgFilePath}"/>' alt='<c:out value="${result.destTitle}"/>' style="width:50px;height:40px;" />
+										</c:if>	
+										</td>
 										<td class="conts"><c:out value="${result.destTitle}"/></td>
 										<td class="conts"><c:out value="${result.destAdSlogan}"/></td>
 										<td class="conts"><c:out value="${result.destRegion}"/></td>
@@ -80,7 +91,6 @@
 										<%-- <td class="conts"><c:out value="${result.destImgPath}"/></td> --%>
 										<%-- <td class="conts"><c:out value="${result.destPhone}"/></td> --%>
 										<%-- <td class="conts"><c:out value="${result.destAddress}"/></td> --%>
-										<%-- <td class="conts"><c:out value="${result.destLocationAxis}"/></td> --%>
 										<%-- <td class="conts"><c:out value="${result.destFeature}"/></td> --%>
 										<%-- <td class="conts"><c:out value="${result.destInformation}"/></td> --%>
 										<%-- <td class="conts"><c:out value="${result.destDescription}"/></td> --%>
@@ -106,7 +116,7 @@
 	</div>
 </div>
 
-<link rel="stylesheet" type="text/css" href="/css/travel/cms.admin.css">
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/travel/cms.admin.css"/>">
 <script type="text/javascript">
 function fn_egov_link_page(pageNo){
 	document.getElementById("travelDestination").pageIndex.value = pageNo;
