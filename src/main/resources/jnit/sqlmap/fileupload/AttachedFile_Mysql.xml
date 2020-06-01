@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="fileupload">
+
+	<resultMap id="attachedFile" class="jnit.cms.fileupload.AttachedFileVO">
+		<result property="fileId"			column="FILE_ID"			columnIndex="1"/>
+		<result property="phsicalDir"		column="PHSICAL_DIR"		columnIndex="2"/>
+		<result property="viewFileName"		column="VIEW_FILENAME"		columnIndex="3"/>
+		<result property="phsicalFileName"	column="PHSICAL_FILENAME"	columnIndex="4"/>
+		<result property="useYn"			column="USE_YN"				columnIndex="5"/>
+		<result property="fileSize"			column="FILE_SIZE"			columnIndex="6"/>
+	</resultMap>
+
+	<insert id="attachedFileDAO.insertAttachedFile">
+		<selectKey keyProperty="fileId" resultClass="java.lang.Integer">
+			SELECT IFNULL(MAX(FILE_ID),0)+1 FROM JNITBIGUPLOADFILE
+		</selectKey>
+		<![CDATA[
+			INSERT INTO JNITBIGUPLOADFILE ( FILE_ID, PHSICAL_DIR, VIEW_FILENAME, PHSICAL_FILENAME, USE_YN, FILE_SIZE)
+			VALUES (#fileId#, #phsicalDir#, #viewFileName#, #phsicalFileName#, 'Y', #fileSize#)
+		]]>
+	</insert>
+
+	<update id="attachedFileDAO.updateAttachedFile">
+		<![CDATA[
+			UPDATE JNITBIGUPLOADFILE
+			SET PHSICAL_DIR = #phsicalDir#
+				, VIEW_FILENAME = #viewFileName#
+				, PHSICAL_FILENAME = #phsicalFileName#
+				, FILE_SIZE = #fileSize#
+			WHERE FILE_ID = #fileSize#
+		]]>
+	</update>
+
+	<update id="attachedFileDAO.deleteAttachedFile">
+		<![CDATA[
+			UPDATE JNITBIGUPLOADFILE
+			SET USE_YN = 'N'
+			WHERE FILE_ID = #fileId#
+		]]>
+	</update>
+
+	<select id="attachedFileDAO.getAttachedFile" resultMap="attachedFile">
+		SELECT FILE_ID, PHSICAL_DIR, VIEW_FILENAME, PHSICAL_FILENAME, USE_YN, FILE_SIZE
+		FROM JNITBIGUPLOADFILE
+		<isNotEmpty property="searchFileId">
+			WHERE FILE_ID = #searchFileId#
+			AND USE_YN = 'Y'
+		</isNotEmpty>
+	</select>
+
+	<select id="attachedFileDAO.getAttachedFileList" resultMap="attachedFile">
+		SELECT FILE_ID, PHSICAL_DIR, VIEW_FILENAME, PHSICAL_FILENAME, USE_YN, FILE_SIZE
+		FROM JNITBIGUPLOADFILE
+		<isNotEmpty property="searchFileId">
+			WHERE FILE_ID IN ($searchFileId$)
+			AND USE_YN = 'Y'
+		</isNotEmpty>
+		ORDER BY FILE_ID ASC
+	</select>
+</sqlMap>

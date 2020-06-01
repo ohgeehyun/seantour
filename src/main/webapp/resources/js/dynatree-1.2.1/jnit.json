@@ -1,0 +1,41 @@
+[
+	{"title": "/", "href":"#", "isFolder": true, "key": "0000", "expand": true, "root": true,
+		"children": [
+			{"title": "Folder 2", "href":"#", "isFolder": true, "key": "folder2", "expand": true,
+				"children": [
+					{"title": "Sub-item 2.1", "isFolder": true, "key": "folder2sub21", "expand": true,
+						"children": [
+									{"title": "Sub-item 2.1.1", "isFolder": true, "key": "folder2sub212", "expand": true,
+										"children": [
+		                                            {"title": "Sub-item 22221.1", "key": "111"},
+		                                            {"title": "Sub-item 2.1.2.2"},
+		                                            {"title": "Sub-item 2.1.1.3"},
+		                                            {"title": "Sub-item 2.1.2.4"}
+												]
+										},
+		                            {"title": "Sub-item 2.1.2"},
+		                            {"title": "Sub-item 2.1.3"},
+		                            {"title": "Sub-item 2.1.4"}
+								]
+						},
+		            {"title": "Sub-item 2.2"}
+				]
+			},
+			{"title": "Folder 34", "isFolder": true, "key": "folder3",
+				"children": [
+					{"title": "Sub-item 3.1",
+						"children": [
+		                            {"title": "Sub-item 3.1.1"},
+		                            {"title": "Sub-item 3.1.2"},
+		                            {"title": "Sub-item 3.1.3"},
+		                            {"title": "Sub-item 3.1.4"}
+								]
+						},
+		            {"title": "Sub-item 3.2"},
+		            {"title": "Sub-item 3.3"},
+		            {"title": "Sub-item 3.4"}
+				]
+			}
+		]
+	}
+]

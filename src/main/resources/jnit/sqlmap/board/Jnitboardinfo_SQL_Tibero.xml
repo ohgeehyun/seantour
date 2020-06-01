@@ -1,0 +1,964 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitboardinfo">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitboardinfoSerarchVO" type="jnit.board.info.JnitboardinfoDefaultVO"/>
+
+	<resultMap id="jnitboardinfo" class="jnit.board.info.JnitboardinfoVO">
+		<result property="boardId" column="BOARD_ID"/>
+		<result property="boardGroup" column="BOARD_GROUP"/>
+		<result property="boardTitle" column="BOARD_TITLE"/>
+		<result property="boardType" column="BOARD_TYPE"/>
+		<result property="boardSkin" column="BOARD_SKIN"/>
+		<result property="rowCnt" column="ROW_CNT"/>
+		<result property="useReply" column="USE_REPLY"/>
+		<result property="boardSort" column="BOARD_SORT"/>
+		<result property="boardLbl" column="BOARD_LBL"/>
+		<result property="fieldSortList" column="FIELD_SORT_LIST"/>
+		<result property="fieldSortView" column="FIELD_SORT_VIEW"/>
+		<result property="fieldSortWrite" column="FIELD_SORT_WRITE"/>
+		<result property="useInternal" column="USE_INTERNAL"/>
+		<result property="useCmt" column="USE_CMT"/>
+		<result property="useListReply" column="USE_LIST_REPLY"/>
+		<result property="useViewReply" column="USE_VIEW_REPLY"/>
+		<result property="useActive" column="USE_ACTIVE"/>
+		<result property="useSecret" column="USE_SECRET"/>
+		<result property="useNotice" column="USE_NOTICE"/>
+		<result property="useFilter" column="USE_FILTER"/>
+		<result property="filterAction" column="FILTER_ACTION"/>
+		<result property="useWyswyg" column="USE_WYSWYG"/>
+		<result property="useWyswygType" column="USE_WYSWYG_TYPE"/>
+		<result property="useFile" column="USE_FILE"/>
+		<result property="useImage" column="USE_IMAGE"/>
+		<result property="useMovie" column="USE_MOVIE"/>
+		<result property="useSms" column="USE_SMS"/>
+		<result property="smsNum" column="SMS_NUM"/>
+		<result property="useCategory" column="USE_CATEGORY"/>
+		<result property="category" column="CATEGORY"/>
+		<result property="useSocial" column="USE_SOCIAL"/>
+		<result property="useLanguage" column="USE_LANGUAGE"/>
+		<result property="useExt01" column="USE_EXT01"/>
+		<result property="ext01Opt" column="EXT01_OPT"/>
+		<result property="ext01Lbl" column="EXT01_LBL"/>
+		<result property="useExt02" column="USE_EXT02"/>
+		<result property="ext02Opt" column="EXT02_OPT"/>
+		<result property="ext02Lbl" column="EXT02_LBL"/>
+		<result property="useExt03" column="USE_EXT03"/>
+		<result property="ext03Opt" column="EXT03_OPT"/>
+		<result property="ext03Lbl" column="EXT03_LBL"/>
+		<result property="useExt04" column="USE_EXT04"/>
+		<result property="ext04Opt" column="EXT04_OPT"/>
+		<result property="ext04Lbl" column="EXT04_LBL"/>
+		<result property="useExt05" column="USE_EXT05"/>
+		<result property="ext05Opt" column="EXT05_OPT"/>
+		<result property="ext05Lbl" column="EXT05_LBL"/>
+		<result property="useExt06" column="USE_EXT06"/>
+		<result property="ext06Opt" column="EXT06_OPT"/>
+		<result property="ext06Lbl" column="EXT06_LBL"/>
+		<result property="useExt07" column="USE_EXT07"/>
+		<result property="ext07Opt" column="EXT07_OPT"/>
+		<result property="ext07Lbl" column="EXT07_LBL"/>
+		<result property="useExt08" column="USE_EXT08"/>
+		<result property="ext08Opt" column="EXT08_OPT"/>
+		<result property="ext08Lbl" column="EXT08_LBL"/>
+		<result property="useExt09" column="USE_EXT09"/>
+		<result property="ext09Opt" column="EXT09_OPT"/>
+		<result property="ext09Lbl" column="EXT09_LBL"/>
+		<result property="useExt10" column="USE_EXT10"/>
+		<result property="ext10Opt" column="EXT10_OPT"/>
+		<result property="ext10Lbl" column="EXT10_LBL"/>
+		<result property="useExt11" column="USE_EXT11"/>
+		<result property="ext11Opt" column="EXT11_OPT"/>
+		<result property="ext11Lbl" column="EXT11_LBL"/>
+		<result property="useExt12" column="USE_EXT12"/>
+		<result property="ext12Opt" column="EXT12_OPT"/>
+		<result property="ext12Lbl" column="EXT12_LBL"/>
+		<result property="useExt13" column="USE_EXT13"/>
+		<result property="ext13Opt" column="EXT13_OPT"/>
+		<result property="ext13Lbl" column="EXT13_LBL"/>
+		<result property="useExt14" column="USE_EXT14"/>
+		<result property="ext14Opt" column="EXT14_OPT"/>
+		<result property="ext14Lbl" column="EXT14_LBL"/>
+		<result property="useExt15" column="USE_EXT15"/>
+		<result property="ext15Opt" column="EXT15_OPT"/>
+		<result property="ext15Lbl" column="EXT15_LBL"/>
+		<result property="useExt16" column="USE_EXT16"/>
+		<result property="ext16Opt" column="EXT16_OPT"/>
+		<result property="ext16Lbl" column="EXT16_LBL"/>
+		<result property="useExt17" column="USE_EXT17"/>
+		<result property="ext17Opt" column="EXT17_OPT"/>
+		<result property="ext17Lbl" column="EXT17_LBL"/>
+		<result property="useExt18" column="USE_EXT18"/>
+		<result property="ext18Opt" column="EXT18_OPT"/>
+		<result property="ext18Lbl" column="EXT18_LBL"/>
+		<result property="useExt19" column="USE_EXT19"/>
+		<result property="ext19Opt" column="EXT19_OPT"/>
+		<result property="ext19Lbl" column="EXT19_LBL"/>
+		<result property="useExt20" column="USE_EXT20"/>
+		<result property="ext20Opt" column="EXT20_OPT"/>
+		<result property="ext20Lbl" column="EXT20_LBL"/>
+		<result property="useDate01" column="USE_DATE01"/>
+		<result property="date01Opt" column="DATE01_OPT"/>
+		<result property="date01Lbl" column="DATE01_LBL"/>
+		<result property="useDate02" column="USE_DATE02"/>
+		<result property="date02Opt" column="DATE02_OPT"/>
+		<result property="date02Lbl" column="DATE02_LBL"/>
+		<result property="useReact" column="USE_REACT"/>
+		<result property="admExt" column="ADM_EXT"/>
+		<result property="admList" column="ADM_LIST"/>
+		<result property="permList" column="PERM_LIST"/>
+		<result property="permView" column="PERM_VIEW"/>
+		<result property="permWrite" column="PERM_WRITE"/>
+		<result property="permReply" column="PERM_REPLY"/>
+		<result property="permCmt" column="PERM_CMT"/>
+		<result property="permListType" column="PERM_LIST_TYPE"/>
+		<result property="permViewType" column="PERM_VIEW_TYPE"/>
+		<result property="permWriteType" column="PERM_WRITE_TYPE"/>
+		<result property="permReplyType" column="PERM_REPLY_TYPE"/>
+		<result property="permCmtType" column="PERM_CMT_TYPE"/>
+		<result property="anonPermList" column="ANON_PERM_LIST"/>
+		<result property="anonPermView" column="ANON_PERM_VIEW"/>
+		<result property="anonPermWrite" column="ANON_PERM_WRITE"/>
+		<result property="hideWrite" column="HIDE_WRITE"/>
+		<result property="active" column="ACTIVE"/>
+		<result property="permFileDown" column="PERM_FILE_DOWN"/>
+		<result property="permFileDownType" column="PERM_FILE_DOWN_TYPE"/>
+		<result property="boardUrl" column="BOARD_URL"/>
+		<result property="useLatestlist" column="USE_LATESTLIST"/>
+		<result property="thumbWidth" column="THUMB_WIDTH"/>
+		<result property="thumbHeight" column="THUMB_HEIGHT"/>
+		<result property="thumbMaxdim" column="THUMB_MAXDIM"/>
+		<result property="fileBlacklist" column="FILE_BLACKLIST"/>
+		<result property="fileLimitSize" column="FILE_LIMIT_SIZE"/>
+		<result property="fileLimitCount" column="FILE_LIMIT_COUNT"/>
+		<result property="tmp1" column="TMP1"/>
+		<result property="tmp2" column="TMP2"/>
+		<result property="tmp3" column="TMP3"/>
+		<result property="tmp4" column="TMP4"/>
+		<result property="tmp5" column="TMP5"/>
+		<result property="isdel" column="ISDEL"/>
+	</resultMap>
+
+	<insert id="jnitboardinfoDAO.insertJnitboardinfo_S">
+		<![CDATA[
+			INSERT INTO jnitboardinfo
+				( BOARD_ID
+				  , BOARD_GROUP
+				  , BOARD_TITLE
+				  , BOARD_TYPE
+				  , BOARD_SKIN
+				  , ROW_CNT
+				  , USE_REPLY
+				  , BOARD_SORT
+				  , BOARD_LBL
+				  , FIELD_SORT_LIST
+				  , FIELD_SORT_VIEW
+				  , FIELD_SORT_WRITE
+				  , USE_INTERNAL
+				  , USE_CMT
+				  , USE_LIST_REPLY
+				  , USE_VIEW_REPLY
+				  , USE_ACTIVE
+				  , USE_SECRET
+				  , USE_NOTICE
+				  , USE_FILTER
+				  , FILTER_ACTION
+				  , USE_WYSWYG
+				  , USE_WYSWYG_TYPE
+				  , USE_FILE
+				  , USE_IMAGE
+				  , USE_MOVIE
+				  , USE_SMS
+				  , SMS_NUM
+				  , USE_CATEGORY
+				  , CATEGORY
+				  , USE_SOCIAL
+				  , USE_LANGUAGE
+				  , USE_EXT01
+				  , EXT01_OPT
+				  , EXT01_LBL
+				  , USE_EXT02
+				  , EXT02_OPT
+				  , EXT02_LBL
+				  , USE_EXT03
+				  , EXT03_OPT
+				  , EXT03_LBL
+				  , USE_EXT04
+				  , EXT04_OPT
+				  , EXT04_LBL
+				  , USE_EXT05
+				  , EXT05_OPT
+				  , EXT05_LBL
+				  , USE_EXT06
+				  , EXT06_OPT
+				  , EXT06_LBL
+				  , USE_EXT07
+				  , EXT07_OPT
+				  , EXT07_LBL
+				  , USE_EXT08
+				  , EXT08_OPT
+				  , EXT08_LBL
+				  , USE_EXT09
+				  , EXT09_OPT
+				  , EXT09_LBL
+				  , USE_EXT10
+				  , EXT10_OPT
+				  , EXT10_LBL
+				  , USE_EXT11
+				  , EXT11_OPT
+				  , EXT11_LBL
+				  , USE_EXT12
+				  , EXT12_OPT
+				  , EXT12_LBL
+				  , USE_EXT13
+				  , EXT13_OPT
+				  , EXT13_LBL
+				  , USE_EXT14
+				  , EXT14_OPT
+				  , EXT14_LBL
+				  , USE_EXT15
+				  , EXT15_OPT
+				  , EXT15_LBL
+				  , USE_EXT16
+				  , EXT16_OPT
+				  , EXT16_LBL
+				  , USE_EXT17
+				  , EXT17_OPT
+				  , EXT17_LBL
+				  , USE_EXT18
+				  , EXT18_OPT
+				  , EXT18_LBL
+				  , USE_EXT19
+				  , EXT19_OPT
+				  , EXT19_LBL
+				  , USE_EXT20
+				  , EXT20_OPT
+				  , EXT20_LBL
+				  , USE_DATE01
+				  , DATE01_OPT
+				  , DATE01_LBL
+				  , USE_DATE02
+				  , DATE02_OPT
+				  , DATE02_LBL
+				  , USE_REACT
+				  , ADM_EXT
+				  , ADM_LIST
+				  , PERM_LIST
+				  , PERM_VIEW
+				  , PERM_WRITE
+				  , PERM_REPLY
+				  , PERM_CMT
+				  , PERM_LIST_TYPE
+				  , PERM_VIEW_TYPE
+				  , PERM_WRITE_TYPE
+				  , PERM_REPLY_TYPE
+				  , PERM_CMT_TYPE
+				  , ANON_PERM_LIST
+				  , ANON_PERM_VIEW
+				  , ANON_PERM_WRITE
+				  , HIDE_WRITE
+				  , "ACTIVE"
+				  , PERM_FILE_DOWN
+				  , PERM_FILE_DOWN_TYPE
+				  , BOARD_URL
+				  , FILE_BLACKLIST
+				  , FILE_LIMIT_SIZE
+				  , FILE_LIMIT_COUNT
+				  , USE_LATESTLIST
+				  , THUMB_WIDTH
+				  , THUMB_HEIGHT
+				  , THUMB_MAXDIM
+				  , TMP1
+				  , TMP2
+				  , TMP3
+				  , TMP4
+				  , TMP5
+				  , ISDEL )
+			VALUES ( #boardId#
+				  , #boardGroup#
+				  , #boardTitle#
+				  , #boardType#
+				  , #boardSkin#
+				  , #rowCnt#
+				  , #useReply#
+				  , #boardSort#
+				  , #boardLbl#
+				  , #fieldSortList#
+				  , #fieldSortView#
+				  , #fieldSortWrite#
+				  , #useInternal#
+				  , #useCmt#
+				  , #useListReply#
+				  , #useViewReply#
+				  , #useActive#
+				  , #useSecret#
+				  , #useNotice#
+				  , #useFilter#
+				  , #filterAction#
+				  , #useWyswyg#
+				  , #useWyswygType#
+				  , #useFile#
+				  , #useImage#
+				  , #useMovie#
+				  , #useSms#
+				  , #smsNum#
+				  , #useCategory#
+				  , #category#
+				  , #useSocial#
+				  , #useLanguage#
+				  , #useExt01#
+				  , #ext01Opt#
+				  , #ext01Lbl#
+				  , #useExt02#
+				  , #ext02Opt#
+				  , #ext02Lbl#
+				  , #useExt03#
+				  , #ext03Opt#
+				  , #ext03Lbl#
+				  , #useExt04#
+				  , #ext04Opt#
+				  , #ext04Lbl#
+				  , #useExt05#
+				  , #ext05Opt#
+				  , #ext05Lbl#
+				  , #useExt06#
+				  , #ext06Opt#
+				  , #ext06Lbl#
+				  , #useExt07#
+				  , #ext07Opt#
+				  , #ext07Lbl#
+				  , #useExt08#
+				  , #ext08Opt#
+				  , #ext08Lbl#
+				  , #useExt09#
+				  , #ext09Opt#
+				  , #ext09Lbl#
+				  , #useExt10#
+				  , #ext10Opt#
+				  , #ext10Lbl#
+				  , #useExt11#
+				  , #ext11Opt#
+				  , #ext11Lbl#
+				  , #useExt12#
+				  , #ext12Opt#
+				  , #ext12Lbl#
+				  , #useExt13#
+				  , #ext13Opt#
+				  , #ext13Lbl#
+				  , #useExt14#
+				  , #ext14Opt#
+				  , #ext14Lbl#
+				  , #useExt15#
+				  , #ext15Opt#
+				  , #ext15Lbl#
+				  , #useExt16#
+				  , #ext16Opt#
+				  , #ext16Lbl#
+				  , #useExt17#
+				  , #ext17Opt#
+				  , #ext17Lbl#
+				  , #useExt18#
+				  , #ext18Opt#
+				  , #ext18Lbl#
+				  , #useExt19#
+				  , #ext19Opt#
+				  , #ext19Lbl#
+				  , #useExt20#
+				  , #ext20Opt#
+				  , #ext20Lbl#
+				  , #useDate01#
+				  , #date01Opt#
+				  , #date01Lbl#
+				  , #useDate02#
+				  , #date02Opt#
+				  , #date02Lbl#
+				  , #useReact#
+				  , #admExt#
+				  , #admList#
+				  , #permList#
+				  , #permView#
+				  , #permWrite#
+				  , #permReply#
+				  , #permCmt#
+				  , #permListType#
+				  , #permViewType#
+				  , #permWriteType#
+				  , #permReplyType#
+				  , #permCmtType#
+				  , #anonPermList#
+				  , #anonPermView#
+				  , #anonPermWrite#
+				  , #hideWrite#
+				  , 1
+				  , #permFileDown#
+				  , #permFileDownType#
+				  , #boardUrl#
+				  , #fileBlacklist#
+				  , #fileLimitSize#
+				  , #fileLimitCount#
+				  , #useLatestlist#
+				  , #thumbWidth#
+				  , #thumbHeight#
+				  , #thumbMaxdim#
+				  , #tmp1#
+				  , #tmp2#
+				  , #tmp3#
+				  , #tmp4#
+				  , #tmp5#
+				  , 0)
+		]]>
+	</insert>
+
+	<update id="jnitboardinfoDAO.updateJnitboardinfo_S">
+		<![CDATA[
+			UPDATE jnitboardinfo
+			SET BOARD_GROUP=#boardGroup#
+				, BOARD_TITLE=#boardTitle#
+				, BOARD_TYPE=#boardType#
+				, BOARD_SKIN=#boardSkin#
+				, ROW_CNT=#rowCnt#
+				, USE_REPLY=#useReply#
+				, BOARD_SORT=#boardSort#
+				, BOARD_LBL=#boardLbl#
+				, FIELD_SORT_LIST=#fieldSortList#
+				, FIELD_SORT_VIEW=#fieldSortView#
+				, FIELD_SORT_WRITE=#fieldSortWrite#
+				, USE_INTERNAL=#useInternal#
+				, USE_CMT=#useCmt#
+				, USE_LIST_REPLY=#useListReply#
+				, USE_VIEW_REPLY=#useViewReply#
+				, USE_ACTIVE=#useActive#
+				, USE_SECRET=#useSecret#
+				, USE_NOTICE=#useNotice#
+				, USE_FILTER=#useFilter#
+				, FILTER_ACTION=#filterAction#
+				, USE_WYSWYG=#useWyswyg#
+				, USE_WYSWYG_TYPE=#useWyswygType#
+				, USE_FILE=#useFile#
+				, USE_IMAGE=#useImage#
+				, USE_MOVIE=#useMovie#
+				, USE_SMS=#useSms#
+				, SMS_NUM=#smsNum#
+				, USE_CATEGORY=#useCategory#
+				, CATEGORY=#category#
+				, USE_SOCIAL=#useSocial#
+				, USE_LANGUAGE=#useLanguage#
+				, USE_EXT01=#useExt01#
+				, EXT01_OPT=#ext01Opt#
+				, EXT01_LBL=#ext01Lbl#
+				, USE_EXT02=#useExt02#
+				, EXT02_OPT=#ext02Opt#
+				, EXT02_LBL=#ext02Lbl#
+				, USE_EXT03=#useExt03#
+				, EXT03_OPT=#ext03Opt#
+				, EXT03_LBL=#ext03Lbl#
+				, USE_EXT04=#useExt04#
+				, EXT04_OPT=#ext04Opt#
+				, EXT04_LBL=#ext04Lbl#
+				, USE_EXT05=#useExt05#
+				, EXT05_OPT=#ext05Opt#
+				, EXT05_LBL=#ext05Lbl#
+				, USE_EXT06=#useExt06#
+				, EXT06_OPT=#ext06Opt#
+				, EXT06_LBL=#ext06Lbl#
+				, USE_EXT07=#useExt07#
+				, EXT07_OPT=#ext07Opt#
+				, EXT07_LBL=#ext07Lbl#
+				, USE_EXT08=#useExt08#
+				, EXT08_OPT=#ext08Opt#
+				, EXT08_LBL=#ext08Lbl#
+				, USE_EXT09=#useExt09#
+				, EXT09_OPT=#ext09Opt#
+				, EXT09_LBL=#ext09Lbl#
+				, USE_EXT10=#useExt10#
+				, EXT10_OPT=#ext10Opt#
+				, EXT10_LBL=#ext10Lbl#
+				, USE_EXT11=#useExt11#
+				, EXT11_OPT=#ext11Opt#
+				, EXT11_LBL=#ext11Lbl#
+				, USE_EXT12=#useExt12#
+				, EXT12_OPT=#ext12Opt#
+				, EXT12_LBL=#ext12Lbl#
+				, USE_EXT13=#useExt13#
+				, EXT13_OPT=#ext13Opt#
+				, EXT13_LBL=#ext13Lbl#
+				, USE_EXT14=#useExt14#
+				, EXT14_OPT=#ext14Opt#
+				, EXT14_LBL=#ext14Lbl#
+				, USE_EXT15=#useExt15#
+				, EXT15_OPT=#ext15Opt#
+				, EXT15_LBL=#ext15Lbl#
+				, USE_EXT16=#useExt16#
+				, EXT16_OPT=#ext16Opt#
+				, EXT16_LBL=#ext16Lbl#
+				, USE_EXT17=#useExt17#
+				, EXT17_OPT=#ext17Opt#
+				, EXT17_LBL=#ext17Lbl#
+				, USE_EXT18=#useExt18#
+				, EXT18_OPT=#ext18Opt#
+				, EXT18_LBL=#ext18Lbl#
+				, USE_EXT19=#useExt19#
+				, EXT19_OPT=#ext19Opt#
+				, EXT19_LBL=#ext19Lbl#
+				, USE_EXT20=#useExt20#
+				, EXT20_OPT=#ext20Opt#
+				, EXT20_LBL=#ext20Lbl#
+				, USE_DATE01=#useDate01#
+				, DATE01_OPT=#date01Opt#
+				, DATE01_LBL=#date01Lbl#
+				, USE_DATE02=#useDate02#
+				, DATE02_OPT=#date02Opt#
+				, DATE02_LBL=#date02Lbl#
+				, USE_REACT=#useReact#
+				, ADM_EXT=#admExt#
+				, ADM_LIST=#admList#
+				, PERM_LIST=#permList#
+				, PERM_VIEW=#permView#
+				, PERM_WRITE=#permWrite#
+				, PERM_REPLY=#permReply#
+				, PERM_CMT=#permCmt#
+				, PERM_LIST_TYPE=#permListType#
+				, PERM_VIEW_TYPE=#permViewType#
+				, PERM_WRITE_TYPE=#permWriteType#
+				, PERM_REPLY_TYPE=#permReplyType#
+				, PERM_CMT_TYPE=#permCmtType#
+				, ANON_PERM_LIST=#anonPermList#
+				, ANON_PERM_VIEW=#anonPermView#
+				, ANON_PERM_WRITE=#anonPermWrite#
+				, HIDE_WRITE=#hideWrite#
+				, PERM_FILE_DOWN=#permFileDown#
+				, PERM_FILE_DOWN_TYPE=#permFileDownType#
+				, BOARD_URL=#boardUrl#
+				, FILE_BLACKLIST=#fileBlacklist#
+				, FILE_LIMIT_SIZE=#fileLimitSize#
+				, FILE_LIMIT_COUNT=#fileLimitCount#
+				, USE_LATESTLIST=#useLatestlist#
+				, THUMB_WIDTH=#thumbWidth#
+				, THUMB_HEIGHT=#thumbHeight#
+				, THUMB_MAXDIM=#thumbMaxdim#
+				, TMP1=#tmp1#
+				, TMP2=#tmp2#
+				, TMP3=#tmp3#
+				, TMP4=#tmp4#
+				, TMP5=#tmp5#
+                WHERE BOARD_ID=#boardId#
+		]]>
+	</update>
+
+	<delete id="jnitboardinfoDAO.deleteJnitboardinfo_S">
+		<![CDATA[
+			UPDATE jnitboardinfo
+			SET ACTIVE = '0'
+                WHERE BOARD_ID=#boardId#
+		]]>
+	</delete>
+
+	<delete id="jnitboardinfoDAO.deleteJnitboardinfoIsdel">
+		<![CDATA[
+			UPDATE jnitboardinfo
+			SET ISDEL = 1
+				,ACTIVE = 0
+                WHERE BOARD_ID=#boardId#
+		]]>
+	</delete>
+
+	<select id="jnitboardinfoDAO.selectJnitboardinfo_S" resultMap="jnitboardinfo">
+		<![CDATA[
+			SELECT
+				BOARD_ID
+				, BOARD_GROUP
+				, BOARD_TITLE
+				, BOARD_TYPE
+				, BOARD_SKIN
+				, ROW_CNT
+				, USE_REPLY
+				, BOARD_SORT
+				, BOARD_LBL
+				, FIELD_SORT_LIST
+				, FIELD_SORT_VIEW
+				, FIELD_SORT_WRITE
+				, USE_INTERNAL
+				, USE_CMT
+				, USE_LIST_REPLY
+				, USE_VIEW_REPLY
+				, USE_ACTIVE
+				, USE_SECRET
+				, USE_NOTICE
+				, USE_FILTER
+				, FILTER_ACTION
+				, USE_WYSWYG
+				, USE_WYSWYG_TYPE
+				, USE_FILE
+				, USE_IMAGE
+				, USE_MOVIE
+				, USE_SMS
+				, SMS_NUM
+				, USE_CATEGORY
+				, CATEGORY
+				, USE_SOCIAL
+				, USE_LANGUAGE
+				, USE_EXT01
+				, EXT01_OPT
+				, EXT01_LBL
+				, USE_EXT02
+				, EXT02_OPT
+				, EXT02_LBL
+				, USE_EXT03
+				, EXT03_OPT
+				, EXT03_LBL
+				, USE_EXT04
+				, EXT04_OPT
+				, EXT04_LBL
+				, USE_EXT05
+				, EXT05_OPT
+				, EXT05_LBL
+				, USE_EXT06
+				, EXT06_OPT
+				, EXT06_LBL
+				, USE_EXT07
+				, EXT07_OPT
+				, EXT07_LBL
+				, USE_EXT08
+				, EXT08_OPT
+				, EXT08_LBL
+				, USE_EXT09
+				, EXT09_OPT
+				, EXT09_LBL
+				, USE_EXT10
+				, EXT10_OPT
+				, EXT10_LBL
+				, USE_EXT11
+				, EXT11_OPT
+				, EXT11_LBL
+				, USE_EXT12
+				, EXT12_OPT
+				, EXT12_LBL
+				, USE_EXT13
+				, EXT13_OPT
+				, EXT13_LBL
+				, USE_EXT14
+				, EXT14_OPT
+				, EXT14_LBL
+				, USE_EXT15
+				, EXT15_OPT
+				, EXT15_LBL
+				, USE_EXT16
+				, EXT16_OPT
+				, EXT16_LBL
+				, USE_EXT17
+				, EXT17_OPT
+				, EXT17_LBL
+				, USE_EXT18
+				, EXT18_OPT
+				, EXT18_LBL
+				, USE_EXT19
+				, EXT19_OPT
+				, EXT19_LBL
+				, USE_EXT20
+				, EXT20_OPT
+				, EXT20_LBL
+				, USE_DATE01
+				, DATE01_OPT
+				, DATE01_LBL
+				, USE_DATE02
+				, DATE02_OPT
+				, DATE02_LBL
+				, USE_REACT
+				, ADM_EXT
+				, ADM_LIST
+				, PERM_LIST
+				, PERM_VIEW
+				, PERM_WRITE
+				, PERM_REPLY
+				, PERM_CMT
+				, PERM_LIST_TYPE
+				, PERM_VIEW_TYPE
+				, PERM_WRITE_TYPE
+				, PERM_REPLY_TYPE
+				, PERM_CMT_TYPE
+				, ANON_PERM_LIST
+				, ANON_PERM_VIEW
+				, ANON_PERM_WRITE
+				, HIDE_WRITE
+				, ACTIVE
+				, PERM_FILE_DOWN
+				, PERM_FILE_DOWN_TYPE
+				, BOARD_URL
+				, FILE_BLACKLIST
+			    , FILE_LIMIT_SIZE
+			    , FILE_LIMIT_COUNT
+				, USE_LATESTLIST
+				, THUMB_WIDTH
+				, THUMB_HEIGHT
+				, THUMB_MAXDIM
+			    , TMP1
+			    , TMP2
+			    , TMP3
+			    , TMP4
+			    , TMP5
+				, ISDEL
+			FROM jnitboardinfo
+                WHERE BOARD_ID=#boardId#
+		]]>
+	</select>
+	<select id="jnitboardinfoDAO.selectJnitboardArticleList_D" parameterClass="jnitboardinfoSerarchVO" resultClass="egovMap">
+			SELECT *
+					FROM (SELECT
+								ROWNUM AS RNUM
+								, BOARD_ID
+								, BOARD_GROUP
+								, BOARD_TITLE
+								, BOARD_TYPE
+								, BOARD_SKIN
+								, ROW_CNT
+							FROM (
+								SELECT * FROM jnitboardinfo
+								)
+							WHERE 1=1
+							AND ISDEL=0
+							<isNotEmpty prepend="AND" property="searchBoardGroup">
+								BOARD_GROUP = #searchBoardGroup#
+							</isNotEmpty>
+							<isEqual prepend="AND" property="searchCondition" compareValue="0">
+								BOARD_ID = #searchKeyword#
+							</isEqual>
+							<isEqual prepend="AND" property="searchCondition" compareValue="1">
+								BOARD_TITLE LIKE '%'||#searchKeyword#||'%'
+							</isEqual>
+							<isEqual property="searchCondition" compareValue="boardIds">
+								<isNotEmpty property="selectList">
+									<iterate prepend="AND" property="selectList" open="(" conjunction="OR"  close=")">
+										BOARD_ID = #selectList[]#
+									</iterate>
+								</isNotEmpty>
+							</isEqual>
+						)
+			WHERE 1=1
+			<![CDATA[
+				AND RNUM > #firstIndex#
+				AND RNUM <= #firstIndex# + #recordCountPerPage#
+			]]>
+	</select>
+	<select id="jnitboardinfoDAO.selectJnitboardinfoList_D" parameterClass="jnitboardinfoSerarchVO" resultClass="egovMap">
+			SELECT * FROM (
+				SELECT A.*, ROWNUM RNUM FROM (
+						SELECT BOARD_ID
+								, BOARD_GROUP
+								, BOARD_TITLE
+								, BOARD_TYPE
+								, BOARD_SKIN
+								, ROW_CNT
+								, USE_REPLY
+								, BOARD_SORT
+								, BOARD_LBL
+								, FIELD_SORT_LIST
+								, FIELD_SORT_VIEW
+								, FIELD_SORT_WRITE
+								, USE_INTERNAL
+								, USE_CMT
+								, USE_LIST_REPLY
+								, USE_VIEW_REPLY
+								, USE_ACTIVE
+								, USE_SECRET
+								, USE_NOTICE
+								, USE_FILTER
+								, FILTER_ACTION
+								, USE_WYSWYG
+								, USE_WYSWYG_TYPE
+								, USE_FILE
+								, USE_IMAGE
+								, USE_MOVIE
+								, USE_SMS
+								, SMS_NUM
+								, USE_CATEGORY
+								, CATEGORY
+								, USE_SOCIAL
+								, USE_LANGUAGE
+								, USE_EXT01
+								, EXT01_OPT
+								, EXT01_LBL
+								, USE_EXT02
+								, EXT02_OPT
+								, EXT02_LBL
+								, USE_EXT03
+								, EXT03_OPT
+								, EXT03_LBL
+								, USE_EXT04
+								, EXT04_OPT
+								, EXT04_LBL
+								, USE_EXT05
+								, EXT05_OPT
+								, EXT05_LBL
+								, USE_EXT06
+								, EXT06_OPT
+								, EXT06_LBL
+								, USE_EXT07
+								, EXT07_OPT
+								, EXT07_LBL
+								, USE_EXT08
+								, EXT08_OPT
+								, EXT08_LBL
+								, USE_EXT09
+								, EXT09_OPT
+								, EXT09_LBL
+								, USE_EXT10
+								, EXT10_OPT
+								, EXT10_LBL
+								, USE_EXT11
+								, EXT11_OPT
+								, EXT11_LBL
+								, USE_EXT12
+								, EXT12_OPT
+								, EXT12_LBL
+								, USE_EXT13
+								, EXT13_OPT
+								, EXT13_LBL
+								, USE_EXT14
+								, EXT14_OPT
+								, EXT14_LBL
+								, USE_EXT15
+								, EXT15_OPT
+								, EXT15_LBL
+								, USE_EXT16
+								, EXT16_OPT
+								, EXT16_LBL
+								, USE_EXT17
+								, EXT17_OPT
+								, EXT17_LBL
+								, USE_EXT18
+								, EXT18_OPT
+								, EXT18_LBL
+								, USE_EXT19
+								, EXT19_OPT
+								, EXT19_LBL
+								, USE_EXT20
+								, EXT20_OPT
+								, EXT20_LBL
+								, USE_DATE01
+								, DATE01_OPT
+								, DATE01_LBL
+								, USE_DATE02
+								, DATE02_OPT
+								, DATE02_LBL
+								, USE_REACT
+								, ADM_EXT
+								, ADM_LIST
+								, PERM_LIST
+								, PERM_VIEW
+								, PERM_WRITE
+								, PERM_REPLY
+								, PERM_CMT
+								, PERM_LIST_TYPE
+								, PERM_VIEW_TYPE
+								, PERM_WRITE_TYPE
+								, PERM_REPLY_TYPE
+								, PERM_CMT_TYPE
+								, ANON_PERM_LIST
+								, ANON_PERM_VIEW
+								, ANON_PERM_WRITE
+								, HIDE_WRITE
+								, ACTIVE
+								, PERM_FILE_DOWN
+								, PERM_FILE_DOWN_TYPE
+								, BOARD_URL
+								, FILE_BLACKLIST
+							    , FILE_LIMIT_SIZE
+							    , FILE_LIMIT_COUNT
+								, USE_LATESTLIST
+								, THUMB_WIDTH
+				  				, THUMB_HEIGHT
+				  				, THUMB_MAXDIM
+								, TMP1
+								, TMP2
+								, TMP3
+								, TMP4
+								, TMP5
+								, ISDEL
+								FROM jnitboardinfo
+
+							WHERE 1=1
+							AND ISDEL=0
+							<isNotEmpty prepend="AND" property="searchBoardGroup">
+								BOARD_GROUP = #searchBoardGroup#
+							</isNotEmpty>
+							<isEqual prepend="AND" property="searchCondition" compareValue="0">
+								BOARD_ID = #searchKeyword#
+							</isEqual>
+							<isEqual prepend="AND" property="searchCondition" compareValue="1">
+								BOARD_TITLE LIKE '%'||#searchKeyword#||'%'
+							</isEqual>
+							<isEqual prepend="AND" property="searchCondition" compareValue="2">
+								(BOARD_ID = #searchKeyword# OR BOARD_TITLE LIKE '%'||#searchKeyword#||'%' )
+							</isEqual>
+							<isEqual prepend="AND" property="searchCondition" compareValue="mgmt">
+								(ADM_EXT LIKE '%'||#searchKeyword2#||'%' OR ADM_LIST LIKE '%'||#searchKeyword#||'%' )
+								<isNotNull prepend="AND" property="searchKeyword3">
+									BOARD_TITLE LIKE CONCAT('%',#searchKeyword3#,'%')
+								</isNotNull>
+								<isNotNull prepend="AND" property="searchKeyword4">
+									BOARD_GROUP = #searchKeyword4#
+								</isNotNull>
+							</isEqual>
+							<isEmpty property="orderByCondition">
+								ORDER BY BOARD_ID DESC
+							</isEmpty>
+							<isEqual property="orderByCondition" compareValue="up">
+								ORDER BY BOARD_GROUP, BOARD_TITLE ASC
+							</isEqual>
+							<isEqual property="orderByCondition" compareValue="down">
+								ORDER BY BOARD_GROUP, BOARD_TITLE DESC
+							</isEqual>
+				 )A WHERE 1=1
+			<isEqual prepend="AND" property="pageYn" compareValue="Y">
+				ROWNUM <![CDATA[<=]]> #lastIndex#
+			</isEqual>
+		)WHERE 1=1
+		<isEqual prepend="AND" property="pageYn" compareValue="Y">
+			RNUM <![CDATA[>]]> #firstIndex#
+		</isEqual>
+	</select>
+	<select id="jnitboardinfoDAO.selectJnitboardinfoListTotCnt_S" parameterClass="jnitboardinfoSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM jnitboardinfo
+			WHERE 1=1
+			AND ISDEL=0
+			<isNotEmpty prepend="AND" property="searchBoardGroup">
+				BOARD_GROUP = #searchBoardGroup#
+			</isNotEmpty>
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				BOARD_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				BOARD_TITLE LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				(BOARD_ID = #searchKeyword# OR BOARD_TITLE LIKE '%'||#searchKeyword#||'%' )
+			</isEqual>
+	</select>
+	<select id="jnitboardinfoDAO.getLastIdJnitboardinfo_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITBOARDINFO_ID'
+	</select>
+	<select id="jnitbbsboardDAO.selectJnitboardinfoGroupList_D" parameterClass="jnitboardinfoSerarchVO" resultClass="egovMap">
+			SELECT DISTINCT( BOARD_GROUP ) as BOARD_GROUP
+					FROM JNITBOARDINFO
+			WHERE ACTIVE=1
+	</select>
+	<statement id="jnitboardinfoDAO.createNewBoard" parameterClass="Map">
+			CREATE TABLE $id$
+		<!-- <isEqual property="type" compareValue="default"> -->
+			AS SELECT * FROM jnitboardtpl
+		<!-- </isEqual> -->
+	</statement>
+	<statement id="jnitboardinfoDAO.alterPrimaryKey" parameterClass="Map">
+		ALTER TABLE $id$ ADD PRIMARY KEY (ID)
+	</statement>
+
+</sqlMap>

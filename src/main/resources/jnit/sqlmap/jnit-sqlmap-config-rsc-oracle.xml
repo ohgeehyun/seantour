@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>						
+	
+	
+	
+	
+<sqlMap resource="jnit/sqlmap/rsc/JnitRscData_SQL_Oracle.xml" /><sqlMap resource="jnit/sqlmap/rsc/JnitRsc_SQL_Oracle.xml" /><sqlMap resource="jnit/sqlmap/rsc/Jnitrscpage_SQL_Oracle.xml" /><sqlMap resource="jnit/sqlmap/rsc/Jnitrscpagedata_SQL_Oracle.xml" /></sqlMapConfig>

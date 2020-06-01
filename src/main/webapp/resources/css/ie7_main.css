@@ -1,0 +1,4 @@
+@charset "utf-8";/* CSS Document */
+
+#user-nav > ul > li > a > i{margin-top:0;}
+#sidebar > ul > li > a > .label{position:absolute;right:0px;}

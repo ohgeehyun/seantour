@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<!-- jnit.apptour IDGEN -->
+ 
+	<!--  jnitALLIM_GROUPGnrService -->
+	<bean name="jnitALLIM_GROUP_IdGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitALLIM_GROUP_IdGnrStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITALLIM_GROUP_ID"/>
+	</bean>
+	<bean name="jnitALLIM_GROUP_IdGnrStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="GRP" />
+		<property name="cipers" value="4" />
+		<property name="fillChar" value="0" />
+	</bean>
+	
+	<!--  jnitALLIM_ITEMGnrService -->
+	<bean name="jnitALLIM_ITEM_IdGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitALLIM_ITEM_IdGnrStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITALLIM_ITEM_ID"/>
+	</bean>
+	<bean name="jnitALLIM_ITEM_IdGnrStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="ITEM" />
+		<property name="cipers" value="4" />
+		<property name="fillChar" value="0" />
+	</bean>
+	
+	<!--  jnitALLIM_IMGFILEGnrService -->
+	<bean name="jnitALLIM_IMGFILE_IdGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitALLIM_IMGFILE_IdGnrStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITALLIM_IMGFILE_ID"/>
+	</bean>
+	<bean name="jnitALLIM_IMGFILE_IdGnrStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="IMG" />
+		<property name="cipers" value="4" />
+		<property name="fillChar" value="0" />
+	</bean>
+</beans>

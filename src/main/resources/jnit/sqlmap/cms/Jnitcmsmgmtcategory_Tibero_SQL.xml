@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitcmsmgmtcategory">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitcmsmgmtcategorySerarchVO" type="jnit.cms.mgmtcategory.JnitcmsmgmtcategoryDefaultVO"/>
+
+	<resultMap id="jnitcmsmgmtcategory" class="jnit.cms.mgmtcategory.JnitcmsmgmtcategoryVO">
+		<result property="siteId" column="SITE_ID" columnIndex="1"/>
+		<result property="mgmtCategoryId" column="MGMT_CATEGORY_ID" columnIndex="2"/>
+	</resultMap>
+
+	<insert id="jnitcmsmgmtcategoryDAO.insertJnitcmsmgmtcategory_S">
+		<![CDATA[
+			INSERT INTO JNITCMSMGMTCATEGORY
+				( SITE_ID
+				  , MGMT_CATEGORY_ID )
+			VALUES ( #siteId#
+				  , #mgmtCategoryId# )
+		]]>
+	</insert>
+
+	<update id="jnitcmsmgmtcategoryDAO.updateJnitcmsmgmtcategory_S">
+		<![CDATA[
+			UPDATE JNITCMSMGMTCATEGORY
+			SET SITE_ID=#siteId#
+				, MGMT_CATEGORY_ID=#mgmtCategoryId#
+						WHERE MGMT_CATEGORY_ID=#mgmtCategoryId#
+				]]>
+	</update>
+
+	<delete id="jnitcmsmgmtcategoryDAO.deleteJnitcmsmgmtcategory_S">
+		<![CDATA[
+			DELETE FROM JNITCMSMGMTCATEGORY
+						WHERE MGMT_CATEGORY_ID=#mgmtCategoryId#
+				]]>
+	</delete>
+
+	<select id="jnitcmsmgmtcategoryDAO.selectJnitcmsmgmtcategory_S" resultMap="jnitcmsmgmtcategory">
+		<![CDATA[
+			SELECT
+				SITE_ID
+				, MGMT_CATEGORY_ID
+			FROM JNITCMSMGMTCATEGORY
+		]]>
+			WHERE 1=1
+			<isEqual prepend="AND" property="selectCondition" compareValue="0">
+				 MGMT_CATEGORY_ID=#mgmtCategoryId#
+			</isEqual>
+			<isEqual prepend="AND" property="selectCondition" compareValue="1">
+				 SITE_ID=#siteId#
+			</isEqual>
+	</select>
+
+	<select id="jnitcmsmgmtcategoryDAO.selectJnitcmsmgmtcategoryList_D" parameterClass="jnitcmsmgmtcategorySerarchVO" resultClass="egovMap">
+SELECT * FROM (
+	SELECT A.*, ROWNUM RNUM FROM (
+				SELECT
+								SITE_ID
+								, MGMT_CATEGORY_ID
+						FROM JNITCMSMGMTCATEGORY
+				WHERE 1=1
+				<isEqual prepend="AND" property="searchCondition" compareValue="0">
+					SITE_ID = #searchKeyword#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="1">
+					MGMT_CATEGORY_ID LIKE '%'||#searchKeyword#||'%'
+				</isEqual>
+					ORDER BY
+						MGMT_CATEGORY_ID DESC
+
+		<![CDATA[
+	) A WHERE ROWNUM <= #lastIndex#
+)WHERE RNUM > #firstIndex#
+]]>
+	</select>
+	<select id="jnitcmsmgmtcategoryDAO.selectJnitcmsmgmtcategoryListTotCnt_S" parameterClass="jnitcmsmgmtcategorySerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM JNITCMSMGMTCATEGORY
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				SITE_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				MGMT_CATEGORY_ID LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+	</select>
+	<select id="jnitcmsmgmtcategoryDAO.getLastIdJnitcmsmgmtcategory_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITCMSMGMTCATEGORY_ID'
+	</select>
+
+</sqlMap>

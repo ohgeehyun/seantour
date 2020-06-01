@@ -1,0 +1,31 @@
+@charset "utf-8";
+
+div.content_group div.content > div.research{margin:10px;padding:20px;background:#dfdfdf;font-weight:bold;}
+div.content_group div.content div.research div.researchCount{border:1px solid #fff;background:#fafafa;}
+div.content_group div.content div.research div.researchCount p.research_title{margin:0;padding:10px 20px;background:none;}
+div.content_group div.content div.research div.researchCount form{margin:10px 20px;}
+div.content_group div.content div.research div.researchCount form ol{width:100%;display:inline-block;margin:0 0 10px 0;}
+div.content_group div.content div.research div.researchCount form ol li{float:left;margin-right:10px;}
+div.content_group div.content div.research div.researchCount form ul{display:inline-block;width:100%;}
+div.content_group div.content div.research div.researchCount form ul li{float:left;}
+div.content_group div.content div.research div.researchCount form ul li:first-child{width:86%;}
+div.content_group div.content div.research div.researchCount form ul li:first-child input{padding:5px 0;margin:0;height:19px;width:97%;}
+div.content_group div.content div.research div.researchCount p.resultBtn{margin:20px 0;padding:0;background:none;width:100%;text-align:center;}
+
+
+/*설문조사*/
+div.research_list{ border: 3px solid #616161; padding: 15px 13px; margin-bottom:20px;}
+div.research_list p.tit{  color: #414141; font-size:14px; background: #FFFFFF; border: 1px solid #ccc; padding:8px 5px 8px 25px; margin: 15px 15px 10px 15px;}
+div.research_list dl{  overflow:hidden;padding:10px; border-bottom:1px solid #d6d6d6; color:#666666; margin-bottom:20px;}
+div.research_list dl dt{ border-bottom:1px dashed #d6d6d6; padding-bottom:10px; margin-bottom:5px;}
+div.research_list dl dt > img {margin-right: 7px;vertical-align: middle;}
+div.research_list dl dd{ padding:10px;}
+div.research_list ul{ overflow:hidden;}
+div.research_list ul li{ margin-bottom: 5px;  overflow: hidden;  text-align: left;  clear: both;  background: #FFF;  border: 1px solid #E0E0E0;  padding: 5px;}
+
+div.research_list label{ min-width:130px; display:inline-block;margin-right:10px; text-align:left;}
+div.research_list div.btn_list{ text-align:center; margin:10px 0;}
+
+div.research_list span.grap{display:inline-block;       width: 50%;  margin-top: 1px;  vertical-align: top;  text-align: left;  border: 1px solid #CCC;  background: #fff;padding: 1px;}
+div.research_list span.grap b{display:inline-block; height:10px;  vertical-align:top;background: #666; } 
+div.research_list em{font-style:normal; display:inline-block;  text-align: right; }

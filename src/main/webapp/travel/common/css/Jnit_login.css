@@ -1,0 +1,91 @@
+@charset "utf-8";
+
+/*맴버 로그인*/
+div.member_content_group div.content div.box .login01 p.login_title {margin: 10px 0;color: #555;font-size: 2.0em;font-weight: bold;}
+.form-vertical fieldset {padding: 15px;border: 2px solid #ccc;}
+ul.loginList li {line-height: 25px;}
+ul.loginList li label {float: left;width: 100px;}
+ul.loginList li input {border: 1px solid #ccc;padding: 3px 5px;}
+
+
+/*비회원 로그인*/
+div.member_content_group div.content div.box .login02 p.login_title {margin: 10px 0;color: #555;line-height: 100%;font-size: 2.0em;font-weight: bold;}
+
+/*로그아웃*/
+.member_content .exeLogout {width: 70%;margin: 15px auto;}
+.member_content .exeLogout .exeLogoutForm {display: block;padding: 25px 75px 25px 75px;border: 1px solid #CCC;}
+.member_content .exeLogout .exeLogoutForm input {width: 150px;margin-right: 20px;padding: 10px 0px;border: 1px solid #707070;font-weight: bold;background: #979797;color: #fcfcfc;cursor: pointer;text-align:center}
+.member_content .exeLogout .exeLogoutForm input:hover {background: #7E7E7E;border: 1px solid #4E4E4E;}
+.member_content .exeLogout .exeLogoutForm a {margin-right: 20px;padding: 10px 40px;border: 1px solid #D9D9D9;font-weight: bold;background: #F2F2F2;cursor: pointer;text-align:center}
+.member_content .exeLogout .exeLogoutForm a:hover {background: #E4E4E4;border: 1px solid #C9C9C9;}
+
+
+/*로그인*/
+.member_content .login01 {width: 70%;margin: 0 auto;}
+.member_content .login01 p.login_title {font-weight: bold;font-size: 1.5em;color: #C5C5C5;margin-left: 11px;}
+.member_content .login01 fieldset {border: none;}
+.member_content .login01 .loginForm {display: block;padding: 25px 0px 15px 56px;width: 320px;}
+.member_content .login01 .loginForm ul.loginList li {margin-bottom: 6px;}
+.member_content .login01 .loginForm ul.loginList li label {display: block;float: left;width: 100px;font-weight: bold;color: #333;}
+.member_content .login01 .loginForm ul.loginList li input {width: 169px;background: #fcfcfc;border: 1px solid #ccc;padding: 5px 4px;}
+.member_content .login01 .loginForm p.loginBtn {margin-left: 100px;}
+.member_content .login01 .loginForm p.loginBtn input {display: block;padding: 4px 0px 6px 0px;width: 179px;font-weight: bold;border: 1px solid #DDD;  background: #FAFAFA;cursor: pointer;}
+.member_content .login01 .loginForm p.loginBtn input:hover {background: #F2F2F2;border: 1px solid #CFCFCF;}
+.member_content .login01 .alert {display: none;position: absolute;left: 35%;top: 50%;padding: 33px;background: #F5F5F5;border:2px solid #434343;}
+.member_content .login01 .alert strong {color: #CB0000;}
+.member_content .login01 .alert button.close {position: absolute;top: 0;right: 0;padding: 3px 7px;color: #FFF;border: 1px solid #616161;background: #8E8E8E;cursor: pointer;}
+
+.member_content .login01 .loginForm  .idpwFind {font-size: 0.9em;margin: 20px 0 0 0px;}
+.member_content .login01 .loginForm  .idpwFind dt {display: block;  float: left;  padding-top: 10px;}
+.member_content .login01 .loginForm  .idpwFind dd {margin-top: 4px;display: inline-block;}
+.member_content .login01 .loginForm  .idpwFind dd a {display: block;float: left;border: 1px solid #DDD;padding: 4px 8px 6px 8px;margin-left: 4px;font-weight: bold;background: #FAFAFA;}
+.member_content .login01 .loginForm  .idpwFind dd a:hover {background: #F2F2F2;}
+
+.member_content .login01 .tab-content .padded {border: 1px solid #ccc;padding: 15px;}
+.member_content .login01 .tab-content .padded p.tab-content-title {font-weight: bold;font-size: 1.3em;margin-bottom: 10px;}
+.member_content .login01 .tab-content .padded p.tab3_title {font-weight: bold;font-size: 1.3em;margin: 10px;}
+.member_content .login01 .tab-content .padded div.tab3_content {padding: 10px;border: 1px solid #E0E0E0;background: #EBEBEB;}
+.member_content .login01 .tab-content .padded div.tab3_content ul {margin-left: 60px;}
+.member_content .login01 .tab-content .padded div.tab3_content ul li {margin-bottom: 6px;}
+.member_content .login01 .tab-content .padded div.tab3_content ul li label {display: block;float: left;width: 100px;font-weight: bold;color: #333;}
+.member_content .login01 .tab-content .padded div.tab3_content ul li input {width: 169px;background: #fcfcfc;border: 1px solid #ccc;padding: 5px 4px;}
+.member_content .login01 .tab-content .padded div.tab3_content ul li input.span2 {width:37px;}
+.member_content .login01 .tab-content .padded div.tab3_content ul li input.span3 {width:49px;}
+.member_content .login01 .tab-content .padded div.tab3_content ul li input.span4 {width:75px;}
+.member_content .login01 .tab-content .padded div.tab3_content p.tab3_btn a.member_btn  {display: block;width: 200px;margin: 12px auto 0;padding: 6px 13px;border: 1px solid #D9D9D9;font-weight: bold;font-size: 1.2em;background: #F2F2F2;cursor: pointer;text-align:center}
+.member_content .login01 .tab-content .padded div.tab3_content p.tab3_btn a.member_btn:hover {background: #E4E4E4;border: 1px solid #C9C9C9;}
+
+.member_content .login01 .tab-content .tab-btn a.member_btn  {display: block;width: 200px;margin: 12px auto 0;padding: 10px 13px;border: 1px solid #D9D9D9;font-weight: bold;font-size: 1.4em;background: #F2F2F2;cursor: pointer;text-align:center}
+.member_content .login01 .tab-content .tab-btn a.member_btn:hover {background: #E4E4E4;border: 1px solid #C9C9C9;}
+
+/*아이디 찾기*/
+div.findGroup {width: 70%;margin: 15px auto;}
+div.findGroup div.findForm {display: block;}
+div.findGroup div.findForm p.findid01 label {display: block;float: left;width: 80px;font-weight: bold;color: #333;padding: 4px 0 8px 0;margin-bottom: 6px;}
+div.findGroup div.findForm p.findid01 input {width: 154px;background: #FCFCFC;border: 1px solid #CCC;padding: 5px 3px;margin-bottom: 7px;}
+div.findGroup div.findForm p.findid01 a.findid_btn {display: block;padding: 4px 0px 6px 0px;margin-left: 80px;width: 160px;font-weight: bold;border: 1px solid #DDD;  background: #FAFAFA;cursor: pointer;text-align:center}
+div.findGroup div.findForm p.findid01 a.findid_btn:hover {background: #E4E4E4;border: 1px solid #C9C9C9;}
+
+div.findGroup div.findForm .IdResult p.Id_find {display: inline-block;}
+div.findGroup div.findForm .IdResult p.Id_find a {display: block;float: left;border: 1px solid #D9D9D9;padding: 4px 20px 6px 20px;margin: 0 10px;font-weight: bold;background: #FFFFFF;}
+div.findGroup div.findForm .IdResult p.Id_find a:hover {background: #E4E4E4;border: 1px solid #C9C9C9;}
+
+/*비밀번호 찾기*/
+
+div.findGroup .pwfind_arlim {text-align: center;margin: 16px 0;font-size: 15px;font-weight: bold;line-height: 150%;}
+div.findGroup div.findForm ul.loginList {width: 321px;margin: 5px auto 0;padding: 20px 0 20px 15px;border: 1px solid #D6DBE0;background: #FCFDFD;}
+div.findGroup div.findForm ul.loginList li label {width: 110px;display: block;float: left;padding: 2px 0 0 0;font-weight: bold}
+div.findGroup div.findForm ul.loginList li input {border: 1px solid #CFCFCF;padding: 5px;margin-bottom: 6px;}
+div.findGroup div.findForm div.newPwInput {width: 321px;margin: 30px auto 0;padding: 20px 0 20px 25px;border: 1px solid #D6DBE0;background: #FCFDFD;}
+div.findGroup div.findForm div.newPwInput  ul.loginList02 li label {width: 110px;display: block;float: left;padding: 2px 0 0 0;font-weight: bold;font-size: 0.9em;}
+div.findGroup div.findForm div.newPwInput  ul.loginList02 li input {border: 1px solid #CFCFCF;padding: 5px;margin-bottom: 5px;}
+div.findGroup div.findForm div.newPwInput p.btn_confirm a {display: block;border: 1px solid #D9D9D9;padding: 4px 0px 6px 0px;margin-left: 110px;width: 157px;font-weight: bold;background: #F2F2F2;cursor: pointer;text-align:center}
+div.findGroup div.findForm div.newPwInput p.btn_confirm a:hover {background: #E4E4E4;border: 1px solid #C9C9C9;}
+div.findGroup div.findForm p.resetpwbtn {color: #383838;padding: 6px 17px 5px 17px;font-size: 12px;border: 1px solid #DDD;  background: #FAFAFA;font-weight: bold;cursor: pointer;}
+div.findGroup div.findForm p.resetpwbtn:hover {background: #F2F2F2;}
+
+/*비인증 로그인, 패스워드 결과*/
+.member_content p.tblTitle {font-size:15px; font-weight:bold;}
+div.content_group div.content .member_content p.ment {padding:10px; border:1px solid #dfdfdf;}
+div.content_group div.content .member_content p.ment span.fc4 {color:#DB0000;}
+.member_content p.btnCenter .btn1 {color: #434343;padding: 5px 12px 5px 11px;font-size: 12px;font-weight: bold;cursor: pointer;border: 1px solid #CACACA;background: #FAFAFA;white-space: nowrap;}

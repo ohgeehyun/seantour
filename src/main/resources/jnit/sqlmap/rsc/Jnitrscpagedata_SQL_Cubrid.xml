@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitrscpagedata">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitrscpagedataSerarchVO" type="jnit.rsc.page.data.JnitrscpagedataDefaultVO"/>
+	
+	<resultMap id="jnitrscpagedata" class="jnit.rsc.page.data.JnitrscpagedataVO">
+		<result property="pdataId" column="PDATA_ID" columnIndex="1"/>
+		<result property="rscpId" column="RSCP_ID" columnIndex="2"/>
+		<result property="memo" column="MEMO" columnIndex="3"/>
+		<result property="hit1" column="HIT1" columnIndex="4"/>
+		<result property="hit2" column="HIT2" columnIndex="5"/>
+		<result property="hit3" column="HIT3" columnIndex="6"/>
+		<result property="hit4" column="HIT4" columnIndex="7"/>
+		<result property="hit5" column="HIT5" columnIndex="8"/>
+		<result property="remoteAddr" column="REMOTE_ADDR" columnIndex="9"/>
+		<result property="created" column="CREATED" columnIndex="10"/>
+	</resultMap>
+	
+	<insert id="jnitrscpagedataDAO.insertJnitrscpagedata_S">
+		<![CDATA[
+			INSERT INTO jnitrscpagedata 
+				( PDATA_ID
+				  , RSCP_ID
+				  , MEMO
+				  , HIT1
+				  , HIT2
+				  , HIT3
+				  , HIT4
+				  , HIT5
+				  , REMOTE_ADDR
+				  , CREATED )
+			VALUES ( #pdataId#
+				  , #rscpId#
+				  , #memo#
+				  , #hit1#
+				  , #hit2#
+				  , #hit3#
+				  , #hit4#
+				  , #hit5#
+				  , #remoteAddr#
+				  , NOW() )
+		]]>
+	</insert>
+	
+	<update id="jnitrscpagedataDAO.updateJnitrscpagedata_S">
+		<![CDATA[
+			UPDATE jnitrscpagedata
+			SET PDATA_ID=#pdataId#
+				, RSCP_ID=#rscpId#
+				, MEMO=#memo#
+				, HIT1=#hit1#
+				, HIT2=#hit2#
+				, HIT3=#hit3#
+				, HIT4=#hit4#
+				, HIT5=#hit5#
+				, REMOTE_ADDR=#remoteAddr#
+				, CREATED=NOW()
+                WHERE PDATA_ID=#pdataId#
+		]]>
+	</update>
+	
+	<delete id="jnitrscpagedataDAO.deleteJnitrscpagedata_S">
+		<![CDATA[
+			DELETE FROM jnitrscpagedata 
+                WHERE PDATA_ID=#pdataId#
+		]]>
+	</delete>
+	
+	<select id="jnitrscpagedataDAO.selectJnitrscpagedata_S" resultMap="jnitrscpagedata">
+		<![CDATA[
+			SELECT
+				PDATA_ID
+				, RSCP_ID
+				, MEMO
+				, HIT1
+				, HIT2
+				, HIT3
+				, HIT4
+				, HIT5
+				, REMOTE_ADDR
+				, CREATED
+			FROM jnitrscpagedata
+                WHERE PDATA_ID=#pdataId#
+		]]>
+	</select>
+	
+	<select id="jnitrscpagedataDAO.selectJnitrscpagedataList_D" parameterClass="jnitrscpagedataSerarchVO" resultClass="egovMap">
+			SELECT
+								PDATA_ID
+								, RSCP_ID
+								, MEMO
+								, HIT1
+								, HIT2
+								, HIT3
+								, HIT4
+								, HIT5
+								, REMOTE_ADDR
+								, CREATED
+					FROM jnitrscpagedata
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				PDATA_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				RSCP_ID LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				RSCP_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="3">
+			    RSCP_ID = #searchKeyword#
+				AND 
+					(
+					    TO_CHAR(#date01#,'yyyy-MM-dd') <![CDATA[<=]]> TO_CHAR(CREATED,'yyyy-MM-dd') 
+					    AND TO_CHAR(CREATED,'yyyy-MM-dd') <![CDATA[<=]]> TO_CHAR(#date02#,'yyyy-MM-dd')
+					 ) 
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="4">
+			    RSCP_ID = #rscpId# 
+			    AND REMOTE_ADDR = #remoteAddr#			
+			</isEqual>
+				ORDER BY 
+                PDATA_ID DESC
+            <isEqual property="pageYn" compareValue="Y">    
+				limit #firstIndex#, #recordCountPerPage#
+			</isEqual>	
+	</select>	
+	<select id="jnitrscpagedataDAO.selectJnitrscpagedataListTotCnt_S" parameterClass="jnitrscpagedataSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM jnitrscpagedata
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				PDATA_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				RSCP_ID LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				RSCP_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="3">
+			    RSCP_ID = #searchKeyword#
+				AND 
+					(
+					    TO_CHAR(#date01#,'yyyy-MM-dd') <![CDATA[<=]]> TO_CHAR(CREATED,'yyyy-MM-dd') 
+					    AND TO_CHAR(CREATED,'yyyy-MM-dd') <![CDATA[<=]]> TO_CHAR(#date02#,'yyyy-MM-dd')
+					 )
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="4">
+			    RSCP_ID = #rscpId# 
+			    AND REMOTE_ADDR = #remoteAddr#
+			</isEqual>			
+	</select>
+	<select id="jnitrscpagedataDAO.getLastIdJnitrscpagedata_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITRSCPAGEDATA_ID'
+	</select>
+
+</sqlMap>

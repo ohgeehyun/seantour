@@ -1,0 +1,36 @@
+#(by Jnitcms 3.5)
+#Mon Apr 06 14:05:54 KST 2020
+ex01Add=0
+emailRecv=1
+groupTel=1
+businessPlace=1
+smsRecv=1
+ex02Add=0
+ex03Type=0
+tel=1
+groupPax=1
+mutual=1
+phone=1
+ex03Add=0
+profit=1
+ex03TypeFields=
+addr=1
+captcha=0
+businessAddr=1
+groupName=1
+ex01TypeFields=
+nonprofit=1
+ex02Type=0
+corporateName=1
+email=1
+ex03=\uC5EC\uBD84\uD544\uB4DC3
+gradeNm=1
+ex02=\uC5EC\uBD84\uD544\uB4DC2
+ex02TypeFields=
+ex01=\uC5EC\uBD84\uD544\uB4DC1
+post=1
+groupTitle=1
+groupKind=1
+ex01Type=0
+personal=1
+organization=1

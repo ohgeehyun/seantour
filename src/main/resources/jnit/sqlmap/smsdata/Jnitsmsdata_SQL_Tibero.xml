@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Smsdata">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="smsdataSerarchVO" type="jnit.sms.data.SmsdataDefaultVO"/>
+	
+	<resultMap id="smsdata" class="jnit.sms.data.SmsdataVO">
+		<result property="seqno" column="SEQNO" columnIndex="1"/>
+		<result property="indate" column="INDATE" columnIndex="2"/>
+		<result property="intime" column="INTIME" columnIndex="3"/>
+		<result property="member" column="MEMBER" columnIndex="4"/>
+		<result property="sendid" column="SENDID" columnIndex="5"/>
+		<result property="sendname" column="SENDNAME" columnIndex="6"/>
+		<result property="rphone1" column="RPHONE1" columnIndex="7"/>
+		<result property="rphone2" column="RPHONE2" columnIndex="8"/>
+		<result property="rphone3" column="RPHONE3" columnIndex="9"/>
+		<result property="recvname" column="RECVNAME" columnIndex="10"/>
+		<result property="sphone1" column="SPHONE1" columnIndex="11"/>
+		<result property="sphone2" column="SPHONE2" columnIndex="12"/>
+		<result property="sphone3" column="SPHONE3" columnIndex="13"/>
+		<result property="msg" column="MSG" columnIndex="14"/>
+		<result property="url" column="URL" columnIndex="15"/>
+		<result property="rdate" column="RDATE" columnIndex="16"/>
+		<result property="rtime" column="RTIME" columnIndex="17"/>
+		<result property="result" column="RESULT" columnIndex="18"/>
+		<result property="kind" column="KIND" columnIndex="19"/>
+		<result property="errcode" column="ERRCODE" columnIndex="20"/>
+		<result property="targetLogin" column="TARGET_LOGIN" columnIndex="21"/>
+		<result property="targetId" column="TARGET_ID" columnIndex="22"/>
+	</resultMap>
+	
+	<insert id="smsdataDAO.insertSmsdata_S">
+		<![CDATA[
+			INSERT INTO SMSDATA 
+				( SEQNO
+				  , INDATE
+				  , INTIME
+				  , MEMBER
+				  , SENDID
+				  , SENDNAME
+				  , RPHONE1
+				  , RPHONE2
+				  , RPHONE3
+				  , RECVNAME
+				  , SPHONE1
+				  , SPHONE2
+				  , SPHONE3
+				  , MSG
+				  , URL
+				  , RDATE
+				  , RTIME
+				  , RESULT
+				  , KIND
+				  , ERRCODE
+				  , TARGET_ID
+				  , TARGET_LOGIN )
+			VALUES ( SMSDATA_SEQNO.NEXTVAL
+				  , #indate#
+				  , #intime#
+				  , #member#
+				  , #sendid#
+				  , #sendname#
+				  , #rphone1#
+				  , #rphone2#
+				  , #rphone3#
+				  , #recvname#
+				  , #sphone1#
+				  , #sphone2#
+				  , #sphone3#
+				  , #msg#
+				  , #url#
+				  , #rdate#
+				  , #rtime#
+				  , #result#
+				  , #kind#
+				  , #errcode#
+				  , #targetId#
+				  , #targetLogin# )
+		]]>
+	</insert>
+	
+	<update id="smsdataDAO.updateSmsdata_S">
+		<![CDATA[
+			UPDATE SMSDATA
+			SET INDATE=#indate#
+				, INTIME=#intime#
+				, MEMBER=#member#
+				, SENDID=#sendid#
+				, SENDNAME=#sendname#
+				, RPHONE1=#rphone1#
+				, RPHONE2=#rphone2#
+				, RPHONE3=#rphone3#
+				, RECVNAME=#recvname#
+				, SPHONE1=#sphone1#
+				, SPHONE2=#sphone2#
+				, SPHONE3=#sphone3#
+				, MSG=#msg#
+				, URL=#url#
+				, RDATE=#rdate#
+				, RTIME=#rtime#
+				, RESULT=#result#
+				, KIND=#kind#
+				, ERRCODE=#errcode#
+				, TARGET_ID=#targetId#
+				, TARGET_LOGIN=#targetLogin#
+                WHERE SEQNO=#seqno#
+		]]>
+	</update>
+	
+	<delete id="smsdataDAO.deleteSmsdata_S">
+		<![CDATA[
+			DELETE FROM SMSDATA 
+                WHERE SEQNO=#seqno#
+		]]>
+	</delete>
+	
+	<select id="smsdataDAO.selectSmsdata_S" resultMap="smsdata">
+			SELECT
+				SEQNO
+				, INDATE
+				, INTIME
+				, MEMBER
+				, SENDID
+				, SENDNAME
+				, RPHONE1
+				, RPHONE2
+				, RPHONE3
+				, RECVNAME
+				, SPHONE1
+				, SPHONE2
+				, SPHONE3
+				, MSG
+				, URL
+				, RDATE
+				, RTIME
+				, RESULT
+				, KIND
+				, ERRCODE
+				, TARGET_ID
+				, TARGET_LOGIN
+			FROM SMSDATA
+				WHERE 1=1
+				<isNull prepend="AND" property="targetLogin">
+                	SEQNO=#seqno#
+                </isNull>
+                <isNotNull prepend="AND" property="targetLogin">
+                	SEQNO=(
+						SELECT MAX(SEQNO) FROM SMSDATA
+						WHERE TARGET_LOGIN = #targetLogin#
+					)
+                </isNotNull>
+	</select>
+	
+	<select id="smsdataDAO.selectSmsdataList_D" parameterClass="smsdataSerarchVO" resultClass="egovMap">
+			SELECT * FROM (
+				SELECT A.*, ROWNUM RNUM FROM (
+							SELECT
+								SEQNO
+								, INDATE
+								, INTIME
+								, MEMBER
+								, SENDID
+								, SENDNAME
+								, RPHONE1
+								, RPHONE2
+								, RPHONE3
+								, RECVNAME
+								, SPHONE1
+								, SPHONE2
+								, SPHONE3
+								, MSG
+								, URL
+								, RDATE
+								, RTIME
+								, RESULT
+								, KIND
+								, ERRCODE
+								, TARGET_ID
+								, TARGET_LOGIN
+						FROM SMSDATA
+				WHERE 1=1
+				<isEqual prepend="AND" property="searchCondition" compareValue="0">
+					SEQNO = #searchKeyword#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="1">
+					TARGET_LOGIN = #searchKeyword#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="2">
+					TARGET_ID = #searchKeyword#
+				</isEqual>
+					ORDER BY 
+					SEQNO DESC
+			<![CDATA[
+				) A WHERE ROWNUM <= #lastIndex#
+			)WHERE RNUM > #firstIndex#
+			]]>
+	</select>	
+	<select id="smsdataDAO.selectSmsdataListTotCnt_S" parameterClass="smsdataSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM SMSDATA
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				SEQNO = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				TARGET_LOGIN = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				TARGET_ID = #searchKeyword#
+			</isEqual>
+	</select>
+	<select id="smsdataDAO.getLastIdSmsdata_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'SMSDATA_ID'
+	</select>
+
+</sqlMap>

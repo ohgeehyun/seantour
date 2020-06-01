@@ -1,0 +1,174 @@
+@charset "utf-8";
+body {margin: 10px;}
+/*sms top*/
+div.Jnitsms {min-width: 1022px;}
+div.Jnitsms_topcontent {height: 40px;width: 1022px;background: #848484 url(/resources/img/sms/sms_top_bg.gif) left top no-repeat;}
+div.Jnitsms_topcontent a {color:#484545;}
+div.Jnitsms_topcontent h1.Jnitsms_logo {float: left;margin: 10px 0px 0px 30px;}
+div.Jnitsms_topcontent div.Jnitsms_menu {float: left;margin: 5px 0 0 60px;}
+div.Jnitsms_topcontent div.Jnitsms_menu p.Jnitsms_menu_title {float: left;width: 77px;padding: 7px 0px 6px 6px;;font-weight: bold;text-align: center;color: #fff;letter-spacing: -1px;background:url(/resources/img/sms/sms_menu_lt.gif) left top no-repeat;}
+div.Jnitsms_topcontent div.Jnitsms_menu ul {float: left;padding-right: 14px;background: url(/resources/img/sms/sms_menu_rt.gif) right top no-repeat;}
+div.Jnitsms_topcontent div.Jnitsms_menu ul li {float:left;padding: 7px 7px;font-weight: bold;background: url(/resources/img/sms/sms_menu_bar.gif) left top repeat-x;}
+div.Jnitsms_topcontent div.Jnitsms_menu ul li.on a {color:#ff0000;text-decoration: underline;}
+div.Jnitsms_topcontent p.Jnitsms_address {float: right;height: 40px;margin: 0;background: url(/resources/img/sms/sms_top_address.gif) right top no-repeat;}
+div.Jnitsms_topcontent p.Jnitsms_address a {display: block;padding: 12px 14px 12px 8px;color: #FFF;font-size: 12px;font-weight: bold;text-decoration: none;}
+div.Jnitsms_topcontent p.Jnitsms_address a:hover {color: #DDEBF8;}
+
+
+div.Jnitsms_box {position: relative;float: left;width: 590px;margin-top: 13px;border: 1px solid #808080;}
+div.Jnitsms_box span.box_lttop {position: absolute;left: -1px;top: -1px;width: 9px;height: 9px;background: url(/resources/img/sms/Jnitsms_box_lttop.gif);}
+div.Jnitsms_box span.box_rttop {position: absolute;right: -1px;top: -1px;width: 9px;height: 9px;background: url(/resources/img/sms/Jnitsms_box_rttop.gif);}
+div.Jnitsms_box span.box_ltbtm {position: absolute;left: -1px;bottom: -1px;width: 7px;height: 9px;background: url(/resources/img/sms/Jnitsms_box_ltbottom1.gif);}
+div.Jnitsms_box span.box_rtbtm {position: absolute;right: -1px;bottom: -1px;width: 8px;height: 9px;background: url(/resources/img/sms/Jnitsms_box_rtbottom1.gif);}
+div.Jnitsms_box span.box_ltbtm2 {position: absolute;left: -1px;bottom: -1px;width: 9px;height: 9px;background: url(/resources/img/sms/Jnitsms_box_ltbottom2.gif);}
+div.Jnitsms_box span.box_rtbtm2 {position: absolute;right: -1px;bottom: -1px;width: 10px;height: 10px;background: url(/resources/img/sms/Jnitsms_box_rtbottom2.gif);}
+
+button#sendMessage {display: block;float: none;width: 121px;padding: 13px 0 12px 0;margin: 15px auto 0px auto;border: none;text-align: center;font-weight: bold;color: #ffffff;background: url(/resources/img/sms/Jnitsms_send_btn.gif) left top no-repeat;}
+button#sendMessage:hover {background: url(/resources/img/sms/Jnitsms_send_btn_over.gif) left top no-repeat;}
+div.Jnitsms_box  .Jnitsms_send_btn {display: block;width: 121px;padding: 13px 0 12px 0;margin: 15px auto 0px auto;border: none;text-align: center;font-weight: bold;color: #ffffff;background: url(/resources/img/sms/Jnitsms_send_btn.gif) left top no-repeat;}
+div.Jnitsms_box .Jnitsms_send_btn:hover {background: url(/resources/img/sms/Jnitsms_send_btn_over.gif) left top no-repeat;}
+div.Jnitsms_box .Jnitsms_send_btn02 {display: block;width: 134px;padding: 13px 0 12px 0;margin: 15px auto 0px auto;border: none;text-align: center;font-weight: bold;color: #FFF;background: url(/resources/img/sms/Jnitsms_send_btn02.gif) left top no-repeat;}
+div.Jnitsms_box .Jnitsms_send_btn02:hover {background: url(/resources/img/sms/Jnitsms_send_btn02_over.gif) left top no-repeat;}
+
+div.Jnitsms_box div > ul > li > a.addPhone {display: block;padding: 5px 5px 5px 14px;font-weight: bold;color: #9A9A9A;background: url(/resources/img/sms/sms_msg_btn01.gif) left 8px no-repeat;}
+div.Jnitsms_box div > ul > li > a.confirm.btn-danger {display: block;padding: 4px 5px 5px 14px;font-weight: bold;color: #ff0000;background: url(/resources/img/sms/sms_msg_btn02.gif) left 6px no-repeat;}
+div.Jnitsms_box div > ul > li > a.confirm {display: block;padding: 5px 5px 5px 14px;font-weight: bold;color: #9A9A9A;background: url(/resources/img/sms/sms_msg_btn01.gif) left 8px no-repeat;}
+/*sms 페이지네비*/
+div.pagination {text-align: center;  margin: 30px 0 10px 0;}
+.pagination ul > .active > a, .pagination ul > .active > span {color:#000;cursor:default;font-weight:bold;}
+.pagination ul > li {display:inline;}
+.pagination ul > li > a, .pagination ul > li > span {padding: 6px 9px;font-size: 12px;vertical-align: top;border: 1px solid #D3D3D3;}
+.input-small {padding:4px 6px;}
+.pagination .first_page a, 
+.pagination .prev_page a, 
+.pagination .next_page a, 
+.pagination .last_page a {font-size: 24px;vertical-align:sub;padding: 0px 8px;  ;background: #F7F7F7;}
+
+/*sms 메세지*/
+div.Jnitsms_box div.Jnitsms_msg textarea {margin: 8px 2%;max-width: 566px;min-height: 90px;width: 96%;border: none;}
+div.Jnitsms_box div.Jnitsms_msg span.charbyte {text-decoration: underline;color: #656565;}
+div.Jnitsms_box div.Jnitsms_msg span.charbyte input#msglen {width: 35px;margin: 0 0px 3px 5px;border: none;text-align: right;text-decoration: underline;color: #656565;}
+div.Jnitsms_box div.Jnitsms_msg span.charbyte b {color: #E20000;}
+div.Jnitsms_box div.Jnitsms_msg p.add_name {padding: 12px 0 12px 10px;border-top: 1px solid #d7d7d9;background: #f4f4f4;font-weight: bold;color: #575656;}
+div.Jnitsms_box div.Jnitsms_msg p.add_name a {padding:7px 25px;margin-right: 17px;color: #fff;background: #666666;}
+div.Jnitsms_box div.Jnitsms_msg p.add_name span {color: #ff0000;}
+
+/*sms 회원리스트*/
+div.Jnitsms_box div.Jnitsms_list {display: inline-block;width: 100%;background: #666666;font-family: 'NanumGothicBoldWeb','나눔고딕','NanumGothic','NanumGothicWeb',"돋움", Dotum, arial, sans-serif;}
+div.Jnitsms_box div.Jnitsms_list .Jnitsms_list_title {float: left;margin: 15px 0 13px 17px;font-size: 15px;color: #f2f2f2;font-weight: bold;}
+div.Jnitsms_box div.Jnitsms_list button.Jnitsms_btn {float: right;border: none;margin: 0;padding: 15px 35px 15px 24px;letter-spacing: -1px;font-size: 12px;color: #f2f2f2;background: url(/resources/img/sms/Jnitsms_btn.gif) right top no-repeat;font-family: 'NanumGothicBoldWeb','나눔고딕','NanumGothic','NanumGothicWeb',"돋움", Dotum, arial, sans-serif;cursor: pointer;}
+div.Jnitsms_box div.Jnitsms_list .Jnitsms_list_box {float: left;width: 100%;background: #fff;}
+div.Jnitsms_box div.Jnitsms_list .Jnitsms_list_box ul {padding: 10px;overflow-y: scroll;height: 182px;border-bottom: 1px solid #d7d7d9;}
+div.Jnitsms_box div.Jnitsms_list .Jnitsms_list_box ul li {margin-bottom: 8px;}
+div.Jnitsms_box div.Jnitsms_list .Jnitsms_list_box ul li input {width: 96%;padding: 3px 0;border: 1px solid #E6E6E6;text-overflow: ellipsis;}
+
+/*sms 보내기*/
+div.Jnitsms_box div.Jnitsms_send_msg {padding: 10px;background: #f8f2e7;}
+div.Jnitsms_box div.Jnitsms_send_msg > div {width: 570px;height: 45px;margin: 10px 0 0 0;background: url(/resources/img/sms/send_msg_bar.gif) left top repeat-x;}
+div.Jnitsms_box div.Jnitsms_send_msg > div > p.send_msg_title {float: left;width: 60px;height: 16px;padding: 15px 10px 14px 43px;color: #666666;font-family: 'NanumGothicBoldWeb','나눔고딕','NanumGothic','NanumGothicWeb',"돋움", Dotum, arial, sans-serif;cursor: pointer;}
+div.Jnitsms_box div.Jnitsms_send_msg div.add_address p.send_msg_title {background: url(/resources/img/sms/send_msg_icon01.gif) left top no-repeat;}
+div.Jnitsms_box div.Jnitsms_send_msg div.send_from p.send_msg_title {background: url(/resources/img/sms/send_msg_icon02.gif) left top no-repeat;}
+div.Jnitsms_box div.Jnitsms_send_msg > div > ul {float: left;width: 439px;height: 34px;padding: 11px 10px 0 8px;background: url(/resources/img/sms/send_msg_rt.gif) right top no-repeat;display: inline-block;}
+div.Jnitsms_box div.Jnitsms_send_msg > div > ul > li {float: left;}
+div.Jnitsms_box div.Jnitsms_send_msg > div > ul > li > label {padding:0 5px;font-weight: bold;color: #9a9a9a;}
+div.Jnitsms_box div.Jnitsms_send_msg > div > ul > li > input {width:57px;padding: 3px 2px;border: 1px solid #ccc;}
+/*sms 엑셀발송*/
+
+/*sms 회원검색*/
+div.Jnitsms_box div.member_search p.member_search_title {margin: 14px;font-size: 16px;font-weight: bold;font-family: 'NanumGothicBoldWeb','나눔고딕','NanumGothic','NanumGothicWeb',"돋움", Dotum, arial, sans-serif;}
+div.Jnitsms_box div.member_search p.member_search_txt {padding: 6px 23px 4px 23px;border-top: 1px solid #D7D7D9;font-weight: bold;background: #F4F4F4;color: #79797B;}
+div.Jnitsms_box div.member_search p.member_search_txt span {color: #FF0000;}
+div.Jnitsms_box div.member_search div.search_list {display: inline-block;width: 395px;padding-left: 5px;background: #666;}
+div.Jnitsms_box div.member_search div.search_list button.btn {float: left;padding: 5px 10px;margin: 7px 3px;cursor: pointer;border: none;color: #FFF;background: #414141;}
+div.Jnitsms_box div.member_search div.search_list button.btn.on {background: #FD7610;}
+
+div.Jnitsms_box div.member_search div.search_list > div {float: left;}
+div.Jnitsms_box div.member_search div.search_list > div > label {display:none;}
+div.Jnitsms_box div.member_search div.search_list > div > input {margin: 8px;padding: 4px 4px;width: 135px;border: none;}
+div.Jnitsms_box div.member_search div.search_list p.member_search_btn {float: right;  border: none;  margin: 0;  padding: 13px 35px 12px 20px;  letter-spacing: -1px;  font-size: 12px;  color: #F2F2F2;  background: url(/resources/img/sms/Jnitsms_btn.gif) right top no-repeat;  font-family: 'NanumGothicBoldWeb','나눔고딕','NanumGothic','NanumGothicWeb',"돋움", Dotum, arial, sans-serif;  cursor: pointer;}
+div.Jnitsms_box div.member_list button.member_list_btn {font-weight: bold;font-size: 12px;border: none;background: none;}
+
+
+/*sms 엑셀파일 업로드*/
+.address_excel p.excel_file_btn {text-align: right;height: 26px;padding: 5px 0px 5px 12px;border-top: 1px solid #D7D7D9;border-bottom: 2px solid #6A6A6A;font-weight: bold;background: #F4F4F4;color: #79797B;}
+.address_excel p.excel_file_btn a {padding: 5px 12px;margin-right: 8px;color: #FFF;background: #666;float: right;}
+div.Jnitsms_box .excel_file_upload {padding: 10px;}
+div.Jnitsms_box .Jnitsms_upload_excel {background: #F8F2E7;padding-bottom: 10px;}
+div.Jnitsms_box .Jnitsms_upload_excel p.excel_file_title {width: 97%;background: #666;padding: 15px 0 13px 3%;margin: 0;font-size: 15px;color: #F2F2F2;font-weight: bold;font-family: 'NanumGothicBoldWeb','나눔고딕','NanumGothic','NanumGothicWeb',"돋움", Dotum, arial, sans-serif;}
+div.Jnitsms_box .Jnitsms_upload_excel p.excel_file_title .btn {background: #7E7E7E;font-size: 12px;padding: 13px 11px;margin-top: -14px;color: #fff;}
+div.Jnitsms_box .excel_file_upload input#upFile {width: 195px;padding: 3px;border: 1px solid #CCC;background: #FFF;}
+div.Jnitsms_box .excel_file_upload button {float: right;background: #FD7610;padding: 5px 10px;margin: 1px 0px;cursor: pointer;border: none;color: #FFF;}
+div.Jnitsms_box .Jnitsms_upload_excel .send_from {width: 570px;height: 45px;margin: 10px 0 0 10px;background: url(/resources/img/sms/send_msg_bar.gif) left top repeat-x;}
+div.Jnitsms_box .Jnitsms_upload_excel .send_from p.send_msg_title {float: left;width: 60px;height: 16px;padding: 15px 10px 14px 43px;color: #666666;font-family: 'NanumGothicBoldWeb','나눔고딕','NanumGothic','NanumGothicWeb',"돋움", Dotum, arial, sans-serif;cursor: pointer;}
+div.Jnitsms_box .Jnitsms_upload_excel .send_from p.send_msg_title {background: url(/resources/img/sms/send_msg_icon02.gif) left top no-repeat;}
+div.Jnitsms_box .Jnitsms_upload_excel .send_from > ul {float: left;width: 439px;height: 34px;padding: 11px 10px 0 8px;background: url(/resources/img/sms/send_msg_rt.gif) right top no-repeat;display: inline-block;}
+div.Jnitsms_box .Jnitsms_upload_excel .send_from > ul > li {float: left;}
+div.Jnitsms_box .Jnitsms_upload_excel .send_from > ul > li > label {padding:0 5px;font-weight: bold;color: #9a9a9a;}
+div.Jnitsms_box .Jnitsms_upload_excel .send_from > ul > li > input {width:57px;padding: 3px 2px;border: 1px solid #ccc;}
+div.Jnitsms_box .Jnitsms_upload_excel .send_from .quick_num {padding: 6px 10px;margin-left: 70px;cursor: pointer;border: none;color: #FFF;font-weight: bold;background: #6B6B6B;vertical-align: middle;}
+
+
+/*sms 맴버리스트*/
+div.Jnitsms_box div.member_list .member_list_box {overflow-y: scroll;height:385px;padding: 10px;}
+div.Jnitsms_box table {width:100%;margin-top: 10px;border-collapse: collapse;border-spacing: 0px;border-top: 1px solid #807A7A;border-bottom: 1px solid #807A7A;}
+div.Jnitsms_box table th {padding: 8px 0;background: #EFEFF0;border-left: 1px solid #A39FA0;}
+div.Jnitsms_box table th:first-child {border-left:none;}
+div.Jnitsms_box table td {padding: 5px 2px;border-left: 1px solid #807A7A;border-top: 1px solid #807A7A;}
+div.Jnitsms_box table td:first-child {border-left:none;}
+div.Jnitsms_box table caption {display:none}
+
+
+
+/*sms 맴버 조회 및 리스트*/
+div.Jnitsms_box div.member_search div.select_date {padding: 2px 23px 4px 23px;border-top: 1px solid #D7D7D9;font-weight: bold;background: #F4F4F4;color: #79797B;height: 37px;}
+div.Jnitsms_box div.member_search div.select_date label {display:none;}
+div.Jnitsms_box div.member_search div.select_date select {float: left;margin: 10px 7px 0 0;}
+div.Jnitsms_box div.member_search div.select_date button.btn {float: left;padding: 5px 10px;margin: 7px 3px;cursor: pointer;border: none;color: #FFF;background: #414141;}
+div.Jnitsms_box div.member_search .member_list_stats {display:block;float:right;margin-top: 13px;}
+div.Jnitsms_box div.member_list table td {text-align:center;}
+div.Jnitsms_box div.member_list table td.message {text-align:left;}
+div.Jnitsms_box div.member_list table td span.send_success {display: block;margin: 0 auto;width: 52px;padding: 2px 5px;color: #FFF;font-weight: bold;background: #51AB31;}
+div.Jnitsms_box div.member_list table td span.send_fail {display: block;margin: 0 auto;width: 52px;padding: 2px 5px;color: #FFF;font-weight: bold;background:#C12323;}
+
+/*sms 주소록 관리*/
+.sms_address .sms_address_title, .address_excel p.address_excel_title {margin: 14px;font-size: 16px;font-weight: bold;font-family: 'NanumGothicBoldWeb','나눔고딕','NanumGothic','NanumGothicWeb',"돋움", Dotum, arial, sans-serif;}
+
+.sms_address .sms_address_type {padding: 2px 12px 4px 12px;border-top: 1px solid #D7D7D9;font-weight: bold;background: #F4F4f4;color: #79797B;}
+.sms_address .sms_address_type button.grpTypeAdd {padding: 5px 8px;color: #FFFFFF;background: #666666;font-weight: bold;border: none;cursor: pointer;}
+.sms_address .sms_address_type button.grpTypeDel {padding: 5px 8px;color: #FFFFFF;background: #CD0000;font-weight: bold;border: none;cursor: pointer;}
+.sms_address .sms_address_eachadd {display: inline-block;width: 100%;background: #616161;}
+.sms_address .sms_address_eachadd p.eachadd_title {float: left;padding: 15px 10px 13px 10px;margin-right: 10px;font-size: 15px;color: #F2F2F2;font-weight: bold;background: #454545;}
+.sms_address .sms_address_eachadd .eachadd_txt {margin: 8px 0;color: #CCC;}
+div.Jnitsms_box div.sms_address_eachadd label {padding-right: 5px;margin-left: 5px;font-weight: bold;color: #ffffff;}
+div.Jnitsms_box div.sms_address_eachadd input {width:48px;padding: 3px 2px;border: 1px solid #ccc;}
+div.Jnitsms_box div.sms_address_eachadd button.individualAdd {padding: 4px 10px;cursor: pointer;border: none;color: #FFF;font-weight: bold;background: #69BF43;vertical-align: middle;}
+div.Jnitsms_box div.sms_address_eachadd button.addrDel {padding: 4px 10px;cursor: pointer;border: none;color: #FFF;font-weight: bold;background:#CD0000;vertical-align: middle;}
+
+div.Jnitsms_box .address_list_box {overflow-y: scroll;height: 300px;padding: 10px;margin-bottom: 10px;}
+div.Jnitsms_box .address_list_box table td {text-align:center;}
+div.Jnitsms_box .address_list_box .member_list_btn {font-weight: bold;font-size: 12px;border: none;background: none;}
+
+/*sms 엑셀 업로드*/
+.address_excel p.address_excel_btn {text-align: right;height: 26px;padding: 5px 0px 5px 12px;border-top: 1px solid #D7D7D9;border-bottom: 2px solid #6A6A6A;font-weight: bold;background: #F4F4F4;color: #79797B;}
+.address_excel p.address_excel_btn a {padding: 5px 12px;margin-right: 8px;color: #FFF;background: #666;float: right;}
+div.Jnitsms_box .address_excel_upload {padding: 10px;}
+div.Jnitsms_box .address_excel_upload p.address_excel_title {margin: 3px;font-size: 13px;font-weight: bold;font-family: 'NanumGothicBoldWeb','나눔고딕','NanumGothic','NanumGothicWeb',"돋움", Dotum, arial, sans-serif;}
+div.Jnitsms_box .address_excel_upload input#upFile {width: 195px;padding: 3px;border: 1px solid #CCC;}
+div.Jnitsms_box .address_excel_upload button {float: right;background: #FD7610;padding: 5px 10px;margin: 1px 0px;cursor: pointer;border: none;color: #FFF;}
+
+div.Jnitsms_box .excelFileUpload {display: block;width: 134px;padding: 13px 0 12px 0;margin: 15px auto 10px auto;border: none;text-align: center;font-weight: bold;color: #FFF;background: url(/resources/img/sms/Jnitsms_send_btn02.gif) left top no-repeat;}
+div.Jnitsms_box .excelFileUpload:hover {background: url(/resources/img/sms/Jnitsms_send_btn02_over.gif) left top no-repeat;}
+
+/*sms 주소록발송*/
+
+div.Jnitsms_box .Jnitsms_send_address {background: #F8F2E7;padding-bottom: 10px;}
+div.Jnitsms_box .Jnitsms_send_address p.send_address_title {width: 97%;background: #666;padding: 15px 0 13px 3%;margin: 0;font-size: 15px;color: #F2F2F2;font-weight: bold;font-family: 'NanumGothicBoldWeb','나눔고딕','NanumGothic','NanumGothicWeb',"돋움", Dotum, arial, sans-serif;}
+div.Jnitsms_box .Jnitsms_send_address button {float: right;background: #FD7610;padding: 5px 10px;margin: 1px 0px;cursor: pointer;border: none;color: #FFF;}
+div.Jnitsms_box .Jnitsms_send_address .send_from {width: 570px;height: 45px;margin: 10px 0 0 10px;background: url(/resources/img/sms/send_msg_bar.gif) left top repeat-x;}
+div.Jnitsms_box .Jnitsms_send_address .send_from p.send_msg_title {float: left;width: 60px;height: 16px;padding: 15px 10px 14px 43px;color: #666666;font-family: 'NanumGothicBoldWeb','나눔고딕','NanumGothic','NanumGothicWeb',"돋움", Dotum, arial, sans-serif;cursor: pointer;}
+div.Jnitsms_box .Jnitsms_send_address .send_from p.send_msg_title {background: url(/resources/img/sms/send_msg_icon02.gif) left top no-repeat;}
+div.Jnitsms_box .Jnitsms_send_address .send_from > ul {float: left;width: 439px;height: 34px;padding: 11px 10px 0 8px;background: url(/resources/img/sms/send_msg_rt.gif) right top no-repeat;display: inline-block;}
+div.Jnitsms_box .Jnitsms_send_address .send_from > ul > li {float: left;}
+div.Jnitsms_box .Jnitsms_send_address .send_from > ul > li > label {padding:0 5px;font-weight: bold;color: #9a9a9a;}
+div.Jnitsms_box .Jnitsms_send_address .send_from > ul > li > input {width:57px;padding: 3px 2px;border: 1px solid #ccc;}
+div.Jnitsms_box .Jnitsms_send_address .send_from .quick_num {padding: 6px 10px;margin-left: 70px;cursor: pointer;border: none;color: #FFF;font-weight: bold;background: #6B6B6B;vertical-align: middle;}

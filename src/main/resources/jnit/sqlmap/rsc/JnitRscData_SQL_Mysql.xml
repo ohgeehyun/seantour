@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitrscdata">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitrscdataSerarchVO" type="jnit.rscdata.JnitrscdataDefaultVO"/>
+	
+	<resultMap id="jnitrscdata" class="jnit.rscdata.JnitrscdataVO">
+		<result property="dataId" column="DATA_ID" columnIndex="1"/>
+		<result property="rscId" column="RSC_ID" columnIndex="2"/>
+		<result property="dataMemo" column="DATA_MEMO" columnIndex="3"/>
+		<result property="dataScore" column="DATA_SCORE" columnIndex="4"/>
+		<result property="created" column="CREATED" columnIndex="5"/>
+		<result property="remoteAddr" column="REMOTE_ADDR" columnIndex="6"/>
+	</resultMap>
+	
+	<insert id="jnitrscdataDAO.insertJnitrscdata_S">
+		<![CDATA[
+			INSERT INTO JNITRSCDATA 
+				( DATA_ID
+				  , RSC_ID
+				  , DATA_MEMO
+				  , DATA_SCORE
+				  , CREATED
+				  , REMOTE_ADDR )
+			VALUES ( #dataId#
+				  , #rscId#
+				  , #dataMemo#
+				  , #dataScore#
+				  , NOW()
+				  , #remoteAddr# )
+		]]>
+	</insert>
+	
+	<update id="jnitrscdataDAO.updateJnitrscdata_S">
+		<![CDATA[
+			UPDATE JNITRSCDATA
+			SET DATA_ID=#dataId#
+				, RSC_ID=#rscId#
+				, DATA_MEMO=#dataMemo#
+				, DATA_SCORE=#dataScore#
+				, CREATED=#created#
+				, REMOTE_ADDR=#remoteAddr#
+                WHERE DATA_ID=#dataId#
+		]]>
+	</update>
+	
+	<delete id="jnitrscdataDAO.deleteJnitrscdata_S">
+		<![CDATA[
+			DELETE FROM JNITRSCDATA 
+                WHERE DATA_ID=#dataId#
+		]]>
+	</delete>
+	
+	<select id="jnitrscdataDAO.selectJnitrscdata_S" resultMap="jnitrscdata">
+		<![CDATA[
+			SELECT
+				DATA_ID
+				, RSC_ID
+				, DATA_MEMO
+				, DATA_SCORE
+				, CREATED
+				, REMOTE_ADDR
+			FROM JNITRSCDATA
+                WHERE DATA_ID=#dataId#
+		]]>
+	</select>
+	
+	<select id="jnitrscdataDAO.selectJnitrscdataList_D" parameterClass="jnitrscdataSerarchVO" resultClass="egovMap">
+			SELECT
+								DATA_ID
+								, RSC_ID
+								, DATA_MEMO
+								, DATA_SCORE
+								, CREATED
+								, REMOTE_ADDR
+					FROM JNITRSCDATA
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				DATA_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				RSC_ID LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+				ORDER BY 
+                DATA_ID DESC
+			limit #firstIndex#, #recordCountPerPage#	
+	</select>	
+	<select id="jnitrscdataDAO.selectJnitrscdataListTotCnt_S" parameterClass="jnitrscdataSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM JNITRSCDATA
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				DATA_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				RSC_ID LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				RSC_ID=#schRscId# AND REMOTE_ADDR=#schRemoteAddr#
+			</isEqual>
+	</select>
+	<select id="jnitrscdataDAO.getLastIdJnitrscdata_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITRSCDATA_ID'
+	</select>
+
+</sqlMap>

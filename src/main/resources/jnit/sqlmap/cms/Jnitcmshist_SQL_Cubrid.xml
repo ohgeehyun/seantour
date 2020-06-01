@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitcmshist">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitcmshistSerarchVO" type="jnit.cms.hist.JnitcmshistDefaultVO"/>
+	
+	<resultMap id="jnitcmshist" class="jnit.cms.hist.JnitcmshistVO">
+		<result property="histId" column="HIST_ID" columnIndex="1"/>
+		<result property="siteId" column="SITE_ID" columnIndex="2"/>
+		<result property="menuId" column="MENU_ID" columnIndex="3"/>
+		<result property="cntId" column="CNT_ID" columnIndex="4"/>
+		<result property="cntDesc" column="CNT_DESC" columnIndex="5"/>
+		<result property="cntSrc" column="CNT_SRC" columnIndex="6"/>
+		<result property="tplId" column="TPL_ID" columnIndex="7"/>
+		<result property="created" column="CREATED" columnIndex="8"/>
+		<result property="reserved" column="RESERVED" columnIndex="9"/>
+	</resultMap>
+	
+	<insert id="jnitcmshistDAO.insertJnitcmshist_S">
+		<![CDATA[
+			INSERT INTO jnitcmshist 
+				( HIST_ID
+				  , SITE_ID
+				  , MENU_ID
+				  , CNT_ID
+				  , CNT_DESC
+				  , CNT_SRC
+				  , TPL_ID
+				  , CREATED
+				  , RESERVED )
+			VALUES ( #histId#
+				  , #siteId#
+				  , #menuId#
+				  , #cntId#
+				  , #cntDesc#
+				  , #cntSrc#
+				  , #tplId#
+				  , NOW()
+				  , #reserved# )
+		]]>
+	</insert>
+	
+	<update id="jnitcmshistDAO.updateJnitcmshist_S">
+		<![CDATA[
+			UPDATE jnitcmshist
+			SET HIST_ID=#histId#
+				, SITE_ID=#siteId#
+				, MENU_ID=#menuId#
+				, CNT_ID=#cntId#
+				, CNT_DESC=#cntDesc#
+				, CNT_SRC=#cntSrc#
+				, TPL_ID=#tplId#
+				, RESERVED=#reserved#
+                WHERE HIST_ID=#histId#
+		]]>
+	</update>
+	
+	<delete id="jnitcmshistDAO.deleteJnitcmshist_S">
+		<![CDATA[
+			DELETE FROM jnitcmshist 
+                WHERE HIST_ID=#histId#
+		]]>
+	</delete>
+	
+	<select id="jnitcmshistDAO.selectJnitcmshist_S" resultMap="jnitcmshist">
+		<![CDATA[
+			SELECT
+				HIST_ID
+				, SITE_ID
+				, MENU_ID
+				, CNT_ID
+				, CNT_DESC
+				, CNT_SRC
+				, TPL_ID
+				, CREATED
+				, RESERVED
+			FROM jnitcmshist
+                WHERE HIST_ID=#histId#
+		]]>
+	</select>
+	
+	<select id="jnitcmshistDAO.selectJnitcmshistList_D" parameterClass="jnitcmshistSerarchVO" resultClass="egovMap">
+		SELECT * FROM (
+			SELECT
+								HIST_ID
+								, SITE_ID
+								, MENU_ID
+								, CNT_ID
+								, CNT_DESC
+								, CNT_SRC
+								, TPL_ID
+								, CREATED
+								, RESERVED
+					FROM jnitcmshist
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				HIST_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				SITE_ID LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				SITE_ID = #prefixSiteId# AND
+				MENU_ID = #prefixMenuId# AND
+				CNT_ID = #prefixCntId#
+			</isEqual>
+				ORDER BY 
+                HIST_ID DESC
+			limit #firstIndex#, #recordCountPerPage#	
+			) as a
+			ORDER BY a.HIST_ID DESC
+	</select>	
+	<select id="jnitcmshistDAO.selectJnitcmshistListTotCnt_S" parameterClass="jnitcmshistSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM jnitcmshist
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				HIST_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				SITE_ID LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				SITE_ID = #prefixSiteId# AND
+				MENU_ID = #prefixMenuId# AND
+				CNT_ID = #prefixCntId#
+			</isEqual>
+	</select>
+	<select id="jnitcmshistDAO.getLastIdJnitcmshist_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITCMSHIST_ID'
+	</select>
+
+</sqlMap>

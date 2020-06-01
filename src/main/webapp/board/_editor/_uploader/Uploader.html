@@ -1,0 +1,251 @@
+<!-- saved from url=(0014)about:internet -->
+<html lang="en">
+
+<!-- 
+Smart developers always View Source. 
+
+This application was built using Adobe Flex, an open source framework
+for building rich Internet applications that get delivered via the
+Flash Player or to desktops via Adobe AIR. 
+
+Learn more about Flex at http://flex.org 
+// -->
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<!--  BEGIN Browser History required section -->
+<link rel="stylesheet" type="text/css" href="history/history.css" />
+<!--  END Browser History required section -->
+
+<title></title>
+<script src="AC_OETags.js" language="javascript"></script>
+
+<!--  BEGIN Browser History required section -->
+<script src="history/history.js" language="javascript"></script>
+<!--  END Browser History required section -->
+
+<style>
+body { margin: 0px; overflow:hidden }
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+// -----------------------------------------------------------------------------
+// Globals
+// Major version of Flash required
+var requiredMajorVersion = 9;
+// Minor version of Flash required
+var requiredMinorVersion = 0;
+// Minor version of Flash required
+var requiredRevision = 124;
+// -----------------------------------------------------------------------------
+// -->
+</script>
+<SCRIPT LANGUAGE="VBS">
+''''''''''''''''''''''' VB & For Each  compulsory 
+Function getFilePath
+	For Each FileItem In document.all("FileUploadMonitor")	
+		getFilePath = FileItem.Name
+	Next
+end Function
+Function getFileSize
+	For Each FileItem In document.all("FileUploadMonitor")	
+		getFileSize = FileItem.Size
+	Next
+end Function
+</script>
+<SCRIPT FOR="FileUploadMonitor"
+	Event="OnChangedStatus(nFileCount, nFileSize)" LANGUAGE="javascript">
+if(nFileCount>0)
+{
+	document.getElementById("Uploader").FileSelect(getFilePath() , getFileSize() )
+}
+</SCRIPT>
+<SCRIPT FOR="FileUploadMonitor"
+	Event="OnStartTransferringItem(nItemIndex)" LANGUAGE="javascript">
+	Repeat(true) 
+</SCRIPT>
+<SCRIPT FOR="FileUploadMonitor"
+	event="OnEndTransferringItem(nItemIndex, bSuccess)"
+	LANGUAGE="javascript">
+	Repeat(false) 
+</SCRIPT>
+<SCRIPT for="FileUploadMonitor" event="OnTransferComplete()"
+	LANGUAGE="javascript">   
+	document.getElementById("Uploader").TransferComplete(document.all("FileUploadMonitor").ResponseData)     
+</SCRIPT>
+<SCRIPT for="FileUploadMonitor" event="OnTransferCancel()"
+	LANGUAGE="javascript"> 
+	Repeat(false) 
+	document.getElementById("Uploader").TransferCancel()  
+</SCRIPT>
+<SCRIPT For="FileUploadMonitor" Event="OnError(nCode, sMsg, sDetailMsg)"
+	LANGUAGE="javascript">
+	Repeat(false) 
+	document.getElementById("Uploader").TransferError(nCode , sMsg, sDetailMsg)    
+</SCRIPT>
+<script language="JavaScript" type="text/javascript">
+function createDEXTUpload(cabURL)
+{
+    var dextuploadContent = '<OBJECT id=FileUploadMonitor height=335 width=445 classid="CLSID:5C935DF7-976A-47f6-B148-20FD62F1C988"'
+        	+' codeBase="'+ cabURL +'" viewastext>'
+    		+'<param name="EnableLargeUpload" value="TRUE" />'
+    		+'<param name="MaxFileSize" value="107374182400" />'    		
+    		+'<param name="MaxTotalSize" value="107374182400" />'
+    		+'<param name="CheckResume" value="TRUE" />'
+    		+'</OBJECT>';
+    		document.getElementById("dextContainer").innerHTML = dextuploadContent
+
+    		alert(cabURL);
+}
+function setFilter(value)
+{
+	document.all("FileUploadMonitor").Filter =value;
+}
+
+function OpenFileDialog()
+{
+    document.all("FileUploadMonitor").DeleteAllFile();
+	document.all("FileUploadMonitor").OpenFileDialog();
+	return true;
+}
+
+function Transfer(value)
+{
+	document.all["FileUploadMonitor"].UploadURL = value;
+    document.all["FileUploadMonitor"].Transfer();
+}
+function Cancel()
+{
+    document.all["FileUploadMonitor"].Cancel();
+}
+var time; 
+function Repeat(bRefresh) 
+{    
+	var percentOfTotalFile   = document.all["FileUploadMonitor"].PercentOfTotalFile ;
+    
+    if(bRefresh == false) 
+    { 
+       clearTimeout(time); 
+    }
+    else  
+    {  
+        document.getElementById("Uploader").TransferProgress(document.all("FileUploadMonitor").TransferedSizeOfTotalFile , document.all("FileUploadMonitor").Size)
+        document.getElementById("Uploader").BytesPerSec(document.all("FileUploadMonitor").BytesPerSec, document.all("FileUploadMonitor").RemainingTime)
+        time = setTimeout("Repeat()",100);
+    }
+}
+
+function loadHandler()
+{
+	try{
+	    document.all("FileUploadMonitor").DeleteAllFile();
+	}catch(e){
+		alert("activeX is not installed.");
+	} 
+}
+
+function ResultAction(value)
+{
+	try{
+		console.log(value);
+		//opener.ResultAction(value)
+	}catch(e)
+	{
+		alert("From Opner Window to 'ResultAction' Function can not be found \n\n"+e.description);
+	}
+	//self.close();
+	
+}
+function closeWindow()
+{
+	self.close();
+}
+
+function isInstalled()
+{
+	return (document.getElementById("FileUploadMonitor").DefaultPath!=undefined)
+}
+
+
+</script>
+</head>
+
+<body scroll="no" >
+<script language="JavaScript" type="text/javascript">
+<!--
+// Version check for the Flash Player that has the ability to start Player Product Install (6.0r65)
+var hasProductInstall = DetectFlashVer(6, 0, 65);
+
+// Version check based upon the values defined in globals
+var hasRequestedVersion = DetectFlashVer(requiredMajorVersion, requiredMinorVersion, requiredRevision);
+
+if ( hasProductInstall && !hasRequestedVersion ) {
+	// DO NOT MODIFY THE FOLLOWING FOUR LINES
+	// Location visited after installation is complete if installation is required
+	var MMPlayerType = (isIE == true) ? "ActiveX" : "PlugIn";
+	var MMredirectURL = encodeURI(window.location);
+    document.title = document.title.slice(0, 47) + " - Flash Player Installation";
+    var MMdoctitle = document.title;
+
+	AC_FL_RunContent(
+		"src", "playerProductInstall",
+		"FlashVars", "MMredirectURL="+MMredirectURL+'&MMplayerType='+MMPlayerType+'&MMdoctitle='+MMdoctitle+"",
+		"width", "100%",
+		"height", "400",
+		"align", "middle",
+		"id", "Uploader",
+		"quality", "high",
+		"bgcolor", "#ffffff",
+		"name", "Uploader",
+		"allowScriptAccess","sameDomain",
+		"type", "application/x-shockwave-flash",
+		"pluginspage", "http://www.adobe.com/go/getflashplayer"
+	);
+} else if (hasRequestedVersion) {
+	// if we've detected an acceptable version
+	// embed the Flash Content SWF when all tests are passed
+	AC_FL_RunContent(
+			"FlashVars", document.location.search.substr(1, document.location.search.length ),
+			"src", "Uploader",
+			"width", "100%",
+			"height", "400",
+			"align", "middle",
+			"id", "Uploader",
+			"quality", "high",
+			"bgcolor", "#ffffff",
+			"name", "Uploader",
+			"allowScriptAccess","sameDomain",
+			"type", "application/x-shockwave-flash",
+			"pluginspage", "http://www.adobe.com/go/getflashplayer"
+	);
+  } else {  // flash is too old or we can't detect the plugin
+    var alternateContent = 'Alternate HTML content should be placed here. '
+  	+ 'This content requires the Adobe Flash Player. '
+   	+ '<a href=http://www.adobe.com/go/getflash/>Get Flash</a>';
+    document.write(alternateContent);  // insert non-flash content
+  }
+// -->
+</script>
+<noscript>
+  	<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+			id="Uploader" width="100%" height="100%"
+			codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab">
+			<param name="movie" value="Uploader.swf" />
+			<param name="quality" value="high" />
+			<param name="bgcolor" value="#ffffff" />
+			<param name="allowScriptAccess" value="sameDomain" />
+			<embed src="Uploader.swf" quality="high" bgcolor="#ffffff"
+				width="100%" height="100%" name="Uploader" align="middle"
+				play="true"
+				loop="false"
+				quality="high"
+				allowScriptAccess="sameDomain"
+				type="application/x-shockwave-flash"
+				pluginspage="http://www.adobe.com/go/getflashplayer">
+			</embed>
+	</object>
+</noscript>
+<div id="dextContainer" width="400" height="300"></div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<!--  JnitcmsmenutreeIdGnrService -->
+	<bean name="JnitcmsmenutreeIdGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="JnitcmsmenutreeIdGnrStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="MENUTREE_ID"/>
+	</bean>
+	<bean name="JnitcmsmenutreeIdGnrStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="MENU_" />
+		<property name="cipers" value="9" />
+		<property name="fillChar" value="0" />
+	</bean>
+	
+</beans>

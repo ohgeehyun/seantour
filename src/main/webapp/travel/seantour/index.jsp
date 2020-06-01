@@ -1,0 +1,1 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%><% response.sendRedirect("/seantour_map/travel/destination/list.do?destRegion=%EB%B6%80%EC%82%B0"); %>

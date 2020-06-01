@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitmenu">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitmenuSerarchVO" type="jnit.menu.JnitmenuDefaultVO"/>
+	
+	<resultMap id="jnitmenu" class="jnit.menu.JnitmenuVO">
+		<result property="menuSeq" column="MENU_SEQ" columnIndex="1"/>
+		<result property="siteNm" column="SITE_NM" columnIndex="2"/>
+		<result property="menuDepth1" column="MENU_DEPTH1" columnIndex="3"/>
+		<result property="menuDepth2" column="MENU_DEPTH2" columnIndex="4"/>
+		<result property="menuDepth3" column="MENU_DEPTH3" columnIndex="5"/>
+		<result property="menuDepth4" column="MENU_DEPTH4" columnIndex="6"/>
+		<result property="menuDepth5" column="MENU_DEPTH5" columnIndex="7"/>
+		<result property="menuDepth6" column="MENU_DEPTH6" columnIndex="8"/>
+		<result property="menuDepth7" column="MENU_DEPTH7" columnIndex="9"/>
+		<result property="menuUrl" column="MENU_URL" columnIndex="10"/>
+		<result property="menuDept" column="MENU_DEPT" columnIndex="11"/>
+		<result property="menuPart" column="MENU_PART" columnIndex="12"/>
+		<result property="menuTel" column="MENU_TEL" columnIndex="13"/>
+		<result property="menuMemid" column="MENU_MEMID" columnIndex="14"/>
+		<result property="method" column="METHOD" columnIndex="15"/>
+	</resultMap>
+	
+	<resultMap id="jnitmenuMap" class="java.util.HashMap">
+		<result property="menuSeq" column="MENU_SEQ" columnIndex="1"/>
+		<result property="siteNm" column="SITE_NM" columnIndex="2"/>
+		<result property="menuDepth1" column="MENU_DEPTH1" columnIndex="3"/>
+		<result property="menuDepth2" column="MENU_DEPTH2" columnIndex="4"/>
+		<result property="menuDepth3" column="MENU_DEPTH3" columnIndex="5"/>
+		<result property="menuDepth4" column="MENU_DEPTH4" columnIndex="6"/>
+		<result property="menuDepth5" column="MENU_DEPTH5" columnIndex="7"/>
+		<result property="menuDepth6" column="MENU_DEPTH6" columnIndex="8"/>
+		<result property="menuDepth7" column="MENU_DEPTH7" columnIndex="9"/>
+		<result property="menuUrl" column="MENU_URL" columnIndex="10"/>
+		<result property="menuDept" column="MENU_DEPT" columnIndex="11"/>
+		<result property="menuPart" column="MENU_PART" columnIndex="12"/>
+		<result property="menuTel" column="MENU_TEL" columnIndex="13"/>
+		<result property="menuMemid" column="MENU_MEMID" columnIndex="14"/>
+		<result property="method" column="METHOD" columnIndex="15"/>
+	</resultMap>
+	
+	<insert id="jnitmenuDAO.insertJnitmenu_S">
+		<![CDATA[
+			INSERT INTO JNITMENU 
+				( MENU_SEQ
+				  , MENU_URL
+				  , MENU_DEPT
+				  , MENU_PART
+				  , MENU_TEL
+				  , MENU_MEMID )
+			VALUES ( #menuSeq#
+				  , #menuUrl#
+				  , #menuDept#
+				  , #menuPart#
+				  , #menuTel#
+				  , #menuMemid# )
+		]]>
+	</insert>
+	
+	<update id="jnitmenuDAO.updateJnitmenu_S">
+		<![CDATA[
+			UPDATE JNITMENU
+			SET MENU_URL=#menuUrl#
+				, MENU_DEPT=#menuDept#
+				, MENU_PART=#menuPart#
+				, MENU_TEL=#menuTel#
+				, MENU_MEMID=#menuMemid#
+                WHERE MENU_SEQ=#menuSeq#
+		]]>
+	</update>
+	
+	<delete id="jnitmenuDAO.deleteJnitmenu_S">
+		DELETE FROM JNITMENU
+		WHERE 1 = 1
+        <isNotEqual prepend="AND" property="menuSeq" compareValue="0"> 
+        	MENU_SEQ=#menuSeq#
+        </isNotEqual>
+	</delete>
+	
+	<select id="jnitmenuDAO.selectJnitmenu_S" resultMap="jnitmenu">
+		<![CDATA[
+			SELECT
+				MENU_SEQ
+				, SITE_NM
+				, MENU_DEPTH1
+				, MENU_DEPTH2
+				, MENU_DEPTH3
+				, MENU_DEPTH4
+				, MENU_DEPTH5
+				, MENU_DEPTH6
+				, MENU_DEPTH7
+				, MENU_URL
+				, MENU_DEPT
+				, MENU_PART
+				, MENU_TEL
+				, MENU_MEMID
+				, METHOD
+			FROM JNITMENU_VT
+                WHERE MENU_URL=#menuUrl#
+		]]>
+	</select>
+	
+	<select id="jnitmenuDAO.selectJnitmenuMap_S" resultMap="jnitmenuMap">
+		<![CDATA[
+			SELECT
+				MENU_SEQ
+				, SITE_NM
+				, MENU_DEPTH1
+				, MENU_DEPTH2
+				, MENU_DEPTH3
+				, MENU_DEPTH4
+				, MENU_DEPTH5
+				, MENU_DEPTH6
+				, MENU_DEPTH7
+				, MENU_URL
+				, MENU_DEPT
+				, MENU_PART
+				, MENU_TEL
+				, MENU_MEMID
+				, METHOD
+			FROM JNITMENU_VT
+                WHERE MENU_URL=#menuUrl#
+		]]>
+	</select>
+	
+	<select id="jnitmenuDAO.selectJnitmenuList_D" parameterClass="jnitmenuSerarchVO" resultClass="egovMap">
+			SELECT
+								ROWNUM AS RNUM
+								, MENU_SEQ
+								, SITE_NM
+								, MENU_DEPTH1
+								, MENU_DEPTH2
+								, MENU_DEPTH3
+								, MENU_DEPTH4
+								, MENU_DEPTH5
+								, MENU_DEPTH6
+								, MENU_DEPTH7
+								, MENU_URL
+								, MENU_DEPT
+								, MENU_PART
+								, MENU_TEL
+								, MENU_MEMID
+					FROM (SELECT
+								ROWNUM AS RNUM
+								, MENU_SEQ
+								, SITE_NM
+								, MENU_DEPTH1
+								, MENU_DEPTH2
+								, MENU_DEPTH3
+								, MENU_DEPTH4
+								, MENU_DEPTH5
+								, MENU_DEPTH6
+								, MENU_DEPTH7
+								, MENU_URL
+								, MENU_DEPT
+								, MENU_PART
+								, MENU_TEL
+								, MENU_MEMID
+					FROM JNITMENU_VT
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				<isNotEmpty property="searchKeyword">
+					SITE_NM = #searchKeyword#
+				</isNotEmpty>
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				( 
+				MENU_DEPTH1 LIKE '%'||#searchKeyword#||'%'
+				OR
+				MENU_DEPTH2 LIKE '%'||#searchKeyword#||'%'
+				OR
+				MENU_DEPTH3 LIKE '%'||#searchKeyword#||'%'
+				OR
+				MENU_DEPTH4 LIKE '%'||#searchKeyword#||'%'
+				OR
+				MENU_DEPTH5 LIKE '%'||#searchKeyword#||'%'
+				OR
+				MENU_DEPTH6 LIKE '%'||#searchKeyword#||'%'
+				OR
+				MENU_DEPTH7 LIKE '%'||#searchKeyword#||'%'
+				)
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				MENU_URL LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="3">
+				MENU_TEL LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			)
+			WHERE 1=1
+				<![CDATA[
+					AND RNUM > #firstIndex#
+					AND RNUM <= #firstIndex# + #recordCountPerPage#
+				]]>
+				ORDER BY SITE_NM
+	</select>	
+	<select id="jnitmenuDAO.selectJnitmenuListTotCnt_S" parameterClass="jnitmenuSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM JNITMENU_VT
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				<isNotEmpty property="searchKeyword">
+					SITE_NM = #searchKeyword#
+				</isNotEmpty>
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				( 
+				MENU_DEPTH1 LIKE '%'||#searchKeyword#||'%'
+				OR
+				MENU_DEPTH2 LIKE '%'||#searchKeyword#||'%'
+				OR
+				MENU_DEPTH3 LIKE '%'||#searchKeyword#||'%'
+				OR
+				MENU_DEPTH4 LIKE '%'||#searchKeyword#||'%'
+				OR
+				MENU_DEPTH5 LIKE '%'||#searchKeyword#||'%'
+				OR
+				MENU_DEPTH6 LIKE '%'||#searchKeyword#||'%'
+				OR
+				MENU_DEPTH7 LIKE '%'||#searchKeyword#||'%'
+				)
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				MENU_URL LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="3">
+				MENU_TEL LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+	</select>
+	<select id="jnitmenuDAO.getLastIdJnitmenu_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITMENU_ID'
+	</select>
+
+</sqlMap>

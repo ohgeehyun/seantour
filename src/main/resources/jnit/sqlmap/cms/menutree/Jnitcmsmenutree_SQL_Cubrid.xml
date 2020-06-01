@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitcmsmenutree">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitcmsmenutreeSerarchVO" type="jnit.cms.menutree.JnitcmsmenutreeDefaultVO"/>
+	
+	<resultMap id="jnitcmsmenutree" class="jnit.cms.menutree.JnitcmsmenutreeVO">
+		<result property="menuCodeId" column="MENU_CODE_ID" columnIndex="1"/>
+		<result property="menuId" column="MENU_ID" columnIndex="2"/>
+		<result property="menuName" column="MENU_NAME" columnIndex="3"/>
+		<result property="menuLink" column="MENU_LINK" columnIndex="4"/>
+		<result property="menuDepth" column="MENU_DEPTH" columnIndex="5"/>
+		<result property="menuIcon" column="MENU_ICON" columnIndex="6"/>
+		<result property="menuActive" column="MENU_ACTIVE" columnIndex="7"/>
+		<result property="menuParent" column="MENU_PARENT" columnIndex="8"/>
+		<result property="menuChild" column="MENU_CHILD" columnIndex="9"/>
+		<result property="created" column="CREATED" columnIndex="10"/>
+		<result property="modified" column="MODIFIED" columnIndex="11"/>
+		<result property="isdel" column="ISDEL" columnIndex="12"/>
+	</resultMap>
+	
+	<insert id="jnitcmsmenutreeDAO.insertJnitcmsmenutree_S">
+		<![CDATA[
+			INSERT INTO jnitcmsmenutree 
+				( MENU_CODE_ID
+				  , MENU_ID
+				  , MENU_NAME
+				  , MENU_LINK
+				  , MENU_DEPTH
+				  , MENU_ICON
+				  , MENU_ACTIVE
+				  , MENU_PARENT
+				  , MENU_CHILD
+				  , CREATED
+				  , MODIFIED
+				  , ISDEL )
+			VALUES ( #menuCodeId#
+				  , #menuId#
+				  , #menuName#
+				  , #menuLink#
+				  , #menuDepth#
+				  , #menuIcon#
+				  , #menuActive#
+				  , #menuParent#
+				  , #menuChild#
+				  , now()
+				  , now()
+				  , 0 )
+		]]>
+	</insert>
+	
+	<update id="jnitcmsmenutreeDAO.updateJnitcmsmenutree_S">
+		<![CDATA[
+			UPDATE jnitcmsmenutree
+			SET MENU_ID=#menuId#
+				, MENU_NAME=#menuName#
+				, MENU_LINK=#menuLink#
+				, MENU_DEPTH=#menuDepth#
+				, MENU_ICON=#menuIcon#
+				, MENU_ACTIVE=#menuActive#
+				, MENU_PARENT=#menuParent#
+				, MENU_CHILD=#menuChild#
+				, MODIFIED=now()
+			WHERE MENU_CODE_ID=#menuCodeId#
+			]]>
+	</update>
+	
+	<update id="jnitcmsmenutreeDAO.deleteJnitcmsmenutree_S">
+		<![CDATA[
+			UPDATE jnitcmsmenutree
+			SET MODIFIED=now()
+				, ISDEL=1
+			WHERE MENU_CODE_ID = #menuCodeId#
+			]]>
+	</update>
+	
+	<select id="jnitcmsmenutreeDAO.selectJnitcmsmenutree_S" resultMap="jnitcmsmenutree">
+		<![CDATA[
+			SELECT
+				MENU_CODE_ID
+				, MENU_ID
+				, MENU_NAME
+				, MENU_LINK
+				, MENU_DEPTH
+				, MENU_ICON
+				, MENU_ACTIVE
+				, MENU_PARENT
+				, MENU_CHILD
+				, CREATED
+				, MODIFIED
+				, ISDEL
+			FROM jnitcmsmenutree
+			WHERE MENU_CODE_ID = #menuCodeId#
+			]]>
+	</select>
+	
+	<select id="jnitcmsmenutreeDAO.selectJnitcmsmenutreeList_D" parameterClass="jnitcmsmenutreeSerarchVO" resultClass="egovMap">
+			SELECT
+								MENU_CODE_ID
+								, MENU_ID
+								, MENU_NAME
+								, MENU_LINK
+								, MENU_DEPTH
+								, MENU_ICON
+								, MENU_ACTIVE
+								, MENU_PARENT
+								, MENU_CHILD
+								, CREATED
+								, MODIFIED
+								, ISDEL
+					FROM jnitcmsmenutree
+			WHERE 1=1 AND ISDEL = 0
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				MENU_CODE_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				MENU_NAME LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+				ORDER BY MENU_ID DESC
+				limit #firstIndex#, #recordCountPerPage#	
+	</select>	
+	<select id="jnitcmsmenutreeDAO.selectJnitcmsmenutreeListTotCnt_S" parameterClass="jnitcmsmenutreeSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM jnitcmsmenutree
+			WHERE 1=1 AND ISDEL = 0
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				MENU_CODE_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				MENU_NAME LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+	</select>
+	
+	<select id="jnitcmsmenutreeDAO.selectsubset" parameterClass="jnitcmsmenutreeSerarchVO" resultClass="egovMap">
+		SELECT MENU_CODE_ID
+				, MENU_ID
+				, MENU_NAME
+		FROM JNITCMSMENUTREE
+		WHERE 1=1 AND ISDEL = 0
+		<isEqual prepend="AND" property="searchCondition" compareValue="0">
+			MENU_ID LIKE CONCAT('%',#searchKeyword#)
+		</isEqual>
+		<isEqual prepend="AND" property="searchCondition" compareValue="1">
+			MENU_ID LIKE CONCAT('%',#searchKeyword#,'__','0000')
+			AND MENU_ID NOT LIKE CONCAT('%',#searchKeyword#,'000000')
+		</isEqual>
+		<isEqual prepend="AND" property="searchCondition" compareValue="2">
+			MENU_ID LIKE CONCAT('%',#searchKeyword#,'__','00')
+			AND MENU_ID NOT LIKE CONCAT('%',#searchKeyword#,'0000')
+		</isEqual>
+		<isEqual prepend="AND" property="searchCondition" compareValue="3">
+			MENU_ID LIKE CONCAT('%',#searchKeyword#,'__')
+			AND MENU_ID NOT LIKE CONCAT('%',#searchKeyword#,'00')
+		</isEqual>
+		ORDER BY MENU_ID ASC
+	</select>
+	
+	<select id="jnitCmsmenutreeDAO.getlastId" parameterClass="jnitcmsmenutreeSerarchVO" resultClass="Integer">
+		SELECT
+			<isEqual property="searchCondition" compareValue="1">
+				IFNULL(MAX(SUBSTR(MENU_ID,2,2)),'00')
+			</isEqual>
+			<isEqual property="searchCondition" compareValue="2">
+				IFNULL(MAX(SUBSTR(MENU_ID,4,2)),'00')
+			</isEqual>
+			<isEqual property="searchCondition" compareValue="3">
+				IFNULL(MAX(SUBSTR(MENU_ID,6,2)),'00')
+			</isEqual>
+			<isEqual property="searchCondition" compareValue="4">
+				IFNULL(MAX(SUBSTR(MENU_ID,8,2)),'00')
+			</isEqual>
+			lastId
+		FROM JNITCMSMENUTREE
+		WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				MENU_ID LIKE CONCAT('%',#searchKeyword#)
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				MENU_ID LIKE CONCAT('%',#searchKeyword#,'__','0000')
+				AND MENU_ID NOT LIKE CONCAT('%',#searchKeyword#,'000000')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="3">
+				MENU_ID LIKE CONCAT('%',#searchKeyword#,'__','00')
+				AND MENU_ID NOT LIKE CONCAT('%',#searchKeyword#,'0000')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="4">
+				MENU_ID LIKE CONCAT('%',#searchKeyword#,'__')
+				AND MENU_ID NOT LIKE CONCAT('%',#searchKeyword#,'00')
+			</isEqual>
+	</select>
+	
+	<select id="jnitcmsmenutreeDao.linkselect" parameterClass="jnitcmsmenutreeSerarchVO" resultMap="jnitcmsmenutree">
+		SELECT MENU_CODE_ID
+				, MENU_ID
+				, MENU_NAME
+				, MENU_LINK
+				, MENU_DEPTH
+				, MENU_ICON
+				, MENU_ACTIVE
+				, MENU_PARENT
+				, MENU_CHILD
+				, CREATED
+				, MODIFIED
+				, ISDEL
+		FROM JNITCMSMENUTREE
+		WHERE MENU_LINK=#searchKeyword#
+	</select>
+	
+	
+	<select id="jnitcmsmenutreeDAO.selectupdatedList" parameterClass="jnitcmsmenutreeSerarchVO" resultClass="egovMap">
+			SELECT
+								MENU_CODE_ID
+								, MENU_ID
+								, MENU_NAME
+					FROM jnitcmsmenutree
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				LEFT(MENU_ID,3) >= #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				(LEFT(MENU_ID,5) >= #searchKeyword#) AND (LEFT(MENU_ID,3) = LEFT(#searchKeyword#,3))
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				(LEFT(MENU_ID,7) >= #searchKeyword#) AND (LEFT(MENU_ID,5) = LEFT(#searchKeyword#,5))
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="3">
+				(LEFT(MENU_ID,9) >= #searchKeyword#) AND (LEFT(MENU_ID,7) = LEFT(#searchKeyword#,7))
+			</isEqual>
+				ORDER BY MENU_ID DESC	
+	</select>	
+	
+	<update id="jnitcmsmenutreeDAO.updatedmenu">
+		UPDATE jnitcmsmenutree
+		<isEqual property="searchCondition" compareValue="0">
+			SET MENU_ID = CONCAT(LEFT(MENU_ID,1),LPAD((SUBSTRING(MENU_ID,2,2)+1),2,0),RIGHT(MENU_ID,6) )
+		</isEqual>
+		<isEqual property="searchCondition" compareValue="1">
+			SET MENU_ID = CONCAT(LEFT(MENU_ID,3),LPAD((SUBSTRING(MENU_ID,4,2)+1),2,0),RIGHT(MENU_ID,4) )
+		</isEqual>
+		<isEqual property="searchCondition" compareValue="2">
+			SET MENU_ID = CONCAT(LEFT(MENU_ID,5),LPAD((SUBSTRING(MENU_ID,6,2)+1),2,0),RIGHT(MENU_ID,2) )
+		</isEqual>
+		<isEqual property="searchCondition" compareValue="3">
+			SET MENU_ID = CONCAT(LEFT(MENU_ID,7),LPAD((SUBSTRING(MENU_ID,8,2)+1),2,0) )
+		</isEqual>
+		<isNotEmpty property="updatedIds">
+			WHERE MENU_CODE_ID IN (<iterate property="updatedIds" conjunction=",">#updatedIds[]#</iterate>)
+		</isNotEmpty>
+	</update>
+	
+	
+	<select id="jnitcmsmenutreeDAO.selectListAllActive" parameterClass="jnitcmsmenutreeSerarchVO" resultMap="jnitcmsmenutree">
+		SELECT MENU_CODE_ID
+				, MENU_ID
+				, MENU_NAME
+				, MENU_LINK
+				, MENU_DEPTH
+				, MENU_ICON
+				, MENU_ACTIVE
+				, MENU_PARENT
+				, MENU_CHILD
+				, CREATED
+				, MODIFIED
+				, ISDEL
+		FROM JNITCMSMENUTREE
+		WHERE ISDEL = 0 AND MENU_ACTIVE = 1
+		ORDER BY  MENU_ID ASC
+	</select>
+</sqlMap>

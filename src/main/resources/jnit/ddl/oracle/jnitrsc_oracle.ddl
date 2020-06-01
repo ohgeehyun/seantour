@@ -1,0 +1,108 @@
+/**********************************/
+/* Table Name: 만족도메인테이블 */
+/**********************************/
+CREATE TABLE JNITRSC(
+		RSC_ID                        		VARCHAR2(20)		 NOT NULL,
+		RSC_MENU                      		VARCHAR2(100)		 NOT NULL,
+		RSC_URL                       		VARCHAR2(100)		 NULL ,
+		RSC_TOT_SCORE                 		NUMBER(15)		 DEFAULT 0		 NULL 
+);
+
+COMMENT ON TABLE JNITRSC is '만족도메인테이블';
+COMMENT ON COLUMN JNITRSC.RSC_ID is '만족도고유코드';
+COMMENT ON COLUMN JNITRSC.RSC_MENU is '만족도메뉴';
+COMMENT ON COLUMN JNITRSC.RSC_URL is '만족도메뉴URL';
+COMMENT ON COLUMN JNITRSC.RSC_TOT_SCORE is '만족도점수합계';
+
+
+/**********************************/
+/* Table Name: 만족도데이터테이블 */
+/**********************************/
+CREATE TABLE JNITRSCDATA(
+		DATA_ID                       		VARCHAR2(20)		 NOT NULL,
+		RSC_ID                        		VARCHAR2(20)		 NOT NULL,
+		DATA_MEMO                     		VARCHAR2(1000)		 NULL ,
+		DATA_SCORE                    		NUMBER(15)		 DEFAULT 0		 NOT NULL,
+		CREATED                       		DATE		 NULL ,
+		REMOTE_ADDR                   		VARCHAR2(128)		 NULL 
+);
+
+COMMENT ON TABLE JNITRSCDATA is '만족도데이터테이블';
+COMMENT ON COLUMN JNITRSCDATA.DATA_ID is '만족도데이터코드';
+COMMENT ON COLUMN JNITRSCDATA.RSC_ID is '만족도고유코드';
+COMMENT ON COLUMN JNITRSCDATA.DATA_MEMO is '만족도평가메모';
+COMMENT ON COLUMN JNITRSCDATA.DATA_SCORE is '만족도평가점수';
+COMMENT ON COLUMN JNITRSCDATA.CREATED is '등록일자';
+COMMENT ON COLUMN JNITRSCDATA.REMOTE_ADDR is '등록자IP';
+
+
+/**********************************/
+/* Table Name: 페이지통계 */
+/**********************************/
+CREATE TABLE JNITRSCPAGE(
+		RSCP_ID                       		VARCHAR2(20)		 NOT NULL,
+		SITE_ID                       		VARCHAR2(20)		 NULL ,
+		MENU_ID                       		VARCHAR2(20)		 NULL ,
+		PAGE_URL                      		VARCHAR2(128)		 NOT NULL,
+		PAGE_VIEW                     		NUMBER(10)		 NULL ,
+		HIT1                          		NUMBER(10)		 NULL ,
+		HIT2                          		NUMBER(10)		 NULL ,
+		HIT3                          		NUMBER(10)		 NULL ,
+		HIT4                          		NUMBER(10)		 NULL ,
+		HIT5                          		NUMBER(10)		 NULL 
+);
+
+COMMENT ON TABLE JNITRSCPAGE is '페이지통계';
+COMMENT ON COLUMN JNITRSCPAGE.RSCP_ID is '페이지통계코드';
+COMMENT ON COLUMN JNITRSCPAGE.SITE_ID is '사이트코드';
+COMMENT ON COLUMN JNITRSCPAGE.MENU_ID is '메뉴코드';
+COMMENT ON COLUMN JNITRSCPAGE.PAGE_URL is '페이지URL';
+COMMENT ON COLUMN JNITRSCPAGE.PAGE_VIEW is '페이지뷰카운트';
+COMMENT ON COLUMN JNITRSCPAGE.HIT1 is '평가1';
+COMMENT ON COLUMN JNITRSCPAGE.HIT2 is '평가2';
+COMMENT ON COLUMN JNITRSCPAGE.HIT3 is '평가3';
+COMMENT ON COLUMN JNITRSCPAGE.HIT4 is '평가4';
+COMMENT ON COLUMN JNITRSCPAGE.HIT5 is '평가5';
+
+
+/**********************************/
+/* Table Name: 페이지평가데이터 */
+/**********************************/
+CREATE TABLE JNITRSCPAGEDATA(
+		PDATA_ID                      		VARCHAR2(20)		 NOT NULL,
+		RSCP_ID                       		VARCHAR2(20)		 NULL ,
+		MEMO                          		VARCHAR2(1000)		 NULL ,
+		HIT1                          		NUMBER(10)		 NULL ,
+		HIT2                          		NUMBER(10)		 NULL ,
+		HIT3                          		NUMBER(10)		 NULL ,
+		HIT4                          		NUMBER(10)		 NULL ,
+		HIT5                          		NUMBER(10)		 NULL ,
+		REMOTE_ADDR                   		VARCHAR2(128)		 NULL ,
+		CREATED                       		DATE		 NULL 
+);
+
+COMMENT ON TABLE JNITRSCPAGEDATA is '페이지평가데이터';
+COMMENT ON COLUMN JNITRSCPAGEDATA.PDATA_ID is '페이지평가데이터코드';
+COMMENT ON COLUMN JNITRSCPAGEDATA.RSCP_ID is '페이지평가코드';
+COMMENT ON COLUMN JNITRSCPAGEDATA.MEMO is '메모';
+COMMENT ON COLUMN JNITRSCPAGEDATA.HIT1 is '평가1';
+COMMENT ON COLUMN JNITRSCPAGEDATA.HIT2 is '평가2';
+COMMENT ON COLUMN JNITRSCPAGEDATA.HIT3 is '평가3';
+COMMENT ON COLUMN JNITRSCPAGEDATA.HIT4 is '평가4';
+COMMENT ON COLUMN JNITRSCPAGEDATA.HIT5 is '평가5';
+COMMENT ON COLUMN JNITRSCPAGEDATA.REMOTE_ADDR is '평가자IP';
+COMMENT ON COLUMN JNITRSCPAGEDATA.CREATED is '평가일시';
+
+
+
+ALTER TABLE JNITRSC ADD CONSTRAINT IDX_JNITRSC_PK PRIMARY KEY (RSC_ID);
+
+ALTER TABLE JNITRSCDATA ADD CONSTRAINT IDX_JNITRSCDATA_PK PRIMARY KEY (DATA_ID);
+ALTER TABLE JNITRSCDATA ADD CONSTRAINT IDX_JNITRSCDATA_FK0 FOREIGN KEY (RSC_ID) REFERENCES JNITRSC (RSC_ID);
+
+ALTER TABLE JNITRSCPAGE ADD CONSTRAINT IDX_JNITRSCPAGE_PK PRIMARY KEY (RSCP_ID);
+ALTER TABLE JNITRSCPAGE ADD CONSTRAINT UNQ_PAGE_URL UNIQUE (PAGE_URL);
+
+ALTER TABLE JNITRSCPAGEDATA ADD CONSTRAINT IDX_JNITRSCPAGEDATA_PK PRIMARY KEY (PDATA_ID);
+ALTER TABLE JNITRSCPAGEDATA ADD CONSTRAINT IDX_JNITRSCPAGEDATA_FK0 FOREIGN KEY (RSCP_ID) REFERENCES JNITRSCPAGE (RSCP_ID);
+

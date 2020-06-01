@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitloginlog">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitloginlogSerarchVO" type="jnit.login.log.JnitloginlogDefaultVO"/>
+
+	<resultMap id="jnitloginlog" class="jnit.login.log.JnitloginlogVO">
+		<result property="ipId" column="IP_ID" columnIndex="1"/>
+		<result property="mbrId" column="MBR_ID" columnIndex="2"/>
+		<result property="ipAddr" column="IP_ADDR" columnIndex="3"/>
+		<result property="created" column="CREATED" columnIndex="4"/>
+	</resultMap>
+
+	<insert id="jnitloginlogDAO.insertJnitloginlog_S">
+		<![CDATA[
+			INSERT INTO jnitloginlog
+				( IP_ID
+				  , MBR_ID
+				  , IP_ADDR
+				  , CREATED )
+			VALUES ( #ipId#
+				  , #mbrId#
+				  , #ipAddr#
+				  , SYSDATE )
+		]]>
+	</insert>
+
+	<update id="jnitloginlogDAO.updateJnitloginlog_S">
+		<![CDATA[
+			UPDATE jnitloginlog
+			SET IP_ID=#ipId#
+				, MBR_ID=#mbrId#
+				, IP_ADDR=#ipAddr#
+				, CREATED=SYSDATE
+                WHERE IP_ID=#ipId#
+		]]>
+	</update>
+
+	<delete id="jnitloginlogDAO.deleteJnitloginlog_S">
+		<![CDATA[
+			DELETE FROM jnitloginlog
+                WHERE IP_ID=#ipId#
+		]]>
+	</delete>
+
+	<select id="jnitloginlogDAO.selectJnitloginlog_S" resultMap="jnitloginlog">
+		<![CDATA[
+			SELECT
+				IP_ID
+				, MBR_ID
+				, IP_ADDR
+				, CREATED
+			FROM jnitloginlog
+                WHERE IP_ID=#ipId#
+		]]>
+	</select>
+
+	<select id="jnitloginlogDAO.selectJnitloginlogList_D" parameterClass="jnitloginlogSerarchVO" resultClass="egovMap">
+	    SELECT * FROM (
+			SELECT A.*, ROWNUM RNUM FROM (
+	    				SELECT IP_ID
+							, MBR_ID
+							, IP_ADDR
+							<isEqual property="fieldConditon" compareValue="0">
+								, TO_CHAR(CREATED,'yyyy-MM-dd hh24:mi:ss') AS CREATED
+							</isEqual>
+							<isEqual property="fieldConditon" compareValue="1">
+								, CREATED
+							</isEqual>
+					FROM jnitloginlog
+					WHERE 1=1
+					<isEqual prepend="AND" property="searchCondition" compareValue="0">
+						IP_ID = #searchKeyword#
+					</isEqual>
+					<isEqual prepend="AND" property="searchCondition" compareValue="1">
+						MBR_ID LIKE '%'||#searchKeyword#||'%'
+					</isEqual>
+					<isEqual prepend="AND" property="searchCondition" compareValue="2">
+						MBR_ID = #searchKeyword#
+					</isEqual>
+					<isEqual prepend="AND" property="searchCondition" compareValue="3">
+						MBR_ID = #searchKeyword#
+						AND TO_DATE(TO_CHAR(CREATED,'yyyy-MM-dd hh24:mi:ss'),'yyyy-MM-dd hh24:mi:ss') <![CDATA[>]]> TO_DATE(TO_CHAR(#searchDate#,'yyyy-MM-dd hh24:mi:ss'),'yyyy-MM-dd hh24:mi:ss')
+					</isEqual>
+						ORDER BY IP_ID DESC
+				) A	WHERE 1=1
+				AND ROWNUM <![CDATA[<=]]> #lastIndex#
+		)WHERE 1=1
+		AND RNUM <![CDATA[>]]> #firstIndex#
+	</select>
+	<select id="jnitloginlogDAO.selectJnitloginlogListTotCnt_S" parameterClass="jnitloginlogSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM jnitloginlog
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				IP_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				MBR_ID LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				MBR_ID = #searchKeyword#
+			</isEqual>
+	</select>
+
+	<select id="jnitloginlogDAO.selectLeftJoinloginlogList_D" parameterClass="jnitloginlogSerarchVO" resultClass="egovMap">
+	    SELECT * FROM (
+			SELECT a.IP_ID
+					, a.MBR_ID
+					, a.IP_ADDR
+					, TO_CHAR(a.CREATED,'yyyy-MM-DD hh24:mi:ss') as CREATED
+					, b.MBR_NM
+					, b.ISDEL
+					, ROWNUM RNUM FROM (
+	    				SELECT * FROM jnitloginlog
+	    				ORDER BY IP_ID DESC
+			) a
+
+			LEFT JOIN jnitcmsmbr b
+				ON a.MBR_ID = b.MBR_ID
+			LEFT JOIN jnitcmsorg c
+				ON b.ORG_ID = c.ORG_ID
+			LEFT JOIN jnitcmspos d
+				ON b.POS_ID = d.POS_ID
+
+			WHERE 1=1
+
+			<isEqual prepend="AND" property="isdelYn" compareValue="Y">
+			    b.ISDEL = 0
+			</isEqual>
+			<isEqual prepend="AND" property="condition" compareValue="0">
+			    a.MBR_ID = #conditionKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				a.IP_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				a.MBR_ID LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				a.MBR_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="3">
+				b.MBR_NM LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="4">
+				a.IP_ADDR LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="5">
+				TO_CHAR(a.CREATED, 'YYYY-MM-DD') BETWEEN TO_CHAR(#searchDate#,'YYYY-MM-DD') AND TO_CHAR(#searchDate2#, 'YYYY-MM-DD')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="6">
+			    (b.MBR_NM LIKE '%'||#searchKeyword#||'%'
+			    OR a.IP_ADDR LIKE '%'||#searchKeyword#||'%')
+			</isEqual>
+
+			<isEqual prepend="AND" property="pageYn" compareValue="Y">
+				ROWNUM <![CDATA[<=]]> #lastIndex#
+			</isEqual>
+		)WHERE 1=1
+		<isEqual prepend="AND" property="pageYn" compareValue="Y">
+			RNUM <![CDATA[>]]> #firstIndex#
+		</isEqual>
+	</select>
+	<select id="jnitloginlogDAO.selectLeftJoinloginlogListTotCnt_S" parameterClass="jnitloginlogSerarchVO" resultClass="int">
+			SELECT	COUNT(*)
+					FROM jnitloginlog a
+					LEFT JOIN jnitcmsmbr b
+					ON a.MBR_ID = b.MBR_ID
+					LEFT JOIN jnitcmsorg c
+					ON b.ORG_ID = c.ORG_ID
+					LEFT JOIN jnitcmspos d
+					ON b.POS_ID = d.POS_ID
+			WHERE 1=1
+			<isEqual prepend="AND" property="isdelYn" compareValue="Y">
+			    b.ISDEL = 0
+			</isEqual>
+			<isEqual prepend="AND" property="condition" compareValue="0">
+			    a.MBR_ID = #conditionKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				a.IP_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				a.MBR_ID LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				a.MBR_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="3">
+				b.MBR_NM LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="4">
+				a.IP_ADDR LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="5">
+				TO_CHAR(a.CREATED, 'YYYY-MM-DD') BETWEEN TO_CHAR(#searchDate#,'YYYY-MM-DD') AND TO_CHAR(#searchDate2#, 'YYYY-MM-DD')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="6">
+			    (b.MBR_NM LIKE '%'||#searchKeyword#||'%'
+			    OR a.IP_ADDR LIKE '%'||#searchKeyword#||'%')
+			</isEqual>
+	</select>
+	<select id="jnitloginlogDAO.getLastIdJnitloginlog_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITLOGINLOG_ID'
+	</select>
+
+</sqlMap>

@@ -1,0 +1,179 @@
+@charset "utf-8";
+/*
+
+	Design By. Kim Ji Hye
+
+*/
+/*
+	기본 base css
+*/
+
+body {margin:0;padding:0;font-family:"돋움",Dotum,"굴림",Gulim;font-size:0.75em;line-height:1.4em;color:#252424;}
+
+h1, h2, h3, h4, h5, h6, form, input, select, textarea, ul, ol, li, dl, dt, dd, p {margin:0;padding:0;}
+th, td, select {font-size:1.0em;}
+
+a {text-decoration:none;color:#333;}
+
+img {border:none;}
+a img, dl img, li img {vertical-align:top;}
+
+input, select, textarea {vertical-align:middle;}
+
+hr {display:none;}
+ul, ul li, ol li, dl, dl dt, dl dd {list-style:none;}
+ul.ClearBoth li {float:none !important;}
+ul.FloatRight {float:right;}
+ul.FloatLeft li {float:left;}
+ul.BackgroundNone li {background:none !important;}
+ol.BackgroundNone li {background:none !important;}
+
+.AlignLeft {text-align:left !important;}
+.AlignCenter {text-align:center !important;}
+.AlignRight {text-align:right !important;}
+.ValignTop {vertical-align:top !important;}
+.ValignMiddle{vertical-align:middle !important;}
+.ValignBottom {vertical-align:bottom !important;}
+.DisplayBlock {display:block;}
+.DisplayNone {display:none;}
+.DisplayInline {display:inline;}
+.FloatLeft {float:left;}
+.FloatRight {float:right;}
+.ClearBoth {clear:both;}
+.BackgroundNone {background:none !important;}
+.BorderNone {border:none !important;}
+.BorderRightNone {border-right:none !important;}
+.PaddingNone {padding:0 !important;}
+.MarginNone {margin:0 !important;}
+.FontWeightNormal {font-weight:normal !important;}
+.FontWeightBold {font-weight:bold !important;}
+.nowrap {white-space:nowrap;}
+
+
+#go_main {position: absolute;height:0;}	
+#go_main a {display: block;left: -2000px;position: absolute;text-align: center;width: 200px;}
+#go_main a:focus, #go_main a:active, #go_main a:hover {background-color: #ffffff;color: black;left: 50%;padding: 5px 0;position: absolute;top:0px;z-index: 1000000;border: 1px dotted red;}
+/* SKIP NAVIGATION */
+.skip_nav {position:absolute;width:auto;z-index:8;}
+.skip_nav p,
+.skip_nav a {position:absolute;display:block;left:0;top:0;width:1px;height:1px;margin:0 0 0 -10000px;padding:0;overflow:hidden;}
+.skip_nav a:hover {margin:0;width:120px;height:auto;background:#fff;text-align:center;}
+.skip_nav a:focus {margin:0;width:120px;height:auto;background:#fff;text-align:center;}
+.skip_nav a:active {margin:0;width:120px;height:auto;background:#fff;text-align:center;}
+
+/* HIDDEN TEXT */
+.comment {position:absolute;left:-10000px;top:-10000px;width:1px;height:1px;overflow:hidden;}
+
+/* Global SPACE */
+.MAL0 {margin-left:0px !important;}
+.MAL5 {margin-left:5px !important;}
+.MAL10 {margin-left:10px !important;}
+.MAL15 {margin-left:15px !important;}
+.MAL20 {margin-left:20px !important;}
+.MAL25 {margin-left:25px !important;}
+.MAL30 {margin-left:30px !important;}
+.MAL35 {margin-left:35px !important;}
+.MAL40 {margin-left:40px !important;}
+.MAL45 {margin-left:45px !important;}
+.MAL50 {margin-left:50px !important;}
+.MAL60 {margin-left:60px !important;}
+.MAL70 {margin-left:70px !important;}
+.MAL100 {margin-left:100px !important;}
+.MAL140 {margin-left:140px !important;}
+
+.MAR5 {margin-right:5px !important;}
+.MAR10 {margin-right:10px !important;}
+.MAR15 {margin-right:15px !important;}
+.MAR20 {margin-right:20px !important;}
+.MAR25 {margin-right:25px !important;}
+.MAR30 {margin-right:30px !important;}
+.MAR35 {margin-right:35px !important;}
+.MAR40 {margin-right:40px !important;}
+.MAR85 {margin-right:85px !important;}
+.MAR165 {margin-right:165px !important;}
+
+.MAB0 {margin-bottom:0px !important;}
+.MAB5 {margin-bottom:5px !important;}
+.MAB10 {margin-bottom:10px !important;}
+.MAB15 {margin-bottom:15px !important;}
+.MAB20 {margin-bottom:20px !important;}
+.MAB25 {margin-bottom:25px !important;}
+.MAB30 {margin-bottom:30px !important;}
+.MAB35 {margin-bottom:35px !important;}
+.MAB40 {margin-bottom:40px !important;}
+
+.MAT0 {margin-top:0 !important;}
+.MAT5 {margin-top:5px !important;}
+.MAT10 {margin-top:10px !important;}
+.MAT15 {margin-top:15px !important;}
+.MAT20 {margin-top:20px !important;}
+.MAT25 {margin-top:25px !important;}
+.MAT30 {margin-top:30px !important;}
+.MAT35 {margin-top:35px !important;}
+.MAT40 {margin-top:40px !important;}
+.MAT50 {margin-top:50px !important;}
+.MAT55 {margin-top:55px !important;}
+.MAT60 {margin-top:60px !important;}
+.MAT100 {margin-top:100px !important;}
+
+.MAT-5 {margin-top:-5px !important;}
+.MAT-10 {margin-top:-10px !important;}
+.MAT-15 {margin-top:-15px !important;}
+.MAT-20 {margin-top:-20px !important;}
+.MAT-25 {margin-top:-25px !important;}
+.MAT-30 {margin-top:-30px !important;}
+.MAT-35 {margin-top:-35px !important;}
+.MAT-40 {margin-top:-40px !important;}
+
+
+.MAR-15 {margin-right:-15px !important;}
+.MAL-50 {margin-left:-50px !important;}
+.MAL-40 {margin-left:-40px !important;}
+
+.PAL0 {padding-left:0px !important;}
+.PAL5 {padding-left:5px !important;}
+.PAL10 {padding-left:10px !important;}
+.PAL15 {padding-left:15px !important;}
+.PAL20 {padding-left:20px !important;}
+.PAL25 {padding-left:25px !important;}
+.PAL30 {padding-left:30px !important;}
+.PAL35 {padding-left:35px !important;}
+.PAL40 {padding-left:40px !important;}
+.PAL45 {padding-left:45px !important;}
+.PAL50 {padding-left:50px !important;}
+.PAL70 {padding-left:70px !important;}
+
+.PAR5 {padding-right:5px !important;}
+.PAR10 {padding-right:10px !important;}
+.PAR15 {padding-right:15px !important;}
+.PAR20 {padding-right:20px !important;}
+.PAR25 {padding-right:25px !important;}
+.PAR30 {padding-right:30px !important;}
+.PAR35 {padding-right:35px !important;}
+.PAR40 {padding-right:40px !important;}
+
+.PAT5 {padding-top:5px !important;}
+.PAT10 {padding-top:10px !important;}
+.PAT15 {padding-top:15px !important;}
+.PAT20 {padding-top:20px !important;}
+.PAT25 {padding-top:25px !important;}
+.PAT30 {padding-top:30px !important;}
+.PAT35 {padding-top:35px !important;}
+.PAT40 {padding-top:40px !important;}
+
+.PAB5 {padding-bottom:5px !important;}
+.PAB10 {padding-bottom:10px !important;}
+.PAB15 {padding-bottom:15px !important;}
+.PAB20 {padding-bottom:20px !important;}
+.PAB25 {padding-bottom:25px !important;}
+.PAB30 {padding-bottom:30px !important;}
+.PAB35 {padding-bottom:35px !important;}
+.PAB40 {padding-bottom:40px !important;}
+.PAB85 {padding-bottom:85px !important;}
+
+.PADDING5{padding:5px !important;}
+.PADDING10{padding:10px !important;}
+.PADDING20{padding:20px !important;}
+.PADDING30{padding:30px !important;}
+.PADDING40{padding:40px !important;}
+.PADDING50{padding:50px !important;}

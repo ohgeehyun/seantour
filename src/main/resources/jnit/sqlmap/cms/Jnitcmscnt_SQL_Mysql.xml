@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitcmscnt">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitcmscntSerarchVO" type="jnit.cms.cnt.JnitcmscntDefaultVO"/>
+	
+	<resultMap id="jnitcmscnt" class="jnit.cms.cnt.JnitcmscntVO">
+		<result property="siteId" column="SITE_ID" columnIndex="1"/>
+		<result property="menuId" column="MENU_ID" columnIndex="2"/>
+		<result property="cntId" column="CNT_ID" columnIndex="3"/>
+		<result property="cntDesc" column="CNT_DESC" columnIndex="4"/>
+		<result property="cntSrc" column="CNT_SRC" columnIndex="5"/>
+		<result property="tplId" column="TPL_ID" columnIndex="6"/>
+		<result property="created" column="CREATED" columnIndex="7"/>
+		<result property="modified" column="MODIFIED" columnIndex="8"/>
+		<result property="isdel" column="ISDEL" columnIndex="9"/>
+		<result property="cntWebStandard" column="CNT_WEB_STANDARD" columnIndex="10"/>
+		<result property="cntWebStandardCss" column="CNT_WEB_STANDARD_CSS" columnIndex="10"/>
+		<result property="cntWebAccess" column="CNT_WEB_ACCESS" columnIndex="10"/>
+		
+	</resultMap>
+	
+	<insert id="jnitcmscntDAO.insertJnitcmscnt_S">
+		<![CDATA[
+			INSERT INTO JNITCMSCNT 
+				( SITE_ID
+				  , MENU_ID
+				  , CNT_ID
+				  , CNT_DESC
+				  , CNT_SRC
+				  , TPL_ID
+				  , CREATED
+				  , MODIFIED
+				  , ISDEL
+				  , CNT_WEB_STANDARD
+				  , CNT_WEB_STANDARD_CSS
+				  , CNT_WEB_ACCESS )
+			VALUES ( #siteId#
+				  , #menuId#
+				  , #cntId#
+				  , #cntDesc#
+				  , #cntSrc#
+				  , #tplId#
+				  , NOW()
+				  , NOW()
+				  , 0
+				  , #cntWebStandard#
+				  , #cntWebStandardCss#
+				  , #cntWebAccess# )
+		]]>
+	</insert>
+	
+	<insert id="jnitcmscntDAO.insertSelectJnitcmscnt">
+		<![CDATA[
+			INSERT INTO JNITCMSCNT 
+				( SITE_ID
+				  , MENU_ID
+				  , CNT_ID
+				  , CNT_DESC
+				  , CNT_SRC
+				  , TPL_ID
+				  , ISMAIN
+				  , CREATED
+				  , MODIFIED
+				  , ISDEL
+				  , CNT_WEB_STANDARD
+				  , CNT_WEB_STANDARD_CSS
+				  , CNT_WEB_ACCESS )
+			SELECT SITE_ID
+				  , #menuId#
+				  , #cntId#
+				  , CNT_DESC
+				  , CNT_SRC
+				  , TPL_ID
+				  , ISMAIN
+				  , NOW()
+				  , NOW()
+				  , ISDEL
+				  , CNT_WEB_STANDARD
+				  , CNT_WEB_STANDARD_CSS
+				  , CNT_WEB_ACCESS
+				  FROM JNITCMSCNT
+				  WHERE SITE_ID = #siteId# 
+				  AND MENU_ID = #searchMenuId#
+		]]>
+	</insert>
+	
+	<update id="jnitcmscntDAO.updateJnitcmscnt_S">
+			UPDATE JNITCMSCNT
+			<isEqual property="updateCondition" compareValue="0">
+			<![CDATA[
+			SET CNT_DESC=#cntDesc#
+				, CNT_SRC=#cntSrc#
+				, TPL_ID=#tplId#
+				, MODIFIED=NOW()
+                WHERE ISDEL=0
+                	AND CNT_ID=#cntId#
+           ]]>
+           </isEqual>
+           <isEqual property="updateCondition" compareValue="1">
+           <![CDATA[
+               SET CNT_WEB_STANDARD=#cntWebStandard#
+               , CNT_WEB_STANDARD_CSS=#cntWebStandardCss#
+               , CNT_WEB_ACCESS=#cntWebAccess#
+               WHERE CNT_ID=#cntId#
+           ]]>
+           </isEqual>
+           <isEqual property="updateCondition" compareValue="2">
+			<![CDATA[
+			SET TPL_ID=#tplId#
+                WHERE CNT_ID=#cntId#
+           ]]>
+           </isEqual>
+	</update>
+	
+	<update id="jnitcmscntDAO.updateJnitcmscntOpt_S">
+		<![CDATA[
+			UPDATE JNITCMSCNT
+			SET TPL_ID=#tplId#
+				, ISMAIN=#ismain#
+				, MODIFIED=NOW()
+                WHERE ISDEL=0
+                	AND CNT_ID=#cntId# 
+		]]>
+	</update>
+	
+	<update id="jnitcmscntDAO.updateWebcnt_S">
+		<![CDATA[
+			UPDATE JNITCMSCNT
+			SET CNT_WEB_STANDARD=#cntWebStandard#
+				, CNT_WEB_STANDARD_CSS=#cntWebStandardCss#
+				, CNT_WEB_ACCESS=#cntWebAccess#
+				, MODIFIED=NOW()
+                WHERE ISDEL=0
+                	AND CNT_ID=#cntId# 
+		]]>
+	</update>
+	
+	<update id="jnitcmscntDAO.deleteJnitcmscnt_S">
+		<![CDATA[
+			UPDATE JNITCMSCNT
+			SET ISDEL=1
+                WHERE ISDEL=0
+                	AND CNT_ID=#cntId#  
+		]]>
+	</update>
+	
+	<update id="jnitcmscntDAO.updateJnitcmscntLanguage">
+			UPDATE JNITCMSCNT
+			SET CNT_SRC=#cntSrc#
+				, MODIFIED=NOW()
+			WHERE CNT_ID=#cntId#
+	</update>
+	
+	<select id="jnitcmscntDAO.selectJnitcmscnt_S" resultMap="jnitcmscnt">		
+			SELECT
+				SITE_ID
+				, MENU_ID
+				, CNT_ID
+				, CNT_DESC
+				, CNT_SRC
+				, TPL_ID
+				, CREATED
+				, MODIFIED
+				, ISDEL
+				, CNT_WEB_STANDARD
+				, CNT_WEB_STANDARD_CSS
+				, CNT_WEB_ACCESS
+			<isEqual property="selectCondition" compareValue="0">
+				FROM JNITCMSCNT
+				WHERE ISDEL=0
+				<isEqual prepend="AND" property="searchCondition" compareValue="1">
+					CNT_ID=#cntId#  
+				</isEqual>
+				<isNotEmpty prepend="AND" property="siteId">
+					SITE_ID=#siteId#
+					AND MENU_ID=#menuId#
+				</isNotEmpty>    
+			</isEqual>
+			<isEqual property="selectCondition" compareValue="1">
+			    FROM JNITCMSCNT
+				WHERE MENU_ID=#menuId#
+			</isEqual>
+	</select>
+	
+	<select id="jnitcmscntDAO.selectJnitcmscntList_D" parameterClass="jnitcmscntSerarchVO" resultClass="egovMap">
+	    			SELECT SITE_ID
+							, MENU_ID
+							, CNT_ID
+							, CNT_DESC
+							, TPL_ID
+							, CREATED
+							, MODIFIED
+							, ISDEL
+							, CNT_WEB_STANDARD
+							, CNT_WEB_STANDARD_CSS
+							, CNT_WEB_ACCESS
+					FROM JNITCMSCNT
+					
+					WHERE ISDEL=0
+					<isEqual prepend="AND" property="siteYn" compareValue="Y">
+						SITE_ID = #siteId#    
+					</isEqual>					
+					<isNotEmpty prepend="AND" property="menuId">
+						menuId = #menuId#
+					</isNotEmpty>
+					<isEqual prepend="AND" property="searchCondition" compareValue="0">
+						ISMAIN = #searchKeyword#
+					</isEqual>
+					<isEqual prepend="AND" property="searchCondition" compareValue="1">
+						CNT_DESC LIKE '%'||#searchKeyword#||'%'
+					</isEqual>
+					<isEqual prepend="AND" property="searchCondition" compareValue="2">
+						CNT_SRC LIKE '%'||#searchKeyword#||'%'
+					</isEqual>
+					ORDER BY CNT_SRC ASC			
+					limit #firstIndex#, #recordCountPerPage#   
+	</select>
+	<select id="jnitcmscntDAO.selectJnitcmscntListTotCnt_S" parameterClass="jnitcmscntSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM JNITCMSCNT
+			WHERE ISDEL=0
+			<isEqual prepend="AND" property="siteYn" compareValue="Y">
+				SITE_ID = #siteId#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				ISMAIN = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				CNT_DESC LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				CNT_SRC LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+	</select>
+	
+	<select id="jnitcmscntDAO.selectLeftcntMenuList_D" parameterClass="jnitcmscntSerarchVO" resultClass="egovMap">
+	   
+				SELECT a.SITE_ID
+					, a.MENU_ID
+					, a.CNT_ID
+					, a.CNT_DESC
+					, a.CNT_SRC
+					, a.TPL_ID
+					, a.CREATED
+					, a.MODIFIED
+					, a.ISDEL
+					, a.CNT_WEB_STANDARD
+					, a.CNT_WEB_STANDARD_CSS
+					, a.CNT_WEB_ACCESS
+					, b.MENU_NM
+					, b.CONTENT_SEARCH_CHK
+					, c.SITE_NM
+					, C.SITE_PATH
+				FROM JNITCMSCNT A
+				
+				LEFT JOIN JNITCMSMENU b
+		    	ON a.MENU_ID = b.MENU_ID
+		    	LEFT JOIN JNITCMSSITE c
+		    	ON a.SITE_ID = c.SITE_ID
+				WHERE a.ISDEL=0
+				
+				<isEqual prepend="AND" property="siteYn" compareValue="Y">
+					a.SITE_ID = #siteId#
+				</isEqual>
+				<isNotEmpty prepend="AND" property="menuId">
+					a.menuId = #menuId#
+				</isNotEmpty>
+				<isEqual property="QueryYn" compareValue="Y">
+				    $Query$
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="0">
+					a.ISMAIN = #searchKeyword#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="1">
+					a.CNT_DESC LIKE CONCAT ('%',#searchKeyword#,'%')
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="2">
+					a.CNT_SRC LIKE CONCAT ('%',#searchKeyword#,'%')
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="3">				    
+					a.CNT_SRC LIKE CONCAT ('%',#searchKeyword#,'%')			
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="4">
+				    ( b.MENU_NM LIKE CONCAT ('%',#searchKeyword#,'%')
+					OR a.CNT_SRC LIKE CONCAT ('%',#searchKeyword#,'%') )					
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="5">
+				    b.MENU_NM LIKE CONCAT('%',#searchKeyword#,'%')					
+				</isEqual>
+				<isEqual property="orderbyCondition" compareValue="0">
+					ORDER BY a.CNT_SRC  ASC    
+				</isEqual>
+				<isEqual property="pageYn" compareValue="Y">
+				    limit #firstIndex#,#recordCountPerPage#
+				</isEqual>
+	</select>
+	
+	<select id="jnitcmscntDAO.selectLeftcntMenuListTotCnt_S" parameterClass="jnitcmscntSerarchVO" resultClass="int">
+		SELECT COUNT(*) totcnt
+		FROM JNITCMSCNT a
+		LEFT JOIN JNITCMSMENU b
+		ON a.MENU_ID = b.MENU_ID
+		WHERE a.ISDEL=0
+		<isEqual prepend="AND" property="siteYn" compareValue="Y">
+			a.SITE_ID = #siteId#
+		</isEqual>
+		<isNotEmpty prepend="AND" property="menuId">
+			a.menuId = #menuId#
+		</isNotEmpty>
+		<isEqual property="QueryYn" compareValue="Y">
+		    $Query$
+		</isEqual>
+		<isEqual prepend="AND" property="searchCondition" compareValue="0">
+			a.ISMAIN = #searchKeyword#
+		</isEqual>
+		<isEqual prepend="AND" property="searchCondition" compareValue="1">
+			a.CNT_DESC LIKE CONCAT ('%',#searchKeyword#,'%')
+		</isEqual>
+		<isEqual prepend="AND" property="searchCondition" compareValue="2">
+			a.CNT_SRC LIKE CONCAT ('%',#searchKeyword#,'%')
+		</isEqual>
+		<isEqual prepend="AND" property="searchCondition" compareValue="3">				    
+			a.CNT_SRC LIKE CONCAT ('%',#searchKeyword#,'%')			
+		</isEqual>
+		<isEqual prepend="AND" property="searchCondition" compareValue="4">
+		    ( b.MENU_NM LIKE CONCAT ('%',#searchKeyword#,'%')
+			OR a.CNT_SRC LIKE CONCAT ('%',#searchKeyword#,'%') )					
+		</isEqual>
+		<isEqual prepend="AND" property="searchCondition" compareValue="5">
+		    b.MENU_NM LIKE CONCAT('%',#searchKeyword#,'%')
+		</isEqual>
+	</select>
+	
+	<select id="jnitcmscntDAO.selectLeftJoincntList_D" parameterClass="jnitcmscntSerarchVO" resultClass="egovMap">
+		    SELECT * FROM (
+				SELECT a.SITE_ID
+					, a.MENU_ID
+					, a.CNT_ID
+					, a.CNT_WEB_STANDARD
+					, a.CNT_WEB_STANDARD_CSS
+					, a.CNT_WEB_ACCESS
+					, a.ISDEL
+					FROM (
+		    			SELECT	* FROM JNITCMSCNT 
+				) a
+				
+				LEFT JOIN JNITCMSMENU b
+					ON a.CNT_ID = b.CNT_ID
+				LEFT JOIN JNITCMSTPL c
+					ON b.TPL_ID = c.TPL_ID
+				WHERE 1=1
+				
+				<isEqual prepend="AND" property="isdelYn" compareValue="Y">
+				    a.ISDEL = 0
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="0">
+					a.SITE_ID = #searchKeyword#
+					AND (a.cnt_web_standard =0
+					OR a.cnt_web_standard_css =0
+					OR a.cnt_web_access =0
+					OR a.cnt_web_standard = 2
+					OR a.cnt_web_standard_css =2
+					OR a.cnt_web_access =2)
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="1">
+					a.SITE_ID = #searchKeyword#
+					AND a.cnt_web_standard =1
+					AND a.cnt_web_standard_css =1
+					AND a.cnt_web_access =1
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="3">
+				   a.SITE_ID = #searchKeyword#
+					AND a.cnt_web_standard =3
+					AND a.cnt_web_standard_css =3
+					AND a.cnt_web_access =3
+				</isEqual>
+				
+				ORDER BY a.CNT_ID DESC
+		) Z WHERE 1=1
+		<isEqual property="pageYn" compareValue="Y">
+			limit #firstIndex#, #recordCountPerPage#
+		</isEqual>
+	</select>
+	<select id="jnitcmscntDAO.selectLeftJoincntListTotCnt_S" parameterClass="jnitcmscntSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt			
+			FROM JNITCMSCNT a
+			LEFT JOIN JNITCMSMENU b
+			ON a.CNT_ID = b.CNT_ID
+			LEFT JOIN JNITCMSTPL c
+			ON b.TPL_ID = c.TPL_ID
+			WHERE a.ISDEL=0				
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				a.SITE_ID = #searchKeyword#
+				AND (a.cnt_web_standard =0			
+				OR a.cnt_web_standard_css =0
+				OR a.cnt_web_access =0			
+				OR a.cnt_web_standard = 2			
+				OR a.cnt_web_standard_css =2
+				OR a.cnt_web_access =2)
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				a.SITE_ID = #searchKeyword#
+				AND a.cnt_web_standard =1			
+				AND a.cnt_web_standard_css =1
+				AND a.cnt_web_access =1
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="3">
+			   a.SITE_ID = #searchKeyword#
+				AND a.cnt_web_standard =3			
+				AND a.cnt_web_standard_css =3
+				AND a.cnt_web_access =3
+			</isEqual>
+	</select>
+	<select id="jnitcmscntDAO.getLastIdJnitcmscnt_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITCMSCNT_ID'
+	</select>
+</sqlMap>

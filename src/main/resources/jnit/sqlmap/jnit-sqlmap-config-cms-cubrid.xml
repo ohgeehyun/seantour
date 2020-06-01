@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>						
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+		
+	
+	
+<sqlMap resource="jnit/sqlmap/cms/Jnitcmscnt_SQL_Cubrid.xml" /><sqlMap resource="jnit/sqlmap/cms/Jnitcmscntvt_SQL_Cubrid.xml" /><sqlMap resource="jnit/sqlmap/cms/Jnitcmshist_SQL_Cubrid.xml" /><sqlMap resource="jnit/sqlmap/cms/Jnitcmsmbr_SQL_Cubrid.xml" /><sqlMap resource="jnit/sqlmap/cms/Jnitcmsmbrsess_SQL_Cubrid.xml" /><sqlMap resource="jnit/sqlmap/cms/Jnitcmsmbrtype_SQL_Cubrid.xml" /><sqlMap resource="jnit/sqlmap/cms/Jnitcmsmenu_SQL_Cubrid.xml" /><sqlMap resource="jnit/sqlmap/cms/Jnitcmsmenumgr_SQL_Cubrid.xml" /><sqlMap resource="jnit/sqlmap/cms/Jnitcmsorg_SQL_Cubrid.xml" /><sqlMap resource="jnit/sqlmap/cms/Jnitcmspos_SQL_Cubrid.xml" /><sqlMap resource="jnit/sqlmap/cms/Jnitcmssite_SQL_Cubrid.xml" /><sqlMap resource="jnit/sqlmap/cms/Jnitcmstpl_SQL_Cubrid.xml" /><sqlMap resource="jnit/sqlmap/cms/Jnitcmsrank_SQL_Cubrid.xml" /><sqlMap resource="jnit/sqlmap/cms/Jnitcmsdisseminate_SQL_Cubrid.xml" /><sqlMap resource="jnit/sqlmap/cms/Jnitcmsdisseminatehistory_SQL_Cubrid.xml" /><sqlMap resource="jnit/sqlmap/cms/Jnitcmsmbrlog_SQL_Cubrid.xml" /><sqlMap resource="jnit/sqlmap/cms/Jnitcmsmgmt_SQL_Cubrid.xml" /><sqlMap resource="jnit/sqlmap/cms/Jnitcmscsshist_SQL_Cubrid.xml" /><sqlMap resource="jnit/sqlmap/cms/Jnitcmsscripthist_SQL_Cubrid.xml" /><sqlMap resource="jnit/sqlmap/cms/Jnitcmstplhist_SQL_Cubrid.xml" /><sqlMap resource="jnit/sqlmap/cms/Jnitcmsmbrpackage_SQL_Cubrid.xml" /><sqlMap resource="jnit/sqlmap/cms/Jnitcmsboardhist_SQL_Cubrid.xml" /><sqlMap resource="jnit/sqlmap/cms/Jnitcmsmgmtcategory_Cubrid_SQL.xml" /><sqlMap resource="jnit/sqlmap/cms/Jnitcmsmgmtitem_Cubrid_SQL.xml" /></sqlMapConfig>

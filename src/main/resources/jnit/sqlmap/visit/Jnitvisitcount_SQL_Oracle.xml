@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitvisitcount">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitvisitcountSerarchVO" type="jnit.visit.count.JnitvisitcountDefaultVO"/>
+	
+	<resultMap id="jnitvisitcount" class="jnit.visit.count.JnitvisitcountVO">
+		<result property="site" column="SITE" columnIndex="1"/>
+		<result property="vdate" column="VDATE" columnIndex="2"/>
+		<result property="vhour" column="VHOUR" columnIndex="3"/>
+		<result property="userOs" column="USER_OS" columnIndex="4"/>
+		<result property="browser" column="BROWSER" columnIndex="5"/>
+		<result property="hit" column="HIT" columnIndex="6"/>
+	</resultMap>
+	
+	<insert id="jnitvisitcountDAO.insertJnitvisitcount_S">
+		<![CDATA[
+			INSERT INTO jnitvisitcount 
+				( SITE
+				  , VDATE
+				  , VHOUR
+				  , USER_OS
+				  , BROWSER
+				  , HIT )
+			VALUES ( #site#
+				  , #vdate#
+				  , #vhour#
+				  , #userOs#
+				  , #browser#
+				  , 1 )			
+		]]>
+	</insert>
+	
+	<update id="jnitvisitcountDAO.updateJnitvisitcount_S">
+		<![CDATA[
+			UPDATE jnitvisitcount
+			SET SITE=#site#
+				, VDATE=#vdate#
+				, VHOUR=#vhour#
+				, USER_OS=#userOs#
+				, BROWSER=#browser#
+				, HIT=#hit#
+                WHERE VDATE=#vdate#
+		]]>
+	</update>
+	
+	<delete id="jnitvisitcountDAO.deleteJnitvisitcount_S">
+		<![CDATA[
+			DELETE FROM jnitvisitcount 
+                WHERE VDATE=#vdate#
+		]]>
+	</delete>
+	
+	<select id="jnitvisitcountDAO.selectJnitvisitTotalCount_S" resultMap="jnitvisitcount">
+		<![CDATA[
+			SELECT
+				SITE
+				, VDATE
+				, VHOUR
+				, USER_OS
+				, BROWSER
+				, (SELECT SUM(hit) FROM jnitvisitcount WHERE VDATE=#vdate#) AS HIT
+			FROM jnitvisitcount
+				WHERE VDATE=#vdate#
+                GROUP BY HIT
+		]]>
+	</select>
+	<select id="jnitvisitcountDAO.selectJnitvisitcount_S" resultMap="jnitvisitcount">
+		<![CDATA[
+			SELECT
+				SITE
+				, VDATE
+				, VHOUR
+				, USER_OS
+				, BROWSER
+				, HIT
+			FROM jnitvisitcount
+		]]>		
+		<isEqual property="whereAllYn" compareValue="Y">
+		<![CDATA[    
+		    WHERE SITE=#site#
+		    AND TO_CHAR(VDATE,'YYYY-MM-DD')=TO_CHAR(#vdate#,'YYYY-MM-DD')
+		    AND USER_OS=#userOs#
+		    AND BROWSER=#browser#		    
+		]]>		    
+		</isEqual>
+	</select>
+	
+	<select id="jnitvisitcountDAO.selectJnitvisitcountList_D" parameterClass="jnitvisitcountSerarchVO" resultClass="egovMap">
+			SELECT
+								SITE
+								, VDATE
+								, VHOUR
+								, USER_OS
+								, BROWSER
+								, HIT
+					FROM jnitvisitcount
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				VDATE = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				VHOUR LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				SITE=#site#
+			    AND TO_CHAR(VDATE,'YYYY-MM-DD')=TO_CHAR(#vdate#,'YYYY-MM-DD')
+			    AND USER_OS=#userOs#
+			    AND BROWSER=#browser#
+			</isEqual>
+			AND ROWNUM BETWEEN #firstIndex# AND #recordCountPerPage#
+				ORDER BY 
+                VDATE DESC				
+	</select>
+	
+	<!-- 사이트 검색용 -->
+	<select id="jnitvisitcountDAO.selectJnitvisitSiteList" parameterClass="jnitvisitcountSerarchVO" resultClass="egovMap">
+			SELECT
+								DISTINCT(SITE)
+					FROM jnitvisitcount
+			WHERE 1=1
+	</select>
+	
+	<select id="jnitvisitcountDAO.selectJnitvisitcountListTotCnt_S" parameterClass="jnitvisitcountSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM jnitvisitcount
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				VDATE = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				VHOUR LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				SITE=#site#
+			    AND TO_CHAR(VDATE,'YYYY-MM-DD')=TO_CHAR(#vdate#,'YYYY-MM-DD')
+			    AND USER_OS=#userOs#
+			    AND BROWSER=#browser#
+			</isEqual>
+	</select>
+	<select id="jnitvisitcountDAO.getLastIdJnitvisitcount_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITVISITCOUNT_ID'
+	</select>
+	
+	<select id="jnitvisitcountDAO.selectJnitvisitcountHitTotCnt" parameterClass="jnitvisitcountSerarchVO" resultClass="int">
+			SELECT sum(hit) totcnt
+			FROM jnitvisitcount
+			WHERE 1=1
+	</select>
+	
+	<select id="jnitvisitcountDAO.selectJnitvisitcountStats" parameterClass="jnitvisitcountSerarchVO" resultClass="egovMap" remapResults="true">
+			
+								
+		<isEqual property="searchCondition" compareValue="1">
+			    SELECT
+			    
+			    <isNotEmpty property="searchSite">								        
+			   		SITE
+			   		, VHOUR
+			    </isNotEmpty>
+			    <isEmpty property="searchSite">							   	 
+			   		VHOUR
+			    </isEmpty>
+			   
+			    , SUM(HIT) AS HIT
+			    FROM jnitvisitcount
+			WHERE 1=1  
+			  
+		    <isNotEmpty prepend="AND" property="searchSite">
+				SITE = #searchSite#
+			</isNotEmpty>
+			<isEqual prepend="AND" property="searchTerm" compareValue="1">
+				TO_CHAR(VDATE,'YYYY-MM-DD') = TO_CHAR(#searchDate#,'YYYY-MM-DD')
+			</isEqual>
+			<isEqual prepend="AND" property="searchTerm" compareValue="2">
+				TO_CHAR(VDATE,'YYYY-MM') = TO_CHAR(#searchDate#,'YYYY-MM')
+			</isEqual>
+			<isEqual prepend="AND" property="searchTerm" compareValue="3">
+				TO_CHAR(VDATE,'YYYY') = TO_CHAR(#searchDate#,'YYYY')
+			</isEqual>
+			
+			GROUP BY
+			
+			<isNotEmpty property="searchSite">
+		   		SITE
+		   		, VHOUR
+		    </isNotEmpty>
+		    <isEmpty property="searchSite">								    							   	 
+		   		VHOUR
+		    </isEmpty>
+		    
+		    ORDER BY 
+			VHOUR ASC
+												
+		</isEqual>
+		
+		<isEqual property="searchCondition" compareValue="2">
+		     SELECT
+		    <isNotEmpty property="searchSite">								        
+		   		SITE
+		   		, BROWSER
+		    </isNotEmpty>
+		    <isEmpty property="searchSite">							   	 
+		   		BROWSER
+		    </isEmpty>
+		   
+			    , SUM(HIT) AS HIT
+			    FROM jnitvisitcount
+			WHERE 1=1 
+			   
+		    <isNotEmpty prepend="AND" property="searchSite">
+				SITE = #searchSite#
+			</isNotEmpty>
+			<isEqual prepend="AND" property="searchTerm" compareValue="1">
+				TO_CHAR(VDATE,'YYYY-MM-DD') = TO_CHAR(#searchDate#,'YYYY-MM-DD')
+			</isEqual>
+			<isEqual prepend="AND" property="searchTerm" compareValue="2">
+				TO_CHAR(VDATE,'YYYY-MM') = TO_CHAR(#searchDate#,'YYYY-MM')
+			</isEqual>
+			<isEqual prepend="AND" property="searchTerm" compareValue="3">
+				TO_CHAR(VDATE,'YYYY') = TO_CHAR(#searchDate#,'YYYY')
+			</isEqual>
+			
+			GROUP BY 
+		    <isNotEmpty property="searchSite">									       								        
+			   		SITE
+			   		, BROWSER
+		    </isNotEmpty>
+		    <isEmpty property="searchSite">									     		   	 
+			   		BROWSER
+		    </isEmpty>
+		    
+		    ORDER BY
+		   	BROWSER ASC																
+		</isEqual>
+		
+		<isEqual property="searchCondition" compareValue="3">
+		     SELECT
+			<isNotEmpty property="searchSite">								        
+		   		SITE
+		   		, USER_OS
+		    </isNotEmpty>
+		    <isEmpty property="searchSite">							   	 
+		   		USER_OS
+		    </isEmpty>
+		    
+			    , SUM(HIT) AS HIT
+			    FROM jnitvisitcount
+			WHERE 1=1 
+			   
+		    <isNotEmpty prepend="AND" property="searchSite">
+				SITE = #searchSite#
+			</isNotEmpty>
+			<isEqual prepend="AND" property="searchTerm" compareValue="1">
+				TO_CHAR(VDATE,'YYYY-MM-DD') = TO_CHAR(#searchDate#,'YYYY-MM-DD')
+			</isEqual>
+			<isEqual prepend="AND" property="searchTerm" compareValue="2">
+				TO_CHAR(VDATE,'YYYY-MM') = TO_CHAR(#searchDate#,'YYYY-MM')
+			</isEqual>
+			<isEqual prepend="AND" property="searchTerm" compareValue="3">
+				TO_CHAR(VDATE,'YYYY') = TO_CHAR(#searchDate#,'YYYY')
+			</isEqual>
+		    
+			GROUP BY
+			<isNotEmpty property="searchSite">								        
+		   		SITE
+		   		, USER_OS
+		    </isNotEmpty>
+		    <isEmpty property="searchSite">							   	 
+		   		USER_OS
+		    </isEmpty>
+		    	
+		    ORDER BY
+		    USER_OS ASC										
+		</isEqual>
+		
+		<isEqual property="searchCondition" compareValue="4">
+		     SELECT
+		    <isNotEmpty property="searchSite">								        
+		   		SITE
+		   		,
+			   	<isEqual property="searchTerm" compareValue="1">
+					TO_CHAR(VDATE,'YYYY-MM-DD') AS VDATE
+				</isEqual>
+				<isEqual property="searchTerm" compareValue="2">
+					TO_CHAR(VDATE,'YYYY-MM-DD') AS VDATE
+				</isEqual>
+				<isEqual property="searchTerm" compareValue="3">
+					TO_CHAR(VDATE,'YYYY') AS VDATE
+				</isEqual>
+		    </isNotEmpty>
+		    <isEmpty property="searchSite">							   	 
+		   		<isEqual property="searchTerm" compareValue="1">
+					TO_CHAR(VDATE,'YYYY-MM-DD') AS VDATE
+				</isEqual>
+				<isEqual property="searchTerm" compareValue="2">
+					TO_CHAR(VDATE,'YYYY-MM-DD') AS VDATE
+				</isEqual>
+				<isEqual property="searchTerm" compareValue="3">
+					TO_CHAR(VDATE,'YYYY') AS VDATE
+				</isEqual>	   		
+		    </isEmpty>	   
+		     
+			    , SUM(HIT) AS HIT
+			    FROM jnitvisitcount
+			WHERE 1=1 
+			
+		    <isNotEmpty prepend="AND" property="searchSite">
+				SITE = #searchSite#
+			</isNotEmpty>
+			<isEqual prepend="AND" property="searchTerm" compareValue="1">
+				TO_CHAR(VDATE,'YYYY-MM-DD') = TO_CHAR(#searchDate#,'YYYY-MM-DD')
+			</isEqual>
+			<isEqual prepend="AND" property="searchTerm" compareValue="2">
+				TO_CHAR(VDATE,'YYYY-MM') = TO_CHAR(#searchDate#,'YYYY-MM')
+			</isEqual>
+			<isEqual prepend="AND" property="searchTerm" compareValue="3">
+				TO_CHAR(VDATE,'YYYY') = TO_CHAR(#searchDate#,'YYYY')
+			</isEqual>
+			
+			GROUP BY
+			
+			<isNotEmpty property="searchSite">								        
+		   		SITE
+		   		, TO_CHAR(VDATE,'YYYY-MM-DD') 
+		    </isNotEmpty>
+		    <isEmpty property="searchSite">							   	 
+		   		TO_CHAR(VDATE,'YYYY-MM-DD') 
+		    </isEmpty>
+		    
+		    ORDER BY
+		    VDATE ASC				    
+		</isEqual>
+		
+		<isEqual property="searchCondition" compareValue="5">
+		     SELECT
+		    <isNotEmpty property="searchSite">								        
+		   		SITE
+		   		, TO_CHAR(VDATE, 'YYYY-MM') AS VDATE
+		    </isNotEmpty>
+		    <isEmpty property="searchSite">							   	 
+		   		TO_CHAR(VDATE, 'YYYY-MM') AS VDATE
+		    </isEmpty>
+		    
+		     <!-- , HIT  -->
+			    , SUM(HIT) AS HIT
+			    FROM jnitvisitcount
+			WHERE 1=1 
+			
+		    <isNotEmpty prepend="AND" property="searchSite">
+				SITE = #searchSite#
+			</isNotEmpty>
+			<isEqual prepend="AND" property="searchTerm" compareValue="1">
+				TO_CHAR(VDATE,'YYYY-MM-DD') = TO_CHAR(#searchDate#,'YYYY-MM-DD')
+			</isEqual>
+			<isEqual prepend="AND" property="searchTerm" compareValue="2">
+				TO_CHAR(VDATE,'YYYY-MM') = TO_CHAR(#searchDate#,'YYYY-MM')
+			</isEqual>
+			<isEqual prepend="AND" property="searchTerm" compareValue="3">
+				TO_CHAR(VDATE,'YYYY') = TO_CHAR(#searchDate#,'YYYY')
+			</isEqual>
+			
+			GROUP BY
+		    <isNotEmpty property="searchSite">								        
+		   		SITE
+		   		, TO_CHAR(VDATE, 'YYYY-MM')
+		    </isNotEmpty>
+		    <isEmpty property="searchSite">							   	 
+		   		TO_CHAR(VDATE, 'YYYY-MM')
+		    </isEmpty>
+		    
+		    ORDER BY
+		    VDATE ASC						    									
+		</isEqual>														
+	</select>	
+</sqlMap>

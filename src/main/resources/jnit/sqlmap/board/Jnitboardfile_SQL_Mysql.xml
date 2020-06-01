@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitboardfile">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitboardfileSerarchVO" type="jnit.board.file.JnitboardfileDefaultVO"/>
+	
+	<resultMap id="jnitboardfile" class="jnit.board.file.JnitboardfileVO">
+		<result property="fileId" column="FILE_ID" columnIndex="1"/>
+		<result property="boardId" column="BOARD_ID" columnIndex="2"/>
+		<result property="boardCntId" column="BOARD_CNT_ID" columnIndex="3"/>
+		<result property="fileUrl" column="FILE_URL" columnIndex="4"/>
+		<result property="filePath" column="FILE_PATH" columnIndex="5"/>
+		<result property="fileNm" column="FILE_NM" columnIndex="6"/>
+		<result property="fileOnm" column="FILE_ONM" columnIndex="7"/>
+		<result property="fileSize" column="FILE_SIZE" columnIndex="8"/>
+		<result property="ismain" column="ISMAIN" columnIndex="9"/>
+		<result property="fileDownloadCount" column="FILE_DOWNLOAD_COUNT" columnIndex="10"/>
+		<result property="ext01" column="EXT01" columnIndex="11"/>
+		<result property="ext02" column="EXT02" columnIndex="12"/>
+		<result property="isdel" column="ISDEL" columnIndex="13"/>		
+	</resultMap>
+	
+	<insert id="jnitboardfileDAO.insertJnitboardfile_S">
+		<![CDATA[
+			INSERT INTO jnitboardfile 
+				( FILE_ID
+				  , BOARD_ID
+				  , BOARD_CNT_ID
+				  , FILE_URL
+				  , FILE_PATH
+				  , FILE_NM
+				  , FILE_ONM
+				  , FILE_SIZE
+				  , ISMAIN
+				  , FILE_DOWNLOAD_COUNT
+				  , EXT01
+				  , EXT02
+				  , ISDEL )
+			VALUES ( #fileId#
+				  , #boardId#
+				  , #boardCntId#
+				  , #fileUrl#
+				  , #filePath#
+				  , #fileNm#
+				  , #fileOnm#
+				  , #fileSize#
+				  , #ismain#
+				  , #fileDownloadCount#
+				  , #ext01#
+				  , #ext02#
+				  , 0 )
+		]]>
+	</insert>
+	
+	<update id="jnitboardfileDAO.updateJnitboardfile_S">
+	    <isEqual property="updateCondition" compareValue="0">
+		<![CDATA[
+			UPDATE jnitboardfile
+			SET FILE_ID=#fileId#
+				, BOARD_ID=#boardId#
+				, BOARD_CNT_ID=#boardCntId#
+				, FILE_URL=#fileUrl#
+				, FILE_PATH=#filePath#
+				, FILE_NM=#fileNm#
+				, FILE_ONM=#fileOnm#
+				, FILE_SIZE=#fileSize#
+				, ISMAIN=#ismain#
+				, FILE_DOWNLOAD_COUNT=#fileDownloadCount#
+				, EXT01=#ext01#
+				, EXT02=#ext02#
+                WHERE FILE_ID=#fileId#
+		]]>
+	    </isEqual>
+	    <isEqual property="updateCondition" compareValue="1">
+		<![CDATA[
+			UPDATE jnitboardfile
+			SET FILE_DOWNLOAD_COUNT=#fileDownloadCount#
+                WHERE FILE_ID=#fileId#
+		]]>
+	    </isEqual>
+	    <isEqual property="updateCondition" compareValue="2">
+		<![CDATA[
+			UPDATE jnitboardfile
+			SET EXT01=#ext01#
+                WHERE FILE_ID=#fileId#
+		]]>
+	    </isEqual>
+	</update>
+	
+	<delete id="jnitboardfileDAO.deleteJnitboardfile_S">
+    	<isEqual property="isdelYn" compareValue="N">
+    		DELETE FROM jnitboardfile
+	    	<isEqual property="deleteCondition" compareValue="0">
+	    	    WHERE FILE_ID=#fileId#
+	    	</isEqual>
+    		<isEqual property="deleteCondition" compareValue="1">
+    		    WHERE BOARD_ID=#boardId#
+    		    AND BOARD_CNT_ID=#boardCntId# 
+    		</isEqual> 
+    	</isEqual>
+    	<isEqual property="isdelYn" compareValue="Y">		
+		UPDATE jnitboardfile			  
+		<![CDATA[	
+			SET ISDEL=1
+                WHERE FILE_ID=#fileId#
+		]]>
+		</isEqual>
+	</delete>
+	<delete id="jnitboardfileDAO.deleteJnitboardfile_board">
+		<![CDATA[
+			DELETE FROM jnitboardfile
+                WHERE BOARD_ID=#boardId#
+		]]>
+	</delete>
+	<delete id="jnitboardfileDAO.deleteJnitboardfile_Wyswyg">
+		<![CDATA[
+			UPDATE jnitboardfile
+			SET ISDEL=1
+                WHERE BOARD_ID=#boardId#
+                	AND BOARD_CNT_ID=#boardCntId#
+		]]>
+	</delete>
+	
+	<select id="jnitboardfileDAO.selectJnitboardfile_S" resultMap="jnitboardfile">
+		<![CDATA[
+			SELECT
+				FILE_ID
+				, BOARD_ID
+				, BOARD_CNT_ID
+				, FILE_URL
+				, FILE_PATH
+				, FILE_NM
+				, FILE_ONM
+				, FILE_SIZE
+				, ISMAIN
+				, FILE_DOWNLOAD_COUNT
+				, EXT01
+				, EXT02
+				, ISDEL
+			FROM jnitboardfile
+                WHERE FILE_ID=#fileId#
+		]]>
+	</select>
+	
+	<select id="jnitboardfileDAO.selectJnitboardfileMain_S" resultMap="jnitboardfile">
+		<![CDATA[
+			SELECT
+				FILE_ID
+				, BOARD_ID
+				, BOARD_CNT_ID
+				, FILE_URL
+				, FILE_PATH
+				, FILE_NM
+				, FILE_ONM
+				, FILE_SIZE
+				, ISMAIN
+				, FILE_DOWNLOAD_COUNT
+				, EXT01
+				, EXT02
+				, ISDEL
+			FROM jnitboardfile
+                WHERE BOARD_ID = #boardId# AND BOARD_CNT_ID = #boardCntId# AND ISMAIN=1 AND ISDEL=0
+		]]>
+	</select>
+	
+	<select id="jnitboardfileDAO.selectJnitboardfileList_D" parameterClass="jnitboardfileSerarchVO" resultClass="egovMap">
+			SELECT
+								FILE_ID
+								, BOARD_ID
+								, BOARD_CNT_ID
+								, FILE_URL
+								, FILE_PATH
+								, FILE_NM
+								, FILE_ONM
+								, FILE_SIZE
+								, ISMAIN
+								, FILE_DOWNLOAD_COUNT
+								, EXT01
+								, EXT02
+								, ISDEL
+					FROM jnitboardfile
+			WHERE 1=1
+			<isEqual prepend="AND" property="isdelYn" compareValue="Y">
+			    ISDEL = 0
+			</isEqual>
+			<isEqual prepend="AND" property="boardIdYn" compareValue="Y">
+			    BOARD_ID=#boardId#
+			</isEqual>
+			<isEqual prepend="AND" property="boardCntIdYn" compareValue="Y">
+			    BOARD_CNT_ID=#boardCntId#
+			</isEqual>
+			<isEqual prepend="AND" property="mainFileYn" compareValue="Y">
+			    ISMAIN = 1
+			</isEqual>	
+			<isEqual prepend="AND" property="mainFileYn" compareValue="N">
+			    ISMAIN != 1
+			</isEqual>			
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				FILE_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				BOARD_ID LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				BOARD_ID=#boardId#
+				AND BOARD_CNT_ID=#boardCntId#
+			</isEqual>
+				ORDER BY 
+                ISMAIN ASC, FILE_ID ASC
+	</select>
+	<select id="jnitboardfileDAO.selectfileList_D" resultClass="egovMap">
+			SELECT
+								FILE_ID
+								, BOARD_ID
+								, BOARD_CNT_ID
+								, FILE_URL
+								, FILE_PATH
+								, FILE_NM
+								, FILE_ONM
+								, FILE_SIZE
+								, ISMAIN
+								, FILE_DOWNLOAD_COUNT
+								, EXT01
+								, EXT02
+								, ISDEL
+					FROM jnitboardfile
+			WHERE ISDEL = 0
+			<isNotEmpty prepend="AND" property="boardId">
+				BOARD_ID = #boardId#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="boardCntId">
+				BOARD_CNT_ID = #boardCntId#
+			</isNotEmpty>
+				ORDER BY 
+                ISMAIN ASC
+	</select>	
+	<select id="jnitboardfileDAO.selectJnitboardfileListTotCnt_S" parameterClass="jnitboardfileSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM jnitboardfile
+			WHERE 1=1			
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				FILE_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				BOARD_ID LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+	</select>
+	<select id="jnitboardfileDAO.getLastIdJnitboardfile_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITBOARDFILE_ID'
+	</select>
+
+</sqlMap>

@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="travelDestinationDAO">
+
+	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias alias="travelDestinationVO" type="geocni.travel.route.domain.TravelDestination" />
+	<typeAlias alias="travelFiles" type="geocni.travel.common.files.domain.TravelFiles" />
+
+	<resultMap id="travelDestinationMin" class="geocni.travel.route.domain.TravelDestination">
+		<result property="destId" column="dest_id" />
+		<result property="destTitle" column="dest_title" />
+		<result property="destAdSlogan" column="dest_ad_slogan" />
+		<result property="destRegion" column="dest_region" />
+		<result property="destCategory" column="dest_category" />
+		<result property="destTag" column="dest_tag" />
+		<result property="destWebsiteUrl" column="dest_website_url" />
+		<result property="destImgPath" column="dest_img_path" />
+		<result property="destPhone" column="dest_phone" />
+		<result property="destAddress" column="dest_address" />
+		<result property="destAxisX" column="dest_axis_x" />
+		<result property="destAxisY" column="dest_axis_y" />
+		<result property="destInformation" column="dest_information" />
+		<result property="destSeason" column="dest_season" />
+		<result property="destFeature" column="dest_feature" />
+		<result property="destDescription" column="dest_description" />
+		<result property="destRegDatetime" column="dest_reg_datetime" />
+        <result property="travelFileList" column="dest_id" select="travelDestinationDAO.selectTravelFilesList" ></result>
+	</resultMap>
+
+	<resultMap id="travelDestinationMax" class="geocni.travel.route.domain.TravelDestination" extends="travelDestinationMin">
+		<result property="destRecommPoint" column="dest_recomm_point" />
+		<result property="destClipPoint" column="dest_clip_point" />
+		<result property="destWriter" column="dest_writer" />
+		<result property="destHit" column="dest_hit" />
+		<result property="myRecommCount" column="my_recomm_count" />
+		<result property="myClipCount" column="my_clip_count" />
+	</resultMap>
+
+	<select id="travelDestinationDAO.selectTravelFilesList" resultClass="travelFiles">
+		<![CDATA[
+			SELECT
+				  a.img_ref_id AS imgRefId
+				, a.img_file_no AS imgFileNo
+				, a.img_file_name AS imgFileName
+				, a.img_file_path AS imgFilePath
+				, a.img_file_size AS imgFileSize
+				, a.img_file_ext AS imgFileExt
+				, a.img_created_at AS imgCreatedAt
+			FROM geo_img_files a
+			WHERE img_ref_id=#destId#
+			ORDER BY img_ref_id, img_file_no
+		]]>
+	</select>	
+	
+	<select id="travelDestinationDAO.selectRecoDestinationlist"  parameterClass="travelDestinationVO" resultClass="egovMap">
+		<![CDATA[
+			SELECT
+				 dest_id
+				, dest_region	  
+				, dest_title
+				, dest_recomm_point
+				, dest_img_path
+			FROM geo_destination
+			order by dest_recomm_point desc limit 4
+		]]>
+	</select>
+		
+	<insert id="travelDestinationDAO.insertTravelDestination">
+		<![CDATA[
+			INSERT INTO geo_destination ( 
+				  dest_id
+				, dest_title
+				, dest_ad_slogan
+				, dest_region
+				, dest_category
+				, dest_tag
+				, dest_website_url
+				, dest_img_path
+				, dest_phone
+				, dest_address
+				, dest_axis_x
+				, dest_axis_y
+				, dest_information
+				, dest_description
+				, dest_feature
+				, dest_season
+		]]>
+				<!-- 
+				, dest_location_axis
+				, dest_vicinity 
+				-->
+		<![CDATA[
+				, dest_recomm_point
+				, dest_clip_point
+				, dest_writer
+				, dest_reg_datetime
+			) VALUES ( 
+				  #destId#
+				, #destTitle#
+				, #destAdSlogan#
+				, #destRegion#
+				, #destCategory#
+				, #destTag#
+				, #destWebsiteUrl#
+				, #destImgPath#
+				, #destPhone#
+				, #destAddress#
+				, #destAxisX#
+				, #destAxisY#
+				, #destInformation#
+				, #destDescription#
+				, #destFeature#
+				, #destSeason#
+				, #destRecommPoint#
+				, #destClipPoint#
+				, #destWriter#
+				, NOW()
+			)
+		]]>
+	</insert>
+	
+	<update id="travelDestinationDAO.updateTravelDestination">
+		<![CDATA[
+			UPDATE geo_destination
+			SET 
+				  dest_title=#destTitle#
+				, dest_ad_slogan=#destAdSlogan#
+				, dest_region=#destRegion#
+				, dest_category=#destCategory#
+				, dest_tag=#destTag#
+				, dest_website_url=#destWebsiteUrl#
+				, dest_img_path=#destImgPath#
+				, dest_phone=#destPhone#
+				, dest_address=#destAddress#
+				, dest_axis_x=#destAxisX#
+				, dest_axis_y=#destAxisY#
+				, dest_information=#destInformation#
+				, dest_season=#destSeason#
+		]]>
+				<!-- 
+				, dest_description=#destDescription#
+				, dest_feature=#destFeature#
+				, dest_recomm_point=#destRecommPoint#
+				, dest_clip_point=#destClipPoint#
+				, dest_writer=#destWriter# 
+				-->
+		<![CDATA[
+			WHERE dest_id=#destId#
+		]]>
+	</update>
+	
+	<update id="travelDestinationDAO.updateTravelDestinationStatPoint">
+		<![CDATA[
+			UPDATE geo_destination SET 
+		]]>
+		<dynamic>
+			<isEqual property="searchCondition" compareValue="1">
+			<![CDATA[	dest_recomm_point=(dest_recomm_point + 1)	]]>
+			</isEqual>
+			<isEqual property="searchCondition" compareValue="2">
+			<![CDATA[	dest_clip_point=(dest_clip_point + 1)	]]>
+			</isEqual>
+		</dynamic>
+		<![CDATA[
+			WHERE dest_id=#destId#
+		]]>
+	</update>
+	
+	<delete id="travelDestinationDAO.deleteTravelDestinationPhysically">
+	    <![CDATA[
+			DELETE FROM geo_destination
+            WHERE dest_id=#destId#
+		]]>
+	</delete>
+	
+	<select id="travelDestinationDAO.selectTravelDestinationDetail" resultMap="travelDestinationMin">
+		<![CDATA[
+			SELECT
+				  dest_id
+				, dest_title
+				, dest_ad_slogan
+				, dest_region
+				, dest_category
+				, dest_tag
+				, dest_website_url
+				, dest_img_path
+				, dest_phone
+				, dest_address
+				, dest_axis_x
+				, dest_axis_y
+				, dest_information
+				, dest_season
+				, dest_feature
+				, dest_description
+				, dest_reg_datetime
+			FROM geo_destination
+			WHERE dest_id=#destId#
+		]]>
+	</select>
+	
+	<select id="travelDestinationDAO.selectTravelDestination" resultMap="travelDestinationMax" remapResults="true">
+		<![CDATA[
+			SELECT
+				  dest_id
+				, dest_title
+				, dest_ad_slogan
+				, dest_region
+				, dest_category
+				, dest_tag
+				, dest_website_url
+				, dest_img_path
+				, dest_phone
+				, dest_address
+				, dest_axis_x
+				, dest_axis_y
+				, dest_information
+				, dest_season
+				, dest_feature
+				, dest_description
+				, dest_recomm_point
+				, dest_clip_point
+				, dest_writer
+				, dest_reg_datetime
+				, dest_hit
+		]]>
+			<isEmpty property="destUserId">
+		<![CDATA[
+				, 0 AS my_recomm_count
+				, 0 AS my_clip_count
+		]]>
+			</isEmpty>
+		<![CDATA[
+		]]>
+			<isNotEmpty property="destUserId">
+		<![CDATA[
+				, (SELECT COUNT(*) FROM geo_reaction WHERE rxn_target_id=a.dest_id AND rxn_user_id=#destUserId# AND rxn_type='LIKE') AS my_recomm_count
+				, (SELECT COUNT(*) FROM geo_clipboard WHERE clip_page_id=a.dest_id AND clip_user_id=#destUserId#) AS my_clip_count
+		]]>
+			</isNotEmpty>
+		<![CDATA[
+			FROM geo_destination a
+			WHERE dest_id=#destId#
+		]]>
+	</select>
+	
+	<sql id="travelDestinationDAO.travelDestinationWhereClause">
+		<isNotEmpty property="destRegion" prepend="AND">
+			<![CDATA[	a.dest_region = #destRegion#	]]>
+		</isNotEmpty>
+		<isNotEmpty property="destCategory" prepend="AND">
+			<![CDATA[	a.dest_category = #destCategory#	]]>
+		</isNotEmpty>
+		<isNotEmpty property="searchKeyword" prepend="AND">
+			<![CDATA[	a.dest_title LIKE CONCAT('%',#searchKeyword#,'%')	]]>
+		</isNotEmpty>
+		<isNotEmpty property="destTagList" prepend="AND">
+			<![CDATA[	a.dest_tag IN	]]>
+			<iterate property="destTagList" conjunction="," open="(" close=")">
+				<![CDATA[	#destTagList[]# ]]>
+			</iterate>
+		</isNotEmpty>
+		<!-- 
+		<isEqual prepend="AND" property="searchCondition" compareValue="0">
+			dest_region = #searchKeyword#
+		</isEqual>
+		<isEqual prepend="AND" property="searchCondition" compareValue="1">
+			BOARD_ID LIKE CONCAT('%',#searchKeyword#,'%')
+		</isEqual>
+		<isEqual prepend="AND" property="searchCondition" compareValue="2">
+			BOARD_ID = #cmtBoardId# AND BOARD_CNT_ID = #cmtBoardCntId#
+		</isEqual> 
+		--> 
+	</sql>
+	
+	<select id="travelDestinationDAO.selectTravelDestinationList" parameterClass="travelDestinationVO" resultMap="travelDestinationMax" remapResults="true">
+		<![CDATA[
+			SELECT
+				  dest_id
+				, dest_title
+				, dest_ad_slogan
+				, dest_region
+				, dest_category
+				, dest_tag
+				, dest_website_url
+				, dest_img_path
+				, dest_phone
+				, dest_address
+				, dest_axis_x
+				, dest_axis_y
+				, dest_information
+				, dest_season
+				, dest_feature
+				, dest_description
+				, dest_recomm_point
+				, dest_clip_point
+				, dest_writer
+				, dest_reg_datetime
+				, dest_hit
+		]]>
+			<isEmpty property="destUserId">
+		<![CDATA[
+				, 0 AS my_recomm_count
+				, 0 AS my_clip_count
+		]]>
+			</isEmpty>
+		<![CDATA[
+		]]>
+			<isNotEmpty property="destUserId">
+		<![CDATA[
+				, (SELECT COUNT(*) FROM geo_reaction WHERE rxn_target_id=a.dest_id AND rxn_user_id=#destUserId# AND rxn_type='LIKE') AS my_recomm_count
+				, (SELECT COUNT(*) FROM geo_clipboard WHERE clip_page_id=a.dest_id AND clip_user_id=#destUserId#) AS my_clip_count
+		]]>
+			</isNotEmpty>
+		<![CDATA[
+			FROM geo_destination a
+			WHERE 1=1
+		]]>
+			<include refid="travelDestinationDAO.travelDestinationWhereClause" />
+		<![CDATA[
+			ORDER BY dest_reg_datetime DESC, dest_id DESC
+            LIMIT #firstIndex#, #recordCountPerPage#
+		]]>
+	</select>	
+	
+	
+	
+	
+	
+	
+	
+	<select id="travelDestinationDAO.selectTravelDestinationListCnt" parameterClass="travelDestinationVO" resultClass="int">
+		<![CDATA[
+			SELECT 
+				COUNT(*) totcnt
+			FROM geo_destination a
+			WHERE 1=1
+		]]>
+			<include refid="travelDestinationDAO.travelDestinationWhereClause" />
+	</select>
+
+	<select id="travelDestinationDAO.selectTravelDestinationRegionList" parameterClass="travelDestinationVO" resultClass="travelDestinationVO">
+		<![CDATA[
+			SELECT DISTINCT dest_region AS destRegion FROM geo_destination WHERE dest_region IS NOT NULL AND dest_region <> '' ORDER BY dest_region
+		]]>
+	</select>	
+
+	<select id="travelDestinationDAO.selectTravelDestinationNearPointList" parameterClass="travelDestinationVO" resultClass="travelDestinationVO">
+		<![CDATA[
+			SELECT TA.* FROM (
+				SELECT
+					  dest_id AS destId 
+					, dest_title AS destTitle
+					, dest_axis_x AS destAxisX
+					, dest_axis_y AS destAxisY
+					, dest_region AS destRegion
+					, ST_DISTANCE(POINT(#destAxisX#, #destAxisY#), POINT(dest_axis_x, dest_axis_y)) * 111195 AS distance
+				FROM geo_destination
+				where 1=1
+			 		AND dest_region=#destRegion#
+			 		AND dest_category=#destCategory#
+					AND dest_axis_x is not null AND dest_axis_x <> '' AND dest_axis_x <> 0
+					AND dest_axis_y is not null AND dest_axis_y <> '' AND dest_axis_y <> 0
+				ORDER BY distance
+			) TA
+			WHERE 1=1
+			    and TA.distance > 0
+			    and TA.distance <= #distance#
+			ORDER BY TA.distance ASC
+			LIMIT #recordCountPerPage#
+		]]>
+	</select>	
+
+	<select id="travelDestinationDAO.selectTravelDestiCategoryList" parameterClass="java.util.List" resultClass="java.util.HashMap">
+		<![CDATA[
+			SELECT 
+				dest_category, dest_tag 
+			FROM geo_destination 
+				WHERE dest_category IN 
+		]]>
+			<!-- <iterate conjunction="," open="(" close=")" property="searchCatList" > -->
+			<iterate conjunction="," open="(" close=")">
+				<![CDATA[	#searchCatList[]# ]]>
+			</iterate>
+		<![CDATA[
+			GROUP BY dest_category, dest_tag 
+				HAVING dest_tag IS NOT NULL
+		]]>
+	</select>	
+
+	<select id="travelDestinationDAO.selectTravelDestinationStats" parameterClass="travelDestinationVO" resultMap="travelDestinationMin">
+		<![CDATA[
+			SELECT 
+				  tbl2.dest_id
+				, tbl2.dest_title
+				, tbl2.dest_ad_slogan
+				, tbl2.dest_region
+				, tbl2.dest_category
+				, tbl2.dest_tag
+				, tbl2.dest_website_url
+				, tbl2.dest_img_path
+				, tbl2.dest_phone
+				, tbl2.dest_address
+				, tbl2.dest_axis_x
+				, tbl2.dest_axis_y
+				, tbl2.dest_information
+				, tbl2.dest_season
+				, tbl2.dest_feature
+				, tbl2.dest_description
+				, tbl2.dest_reg_datetime
+		]]>
+				<!-- 
+				, tbl2.dest_writer AS destWriter
+				, tbl2.dest_website_url AS destWebsiteUrl
+				, tbl2.dest_phone AS destPhone
+				, tbl2.dest_address AS destAddress
+				, tbl2.dest_axis_x AS destAxisX
+				, tbl2.dest_axis_y AS destAxisY
+				, tbl2.dest_feature AS destFeature
+				-->
+				<!-- , tbl.reco_count -->
+		<![CDATA[
+			FROM (
+			    SELECT 
+			    	ta.dest_id, ta.reco_count 
+			    FROM (
+		            SELECT
+		                 a.dest_id
+		                ,a.dest_recomm_point
+		                ,a.dest_clip_point
+		                ,(a.dest_recomm_point + a.dest_clip_point) AS reco_count
+		            FROM geo_destination a
+		            WHERE 1=1
+		]]>
+					<isNotEmpty property="destRegion" prepend="AND">
+						<![CDATA[	a.dest_region = #destRegion#	]]>
+					</isNotEmpty>
+					<isNotEmpty property="destSeason" prepend="AND">
+						<![CDATA[	a.dest_season LIKE CONCAT('%',#destSeason#,'%')	]]>
+					</isNotEmpty>
+		<![CDATA[
+		            ORDER BY reco_count DESC
+		        ) ta
+		        WHERE reco_count > 0
+		    ) tbl
+			LEFT JOIN geo_destination tbl2 ON tbl.dest_id=tbl2.dest_id
+			ORDER BY tbl.reco_count DESC
+			LIMIT #recordCountPerPage#
+		]]>
+	</select>	
+
+</sqlMap>

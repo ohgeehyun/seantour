@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE form-validation PUBLIC 
+    "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1//EN" 
+    "http://jakarta.apache.org/commons/dtds/validator_1_1.dtd">
+
+<form-validation>
+
+    <formset>
+		<form name="jnitcultstayVO">
+			<field property="stayNm" depends="required">
+        		<arg0 key="숙박 명칭" />
+			</field>
+
+			<field property="areaId" depends="required">
+        		<arg0 key="지역 정보" />
+			</field>
+			
+			<field property="zoneId" depends="required">
+        		<arg0 key="권역 정보" />
+			</field>
+			
+			<field property="originId" depends="required">
+        		<arg0 key="출처 정보" />
+			</field>
+			
+			<field property="stayEmail" depends="email">
+        		<arg0 key="이메일" />
+			</field>
+		</form>
+    </formset>
+
+</form-validation>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitboardcmt">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitboardcmtSerarchVO" type="jnit.board.cmt.JnitboardcmtDefaultVO"/>
+
+	<resultMap id="jnitboardcmt" class="jnit.board.cmt.JnitboardcmtVO">
+		<result property="cmtId" column="CMT_ID" columnIndex="1"/>
+		<result property="boardId" column="BOARD_ID" columnIndex="2"/>
+		<result property="boardCntId" column="BOARD_CNT_ID" columnIndex="3"/>
+		<result property="cmtText" column="CMT_TEXT" columnIndex="4"/>
+		<result property="mbrId" column="MBR_ID" columnIndex="5"/>
+		<result property="created" column="CREATED" columnIndex="6"/>
+		<result property="modified" column="MODIFIED" columnIndex="7"/>
+		<result property="isdel" column="ISDEL" columnIndex="8"/>
+	</resultMap>
+
+	<insert id="jnitboardcmtDAO.insertJnitboardcmt_S">
+		<![CDATA[
+			INSERT INTO jnitboardcmt
+				( CMT_ID
+				  , BOARD_ID
+				  , BOARD_CNT_ID
+				  , CMT_TEXT
+				  , MBR_ID
+				  , CREATED
+				  , MODIFIED
+				  , ISDEL )
+			VALUES ( #cmtId#
+				  , #boardId#
+				  , #boardCntId#
+				  , #cmtText#
+				  , #mbrId#
+				  , SYSDATE
+				  , SYSDATE
+				  , 0 )
+		]]>
+	</insert>
+
+	<update id="jnitboardcmtDAO.updateJnitboardcmt_S">
+	    UPDATE jnitboardcmt
+			<isEqual property="updateCondition" compareValue="0">
+			<![CDATA[
+			SET CMT_ID=#cmtId#
+				, BOARD_ID=#boardId#
+				, BOARD_CNT_ID=#boardCntId#
+				, CMT_TEXT=#cmtText#
+				, MODIFIED=SYSDATE
+                WHERE CMT_ID=#cmtId#
+			]]>
+			</isEqual>
+			<isEqual property="updateCondition" compareValue="1">
+			<![CDATA[
+			SET  CMT_TEXT=#cmtText#
+                WHERE CMT_ID=#cmtId#
+			]]>
+			</isEqual>
+	</update>
+
+	<delete id="jnitboardcmtDAO.deleteJnitboardcmt_S">
+	    <isEqual property="isdelYn" compareValue="N">
+	    <![CDATA[
+			DELETE FROM jnitboardcmt
+            WHERE CMT_ID=#cmtId#
+		]]>
+	    </isEqual>
+	    <isEqual property="isdelYn" compareValue="Y">
+	    <![CDATA[
+			UPDATE jnitboardcmt
+			SET ISDEL=1
+                WHERE CMT_ID=#cmtId#
+		]]>
+	    </isEqual>
+	</delete>
+
+	<select id="jnitboardcmtDAO.selectJnitboardcmt_S" resultMap="jnitboardcmt">
+		<![CDATA[
+			SELECT
+				CMT_ID
+				, BOARD_ID
+				, BOARD_CNT_ID
+				,( TO_CLOB(DBMS_LOB.SUBSTR(CMT_TEXT,2000,1))
+						|| TO_CLOB(DBMS_LOB.SUBSTR(CMT_TEXT,2000,2001))
+						|| TO_CLOB(DBMS_LOB.SUBSTR(CMT_TEXT,2000,4001))
+						|| TO_CLOB(DBMS_LOB.SUBSTR(CMT_TEXT,2000,6001))
+						|| TO_CLOB(DBMS_LOB.SUBSTR(CMT_TEXT,2000,8001))
+						|| TO_CLOB(DBMS_LOB.SUBSTR(CMT_TEXT,2000,10001))
+						|| TO_CLOB(DBMS_LOB.SUBSTR(CMT_TEXT,2000,12001))
+					)AS CMT_TEXT
+				, MBR_ID
+				, CREATED
+				, MODIFIED
+				, ISDEL
+			FROM jnitboardcmt
+                WHERE CMT_ID=#cmtId#
+		]]>
+	</select>
+
+	<select id="jnitboardcmtDAO.selectJnitboardcmtList_D" parameterClass="jnitboardcmtSerarchVO" resultClass="egovMap">
+			SELECT
+								a.CMT_ID
+								, a.BOARD_ID
+								, a.BOARD_CNT_ID
+								,( TO_CLOB(DBMS_LOB.SUBSTR(a.CMT_TEXT,2000,1))
+						|| TO_CLOB(DBMS_LOB.SUBSTR(a.CMT_TEXT,2000,2001))
+						|| TO_CLOB(DBMS_LOB.SUBSTR(a.CMT_TEXT,2000,4001))
+						|| TO_CLOB(DBMS_LOB.SUBSTR(a.CMT_TEXT,2000,6001))
+						|| TO_CLOB(DBMS_LOB.SUBSTR(a.CMT_TEXT,2000,8001))
+						|| TO_CLOB(DBMS_LOB.SUBSTR(a.CMT_TEXT,2000,10001))
+						|| TO_CLOB(DBMS_LOB.SUBSTR(a.CMT_TEXT,2000,12001))
+					)AS CMT_TEXT
+								, a.MBR_ID
+								, TO_CHAR(a.CREATED,'YYYY-MM-DD hh24:mi:ss') AS CREATED
+								, TO_CHAR(a.MODIFIED,'YYYY-MM-DD hh24:mi:ss') AS MODIFIED
+								, a.ISDEL
+								, b.MBR_NM
+					FROM jnitboardcmt a, jnitcmsmbr b
+			WHERE a.ISDEL = 0 AND a.MBR_ID = b.MBR_ID
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				CMT_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				BOARD_ID LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				BOARD_ID = #cmtBoardId# AND BOARD_CNT_ID = #cmtBoardCntId#
+			</isEqual>
+				ORDER BY
+                CMT_ID ASC
+	</select>
+	<select id="jnitboardcmtDAO.selectJnitboardcmtListTotCnt_S" parameterClass="jnitboardcmtSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM jnitboardcmt
+			WHERE ISDEL=0
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				CMT_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				BOARD_ID LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				BOARD_ID = #cmtBoardId# AND BOARD_CNT_ID = #cmtBoardCntId#
+			</isEqual>
+	</select>
+	<select id="jnitboardcmtDAO.getLastIdJnitboardcmt_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITBOARDCMT_ID'
+	</select>
+
+</sqlMap>

@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitrscpage">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitrscpageSerarchVO" type="jnit.rsc.page.JnitrscpageDefaultVO"/>
+	
+	<resultMap id="jnitrscpage" class="jnit.rsc.page.JnitrscpageVO">
+		<result property="rscpId" column="RSCP_ID" columnIndex="1"/>
+		<result property="siteId" column="SITE_ID" columnIndex="2"/>
+		<result property="menuId" column="MENU_ID" columnIndex="3"/>
+		<result property="pageUrl" column="PAGE_URL" columnIndex="4"/>
+		<result property="pageView" column="PAGE_VIEW" columnIndex="5"/>
+		<result property="hit1" column="HIT1" columnIndex="6"/>
+		<result property="hit2" column="HIT2" columnIndex="7"/>
+		<result property="hit3" column="HIT3" columnIndex="8"/>
+		<result property="hit4" column="HIT4" columnIndex="9"/>
+		<result property="hit5" column="HIT5" columnIndex="10"/>
+	</resultMap>
+	
+	<resultMap id="jnitrscpageViewVO" class="jnit.rsc.page.JnitrscpageViewVO">
+		<result property="mbrId" column="MBR_ID" columnIndex="1"/>
+		<result property="mbrLogin" column="MBR_LOGIN" columnIndex="2"/>
+		<result property="orgId" column="ORG_ID" columnIndex="3"/>
+		<result property="posId" column="POS_ID" columnIndex="4"/>
+		<result property="mbrNm" column="MBR_NM" columnIndex="5"/>
+		<result property="mbrPhoto" column="MBR_PHOTO" columnIndex="6"/>
+		<result property="passwd" column="PASSWD" columnIndex="7"/>
+		<result property="typeId" column="TYPE_ID" columnIndex="8"/>
+		<result property="tel" column="TEL" columnIndex="9"/>
+		<result property="mobile" column="MOBILE" columnIndex="10"/>
+		<result property="email" column="EMAIL" columnIndex="11"/>
+		<result property="sn" column="SN" columnIndex="12"/>
+		<result property="dp" column="DP" columnIndex="13"/>
+		<result property="mbrIsdel" column="MBR_ISDEL" columnIndex="14"/>
+		<result property="homepage" column="HOMEPAGE" columnIndex="15"/>
+		<result property="postcode" column="POSTCODE" columnIndex="16"/>
+		<result property="address" column="ADDRESS" columnIndex="17"/>
+		<result property="emailRecv" column="EMAIL_RECV" columnIndex="18"/>
+		<result property="smsRecv" column="SMS_RECV" columnIndex="19"/>
+		<result property="establishment" column="ESTABLISHMENT" columnIndex="20"/>
+		<result property="corporation" column="CORPORATION" columnIndex="21"/>
+		<result property="primaryKey" column="PRIMARY_KEY" columnIndex="22"/>
+		<result property="mutual" column="MUTUAL" columnIndex="23"/>
+		<result property="corporateName" column="CORPORATE_NAME" columnIndex="24"/>
+		<result property="groupName" column="GROUP_NAME" columnIndex="25"/>
+		<result property="businessPlace" column="BUSINESS_PLACE" columnIndex="26"/>
+		<result property="businessAddr" column="BUSINESS_ADDR" columnIndex="27"/>
+		<result property="groupKind" column="GROUP_KIND" columnIndex="28"/>
+		<result property="groupTel" column="GROUP_TEL" columnIndex="29"/>
+		<result property="groupPax" column="GROUP_PAX" columnIndex="30"/>
+		<result property="groupType" column="GROUP_TYPE" columnIndex="31"/>
+		<result property="grpConfirm" column="GRP_CONFIRM" columnIndex="32"/>
+		<result property="siteId" column="SITE_ID" columnIndex="33"/>
+		<result property="menuId" column="MENU_ID" columnIndex="34"/>
+		<result property="menuNm" column="MENU_NM" columnIndex="35"/>
+		<result property="menuPath" column="MENU_PATH" columnIndex="36"/>
+		<result property="pid" column="PID" columnIndex="37"/>
+		<result property="depth" column="DEPTH" columnIndex="38"/>
+		<result property="method" column="METHOD" columnIndex="39"/>
+		<result property="islink" column="ISLINK" columnIndex="40"/>
+		<result property="iscnt" column="ISCNT" columnIndex="41"/>
+		<result property="linkurl" column="LINKURL" columnIndex="42"/>
+		<result property="linktgt" column="LINKTGT" columnIndex="43"/>
+		<result property="tplId" column="TPL_ID" columnIndex="44"/>
+		<result property="cntId" column="CNT_ID" columnIndex="45"/>
+		<result property="defMenu" column="DEF_MENU" columnIndex="46"/>
+		<result property="menuImgFile" column="MENU_IMG_FILE" columnIndex="47"/>
+		<result property="menuImgPath" column="MENU_IMG_PATH" columnIndex="48"/>
+		<result property="menuImgOnm" column="MENU_IMG_ONM" columnIndex="49"/>
+		<result property="menuImgUrl" column="MENU_IMG_URL" columnIndex="50"/>
+		<result property="admMbrId" column="ADM_MBR_ID" columnIndex="51"/>
+		<result property="active" column="ACTIVE" columnIndex="52"/>
+		<result property="ccl" column="CCL" columnIndex="53"/>
+		<result property="menuIsdel" column="MENU_ISDEL" columnIndex="54"/>
+		<result property="orgId" column="ORG_ID" columnIndex="55"/>
+		<result property="orgNm" column="ORG_NM" columnIndex="56"/>
+		<result property="orgIsdel" column="ORG_ISDEL" columnIndex="57"/>
+		<result property="posId" column="POS_ID" columnIndex="58"/>
+		<result property="posNm" column="POS_NM" columnIndex="59"/>
+		<result property="posLv" column="POS_LV" columnIndex="60"/>
+		<result property="posIsdel" column="POS_ISDEL" columnIndex="61"/>
+		<result property="mbrTypeId" column="MBR_TYPE_ID" columnIndex="62"/>
+		<result property="mbrTypeNm" column="MBR_TYPE_NM" columnIndex="63"/>
+		<result property="mbrTypeLv" column="MBR_TYPE_LV" columnIndex="64"/>
+	</resultMap>
+	
+	<insert id="jnitrscpageDAO.insertJnitrscpage_S">
+		<![CDATA[
+			INSERT INTO jnitrscpage 
+				( RSCP_ID
+				  , SITE_ID
+				  , MENU_ID
+				  , PAGE_URL
+				  , PAGE_VIEW
+				  , HIT1
+				  , HIT2
+				  , HIT3
+				  , HIT4
+				  , HIT5 )
+			VALUES ( #rscpId#
+				  , #siteId#
+				  , #menuId#
+				  , #pageUrl#
+				  , #pageView#
+				  , #hit1#
+				  , #hit2#
+				  , #hit3#
+				  , #hit4#
+				  , #hit5# )
+		]]>
+	</insert>
+	
+	<update id="jnitrscpageDAO.updateJnitrscpage_S">
+		<![CDATA[
+			UPDATE jnitrscpage
+			SET RSCP_ID=#rscpId#
+				, SITE_ID=#siteId#
+				, MENU_ID=#menuId#
+				, PAGE_URL=#pageUrl#
+				, PAGE_VIEW=#pageView#
+				, HIT1=#hit1#
+				, HIT2=#hit2#
+				, HIT3=#hit3#
+				, HIT4=#hit4#
+				, HIT5=#hit5#
+                WHERE RSCP_ID=#rscpId#
+		]]>
+	</update>
+	
+	<delete id="jnitrscpageDAO.deleteJnitrscpage_S">
+		<![CDATA[
+			DELETE FROM jnitrscpage 
+                WHERE RSCP_ID=#rscpId#
+		]]>
+	</delete>
+	
+	<select id="jnitrscpageDAO.selectJnitrscpage_S" resultMap="jnitrscpage">
+		<![CDATA[
+			SELECT
+				RSCP_ID
+				, SITE_ID
+				, MENU_ID
+				, PAGE_URL
+				, PAGE_VIEW
+				, HIT1
+				, HIT2
+				, HIT3
+				, HIT4
+				, HIT5
+			FROM jnitrscpage
+                WHERE RSCP_ID=#rscpId#
+		]]>
+	</select>
+	
+	<select id="jnitrscpageDAO.selectJnitrscpageByUrl_S" resultMap="jnitrscpage">
+		<![CDATA[
+			SELECT
+				RSCP_ID
+				, SITE_ID
+				, MENU_ID
+				, PAGE_URL
+				, PAGE_VIEW
+				, HIT1
+				, HIT2
+				, HIT3
+				, HIT4
+				, HIT5
+			FROM jnitrscpage a
+                WHERE PAGE_URL=#pageUrl#
+		]]>
+	</select>
+	
+	<select id="jnitrscpageDAO.selectJnitrscpageList_D" parameterClass="jnitrscpageSerarchVO" resultClass="egovMap" remapResults="true">
+	SELECT A.*, ROWNUM RNUM FROM (		
+			SELECT  a.RSCP_ID
+					, a.SITE_ID
+					, a.MENU_ID
+					, a.PAGE_URL
+					, a.PAGE_VIEW
+					, a.HIT1
+					, a.HIT2
+					, a.HIT3
+					, a.HIT4
+					, a.HIT5
+					, b.MENU_NM
+					, b.CNT_DESC					
+					, b.MODIFIED
+					, b.ISDEL
+					
+					<isEqual property="leftCondition" compareValue="0">
+					, c.CREATED
+					, c.HIT1 AS DATAHIT1
+					, c.HIT2 AS DATAHIT2
+					, c.HIT3 AS DATAHIT3
+					, c.HIT4 AS DATAHIT4
+					, c.HIT5 AS DATAHIT5
+					, c.MEMO
+					, c.REMOTE_ADDR
+					, d.MBR_NM					
+					</isEqual>
+					FROM (   				
+						SELECT	* FROM jnitrscpage
+			) a	
+			
+			JOIN jnitcmscntvt b
+				ON b.SITE_ID=a.SITE_ID 
+				AND b.MENU_ID=a.MENU_ID
+				
+			<isEqual property="leftCondition" compareValue="0">	
+			LEFT JOIN JNITRSCPAGEDATA c
+          		ON a.RSCP_ID = c.RSCP_ID
+          	LEFT JOIN JNITCMSMBR d 
+              ON d.MBR_ID = c.REMOTE_ADDR		
+          	</isEqual>
+          		
+			WHERE 1=1
+			
+			<isEqual prepend="AND" property="isdelYn" compareValue="Y">
+			    b.ISDEL = 0
+			</isEqual>
+			<isNotEmpty prepend="AND" property="prefixPageUrl">
+				PAGE_URL LIKE '%'||#prefixPageUrl#||'%'
+			</isNotEmpty>
+			<isEqual prepend="AND" property="leftCondition" compareValue="0">
+				    TO_CHAR(c.CREATED,'YYYY-MM-DD' ) <![CDATA[>=]]> TO_CHAR(#date01#,'YYYY-MM-DD')
+          		AND TO_CHAR(c.CREATED,'YYYY-MM-DD' ) <![CDATA[<=]]> TO_CHAR(#date02#,'YYYY-MM-DD')
+			</isEqual>						
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				RSCP_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				MENU_ID LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				a.SITE_ID = #searchKeyword#
+			</isEqual>
+			ORDER BY
+						<isEqual property="ordBy" compareValue="1">
+							PAGE_URL
+						</isEqual>
+						<isEqual property="ordBy" compareValue="2">
+							PAGE_VIEW DESC
+						</isEqual>
+								
+		) A WHERE 1=1
+					
+	</select>	
+	<select id="jnitrscpageDAO.selectJnitrscpageListTotCnt_S" parameterClass="jnitrscpageSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM jnitrscpage a
+				JOIN jnitcmscntvt b
+				ON b.SITE_ID=a.SITE_ID AND b.MENU_ID=a.MENU_ID
+			WHERE 1=1
+			
+			<isEqual prepend="AND" property="isdelYn" compareValue="Y">
+			    b.ISDEL = 0
+			</isEqual>
+			<isNotEmpty prepend="AND" property="prefixPageUrl">
+				a.PAGE_URL LIKE '%'||#prefixPageUrl#||'%'
+			</isNotEmpty>
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				a.RSCP_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				a.MENU_ID LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				a.SITE_ID = #searchKeyword#
+			</isEqual>
+			
+	</select>
+	<select id="jnitrscpageDAO.getLastIdJnitrscpage_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITRSCPAGE_ID'
+	</select>
+	
+	<select id="jnitrscpageDAO.selectPageView" resultMap="jnitrscpageViewVO">
+				SELECT  A.MBR_ID 
+						, A.MBR_LOGIN 
+						, A.ORG_ID 
+						, A.POS_ID 
+						, A.MBR_NM 
+						, A.MBR_PHOTO 
+						, A.PASSWD 
+						, A.TYPE_ID 
+						, A.TEL 
+						, A.MOBILE 
+						, A.EMAIL 
+						, A.SN 
+						, A.DP 
+						, A.ISDEL AS MBR_ISDEL 
+						, A.HOMEPAGE 
+						, A.POSTCODE 
+						, A.ADDRESS 
+						, A.EMAIL_RECV 
+						, A.SMS_RECV 
+						, A.ESTABLISHMENT 
+						, A.CORPORATION 
+						, A.PRIMARY_KEY 
+						, A.MUTUAL 
+						, A.CORPORATE_NAME 
+						, A.GROUP_NAME 
+						, A.BUSINESS_PLACE 
+						, A.BUSINESS_ADDR 
+						, A.GROUP_KIND 
+						, A.GROUP_TEL 
+						, A.GROUP_PAX 
+						, A.GROUP_TYPE 
+						, A.GRP_CONFIRM 
+						, B.SITE_ID 
+						, B.MENU_ID 
+						, B.MENU_NM 
+						, B.MENU_PATH 
+						, B.PID 
+						, B.[DEPTH] 
+						, B.[METHOD] 
+						, B.ISLINK 
+						, B.ISCNT 
+						, B.LINKURL 
+						, B.LINKTGT 
+						, B.TPL_ID 
+						, B.CNT_ID 
+						, B.DEF_MENU 
+						, B.MENU_IMG_FILE 
+						, B.MENU_IMG_PATH 
+						, B.MENU_IMG_ONM 
+						, B.MENU_IMG_URL 
+						, B.ADM_MBR_ID 
+						, B.[ACTIVE] 
+						, B.CCL 
+						, B.ISDEL AS MENU_ISDEL
+						, C.ORG_ID
+						, C.ORG_NM
+						, C.ISDEL AS ORG_ISDEL 
+						, D.POS_ID
+						, D.POS_NM
+						, D.POS_LV
+						, D.ISDEL AS POS_ISDEL
+						, E.TYPE_ID AS MBR_TYPE_ID
+						, E.TYPE_NM AS MBR_TYPE_NM
+						, E.TYPE_LV AS MBR_TYPE_LV
+						, E.ISDEL AS MBR_TYPE_ISDEL
+			FROM JNITCMSMBR AS A
+			INNER JOIN JNITCMSMENU AS B ON A.MBR_ID = B.ADM_MBR_ID
+			INNER JOIN JNITCMSORG AS C ON A.ORG_ID = C.ORG_ID
+			INNER JOIN JNITCMSPOS AS D ON A.POS_ID = D.POS_ID
+			INNER JOIN JNITCMSMBRTYPE AS E ON A.TYPE_ID = E.TYPE_ID
+			WHERE 1=1
+			AND A.ISDEL = 0
+			AND B.ISDEL = 0
+			AND C.ISDEL = 0
+			AND D.ISDEL = 0
+			AND E.ISDEL = 0
+			AND B.MENU_ID = #menuId#
+	</select>
+	
+	<select id="jnitrscpageDAO.selectexPageView" resultMap="jnitrscpageViewVO">
+				SELECT  a.MBR_ID 
+						, a.MBR_LOGIN 
+						, a.ORG_ID 
+						, a.POS_ID 
+						, a.MBR_NM 
+						, a.MBR_PHOTO 
+						, a.PASSWD 
+						, a.TYPE_ID 
+						, a.TEL 
+						, a.MOBILE 
+						, a.EMAIL 
+						, a.SN 
+						, a.DP 
+						, IF(a.ISDEL IS NULL, 0, a.ISDEL) AS MBR_ISDEL 
+						, a.HOMEPAGE 
+						, a.POSTCODE 
+						, a.ADDRESS 
+						, a.EMAIL_RECV 
+						, a.SMS_RECV 
+						, a.ESTABLISHMENT 
+						, a.CORPORATION 
+						, a.PRIMARY_KEY 
+						, a.MUTUAL 
+						, a.CORPORATE_NAME 
+						, a.GROUP_NAME 
+						, a.BUSINESS_PLACE 
+						, a.BUSINESS_ADDR 
+						, a.GROUP_KIND 
+						, a.GROUP_TEL 
+						, a.GROUP_PAX 
+						, a.GROUP_TYPE 
+						, a.GRP_CONFIRM 
+						, b.SITE_ID 
+						, b.MENU_ID 
+						, b.MENU_NM 
+						, b.MENU_PATH 
+						, b.PID 
+						, IF(b.[DEPTH] IS NULL, 0 , b.[DEPTH]) AS [DEPTH]
+						, IF(b.[METHOD] IS NULL, 0, b.[METHOD]) AS [METHOD]
+						, IF(b.ISLINK IS NULL, 0, b.ISLINK) AS ISLINK
+						, IF(b.ISCNT IS NULL, 0, b.ISCNT) AS ISCNT
+						, b.LINKURL 
+						, b.LINKTGT 
+						, b.TPL_ID 
+						, b.CNT_ID 
+						, b.DEF_MENU 
+						, b.MENU_IMG_FILE 
+						, b.MENU_IMG_PATH 
+						, b.MENU_IMG_ONM 
+						, b.MENU_IMG_URL 
+						, b.ADM_MBR_ID 
+						, IF(b.[ACTIVE] IS NULL, 0, b.[ACTIVE]) AS [ACTIVE]
+						, b.CCL 
+						, IF(b.ISDEL IS NULL, 0, b.ISDEL) AS MENU_ISDEL
+						, c.ORG_ID
+						, c.ORG_NM
+						, IF(c.ISDEL IS NULL, 0, c.ISDEL) AS ORG_ISDEL 
+						, d.POS_ID
+						, d.POS_NM
+						, IF(d.POS_LV IS NULL, 0, d.POS_LV) AS POS_LV
+						, IF(d.ISDEL IS NULL, 0, d.ISDEL) AS POS_ISDEL
+						, e.TYPE_ID AS MBR_TYPE_ID
+						, e.TYPE_NM AS MBR_TYPE_NM
+						, e.TYPE_LV AS MBR_TYPE_LV
+						, IF(e.ISDEL IS NULL, 0, e.ISDEL) AS MBR_TYPE_ISDEL
+			FROM JNITCMSMBR a
+			LEFT JOIN JNITCMSMENU b 
+			ON a.MBR_ID = b.ADM_MBR_ID
+			LEFT JOIN JNITCMSORG c 
+			ON a.ORG_ID = c.ORG_ID
+			LEFT JOIN JNITCMSPOS d 
+			ON a.POS_ID = d.POS_ID
+			LEFT JOIN JNITCMSMBRTYPE e 
+			ON a.TYPE_ID = e.TYPE_ID			
+			WHERE a.ISDEL = 0  
+			AND a.MBR_ID = #mbrId#
+	</select>
+</sqlMap>

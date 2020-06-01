@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitscrap">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitscrapSerarchVO" type="jnit.scrap.JnitscrapDefaultVO"/>
+	
+	<resultMap id="jnitscrap" class="jnit.scrap.JnitscrapVO">
+		<result property="scrapId" column="SCRAP_ID" columnIndex="1"/>
+		<result property="mbrId" column="MBR_ID" columnIndex="2"/>
+		<result property="title" column="TITLE" columnIndex="3"/>
+		<result property="url" column="URL" columnIndex="4"/>
+		<result property="created" column="CREATED" columnIndex="5"/>
+	</resultMap>
+	
+	<insert id="jnitscrapDAO.insertJnitscrap_S">
+		<![CDATA[
+			INSERT INTO jnitscrap 
+				( SCRAP_ID
+				  , MBR_ID
+				  , TITLE
+				  , URL
+				  , CREATED )
+			VALUES ( #scrapId#
+				  , #mbrId#
+				  , #title#
+				  , #url#
+				  , SYSDATE )
+		]]>
+	</insert>
+	
+	<update id="jnitscrapDAO.updateJnitscrap_S">
+		<![CDATA[
+			UPDATE jnitscrap
+			SET SCRAP_ID=#scrapId#
+				, MBR_ID=#mbrId#
+				, TITLE=#title#
+				, URL=#url#
+				, CREATED=#created#
+                WHERE SCRAP_ID=#scrapId#
+		]]>
+	</update>
+	
+	<delete id="jnitscrapDAO.deleteJnitscrap_S">
+		<![CDATA[
+			DELETE FROM jnitscrap 
+                WHERE MBR_ID=#mbrId# AND SCRAP_ID=#scrapId#
+		]]>
+	</delete>
+	
+	<select id="jnitscrapDAO.selectJnitscrap_S" resultMap="jnitscrap">
+		<![CDATA[
+			SELECT
+				SCRAP_ID
+				, MBR_ID
+				, TITLE
+				, URL
+				, CREATED
+			FROM jnitscrap
+                WHERE SCRAP_ID=#scrapId#
+		]]>
+	</select>
+	
+	<select id="jnitscrapDAO.selectJnitscrapList_D" parameterClass="jnitscrapSerarchVO" resultClass="egovMap">
+	    SELECT * FROM (		
+			SELECT A.*, ROWNUM RNUM FROM (
+							SELECT
+										SCRAP_ID
+										, MBR_ID
+										, TITLE
+										, URL
+										, CREATED
+							FROM jnitscrap
+					WHERE 1=1
+					<isEqual prepend="AND" property="searchCondition" compareValue="0">
+						MBR_ID = #searchKeyword#
+					</isEqual>
+					<isEqual prepend="AND" property="searchCondition" compareValue="1">
+						MBR_ID LIKE '%'||#searchKeyword#||'%'
+					</isEqual>
+						ORDER BY SCRAP_ID DESC
+			) A	WHERE 1=1			
+			AND	ROWNUM <![CDATA[<=]]> #lastIndex#			 			
+		)WHERE 1=1 
+		AND RNUM <![CDATA[>]]> #firstIndex#			
+	</select>	
+	<select id="jnitscrapDAO.selectJnitscrapListTotCnt_S" parameterClass="jnitscrapSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM jnitscrap
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				MBR_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				MBR_ID LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+	</select>
+	<select id="jnitscrapDAO.getLastIdJnitscrap_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITSCRAP_ID'
+	</select>
+
+</sqlMap>

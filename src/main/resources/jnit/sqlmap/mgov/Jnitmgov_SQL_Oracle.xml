@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitmgov">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitmgovSerarchVO" type="jnit.mgov.module.JnitMgovDefaultVO"/>
+	
+	<resultMap id="jnitmgov" class="jnit.mgov.module.JnitMsgdataVO">
+		<result property="userdata" column="USERDATA" columnIndex="1"/>
+		<result property="msgSeq" column="MSG_SEQ" columnIndex="2"/>
+		<result property="subId" column="SUB_ID" columnIndex="3"/>
+		<result property="curState" column="CUR_STATE" columnIndex="4"/>
+		<result property="sentDate" column="SENT_DATE" columnIndex="5"/>
+		<result property="rsltDate" column="RSLT_DATE" columnIndex="6"/>
+		<result property="reqDate" column="REQ_DATE" columnIndex="7"/>
+		<result property="rsltCode" column="RSLT_CODE" columnIndex="8"/>
+		<result property="rsltCode2" column="RSLT_CODE2" columnIndex="9"/>
+		<result property="rsltNet" column="RSLT_NET" columnIndex="10"/>
+		<result property="callTo" column="CALL_TO" columnIndex="11"/>
+		<result property="callFrom" column="CALL_FROM" columnIndex="12"/>
+		<result property="smsTxt" column="SMS_TXT" columnIndex="13"/>
+		<result property="msgType" column="MSG_TYPE" columnIndex="14"/>
+		<result property="contSeq" column="CONT_SEQ" columnIndex="15"/>
+		
+	</resultMap>
+	
+	<resultMap id="jnitmgovMMS" class="jnit.mgov.module.JnitMmsContentsInfoVO">
+		<result property="contSeq" column="CONT_SEQ" columnIndex="1"/>
+		<result property="fileCnt" column="FILE_CNT" columnIndex="2"/>
+		<result property="buildYn" column="BUILD_YN" columnIndex="3"/>
+		<result property="mmsBody" column="MMS_BODY" columnIndex="4"/>
+		<result property="mmsSubject" column="MMS_SUBJECT" columnIndex="5"/>
+		<result property="fileType1" column="FILE_TYPE1" columnIndex="6"/>
+		<result property="fileType2" column="FILE_TYPE2" columnIndex="7"/>
+		<result property="fileType3" column="FILE_TYPE3" columnIndex="8"/>
+		<result property="fileType4" column="FILE_TYPE4" columnIndex="9"/>
+		<result property="fileType5" column="FILE_TYPE5" columnIndex="10"/>
+		<result property="fileName1" column="FILE_NAME1" columnIndex="11"/>
+		<result property="fileName2" column="FILE_NAME2" columnIndex="12"/>
+		<result property="fileName3" column="FILE_NAME3" columnIndex="13"/>
+		<result property="fileName4" column="FILE_NAME4" columnIndex="14"/>
+		<result property="fileName5" column="FILE_NAME5" columnIndex="15"/>
+		<result property="serviceDep1" column="SERVICE_DEP1" columnIndex="16"/>
+		<result property="serviceDep2" column="SERVICE_DEP2" columnIndex="17"/>
+		<result property="serviceDep3" column="SERVICE_DEP3" columnIndex="18"/>
+		<result property="serviceDep4" column="SERVICE_DEP4" columnIndex="19"/>
+		<result property="serviceDep5" column="SERVICE_DEP5" columnIndex="20"/>
+		<result property="sknFileDate" column="SKN_FILE_DATE" columnIndex="21"/>
+		<result property="sknFileName" column="SKN_FILE_NAME" columnIndex="22"/>
+		
+	</resultMap>
+	
+	<insert id="jnitmgovDAO.insertJnitmgov_S">
+			INSERT INTO nuri_msg_data 
+				(USERDATA
+				, MSG_SEQ
+				, SUB_ID
+				, CUR_STATE
+				, SENT_DATE
+				, RSLT_DATE
+				, REQ_DATE
+				, RSLT_CODE
+				, RSLT_CODE2
+				, RSLT_NET
+				, CALL_TO
+				, CALL_FROM
+				, SMS_TXT
+				, MSG_TYPE
+				, CONT_SEQ )
+			VALUES ( #userdata#
+					, #msgSeq#
+					, #subId#
+					, #curState#
+					, #sentDate#
+					, #rsltDate#
+					, SYSDATE
+					, #rsltCode#
+					, #rsltCode2#
+					, #rsltNet#
+					, #callTo#
+					, #callFrom#
+					, #smsTxt#
+					, #msgType#
+					<isEqual property="contSeq" compareValue="0">
+					, NULL
+					</isEqual>
+					<isNotEqual property="contSeq" compareValue="0">
+					, #contSeq#
+					</isNotEqual>
+					 )
+	</insert>
+	
+	<insert id="jnitmgovDAO.insertJnitLtskoreaSms_S">
+			INSERT INTO jnit_ltskorea_sms
+				(USERDATA
+				, MSG_SEQ
+				, SUB_ID
+				, CUR_STATE
+				, SENT_DATE
+				, RSLT_DATE
+				, REQ_DATE
+				, RSLT_CODE
+				, RSLT_CODE2
+				, RSLT_NET
+				, CALL_TO
+				, CALL_FROM
+				, SMS_TXT
+				, MSG_TYPE
+				, CONT_SEQ )
+			VALUES ( #userdata#
+					, #msgSeq#
+					, #subId#
+					, #curState#
+					, #sentDate#
+					, #rsltDate#
+					, SYSDATE
+					, #rsltCode#
+					, #rsltCode2#
+					, #rsltNet#
+					, #callTo#
+					, #callFrom#
+					, #smsTxt#
+					, #msgType#
+					<isEqual property="contSeq" compareValue="0">
+					, NULL
+					</isEqual>
+					<isNotEqual property="contSeq" compareValue="0">
+					, #contSeq#
+					</isNotEqual>
+					 )
+	</insert>
+	
+	<insert id="jnitmgovDAO.insertJnitmgovMMS_S">
+		<![CDATA[
+			INSERT INTO nuri_mms_contents_info 
+				(CONT_SEQ
+				, FILE_CNT
+				, BUILD_YN
+				, MMS_BODY
+				, MMS_SUBJECT
+				, FILE_TYPE1
+				, FILE_TYPE2
+				, FILE_TYPE3
+				, FILE_TYPE4
+				, FILE_TYPE5
+				, FILE_NAME1
+				, FILE_NAME2
+				, FILE_NAME3
+				, FILE_NAME4
+				, FILE_NAME5
+				, SERVICE_DEP1
+				, SERVICE_DEP2
+				, SERVICE_DEP3
+				, SERVICE_DEP4
+				, SERVICE_DEP5
+				, SKN_FILE_DATE
+				, SKN_FILE_NAME )
+			VALUES 
+				(#contSeq#
+				, #fileCnt#
+				, #buildYn#
+				, #mmsBody#
+				, #mmsSubject#
+				, #fileType1#
+				, #fileType2#
+				, #fileType3#
+				, #fileType4#
+				, #fileType5#
+				, #fileName1#
+				, #fileName2#
+				, #fileName3#
+				, #fileName4#
+				, #fileName5#
+				, #serviceDep1#
+				, #serviceDep2#
+				, #serviceDep3#
+				, #serviceDep4#
+				, #serviceDep5#
+				, #sknFileDate#
+				, #sknFileName# )
+		]]>
+	</insert>
+	
+	<delete id="jnitmgovDAO.deleteJnitmgov_S">
+		<![CDATA[
+			DELETE FROM nuri_msg_data 
+                WHERE MSG_SEQ=#contSeq#
+		]]>
+	</delete>
+	
+	<select id="jnitmgovDAO.selectJnitmgov_S" resultMap="jnitmgov">
+		<![CDATA[
+			SELECT
+				USERDATA
+				, MSG_SEQ
+				, SUB_ID
+				, CUR_STATE
+				, SENT_DATE
+				, RSLT_DATE
+				, REQ_DATE
+				, RSLT_CODE
+				, RSLT_CODE2
+				, RSLT_NET
+				, CALL_TO
+				, CALL_FROM
+				, SMS_TXT
+				, MSG_TYPE
+				, CONT_SEQ
+			FROM nuri_msg_data
+                WHERE MSG_SEQ=#msgSeq#
+		]]>
+	</select>
+	
+	<select id="jnitmgovDAO.selectJnitmgovList_D" parameterClass="jnitmgovSerarchVO" resultClass="egovMap">
+			SELECT * FROM (
+				SELECT A.*, ROWNUM RNUM FROM (
+					SELECT
+						USERDATA
+						, MSG_SEQ
+						, SUB_ID
+						, CUR_STATE
+						, SENT_DATE
+						, RSLT_DATE
+						, TO_CHAR(REQ_DATE,'yyyy-MM-dd hh24:mi:ss') AS REQ_DATE
+						, RSLT_CODE
+						, RSLT_CODE2
+						, RSLT_NET
+						, CALL_TO
+						, CALL_FROM
+						<isEqual property="searchMsgType" compareValue="4">
+							, SMS_TXT
+						</isEqual>
+						<isEqual property="searchMsgType" compareValue="6">
+							, (SELECT MMS_BODY FROM nuri_mms_contents_info where cont_seq = a.CONT_SEQ) AS SMS_TXT
+						</isEqual>
+						, MSG_TYPE
+						, CONT_SEQ
+					FROM $searchTableNm$ a
+					WHERE 1=1
+					AND MSG_TYPE = #searchMsgType#
+					ORDER BY
+		            MSG_SEQ DESC
+				) A WHERE ROWNUM <![CDATA[<=]]> #lastIndex#
+			)WHERE RNUM <![CDATA[>]]> #firstIndex#	
+	</select>
+	
+	<select id="jnitmgovDAO.selectJnitmgovState" parameterClass="jnitmgovSerarchVO" resultClass="egovMap">
+		SELECT 
+			* 
+		FROM
+		(SELECT COUNT(*) AS TOTAL FROM $searchTableNm$ WHERE MSG_TYPE = #searchMsgType#),
+		(SELECT COUNT(*) AS SUCCESS FROM $searchTableNm$ WHERE MSG_TYPE = #searchMsgType# AND RSLT_CODE2 = 0),
+		(SELECT COUNT(*) AS FAILED FROM $searchTableNm$ WHERE MSG_TYPE = #searchMsgType# AND RSLT_CODE2 != 0)
+	</select>
+	
+	<select id="jnitmgovDAO.selectJnitmgovLMSList_D" parameterClass="jnitmgovSerarchVO" resultClass="egovMap">
+			SELECT A.*, B.* FROM NURI_MMS_CONTENTS_INFO A, NURI_MSG_DATA B
+			WHERE 1=1
+			AND MSG_TYPE = 6
+			AND A.CONT_SEQ = B.MSG_SEQ
+			ORDER BY a.CONT_SEQ DESC
+			limit #firstIndex#, #recordCountPerPage#
+	</select>
+	
+	<select id="jnitmgovDAO.selectJnitmgovListTotCnt_S" parameterClass="jnitmgovSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM $searchTableNm$
+			WHERE 1=1
+			AND MSG_TYPE = #searchMsgType#
+	</select>
+	
+	<select id="jnitmgovDAO.selectJnitmgovLMSListTotCnt_S" parameterClass="jnitmgovSerarchVO" resultClass="int">
+			SELECT count(*) FROM NURI_MMS_CONTENTS_INFO A, NURI_MSG_DATA B
+			WHERE 1=1
+			AND MSG_TYPE = 6
+			AND A.CONT_SEQ = B.MSG_SEQ
+	</select>
+	
+	<select id="jnitmgovDAO.getLastIdJnitmgov_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITSMSMGOV_ID'
+	</select>
+	
+	<select id="jnitmgovDAO.getMgovNextId" resultClass="int">
+		SELECT MGOV_SERIAL.NEXTVAL FROM DUAL
+	</select>
+
+</sqlMap>

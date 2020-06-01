@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitcmspos">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitcmsposSerarchVO" type="jnit.cms.pos.JnitcmsposDefaultVO"/>
+	<typeAlias  alias="ComDefaultCodeVO" type="egovframework.com.cmm.ComDefaultCodeVO"/>
+	
+	<resultMap id="jnitcmspos" class="jnit.cms.pos.JnitcmsposVO">
+		<result property="posId" column="POS_ID" columnIndex="1"/>
+		<result property="posNm" column="POS_NM" columnIndex="2"/>
+		<result property="posLv" column="POS_LV" columnIndex="3"/>
+		<result property="created" column="CREATED" columnIndex="4"/>
+		<result property="modified" column="MODIFIED" columnIndex="5"/>
+		<result property="isdel" column="ISDEL" columnIndex="6"/>
+		<result property="connectType" column="CONNECT_TYPE" columnIndex="7"/>
+	</resultMap>
+	
+	<resultMap id="CmmCodeDetail" class="egovframework.com.cmm.service.CmmnDetailCode">
+		<result property="codeId"    	column="CODE_ID"   	columnIndex="1"/>
+		<result property="code"  		column="CODE" 		columnIndex="2"/>
+		<result property="codeNm"   	column="CODE_NM"  	columnIndex="3"/>
+		<result property="codeDc"   	column="CODE_DC"  	columnIndex="4"/>
+	</resultMap>
+	
+	<insert id="jnitcmsposDAO.insertJnitcmspos_S">
+		<![CDATA[
+			INSERT INTO JNITCMSPOS 
+				( POS_ID
+				  , POS_NM
+				  , POS_LV
+				  , CREATED
+				  , MODIFIED
+				  , CONNECT_TYPE
+				   )
+			VALUES ( #posId#
+				  , #posNm#
+				  , #posLv#
+				  , NOW()
+				  , NOW()
+				  , #connectType# )
+		]]>
+	</insert>
+	
+	<insert id="jnitcmsposDAO.insertDbConnectpos_S">
+		<![CDATA[
+			INSERT INTO JNITCMSPOS 
+				( POS_ID
+				  , POS_NM
+				  , POS_LV
+				  , CREATED
+				  , MODIFIED
+				  , CONNECT_TYPE
+				   )
+			VALUES ( #posId#
+				  , #posNm#
+				  , #posLv#
+				  , NOW()
+				  , NOW()
+				  , #connectType# )
+		]]>
+	</insert>
+	
+	<update id="jnitcmsposDAO.updateJnitcmspos_S">
+		<![CDATA[
+			UPDATE JNITCMSPOS
+			SET POS_NM=#posNm#
+				, POS_LV=#posLv#
+				, MODIFIED=NOW()
+			WHERE
+				POS_ID=#posId#
+			]]>
+	</update>
+	
+	<update id="jnitcmsposDAO.deleteJnitcmspos_S">
+		<![CDATA[
+			UPDATE JNITCMSPOS
+			SET ISDEL=1
+				, MODIFIED=NOW()
+			WHERE
+				POS_ID=#posId# 
+			]]>
+	</update>
+	
+	<select id="jnitcmsposDAO.selectJnitcmspos_S" resultMap="jnitcmspos">
+		<![CDATA[
+			SELECT
+				POS_ID
+				, POS_NM
+				, POS_LV
+				, CREATED
+				, MODIFIED
+				, ISDEL
+				, CONNECT_TYPE
+			FROM JNITCMSPOS
+			WHERE
+				ISDEL=0 AND
+				POS_ID=#posId#
+			]]>
+	</select>
+	
+	<select id="jnitcmsposDAO.selectJnitcmsposList_D" parameterClass="jnitcmsposSerarchVO" resultClass="egovMap">
+			SELECT
+								POS_ID
+								, POS_NM
+								, POS_LV
+								, CREATED
+								, MODIFIED
+								, ISDEL
+								, CONNECT_TYPE
+					FROM JNITCMSPOS
+			WHERE ISDEL=0
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				POS_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				POS_NM LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+				ORDER BY POS_ID DESC
+				limit #firstIndex#, #recordCountPerPage#	
+	</select>
+	
+	<select id="jnitcmsposDAO.selectJnitcmsposListTotCnt_S" parameterClass="jnitcmsposSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM JNITCMSPOS
+			WHERE ISDEL=0
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				POS_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				POS_NM LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+	</select>
+
+	<select id="jnitcmsposDAO.selectJnitcmsposListLastId_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITCMSPOS_ID'
+	</select>
+
+    <select id="jnitcmsposDAO.selectPosIdDetail" parameterClass="ComDefaultCodeVO" resultMap="CmmCodeDetail">
+            <![CDATA[ 
+            SELECT 
+                "JNITCMSPOS"    CODE_ID, 
+                POS_ID     CODE, 
+                POS_NM     CODE_NM, 
+                POS_NM     CODE_DC
+            FROM 
+                JNITCMSPOS
+            WHERE ISDEL=0
+            ]]>
+            <isEqual prepend="AND" property="haveDetailCondition" compareValue="Y">
+                POS_ID=#detailCondition#
+            </isEqual>
+            	ORDER BY POS_NM
+    </select>
+
+</sqlMap>

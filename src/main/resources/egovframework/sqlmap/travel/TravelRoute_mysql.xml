@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="travelRouteDAO">
+
+	<typeAlias alias="travelRoute" type="geocni.travel.route.domain.TravelRoute" />
+	<typeAlias alias="travelRouteDaily" type="geocni.travel.route.domain.TravelRouteDaily" />
+
+    <resultMap id="travelRouteVO" class="geocni.travel.route.domain.TravelRoute">
+        <result property="routId" column="rout_id"/>
+        <result property="routTitle" column="rout_title"/>
+        <result property="routRegMember" column="rout_reg_member"/>
+        <result property="routThumbPath" column="rout_thumb_path"/>
+        <result property="routMemo" column="rout_memo"/>
+        <result property="routRegion" column="rout_region"/>
+        <result property="routRecomm" column="rout_recomm"/>
+        <result property="routHit" column="rout_hit"/>
+        <result property="routType" column="rout_type"/>
+        <result property="routOpen" column="rout_open"/>
+        <result property="routRegDate" column="rout_reg_date"/>
+        <result property="routRegMemberNm" column="mbr_nm"/>
+        <result property="routeDailyList" column="rout_id" select="travelRouteDAO.selectTravelRouteDaily" ></result>
+        <!-- <collection property="routeDailyList" column="rout_id" javaType="java.util.ArrayList" ofType="travelRouteDaily" select="travelRouteDAO.selectTravelRouteDaily"/> -->
+    </resultMap>
+
+    <select id="travelRouteDAO.selectTravelRouteDaily" resultClass="travelRouteDaily">
+        <![CDATA[
+            SELECT
+                  rout_id AS routId
+                , rout_days AS routDays
+                , rout_start_point AS routStartPoint
+                , rout_start_axis AS routStartAxis
+                , rout_dest_point AS routDestPoint
+                , rout_dest_axis AS routDestAxis
+                , rout_way_point AS routWayPoint
+            FROM geo_travel_route_daily
+            WHERE rout_id=#routId#
+        ]]>
+    </select>
+	
+	<select id="travelRouteDAO.selectTravelRoute" parameterClass="travelRoute" resultClass="travelRoute">
+		<![CDATA[
+			SELECT
+                  a.rout_id AS routId
+                , a.rout_title AS routTitle
+                , a.rout_reg_member AS routRegMember
+                , a.rout_region AS routRegion
+                , a.rout_thumb_path AS routThumbPath
+                , a.rout_memo AS routMemo
+                , (SELECT COUNT(*) FROM geo_reaction WHERE rxn_target_id=a.rout_id AND rxn_type='RECO') AS routRecomm
+                , a.rout_hit AS routHit
+                , a.rout_type AS routType
+                , a.rout_open AS routOpen
+                , a.rout_reg_date  AS routRegDate 
+				, b.mbr_nm AS routRegMemberNm
+			FROM geo_travel_route a
+				LEFT JOIN jnitcmsmbr b ON a.rout_reg_member=b.mbr_id
+            WHERE a.rout_id=#routId#
+		]]>
+	</select>
+	
+    <select id="travelRouteDAO.selectTravelRouteAll" parameterClass="travelRoute" resultMap="travelRouteVO">
+        <![CDATA[
+            SELECT
+                  a.rout_id
+                , a.rout_title
+                , a.rout_reg_member
+                , a.rout_region
+                , a.rout_thumb_path
+                , a.rout_memo
+                , (SELECT COUNT(*) FROM geo_reaction WHERE rxn_target_id=a.rout_id AND rxn_type='RECO') AS rout_recomm
+                , a.rout_hit
+                , a.rout_type
+                , a.rout_open
+                , a.rout_reg_date
+				, b.mbr_nm
+            FROM geo_travel_route a
+                LEFT JOIN jnitcmsmbr b ON a.rout_reg_member=b.mbr_id
+            WHERE a.rout_id=#routId#
+        ]]>
+    </select>
+
+	<sql id="travelRouteDAO.travelRouteWhereClause">
+		<isNotEmpty property="routType" prepend="AND">
+			<![CDATA[	a.rout_type = #routType#	]]>
+		</isNotEmpty>
+		
+		<isNotEmpty property="routOpen" prepend="AND">
+			<![CDATA[	a.rout_open = #routOpen#	]]>
+		</isNotEmpty>
+		
+		<isNotEmpty property="routRegMember" prepend="AND">
+			<![CDATA[	a.rout_reg_member = #routRegMember#	]]>
+		</isNotEmpty>
+		
+		<isNotEmpty property="routRegion" prepend="AND">
+			<![CDATA[	a.rout_region = #routRegion#	]]>
+		</isNotEmpty>
+		
+		<isNotEmpty property="searchKeyword" prepend="AND">
+			<![CDATA[	a.rout_title LIKE CONCAT('%',#searchKeyword#,'%')	]]>
+		</isNotEmpty>
+	</sql>
+    
+	<select id="travelRouteDAO.selectTravelRouteListAll" parameterClass="travelRoute" resultMap="travelRouteVO">
+		<![CDATA[
+			SELECT
+                  a.rout_id
+                , a.rout_title
+                , a.rout_reg_member
+                , a.rout_region
+                , a.rout_thumb_path
+                , a.rout_memo
+                , (SELECT COUNT(*) FROM geo_reaction WHERE rxn_target_id=a.rout_id AND rxn_type='RECO') AS rout_recomm
+                , a.rout_hit
+                , a.rout_type
+                , a.rout_open
+                , a.rout_reg_date
+				, b.mbr_nm
+			FROM geo_travel_route a
+				LEFT JOIN jnitcmsmbr b ON a.rout_reg_member=b.mbr_id
+			WHERE 1=1
+		]]>
+			<include refid="travelRouteDAO.travelRouteWhereClause" />
+		<![CDATA[
+			ORDER BY rout_reg_date DESC
+            LIMIT #firstIndex#, #recordCountPerPage#
+		]]>
+	</select>	
+	<select id="travelRouteDAO.selectTravelRouteList" parameterClass="travelRoute" resultClass="travelRoute">
+		<![CDATA[
+			SELECT
+                  a.rout_id AS routId
+                , a.rout_title AS routTitle
+                , a.rout_reg_member AS routRegMember
+                , a.rout_region AS routRegion
+                , a.rout_thumb_path AS routThumbPath
+                , a.rout_memo AS routMemo
+                , (SELECT COUNT(*) FROM geo_reaction WHERE rxn_target_id=a.rout_id AND rxn_type='RECO') AS routRecomm
+                , a.rout_hit AS routHit
+                , a.rout_type AS routType
+                , a.rout_open AS routOpen
+                , a.rout_reg_date  AS routRegDate 
+				, b.mbr_nm AS routRegMemberNm
+			FROM geo_travel_route a
+				LEFT JOIN jnitcmsmbr b ON a.rout_reg_member=b.mbr_id
+			WHERE 1=1
+		]]>
+			<include refid="travelRouteDAO.travelRouteWhereClause" />
+		<![CDATA[
+			ORDER BY rout_reg_date DESC
+            LIMIT #firstIndex#, #recordCountPerPage#
+		]]>
+	</select>	
+	<select id="travelRouteDAO.selectTravelRouteListCnt" parameterClass="travelRoute" resultClass="int">
+		<![CDATA[
+			SELECT 
+				COUNT(*) totcnt
+			FROM geo_travel_route a
+			WHERE 1=1
+		]]>
+			<include refid="travelRouteDAO.travelRouteWhereClause" />
+	</select>
+
+	<insert id="travelRouteDAO.insertTravelRoute">
+		<![CDATA[
+			INSERT INTO geo_travel_route (
+				  rout_id
+				, rout_title
+				, rout_reg_member
+				, rout_region
+				, rout_thumb_path
+                , rout_memo
+				, rout_recomm
+				, rout_hit
+				, rout_type
+				, rout_open
+				, rout_reg_date
+            ) VALUES (
+				  #routId#
+				, #routTitle#
+				, #routRegMember#
+				, #routRegion#
+				, #routThumbPath#
+				, #routMemo#
+				, #routRecomm#
+				, #routHit#
+				, #routType#
+				, #routOpen#
+				, NOW()
+			)
+		]]>
+	</insert>
+	
+	<insert id="travelRouteDAO.insertTravelRouteDaily" parameterClass="java.util.List">
+		<![CDATA[
+		    INSERT INTO geo_travel_route_daily (
+		          rout_id
+		        , rout_days
+		        , rout_start_point
+		        , rout_start_axis
+		        , rout_dest_point
+		        , rout_dest_axis
+		        , rout_way_point
+		    )  VALUES
+		]]>
+		<iterate conjunction=",">
+		<![CDATA[
+	        ( 
+	              #routeDailyList[].routId#
+	            , #routeDailyList[].routDays#
+	            , #routeDailyList[].routStartPoint#
+	            , #routeDailyList[].routStartAxis#
+	            , #routeDailyList[].routDestPoint#
+	            , #routeDailyList[].routDestAxis#
+	            , #routeDailyList[].routWayPoint#
+	        )
+		]]>
+		</iterate>
+	</insert>
+	
+	<update id="travelRouteDAO.updateTravelRoute" parameterClass="travelRoute">
+		<![CDATA[
+			UPDATE geo_travel_route
+			SET 
+				  rout_title=#routTitle#
+				, rout_region=#routRegion#
+				, rout_thumb_path=#routThumbPath#
+				, rout_memo=#routMemo#
+			WHERE rout_id=#routId#
+		]]>
+				<!-- 
+				, rout_reg_member=#routRegMember#
+				, rout_recomm=#routRecomm#
+				, rout_hit=#routHit#
+				, rout_type=#routType#
+				, rout_open=#routOpen# 
+				-->
+	</update>
+	
+	<update id="travelRouteDAO.updateTravelRouteOpenStatus" parameterClass="travelRoute">
+		<![CDATA[
+			UPDATE geo_travel_route SET rout_open='Y' 
+			WHERE rout_id=#routId# AND rout_reg_member=#routRegMember#
+		]]>
+	</update>
+	
+	<update id="travelRouteDAO.updateTravelRouteHitCount" parameterClass="java.lang.String">
+			<!-- UPDATE geo_travel_route SET rout_hit=(rout_hit+1) WHERE rout_group=#routGroup# -->
+		<![CDATA[
+			UPDATE geo_travel_route SET rout_hit=(rout_hit+1) WHERE rout_id=#routId#
+		]]>
+	</update>
+	
+	<delete id="travelRouteDAO.deleteTravelRoutePhysically" parameterClass="travelRoute">
+	    <![CDATA[
+			DELETE FROM geo_travel_route
+            WHERE rout_id=#routId#
+		]]>
+	</delete>
+	
+	<delete id="travelRouteDAO.deleteTravelRouteDaily" parameterClass="travelRoute">
+	    <![CDATA[
+			DELETE FROM geo_travel_route_daily
+            WHERE rout_id=#routId#
+		]]>
+	</delete>
+	
+	<select id="travelRouteDAO.selectTravelRouteStats" parameterClass="java.lang.Integer" resultClass="java.lang.String">
+		<![CDATA[
+			SELECT
+                  /*tbl2.rout_id AS routId, tbl2.rout_title AS routTitle,*/ 
+				(
+					SELECT 
+						SUBSTRING_INDEX(rout_way_point, '|', 1) AS routWayPoint
+					FROM geo_travel_route_daily 
+					where tbl2.rout_id=rout_id AND rout_days=1
+				) AS routWayPoint
+			FROM (
+			    SELECT
+			        ta.rout_id, ta.fame_point 
+				FROM (
+		            SELECT
+						 a.rout_id
+						,a.rout_recomm
+						,a.rout_hit
+						,(a.rout_recomm + a.rout_hit) AS fame_point
+		            FROM geo_travel_route a
+		            WHERE 1=1
+		                AND rout_open='Y'
+						/*AND rout_type='U'*/
+		            ORDER BY fame_point DESC
+				) ta
+				WHERE fame_point > 0
+			) tbl
+			LEFT JOIN geo_travel_route tbl2 ON tbl.rout_id=tbl2.rout_id
+			ORDER BY tbl.fame_point DESC
+			LIMIT #recordCountPerPage#
+		]]>
+	</select>	
+
+	<select id="travelRouteDAO.selectTravelRouteBestList" parameterClass="travelRoute" resultClass="travelRoute">
+		<![CDATA[
+			SELECT
+				 tbl2.rout_id AS routId 
+				,tbl2.rout_title AS routTitle 
+				,tbl2.rout_region AS routRegion
+				,tbl2.rout_thumb_path AS routThumbPath
+			FROM (
+			    SELECT
+			        ta.rout_id, ta.fame_point
+				FROM (
+		            SELECT
+						 a.rout_id
+						,a.rout_recomm
+						,a.rout_hit
+						,(a.rout_recomm + a.rout_hit) AS fame_point
+		            FROM geo_travel_route a
+		            WHERE 1=1
+		]]>
+		<isNotEmpty property="routType" prepend="AND">
+			<![CDATA[	a.rout_type = #routType#	]]>
+		</isNotEmpty>
+		<isNotEmpty property="routOpen" prepend="AND">
+			<![CDATA[	a.rout_open = #routOpen#	]]>
+		</isNotEmpty>
+		<![CDATA[
+		            ORDER BY fame_point DESC
+				) ta
+				WHERE fame_point > 0
+			) tbl
+			LEFT JOIN geo_travel_route tbl2 ON tbl.rout_id=tbl2.rout_id
+			ORDER BY tbl.fame_point DESC
+			LIMIT #recordCountPerPage#
+		]]>
+	</select>	
+
+</sqlMap>

@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitcmsmgmt">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitcmsmgmtSerarchVO" type="jnit.cms.mgmt.JnitcmsmgmtDefaultVO"/>
+	
+	<resultMap id="jnitcmsmgmt" class="jnit.cms.mgmt.JnitcmsmgmtVO">
+		<result property="siteId" column="SITE_ID" columnIndex="1"/>
+		<result property="mgmtId" column="MGMT_ID" columnIndex="2"/>
+		<result property="mgmtSort" column="MGMT_SORT" columnIndex="3"/>
+		<result property="mgmtType" column="MGMT_TYPE" columnIndex="4"/>
+		<result property="mgmtScriptType" column="MGMT_SCRIPT_TYPE" columnIndex="5"/>
+		<result property="mgmtContent" column="MGMT_CONTENT" columnIndex="6"/>
+		<result property="created" column="CREATED" columnIndex="7"/>
+		<result property="modified" column="MODIFIED" columnIndex="8"/>
+		<result property="mgmtActId" column="MGMT_ACT_ID" columnIndex="9"/>
+		<result property="mgmtHearderYn" column="MGMT_HEARDER_YN" columnIndex="10"/>
+		<result property="isdel" column="ISDEL" columnIndex="11"/>
+		<result property="mgmtFileNm" column="MGMT_FILE_NM" columnIndex="12"/>
+		<result property="mgmtFileOrigin" column="MGMT_FILE_ORIGIN" columnIndex="13"/>
+		<result property="mgmtFilePath" column="MGMT_FILE_PATH" columnIndex="14"/>
+		<result property="mgmtFileUrl" column="MGMT_FILE_URL" columnIndex="15"/>
+		<result property="mgmtDownloadCount" column="MGMT_DOWNLOAD_COUNT" columnIndex="16"/>
+		<result property="mgmtInsertPath" column="MGMT_INSERT_PATH" columnIndex="17"/>
+		<result property="mgmtNm" column="MGMT_NM" columnIndex="18"/>
+		<result property="mgmtFilePathUrl" column="MGMT_FILE_PATH_URL" columnIndex="19"/>
+		<result property="boardId" column="BOARD_ID" columnIndex="19"/>
+		<result property="boardCount" column="BOARD_COUNT" columnIndex="19"/>
+		<result property="boardSkin" column="BOARD_SKIN" columnIndex="19"/>
+		<result property="thumbWidth" column="THUMB_WIDTH" columnIndex="23"/>
+		<result property="thumbHeight" column="THUMB_HEIGHT" columnIndex="23"/>
+	</resultMap>
+	
+	<insert id="jnitcmsmgmtDAO.insertJnitcmsmgmt_S">
+		<![CDATA[
+			INSERT INTO JNITCMSMGMT 
+				( SITE_ID
+				  , MGMT_ID
+				  , MGMT_SORT
+				  , MGMT_NM
+				  , MGMT_TYPE
+				  , MGMT_SCRIPT_TYPE
+				  , MGMT_CONTENT
+				  , CREATED
+				  , MODIFIED
+				  , MGMT_ACT_ID
+				  , MGMT_HEARDER_YN
+				  , ISDEL
+				  , MGMT_FILE_NM
+				  , MGMT_FILE_ORIGIN
+				  , MGMT_FILE_PATH
+				  , MGMT_FILE_URL
+				  , MGMT_FILE_PATH_URL
+				  , MGMT_DOWNLOAD_COUNT
+				  , MGMT_INSERT_PATH
+				  , BOARD_ID
+				  , BOARD_COUNT
+				  , BOARD_SKIN
+				  , THUMB_WIDTH
+				  , THUMB_HEIGHT )
+			VALUES ( #siteId#
+				  , #mgmtId#
+				  , #mgmtSort#
+				  , #mgmtNm#
+				  , #mgmtType#
+				  , #mgmtScriptType#
+				  , #mgmtContent#
+				  , SYSDATE
+				  , SYSDATE
+				  , #mgmtActId#
+				  , #mgmtHearderYn#
+				  , 0
+				  , #mgmtFileNm#
+				  , #mgmtFileOrigin#
+				  , #mgmtFilePath#
+				  , #mgmtFileUrl#
+				  , #mgmtFilePathUrl#
+				  , #mgmtDownloadCount#
+				  , #mgmtInsertPath#
+				  , #boardId#
+				  , #boardCount#
+				  , #boardSkin#
+				  , #thumbWidth#
+				  , #thumbHeight# )
+		]]>
+	</insert>
+	
+	<update id="jnitcmsmgmtDAO.updateJnitcmsmgmt_S">
+			UPDATE JNITCMSMGMT
+			<isEqual property="updateCondition" compareValue="0">
+			<![CDATA[	
+				SET SITE_ID=#siteId#
+					, MGMT_ID=#mgmtId#
+					, MGMT_SORT=#mgmtSort#
+					, MGMT_NM=#mgmtNm#
+					, MGMT_TYPE=#mgmtType#
+					, MGMT_SCRIPT_TYPE=#mgmtScriptType#
+					, MGMT_CONTENT=#mgmtContent#				
+					, MODIFIED=SYSDATE
+					, MGMT_ACT_ID=#mgmtActId#
+					, MGMT_HEARDER_YN=#mgmtHearderYn#
+					, ISDEL=#isdel#
+					, MGMT_FILE_NM=#mgmtFileNm#
+					, MGMT_FILE_ORIGIN=#mgmtFileOrigin#
+					, MGMT_FILE_PATH=#mgmtFilePath#
+					, MGMT_FILE_URL=#mgmtFileUrl#
+					, MGMT_FILE_PATH_URL=#mgmtFilePathUrl#
+					, MGMT_DOWNLOAD_COUNT=#mgmtDownloadCount#
+					, MGMT_INSERT_PATH=#mgmtInsertPath#
+					, BOARD_ID=#boardId#
+				  	, BOARD_COUNT=#boardCount#
+				  	, BOARD_SKIN=#boardSkin#
+				  	, THUMB_WIDTH=#thumbWidth#
+				    , THUMB_HEIGHT=#thumbHeight#
+							WHERE MGMT_ID=#mgmtId#
+			]]>			
+			</isEqual>
+			<isEqual property="updateCondition" compareValue="1">
+			<![CDATA[	
+				SET MGMT_CONTENT=#mgmtContent#			
+							WHERE MGMT_ID=#mgmtId#
+			]]>    
+			</isEqual>
+			<isEqual property="updateCondition" compareValue="2">
+			<![CDATA[
+				SET MGMT_SORT=#mgmtSort#
+							WHERE 1=1
+							AND SITE_ID=#siteId#
+							AND MGMT_NM=#mgmtNm#
+							AND MGMT_TYPE=#mgmtType#
+			]]>
+			</isEqual>		
+	</update>
+	
+	<delete id="jnitcmsmgmtDAO.deleteJnitcmsmgmt_S">	    
+	    <isEqual property="isdelYn" compareValue="N">
+	    <![CDATA[
+			DELETE FROM JNITCMSMGMT 
+						WHERE MGMT_ID=#mgmtId#
+		]]>    
+	    </isEqual>	    
+	    <isEqual property="isdelYn" compareValue="Y">
+	    <![CDATA[
+			UPDATE JNITCMSMGMT 
+					SET ISDEL=1	WHERE MGMT_ID=#mgmtId#
+		]]>    
+	    </isEqual>		
+	</delete>
+	
+	<select id="jnitcmsmgmtDAO.selectJnitcmsmgmt_S" resultMap="jnitcmsmgmt">		
+			SELECT			
+			<![CDATA[	
+				SITE_ID
+				, MGMT_ID
+				, MGMT_SORT
+				, MGMT_NM
+				, MGMT_TYPE
+				, MGMT_SCRIPT_TYPE
+				, MGMT_CONTENT
+				, CREATED
+				, MODIFIED
+				, MGMT_ACT_ID
+				, MGMT_HEARDER_YN
+				, ISDEL
+				, MGMT_FILE_NM
+				, MGMT_FILE_ORIGIN
+				, MGMT_FILE_PATH
+				, MGMT_FILE_URL
+				, MGMT_FILE_PATH_URL
+				, MGMT_DOWNLOAD_COUNT
+				, MGMT_INSERT_PATH
+				, BOARD_ID
+				, BOARD_COUNT
+				, BOARD_SKIN
+				, THUMB_WIDTH
+				, THUMB_HEIGHT
+			]]>	
+			<isEqual property="selectCondition" compareValue="0">
+			FROM JNITCMSMGMT
+						WHERE MGMT_ID=#mgmtId#			
+			</isEqual>
+			<isEqual property="selectCondition" compareValue="1">
+			FROM JNITCMSMGMT
+						WHERE SITE_ID=#siteId#
+						AND MGMT_TYPE=#mgmtType#
+						AND MGMT_NM=#mgmtNm#
+			</isEqual>			
+	</select>
+	
+	<select id="jnitcmsmgmtDAO.selectJnitcmsmgmtList_D" parameterClass="jnitcmsmgmtSerarchVO" resultClass="egovMap">
+			SELECT * FROM (
+				SELECT A.*, ROWNUM RNUM FROM (
+							SELECT
+											SITE_ID
+											, MGMT_ID
+											, MGMT_SORT
+											, MGMT_NM
+											, MGMT_TYPE
+											, MGMT_SCRIPT_TYPE
+											, MGMT_CONTENT
+											, CREATED
+											, MODIFIED
+											, MGMT_ACT_ID
+											, MGMT_HEARDER_YN
+											, ISDEL
+											, MGMT_FILE_NM
+											, MGMT_FILE_ORIGIN
+											, MGMT_FILE_PATH
+											, MGMT_FILE_URL
+											, MGMT_FILE_PATH_URL
+											, MGMT_DOWNLOAD_COUNT
+											, MGMT_INSERT_PATH
+											, BOARD_ID
+											, BOARD_COUNT
+											, BOARD_SKIN
+											, THUMB_WIDTH
+				  							, THUMB_HEIGHT
+									FROM JNITCMSMGMT
+							WHERE 1=1							
+							<isEqual prepend="AND" property="isdelYn" compareValue="Y">
+							    ISDEL = 0
+							</isEqual>
+							<isEqual prepend="AND" property="siteIdYn" compareValue="Y">							    
+							    SITE_ID = #siteId#
+							</isEqual>
+							<isEqual prepend="AND" property="mgmtTypeYn" compareValue="Y">
+							    MGMT_TYPE=#mgmtType#
+							</isEqual>
+							<isEqual prepend="AND" property="searchCondition" compareValue="0">
+								SITE_ID = #searchKeyword#
+							</isEqual>
+							<isEqual prepend="AND" property="searchCondition" compareValue="1">
+								MGMT_ID LIKE '%' || #searchKeyword# || '%'
+							</isEqual>
+							<isEqual prepend="AND" property="searchCondition" compareValue="2">
+								MGMT_TYPE = 'css'								
+							</isEqual>
+							<isEqual prepend="AND" property="searchCondition" compareValue="3">
+								MGMT_TYPE = 'js'								
+							</isEqual>
+							<isEqual property="orderbyCondition" compareValue="0">
+							    ORDER BY MGMT_ID DESC
+							</isEqual>
+							<isEqual property="orderbyCondition" compareValue="1">
+							    ORDER BY MGMT_SORT ASC, MGMT_ID DESC
+							</isEqual>
+								
+				) A WHERE 1=1
+				<isEqual prepend="AND" property="pageYn" compareValue="Y">
+					ROWNUM <![CDATA[<=]]> #lastIndex#   
+				</isEqual>	 
+			)WHERE 1=1
+			<isEqual prepend="AND" property="pageYn" compareValue="Y">
+				RNUM <![CDATA[>]]> #firstIndex#	    
+			</isEqual> 
+	</select>	
+	<select id="jnitcmsmgmtDAO.selectJnitcmsmgmtListTotCnt_S" parameterClass="jnitcmsmgmtSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM JNITCMSMGMT
+			WHERE 1=1
+			<isEqual prepend="AND" property="isdelYn" compareValue="Y">
+			    ISDEL = 0
+			</isEqual>
+			<isEqual prepend="AND" property="siteIdYn" compareValue="Y">							    
+			    SITE_ID = #siteId#
+			</isEqual>
+			<isEqual prepend="AND" property="mgmtTypeYn" compareValue="Y">
+			    MGMT_TYPE=#mgmtType#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				SITE_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				MGMT_ID LIKE '%' || #searchKeyword# || '%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				MGMT_NM = #mgmtNm#
+			</isEqual>
+	</select>
+	<select id="jnitcmsmgmtDAO.selectMaxTotCnt_S" parameterClass="jnitcmsmgmtSerarchVO" resultClass="int">
+	    	SELECT
+	    	<isEqual property="searchCondition" compareValue="0"> 	
+	    		MAX(MGMT_SORT) totcnt
+	    	</isEqual>
+			FROM JNITCMSMGMT
+			WHERE 1=1		
+			<isEqual property="searchCondition" compareValue="0"> 
+				AND SITE_ID = #siteId#
+				AND MGMT_TYPE = #searchKeyword#
+			</isEqual>			
+	</select>
+	<select id="jnitcmsmgmtDAO.getLastIdJnitcmsmgmt_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITCMSMGMT_ID'
+	</select>
+
+</sqlMap>

@@ -1,0 +1,256 @@
+@charset "utf-8";/* CSS Document */
+* {
+	outline:none !important;
+	-moz-outline: none !important;
+}
+
+ul, ol, dl{list-style:none;margin-left:10px;}
+body{background:#444; overflow-x:hidden;margin-top:-9px;font-family:"돋움",Dotum,"굴림",Gulim;}
+body.skeleton{background:#EEE}
+a:hover, a:focus{text-decoration:none;}
+
+#header{height:77px;position:relative;width:100%;/*z-index:-9;*/box-shadow:0 1px 0 #333333;background-color:#333333;background-image:-webkit-gradient(linear, 0 0%, 0 100%, from(#3F3F3F), to(#222222));background-image:-webkit-linear-gradient(top, #3F3F3F 0%, #222222 100%);background-image:-moz-linear-gradient(top, #3F3F3F 0%, #222222 100%);background-image:-ms-linear-gradient(top, #3F3F3F 0%, #222222 100%);background-image:-o-linear-gradient(top, #3F3F3F 0%, #222222 100%);background-image:linear-gradient(top, #3F3F3F 0%, #222222 100%);border-bottom:1px solid #555555;}
+#header h1{width:128px;height:22px;position:relative;top:28px;left:25px;background:url(../img/logo.png) no-repeat; scroll 0 0 transparent;}
+#header h1 a{width:100%;height:100%;text-indent:-5000px;display:block;}
+#user-nav{position:absolute;right:30px;top:14px;z-index:20;margin:0;}
+#user-nav > ul{margin: 0 !important;padding:0;list-style:none;width: auto !important;}
+#user-nav > ul > li{float:left;list-style:none;margin:0;position:relative;padding:0;}
+#user-nav > ul > li > a{padding:5px 10px;display:block;font-size:12px;}
+#user-nav > ul > li > a >i, #sidebar li a i{vertical-align:top;opacity:.5;margin-top:3px;}
+#user-nav > ul > li > a:hover > i, #user-nav > ul > li.open > a > i, #user-nav > ul > li.active > a > i{opacity:1;}
+#user-nav > ul > li.on > a > i{color:#fff;}
+#user-nav > ul > li > a > span.txt{font-weight:bold;margin:0 2px;}
+
+#sidebar > ul{border-top:1px solid #393939;border-bottom:1px solid #4E4E4E;}
+#sidebar > ul > li {border-top:1px solid #4E4E4E;border-bottom:1px solid #393939;}
+#sidebar > ul > li.active {background-color:#3a3a3a;background-image:-webkit-gradient(linear, 0 0%, 0 100%, from(#333333), to(#3F3F3F));background-image:-webkit-linear-gradient(top, #333333 0%, #3F3F3F 100%);background-image:-moz-linear-gradient(top, #333333 0%, #3F3F3F 100%);background-image:-ms-linear-gradient(top, #333333 0%, #3F3F3F 100%);background-image:-o-linear-gradient(top, #333333 0%, #3F3F3F 100%);background-image:linear-gradient(top, #333333 0%, #3F3F3F 100%);}
+
+#sidebar > ul > li.open.submenu > a {border-bottom:1px solid #393939;}
+#sidebar > ul > li.open.active.submenu > a {border-bottom:1px solid #2A2A2A;}
+#sidebar > ul > li > a > .label {background-color:#333333;}
+#sidebar > ul > li > a:hover {background-color:#4A4A4A;}
+#sidebar > ul ul {border-top:1px solid #4E4E4E;background-color:#2A2A2A;}
+#sidebar > ul ul li a {border-top:1px solid #333333;border-bottom:1px solid #202020;}
+#sidebar > ul ul li a:hover, #sidebar > ul ul li.active a {color:#CCCCCC;background-color:#272727;}
+
+.dropdown-menu li a:hover, .dropdown-menu .active a, .dropdown-menu .active a:hover {color:#eeeeee;background-color:#444444;background-image:-webkit-gradient(linear, 0 0%, 0 100%, #555555, #222222);background-image:-webkit-linear-gradient(top, #555555 0%, #222222 100%);background-image:-moz-linear-gradient(top, #555555 0%, #222222 100%);background-image:-ms-linear-gradient(top, #555555 0%, #222222 100%);background-image:-o-linear-gradient(top, #555555 0%, #222222 100%);background-image:linear-gradient(top, #555555 0%, #222222 100%);filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#555555', endColorstr='#222222',GradientType=0 ); /* IE6-9 */
+}
+table.table strong{color:red;}
+table.th_left th{text-align:left;}
+table.table th{vertical-align:middle;}
+label{cursor:default;font-weight:bold;font-size:12px;margin-bottom:0;display:inline;margin-right:10px;}
+input{margin-bottom:0;}
+table.table td{padding:5px;}
+table.table div.radio{margin-right:0;}
+input.long{width:95%;}
+
+.radio input[type="radio"], .checkbox input[type="checkbox"]{margin-left:0;}
+
+/* Sidebar Navigation */
+#sidebar {display:block;float:left;position:relative;width:220px;z-index:16;}
+#sidebar .controls{margin:5px;width:210px;height:28px;}
+#sidebar .controls > div{width:200px;}
+
+#sidebar > ul {list-style:none;margin:10px 0 0;padding:0;position:absolute;width:220px;left:0;top: 80px;}
+#sidebar > ul > li {display:block;position:relative;}
+#sidebar > ul > li.active {box-shadow:0 2px 4px rgba(0,0,0,0.2) inset;}
+#sidebar > ul > li > a {padding:10px 0 10px 15px;display:block;color:#AAAAAA;}
+#sidebar > ul > li > a > i {margin-right:10px; color:aaaaaa; text-shadow:1px 1px 1px #000;}
+#sidebar > ul > li.active > a {background:url("../img/menu-active.png") no-repeat scroll right center transparent !important;}
+
+
+#sidebar > ul > li > a > .label {margin:0 20px 0 0;float:right;padding:3px 5px 2px;box-shadow:0 1px 2px rgba(0,0,0,0.5) inset, 0 1px 0 rgba(255,255,255,0.2);}
+
+#sidebar > ul ul {display:none;margin:0;padding:0;box-shadow:0 0 3px rgba(0,0,0,0.5) inset;}
+#sidebar > ul li.open > ul {display:block;}
+#sidebar > ul ul li a{padding:10px 0 10px 25px;display:block;color:#777777;}
+
+#sidebar > ul ul li:first-child a {border-top:0;}
+#sidebar > ul ul li:last-child a {border-bottom:0;}
+
+#sidebar > ul ul ul{border:0;box-shadow:0;}
+#sidebar > ul ul ul li{padding:0;}
+#sidebar > ul ul ul li a{border:0; padding:3px 0 3px 35px;font-size:12px;}
+#sidebar > ul ul li.active ul li{}
+
+.sidetitle {margin: 10px 0px 5px;padding: 15px 7px 10px;font-size: 18px;text-align: center;font-weight: normal;color: #fff;}
+.sidetitle i {display:none;}
+
+/*content*/
+.cont-edbtnwr {float: left;background: #f0f1f4;border-radius: 10px;text-align: right;}
+.cont-edbtnwr b {display: inline-block;text-align: center;}
+
+
+#content{background:none repeat scroll 0 0 #eeeeee;margin-left:220px;margin-right:0;position:relative;min-height:700px;width:auto;-webkit-background-clip:padding-box;border-top-left-radius:8px;top:-20px;}
+#content-header {background-image: -webkit-gradient(linear, 0 0%, 0 100%, from(#FFFFFF), to(#EEEEEE));background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #EEEEEE 100%);background-image: -moz-linear-gradient(top, #FFFFFF 0%, #EEEEEE 100%);background-image: -ms-linear-gradient(top, #FFFFFF 0%, #EEEEEE 100%);background-image: -o-linear-gradient(top, #FFFFFF 0%, #EEEEEE 100%);background-image: linear-gradient(top, #FFFFFF 0%, #EEEEEE 100%);border-top-left-radius: 8px;min-height: 50px; /*FIX: Use MIN-height... Allow header to get bigger for larger content (such as the h1) *//*position: absolute; FIX: This breaks layout significantly when spelled correctly*/padding-top: 5px; /*FIX: Allows h1 to not have to be absolutely positioned and control it's parent's height*/width: 100%;z-index: 20;}
+#content-header h2{color:#555;font-size:28px;font-weight:bold;text-shadow:0 1px 0 #fff;margin-left:20px;}
+#content-header .btn-group{position:absolute;float:right;right:20px;margin-top:10px;}
+#content-header .btn-group .btn{padding:11px 14px;min-height:0;}
+
+.content_skeleton{margin:0;padding:5px;height:100%;background:#EEE}
+.content_view{min-height:600px;}
+.content_view > div.span4{float:left;min-width:360px;border-right:2px solid #a4a4a4;margin-left:0;}
+.content_view > div.span6{min-width:650px;margin-left:0;float:none;width:auto;}
+.content_btn{background-color: #e5e5e5;box-shadow: 0 0 1px #ffffff;border-top: 1px solid #d6d6d6;border-bottom: 1px solid #d6d6d6;padding-left:5px;min-height:35px;margin-left:1px;min-width:350px;}
+.content_btn a.btn-small{padding:2px 3px;}
+.content_btn a{margin:4px 0;}
+.content_btn a i{margin-top:-1px;}
+.content_btn a span{font-size:12px;padding-left:5px;text-shadow:0 1px 0 #fff;color:#555555;}
+.content_btn a.pull-right{margin-right:5px;}
+.content_btn a:first-child{margin-left:5px;}
+
+.content_in{width:100%;background-color:#eeeeee;height:100%;min-height:754px;}/*2013-12-07 By. min-height:600px */
+
+.btn {font-weight:bold;}
+.btn-group>.btn{min-height:30px;}
+.btn-group > .btn-large{min-height:44px;}
+.btn-group>.btn-small{min-height:26px;}
+.btn-group>.btn-mini{min-height:22px;}
+
+.widget-title .btn{margin:4px 0;}
+.widget-title .select2-container{margin:3px;width:150px;}
+.widget-right-down {float: right;margin-right: 5px;}
+.select2-container{width:99%;}
+
+table th, table td{white-space:normal;word-break:break-all;}
+
+.tamplate_lay {float: left;margin: 20px auto;padding: 0;background: #dbdbdb;color: #929292;border-radius: 10px;border: 1px solid #dbdbdb;text-align: center;font-size: 12px;box-shadow: -1px -1px 5px #e6e6ea;}
+.tamplate_lay table {width: 100%;border-spacing: 2px 0px;border-collapse: unset;}
+.tamplate_lay table td a {display: inline-block;border: 1px solid #cecece;width: 96%;height: 100%;padding: 0% 2%;border-radius: 5px;text-align: center;font-weight: bold;color: #5f5f5f;background-image: -webkit-gradient(linear, 0 0%, 0 100%, from(#FFFFFF), to(#EEEEEE));background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #EEEEEE 100%);background-image: -moz-linear-gradient(top, #FFFFFF 0%, #EEEEEE 100%);background-image: -ms-linear-gradient(top, #FFFFFF 0%, #EEEEEE 100%);background-image: -o-linear-gradient(top, #FFFFFF 0%, #EEEEEE 100%);background-image: linear-gradient(top, #FFFFFF 0%, #EEEEEE 100%);}
+.tamplate_lay table td a:hover {background:#ffffff;color:#1b86ff;box-shadow: 0px 0px 5px #00a3ff;}
+.tamplate_lay  {background: url(../img/tamplat_ex.png) top center no-repeat;border-bottom: 1px solid #CDCDCD;width: 600px;height: 600px;}
+td.tl_01 {width: 30px;}
+td.tl_02 {width: 85px;}
+td.tl_03 {width: 250px;}
+td.tl_04 {width: 30px;}
+td.tl_05 {/* width: 30px; */}
+td.tl_06 {width: 30px;}
+tr.tl2 td {padding-bottom: 8px;}
+tr.tl11 td {padding-bottom: 13px;}
+
+div.tamplate_lay_info {float: right;margin: 20px auto;width: calc(100% - 610px);transition: opacity 1s,height 4s;}
+
+div.tamplate_lay_info > div {position: absolute;background: #f5f5f5;margin: 0px;border-radius: 9px;padding: 0 10px;opacity: 0;overflow: hidden;height: 0px;transition:  1s;border: 1px solid #d9d9d9;box-shadow: -1px -1px 5px #e6e6ea;}
+div.tamplate_lay_info > div.on {position: relative;opacity:1;height: auto;max-height: 300%;transition:  1s;padding: 10px;}
+div.tamplate_lay_info > div b {font-size:15px;}
+div.tamplate_lay_info > div p {margin-bottom: 0;}
+div.tamplate_lay_info > div div.tlb_code {background:#d7d7d7;padding: 7px 8px 10px;margin:5px 0;border-radius:5px;}
+div.tamplate_lay_info > div strong {color:#4880de;}
+div.tamplate_lay_info > div ul li {font-size:13px;margin-bottom:4px;}
+div.tamplate_lay_info > div ul li:before {content:"";display:inline-block;padding: 2px 2px;vertical-align: 4px;margin-left:-10px;margin-right: 6px;border-radius: 5px;background: #ababab;}
+div.tamplate_lay_info > div span.ex {background:#d7d7d7;padding:2px 4px;}
+
+
+.cntbtn-bar {margin-top:-35px;margin-bottom:5px;}
+
+#gritter-notice-wrapper{display:none;}
+/*footer*/
+#footer{width:100%;border-top:2px solid #333;top:-20px;position:relative;height:50px;overflow:hidden;}
+#footer p{text-align:center;color:#fff;font-weight:bold;margin:0;padding:10px;box-shadow:0 0 3px rgba(0,0,0,0.5) inset;height:100px;}
+
+
+/* Responsive design */
+@media (max-width:480px) {#header h1 {top:10px;left:auto;margin:3px auto;}
+	#user-nav {position:relative;left:auto;right:auto;width:100%;margin-top:-50px;margin-bottom:43px;}
+	.navbar > .nav {float:none;}
+	#user-nav > ul {left: 0;margin: 0 !important;position: absolute;width: 100% !important;text-align: center;}
+	
+	#sidebar .controls{position:relative;margin:5px auto;display:block;}
+	
+	#content {margin-left:0 !important;border-top-left-radius:0;top:0;}
+    
+    #content-header {margin-top:0;/*height:140px; FIX iPhone:Makes header take up too much space/not enough, let it dictate (by h1 text length) */height:auto;/* FIX iPhone:allow h1, btn-group to set height*/text-align:center;}
+    #content-header h2, #content-header .btn-group {float:none;position:relative; /*FIX iPhone:let btn group go in document flow, not absolute. Prevents button/header from running into each other*/}
+    #content-header h2 {display:block;text-align:center;margin-left:auto;margin-top:0;padding-top:15px;width:100%;}
+    #content-header .btn-group {/*margin-top:70px; FIX iPhone:Makes button group go needlessly far below the header. */ /* FIX iPhone:give equal margins (as below h1), still able to target with finger */width: 100% !important;margin: 5px 0 !important;left: 0;}
+	.content01{width:100%;}
+        
+    /*****/
+	#sidebar {float:none;width:100% !important;padding:10px 0 0 0;}
+	#sidebar > a {padding:15px 20px 10px 15px;box-shadow:0 1px 0 #666666;margin-bottom:1px;display:block !important;text-transform:uppercase;color:#eeeeee;font-size:12px;background-image:-moz-linear-gradient(top, #464646 0%, #404040 100%);border-bottom:1px solid #6e6e6e;border-top:1px solid #6e6e6e;}
+	#sidebar > a > i {margin-top:-1px;margin-right:10px;}
+	#sidebar > ul {display:none;margin: 11px 0 0 !important;width:100% !important;box-shadow:0 6px 6px rgba(0,0,0,0.4);top:90px;background-color:#444444;}
+	#sidebar > ul > li.active > a {background:none !important;}
+	#sidebar > ul > li > a > span {display:inline !important;}
+    #style-switcher {top:244px;}
+	.widget-title .buttons > .btn {width:11px;white-space:nowrap;overflow:hidden;}
+    .form-horizontal .control-label {padding-left:30px;}
+    .form-horizontal .controls {margin-left:0;padding:10px 30px;}
+    .form-actions {text-align:center;}
+	#footer{top:0px;}
+	.content_in{min-height:100px;}
+	.content_view > div.span6{min-width:0;width:100%;}
+	.content_view > div.span4{border-right:0;}
+	.content_view{min-height:0;}
+	#user-nav > ul > li {padding: 1px 0;float: inherit;display: inline-block;}
+	
+}
+
+@media (min-width:481px) and (max-width:767px) {#header h1 {top:5px;}
+	#user-nav{top:5px;}
+	#sidebar, #sidebar > ul {width:43px;top: 0;}
+	#sidebar > ul ul {display:none;position:absolute;left:50px;top:0;min-width:150px;box-shadow:0 1px 5px rgba(0,0,0,0.7);border-radius:5px;list-style:none;}
+	#sidebar > ul ul ul{position:relative;left:0;box-shadow:none;border-radius:0;}
+	#sidebar > ul ul li a {white-space:nowrap;padding: 10px 20px 10px 15px;border-radius:5px;}
+	#sidebar > ul ul:before {border-top:7px solid transparent;border-bottom:7px solid transparent;content:"";display:inline-block;left:-6px;position:absolute;top:11px;}
+	#sidebar > ul ul:after {border-top:6px solid transparent;border-bottom:6px solid transparent;content:"";display:inline-block;left:-5px;position:absolute;top:12px;}
+	#sidebar > a {display:none !important;}
+	#sidebar > ul > li.open.submenu > a {border-bottom:none !important;}
+	#sidebar > ul > li > a > span {display:none;}
+	#content {margin-left:43px;top:5px;}
+	.content_in{min-height:100px;}
+	.content_view > div.span6{min-width:0;width:100%;}
+	.content_view > div.span4{border-right:0;}
+	.content_view{min-height:0;}
+	#sidebar .controls{position:absolute;top:-45px;left:0;}
+	#footer{top:5px;}
+	.sidetitle {position:absolute;top: -60px;left: 215px;width: 190px;text-align: left;}
+}
+
+@media (max-width:600px) {.widget-title .buttons {float:left;}
+	.panel-left {margin-right:0;}
+	.panel-right {border-top:1px solid #DDDDDD;border-left:none;position:relative;top:auto;right:auto;height:auto;width:auto;}
+	.widget-right-down {float:none;margin-top: 5px;border-top: 1px solid #cdcdcd;}
+	
+	.tamplate_lay {width: 420px;height: 470px;font-size: 11px;background-color: #5f5f5f;background-size: cover;background-position: center 5px;}
+	tr.tl1 a {min-width:70px;}
+	tr.tl2 td {padding-bottom:0;}
+	
+	td.tl_01 {width: 1px;}
+	td.tl_02 {width: 58px;}
+	td.tl_03 {width: 160px;}
+	td.tl_04 {width: 30px;}
+	td.tl_05 {/* width: 30px; */}
+	td.tl_06 {width: 1px;}
+	.tlcont a {padding: 22% 2% !important;}
+	
+	
+	.cntbtn-bar {margin-top:0px;margin-bottom:0px;padding:5px 0;border-top:1px solid #ccc;}
+}
+
+
+@media (max-width:767px) {body {padding:0 !important;}
+	.container-fluid {padding-left:20px;padding-right:20px;}
+	#search {/*display:none;*/}
+	.content_in{min-height:100px;}
+	.content_view > div.span6{min-width:0;width:100%;}
+	.content_view > div.span4{border-right:0;}
+	.content_view{min-height:0;}
+	#user-nav > ul > li > a > span.txt {display:none;}
+	#user-nav > ul > li > a i {line-height: 20px;}	
+}
+@media (min-width:768px) and (max-width:979px) {
+	[class*="span"], .row-fluid [class*="span"] {display:block;float:none;margin-left:0;width:auto;}
+	#user-nav > ul > li > a > span.txt {display:none;}
+	#user-nav > ul > li > a i {line-height: 20px;}
+}
+@media (max-width:979px) {div.dataTables_wrapper .ui-widget-header {height:68px;}
+	.dataTables_filter {position:relative;}
+	.dataTables_filter, .dataTables_paginate {text-align:center;}
+	.content_view .list_content2 {margin-bottom: 10px;width:100%;}
+	.content_view .list_content2 .content_in div#tree {max-height: 300px;min-width: 100%;}
+	.content_view div.view_content2 {border: 1px solid #0000;}
+	.content_in {min-height:auto;}
+	.tamplate_lay {float:none;}
+	div.tamplate_lay_info {float:none;width: calc(100% - 40px);min-height:300px;}
+}

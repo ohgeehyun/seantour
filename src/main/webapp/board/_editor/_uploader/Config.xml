@@ -1,0 +1,54 @@
+﻿<!--
+@version 3.2.0.1
+-->
+<Config>
+	<!--로고-->
+	<!-- <logo x="15" y="0">assets/logo/LGSL.png</logo> -->
+
+	<!--환경설정키-->
+	<skey>gurye_vod</skey>
+
+	<!--구간설정시 미리보기변환용 키-->
+	<previewkey>
+	</previewkey>
+
+
+	<!--동영상 변환 서버 주소-->
+	<scheduler_url>http://152.99.163.4/WebSiteScheduler/SetNewjob.aspx</scheduler_url>
+
+
+	<!-- 썸네일 안함 -->
+	<thumbnailSkip>false</thumbnailSkip>
+	
+	<!-- 인코딩 진행중 보기 -->
+	<encodeVisible>false</encodeVisible>
+
+
+	<!--업로드 최대 사이즈(단위 Byte)  올리기 전-->
+	<maxFileSize>2147483648</maxFileSize>
+
+
+	<!--스킨 URL (상대,절대 URL 가능)-->
+	<skinXML>skin/kspo.xml</skinXML>
+
+
+	<!--언어 URL -->
+	<languageXML>assets/language/kor.xml</languageXML>
+
+
+	<!-- 파일용량 표시 -->
+	<filesize_format>
+		<![CDATA[<B>{current_filesize}</B>/{max_filesize}]]>
+	</filesize_format>
+
+
+	<!-- Input Format -->
+	<FileFilters>
+		<FileFilter type="video">
+			<description>Video File(*.mpg;*.mpeg;*.wmv;*.avi;*.asf;*.mp4;*.mov;*.rm;*.flv;*.3gp;*.smi)</description>
+			<extension>*.mpg;*.mpeg;*.wmv;*.avi;*.asf;*.mp4;*.mov;*.rm;*.flv;*.3gp;*.smi;</extension>
+		</FileFilter>
+	</FileFilters>
+
+
+</Config>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitcmsmenumgr">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitcmsmenumgrSerarchVO" type="jnit.cms.menumgr.JnitcmsmenumgrDefaultVO"/>
+	
+	<resultMap id="jnitcmsmenumgr" class="jnit.cms.menumgr.JnitcmsmenumgrVO">
+		<result property="siteId" column="SITE_ID" columnIndex="1"/>
+		<result property="menuId" column="MENU_ID" columnIndex="2"/>
+		<result property="mbrId" column="MBR_ID" columnIndex="3"/>
+		<result property="mgrLv" column="MGR_LV" columnIndex="4"/>
+	</resultMap>
+	
+	<insert id="jnitcmsmenumgrDAO.insertJnitcmsmenumgr_S">
+		<![CDATA[
+			INSERT INTO JNITCMSMENUMGR 
+				( SITE_ID
+				  , MENU_ID
+				  , MBR_ID
+				  , MGR_LV )
+			VALUES ( #siteId#
+				  , #menuId#
+				  , #mbrId#
+				  , #mgrLv# )
+		]]>
+	</insert>
+	
+	<update id="jnitcmsmenumgrDAO.updateJnitcmsmenumgr_S">
+		<![CDATA[
+			UPDATE JNITCMSMENUMGR
+			SET SITE_ID=#siteId#
+				, MENU_ID=#menuId#
+				, MBR_ID=#mbrId#
+				, MGR_LV=#mgrLv#
+                WHERE SITE_ID=#siteId#
+		]]>
+	</update>
+	
+	<delete id="jnitcmsmenumgrDAO.deleteJnitcmsmenumgr_S">
+		<![CDATA[
+			DELETE FROM JNITCMSMENUMGR 
+                WHERE SITE_ID=#siteId#
+		]]>
+	</delete>
+	
+	<select id="jnitcmsmenumgrDAO.selectJnitcmsmenumgr_S" resultMap="jnitcmsmenumgr">
+		<![CDATA[
+			SELECT
+				SITE_ID
+				, MENU_ID
+				, MBR_ID
+				, MGR_LV
+			FROM JNITCMSMENUMGR
+                WHERE SITE_ID=#siteId#
+		]]>
+	</select>
+	
+	<select id="jnitcmsmenumgrDAO.selectJnitcmsmenumgrList_D" parameterClass="jnitcmsmenumgrSerarchVO" resultClass="egovMap">
+			SELECT
+								SITE_ID
+								, MENU_ID
+								, MBR_ID
+								, MGR_LV
+					FROM JNITCMSMENUMGR
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				SITE_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				MENU_ID LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+				ORDER BY 
+                SITE_ID DESC
+			limit #firstIndex#, #recordCountPerPage#	
+	</select>	
+	<select id="jnitcmsmenumgrDAO.selectJnitcmsmenumgrListTotCnt_S" parameterClass="jnitcmsmenumgrSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM JNITCMSMENUMGR
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				SITE_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				MENU_ID LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+	</select>
+	<select id="jnitcmsmenumgrDAO.getLastIdJnitcmsmenumgr_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITCMSMENUMGR_ID'
+	</select>
+
+</sqlMap>

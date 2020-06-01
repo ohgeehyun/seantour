@@ -1,0 +1,35 @@
+@CHARSET "UTF-8";
+
+
+/*배너*/
+p.banner_title {font-size: 14px;font-weight: bold;}
+ul.bannerControl {margin: 5px 0;height: 20px;}
+ul.bannerControl li {float:left;}
+#banner_list {overflow: hidden;}
+#banner_rolling {position: relative;}
+
+/*배너모음*/
+.modal.hide {display:none;}
+.db_listGroup ul li {display:block;}
+.db_listGroup ul li p.banlist_img a {display: block;}
+
+/*알리미*/
+ul.allimiControl {background: #7A7A7A;height: 12px;width: 210px;padding: 5px;}
+ul.allimiControl li {float: left;margin:0px 0 0 10px;}
+ul.allimiNum {position: relative;height: 150px;}
+ul.allimiNum li {float: left;display: inline;margin: 10px 0 0 10px;}
+ul.allimiNum li p {position: absolute;top: 31px;left: 23px;}
+ul.allimiNum li a.allmiNumber_on {font-weight: bold;}
+ul.allimiNum > li > a {display: inline-block;width: 1px;height: 1px;padding: 5px;overflow: hidden;line-height: 1000%;}
+ul.allimiNum > li > a.allmiNumber_off {padding: 3px; background:#ccc;}
+ul.allimiNum > li > a.allmiNumber_on {padding: 3px; background: #8B8B8B;}
+ul.allimiNum > li > p {position: absolute; top: 27px; left: 0px;padding: 1px;background: #FFFFFF;border: 1px solid #BDBDBD;}
+ul.allimiNum > li > p > a {display:block;}
+ul.allimiNum > li > p > a > img {width: 216px;height: 110px;display: block;min-width: 215px;}
+
+
+/*팝업*/
+div.popup_closebtn {background: #797979;height: 24px;bottom: -24px;width: 100%;position: absolute;}
+div.popup_closebtn span.popup_txt {display: inline-block;margin-top: 2px;vertical-align: sub;color: #fff;margin-left: 4px;}
+div.popup_closebtn input {margin: 5px 0 0 7px;}
+div.popup_closebtn a {background: #616161;color:#FFA300;font-weight:bold;display:inline-block; float: right;padding: 2px 10px 6px 10px;vertical-align:sub;}

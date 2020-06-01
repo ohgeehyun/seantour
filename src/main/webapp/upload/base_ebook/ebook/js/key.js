@@ -1,0 +1,1 @@
+﻿var Key = { Copyright: "© 2014 JNITCMS. ltskorea.co.kr All Rights Reserved.", Key: "RRKI/znCgP5ti1Gigq9UKklwPb"};

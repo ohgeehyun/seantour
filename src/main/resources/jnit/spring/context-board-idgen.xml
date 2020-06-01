@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<!-- jnit.board IDGEN -->
+
+ 	<!-- JNIT BOARDINFO -->
+	<bean name="jnitBOARDINFOIdGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitBOARDINFOStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITBOARDINFO_ID"/>
+	</bean>
+	<bean name="jnitBOARDINFOStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="bbs_" />
+		<property name="cipers" value="16" />
+		<property name="fillChar" value="0" />
+	</bean>
+    <!-- //JNIT BOARDINFO -->
+
+ 	<!-- JNIT BOARDFILE -->
+	<bean name="jnitBOARDFILEIdGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitBOARDFILEStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITBOARDFILE_ID"/>
+	</bean>
+	<bean name="jnitBOARDFILEStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="FILE_" />
+		<property name="cipers" value="15" />
+		<property name="fillChar" value="0" />
+	</bean>
+    <!-- //JNIT BOARDFILE -->
+
+    <!-- JNIT BOARDINFO -->
+	<bean name="jnitBOARDCMTIdGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitBOARDCMTStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITBOARDINFO_ID"/>
+	</bean>
+	<bean name="jnitBOARDCMTStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="CMT_" />
+		<property name="cipers" value="15" />
+		<property name="fillChar" value="0" />
+	</bean>
+    <!-- //JNIT BOARDINFO -->
+    <!-- JNIT BOARDGOOD -->
+	<bean name="jnitBOARDGOODIdGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitBOARDGOODStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITBOARDGOOD_ID"/>
+	</bean>
+	<bean name="jnitBOARDGOODStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="GOOD_" />
+		<property name="cipers" value="6" />
+		<property name="fillChar" value="0" />
+	</bean>
+    <!-- //JNIT BOARDGOOD -->
+
+	<!-- JNIT BOARDMEDIA -->
+	<bean name="jnitBOARDMEDIAIdGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitBOARDMEDIAStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITBOARDMEDIA_ID"/>
+	</bean>
+	<bean name="jnitBOARDMEDIAStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="" />
+		<property name="cipers" value="10" />
+		<property name="fillChar" value="0" />
+	</bean>
+    <!-- //JNIT BOARDMEDIA -->
+
+    <!-- jnitBoardDataIdGnrService-->
+	<bean name="jnitBoardDataIdGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitBoardDataStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="BOARD_DATA_ID"/>
+	</bean>
+	<bean name="jnitBoardDataStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="" />
+		<property name="cipers" value="5" />
+		<property name="fillChar" value="0" />
+	</bean>
+    <!-- //jnitBoardDataIdGnrService -->
+
+</beans>

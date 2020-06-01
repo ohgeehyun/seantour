@@ -1,0 +1,21 @@
+@charset "utf-8";/* CSS Document */
+
+.container-fluid .row-fluid:first-child{/*margin-top:20px;*/}
+
+@media (min-width:481px) and (max-width:767px) {
+	
+}
+@media (max-width:600px) {
+	
+
+}
+@media (max-width:767px) {
+	
+	
+}
+@media (min-width:768px) and (max-width:979px) {
+	
+}
+@media (max-width:979px) {
+	
+}

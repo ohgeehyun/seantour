@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:task="http://www.springframework.org/schema/task"
+		xmlns:util="http://www.springframework.org/schema/util" 
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+				http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+				http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
+				http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd">
+
+	<!-- 일정 횟수동안 로그인을 실패하여 잠긴 계정을 해제하기 위한 CRON -->
+	<bean id="jnitCronLoginUnlock" class="jnit.cron.JnitCronLoginUnlock" />
+
+	<task:scheduler id="jobScheduler" pool-size="10" />
+	<task:annotation-driven scheduler="jobScheduler" />
+	
+</beans>

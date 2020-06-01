@@ -1,0 +1,57 @@
+<!--
+@version 3.2.0.1
+-->
+<Skin>
+	<Canvas id="fileFindView" backgroundSkin="assets/skin/bg.png"
+		width="640" height="439" scale9Grid="300,120,10,200">
+		<TextField x="30" y="70" text="{FILE_SELECT_MESSAGE}"></TextField>
+		<Canvas x="30" y="90" backgroundSkin="assets/skin/textBox_1.png">
+			<TextField x="30" y="20" width="410" text="{fileName}"
+				borderColor="#CCCCCC" borderStyle="solid" backgroundColor="#FFFFFF" />
+			<TextField x="30" y="40" width="410" text="{fileName}"
+				textAlign="right"><![CDATA[{fileSize_formatter}/{maxFileSize_formatter}]]></TextField>
+
+			<Button x="450" y="18" upSkin="assets/skin/fileFind.png"
+				click="FILE_FIND" />
+		</Canvas>
+
+		<Button x="245" y="328" upSkin="assets/skin/nextBtn.png" click="FILE_UPLOAD" />
+	</Canvas>
+	
+	<Canvas id="progressView" backgroundSkin="assets/skin/bg.png"
+		width="640" height="439" scale9Grid="300,120,10,200">
+		<TextField x="30" y="70" text="{progressMessage}"></TextField>
+		<Canvas x="30" y="90" backgroundSkin="assets/skin/textBox_1.png">
+			<ProgressBar x="10" y="10" label="%3%%"
+				barImage="assets/skin/progressSelect.png" trackImage="assets/skin/progressBG.png" />
+		</Canvas>
+		<Button x="245" y="328" upSkin="assets/skin/cancelBtn.png"
+			click="CANCEL" />
+	</Canvas>
+	
+	<Canvas id="thumbnailView" backgroundSkin="assets/skin/bg.png"
+		width="640" height="439" scale9Grid="300,120,10,200">
+		<TextField x="30" y="70" text="{TITLEIMAGE_SELECT_MESSAGE}" />
+		<Canvas x="30" y="90" backgroundSkin="assets/skin/textBox_2.png">
+			<Thumbnails x="5" y="8" thumbWidth="100" thumbHeight="75"
+				thumbSpace="10" itemSpace="10" rollOverColor="#ffa200" rollOutColor="#DDDDDD"
+				selectionColor="#FF0000" />
+		</Canvas>
+		<Button x="500" y="190" upSkin="assets/skin/fileFind.png"
+			click="RETRY" />
+
+
+		<Button x="220" y="328" upSkin="assets/skin/prevBtn.png" click="PREVIOUS" />
+		<Button x="300" y="328" upSkin="assets/skin/completeBtn.png"
+			click="COMPLETE" />
+	</Canvas>
+
+
+	<Canvas id="completeView" backgroundSkin="assets/skin/bg.png"
+		width="640" height="439" scale9Grid="300,120,10,200">
+		<TextField x="30" y="70" text="{COMPLETE_MESSAGE}"></TextField>
+	</Canvas>
+	<Style>
+	</Style>
+
+</Skin>

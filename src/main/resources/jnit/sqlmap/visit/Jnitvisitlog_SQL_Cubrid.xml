@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitvisitlog">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitvisitlogSerarchVO" type="jnit.visit.log.JnitvisitlogDefaultVO"/>
+	
+	<resultMap id="jnitvisitlog" class="jnit.visit.log.JnitvisitlogVO">
+		<result property="whenDatetime" column="WHEN_DATETIME" columnIndex="1"/>
+		<result property="wherDate" column="WHEN_DATE" columnIndex="2"/>
+		<result property="site" column="SITE" columnIndex="3"/>
+		<result property="ipaddr" column="IPADDR" columnIndex="4"/>
+		<result property="referer" column="REFERER" columnIndex="5"/>
+		<result property="userOs" column="USER_OS" columnIndex="6"/>
+		<result property="browser" column="BROWSER" columnIndex="7"/>
+		<result property="userAgent" column="USER_AGENT" columnIndex="8"/>
+		<result property="page" column="PAGE" columnIndex="9"/>
+	</resultMap>
+	
+	<insert id="jnitvisitlogDAO.insertJnitvisitlog_S">
+		<![CDATA[
+			INSERT INTO JNITVISITLOG 
+				( WHEN_DATETIME
+				  , WHEN_DATE
+				  , SITE
+				  , IPADDR
+				  , REFERER
+				  , USER_OS
+				  , BROWSER
+				  , USER_AGENT
+				  , PAGE
+				  , "USER" )
+			VALUES ( NOW()
+				  , NOW()
+				  , #site#
+				  , #ipaddr#
+				  , #referer#
+				  , #userOs#
+				  , #browser#
+				  , #userAgent#
+				  , #page#
+				  , #user# )
+		]]>
+	</insert>
+
+	<select id="jnitvisitlogDAO.dataCnt_S" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM JNITVISITLOG
+			WHERE SITE = #site#
+			<isNotEmpty prepend="AND" property="whenDate">
+				WHEN_DATE = DATE_FORMAT(#whenDate#,'%Y-%m-%d')
+			</isNotEmpty>
+	</select>
+
+
+
+
+	<update id="jnitvisitlogDAO.updateJnitvisitlog_S">
+		<![CDATA[
+			UPDATE JNITVISITLOG
+			SET WHEN_DATETIME=#whenDatetime#
+				, WHEN_DATE=#whenDate#
+				, SITE=#site#
+				, IPADDR=#ipaddr#
+				, REFERER=#referer#
+				, USER_OS=#userOs#
+				, BROWSER=#browser#
+				, USER_AGENT=#userAgent#
+				, PAGE=#page#
+				, "USER"=#user#
+						WHERE WHEN_DATETIME=#whenDatetime#
+				]]>
+	</update>
+	
+	<delete id="jnitvisitlogDAO.deleteJnitvisitlog_S">
+		<![CDATA[
+			DELETE FROM JNITVISITLOG 
+						WHERE WHEN_DATETIME=#whenDatetime#
+				]]>
+	</delete>
+	
+	<select id="jnitvisitlogDAO.selectJnitvisitlog_S" resultMap="jnitvisitlog">
+		<![CDATA[
+			SELECT
+				WHEN_DATETIME
+				, WHEN_DATE
+				, SITE
+				, IPADDR
+				, REFERER
+				, USER_OS
+				, BROWSER
+				, USER_AGENT
+				, PAGE
+				, "USER"
+			FROM JNITVISITLOG
+						WHERE WHEN_DATETIME=#whenDatetime#
+				]]>
+	</select>
+	
+	<select id="jnitvisitlogDAO.selectJnitvisitlogList_D" parameterClass="jnitvisitlogSerarchVO" resultClass="egovMap">
+			SELECT
+								WHEN_DATETIME
+								, WHEN_DATE
+								, SITE
+								, IPADDR
+								, REFERER
+								, USER_OS
+								, BROWSER
+								, USER_AGENT
+								, PAGE
+								, "USER"
+					FROM JNITVISITLOG
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				WHEN_DATETIME = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				WHEN_DATE LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+				ORDER BY 
+						WHEN_DATETIME DESC
+					limit #firstIndex#, #recordCountPerPage#	
+	</select>	
+	<select id="jnitvisitlogDAO.selectJnitvisitlogListTotCnt_S" parameterClass="jnitvisitlogSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM JNITVISITLOG
+			WHERE 1=1
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				WHEN_DATETIME = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				WHEN_DATE LIKE CONCAT('%',#searchKeyword#,'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				WHEN_DATETIME BETWEEN #searchKeyword# AND #searchKeyword2#
+			</isEqual>
+	</select>
+	<select id="jnitvisitlogDAO.getLastIdJnitvisitlog_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITVISITLOG_ID'
+	</select>
+
+</sqlMap>

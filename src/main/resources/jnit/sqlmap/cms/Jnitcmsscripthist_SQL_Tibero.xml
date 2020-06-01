@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitcmsscripthist">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitcmsscripthistSerarchVO" type="jnit.cms.scripthist.JnitcmsscripthistDefaultVO"/>
+
+	<resultMap id="jnitcmsscripthist" class="jnit.cms.scripthist.JnitcmsscripthistVO">
+		<result property="siteId" column="SITE_ID" columnIndex="1"/>
+		<result property="mgmtId" column="MGMT_ID" columnIndex="2"/>
+		<result property="histId" column="HIST_ID" columnIndex="3"/>
+		<result property="content" column="CONTENT" columnIndex="4"/>
+		<result property="mgmtActId" column="MGMT_ACT_ID" columnIndex="5"/>
+		<result property="mgmtActIp" column="MGMT_ACT_IP" columnIndex="6"/>
+		<result property="created" column="CREATED" columnIndex="7"/>
+	</resultMap>
+
+	<insert id="jnitcmsscripthistDAO.insertJnitcmsscripthist_S">
+		<![CDATA[
+			INSERT INTO JNITCMSSCRIPTHIST
+				( SITE_ID
+				  , MGMT_ID
+				  , HIST_ID
+				  , CONTENT
+				  , MGMT_ACT_ID
+				  , MGMT_ACT_IP
+				  , CREATED )
+			VALUES ( #siteId#
+				  , #mgmtId#
+				  , #histId#
+				  , #content#
+				  , #mgmtActId#
+				  , #mgmtActIp#
+				  , SYSDATE )
+		]]>
+	</insert>
+
+	<update id="jnitcmsscripthistDAO.updateJnitcmsscripthist_S">
+		<![CDATA[
+			UPDATE JNITCMSSCRIPTHIST
+			SET SITE_ID=#siteId#
+				, MGMT_ID=#mgmtId#
+				, HIST_ID=#histId#
+				, CONTENT=#content#
+				, MGMT_ACT_ID=#mgmtActId#
+				, MGMT_ACT_IP=#mgmtActIp#
+				, CREATED=SYSDATE
+						WHERE HIST_ID=#histId#
+				]]>
+	</update>
+
+	<delete id="jnitcmsscripthistDAO.deleteJnitcmsscripthist_S">
+		<![CDATA[
+			DELETE FROM JNITCMSSCRIPTHIST
+						WHERE HIST_ID=#histId#
+				]]>
+	</delete>
+
+	<select id="jnitcmsscripthistDAO.selectJnitcmsscripthist_S" resultMap="jnitcmsscripthist">
+		<![CDATA[
+			SELECT
+				SITE_ID
+				, MGMT_ID
+				, HIST_ID
+				, CONTENT
+				, MGMT_ACT_ID
+				, MGMT_ACT_IP
+				, CREATED
+			FROM JNITCMSSCRIPTHIST
+						WHERE HIST_ID=#histId#
+				]]>
+	</select>
+
+	<select id="jnitcmsscripthistDAO.selectJnitcmsscripthistList_D" parameterClass="jnitcmsscripthistSerarchVO" resultClass="egovMap">
+		SELECT * FROM (
+			SELECT A.*, ROWNUM RNUM FROM (
+						SELECT
+										SITE_ID
+										, MGMT_ID
+										, HIST_ID
+										, CONTENT
+										, MGMT_ACT_ID
+										, MGMT_ACT_IP
+										, TO_CHAR(CREATED,'YYYY-MM-DD HH24:mi:ss')  AS CREATED
+								FROM JNITCMSSCRIPTHIST
+						WHERE 1=1
+						<isEqual prepend="AND" property="siteIdYn" compareValue="Y">
+						    SITE_ID = #siteId#
+						</isEqual>
+						<isEqual prepend="AND" property="mgmtIdYn" compareValue="Y">
+						    MGMT_ID = #mgmtId#
+						</isEqual>
+						<isEqual prepend="AND" property="searchCondition" compareValue="0">
+							SITE_ID = #searchKeyword#
+						</isEqual>
+						<isEqual prepend="AND" property="searchCondition" compareValue="1">
+							MGMT_ID LIKE '%' || #searchKeyword# || '%'
+						</isEqual>
+							ORDER BY
+								HIST_ID DESC
+
+				<![CDATA[
+			) A WHERE ROWNUM <= #lastIndex#
+		)WHERE RNUM > #firstIndex#
+		]]>
+	</select>
+	<select id="jnitcmsscripthistDAO.selectJnitcmsscripthistListTotCnt_S" parameterClass="jnitcmsscripthistSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM JNITCMSSCRIPTHIST
+			WHERE 1=1
+			<isEqual prepend="AND" property="siteIdYn" compareValue="Y">
+			    SITE_ID = #siteId#
+			</isEqual>
+			<isEqual prepend="AND" property="mgmtIdYn" compareValue="Y">
+			    MGMT_ID = #mgmtId#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				SITE_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				MGMT_ID LIKE '%' || #searchKeyword# || '%'
+			</isEqual>
+	</select>
+	<select id="jnitcmsscripthistDAO.getLastIdJnitcmsscripthist_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITCMSSCRIPTHIST_ID'
+	</select>
+
+</sqlMap>

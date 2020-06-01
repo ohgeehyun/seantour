@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitcmstplhist">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitcmstplhistSerarchVO" type="jnit.cms.tplhist.JnitcmstplhistDefaultVO"/>
+	
+	<resultMap id="jnitcmstplhist" class="jnit.cms.tplhist.JnitcmstplhistVO">
+		<result property="siteId" column="SITE_ID" columnIndex="1"/>
+		<result property="tplId" column="TPL_ID" columnIndex="2"/>
+		<result property="histId" column="HIST_ID" columnIndex="3"/>
+		<result property="tplType" column="TPL_TYPE" columnIndex="4"/>
+		<result property="tplDesc" column="TPL_DESC" columnIndex="5"/>
+		<result property="tplSrc" column="TPL_SRC" columnIndex="6"/>
+		<result property="actMbr" column="ACT_MBR" columnIndex="7"/>
+		<result property="actIp" column="ACT_IP" columnIndex="8"/>
+		<result property="created" column="CREATED" columnIndex="9"/>
+	</resultMap>
+	
+	<insert id="jnitcmstplhistDAO.insertJnitcmstplhist_S">
+		<![CDATA[
+			INSERT INTO JNITCMSTPLHIST 
+				( SITE_ID
+				  , TPL_ID
+				  , HIST_ID
+				  , TPL_TYPE
+				  , TPL_DESC
+				  , TPL_SRC
+				  , ACT_MBR
+				  , ACT_IP
+				  , CREATED )
+			VALUES ( #siteId#
+				  , #tplId#
+				  , #histId#
+				  , #tplType#
+				  , #tplDesc#
+				  , #tplSrc#
+				  , #actMbr#
+				  , #actIp#
+				  , NOW() )
+		]]>
+	</insert>
+	
+	<update id="jnitcmstplhistDAO.updateJnitcmstplhist_S">
+		<![CDATA[
+			UPDATE JNITCMSTPLHIST
+			SET SITE_ID=#siteId#
+				, TPL_ID=#tplId#
+				, HIST_ID=#histId#
+				, TPL_TYPE=#tplType#
+				, TPL_DESC=#tplDesc#
+				, TPL_SRC=#tplSrc#
+				, ACT_MBR=#actMbr#
+				, ACT_IP=#actIp#
+				, CREATED=NOW()
+						WHERE HIST_ID=#histId#
+				]]>
+	</update>
+	
+	<delete id="jnitcmstplhistDAO.deleteJnitcmstplhist_S">
+		<![CDATA[
+			DELETE FROM JNITCMSTPLHIST 
+						WHERE HIST_ID=#histId#
+				]]>
+	</delete>
+	
+	<select id="jnitcmstplhistDAO.selectJnitcmstplhist_S" resultMap="jnitcmstplhist">
+		<![CDATA[
+			SELECT
+				SITE_ID
+				, TPL_ID
+				, HIST_ID
+				, TPL_TYPE
+				, TPL_DESC
+				, TPL_SRC
+				, ACT_MBR
+				, ACT_IP
+				, CREATED
+			FROM JNITCMSTPLHIST
+						WHERE HIST_ID=#histId#
+				]]>
+	</select>
+	
+	<select id="jnitcmstplhistDAO.selectJnitcmstplhistList_D" parameterClass="jnitcmstplhistSerarchVO" resultClass="egovMap">
+		SELECT
+				SITE_ID
+				, TPL_ID
+				, HIST_ID
+				, TPL_TYPE
+				, TPL_DESC
+				, TPL_SRC
+				, ACT_MBR
+				, ACT_IP
+				, CREATED
+		FROM JNITCMSTPLHIST
+		WHERE 1=1
+		<isEqual prepend="AND" property="siteIdYn" compareValue="Y">
+		    SITE_ID = #siteId#
+		</isEqual>
+		<isEqual prepend="AND" property="tplIdYn" compareValue="Y">
+		    TPL_ID = #tplId#
+		</isEqual>
+		<isEqual prepend="AND" property="searchCondition" compareValue="0">
+			SITE_ID = #searchKeyword#
+		</isEqual>
+		<isEqual prepend="AND" property="searchCondition" compareValue="1">
+			TPL_ID LIKE CONCAT ('%',#searchKeyword#,'%')
+		</isEqual>
+			ORDER BY HIST_ID DESC
+			limit #firstIndex#, #recordCountPerPage#
+	</select>	
+	<select id="jnitcmstplhistDAO.selectJnitcmstplhistListTotCnt_S" parameterClass="jnitcmstplhistSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM JNITCMSTPLHIST
+			WHERE 1=1
+			<isEqual prepend="AND" property="siteIdYn" compareValue="Y">
+			    SITE_ID = #siteId#
+			</isEqual>
+			<isEqual prepend="AND" property="tplIdYn" compareValue="Y">
+			    TPL_ID = #tplId#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				SITE_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				TPL_ID LIKE CONCAT ('%',#searchKeyword#,'%')
+			</isEqual>
+	</select>
+	<select id="jnitcmstplhistDAO.getLastIdJnitcmstplhist_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITCMSTPLHIST_ID'
+	</select>
+
+</sqlMap>

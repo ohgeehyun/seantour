@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitdb">
+	
+	<typeAlias  alias="hashMap" type="java.util.HashMap"/>
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitdbVO" type="jnit.db.JnitdbVO"/>
+	
+	<insert id="jnitdbDAO.insert_S">
+		<isNotEmpty property="query">
+			$query$
+		</isNotEmpty>
+	</insert>
+	
+	<update id="jnitdbDAO.update_S">
+		<isNotEmpty property="query">
+			$query$
+		</isNotEmpty>
+	</update>
+	
+	<delete id="jnitdbDAO.delete_S">
+		<isNotEmpty property="query">
+			$query$
+		</isNotEmpty>
+	</delete>
+	
+	<select id="jnitdbDAO.select_S" resultClass="hashMap" remapResults="true">
+		<isNotEmpty property="query">
+			$query$
+			
+			limit 1
+		</isNotEmpty>
+	</select>
+	
+	<select id="jnitdbDAO.selectList_D" parameterClass="jnitdbVO" resultClass="egovMap" remapResults="true">
+		<isNotEmpty property="query">
+			$query$
+		</isNotEmpty>
+		
+		<isNotEmpty prepend="ORDER BY" property="addQuery">
+			$addQuery$
+		</isNotEmpty>
+
+		<isEqual property="isPaging" compareValue="Y">  
+			limit #firstIndex#, #recordCountPerPage#
+		</isEqual>	
+	</select>	
+	
+	<select id="jnitdbDAO.selectCnt_S" resultClass="int" remapResults="true">
+		<isNotEmpty property="query">
+			$query$
+		</isNotEmpty>
+		<isNotEmpty prepend="OR" property="addQuery">
+			$addQuery$
+		</isNotEmpty>
+	</select>
+	<select id="jnitdbDAO.dbConnectList_D" parameterClass="jnitdbVO" resultClass="egovMap" remapResults="true">
+		<isNotEmpty property="query">
+			$query$
+		</isNotEmpty>
+		
+		<isNotEmpty prepend="ORDER BY" property="addQuery">
+			$addQuery$
+		</isNotEmpty>				
+	</select>
+</sqlMap>

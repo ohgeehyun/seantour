@@ -1,0 +1,1288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Jnitcmsmbr">
+	
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="jnitcmsmbrSerarchVO" type="jnit.cms.mbr.JnitcmsmbrDefaultVO"/>
+	
+	<resultMap id="jnitcmsmbr" class="jnit.cms.mbr.JnitcmsmbrVO">
+		<result property="mbrId" column="MBR_ID" columnIndex="1"/>
+		<result property="orgId" column="ORG_ID" columnIndex="2"/>
+		<result property="posId" column="POS_ID" columnIndex="3"/>
+		<result property="siteId" column="SITE_ID" columnIndex="3"/>
+		<result property="mbrLogin" column="MBR_LOGIN" columnIndex="4"/>	
+		<result property="mbrNm" column="MBR_NM" columnIndex="5"/>
+		<result property="mbrPhoto" column="MBR_PHOTO" columnIndex="6"/>
+		<result property="passwd" column="PASSWD" columnIndex="7"/>
+		<result property="typeId" column="TYPE_ID" columnIndex="8"/>
+		<result property="tel" column="TEL" columnIndex="9"/>
+		<result property="mobile" column="MOBILE" columnIndex="10"/>
+		<result property="email" column="EMAIL" columnIndex="11"/>
+		<result property="created" column="CREATED" columnIndex="12"/>
+		<result property="modified" column="MODIFIED" columnIndex="13"/>
+		<result property="sn" column="SN" columnIndex="14"/>
+		<result property="dp" column="DP" columnIndex="15"/>
+		<result property="isdel" column="ISDEL" columnIndex="16"/>
+		<result property="homepage" column="HOMEPAGE" columnIndex="17"/>
+		<result property="postcode" column="POSTCODE" columnIndex="18"/>
+		<result property="address" column="ADDRESS" columnIndex="19"/>
+		<result property="emailRecv" column="EMAIL_RECV" columnIndex="20"/>
+		<result property="smsRecv" column="SMS_RECV" columnIndex="21"/>		
+		<result property="establishment" column="ESTABLISHMENT" columnIndex="22"/>
+		<result property="corporation" column="CORPORATION" columnIndex="23"/>
+		<result property="primaryKey" column="PRIMARY_KEY" columnIndex="24"/>
+		<result property="mutual" column="MUTUAL" columnIndex="25"/>
+		<result property="corporateName" column="CORPORATE_NAME" columnIndex="26"/>
+		<result property="groupName" column="GROUP_NAME" columnIndex="27"/>
+		<result property="businessPlace" column="BUSINESS_PLACE" columnIndex="28"/>
+		<result property="businessAddr" column="BUSINESS_ADDR" columnIndex="29"/>
+		<result property="groupKind" column="GROUP_KIND" columnIndex="30"/>
+		<result property="groupTel" column="GROUP_TEL" columnIndex="31"/>
+		<result property="groupPax" column="GROUP_PAX" columnIndex="32"/>
+		<result property="groupType" column="GROUP_TYPE" columnIndex="33"/>
+		<result property="grpConfirm" column="GRP_CONFIRM" columnIndex="34"/>
+		<result property="rankId" column="RANK_ID" columnIndex="35"/>
+		<result property="workContents" column="WORK_CONTENTS" columnIndex="36"/>
+		<result property="connectType" column="CONNECT_TYPE" columnIndex="37"/>
+		<result property="groupTitle" column="GROUP_TITLE" columnIndex="38"/>
+		<result property="pwMiscnt" column="PW_MISCNT" columnIndex="39"/>
+		<result property="addressNew" column="ADDRESS_NEW" columnIndex="40"/>
+		<result property="businessAddrNew" column="BUSINESS_ADDR_NEW" columnIndex="41"/>
+		<result property="odr" column="ODR" columnIndex="42"/>
+		<result property="gradeNm" column="GRADE_NM" columnIndex="43"/>
+		<result property="ex01" column="EX01" columnIndex="44"/>
+		<result property="ex02" column="EX02" columnIndex="45"/>
+		<result property="ex03" column="EX03" columnIndex="46"/>
+		<result property="lockDate" column="LOCK_DATE" columnIndex="47"/>		
+	</resultMap>
+	
+	<insert id="jnitcmsmbrDAO.insertJnitcmsmbr_S">
+		<![CDATA[
+			INSERT INTO JNITCMSMBR 
+				( MBR_ID
+				  , ORG_ID
+				  , POS_ID
+				  , SITE_ID
+				  , MBR_LOGIN
+				  , MBR_NM
+				  , MBR_PHOTO
+				  , PASSWD
+				  , TYPE_ID
+				  , TEL
+				  , MOBILE
+				  , EMAIL
+				  , CREATED
+				  , MODIFIED
+				  , SN
+				  , DP
+				  , ISDEL
+				  , HOMEPAGE
+				  , POSTCODE
+				  , ADDRESS
+				  , EMAIL_RECV
+				  , SMS_RECV
+				  , ESTABLISHMENT
+				  , CORPORATION
+				  , PRIMARY_KEY
+				  , MUTUAL
+				  , CORPORATE_NAME
+				  , GROUP_NAME
+				  , BUSINESS_PLACE
+				  , BUSINESS_ADDR
+				  , GROUP_KIND
+				  , GROUP_TEL
+				  , GROUP_PAX
+				  , GROUP_TYPE
+				  , GRP_CONFIRM
+				  , RANK_ID
+				  , WORK_CONTENTS
+				  , GRADE_NM
+				  , ODR
+				  , CONNECT_TYPE
+				  , GROUP_TITLE
+				  , PW_MISCNT
+				  , ADDRESS_NEW
+				  , BUSINESS_ADDR_NEW
+				  , EX01
+				  , EX02
+				  , EX03 )
+			VALUES ( #mbrId#
+				  , #orgId#
+				  , #posId#
+				  , #siteId#
+				  , #mbrLogin#
+				  , #mbrNm#
+				  , #mbrPhoto#
+				  , #passwd#
+				  , #typeId#
+				  , #tel#
+				  , #mobile#
+				  , #email#
+				  , SYSDATE
+				  , SYSDATE
+				  , #sn#
+				  , #dp#
+				  , #isdel#
+				  , #homepage#
+				  , #postcode#
+				  , #address#
+				  , #emailRecv#
+				  , #smsRecv#
+				  , #establishment#
+				  , #corporation#
+				  , #primaryKey#
+				  , #mutual#
+				  , #corporateName#
+				  , #groupName#
+				  , #businessPlace#
+				  , #businessAddr#
+				  , #groupKind#
+				  , #groupTel#
+				  , #groupPax#
+				  , #groupType#
+				  , #grpConfirm#
+				  , #rankId#
+				  , #workContents#
+				  , #gradeNm#
+				  , #odr#
+				  , #connectType#
+				  , #groupTitle#
+				  , 1
+				  , #addressNew#
+				  , #businessAddrNew#
+				  , #ex01#
+				  , #ex02#
+				  , #ex03# )
+		]]>
+	</insert>
+	
+	<update id="jnitcmsmbrDAO.updateJnitcmsmbr_S">		
+		UPDATE JNITCMSMBR		
+		<isEqual property="updateCondition" compareValue="0">
+			<![CDATA[    				
+			SET ORG_ID=#orgId#
+				, POS_ID=#posId#
+				, MBR_NM=#mbrNm#
+				, MBR_PHOTO=#mbrPhoto#
+			]]>
+			<isNotEmpty property="passwd">
+			<![CDATA[
+				, PASSWD=#passwd#
+			]]>
+			</isNotEmpty>
+			<![CDATA[
+				, TYPE_ID=#typeId#
+				, TEL=#tel#
+				, MOBILE=#mobile#
+				, EMAIL=#email#
+				, MODIFIED=SYSDATE
+				, HOMEPAGE=#homepage#
+				, POSTCODE=#postcode#
+				, ADDRESS=#address#
+				, EMAIL_RECV=#emailRecv#
+				, SMS_RECV=#smsRecv#
+				, ESTABLISHMENT=#establishment#
+				, CORPORATION=#corporation#
+				, PRIMARY_KEY=#primaryKey#
+				, MUTUAL=#mutual#
+				, CORPORATE_NAME=#corporateName#
+				, GROUP_NAME=#groupName#
+				, BUSINESS_PLACE=#businessPlace#
+				, BUSINESS_ADDR=#businessAddr#
+				, GROUP_KIND=#groupKind#
+				, GROUP_TEL=#groupTel#
+				, GROUP_PAX=#groupPax#
+				, GROUP_TYPE=#groupType#
+				, GRP_CONFIRM=#grpConfirm#
+				, RANK_ID=#rankId#
+				, WORK_CONTENTS=#workContents#
+				, GRADE_NM=#gradeNm#
+				, ODR=#odr#
+				, GROUP_TITLE=#groupTitle#
+				, PW_MISCNT=#pwMiscnt#
+				, ADDRESS_NEW=#addressNew#
+				, BUSINESS_ADDR_NEW=#businessAddrNew#
+				, EX01=#ex01#
+				, EX02=#ex02#
+				, EX03=#ex03#
+			]]>	
+			WHERE 1=1
+			AND MBR_ID=#mbrId#
+		</isEqual>
+		<isEqual property="updateCondition" compareValue="1">
+		    <![CDATA[
+		    SET PW_MISCNT=#pwMiscnt#
+		    ]]>
+		    WHERE 1=1
+			AND MBR_ID=#mbrId#
+	    </isEqual>
+	    <isEqual property="updateCondition" compareValue="2">
+		    <![CDATA[
+		    SET TYPE_ID=#typeId#
+		    	, MODIFIED=SYSDATE
+		    	, ISDEL=1
+		    ]]>
+		    WHERE 1=1
+			AND MBR_ID=#mbrId#
+	    </isEqual>
+	    <isEqual property="updateCondition" compareValue="3">
+		    <![CDATA[
+		    SET DP=#dp#
+		    ]]>
+		    WHERE 1=1
+			AND MBR_ID=#mbrId#
+	    </isEqual>
+	    <isEqual property="updateCondition" compareValue="4">
+		    <![CDATA[
+		    SET PASSWD=#passwd#
+		    WHERE 1=1
+			AND MBR_LOGIN=#mbrLogin#
+		    ]]> 
+	    </isEqual>
+	    <isEqual property="updateCondition" compareValue="5">
+		    <![CDATA[
+		    SET GRP_CONFIRM=#grpConfirm#
+		    WHERE 1=1
+			AND MBR_ID=#mbrId#
+		    ]]> 
+	    </isEqual>
+	</update>
+	
+	<update id="jnitcmsmbrDAO.updateMbrLogin_S">
+		<![CDATA[
+			UPDATE JNITCMSMBR
+			SET ORG_ID=#orgId#
+				, POS_ID=#posId#
+				, MBR_NM=#mbrNm#
+				, MBR_PHOTO=#mbrPhoto#
+		]]>
+			<isNotEmpty property="passwd">
+			<![CDATA[
+				, PASSWD=#passwd#
+			]]>
+			</isNotEmpty>
+		<![CDATA[
+				, TYPE_ID=#typeId#
+				, TEL=#tel#
+				, MOBILE=#mobile#
+				, EMAIL=#email#
+				, MODIFIED=SYSDATE
+				, HOMEPAGE=#homepage#
+				, POSTCODE=#postcode#
+				, ADDRESS=#address#
+				, EMAIL_RECV=#emailRecv#
+				, SMS_RECV=#smsRecv#
+				, ESTABLISHMENT=#establishment#
+				, CORPORATION=#corporation#
+				, PRIMARY_KEY=#primaryKey#
+				, MUTUAL=#mutual#
+				, CORPORATE_NAME=#corporateName#
+				, GROUP_NAME=#groupName#
+				, BUSINESS_PLACE=#businessPlace#
+				, BUSINESS_ADDR=#businessAddr#
+				, GROUP_KIND=#groupKind#
+				, GROUP_TEL=#groupTel#
+				, GROUP_PAX=#groupPax#
+				, GROUP_TYPE=#groupType#
+				, GRP_CONFIRM=#grpConfirm#
+				, RANK_ID=#rankId#
+				, WORK_CONTENTS=#workContents#
+				, GRADE_NM=#gradeNm#
+				, ODR=#odr#
+				, GROUP_TITLE=#groupTitle#
+				, PW_MISCNT=#pwMiscnt#
+				, ADDRESS_NEW=#addressNew#
+				, BUSINESS_ADDR_NEW=#businessAddrNew#
+				, EX01=#ex01#
+				, EX02=#ex02#
+				, EX03=#ex03#															
+                WHERE ISDEL=0 AND MBR_LOGIN=#mbrLogin#
+		]]>
+	</update>
+	
+	<update id="jnitcmsmbrDAO.updateIsdelMbrLogin_S">
+		<![CDATA[
+			UPDATE JNITCMSMBR
+			SET ISDEL=1
+				, MBR_LOGIN=#mbrLogin#							
+                WHERE ISDEL=0 AND MBR_ID=#mbrId#
+		]]>
+	</update>
+	
+	<update id="jnitcmsmbrDAO.updateTempmbr_S">
+		<![CDATA[
+			UPDATE JNITCMSMBR
+			SET	MBR_LOGIN=#mbrLogin#
+				, ORG_ID=#orgId#
+				, POS_ID=#posId#
+				, MBR_NM=#mbrNm#
+				, MBR_PHOTO=#mbrPhoto#
+		]]>
+			<isNotEmpty property="passwd">
+			<![CDATA[
+				, PASSWD=#passwd#
+			]]>
+			</isNotEmpty>
+		<![CDATA[
+				, TYPE_ID=#typeId#
+				, TEL=#tel#
+				, MOBILE=#mobile#
+				, EMAIL=#email#
+				, MODIFIED=SYSDATE
+				, HOMEPAGE=#homepage#
+				, POSTCODE=#postcode#
+				, ADDRESS=#address#
+				, EMAIL_RECV=#emailRecv#
+				, SMS_RECV=#smsRecv#
+				, ESTABLISHMENT=#establishment#
+				, CORPORATION=#corporation#
+				, PRIMARY_KEY=#primaryKey#
+				, MUTUAL=#mutual#
+				, CORPORATE_NAME=#corporateName#
+				, GROUP_NAME=#groupName#
+				, BUSINESS_PLACE=#businessPlace#
+				, BUSINESS_ADDR=#businessAddr#
+				, GROUP_KIND=#groupKind#
+				, GROUP_TEL=#groupTel#
+				, GROUP_PAX=#groupPax#
+				, GROUP_TYPE=#groupType#
+				, GRP_CONFIRM=#grpConfirm#
+				, RANK_ID=#rankId#
+				, WORK_CONTENTS=#workContents#
+				, ODR=#odr#
+				, GROUP_TITLE=#groupTitle#
+				, PW_MISCNT=#pwMiscnt#
+				, ADDRESS_NEW=#addressNew#
+				, BUSINESS_ADDR_NEW=#businessAddrNew#
+				, EX01=#ex01#
+				, EX02=#ex02#
+				, EX03=#ex03#				
+                WHERE ISDEL=0 AND MBR_ID=#mbrId#
+		]]>
+	</update>
+	
+	<update id="jnitcmsmbrDAO.deleteJnitcmsmbr_S">
+	    <isEqual property="isdelYn" compareValue="N">	    
+		<![CDATA[
+			DELETE FROM JNITCMSMBR			
+                WHERE MBR_ID=#mbrId#
+		]]>
+		</isEqual>
+	    <isEqual property="isdelYn" compareValue="Y">	    
+		<![CDATA[
+			UPDATE JNITCMSMBR
+			SET ISDEL=1
+				, MODIFIED=SYSDATE
+                WHERE MBR_ID=#mbrId#
+		]]>
+		</isEqual>
+	</update>
+	
+		<delete id="jnitcmsmbrDAO.leaveJnitcmsmbr_S">
+		<![CDATA[
+			UPDATE JNITCMSMBR
+			SET ISDEL=1
+				, MBR_LOGIN=#mbrLogin#
+				, ORG_ID=#orgId#
+				, POS_ID=#posId#
+				, MBR_NM=#mbrNm#
+				, MBR_PHOTO=''
+				, PASSWD=#passwd#
+				, TYPE_ID=#typeId#
+				, TEL=''
+				, MOBILE=''
+				, EMAIL=''
+				, HOMEPAGE=''
+				, POSTCODE=''
+				, ADDRESS=''
+				, EMAIL_RECV=0
+				, SMS_RECV=0
+				, SN=''
+				, DP=''
+				, MODIFIED=sysdate
+				, ESTABLISHMENT=''
+				, CORPORATION=''
+				, PRIMARY_KEY=''
+				, MUTUAL=''
+				, CORPORATE_NAME=''
+				, GROUP_NAME=''
+				, BUSINESS_PLACE=''
+				, BUSINESS_ADDR=''
+				, GROUP_KIND=''
+				, GROUP_TEL=''
+				, GROUP_PAX=''
+				, GROUP_TYPE=''
+				, GRP_CONFIRM='N'
+				, RANK_ID=''
+				, WORK_CONTENTS=''
+				, GROUP_TITLE=''
+				, PW_MISCNT=0
+				, ADDRESS_NEW=''
+				, BUSINESS_ADDR_NEW=''
+				, EX01=''
+				, EX02=''
+				, EX03=''								
+                WHERE MBR_ID=#mbrId#
+		]]>
+	</delete>
+	
+	<select id="jnitcmsmbrDAO.selectJnitcmsmbr_S" resultMap="jnitcmsmbr">
+		<![CDATA[
+			SELECT
+				MBR_ID
+				, ORG_ID
+				, POS_ID
+				, SITE_ID
+				, MBR_LOGIN
+				, MBR_NM
+				, MBR_PHOTO
+				, PASSWD
+				, TYPE_ID
+				, TEL
+				, MOBILE
+				, EMAIL
+				, CREATED
+				, MODIFIED
+				, SN
+				, DP
+				, ISDEL
+				, HOMEPAGE
+				, POSTCODE
+				, ADDRESS
+				, EMAIL_RECV
+				, SMS_RECV
+				, ESTABLISHMENT
+				, CORPORATION
+				, PRIMARY_KEY
+				, MUTUAL
+				, CORPORATE_NAME
+				, GROUP_NAME
+				, BUSINESS_PLACE
+				, BUSINESS_ADDR
+				, GROUP_KIND
+				, GROUP_TEL
+				, GROUP_PAX
+				, GROUP_TYPE
+				, GRP_CONFIRM
+				, RANK_ID
+				, WORK_CONTENTS
+				, GRADE_NM
+				, ODR
+				, CONNECT_TYPE
+				, GROUP_TITLE
+				, PW_MISCNT
+				, ADDRESS_NEW
+				, BUSINESS_ADDR_NEW
+				, EX01
+				, EX02
+				, EX03				
+			FROM JNITCMSMBR
+            WHERE 1=1
+        ]]>        	
+        	<isEqual prepend="AND" property="isdelYn" compareValue="Y">
+        	    ISDEL=0
+        	</isEqual>
+        	<isEqual prepend="AND" property="siteIdYn" compareValue="Y">
+        	    SITE_ID=#siteId#
+        	</isEqual>
+        	<isEqual prepend="AND" property="selectCondition" compareValue="0">
+        		MBR_ID=#mbrId#    
+        	</isEqual>
+        	<isEqual prepend="AND" property="selectCondition" compareValue="1">
+        		MBR_LOGIN=#mbrLogin#
+        	</isEqual>
+        	<isEqual prepend="AND" property="selectCondition" compareValue="2">
+        		MBR_NM=#mbrNm#
+        		AND EMAIL=#email#
+        		AND MOBILE=#mobile#
+        	</isEqual>
+        	<isEqual prepend="AND" property="selectCondition" compareValue="3">
+        	    MBR_LOGIN=#mbrLogin#
+        		AND MBR_NM=#mbrNm#
+        		AND EMAIL=#email#
+        		AND MOBILE=#mobile#
+        	</isEqual>
+        	<isEqual prepend="AND" property="selectCondition" compareValue="4">
+        	    MBR_LOGIN=#mbrLogin#
+        		AND MBR_NM=#mbrNm#
+        	</isEqual>
+	</select>
+	<select id="jnitcmsmbrDAO.selectmbrLogin_S" resultMap="jnitcmsmbr">
+		<![CDATA[
+			SELECT
+				*
+			FROM JNITCMSMBR
+                WHERE ISDEL=0 AND MBR_LOGIN=#mbrLogin#
+		]]>
+	</select>
+	
+	<select id="jnitcmsmbrDAO.selectDpJnitcmsmbr_S" resultMap="jnitcmsmbr">		
+			SELECT
+				MBR_ID
+				, ORG_ID
+				, POS_ID
+				, SITE_ID
+				, MBR_LOGIN
+				, MBR_NM
+				, MBR_PHOTO
+				, PASSWD
+				, TYPE_ID
+				, TEL
+				, MOBILE
+				, EMAIL
+				, CREATED
+				, MODIFIED
+				, SN
+				, DP
+				, ISDEL
+				, HOMEPAGE
+				, POSTCODE
+				, ADDRESS
+				, EMAIL_RECV
+				, SMS_RECV
+				, ESTABLISHMENT
+				, CORPORATION
+				, PRIMARY_KEY
+				, MUTUAL
+				, CORPORATE_NAME
+				, GROUP_NAME
+				, BUSINESS_PLACE
+				, BUSINESS_ADDR
+				, GROUP_KIND
+				, GROUP_TEL
+				, GROUP_PAX
+				, GROUP_TYPE
+				, GRP_CONFIRM
+				, RANK_ID	
+				, WORK_CONTENTS
+				, GRADE_NM
+				, ODR
+				, CONNECT_TYPE
+				, GROUP_TITLE
+				, PW_MISCNT
+				, ADDRESS_NEW
+				, BUSINESS_ADDR_NEW
+				, EX01
+				, EX02
+				, EX03				
+			FROM JNITCMSMBR
+                WHERE ISDEL=0        
+        <isNotEmpty prepend="AND" property="dp">
+					DP=#dp#
+		</isNotEmpty>        		
+		<isNotEmpty prepend="AND" property="establishment">
+					ESTABLISHMENT = #establishment#
+		</isNotEmpty>	
+	</select>
+	
+	<select id="jnitcmsmbrDAO.selectJnitcmsmbrList_D" parameterClass="jnitcmsmbrSerarchVO" resultClass="egovMap">
+	     SELECT * FROM (
+	     	SELECT A.*, ROWNUM RNUM FROM (
+	     				SELECT
+								MBR_ID
+								, ORG_ID
+								, POS_ID
+								, SITE_ID
+								, MBR_LOGIN
+								, MBR_NM
+								, MBR_PHOTO
+								, PASSWD
+								, TYPE_ID
+								, TEL
+								, MOBILE
+								, EMAIL
+								, SN
+								, DP
+								, ISDEL
+								, HOMEPAGE
+								, POSTCODE
+								, ADDRESS
+								, EMAIL_RECV
+								, SMS_RECV
+								, ESTABLISHMENT
+								, CORPORATION
+								, PRIMARY_KEY
+								, MUTUAL
+								, CORPORATE_NAME
+								, GROUP_NAME
+								, BUSINESS_PLACE
+								, BUSINESS_ADDR
+								, GROUP_KIND
+								, GROUP_TEL
+								, GROUP_PAX
+								, GROUP_TYPE
+								, GRP_CONFIRM
+								, RANK_ID
+								, WORK_CONTENTS
+								, GRADE_NM
+								, ODR
+								, CONNECT_TYPE
+								, GROUP_TITLE
+								, PW_MISCNT
+								, ADDRESS_NEW
+								, BUSINESS_ADDR_NEW
+								, EX01
+								, EX02
+								, EX03														
+					FROM JNITCMSMBR
+			WHERE ISDEL=0
+				<isNotEmpty prepend="AND" property="schTypeId">
+					TYPE_ID = #schTypeId#
+				</isNotEmpty>
+				<isEqual prepend="AND" property="searchCondition" compareValue="0">
+					MBR_ID = #searchKeyword#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="1">
+					ORG_ID = #searchKeyword#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="4">
+					MBR_LOGIN LIKE '%'||#searchKeyword#||'%'
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="5">
+					MBR_NM LIKE '%'||#searchKeyword#||'%'
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="8">
+					TEL LIKE '%'||#searchKeyword#||'%'
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="9">
+					MBR_NM=#schMbrNm# AND EMAIL=#schEmail#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="10">
+					DP = #searchKeyword#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="11">
+					MBR_LOGIN=#searchKeyword# AND PASSWD='1'
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="12">
+					MBR_LOGIN=#searchKeyword# AND PASSWD='2'
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="13">
+					MBR_LOGIN=#searchKeyword# AND PASSWD='3'
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="14">
+					MBR_LOGIN=#searchKeyword# AND MBR_NM=#schMbrNm#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="15">
+					MBR_LOGIN=#searchKeyword# AND DP=#schMbrNm#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="16">
+					ESTABLISHMENT=#searchKeyword#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="17">
+					ESTABLISHMENT=#searchKeyword#
+					AND CORPORATION=#searchKeyword1#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="18">
+					ESTABLISHMENT=#searchKeyword#
+					AND CORPORATION=#searchKeyword1#
+					AND PRIMARY_KEY=#searchKeyword2#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="19">
+					PRIMARY_KEY=#searchKeyword#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="20">
+					MBR_LOGIN=#searchKeyword#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="21">
+				    MBR_LOGIN=#searchKeyword#
+				    AND EMAIL=#searchKeyword1#
+				    AND MOBILE=#searchKeyword2#
+				</isEqual>				
+				ORDER BY MBR_ID DESC	     	
+	     	) A WHERE 1=1
+		<isEqual prepend="AND" property="pageYn" compareValue="Y">
+			ROWNUM <![CDATA[<=]]> #lastIndex#   
+		</isEqual>	 
+	)WHERE 1=1
+	<isEqual prepend="AND" property="pageYn" compareValue="Y">
+		RNUM <![CDATA[>]]> #firstIndex#	    
+	</isEqual> 
+	</select>
+	
+	<select id="jnitcmsmbrDAO.selectJnitcmsmbrListTotCnt_S" parameterClass="jnitcmsmbrSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM JNITCMSMBR
+			WHERE ISDEL=0
+				<isNotEmpty prepend="AND" property="schTypeId">
+					TYPE_ID = #schTypeId#
+				</isNotEmpty>
+				<isEqual prepend="AND" property="searchCondition" compareValue="0">
+					MBR_ID = #searchKeyword#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="1">
+					ORG_ID = #searchKeyword#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="4">
+					MBR_LOGIN LIKE '%'||#searchKeyword#||'%'
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="5">
+					MBR_NM LIKE '%'||#searchKeyword#||'%'
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="8">
+					TEL LIKE '%'||#searchKeyword#||'%'
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="9">
+					MBR_NM=#schMbrNm# AND EMAIL=#schEmail#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="10">
+					DP = #searchKeyword#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="11">
+					MBR_LOGIN=#searchKeyword# AND PASSWD='1'
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="12">
+					MBR_LOGIN=#searchKeyword# AND PASSWD='2'
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="13">
+					MBR_LOGIN=#searchKeyword# AND PASSWD='3'
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="14">
+					MBR_LOGIN=#searchKeyword# AND MBR_NM=#schMbrNm#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="15">
+					MBR_LOGIN=#searchKeyword# AND DP=#schMbrNm#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="16">
+					ESTABLISHMENT=#searchKeyword#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="17">
+					ESTABLISHMENT=#searchKeyword#
+					AND CORPORATION=#searchKeyword1#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="18">
+					ESTABLISHMENT=#searchKeyword#
+					AND CORPORATION=#searchKeyword1#
+					AND PRIMARY_KEY=#searchKeyword2#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="19">
+					PRIMARY_KEY=#searchKeyword#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="20">
+					MBR_LOGIN=#searchKeyword#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="21">
+				    MBR_LOGIN=#searchKeyword#
+				    AND EMAIL=#searchKeyword1#
+				    AND MOBILE=#searchKeyword2#
+				</isEqual>
+	</select>	
+	<select id="jnitcmsmbrDAO.selectLeftJoinmbrList_D" parameterClass="jnitcmsmbrSerarchVO" resultClass="egovMap">
+	    SELECT * FROM (		
+				SELECT a.MBR_ID           
+			      , a.ORG_ID           
+			      , a.POS_ID
+			      , a.SITE_ID           
+			      , a.MBR_LOGIN           
+			      , a.MBR_NM           
+			      , a.MBR_PHOTO           
+			      , a.PASSWD           
+			      , a.TYPE_ID           
+			      , a.TEL           
+			      , a.MOBILE           
+			      , a.EMAIL           
+			      , a.CREATED           
+			      , a.MODIFIED           
+			      , a.SN           
+			      , a.DP           
+			      , a.ISDEL           
+			      , a.HOMEPAGE           
+			      , a.POSTCODE           
+			      , a.ADDRESS           
+			      , a.EMAIL_RECV           
+			      , a.SMS_RECV           
+			      , a.ESTABLISHMENT           
+			      , a.CORPORATION           
+			      , a.PRIMARY_KEY           
+			      , a.MUTUAL           
+			      , a.CORPORATE_NAME           
+			      , a.GROUP_NAME           
+			      , a.BUSINESS_PLACE           
+			      , a.BUSINESS_ADDR           
+			      , a.GROUP_KIND           
+			      , a.GROUP_TEL           
+			      , a.GROUP_PAX           
+			      , a.GROUP_TYPE           
+			      , a.GRP_CONFIRM           
+			      , a.RANK_ID           
+			      , a.WORK_CONTENTS
+			      , a.GRADE_NM
+			      , a.ODR           
+			      , a.CONNECT_TYPE			      
+			      , a.GROUP_TITLE
+				  , a.PW_MISCNT
+				  , a.ADDRESS_NEW
+				  , a.BUSINESS_ADDR_NEW
+				  , a.EX01
+				  , a.EX02
+				  , a.EX03				        
+			      , b.ORG_ID AS BORG_ID           
+			      , b.ORG_NM            
+			      , b.ORG_DETH            
+			      , b.ORG_RANK            
+			      , c.RANK_NAME            
+			      , d.POS_NM           
+			      , d.POS_LV            
+			      , e.TYPE_LV
+			      , e.TYPE_NM
+			      , ROWNUM RNUM FROM (
+						SELECT a.* FROM JNITCMSMBR a
+						
+						LEFT JOIN JNITCMSORG b           
+				        ON b.ORG_ID = a.ORG_ID           
+				        LEFT JOIN JNITCMSRANK c            
+				        ON c.RANK_ID = a.RANK_ID           
+				        LEFT JOIN JNITCMSPOS d            
+				        ON d.POS_ID =a.POS_ID
+				        LEFT JOIN JNITCMSMBRTYPE e
+		 				ON e.TYPE_ID = a.TYPE_ID
+		 				
+						<isEqual property="orderByMbrIdYn" compareValue="Y">
+							ORDER BY a.MBR_ID DESC    
+						</isEqual>
+						<isEqual property="orderByRankIdYn" compareValue="Y">
+							ORDER BY a.RANK_ID ASC    
+						</isEqual>
+						<isEqual property="orderbyCondition" compareValue="0">
+						   ORDER BY b.ORG_RANK_ODR ASC, a.ODR ASC, d.POS_LV ASC						    
+						</isEqual>
+						<isEqual property="orderbyCondition" compareValue="1">
+						   ORDER BY a.MBR_ID ASC						    
+						</isEqual>						
+				) a	
+							
+				LEFT JOIN JNITCMSORG b           
+		        ON b.ORG_ID = a.ORG_ID           
+		        LEFT JOIN JNITCMSRANK c            
+		        ON c.RANK_ID = a.RANK_ID           
+		        LEFT JOIN JNITCMSPOS d            
+		        ON d.POS_ID =a.POS_ID
+		        LEFT JOIN JNITCMSMBRTYPE e
+ 				ON e.TYPE_ID = a.TYPE_ID
+ 				
+ 				WHERE 1=1				           
+       			AND a.ISDEL=0
+       			<isEqual prepend="AND" property="orgIdYn" compareValue="Y">
+       			    a.ORG_ID = #orgId#
+       			</isEqual>
+       			<isEqual prepend="AND" property="connectYn" compareValue="Y">
+					a.CONNECT_TYPE LIKE CONCAT('%',#searchConnectKeyword#,'%')    
+				</isEqual>       				
+				<isEqual prepend="AND" property="typeIdCondition" compareValue="0">
+				    ( e.TYPE_LV = 'A'
+				    OR e.TYPE_LV = 'B'
+				    OR e.TYPE_LV = 'C'
+				    OR e.TYPE_LV = 'D' )
+				</isEqual>				
+       			<isEqual prepend="AND" property="typeIdCondition" compareValue="1">
+				    (e.TYPE_ID = #typeIdKeyword# OR e.TYPE_ID = #typeIdKeyword2# OR e.TYPE_ID = #typeIdKeyword3#)				   
+				</isEqual>				
+				<isEqual prepend="AND" property="typeIdCondition" compareValue="2">
+				    a.PW_MISCNT <![CDATA[>]]> 5 
+				</isEqual>
+				<isEqual prepend="AND" property="typeNmYn" compareValue="Y">
+					e.TYPE_ID = #searchKeyword2#
+				</isEqual>						
+				<isNotEmpty prepend="AND" property="schTypeId">
+					a.TYPE_ID = #schTypeId#
+				</isNotEmpty>
+				<isEqual prepend="AND" property="condition" compareValue="0">					
+					(a.ODR != 0 AND a.ODR IS NOT NULL )
+				</isEqual>
+				<isEqual prepend="AND" property="condition" compareValue="1">					
+					(a.ODR != 0 AND a.ODR IS NOT NULL )
+					AND e.TYPE_NM LIKE '%공사직원%'
+				</isEqual>
+				<isEqual property="QueryYn" compareValue="Y">
+				    $Query$
+				</isEqual>
+				<isEqual prepend="AND" property="grpConfirmYn" compareValue="Y">
+				    a.GRP_CONFIRM = #grpConfirm#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="0">
+					a.MBR_ID = #searchKeyword#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="1">
+					a.ORG_ID = #searchKeyword#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="2">
+					a.POS_ID = #searchKeyword#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="3">
+					a.MBR_ID != #searchKeyword#
+					AND a.MBR_ID != #searchKeyword2#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="4">
+					(c.RANK_NAME LIKE '%'||#searchKeyword#||'%'
+					OR b.ORG_NM LIKE '%'||#searchKeyword#||'%')
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="5">
+					a.MBR_NM LIKE '%'||#searchKeyword#||'%'
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="6">
+					a.WORK_CONTENTS LIKE '%'||#searchKeyword#||'%'
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="7">
+					a.TEL LIKE '%'||#searchKeyword#||'%'
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="8">
+				    (c.RANK_NAME LIKE '%'||#searchKeyword#||'%'
+				    OR d.POS_NM LIKE '%'||#searchKeyword#||'%'
+					OR b.ORG_NM LIKE '%'||#searchKeyword#||'%'
+				    OR a.MBR_NM LIKE '%'||#searchKeyword#||'%'
+				    OR a.WORK_CONTENTS LIKE '%'||#searchKeyword#||'%'
+					OR a.TEL LIKE '%'||#searchKeyword#||'%')
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="9">
+					a.MBR_LOGIN LIKE '%'||#searchKeyword#||'%'
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="10">
+					a.MBR_NM LIKE '%'||#searchKeyword#||'%'
+				</isEqual>				
+				<isEqual prepend="AND" property="searchCondition" compareValue="11">
+					d.POS_NM LIKE '%'||#searchKeyword#||'%'
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="12">
+					b.ORG_NM LIKE '%'||#searchKeyword#||'%'
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="13">
+					c.RANK_NAME LIKE '%'||#searchKeyword#||'%'
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="14">
+					d.POS_NM IS NULL
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="15">
+					e.TYPE_NM LIKE '%'||#searchKeyword#||'%'
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="16">
+					(a.MBR_ID = #searchKeyword#
+					OR a.MBR_ID =  #searchKeyword2#)
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="17">
+					e.TYPE_LV = #searchKeyword#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="18">
+					a.TYPE_ID = #searchKeyword#
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="19">
+				    (  a.MBR_ID = #searchKeyword#				    
+				    OR a.MBR_NM LIKE '%'||#searchKeyword#||'%')					
+				</isEqual>
+				<isEqual prepend="AND" property="searchCondition" compareValue="20">
+				    (  a.MBR_ID = #searchKeyword#
+				    OR a.MBR_NM LIKE '%'||#searchKeyword#||'%'
+				    OR a.TYPE_ID = #searchKeyword#
+				    OR e.TYPE_NM LIKE '%'||#searchKeyword#||'%'
+				    OR e.TYPE_LV = #searchKeyword# )
+				</isEqual>								
+				<isEqual prepend="AND" property="pageYn" compareValue="Y">
+					ROWNUM <![CDATA[<=]]> #lastIndex#    
+				</isEqual>				 			
+			)WHERE 1=1 
+		<isEqual prepend="AND" property="pageYn" compareValue="Y">
+			RNUM <![CDATA[>]]> #firstIndex#   
+		</isEqual>			
+	</select>	
+	
+	<select id="jnitcmsmbrDAO.selectLeftJoinmbrListTotCnt_S" parameterClass="jnitcmsmbrSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM JNITCMSMBR a
+			LEFT JOIN JNITCMSORG b
+			ON a.ORG_ID = b.ORG_ID
+			LEFT JOIN JNITCMSRANK c 
+			ON a.RANK_ID = c.RANK_ID
+			LEFT JOIN JNITCMSPOS d 
+			ON a.POS_ID = d.POS_ID
+			LEFT JOIN JNITCMSMBRTYPE e
+ 			ON e.TYPE_ID = a.TYPE_ID
+ 			
+			WHERE 1=1
+			AND a.ISDEL=0
+			
+			<isEqual prepend="AND" property="orgIdYn" compareValue="Y">
+      			    a.ORG_ID = #orgId#
+   			</isEqual>	
+ 			<isEqual prepend="AND" property="connectYn" compareValue="Y">
+				a.CONNECT_TYPE LIKE CONCAT('%',#searchConnectKeyword#,'%')    
+			</isEqual>       				
+			<isEqual prepend="AND" property="typeIdCondition" compareValue="0">
+			    ( e.TYPE_LV = 'A'
+			    OR e.TYPE_LV = 'B'
+			    OR e.TYPE_LV = 'C'
+			    OR e.TYPE_LV = 'D' )
+			</isEqual>				
+      		<isEqual prepend="AND" property="typeIdCondition" compareValue="1">
+			    (e.TYPE_ID = #typeIdKeyword# OR e.TYPE_ID = #typeIdKeyword2# OR e.TYPE_ID = #typeIdKeyword3#)			    
+			</isEqual>
+			<isEqual prepend="AND" property="typeIdCondition" compareValue="2">
+			    a.PW_MISCNT <![CDATA[>]]> 5 
+			</isEqual>
+			<isEqual prepend="AND" property="typeNmYn" compareValue="Y">
+				e.TYPE_ID = #searchKeyword2#
+			</isEqual>						
+			<isNotEmpty prepend="AND" property="schTypeId">
+				a.TYPE_ID = #schTypeId#
+			</isNotEmpty>
+			<isEqual prepend="AND" property="condition" compareValue="0">					
+				(a.ODR != 0 AND a.ODR IS NOT NULL )
+			</isEqual>
+			<isEqual property="QueryYn" compareValue="Y">
+			    $Query$
+			</isEqual>
+			<isEqual prepend="AND" property="grpConfirmYn" compareValue="Y">
+			    a.GRP_CONFIRM = #grpConfirm#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="0">
+				a.MBR_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				a.ORG_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				a.POS_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="3">
+				a.MBR_ID != #searchKeyword#
+				AND a.MBR_ID != #searchKeyword2#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="4">
+				(c.RANK_NAME LIKE '%'||#searchKeyword#||'%'
+				OR b.ORG_NM LIKE '%'||#searchKeyword#||'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="5">
+				a.MBR_NM LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="6">
+				a.WORK_CONTENTS LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="7">
+				a.TEL LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="8">
+			    (c.RANK_NAME LIKE '%'||#searchKeyword#||'%'
+			    OR d.POS_NM LIKE '%'||#searchKeyword#||'%'
+				OR b.ORG_NM LIKE '%'||#searchKeyword#||'%'
+			    OR a.MBR_NM LIKE '%'||#searchKeyword#||'%'
+			    OR a.WORK_CONTENTS LIKE '%'||#searchKeyword#||'%'
+				OR a.TEL LIKE '%'||#searchKeyword#||'%')
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="9">
+				a.MBR_LOGIN LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="10">
+				a.MBR_NM LIKE '%'||#searchKeyword#||'%'
+			</isEqual>				
+			<isEqual prepend="AND" property="searchCondition" compareValue="11">
+				d.POS_NM LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="12">
+				b.ORG_NM LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="13">
+				c.RANK_NAME LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="14">
+				d.POS_NM IS NULL
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="15">
+				e.TYPE_NM LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="16">
+				(a.MBR_ID = #searchKeyword#
+				OR a.MBR_ID =  #searchKeyword2#)
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="17">
+				e.TYPE_LV = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="18">
+				a.TYPE_ID = #searchKeyword#
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="19">
+			    (  a.MBR_ID = #searchKeyword#				    
+			    OR a.MBR_NM LIKE '%'||#searchKeyword#||'%')					
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="20">
+			    (  a.MBR_ID = #searchKeyword#
+			    OR a.MBR_NM LIKE '%'||#searchKeyword#||'%'
+			    OR a.TYPE_ID = #searchKeyword#
+			    OR e.TYPE_NM LIKE '%'||#searchKeyword#||'%'
+			    OR e.TYPE_LV = #searchKeyword# )
+			</isEqual>
+	</select>
+	<select id="jnitcmsmbrDAO.selectListTotCnt_S" parameterClass="jnitcmsmbrSerarchVO" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM JNITCMSMBR
+			WHERE ISDEL=0		
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				<isNotEmpty property="establishment">
+					ESTABLISHMENT=#establishment#
+				</isNotEmpty>
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				<isNotEmpty property="corporation">
+					CORPORATION=#corporation#
+				</isNotEmpty>
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="3">
+				<isNotEmpty property="primaryKey">
+					PRIMARY_KEY=#primaryKey#
+				</isNotEmpty>
+			</isEqual>			
+	</select>		
+	<select id="jnitcmsmbrDAO.getLastIdJnitcmsmbr_S" resultClass="String">
+			SELECT NEXT_ID
+			FROM JNITSEQ
+			WHERE
+				TABLE_NAME = 'JNITCMSMBR_ID'
+	</select>
+	
+	<select id="jnitcmsmbrDAO.exeLoginJnitcmsmbr_S" resultMap="jnitcmsmbr">
+		<![CDATA[
+			SELECT
+				MBR_ID
+				, ORG_ID
+				, POS_ID
+				, SITE_ID
+				, MBR_LOGIN
+				, MBR_NM
+				, MBR_PHOTO
+				, PASSWD
+				, TYPE_ID
+				, TEL
+				, MOBILE
+				, EMAIL
+				, CREATED
+				, MODIFIED
+				, SN
+				, DP
+				, ISDEL
+				, HOMEPAGE
+				, POSTCODE
+				, ADDRESS
+				, EMAIL_RECV
+				, SMS_RECV
+				, ESTABLISHMENT
+				, CORPORATION
+				, PRIMARY_KEY
+				, MUTUAL
+				, CORPORATE_NAME
+				, GROUP_NAME
+				, BUSINESS_PLACE
+				, BUSINESS_ADDR
+				, GROUP_KIND
+				, GROUP_TEL
+				, GROUP_PAX
+				, GROUP_TYPE
+				, GRP_CONFIRM
+				, RANK_ID
+				, WORK_CONTENTS
+				, GRADE_NM
+				, ODR
+				, CONNECT_TYPE
+				, GROUP_TITLE
+				, PW_MISCNT
+				, ADDRESS_NEW
+				, BUSINESS_ADDR_NEW
+				, EX01
+				, EX02
+				, EX03				
+			FROM JNITCMSMBR
+                WHERE 1=1
+		]]>
+			<isEqual prepend="AND" property="siteIdYn" compareValue="Y">
+			    SITE_ID = #siteId#
+			</isEqual>
+			<isEqual prepend="AND" property="searchKeyword" compareValue="super">
+				MBR_LOGIN = #mbrLogin#
+			</isEqual>
+			<isNotEqual property="searchKeyword" compareValue="super">
+	            <isEqual prepend="AND" property="searchCondition" compareValue="14">
+	    			ISDEL=0 AND MBR_LOGIN=#searchKeyword# AND MBR_NM=#schMbrNm#
+	    		</isEqual>
+	    		<isNotEqual prepend="AND" property="searchCondition" compareValue="14">
+	            	ISDEL=0 AND MBR_LOGIN=#mbrLogin# AND PASSWD=#passwd#
+	            </isNotEqual>
+             </isNotEqual>
+	</select>	
+	
+	<select id="jnitcmsmbrDAO.selectSearchList" parameterClass="jnitcmsmbrSerarchVO" resultClass="egovMap">
+			SELECT a.*
+			   , b.org_id AS ORGSUBID
+			   , b.org_nm AS ORGSUBNM
+			   , b.isdel AS ORGSUBISDEL
+			   , c.pos_id AS POSSUBID
+			   , c.pos_nm AS POSSUBNM
+			   , c.isdel AS POSSUBISDEL
+			FROM JNITCMSMBR a
+			LEFT JOIN JNITCMSORG b ON a.ORG_ID = b.ORG_ID
+			LEFT JOIN JNITCMSPOS c ON a.POS_ID = c.POS_ID
+			WHERE 1=1
+			AND a.isdel = 0
+			AND b.isdel = 0
+			AND c.isdel = 0
+			<isEqual prepend="AND" property="searchCondition" compareValue="1">
+				a.MBR_NM LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="2">
+				b.ORG_NM LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="3">
+				a.MOBILE LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			<isEqual prepend="AND" property="searchCondition" compareValue="4">
+				c.POS_NM LIKE '%'||#searchKeyword#||'%'
+			</isEqual>
+			<isNotEqual property="lastIndex" compareValue="10000">
+				AND ROWNUM BETWEEN 0 AND 10
+			</isNotEqual>
+	</select>
+	
+	<select id="jnitcmsmbrDAO.hasJnitcmsmbr_S" resultClass="int">
+			SELECT COUNT(*) totcnt
+			FROM JNITCMSMBR
+			WHERE MBR_LOGIN=#mbrLogin#
+	</select>
+	
+	<select id="jnitcmsmbrDAO.selectJnitcmsmbrDpSn" resultMap="jnitcmsmbr">
+		SELECT
+			MBR_LOGIN
+		FROM
+			JNITCMSMBR
+		WHERE
+			TYPE_ID=#typeId#
+		AND (
+			DP=#dp# 
+			<isNotEmpty property="sn">
+				OR SN=#sn#
+			</isNotEmpty>
+		)
+	</select>
+	
+	<select id="jnitcmsmbrDAO.selectJnitcmsmbrDpSnTot" resultClass="int">
+		SELECT
+			COUNT(*)
+		FROM
+			JNITCMSMBR
+		WHERE
+			TYPE_ID=#typeId#
+		AND (
+			DP=#dp#
+			<isNotEmpty property="sn">
+				OR SN=#sn#
+			</isNotEmpty> 
+		)
+	</select>
+	
+	<!-- 일정 횟수동안 로그인을 실패하여 잠긴 계정 해제 -->
+	<update id="jnitcmsmbrDAO.updateUnlockLogin">
+		UPDATE JNITCMSMBR
+			SET PW_MISCNT = 1
+			, LOCK_DATE = NULL
+		WHERE 1 = 1
+		AND PW_MISCNT > 5
+		AND TRUNC(MOD((SYSDATE - LOCK_DATE)*24,1)*60) >= #unlockTime#
+	</update>
+</sqlMap>

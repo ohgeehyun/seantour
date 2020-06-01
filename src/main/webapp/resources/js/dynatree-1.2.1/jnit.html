@@ -1,0 +1,236 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF8">
+  <title>Dynatree - Example</title>
+
+  <script src="./jquery/jquery.js" type="text/javascript"></script>
+  <script src="./jquery/jquery-ui.custom.js" type="text/javascript"></script>
+  <script src="./jquery/jquery.cookie.js" type="text/javascript"></script>
+
+  <link href="./src/skin/ui.dynatree.css" rel="stylesheet" type="text/css">
+  <script src="./src/jquery.dynatree.js" type="text/javascript"></script>
+
+  <!-- jquery.contextmenu,  A Beautiful Site (http://abeautifulsite.net/) -->
+  <script src="./src/contextmenu/jquery.contextMenu-custom.js" type="text/javascript"></script>
+  <link href="./src/contextmenu/jquery.contextMenu.css" rel="stylesheet" type="text/css" >
+  <!-- (Irrelevant source removed.) -->
+
+<script type="text/javascript"><!--
+
+// --- Implement Cut/Copy/Paste --------------------------------------------
+var clipboardNode = null;
+
+// --- Contextmenu helper --------------------------------------------------
+function bindContextMenu(span) {
+  $(span).contextMenu({menu: "myMenu"}, function(action, el, pos) {
+    var node = $.ui.dynatree.getNode(el);
+    switch( action ) {
+    case "edit":
+    	editNode(node);
+        return false;
+      break;
+    case "del":
+    	if(confirm('정말 삭제하시겠습니까?')==true) {
+    		alert(node.data.title + " " + node.data.key);
+    	}
+    	return false;
+      break;
+    case "folAdd":
+    	if(node.data.isFolder == true) {
+    		var newKey = node.data.key + "" + node.countChildren();
+	    	node.addChild({title: "새 메뉴", isFolder: true, key: newKey});
+	    	node.expand(true);
+	    	var newNode = $("#tree").dynatree("getTree").getNodeByKey(newKey);
+	    	newNode.activate();
+	    	alert(newKey);
+    	}else {
+    		alert('콘텐츠에는 하위메뉴를 추가할 수 없습니다.');
+    	}
+    	alert(node.data.title + " " + node.data.key);
+    	return false;
+      break;
+    case "conAdd":
+    	if(node.data.isFolder == true) {
+    		var newKey = node.data.key + "" + node.countChildren();
+	    	node.addChild({title: "새 콘텐츠", key: newKey});
+	    	node.expand(true);
+	    	var newNode = $("#tree").dynatree("getTree").getNodeByKey(newKey);
+	    	newNode.activate();
+	    	alert(newKey);
+    	}else {
+    		alert('콘텐츠를 추가할 메뉴를 선택하세요.');
+    	}
+    	alert(node.data.title + " " + node.data.key);
+    	return false;
+      break;
+    default:
+      alert("명령어: '" + action + "'\n선택메뉴: " + node);
+    }
+  });
+};
+
+function editNode(node){
+  if(node.data.root == true) {
+	  alert("최상위 메뉴는 수정할 수 없습니다.");
+	  return;
+  }
+	
+  var prevTitle = node.data.title,
+  tree = node.tree;
+  // Disable dynatree mouse- and key handling
+  tree.$widget.unbind();
+  // Replace node with <input>
+  $(".dynatree-title", node.span).html("<input id='editNode' value='" + prevTitle + "'>");
+  // Focus <input> and bind keyboard handler
+  $("input#editNode")
+    .focus()
+    .keydown(function(event){
+      switch( event.which ) {
+      case 27: // [esc]
+        // discard changes on [esc]
+        $("input#editNode").val(prevTitle);
+        $(this).blur();
+        break;
+      case 13: // [enter]
+        // simulate blur to accept new value
+        $(this).blur();
+        break;
+      }
+    }).blur(function(event){
+      // Accept new value, when user leaves <input>
+      var title = $("input#editNode").val();
+      node.setTitle(title);
+      // DB 처리
+      console.log(title + " " + node.data.key);
+      
+      // Re-enable mouse and keyboard handlling
+      tree.$widget.bind();
+      node.focus();
+    });
+}
+
+var initDanaTree = function(){
+  // --- Initialize first Dynatree -------------------------------------------
+  $("#tree").dynatree({
+    initAjax: {
+      url: "jnit.json"
+    },
+    autoCollapse: false,
+    clickFolderMode: 1,
+    persist: true,
+    onActivate: function(node) {
+      $("#echoActivated").text(node.data.title + ", key=" + node.data.key);
+    },
+    onClick: function(node, event) {
+      // Close menu on click
+      if(node.data.isFolder == true) {
+//    	  return false;
+      }
+      if( $(".contextMenu:visible").length > 0 ){
+        $(".contextMenu").hide();
+//        return false;
+      }
+    },
+    onDblClick: function(node, event) {
+        editNode(node);
+        return false;
+      },
+    onKeydown: function(node, event) {
+      // Eat keyboard events, when a menu is open
+      if( $(".contextMenu:visible").length > 0 )
+        return false;
+
+      switch( event.which ) {
+
+      case 113: // [F2]
+        editNode(node);
+        return false;
+        break;
+        
+      // Open context menu on [Space] key (simulate right click)
+      case 32: // [Space]
+        $(node.span).trigger("mousedown", {
+          preventDefault: true,
+          button: 2
+          })
+        .trigger("mouseup", {
+          preventDefault: true,
+          pageX: node.span.offsetLeft,
+          pageY: node.span.offsetTop,
+          button: 2
+          });
+        return false;
+	    break;
+      }
+    },
+    /*Bind context menu for every node when it's DOM element is created.
+      We do it here, so we can also bind to lazy nodes, which do not
+      exist at load-time. (abeautifulsite.net menu control does not
+      support event delegation)*/
+    onCreate: function(node, span){
+      bindContextMenu(span);
+    },
+    dnd: {
+      preventVoidMoves: true, // Prevent dropping nodes 'before self', etc.
+      onDragStart: function(node) {
+        /** This function MUST be defined to enable dragging for the tree.
+         *  Return false to cancel dragging of node.
+         */
+        return true;
+      },
+      onDragEnter: function(node, sourceNode) {
+        /** sourceNode may be null for non-dynatree droppables.
+         *  Return false to disallow dropping on node. In this case
+         *  onDragOver and onDragLeave are not called.
+         *  Return 'over', 'before, or 'after' to force a hitMode.
+         *  Return ['before', 'after'] to restrict available hitModes.
+         *  Any other return value will calc the hitMode from the cursor position.
+         */
+        // Prevent dropping a parent below another parent (only sort
+        // nodes under the same parent)
+        if(node.parent !== sourceNode.parent){
+          return false;
+        }
+        // Don't allow dropping *over* a node (would create a child)
+        return ["before", "after"];
+      },
+      onDrop: function(node, sourceNode, hitMode, ui, draggable) {
+        /** This function MUST be defined to enable dropping of items on
+         *  the tree.
+         */
+        sourceNode.move(node, hitMode);
+      }
+    }
+  });
+}
+
+var reloadDanaTree = function() {
+	$("#tree").dynatree("getTree").reload();
+}
+
+$(document).ready(function(){
+	initDanaTree();
+});
+--></script>
+</head>
+
+<body class="example">
+
+  
+
+  <input type="button" value="reload" onclick="reloadDanaTree();">
+
+  <!-- Definition of context menu -->
+  <ul id="myMenu" class="contextMenu">
+    <li class="edit"><a href="#edit">수정</a></li>
+    <li class="del"><a href="#del">삭제</a></li>
+    <li class="folAdd separator"><a href="#folAdd">메뉴추가</a></li>
+    <li class="conAdd"><a href="#conAdd">콘텐츠추가</a></li>    
+  </ul>
+
+  <div id="tree"> </div>
+
+  <!-- (Irrelevant source removed.) -->
+</body>
+</html>

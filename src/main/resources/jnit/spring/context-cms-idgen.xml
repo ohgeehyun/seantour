@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@version 3.2.0.1
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<!-- jnit.cms IDGEN -->
+
+	<!--  jnitTESTIdGnrService -->
+	<bean name="jnitTESTIdGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitTESTIdGnrStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITTEST_ID"/>
+	</bean>
+	<bean name="jnitTESTIdGnrStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="TST_" />
+		<property name="cipers" value="5" />
+		<property name="fillChar" value="0" />
+	</bean>
+	
+    <!-- JNIT SITE -->
+	<bean name="jnitCMSSITEIdGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitCMSSITEStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITCMSSITE_ID"/>
+	</bean>
+	<bean name="jnitCMSSITEStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="SITE_" />
+		<property name="cipers" value="5" />
+		<property name="fillChar" value="0" />
+	</bean>
+    <!-- //JNIT SITE -->
+
+	
+	<!--  JNIT CMS ORG -->
+	<bean name="jnitCMSORGIdGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitCMSORGStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITCMSORG_ID"/>
+	</bean>
+	<bean name="jnitCMSORGStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="2" />
+		<property name="cipers" value="4" />
+		<property name="fillChar" value="0" />
+	</bean>
+	<!--  //JNIT CMS ORG -->
+
+
+	<!--  JNIT CMS POS -->
+	<bean name="jnitCMSPOSIdGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitCMSPOSStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITCMSPOS_ID"/>
+	</bean>
+	<bean name="jnitCMSPOSStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="1" />
+		<property name="cipers" value="4" />
+		<property name="fillChar" value="0" />
+	</bean>
+	<!--  //JNIT CMS POS -->
+
+	<!--  JNIT CMS MBR -->
+	<bean name="jnitCMSMBRIdGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitCMSMBRStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITCMSMBR_ID"/>
+	</bean>
+	<bean name="jnitCMSMBRStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="MBR_" />
+		<property name="cipers" value="10" />
+		<property name="fillChar" value="0" />
+	</bean>
+	<!--  //JNIT CMS MBR -->
+
+	<!--  JNIT CMS MBR TYPE -->
+	<bean name="jnitCMSMBRTYPEIdGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitCMSMBRTYPEStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITCMSMBRTYPE_ID"/>
+	</bean>
+	<bean name="jnitCMSMBRTYPEStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="3" />
+		<property name="cipers" value="4" />
+		<property name="fillChar" value="0" />
+	</bean>
+	<!--  //JNIT CMS MBR TYPE -->
+	
+	<!--  jnitCMSTPLIdGnrService -->
+	<bean name="jnitCMSTPLIdGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitCMSTPLIdGnrStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITCMSTPL_ID"/>
+	</bean>
+	<bean name="jnitCMSTPLIdGnrStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="TPL_" />
+		<property name="cipers" value="6" />
+		<property name="fillChar" value="0" />
+	</bean>
+ 
+ 	<!-- jnitCMSMENUIdGnrService -->
+	<bean name="jnitCMSMENUIdGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitCMSMENUIdGnrStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITCMSMENU_ID"/>
+	</bean>
+	<bean name="jnitCMSMENUIdGnrStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="MENU_" />
+		<property name="cipers" value="5" />
+		<property name="fillChar" value="0" />
+	</bean>
+	
+ 	<!-- jnitCMSCNTIdGnrService -->
+	<bean name="jnitCMSCNTIdGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitCMSCNTIdGnrStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITCMSCNT_ID"/>
+	</bean>
+	<bean name="jnitCMSCNTIdGnrStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="CNT_" />
+		<property name="cipers" value="16" />
+		<property name="fillChar" value="0" />
+	</bean>
+	
+ 	<!-- jnitCMSHISTIdGnrService -->
+	<bean name="jnitCMSHISTIdGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitCMSHISTIdGnrStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITCMSHIST_ID"/>
+	</bean>
+	<bean name="jnitCMSHISTIdGnrStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="HIST_" />
+		<property name="cipers" value="15" />
+		<property name="fillChar" value="0" />
+	</bean>
+	
+	<!-- jnitCMSDISSEMINATEIdGnrService -->
+	<bean name="jnitCMSDISSEMINATEIdGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitCMSDISSEMINATEIdGnrStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITCMSDISSEMINATE_ID"/>
+	</bean>
+	<bean name="jnitCMSDISSEMINATEIdGnrStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="DISSEMINATE_" />
+		<property name="cipers" value="4" />
+		<property name="fillChar" value="0" />
+	</bean>
+	<!-- jnitCMSDISSEMINATEHISTORYIdGnrService -->
+	<bean name="jnitCMSDISSEMINATEHISTORYIdGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitCMSDISSEMINATEHISTORYIdGnrStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITCMSDISSEMINATEHISTORY_ID"/>
+	</bean>
+	<bean name="jnitCMSDISSEMINATEHISTORYIdGnrStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="HISTORY_" />
+		<property name="cipers" value="4" />
+		<property name="fillChar" value="0" />
+	</bean>
+	<!-- jnitCMSRANKIdGnrService -->
+	<bean name="jnitCMSRANKIdGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitCMSRANKIdGnrStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITCMSRANK_ID"/>
+	</bean>
+	<bean name="jnitCMSRANKIdGnrStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="3" />
+		<property name="cipers" value="4" />
+		<property name="fillChar" value="0" />
+	</bean>
+	<!-- jnitCMSMBRLOG_IDGnrService -->
+	<bean name="jnitCMSMBRLOG_IDGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitCMSMBRLOG_IDGnrStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITCMSMBRLOG_ID"/>
+	</bean>
+	<bean name="jnitCMSMBRLOG_IDGnrStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="MBRLOG_" />
+		<property name="cipers" value="4" />
+		<property name="fillChar" value="0" />
+	</bean>
+	<!-- jnitCMSMGMT_IDGnrService -->
+	<bean name="jnitCMSMGMT_IDGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitCMSMGMT_IDGnrStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITCMSMGMT_ID"/>
+	</bean>
+	<bean name="jnitCMSMGMT_IDGnrStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="MGMT_" />
+		<property name="cipers" value="10" />
+		<property name="fillChar" value="0" />
+	</bean>
+	<!-- jnitCMSCSSHIST_IDGnrService -->
+	<bean name="jnitCMSCSSHIST_IDGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitCMSCSSHIST_IDGnrStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITCMSCSSHIST_ID"/>
+	</bean>
+	<bean name="jnitCMSCSSHIST_IDGnrStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="HIST_" />
+		<property name="cipers" value="10" />
+		<property name="fillChar" value="0" />
+	</bean>
+	<!-- jnitCMSSCRIPTHIST_IDGnrService -->
+	<bean name="jnitCMSSCRIPTHIST_IDGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitCMSSCRIPTHIST_IDGnrStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITCMSSCRIPTHIST_ID"/>
+	</bean>
+	<bean name="jnitCMSSCRIPTHIST_IDGnrStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="HIST_" />
+		<property name="cipers" value="10" />
+		<property name="fillChar" value="0" />
+	</bean>
+	
+	<!-- jnitCMSTPLHIST_IDGnrService -->
+	<bean name="jnitCMSTPLHIST_IDGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitCMSTPLHIST_IDGnrStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITCMSTPLHIST_ID"/>
+	</bean>
+	<bean name="jnitCMSTPLHIST_IDGnrStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="HIST_" />
+		<property name="cipers" value="10" />
+		<property name="fillChar" value="0" />
+	</bean>
+	
+	<!-- jnitCMSMBRPACKAGE_IDGnrService -->
+	<bean name="jnitCMSMBRPACKAGE_IDGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitCMSMBRPACKAGE_IDGnrStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITCMSMBRPACKAGE_ID"/>
+	</bean>
+	<bean name="jnitCMSMBRPACKAGE_IDGnrStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="PACK_" />
+		<property name="cipers" value="5" />
+		<property name="fillChar" value="0" />
+	</bean>
+	<!-- jnitCMSBOARDHIST_IDGnrService -->
+	<bean name="jnitCMSBOARDHIST_IDGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitCMSBOARDHIST_IDGnrStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITCMSBOARDHIST_ID"/>
+	</bean>
+	<bean name="jnitCMSBOARDHIST_IDGnrStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="HIST_" />
+		<property name="cipers" value="10" />
+		<property name="fillChar" value="0" />
+	</bean>
+	<!-- jnitCMSMGMTCATEGORY_IDGnrService -->
+	<bean name="jnitCMSMGMTCATEGORY_IDGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitCMSMGMTCATEGORY_IDGnrStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITCMSMGMTCATEGORY_ID"/>
+	</bean>
+	<bean name="jnitCMSMGMTCATEGORY_IDGnrStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="CATEGORY_" />
+		<property name="cipers" value="10" />
+		<property name="fillChar" value="0" />
+	</bean>
+	<!-- jnitCMSMGMTITEM_IDGnrService -->
+	<bean name="jnitCMSMGMTITEM_IDGnrService"
+		class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService"
+		destroy-method="destroy">
+		<property name="dataSource" ref="egov.dataSource" />
+		<property name="strategy" ref="jnitCMSMGMTITEM_IDGnrStrategy" />
+		<property name="blockSize" 	value="1"/>
+		<property name="table"	   	value="JNITSEQ"/>
+		<property name="tableName"	value="JNITCMSMGMTITEM_ID"/>
+	</bean>
+	<bean name="jnitCMSMGMTITEM_IDGnrStrategy"
+		class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+		<property name="prefix" value="ITEM_" />
+		<property name="cipers" value="10" />
+		<property name="fillChar" value="0" />
+	</bean>
+</beans>
