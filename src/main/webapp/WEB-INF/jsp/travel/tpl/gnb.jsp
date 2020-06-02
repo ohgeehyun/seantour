@@ -9,6 +9,7 @@
             <c:if test="${loginVO != null}">
                 <li><a href="<c:url value="/uat/uia/actionLogout.do"/>">로그아웃</a></li>
 				<li><a href="<c:url value="/travel/member/mypage.do"/>">마이페이지</a></li>
+				<li><a href="<c:url value=""/>">리플렛다운</a></li>
             </c:if>
 			</ul>
             <!-- GNB -->

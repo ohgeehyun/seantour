@@ -84,3 +84,25 @@
       url('./font/jeju_hallasan/JEJUHALLASAN_1.woff') format('woff'),
       url('./font/jeju_hallasan/JEJUHALLASAN_1.ttf') format('truetype');
 }
+/* AuctionGothic */
+@font-face {
+  font-family:'AuctionGothic';
+  font-weight:600;
+  font-style:normal;
+  font-display:swap;
+  src:url('./font/AuctionGothic/AuctionGothic_Bold_0.eot');
+  src:url('./font/AuctionGothic/AuctionGothic_Bold_0.eot?#iefix') format('embedded-opentype'),
+      url('./font/AuctionGothic/AuctionGothic_Bold_0.woff') format('woff'),
+      url('./font/AuctionGothic/AuctionGothic_Bold_0.ttf') format('truetype');
+}
+/* ti385000038 */
+@font-face {
+  font-family:'ti385000038';
+  font-weight:600;
+  font-style:normal;
+  font-display:swap;
+  src:url('./font/ti385000038/ti385000038.eot');
+  src:url('./font/ti385000038/ti385000038.eot?#iefix') format('embedded-opentype'),
+      url('./font/ti385000038/ti385000038.woff') format('woff'),
+      url('./font/ti385000038/ti385000038.ttf') format('truetype');
+}

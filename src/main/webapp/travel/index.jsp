@@ -76,9 +76,9 @@
 								 	</p> 	 
 
 								  	<ul class="img_lst"> 
-								  		<li><img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual_s1.png" alt='해파랑공원'/></li>
-                                        <li><img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual_s2.png" alt='호미곶' /></li>
-                                        <li><img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual_s3.png" alt='주상절리'/></li>  
+								  		<li><img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual2_s1.png" alt='해파랑공원'/></li>
+                                        <li><img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual2_s2.png" alt='호미곶' /></li>
+                                        <li><img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual2_s3.png" alt='주상절리'/></li>  
 
 								  	</ul>
 								  </div>
@@ -86,27 +86,27 @@
 								  <div class="main_visual_content_cell_right">
 								  	 <div class="main_visual_content_cell_right_inr">
 									  	 <div class="visual_arrow">                                      
-                                                <img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual_arrow.png" alt='' />
+                                                <img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual_arrow2.png" alt='' />
                                              
 										  </div>
                                           <!--  메인 지도 아이콘  class point 부분 css필요 -->
-                                          <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=강원" class='point point3'>강원도</a>
-                                          <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경기" class='point point2'>경기도</a>
-                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경남" class='point point10'>경상남도</a>
-                                          "<a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경북" class='point point6'>경상북도</a>
+                                          <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=강원" class='point point3'>강원</a>
+                                          <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경기" class='point point2'>경기</a>
+                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경남" class='point point10'>경남</a>
+                                          "<a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경북" class='point point6'>경북</a>
                                           <!-- 	<li><a href="/travel/destination/list.do?destRegion=광주광역시">광주광역시</a></li> -->
-                                          <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=대구" class='point point7'>대구광역시</a>
+                                          <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=대구" class='point point7'>대구</a>
                                           <!-- <li><a href="/travel/destination/list.do?destRegion=대전">대전광역시</a></li> -->
-                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=부산" class='point point11'>부산광역시</a>
+                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=부산" class='point point11'>부산</a>
                                 		 <!-- <li><a href="/travel/destination/list.do?destRegion=서울">서울특별시</a></li>-->
                                         <!-- <li><a href="/travel/destination/list.do?destRegion=세종">세종특별자치시</a></li> -->
-                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=울산" class='point point8'>울산광역시</a>
-                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=인천" class='point point1'>인천광역시</a>
-                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=전남" class='point point12'>전라남도</a>
-                                		 <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=전북" class='point point9'>전라북도</a>
-                                		 <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=제주" class='point point13'>제주특별시</a>
-                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=충남" class='point point4'>충청남도</a>
-                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=충북" class='point point5'>충청북도</a>
+                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=울산" class='point point8'>울산</a>
+                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=인천" class='point point1'>인천</a>
+                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=전남" class='point point12'>전남</a>
+                                		 <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=전북" class='point point9'>전북</a>
+                                		 <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=제주" class='point point13'>제주</a>
+                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=충남" class='point point4'>충남</a>
+                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=충북" class='point point5'>충북</a>
 
 									  </div>
 								  </div>
@@ -146,12 +146,11 @@
 				</div><!-- //spotzone -->
 				<div class="section01 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
 					<div class="minr">
-					    <div class="event_tbox">
-					    	<p class="event_txt">SNS를 통해 친구를 초대하면 <span>추첨을통해 온누리상품권을</span> 드립니다!</p>
-					    	<p class="event_sub_txt">바다여행을 좋아하는 친구들을 초대하면 추첨을 통해 온누리 상품권을 받으세요.</p>
+						<div class="event_box">
+					    	<a href="#layer2" class="btn-example"><img src="${pageContext.request.contextPath}/images/travel/main/img_main_sns.jpg" alt="SNS공유 이벤트 바다여행을 좋아하는 친구에게 공유하고 온누리상품권을 받으세요!" /></a>
 					    </div>
-					    <div class="event_btnbox">
-					    	<a href="#layer2" class="button btn-example">이벤트 보기</a>
+					    <div class="leaflet_box">
+					    	<a href="#none"><img src="${pageContext.request.contextPath}/images/travel/main/img_main_leaflet.jpg" alt="건강지키는 바다여행! 해양관광 리플렛 보러가기" /></a>
 					    </div>
 				    </div>
 			    </div> <!-- // section01 -->  
@@ -269,11 +268,7 @@
 
 			    	</div>
 			    </div><!-- // section02 --> 
-			    <!-- section03 -->
-			    			<c:import url="/travel/destination/recolist.do" charEncoding="utf-8">			    			
-			    			</c:import>
-			    
-		  <%--   <div class="section03 aos-init aos-animate" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+			    <div class="section03 aos-init aos-animate" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
 					<div class="minr">
 					    <div class="tit_box">
 					    	<p class="txt">다양한 해양레저 컨텐츠를 추천해드립니다.</p>
@@ -397,7 +392,7 @@
 							</div>
 						</div>
 					</div>
-				</div><!-- // section03 -->  --%>
+				</div><!-- // section03 --> 
 			    <div class="section04 aos-init aos-animate" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
 					<div class="minr">
 	                    <div class="main_event_wrap">
