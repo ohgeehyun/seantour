@@ -64,6 +64,7 @@
 		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/faq/')}">Q&A</c:if>
 		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/faq_customer/')}">고객의소리</c:if>
 		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/updateinfo')}">정보수정제안</c:if>
+		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/leaflet')}">리플렛</c:if>
 		        	</h2>
 		            <%-- <p class="txt trans300">${pageSlogan}</p> --%>
 		            <p class="txt trans300">특별하고 즐거움이 가득한 국내 바다여행</p>
@@ -133,6 +134,7 @@
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/info_policy')}"><a href="#none">저작권정책</c:if>
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/email')}"><a href="#none">이메일수집거부</c:if>
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/updateinfo')}"><a href="#none">Q&A</c:if>
+						<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/leaflet')}"><a href="#none">리플렛</c:if>
 						<%-- 
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'member/clipboard')}"><a href="#none">공지사항</c:if>
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'member/clipboard')}"><a href="#none">Q&A</c:if> 
