@@ -18,8 +18,8 @@
 								<div class="main_cont_item">
 							        <div class="main_cont_img">
 							        	<div class="inner">	
-										<c:set var="routThumbPath" value="${empty result.destImgPath ? '/images/travel/content/noimg.jpg' : result.destImgPath}" />
-								            <img src="/seantour_map/${result.destImgPath}" alt="" />
+										<c:set var="routThumbPath" value="${empty result.destImgPath ? 'images/travel/content/noimg.jpg' : result.destImgPath}" />
+								            <img src="/seantour_map/<c:out value="${routThumbPath}"/>" alt="" />
 								            <div class="tbox">
 								            	<p class="sub">${result.destRegion}</p>
 								            	<p class="tit">${result.destTitle}</p>
@@ -28,7 +28,7 @@
 								            <div class="inner_box"></div>
 							            </div>
 							        </div>
-								</div>
+							        </div>
 								 </c:if>
 								</c:forEach>
 							</div>
