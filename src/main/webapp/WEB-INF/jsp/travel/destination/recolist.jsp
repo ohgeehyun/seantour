@@ -14,7 +14,7 @@
 	                        </div><!-- .slick-control -->
 	                        <div class="main_cont_slider">
 	                        <c:forEach var="result" items="${resultList}" varStatus="status">
-							        	<c:if test="${status.index gt 0}">
+							        	<c:if test="${status.index ge 0}">
 								<div class="main_cont_item">
 							        <div class="main_cont_img">
 							        	<div class="inner">	
