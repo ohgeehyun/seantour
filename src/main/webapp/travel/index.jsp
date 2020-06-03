@@ -267,8 +267,10 @@
 						</c:import>
 
 			    	</div>
-			    </div><!-- // section02 --> 
-			    <div class="section03 aos-init aos-animate" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+			    </div><!-- // section02 -->
+			     <c:import url="/travel/destination/recolist.do" charEncoding="utf-8"></c:import>
+			    
+			   <%--  <div class="section03 aos-init aos-animate" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
 					<div class="minr">
 					    <div class="tit_box">
 					    	<p class="txt">다양한 해양레저 컨텐츠를 추천해드립니다.</p>
@@ -392,7 +394,7 @@
 							</div>
 						</div>
 					</div>
-				</div><!-- // section03 --> 
+				</div> --%><!-- // section03 --> 
 			    <div class="section04 aos-init aos-animate" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
 					<div class="minr">
 	                    <div class="main_event_wrap">
