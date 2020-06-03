@@ -13,11 +13,11 @@
 	                            <button class="slick-arrows slick-next main_cont_next" type="button">NEXT</button>
 	                        </div><!-- .slick-control -->
 	                        <div class="main_cont_slider">
+	                        <c:forEach var="result" items="${resultList}" varStatus="status">
+							        	<c:if test="${status.index gt 0}">
 								<div class="main_cont_item">
 							        <div class="main_cont_img">
-							        	<div class="inner">
-							        	<c:forEach var="result" items="${resultList}" varStatus="status">
-							        	<c:if test="${status.index gt 0}">
+							        	<div class="inner">	
 										<c:set var="routThumbPath" value="${empty result.destImgPath ? '/images/travel/content/noimg.jpg' : result.destImgPath}" />
 								            <img src="${result.destImgPath}" alt="" />
 								            <div class="tbox">
