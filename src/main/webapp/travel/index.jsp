@@ -86,7 +86,7 @@
 								  <div class="main_visual_content_cell_right">
 								  	 <div class="main_visual_content_cell_right_inr">
 									  	 <div class="visual_arrow">                                      
-                                                <img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual_arrow2.png" alt='' />
+                                                <img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual2_arrow.png" alt='' />
                                              
 										  </div>
                                           <!--  메인 지도 아이콘  class point 부분 css필요 -->
