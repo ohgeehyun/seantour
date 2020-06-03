@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springmodules.validation.commons.DefaultBeanValidator;
+
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -36,6 +38,8 @@ import jnit.cms.mbr.JnitcmsmbrService;
 import jnit.cms.mbr.JnitcmsmbrVO;
 import jnit.mgov.module.JnitMgovUtil;
 import net.sf.json.JSONObject;
+import java.io.PrintWriter;
+
 
 @Controller
 @RequestMapping("/travel/member/")
@@ -71,17 +75,23 @@ public class TravelMemberController {
 	
 	@RequestMapping(value="mypage.do")
 	public String mypage(
-			 HttpServletRequest request
+			 HttpServletRequest request 
+			,HttpServletResponse response 
 			,@ModelAttribute("jnitcmsmbrVO") JnitcmsmbrVO jnitcmsmbrVO
 			,@ModelAttribute("recommHistory") TravelFameHistory recommHistory
 			,TravelFamePoint famePoint
     		,HttpSession session
 			,Model model) throws Exception{
 		
+		
 		JnitcmsmbrVO loginVO = JnitMgovUtil.getLoginMember();
 		if(NullUtil.isEmpty(loginVO.getMbrId())) {
 			//return WsNavUtil.alertAndRedirect(model, "회원전용 서비스 입니다.\\n로그인 후 이용해 주세요.", "/accounts/login/");
-			return "redirect:/";
+			 response.setContentType("text/html; charset=UTF-8");
+	            PrintWriter out = response.getWriter();
+	            out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
+	            out.flush();
+			//return "redirect:/";
 		}
 		
 		//나의명성점수

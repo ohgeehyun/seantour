@@ -356,9 +356,14 @@ $(document).ready(function(){
 	$(".day_memo").click(function(){
 		$(this).siblings("div").slideToggle();
 	});
-	$(".memo_btn .close, .memo_btn .add").click(function(){
+	$(".memo_btn .close, .memo_btn .add").click(function(){	
 		$(".memo_box").hide();
 	});
+	
+	$(".memo_btn .add").click(function(){
+		alert("메모가 저장되었습니다.");
+	});
+	
 	
 	$(".mob_day_memo").click(function(){
 		$(this).siblings("div").center().slideToggle();

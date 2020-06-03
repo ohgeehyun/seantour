@@ -83,7 +83,7 @@
 								<p class="tit">가까운 놀거리</p>
 								<div class="near_points_area">
 									<c:forEach var="nearPlay" items="${nearPlayPoints}" varStatus="play">	
-										<div class="near_points_box"><div class="near_points" data-lon="<c:out value="${nearPlay.destAxisX}"/>" data-lat="<c:out value="${nearPlay.destAxisY}"/>" data-dest-id="<c:out value="${nearPlay.destId}"/>"><span class="near_tit"><c:out value="${nearPlay.destTitle}" escapeXml="false" /></span></div></div>
+										<div class="near_points_box"><div class="near_points" data-lon="<c:out value="${nearPlay.destAxisX}"/>" data-lat="<c:out value="${nearPlay.destAxisY}"/>" data-dest-id="<c:out value="${nearPlay.destId}"/>"><span class="near_tit" onclick="location.href='<c:url value='/travel/destination/detail.do?destId=${nearPlay.destId}'/>'"><c:out value="${nearPlay.destTitle}" escapeXml="false" /></span></div></div>
 									</c:forEach>	
 								</div>
 							</div>
@@ -94,7 +94,7 @@
 								<p class="tit">가까운 잠자리</p>
 								<div class="near_points_area">
 								<c:forEach var="nearStay" items="${nearStayPoints}" varStatus="stay">	
-									<div class="near_points_box"><div class="near_points" data-lon="<c:out value="${nearStay.destAxisX}"/>" data-lat="<c:out value="${nearStay.destAxisY}"/>" data-dest-id="<c:out value="${nearStay.destId}"/>"><span class="near_tit"><c:out value="${nearStay.destTitle}" escapeXml="false" /></span></div></div>
+									<div class="near_points_box"><div class="near_points" data-lon="<c:out value="${nearStay.destAxisX}"/>" data-lat="<c:out value="${nearStay.destAxisY}"/>" data-dest-id="<c:out value="${nearStay.destId}"/>"><span class="near_tit"onclick="location.href=' <c:url value='/travel/destination/detail.do?destId=${nearStay.destId}'/>'"><c:out value="${nearStay.destTitle}" escapeXml="false" /></span></div></div>
 								</c:forEach>	
 								</div>
 							</div>
@@ -148,6 +148,8 @@ function setNearPointsMap() {
 		}
 	});
 }
+
+
 function drawMultipleMap(map_id, width, height, lat, lon) {
 	var imgURL = 'http://tmapapis.sktelecom.com/upload/tmap/marker/pin_b_m_p.png';
 	var size = new Tmapv2.Size(24, 38);

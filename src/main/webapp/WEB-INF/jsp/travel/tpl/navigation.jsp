@@ -180,9 +180,9 @@
                             		<li><a href="<c:url value='/travel/info_square/faq/index.jsp'/>">Q&A</a></li>
 	                                <%-- <li><a href="<c:url value='/travel/info_square/statistics/index.jsp'/>">통계</a></li> --%>
 	                                <li><a href="<c:url value='/travel/destination/stats.do'/>">통계</a></li>
+	                                <li><a href="<c:url value='/travel/info_square/leaflet/index.jsp'/>">리플렛</a></li>
 	                                <li><a href="<c:url value='/travel/info_square/info_policy/index.jsp'/>">저작권정책</a></li>
 	                                <li><a href="<c:url value='/travel/info_square/email/index.jsp'/>">이메일무단수집거부</a></li>
-	                                
 								</c:if> 
 			                	</ul>
 			                </div>

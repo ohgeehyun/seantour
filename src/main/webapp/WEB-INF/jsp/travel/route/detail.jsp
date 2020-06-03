@@ -35,6 +35,7 @@
 <body onload="initTmap()">
 <div id="wrap_loading">
     <div><img src="<c:url value="/images/travel/content/loading.png"/>" alt="로딩중" /></div>
+
 </div>
 	<div id="wrap">
 		<div id="accessibility"><a href="#content">본문 바로가기</a></div>
