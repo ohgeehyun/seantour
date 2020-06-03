@@ -19,7 +19,7 @@
 							        <div class="main_cont_img">
 							        	<div class="inner">	
 										<c:set var="routThumbPath" value="${empty result.destImgPath ? '/images/travel/content/noimg.jpg' : result.destImgPath}" />
-								            <img src="${result.destImgPath}" alt="" />
+								            <img src="/seantour_map/${result.destImgPath}" alt="" />
 								            <div class="tbox">
 								            	<p class="sub">${result.destRegion}</p>
 								            	<p class="tit">${result.destTitle}</p>
