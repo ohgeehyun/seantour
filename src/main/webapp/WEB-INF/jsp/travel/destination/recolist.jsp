@@ -28,9 +28,9 @@
 								            <div class="inner_box"></div>
 							            </div>
 							        </div>
-							        </c:if>
-									</c:forEach>
 								</div>
+								 </c:if>
+								</c:forEach>
 							</div>
 						</div>
 					</div>
