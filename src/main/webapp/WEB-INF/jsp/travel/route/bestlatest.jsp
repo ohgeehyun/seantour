@@ -9,7 +9,7 @@
 	<div class="name_tit">BEST 여행일정</div>
 	<div class="col01">
 	<c:if test="${fn:length(resultList) gt 0}">
-		<c:set var="firstThumbPath" value="${empty resultList[0].routThumbPath ? '/images/travel/content/noimg.jpg' : resultList[0].routThumbPath}" />
+		<c:set var="firstThumbPath" value="${empty resultList[0].routThumbPath ? 'seantour_map/images/travel/content/noimg.jpg' : resultList[0].routThumbPath}" />
 		<div class="img"><a href="#none"><img src='<c:url value="${firstThumbPath}"/>' alt='<c:out value="${resultList[0].routTitle}"/>' /></a></div>
 		<div class="tbox">
 			<span><c:if test="${not empty resultList[0].routRegion}">[<c:out value="${resultList[0].routRegion}"/>]</c:if></span>
@@ -21,7 +21,7 @@
 		<ul>
 	<c:forEach var="result" items="${resultList}" varStatus="status">
 		<c:if test="${status.index gt 0}">
-			<c:set var="routThumbPath" value="${empty result.routThumbPath ? '/images/travel/content/noimg.jpg' : result.routThumbPath}" />
+			<c:set var="routThumbPath" value="${empty result.routThumbPath ? 'seantour_map/images/travel/content/noimg.jpg' : result.routThumbPath}" />
 			<li>
 				<a href="#none">
     				<span class="img"><img src='<c:url value="${routThumbPath}"/>' alt='<c:out value="${result.routTitle}"/>' /></span>

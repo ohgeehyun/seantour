@@ -12,6 +12,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -88,10 +89,11 @@ public class TravelMemberController {
 		if(NullUtil.isEmpty(loginVO.getMbrId())) {
 			//return WsNavUtil.alertAndRedirect(model, "회원전용 서비스 입니다.\\n로그인 후 이용해 주세요.", "/accounts/login/");
 			 response.setContentType("text/html; charset=UTF-8");
-	            PrintWriter out = response.getWriter();
-	            out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
+			 PrintWriter out = response.getWriter();
+	            out.println("<script>alert('회원전용 서비스 입니다.'); window.location.href='http://www.seantour.com/seantour_map/';</script>");
 	            out.flush();
-			//return "redirect:/";
+	          
+			//return "../../index";
 		}
 		
 		//나의명성점수
@@ -113,6 +115,7 @@ public class TravelMemberController {
 //			@ModelAttribute("searchVO") TravelDefaultVO searchVO
 //			,TravelRoute travelRoute
 			 @ModelAttribute("travelRoute") TravelRoute travelRoute
+			 ,HttpServletResponse response 
 //			,@RequestParam(value="open", required=false)String open
 			,SessionStatus status
 			,Model model) throws Exception {
@@ -120,7 +123,11 @@ public class TravelMemberController {
 		JnitcmsmbrVO loginVO = JnitMgovUtil.getLoginMember();
 		if(NullUtil.isEmpty(loginVO.getMbrId())) {
 			//return WsNavUtil.alertAndRedirect(model, "회원전용 서비스 입니다.\\n로그인 후 이용해 주세요.", "/accounts/login/");
-			return "redirect:/";
+			 response.setContentType("text/html; charset=UTF-8");
+	            PrintWriter out = response.getWriter();
+	            out.println("<script>alert('회원전용 서비스 입니다.'); window.location.href='http://www.seantour.com/seantour_map/';</script>");
+	            out.flush();
+			//return "redirect:/";
 		}
 		
 		travelRoute.setRoutType("U");
@@ -136,6 +143,46 @@ public class TravelMemberController {
 		
 		return skinPath + "myroute";
 	}
+	
+	 @RequestMapping(value="detail.do")
+	    public String destinationDetail(
+	    		 @ModelAttribute("searchVO") TravelDefaultVO searchVO
+	  			,TravelRoute travelRoute
+	            ,HttpServletRequest req
+	            ,HttpServletResponse response 
+	    		,ModelMap model) throws Exception {
+		 
+		 	JnitcmsmbrVO loginVO = JnitMgovUtil.getLoginMember();
+			if(NullUtil.isEmpty(loginVO.getMbrId())) {
+				//return WsNavUtil.alertAndRedirect(model, "회원전용 서비스 입니다.\\n로그인 후 이용해 주세요.", "/accounts/login/");
+					response.setContentType("text/html; charset=UTF-8");
+		            PrintWriter out = response.getWriter();
+		            out.println("<script>alert('회원전용 서비스 입니다.'); window.location.href='http://www.seantour.com/seantour_map/';</script>");
+		            out.flush(); 
+				//return "redirect:/";
+			}
+		 
+	    	
+	    	try{
+
+	    		if(NullUtil.isEmpty(travelRoute.getRoutId())) {
+	    			throw new NullPointerException("조회 대상 정보가 없습니다");
+	    		}
+
+	    		routeService.updateTravelRouteHitCount(travelRoute.getRoutId());
+
+	    		model.addAttribute("travelRoute", routeService.selectTravelRoute(travelRoute));
+
+	    	} catch (NullPointerException e){
+				log.error(e.getMessage());
+	    	}catch(Exception e){
+	    		log.error(e.getMessage());
+	    	}
+	    	
+	    	return skinPath + "detail";
+	    }
+	
+	
 	
     @RequestMapping(value="updatemyroute.do", method=RequestMethod.POST)
     public String updateMyRoute(

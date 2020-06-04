@@ -10,20 +10,12 @@
             <c:if test="${fn:contains(pageContext.request.requestURI, 'travel/destination/detail')}">
             <c:set value="sub01" var="sub_visual"/>
             </c:if>
-             <c:if test="${fn:contains(pageContext.request.requestURI, 'travel/destination/register')}">
+            <c:if test="${fn:contains(pageContext.request.requestURI, 'travel/destination/register')}">
             <c:set value="sub01" var="sub_visual"/>
             </c:if>
-            
-           	<c:choose>
-		    	<c:when test="${fn:contains(pageContext.request.requestURI, 'travel/member')}"><c:set value="sub05" var="sub_visual"/></c:when>
-		        <c:when test="${fn:contains(pageContext.request.requestURI, 'travel/route')}">
-		        	<c:choose>
-		   				<c:when test="${fn:contains(pageContext.request.requestURI, 'travel/route')eq (fn:contains(pageContext.request.getHeader('REFERER'), 'travel/member'))}"><c:set value="sub05" var="sub_visual"/></c:when>
-		            		<c:otherwise><c:set value="sub02" var="sub_visual"/></c:otherwise>
-		            </c:choose>
-		        </c:when>
-		    </c:choose>     
-		            	      
+            <c:if test="${fn:contains(pageContext.request.requestURI, 'travel/route')}">
+            <c:set value="sub02" var="sub_visual"/>
+            </c:if>
             <c:if test="${fn:contains(pageContext.request.requestURI, 'travel/fame')}">
 			<c:set value="sub03" var="sub_visual"/>
             </c:if>
@@ -33,9 +25,9 @@
             <c:if test="${fn:contains(pageContext.request.requestURI, 'travel/destination/stats')}">
             <c:set value="sub04" var="sub_visual"/>
             </c:if>
-            <%-- <c:if test="${fn:contains(pageContext.request.requestURI, 'travel/member')}">
+            <c:if test="${fn:contains(pageContext.request.requestURI, 'travel/member')}">
 			<c:set value="sub05" var="sub_visual"/>
-            </c:if> --%>
+            </c:if> 
             
              <div class="section_visual <c:out value="${sub_visual}"/> trans400">
                 <div class="section_tit_box">
@@ -43,17 +35,8 @@
 		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/destination/list')}">바다여행</c:if>
 		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/destination/detail')}">바다여행</c:if>
 		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/destination/register')}">바다여행</c:if>       
-		            	
-		            	<c:choose>
-		            		<c:when test="${fn:contains(pageContext.request.requestURI, 'travel/member')}">마이페이지</c:when>
-		            		<c:when test="${fn:contains(pageContext.request.requestURI, 'travel/route')}">
-		            			<c:choose>
-		            				<c:when test="${fn:contains(pageContext.request.requestURI, 'travel/route')eq (fn:contains(pageContext.request.getHeader('REFERER'), 'travel/member'))}">마이페이지</c:when>
-		            					<c:otherwise>추천여행일정</c:otherwise>
-		            			</c:choose>
-		        			</c:when>
-		            	</c:choose>
-		            	
+		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/member')}">마이페이지</c:if>
+		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/route')}">추천일정</c:if>
 		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/fame')}">명성</c:if>
 		         		<%--<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/member')}">마이페이지</c:if> --%>
 		            	<%-- <c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/statistics')}">통계</c:if> --%>
@@ -79,15 +62,8 @@
 		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/destination/detail')}"><a href="#none">바다여행</c:if>
 		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/destination/register')}"><a href="#none">바다여행</c:if>
 		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/destination/stats')}"><a href="#none">정보광장</c:if>
-		            	<c:choose>
-		            		<c:when test="${fn:contains(pageContext.request.requestURI, 'travel/member')}"><a href="#none">마이페이지</c:when>
-		            		<c:when test="${fn:contains(pageContext.request.requestURI, 'travel/route')}">
-		            			<c:choose>
-		            				<c:when test="${fn:contains(pageContext.request.requestURI, 'travel/route')eq (fn:contains(pageContext.request.getHeader('REFERER'), 'travel/member'))}"><a href="#none">마이페이지</c:when>
-		            					<c:otherwise><a href="#none">추천여행일정</c:otherwise>
-		            			</c:choose>
-		        			</c:when>
-		            	</c:choose>
+		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/member/')}"><a href="#none">마이페이지</c:if>
+		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/route/')}"><a href="#none">추천일정</c:if>
 		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/fame')}"><a href="#none">명성</c:if>
 		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square')}"><a href="#none">정보광장</c:if>
 			                	<span class="unfd">같은 레벨 메뉴 보기</span></a>
@@ -111,8 +87,7 @@
 			                </div>              
 			            </li>       
 			                        
-                         <c:if test="${fn:contains(pageContext.request.requestURI, 'travel/route/detail')||
-                         		fn:contains(pageContext.request.requestURI, 'travel/destination/list') ||
+                         <c:if test="${fn:contains(pageContext.request.requestURI, 'travel/destination/list') ||
                          		 fn:contains(pageContext.request.requestURI, 'travel/destination/detail') ||
 								fn:contains(pageContext.request.requestURI, 'travel/member') ||
 								fn:contains(pageContext.request.requestURI, 'travel/destination/stats') ||
@@ -124,8 +99,8 @@
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/destination/list')}"><a href="#none" class=""><c:out value="${empty pageContext.request.getParameter('destRegion') ? '전체' : pageContext.request.getParameter('destRegion')}"/></c:if>
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/destination/detail')}"><a href="#none" class=""><c:out value="${empty pageContext.request.getParameter('destRegion') ? '전체' : pageContext.request.getParameter('destRegion')}"/></c:if>
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'member/mypage')}"><a href="#none">나의정보</c:if>
+						<c:if test="${fn:contains(pageContext.request.requestURI, 'member/detail')}"><a href="#none">나의 여행일정</c:if>
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'member/myroute')}"><a href="#none">나의여행일정</c:if>
-						<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/route')}"><a href="#none">나의여행일정</c:if>
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'member/clipboard')}"><a href="#none">클립보드</c:if>
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/notice')}"><a href="#none">공지사항</c:if>
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/faq')}"><a href="#none">Q&A</c:if>
@@ -167,8 +142,7 @@
                                 		<li><a href="<c:url value='/travel/destination/list.do?destRegion=충북'/>">충청북도</a></li>
 								</c:if>
 				
-			                    <c:if test="${fn:contains(pageContext.request.requestURI, 'travel/route/detail')||
-			                  				  fn:contains(pageContext.request.requestURI, 'travel/member')}">
+			                    <c:if test="${fn:contains(pageContext.request.requestURI, 'travel/member/')}">
 									<li><a href="<c:url value='/travel/member/mypage.do'/>">나의정보</a></li>
 									<li><a href="<c:url value='/travel/member/myroute.do'/>">나의여행일정</a></li>
 									<li><a href="<c:url value='/travel/member/clipboard.do'/>">클립보드</a></li>								

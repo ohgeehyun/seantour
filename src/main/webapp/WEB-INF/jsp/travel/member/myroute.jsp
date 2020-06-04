@@ -36,7 +36,7 @@
 											<img src='<c:url value="${routThumbPath}"/>' alt='<c:out value="${result.routTitle}"/>' />
 										</a>
 									</div>
-									<div class="txt"><a href='<c:url value="/travel/route/detail.do?routId=${result.routId}"/>'><c:out value="${result.routTitle}"/></a></div>
+									<div class="txt"><a href='<c:url value="/travel/member/detail.do?routId=${result.routId}"/>'><c:out value="${result.routTitle}"/></a></div>
 									<div class="info btnarea">
 										<span class="name"><c:out value="${result.routRegMemberNm}"/></span>
 										<ul class="lst">
