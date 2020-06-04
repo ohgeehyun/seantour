@@ -35,7 +35,7 @@
  * **************************************** */
  .memo_result_area{box-sizing:border-box;width:100%;margin-top:25px;paddding:15px 20px;background:#f0f0f0;border:1px solid #e8e8e8;border-radius:0.7em;}
  .memo_result_area .memo_inner{position:relative;height:100px;overflow-y:auto;padding:5px 5px 5px 30px;}
- .memo_result_area .memo_inner:before{content:'';display:inline-block;position:absolute;top:0;left:0;width:21px;height:21px;background:url(/seantour_map/images/travel/content/icon_memo.png) no-repeat 0 0;}
+ .memo_result_area .memo_inner:before{content:'';display:inline-block;position:absolute;top:15px;left:15px;width:21px;height:21px;background:url(/seantour_map/images/travel/content/icon_memo.png) no-repeat 0 0;}
 /* **************************************** *
  * paging
  * **************************************** */
