@@ -39,7 +39,7 @@ background-size:cover;width:calc(100% - 336px) !important;z-index:99;
 #content .day_lst .plus{position:relative;display:inline-block;width:48px;height:70px;padding-top:15px;background:#323a44;border-bottom:1px solid #4c5156;color:#fff;text-align:center;}
 #content .day_lst .plus:after{content:'+';display:inline-block;position:absolute;top:35px;left:18px;font-size:18px;}
 #content .day_lst .heart{position:relative;display:inline-block;width:48px;height:70px;padding-top:33px;border-bottom:1px solid #4c5156;color:#fff;text-align:center;}
-#content .day_lst .heart:after{content:'';display:inline-block;position:absolute;top:18px;left:50%;width:13px;height:12px;margin-left:-6.5px;background:url(/seantour_map/images/travel/map/icon_heart.png) no-repeat 0 0;}
+#content .day_lst .heart:after{content:'';display:inline-block;position:absolute;top:18px;left:50%;width:13px;height:12px;margin-left:-6.5px;background:url(/seantour_map/images/travel/map/icon_clip.png) no-repeat 0 0;}
 #content .day_lst .save{position:relative;display:inline-block;width:48px;height:70px;padding-top:33px;border-bottom:1px solid #4c5156;color:#fff;text-align:center;}
 #content .day_lst .save:after{content:'';display:inline-block;position:absolute;top:18px;left:50%;width:13px;height:12px;margin-left:-6.5px;background:url(/seantour_map/images/travel/map/icon_save.png) no-repeat 0 0;background-size:cover;}
 #content .day_lst > ul > li{text-align:center; transition: 0.2s;}
