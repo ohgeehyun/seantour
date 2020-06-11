@@ -20,7 +20,7 @@
             <div class="pop-container">
               <div class="pop-conts">
                 <!--content //-->
-                <img src="/seantour_map/images/travel/main/event_popup.png" alt="SNS 친구초대 이벤트! SNS를 통해 친구를 초대하면 추첨을 통해 오누리 상품권을 드립니다. 바다여행을 좋아하는 친구들을 초대하고 온누리 상품권을 받으세요 이벤트기간:6월 한달간" />
+                <img src="/seantour_map/images/travel/main/event_popup.jpg" alt="SNS 친구초대 이벤트! SNS를 통해 친구를 초대하면 추첨을 통해 오누리 상품권을 드립니다. 바다여행을 좋아하는 친구들을 초대하고 온누리 상품권을 받으세요 이벤트기간:6월 한달간" />
                 <div class="btn-r">
                   <a href="#" class="btn-layerClose">Close</a>
                 </div>
