@@ -1,7 +1,7 @@
 package geocni.travel.route.web;
 
 import java.util.List;
-
+import java.sql.SQLException;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -195,8 +195,10 @@ public class TravelRouteMngController {
 
 				routeService.updateTravelRoute(travelRoute);
 
-			} catch (Exception e) {
-				e.printStackTrace();
+    		} catch (SQLException e) {
+				log.debug(e);
+			} catch(NullPointerException e) {
+				log.debug(e);
 			}
 			
     		return "redirect:/cms/travel/route/list.do";
@@ -214,8 +216,10 @@ public class TravelRouteMngController {
 
 				routeService.deleteTravelRoutePhysically(travelRoute);
 
-			} catch (Exception e) {
-				e.printStackTrace();
+			} catch (SQLException e) {
+				log.debug(e);
+			} catch(NullPointerException e) {
+				log.debug(e);
 			}
 			
             status.setComplete();
@@ -281,12 +285,15 @@ public class TravelRouteMngController {
      */
     public static ModelMap AdminJSON(HttpServletRequest request, ModelMap model)throws Exception{
     	String type = NullUtil.nullString(request.getParameter("type"));
-    	if(type.equals("banner")){
-    		AdminUtil.setMenuId("m06020100");
-    	}else if(type.equals("allim")){
-    		AdminUtil.setMenuId("m06030100");
-    	}else if(type.equals("popup")){
-    		AdminUtil.setMenuId("m06040100");
+    	if(type != null )
+    	{
+    		if(type.equals("banner")){
+    			AdminUtil.setMenuId("m06020100");
+    		}else if(type.equals("allim")){
+    			AdminUtil.setMenuId("m06030100");
+    		}else if(type.equals("popup")){
+    			AdminUtil.setMenuId("m06040100");
+    		}
     	}
     	return model;
     }

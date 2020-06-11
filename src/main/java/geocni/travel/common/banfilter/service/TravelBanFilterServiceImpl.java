@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import java.sql.SQLException;
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
@@ -103,8 +103,10 @@ public class TravelBanFilterServiceImpl extends EgovAbstractServiceImpl implemen
 
 			travelBanFilterDAO.upsertTravelBanFilter(banWordList);
 			
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (NullPointerException e) {
+			LOGGER.debug("NullPointException");
+		}catch (SQLException e ) {
+			LOGGER.debug("SQLException");
 		}
 	}
 	

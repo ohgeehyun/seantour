@@ -2,7 +2,7 @@ package geocni.travel.member.service;
 
 import java.util.List;
 import java.util.Map;
-
+import java.sql.SQLException;
 import geocni.travel.member.domain.TravelClipboard;
 import geocni.travel.member.domain.TravelFameHistory;
 import geocni.travel.member.domain.TravelFamePoint;

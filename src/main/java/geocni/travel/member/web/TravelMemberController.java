@@ -6,7 +6,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import java.sql.SQLException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -206,9 +206,9 @@ public class TravelMemberController {
 				routeService.updateTravelRouteOpenStatus(travelRoute);
 
     		} catch (NullPointerException e){
-    			e.printStackTrace();
-    		} catch (Exception e) {
-				e.printStackTrace();
+    			log.debug(e);
+    		} catch (SQLException e) {
+    			log.debug(e);
 			}
 			
     		return "redirect:/travel/member/myroute.do";

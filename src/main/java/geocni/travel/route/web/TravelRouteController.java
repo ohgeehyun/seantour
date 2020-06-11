@@ -3,7 +3,7 @@ package geocni.travel.route.web;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
+import java.sql.SQLException;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -423,8 +423,10 @@ public class TravelRouteController {
 
     			routeService.updateTravelRoute(travelRoute);
 
-			} catch (Exception e) {
-				e.printStackTrace();
+    		} catch (SQLException e) {
+				log.debug(e);;
+			} catch (NullPointerException e) {
+				log.debug(e);
 			}
 			
     		return "redirect:/travel/member/myroute.do";
@@ -444,8 +446,10 @@ public class TravelRouteController {
     				routeService.deleteTravelRoutePhysically(travelRoute);
     			}
     			
-			} catch (Exception e) {
-				e.printStackTrace();
+			} catch (SQLException e) {
+				log.debug(e);;
+			} catch (NullPointerException e) {
+				log.debug(e);
 			}
 			
             status.setComplete();

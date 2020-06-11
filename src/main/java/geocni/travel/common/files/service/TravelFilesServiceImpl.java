@@ -19,6 +19,7 @@ import geocni.travel.common.TravelDefaultVO;
 import geocni.travel.common.files.dao.TravelFilesDAO;
 import geocni.travel.common.files.domain.TravelFiles;
 import jnit.util.PathUtil;
+import java.sql.SQLException;
 
 @Service("travelFilesService")
 public class TravelFilesServiceImpl extends EgovAbstractServiceImpl implements TravelFilesService {
@@ -103,8 +104,10 @@ public class TravelFilesServiceImpl extends EgovAbstractServiceImpl implements T
 
 			travelFilesDAO.insertTravelFiles(fileList);
 			
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (NullPointerException e) {
+			LOGGER.debug("NullPointException");
+		} catch (SQLException e) {
+			LOGGER.debug("SQLException");
 		}
 	}
 	

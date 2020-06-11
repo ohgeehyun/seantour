@@ -2,7 +2,7 @@ package geocni.travel.common.banfilter.web;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-
+import java.sql.SQLException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,9 +82,9 @@ public class TravelBanFilterController {
     			banFilterService.upsertTravelBanFilter(filters.getBanWordList());
 
     		} catch (NullPointerException e){
-    			e.printStackTrace();
+    			log.debug(e.getMessage());
 			} catch (Exception e) {
-				e.printStackTrace();
+				log.debug(e.getMessage());
 			}
 			
     		//return skinPath + "result";
@@ -101,9 +101,12 @@ public class TravelBanFilterController {
     			
     			banFilterService.deleteTravelBanFilterPhysically(delWord);
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			} catch (NullPointerException e) {
+				log.debug(e.getMessage());
+			} catch (SQLException e)
+    		{
+				log.debug(e.getMessage());
+    		}
 			
     		return "redirect:/cms/travel/banfilter/list.do";
     }
@@ -124,7 +127,9 @@ public class TravelBanFilterController {
 				return Boolean.TRUE.toString();
 			}
 			
-		} catch (Exception e) {
+		} catch (NullPointerException e) {
+			log.debug(e.getMessage());
+		} catch(SQLException e) {
 			log.debug(e.getMessage());
 		}
 		

@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
+import java.sql.SQLException;
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
@@ -162,8 +162,10 @@ public class TravelRouteServiceImpl extends EgovAbstractServiceImpl implements T
 				travelRoute.setRouteDailyList(newDailyList);
 			}
 			
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (NullPointerException e) {
+			LOGGER.debug(e.toString());
+		} catch (SQLException e) {
+			LOGGER.debug(e.toString());
 		}
 		
 		return travelRoute;
@@ -206,8 +208,10 @@ public class TravelRouteServiceImpl extends EgovAbstractServiceImpl implements T
 				travelRouteDAO.insertTravelRouteDaily(newDailyList);
 			}
 
-    	} catch (Exception e) {
-			e.printStackTrace();
+    	} catch (NullPointerException e) {
+			LOGGER.debug(e.toString());
+		}catch (SQLException e) {
+			LOGGER.debug(e.toString());
 		}
 		return vo;
 	}

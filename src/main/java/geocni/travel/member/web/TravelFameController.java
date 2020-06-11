@@ -3,7 +3,7 @@ package geocni.travel.member.web;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
+import java.sql.SQLException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -166,7 +166,7 @@ public class TravelFameController {
 	    		thread.start();
 		    }
 
-		} catch (Exception e) {
+		} catch (NullPointerException e) {
 			/*e.printStackTrace();*/
 			log.error(e.getMessage());
 		}
@@ -187,8 +187,10 @@ public class TravelFameController {
 			@SuppressWarnings("unused")
 			TravelReaction reaction = memberService.insertTravelReaction(travelReaction);
 			
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (NullPointerException e) {
+			log.debug(e);
+		}catch (SQLException e) {
+			log.debug(e);
 		}
 		
 		return skinPath + "result";

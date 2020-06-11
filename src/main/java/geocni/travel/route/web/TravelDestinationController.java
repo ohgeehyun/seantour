@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
+import java.sql.SQLException;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -104,8 +104,10 @@ public class TravelDestinationController {
 			
 			model.addAttribute("travelDestination", travelDestination);
 		
-		} catch (Exception e) {
-			log.debug(e.getMessage());
+		} catch (NullPointerException e) {
+			log.debug(e);
+		} catch (SQLException e) {
+			log.debug(e);
 		}
 		
 		return skinPath + "list";
@@ -217,8 +219,10 @@ public class TravelDestinationController {
 			
 			destService.insertTravelDestination(travelDestination, files);
 
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (NullPointerException e) {
+			log.debug(e);
+		} catch (SQLException e) {
+			log.debug(e);
 		}
 		status.setComplete();
 		
@@ -357,8 +361,10 @@ public class TravelDestinationController {
     			
     			destService.deleteTravelDestinationPhysically(travelDestination);
 
-			} catch (Exception e) {
-				e.printStackTrace();
+			} catch (NullPointerException e) {
+				log.debug(e);
+			} catch (SQLException e) {
+				log.debug(e);
 			}
 			
             status.setComplete();
@@ -390,8 +396,10 @@ public class TravelDestinationController {
 			//com.fasterxml.jackson.databind.ObjectMapper mapper = new com.fasterxml.jackson.databind.ObjectMapper();
 			ObjectMapper mapper = new ObjectMapper();
 			dest = mapper.writeValueAsString(destList);
-		} catch (Exception e) {
-			log.debug(e.getMessage());
+		} catch (NullPointerException e) {
+			log.debug(e);
+		} catch (SQLException e) {
+			log.debug(e);
 		}
 		
 		return dest;
@@ -410,8 +418,10 @@ public class TravelDestinationController {
 			TravelDestination detail = destService.selectTravelDestination(travelDestination);
 			ObjectMapper mapper = new ObjectMapper();
 			dest = mapper.writeValueAsString(detail);
-		} catch (Exception e) {
-			log.debug(e.getMessage());
+		} catch (NullPointerException e) {
+			log.debug(e);
+		} catch (SQLException e) {
+			log.debug(e);
 		}
 		
 		return dest;
@@ -444,8 +454,10 @@ public class TravelDestinationController {
 			
 			status.setComplete();
 			
-		} catch (Exception e) {
-			log.debug(e.getMessage());
+		} catch (NullPointerException e) {
+			log.debug(e);
+		} catch (SQLException e) {
+			log.debug(e);
 		}
 		
 		return skinPath + "stats";
@@ -470,8 +482,10 @@ public class TravelDestinationController {
 
 //			status.setComplete();
 			
-		} catch (Exception e) {
-			log.debug(e.getMessage());
+		} catch (NullPointerException e) {
+			log.debug(e);
+		} catch (SQLException e) {
+			log.debug(e);
 		}
 		
 		return dest;

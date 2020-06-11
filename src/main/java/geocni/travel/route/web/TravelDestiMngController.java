@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-
+import java.sql.SQLException;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -164,9 +164,12 @@ public class TravelDestiMngController {
 			
 			destService.insertTravelDestination(travelDestination, files);
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		} catch (NullPointerException e){
+			log.error(e.getMessage());
+    	}catch(Exception e){
+    		log.error(e.getMessage());
+    	}
+    	
 		status.setComplete();
 		
 		return "redirect:/cms/travel/destination/list.do";
@@ -282,9 +285,12 @@ public class TravelDestiMngController {
     			
     			destService.updateTravelDestination(travelDestination);
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			}catch (NullPointerException e){
+				log.error(e.getMessage());
+	    	}catch(Exception e){
+	    		log.error(e.getMessage());
+	    	}
+	    	
 			
     		status.setComplete();
     		
@@ -313,8 +319,10 @@ public class TravelDestiMngController {
     			
     			destService.deleteTravelDestinationPhysically(travelDestination);
 
-			} catch (Exception e) {
-				e.printStackTrace();
+			} catch (SQLException e) {
+				log.debug(e.toString());
+			} catch (NullPointerException e) {
+				log.debug(e.toString());
 			}
 			
             status.setComplete();
@@ -330,12 +338,14 @@ public class TravelDestiMngController {
      */
     public static ModelMap AdminJSON(HttpServletRequest request, ModelMap model)throws Exception{
     	String type = NullUtil.nullString(request.getParameter("type"));
-    	if(type.equals("banner")){
-    		AdminUtil.setMenuId("m06020100");
-    	}else if(type.equals("allim")){
-    		AdminUtil.setMenuId("m06030100");
-    	}else if(type.equals("popup")){
-    		AdminUtil.setMenuId("m06040100");
+    	if(type != null) {
+    		if(type.equals("banner")){
+    			AdminUtil.setMenuId("m06020100");
+    		}else if(type.equals("allim")){
+    			AdminUtil.setMenuId("m06030100");
+    		}else if(type.equals("popup")){
+    			AdminUtil.setMenuId("m06040100");
+    		}
     	}
     	return model;
     }

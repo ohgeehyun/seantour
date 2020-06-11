@@ -11,8 +11,6 @@ import egovframework.rte.ptl.mvc.tags.ui.pagination.AbstractPaginationRenderer;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 public class TravelBoardPaginationRenderer extends AbstractPaginationRenderer implements ServletContextAware{
-
-	private ServletContext servletContext;
 	
 	public TravelBoardPaginationRenderer() {
 	}
@@ -36,8 +34,10 @@ public class TravelBoardPaginationRenderer extends AbstractPaginationRenderer im
 		return pagination;
 	}
 	
-	public void setServletContext(ServletContext servletContext) {
-		this.servletContext = servletContext;
+	public void setServletContext(ServletContext servletContexts) {
+		@SuppressWarnings("unused")
+		ServletContext servletContext;
+		servletContext = servletContexts;
 		initVariables();
 	}
 

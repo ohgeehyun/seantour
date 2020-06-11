@@ -3,7 +3,7 @@ package geocni.travel.member.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import java.sql.SQLException;
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
@@ -196,8 +196,10 @@ public class TravelMemberServiceImpl extends EgovAbstractServiceImpl implements 
 			//명성 랭킹 업데이트
 			travelMemberDAO.updateTravelFamePointRanking();
 			
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (NullPointerException e) {
+			LOGGER.debug(e.toString());
+		} catch(SQLException e){
+			LOGGER.debug(e.toString());
 		}
 		return vo;
 	}
@@ -296,9 +298,12 @@ public class TravelMemberServiceImpl extends EgovAbstractServiceImpl implements 
 			vo.setClipId(id);
 
 			travelMemberDAO.insertTravelClipboard(vo);
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (SQLException e) {
+			LOGGER.debug("SQLException");
+		} catch(NullPointerException e) {
+			LOGGER.debug("NullPointerException");
 		}
+    	
 		return vo;
 	}
 
