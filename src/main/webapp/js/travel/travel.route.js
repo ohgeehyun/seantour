@@ -147,6 +147,9 @@ function getDestinationDetail(idx) {
 			if(obj && obj.hasOwnProperty("destTitle")) {
 				var bx_tit = obj.destTitle;
 				var detail_txt = obj.destInformation;
+				if(obj.destAdSlogan === null){
+					obj.destAdSlogan = " ";
+				}
 				var info_slogan = '<li>'+obj.destAdSlogan+ ' ' +obj.destTitle+'</li>';
 				var info_phone = '<li>전화번호 : '+obj.destPhone+'</li>';
 				var info_addr = '<li>주소 : '+obj.destAddress+'</li>';
@@ -346,7 +349,7 @@ function setDestinationList(data, paginationType) {
 				lists += "<a href=\"javascript:;\" class=\"more\" onclick=\"getDestinationDetail('"+dest[i]["destId"]+"');\">더보기</a>";
 				lists += "</div>";
 				lists += "<div class=\"icon_box\">";
-				lists += "<a href=\"#none\" class=\"ico_heart\">종아요</a>";
+				/*lists += "<a href=\"#none\" class=\"ico_heart\">종아요</a>";*/
 				lists += "<a href=\"javascript:;\" class=\"ico_add\" onclick=\"addPoint(this);\">추가</a>";
 				lists += "<a href=\"javascript:;\" class=\"ico_close\" onclick=\"delPoint(this);\" class=\"ico_close\">닫기</a>";
 				lists += "</div>";

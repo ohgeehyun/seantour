@@ -36,9 +36,11 @@
 								<select class="select" name="searchCondition" id="searchCondition" onchange="fn_egov_link_page(1);">
 									<%-- <option value="">선택</option> --%>
 									<option value="1" <c:if test="${travelRoute.searchCondition eq '1'}">selected</c:if>>제목</option>
+									<option value="2" <c:if test="${travelRoute.searchCondition eq '2'}">selected</c:if>>글쓴이</option>
 								</select>
 								<form:input path="searchKeyword" cssClass="word" />
 								<input type="button" value='검색' class="bbs_btn" onclick="fn_egov_link_page(1);" />
+								
 							</fieldset>
 						</div>
 		               
@@ -120,7 +122,14 @@
 	<script>
 	function fn_egov_link_page(pageNo){
 		document.getElementById("travelRoute").pageIndex.value = pageNo;
-		document.getElementById("travelRoute").action = "<c:url value='/travel/route/list.do'/>";
+		if(location.href.split('?')[1] =='open=Y')
+			{
+			document.getElementById("travelRoute").action = "<c:url value='/travel/route/list.do?open=Y'/>";
+			}
+		else
+			{
+			document.getElementById("travelRoute").action = "<c:url value='/travel/route/list.do'/>";
+			}
 	   	document.getElementById("travelRoute").submit();
 	}
 	</script>

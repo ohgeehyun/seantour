@@ -96,10 +96,14 @@
 		<isNotEmpty property="routRegion" prepend="AND">
 			<![CDATA[	a.rout_region = #routRegion#	]]>
 		</isNotEmpty>
+			
+	<isEqual prepend="AND" property="searchCondition" compareValue="1">
+			<![CDATA[	a.rout_title LIKE CONCAT('%',#searchKeyword#,'%') ]]>
+			</isEqual>
+	<isEqual prepend="AND" property="searchCondition" compareValue="2">
+			<![CDATA[	 b.mbr_nm  LIKE  CONCAT('%',#searchKeyword#,'%') ]]>
+			</isEqual>
 		
-		<isNotEmpty property="searchKeyword" prepend="AND">
-			<![CDATA[	a.rout_title LIKE CONCAT('%',#searchKeyword#,'%')	]]>
-		</isNotEmpty>
 	</sql>
     
 	<select id="travelRouteDAO.selectTravelRouteListAll" parameterClass="travelRoute" resultMap="travelRouteVO">
@@ -142,7 +146,7 @@
                 , a.rout_open AS routOpen
                 , a.rout_reg_date  AS routRegDate 
 				, b.mbr_nm AS routRegMemberNm
-			FROM geo_travel_route a
+			FROM geo_travel_route a 
 				LEFT JOIN jnitcmsmbr b ON a.rout_reg_member=b.mbr_id
 			WHERE 1=1
 		]]>
@@ -157,7 +161,9 @@
 			SELECT 
 				COUNT(*) totcnt
 			FROM geo_travel_route a
+			LEFT JOIN jnitcmsmbr b ON a.rout_reg_member=b.mbr_id
 			WHERE 1=1
+			
 		]]>
 			<include refid="travelRouteDAO.travelRouteWhereClause" />
 	</select>

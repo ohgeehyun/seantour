@@ -497,7 +497,7 @@ div#media1023 {display:none;}
 											<div class="info_lst">
 												<ul>
 													<li>전화번호 : <c:out value="${dest.destPhone}" escapeXml="false" /></li>
-													<li>주소 : <c:out value="${dest.destAddress}" escapeXml="false" /></li>
+													<li>주소: : <c:out value="${dest.destAddress}" escapeXml="false" /></li>
 													<li>명칭 : <c:out value="${dest.destTitle}" escapeXml="false" /></li>
 												</ul>
 											</div>

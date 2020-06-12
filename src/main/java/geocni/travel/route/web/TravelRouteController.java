@@ -62,9 +62,13 @@ public class TravelRouteController {
 	@RequestMapping(value="list.do")
 	public String routeList(
 			 TravelRoute travelRoute
+			 ,HttpServletRequest request
 			,@RequestParam(value="open", required=false)String open
             ,SessionStatus status
 			,Model model) throws Exception {
+		
+		
+		
 		
 		if(open != null && "Y".equals(open)) {
 			/*JnitcmsmbrVO loginVO = JnitMgovUtil.getLoginMember();
@@ -80,6 +84,7 @@ public class TravelRouteController {
 		}
 
 		//travelRoute.setPageUnit(propertiesService.getInt("pageUnit"));
+	
 		travelRoute.setPageUnit(9);
 		travelRoute.setPageSize(propertiesService.getInt("pageSize"));
 

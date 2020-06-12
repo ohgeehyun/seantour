@@ -90,7 +90,7 @@ public class TravelMemberController {
 			//return WsNavUtil.alertAndRedirect(model, "회원전용 서비스 입니다.\\n로그인 후 이용해 주세요.", "/accounts/login/");
 			 response.setContentType("text/html; charset=UTF-8");
 			 PrintWriter out = response.getWriter();
-	            out.println("<script>alert('회원전용 서비스 입니다.'); window.location.href='http://www.seantour.com/seantour_map/';</script>");
+	            out.println("<script>alert('회원전용 서비스 입니다.'); window.location.href='http://www.seantour.com/seantour_map/travel/login.jsp';</script>");
 	            out.flush();
 	          
 			//return "../../index";

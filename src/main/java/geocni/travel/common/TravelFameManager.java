@@ -36,71 +36,80 @@ public class TravelFameManager implements Runnable {
 	@Override
 	public void run() {
 		
-		manageTravelFame();
+		try {
+			manageTravelFame();
+		} catch (Exception e) {
+			log.debug(e.getMessage());
+		}
 		
 	}
 
-	public void manageTravelFame() {
+	public void manageTravelFame() throws Exception {
 		
-		try {
-			log.debug("Started TravelFameManager Thread=================================");
+		log.debug("Started TravelFameManager Thread=================================");
 
-			//HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-			HttpSession session = request.getSession();
-			ServletContext context = session.getServletContext();
-			WebApplicationContext wContext = WebApplicationContextUtils.getWebApplicationContext(context);
-			TravelMemberService memberService = (TravelMemberService) wContext.getBean("travelMemberService");
+		//HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+		HttpSession session = request.getSession();
+		ServletContext context = session.getServletContext();
+		WebApplicationContext wContext = WebApplicationContextUtils.getWebApplicationContext(context);
+		TravelMemberService memberService = (TravelMemberService) wContext.getBean("travelMemberService");
 
-			int hisPoint = 0;
-			String hisRecUser = null;
-			String histType = null;
-			String hisItem = null;
+		int hisPoint = 0;
+		String hisRecUser = null;
+		String histType = null;
+		String hisItem = null;
+		
+		if(rxnType.equals("LOGIN")) {
+			int cnt;
 			
-			if(rxnType.equals("LOGIN")) {
-				int cnt = memberService.selectTravelFameHistoryCntByUser(targetId);
-				if(cnt > 0) {
-					return;
-				}
-				
-				hisRecUser = targetId;
-				histType = "L";
-				hisItem = "홈페이지 로그인 접속";
-				hisPoint = 10;
-
-			} else if(rxnType.equals("SHARE")) {
-				hisRecUser = targetId;
-				histType = "S";
-				hisItem = "여행지 SNS에 공유함";
-				hisPoint = 50;
+				cnt = memberService.selectTravelFameHistoryCntByUser(targetId);
 			
-			} else {
-				TravelRouteService routeService = (TravelRouteService) wContext.getBean("travelRouteService");
-				TravelRoute travelRoute = new TravelRoute();
+			if(cnt > 0) {
+				return;
+			}
+			
+			hisRecUser = targetId;
+			histType = "L";
+			hisItem = "홈페이지 로그인 접속";
+			hisPoint = 10;
+
+		} else if(rxnType.equals("SHARE")) {
+			hisRecUser = targetId;
+			histType = "S";
+			hisItem = "여행지 SNS에 공유함";
+			hisPoint = 50;
+		
+		} else {
+			TravelRouteService routeService = (TravelRouteService) wContext.getBean("travelRouteService");
+			TravelRoute travelRoute = new TravelRoute();
 //				travelRoute.setAdminMode(true);
-				travelRoute.setRoutId(targetId);
+			travelRoute.setRoutId(targetId);
 //				@SuppressWarnings("unchecked")
 //				List<TravelRoute> routeList = (List<TravelRoute>) routeService.selectTravelRouteList(travelRoute);
 //				String hisRecUser = routeList.get(0).getRoutRegMember();
-				TravelRoute route = routeService.selectTravelRoute(travelRoute);
-				hisRecUser = route.getRoutRegMember();
-				histType = "R";
-				hisItem = "내가 만든 여행일정 추천 받음";
-				hisPoint = 100;
+			TravelRoute route = null;
+			try {
+				route = routeService.selectTravelRoute(travelRoute);
+			} catch (Exception e) {
+				log.debug(e.getMessage());
 			}
-			
-			TravelFameHistory fameHistory = new TravelFameHistory();
-			fameHistory.setFameHisPoint(hisPoint);
-			fameHistory.setFameHisType(histType);
-			fameHistory.setFameHisItem(hisItem);
-			fameHistory.setFameHisRecUser(hisRecUser);
+			hisRecUser = route.getRoutRegMember();
+			histType = "R";
+			hisItem = "내가 만든 여행일정 추천 받음";
+			hisPoint = 100;
+		}
+		
+		TravelFameHistory fameHistory = new TravelFameHistory();
+		fameHistory.setFameHisPoint(hisPoint);
+		fameHistory.setFameHisType(histType);
+		fameHistory.setFameHisItem(hisItem);
+		fameHistory.setFameHisRecUser(hisRecUser);
+		try {
 			memberService.insertTravelFameHistory(fameHistory);
-			log.debug("Finished insertTravelFameHistory at TravelFameManager Thread=================================");
-
 		} catch (Exception e) {
-			// TODO : Exception 을 더 세분화 할 필요가 있다
-			log.debug("======= Failed to FamePoint update =======");
 			log.debug(e.getMessage());
 		}
+		log.debug("Finished insertTravelFameHistory at TravelFameManager Thread================================="); 
 	
 	}
 }
