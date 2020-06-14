@@ -71,6 +71,7 @@
                             <ul class="wv_util">
                             	<li><a href="<c:url value='/travel/login.jsp'/>">로그인</a></li>
                             	<li><a href="<c:url value='/travel/member/mypage.do'/>">마이페이지</a></li>
+                            	
 							</ul>
                             <button type="button" class="btn_close">전체메뉴 닫기</button>
                         </div>
@@ -106,8 +107,10 @@
                             		    <li><a href="<c:url value='/travel/info_square/faq/index.jsp'/>">Q&A</a></li>
 		                                <%-- <li><a href="<c:url value='/travel/info_square/statistics/index.jsp'/>">통계</a></li> --%>
                                         <li><a href="<c:url value='/travel/destination/stats.do'/>">통계</a></li>
+                                        <li><a href="<c:url value='/travel/info_square/leaflet/index.jsp'/>">리플렛</a></li>
                                		    <li><a href="<c:url value='/travel/info_square/info_policy/index.jsp'/>">저작권정책</a></li>
                                			<li><a href="<c:url value='/travel/info_square/email/index.jsp'/>">이메일무단수집거부</a></li>
+                               			
                                     </ul>
                                 </li>
                             </ul>

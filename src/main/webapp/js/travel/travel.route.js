@@ -552,6 +552,7 @@ function setPointSticky(infoObj) {
 	- Uncaught TypeError: n.screenPoint.equals is not a function */
 }
 
+//거리계산 , 택시 요금 계산 시간 계산
 function setWayPointInfo(curObj, items) {
 
 	var lat = $(curObj).data('lat');
@@ -695,6 +696,8 @@ function delPoint(obj) {
 	$(list_item).prev(".way-point-info").remove();
 	$(list_item).remove();
 	clearMap();
+	
+	
 }
 
 function animateScroll(obj) {
