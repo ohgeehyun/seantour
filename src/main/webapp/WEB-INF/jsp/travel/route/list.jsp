@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="/WEB-INF/jsp/travel/tpl/include.jsp" %>
 
 <!DOCTYPE HTML>
@@ -24,7 +25,14 @@
 	            <div class="cont_body">
 		            <div class="inr">
 		               <div class="tabmenu colum2">
-							<a href="#none">추천일정<span class="unfd sprh_com"></span></a>
+		               <c:choose>
+		           		<c:when test="${fn:contains(param.open, 'Y')}">
+							<a href="#none" id="mobile_menu">내가올리는 추천일정<span class="unfd sprh_com"></span></a>
+					   </c:when>
+					   <c:otherwise>
+							<a href="#none" id="mobile_menu">작가 추천일정<span class="unfd sprh_com"></span></a>
+					   </c:otherwise>
+					   </c:choose>
 							<ul>
 								<li><a href="<c:url value='/travel/route/list.do'/>" <c:if test="${open ne 'Y'}">class="on"</c:if>><span>작가 추천일정</span></a></li>
 								<li><a href="<c:url value='/travel/route/list.do?open=Y'/>" <c:if test="${open eq 'Y'}">class="on"</c:if>><span>내가 올리는 추천일정</span></a></li>
