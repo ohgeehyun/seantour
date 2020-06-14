@@ -14,8 +14,8 @@ body { letter-spacing:-0.07em;}
 #header .util_top li a{color:#545454;}
 #header #gnb>li>a{color:#545454;}
 #header #gnb>li>a:before{background:#545454;}
-#header h1.logo{z-index:102;top:25px;}
-#header h1.logo>a{height:26px;background:url(/seantour_map/images/travel/common/map_logo.png) no-repeat 0 0;background-size:cover;}
+#header h1.logo{z-index:102;top:15px;left:5%;width:138px;}
+#header h1.logo>a{height:36px;background:url(/seantour_map/images/travel/common/logo.png) no-repeat 0 0;background-size:cover;}
 
 
 .map_wrap_area {position:absolute;top:0;width:100%;height:calc(100% - 78px); }
@@ -180,7 +180,7 @@ transform:translate(-100%, 0);
 .day_lst .tab_list li .icon_box a.ico_heart:hover,
 .day_lst .tab_list li .icon_box a.ico_heart.on{background:url(/seantour_map/images/travel/map/icon_heart_on.jpg) no-repeat 0 0;transform: scale3d(0.8, 0.8, 0.8);}
 
-.tour_schedule_detail .result_list{overflow:auto;height:525px;margin-top:70px;}
+.tour_schedule_detail .result_list{overflow:auto;height:510px;margin-top:65px;}
 .tour_schedule_detail .result_list li{position:relative;height:auto !important;padding:19px;border-bottom:1px solid #dedede;cursor:pointer;}
 .tour_schedule_detail .result_list li:after{content:'';display:block;clear:both;}
 .tour_schedule_detail .result_list li{height:35px;line-height:35px;padding:15px;}

@@ -475,7 +475,7 @@ textarea, input.xxl{width:100%;}
 .boardWrap .like {width: 100%;overflow: hidden;}
 
 /*게시판 하단*/
-div.pagination{text-align:center;margin:0;}
+div.pagination{text-align:center;margin:20px 0;}
 div.listbtn {text-align:right;}
 div.form-search{text-align:center;margin-top:20px;}
 
