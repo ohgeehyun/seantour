@@ -473,6 +473,16 @@
 	.email_row .lst li{font-size:13px;}
 }
 
+/* **************************************** *
+ * 리플렛
+ * **************************************** */
+.leafletBox1 area:focus,
+.leafletBox2 area:focus{
+  border: none;
+  outline:none;
+  outline-style: none; 
+  -moz-outline-style:none;  
+}
 
 
 @media screen and (max-width:1200px){
