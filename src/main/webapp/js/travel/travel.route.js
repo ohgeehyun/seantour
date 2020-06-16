@@ -695,6 +695,10 @@ function delPoint(obj) {
 	// $(list_item).css('border', '1px solid red');
 	$(list_item).prev(".way-point-info").remove();
 	$(list_item).remove();
+	
+	if($($("#example3Left").children()[0]).hasClass("way-point-info") == true){
+		$($("#example3Left").children()[0]).remove();
+	}
 	clearMap();
 	
 	

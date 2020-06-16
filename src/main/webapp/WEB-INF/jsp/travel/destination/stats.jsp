@@ -358,7 +358,7 @@ function getTravelDestination(region, mapNo) {
 			} catch (e) {
 				// console.log(e.name);
 				// console.log(e.message);
-				alert("일시적인 에러가 발생했습니다. 잠시 후 다시 시도해 주세요."); return false;
+				alert("집계된 자료가 아직 없습니다. 양해 부탁드립니다."); return false;
 			}
 		},
 		error:function(request,status,error){

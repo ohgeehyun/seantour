@@ -447,7 +447,10 @@ public class CmsOauthService extends AbstractServiceImpl {
 
 	public void setRedirectUrl(HttpServletRequest request, String callback) {
 		// TODO Auto-generated method stub
-		StringBuffer callbackURL = request.getRequestURL();
+		 
+		StringBuffer callbackTempURL = request.getRequestURL();
+		String tempUrl = callbackTempURL.toString().replace("210.179.121.231", "seantour.com");
+		StringBuffer callbackURL = new StringBuffer(tempUrl);
         int index = callbackURL.lastIndexOf("/");
         callbackURL.replace(index, callbackURL.length(), "").append(callback);
         

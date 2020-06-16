@@ -166,8 +166,7 @@ $(document).ready(function(){
   </div>
 <script type="text/javascript">
 function login_social(vendor) {
-	//window.open("${pageContext.request.contextPath}/cms/oauth/snslogin.do?vender="+vendor,"pop","width=600,height=650, scrollbars=yes, resizable=yes");
-	window.open("http://210.179.121.231/seantour_map/cms/oauth/snslogin.do?vender="+vendor,"pop","width=600,height=650, scrollbars=yes, resizable=yes");
+	window.open("http://localhost:8080/seantour_map/cms/oauth/snslogin.do?vender="+vendor,"pop","width=600,height=650, scrollbars=yes, resizable=yes");	
 }	
 </script>
 </body>
