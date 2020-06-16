@@ -81,8 +81,10 @@ label{display:inline-block; box-sizing:border-box; width:auto; vertical-align:mi
 .button{background-color:#444; color:#fff !important;}
 .button.gray{background-color:#555; color:#fff !important;}
 .button.violet{background-color:#5a63bf; color:#fff !important;}
-.button.lightblue{background-color:#0198d7; color:#fff !important;}
+.button.lightblue{background-color:#047db2; color:#fff !important;}
 .button.orange{background-color:#d27108; color:#fff !important;}
+.button.red{background-color:#f0294f; color:#fff !important;}
+.button.light_gray{background-color:#949494; color:#fff !important;}
 
 /* Button Active */
 .button:hover,

@@ -1,0 +1,134 @@
+﻿@charset "utf-8";
+
+
+
+/* **************************************** *
+ * 예약시스템
+ * **************************************** */
+
+.cont_body .bx_srch_event{box-sizing:border-box;width:100%;height:150px;padding:25px 0;border:1px solid #d4d4d4;border-top:2px solid #444; background:#f8f8f8;text-align:center; }
+.cont_body .bx_srch_event fieldset{position:relative;display:inline-block;width:55%;}
+.cont_body .bx_srch_event select{float:left;display:inline-block;border:1px solid #dedede;}
+.cont_body .bx_srch_event .field01 select{width:calc(40.5% - 4px);height:45px;margin-right:4px;}
+.cont_body .bx_srch_event .field02{margin-top:10px;}
+.cont_body .bx_srch_event .field02 select{width:calc(27% - 4px);height:45px;margin-top:5px;margin-right:4px;}
+
+.cont_body .bx_srch_event .btn{position:absolute;top:0;right:0;display:inline-block;width:19%;height:95px;line-height:95px;background:#6f7470;text-align:center;}
+.cont_body .bx_srch_event .btn a{display:block;font-size:16px;color:#fff;}
+
+.reserv_img{margin:30px 0 25px;text-align:center;}
+.reserv_img img{width:100%;}
+
+.reserv_area{}
+.reserv_area table{table-layout:fixed; border-collapse:collapse;border-top:2px solid #0099ff; width:100%;}
+.reserv_area table thead th{padding:12px 0;background:#fafbfc;border:1px solid #ddd;font-size:16px;}
+.reserv_area table td{padding:10px; border:1px solid #ddd; vertical-align:middle;text-align:center;}
+.reserv_area table .possible{color:#ff7070;}
+.reserv_area table .end{color:#ddd;}
+.reserv_area table {text-align:center;}
+.reserv_area table  span{font-size:14px;color:#5f5f5f;}
+.reserv_area table a{display:inline-block;padding:5px 15px;font-size:13px;color:#fff;}
+.reserv_area table a.btn_end{cursor:text !important;}
+.reserv_area table .btn_reserv{background:#007ac5;}
+.reserv_area table .btn_end{background:#a6a6a6;}
+/*.calendar{margin:35px 0 0;}
+.calendar .date_area{margin:0 0 22px; text-align:center;}
+.calendar .date_area *{display:inline-block; vertical-align:middle;}
+.calendar .date_area .today{display:block;margin-top:10px;}
+.calendar .date_area .date{margin:0 30px;  font-weight:bold; font-size:28px;line-height:45px;color:#000;}
+.calendar .calendar_date{text-align:center;}
+.calendar .calendar_date button{margin:10px 30px 0; padding:0; border:0; background:none; vertical-align:top;}
+.calendar .calendar_date .date{display:inline-block; font-size:16px; line-height:16px; vertical-align:top;}
+.calendar .guide_calendar{margin:20px 0 0 0; padding:15px 10px;}
+.calendar .guide_calendar span{display:inline-block; margin:0 20px 0 0; line-height:17px;}
+.calendar .guide_calendar span em{display:inline-block;width:16px;height:16px;margin-right:5px;}
+.calendar .guide_calendar span em.ico_p{background:#007ac5;}
+.calendar .guide_calendar span em.ico_d{background:#a6a6a6;}
+.tbl_calendar{table-layout:fixed; border-collapse:collapse; width:100%;}
+.tbl_calendar thead th{padding:16px 0;border:1px solid #ddd;font-size:16px;}
+.tbl_calendar td{padding:10px; border:1px solid #ddd; vertical-align:middle;text-align:center;}
+.tbl_calendar .day{display:block; margin:0 0 5px;}
+.tbl_calendar .sat{color:#61e2ff;}
+.tbl_calendar .sun{color:#ff7070;}
+.tbl_calendar .reserv{text-align:center;}
+.tbl_calendar .reserv span{font-size:14px;color:#5f5f5f;}
+.tbl_calendar .reserv a{display:inline-block;margin:5px 0 0 5px;padding:5px;font-size:13px;color:#fff;}
+.tbl_calendar .reserv a.btn_end{cursor:text !important;}
+.tbl_calendar .reserv .btn_possible{background:#007ac5;}
+.tbl_calendar .reserv .btn_end{background:#a6a6a6;}
+*/
+
+.reserv_wrap{box-sizing:border-box;width:45%;margin:0 auto;padding:30px 40px;border:1px solid #a6a6a6;}
+.reserv_wrap .form_group{margin-top:10px;}
+.reserv_wrap .form_group:first-child{margin-top:0;}
+.reserv_wrap .form_group:after{content:'';display:block;clear:both;}
+.reserv_wrap .form_group dt,
+.reserv_wrap .form_group dd{float:left;}
+.reserv_wrap .form_group dt{width:25%;height:40px;line-height:40px;}
+.reserv_wrap .form_group dd{width:calc(100% - 25%);}
+.reserv_wrap .form_group dd div{box-sizing:border-box;width:100%;height:40px;line-height:40px;padding:0 10px;background:#e8e8e8;border:1px solid #cbcbcb;}
+.reserv_wrap .form_group dd select,
+.reserv_wrap .form_group dd input{width:100%;}
+.reserv_wrap .form_group dd.tel input{width:calc(33.33333% - 8px);}
+.reserv_wrap .form_group dd.tel select{width:33.3333%;}
+.reserv_wrap .form_group dd.tel em{display:inline-block;width:4px;}
+.reserv_wrap .form_group dd.tel select{width:33.3333%;}
+.reserv_wrap .form_group dd .note{margin-top:10px;font-size:12px;color:#f55b78;}
+.reservBtn_box{margin-top:25px;}
+
+.reserv_wrap_confirm{box-sizing:border-box;width:45%;margin:0 auto;padding:30px 40px;background:#f8f8f8;border:1px solid #cbcbcb;}
+.reserv_wrap_confirm .form_group{margin-top:10px;padding-top:10px;border-top:1px solid #d6d6d6;}
+.reserv_wrap_confirm .form_group:first-child{margin-top:0;padding-top:0;border-top:none;}
+.reserv_wrap_confirm .form_group:after{content:'';display:block;clear:both;}
+.reserv_wrap_confirm .form_group dt,
+.reserv_wrap_confirm .form_group dd{float:left;height:40px;line-height:40px;}
+.reserv_wrap_confirm .form_group dt{width:25%;font-weight:600;}
+.reserv_wrap_confirm .form_group dd{width:calc(100% - 25%);}
+
+
+@media screen and (max-width:1000px){
+	.reserv_wrap,
+	.reserv_wrap_confirm{width:500px;}
+}
+
+@media screen and (max-width:768px){
+	.cont_body .bx_srch_event{height:130px;padding:15px 0;}
+	.cont_body .bx_srch_event fieldset{width:70%;}
+	.cont_body .bx_srch_event select{width:30%;height:40px;}
+	.cont_body .bx_srch_event .btn{padding:0;}
+	.calendar {margin:25px 0 0;}	
+	.calendar .date_area img{width:70%;}
+	.calendar .date_area .date{margin:0 20px;font-size:24px;line-height:35px;}
+	.calendar .date_area .today{font-size:14px;}
+	.calendar .guide_calendar{margin:15px 0 0;padding:10px 8px;}
+	.tbl_calendar thead th{padding:12px 0;font-size:14px;}
+	.tbl_calendar td>span{font-size:14px;}
+	.tbl_calendar .reserv a{font-size:13px;}
+}	
+	
+@media screen and (max-width:640px){
+	.reserv_wrap,
+	.reserv_wrap_confirm{width:100%;font-size:13px;}
+	.cont_body .bx_srch_event fieldset{width:90%;}
+	.cont_body .bx_srch_event{height:95px;padding:10px 0;}
+	.cont_body .bx_srch_event .field01 select{height:32px;font-size:13px;}
+	.cont_body .bx_srch_event .field02 select{height:32px;font-size:13px;}
+	.cont_body .bx_srch_event .btn{height:69px;line-height:69px;}
+	
+	.reserv_area{margin-top:15px;}
+	.reserv_area table thead th,
+	.reserv_area table tbody td{font-size:13px;}
+	.reserv_area table a{padding:5px 10px;font-size:11px;}
+	
+	/*.calendar{margin:15px 0 0;}
+	.calendar .date_area img{width:60%;}
+	.calendar .date_area .date{padding:0;font-size:20px;line-height:32px;}
+	.calendar .date_area .today{font-size:13px;}
+	.calendar .guide_calendar span{margin:0 10px 0 0;line-height:14px;font-size:13px;}
+	.calendar .guide_calendar span em{width:12px;height:12px;}
+	.tbl_calendar thead th{padding:8px 0;font-size:13px;}
+	.tbl_calendar .reserv a{font-size:11px;margin-top:8px;}
+	.tbl_calendar td{padding:3px;}
+	.tbl_calendar .reserv a{padding:4px 2px;}
+	*/
+}
