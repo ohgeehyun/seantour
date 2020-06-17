@@ -1,11 +1,12 @@
 <% response.setHeader("Cache-Control","no-store"); response.setHeader("Pragma","no-cache"); response.setDateHeader("Expires",0); if (request.getProtocol().equals("HTTP/1.1")) { response.setHeader("Cache-Control", "no-cache"); } %><%@ page contentType="text/html; charset=utf-8" %><%@ include file='/_common/header.jsp' %><%@ include file='/travel/_tpls/B/TPL_000138_S.jsp' %><% /*<!-- [-CONTENT-] -->*/ %><div class="inr">
+	            	<div class="inr">
 	            	<div class="leafletBox1">
 	            		<div class="map"><img src="/seantour_map/images/travel/content/img_leaflet01.jpg" alt="리플렛1" usemap="#Map1" /></div>
 	            		<map name="Map1">
 					        <area shape="rect" coords="1190,513,1367,563" href="/seantour_map/travel/destination/detail.do?destId=FCID110815" alt="북분 해수욕장">
-					        <area shape="rect" coords="1190,570,1367,620" href="#" alt="노봉 해수욕장">
+					        <area shape="rect" coords="1190,570,1367,620" href="/seantour_map/travel/destination/detail.do?destId=DEST000442" alt="노봉 해수욕장">
 					        <area shape="rect" coords="1191,625,1367,672" href="/seantour_map/travel/destination/detail.do?destId=FCID110861" alt="사천 해수옥장">
-					        <area shape="rect" coords="1192,678,1368,726" href="#" alt="문암 해수욕장">
+					        <area shape="rect" coords="1192,678,1368,726" href="/seantour_map/travel/destination/detail.do?destId=DEST000444" alt="문암 해수욕장">
 					        <area shape="rect" coords="1192,733,1367,779" href="/seantour_map/travel/destination/detail.do?destId=FCID111402" alt="원평 해수욕장">
 					        <area shape="rect" coords="1191,786,1378,834" href="/seantour_map/travel/destination/detail.do?destId=FCID005317" alt="기지포 해수욕장">
 					        <area shape="rect" coords="1192,840,1378,890" href="/seantour_map/travel/destination/detail.do?destId=FCID110062" alt="갈음이 해수욕장">
@@ -16,16 +17,16 @@
 					        <area shape="rect" coords="1192,1108,1413,1156" href="/seantour_map/travel/destination/detail.do?destId=FCID110361" alt="남열해돋이 해수욕장">
 					        <area shape="rect" coords="1193,1162,1364,1210" href="/seantour_map/travel/destination/detail.do?destId=FCID111066" alt="송호 해수욕장">
 					        <area shape="rect" coords="1192,1217,1365,1261" href="/seantour_map/travel/destination/detail.do?destId=FCID111284" alt="예송 해수욕장">
-					        <area shape="rect" coords="1193,1267,1385,1316" href="#" alt="짱뚱어 해수욕장">
+					        <area shape="rect" coords="1193,1267,1385,1316" href="/seantour_map/travel/destination/detail.do?destId=DEST000455" alt="짱뚱어 해수욕장">
 					        <area shape="rect" coords="1407,513,1580,561" href="/seantour_map/travel/destination/detail.do?destId=FCID111071" alt="수문 해수욕장">
 					        <area shape="rect" coords="1407,568,1583,616" href="/seantour_map/travel/destination/detail.do?destId=FCID003422" alt="홀통 해수욕장">
 					        <area shape="rect" coords="1409,623,1619,668" href="/seantour_map/travel/destination/detail.do?destId=FCID000260" alt="기성망양 해수욕장">
 					        <area shape="rect" coords="1408,678,1584,721" href="/seantour_map/travel/destination/detail.do?destId=FCID111510" alt="장사 해수욕장">
 					        <area shape="rect" coords="1409,730,1589,777" href="/seantour_map/travel/destination/detail.do?destId=FCID110160" alt="경정 해수욕장">
 					        <area shape="rect" coords="1408,784,1594,829" href="/seantour_map/travel/destination/detail.do?destId=FCID111319" alt="와현모래숲해변">
-					        <area shape="rect" coords="1408,839,1579,883" href="#" alt="옥계 해수욕장">
+					        <area shape="rect" coords="1408,839,1579,883" href="/seantour_map/travel/destination/detail.do?destId=DEST000462" alt="옥계 해수욕장">
 					        <area shape="rect" coords="1408,890,1614,938" href="/seantour_map/travel/destination/detail.do?destId=FCID111243" alt="여차해변 해수욕장">
-					        <area shape="rect" coords="1410,945,1615,992" href="#" alt="사량대항 해수욕장">
+					        <area shape="rect" coords="1410,945,1615,992" href="/seantour_map/travel/destination/detail.do?destId=DEST000464" alt="사량대항 해수욕장">
 					        <area shape="rect" coords="1409,998,1601,1043" href="/seantour_map/travel/destination/detail.do?destId=FCID110364" alt="남일대 해수욕장">
 					      </map>
 	            	</div>
@@ -55,4 +56,5 @@
 							$('img[usemap]').rwdImageMaps();
 						});
 					</script>
+	             </div>
 	             </div><% /*<!-- /[-CONTENT-] -->*/ %><%@ include file='/travel/_tpls/B/TPL_000138_E.jsp' %>

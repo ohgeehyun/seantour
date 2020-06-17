@@ -57,16 +57,6 @@ public class TravelReservationController {
 			return skinPath + "area";
 		}
 		
-		@RequestMapping(value="example.do")
-		public String reservationExample(
-				 TravelRoute travelRoute
-				,SessionStatus status
-				,Model model) throws Exception {
-			
-		
-			
-			return skinPath + "example";
-		}
 		
 		@RequestMapping(value="reserv_view.do")
 		public String reservationView(
