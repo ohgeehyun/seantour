@@ -32,17 +32,40 @@
 						<div class="field01">
 							<select id="" name="" title="지역">
 				    	  		<option value="">지역선택</option>
-					      		<option value=""></option>
-					      		<option value=""></option>
-					      		<option value=""></option>
-					      		<option value=""></option>
+					      		<option value="">강원도</option>
+					      		<option value="">충청남도</option>
+					      		<option value="">전라북도</option>
+					      		<option value="">전라남도</option>
+					      		<option value="">경상북도</option>
+					      		<option value="">경상남도</option>
 				      		</select>	
 				      		<select id="" name="" title="해수용장">
 				    	  		<option value="">해수욕장 선택</option>
-					      		<option value=""></option>
-					      		<option value=""></option>
-					      		<option value=""></option>
-					      		<option value=""></option>
+					      		<option value="">복분해수욕장</option>
+					      		<option value="">노봉 해수욕장</option>
+					      		<option value="">사천 해수욕장</option>
+					      		<option value="">문암 해수욕장</option>
+					      		<option value="">원평 해수옥장</option>
+					      		<option value="">기지포 해수욕장</option>
+					      		<option value="">갈음이 해수욕장</option>
+					      		<option value="">난지섬 해수욕장</option>
+					      		<option value="">위도 해수욕장</option>
+					      		<option value="">모항 해수욕장</option>
+					      		<option value="">구시포 해수욕장</option>
+					      		<option value="">남열해돋이 해수요장</option>
+					      		<option value="">송호 해수욕장</option>
+					      		<option value="">예송 해수욕장</option>
+					      		<option value="">짱뚱어 해수욕장</option>
+					      		<option value="">수문 해수욕장</option>
+					      		<option value="">홀통 해수요장</option>
+					      		<option value="">기성망양 해수욕장</option>
+					      		<option value="">장사 해수욕장</option>
+					      		<option value="">경정 해수욕장</option>
+					      		<option value="">와현모래숲해변</option>
+					      		<option value="">옥계 해수욕장</option>
+					      		<option value="">여차해변 해수욕장</option>
+					      		<option value="">사량대항 해수욕장</option>
+					      		<option value="">남일대 해수욕장</option>
 				      		</select>
 			      		</div>
 			      		<div class="field02">
@@ -103,6 +126,12 @@
 						</fieldset>
 					</div>
 					<!-- 검색 -->
+					<div class="reserv_info">
+						<strong for="my_reserv">나의 예약 조회</strong>
+						<span><lable for="my_reserv_name">이름</lable><input type=text" id="my_reserv_name" name="" /></span>
+						<span><lable for="my_reserv_tel">전화번호</lable><input type=text" id="my_reserv_tel" name="" placeholder="'-'없이 숫자만 입력 " /></span>
+						<a href="#none" class="btn">조회</a>
+					</div>
 					<!-- 구역 이미지 -->
 					<div class="reserv_img">
 						<img src="/seantour_map/images/travel/content/img_reserv01.jpg" alt="" />

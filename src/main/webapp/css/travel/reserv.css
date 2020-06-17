@@ -19,6 +19,12 @@
 .reserv_img{margin:30px 0 25px;text-align:center;}
 .reserv_img img{width:100%;}
 
+.reserv_info{box-sizing:border-box;width:100%;margin-top:20px;padding:25px 0;border:1px solid #d4d4d4;border-top:2px solid #444; background:#f8f8f8;text-align:center;}
+.reserv_info strong{display:inline-block;margin-right:20px;font-size:18px;}
+.reserv_info input{box-sizing:border-box;width:20%;height:45px;padding:5px 7px;border:1px solid #dedede;}
+.reserv_info lable{display:inline-block;margin-right:10px;}
+.reserv_info .btn{display:inline-block;box-sizing:border-box;width:100px;height:45px;line-height:40px;background:#ff5050;border:none;font-size:16px;color:#fff;vertical-align:middle;}
+
 .reserv_area{}
 .reserv_area table{table-layout:fixed; border-collapse:collapse;border-top:2px solid #0099ff; width:100%;}
 .reserv_area table thead th{padding:12px 0;background:#fafbfc;border:1px solid #ddd;font-size:16px;}
@@ -114,6 +120,12 @@
 	.cont_body .bx_srch_event .field01 select{height:32px;font-size:13px;}
 	.cont_body .bx_srch_event .field02 select{height:32px;font-size:13px;}
 	.cont_body .bx_srch_event .btn{height:69px;line-height:69px;}
+	
+	.reserv_info{padding:15px 0;}
+	.reserv_info strong{display:block;font-size:15px;margin-bottom:10px;}
+	.reserv_info lable{font-size:12px;}
+	.reserv_info input{width:25%;height:32px;}
+	.reserv_info .btn{width:15%;height:32px;line-height:24px;font-size:12px;}
 	
 	.reserv_area{margin-top:15px;}
 	.reserv_area table thead th,
