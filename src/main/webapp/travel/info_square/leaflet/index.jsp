@@ -1,4 +1,5 @@
 <% response.setHeader("Cache-Control","no-store"); response.setHeader("Pragma","no-cache"); response.setDateHeader("Expires",0); if (request.getProtocol().equals("HTTP/1.1")) { response.setHeader("Cache-Control", "no-cache"); } %><%@ page contentType="text/html; charset=utf-8" %><%@ include file='/_common/header.jsp' %><%@ include file='/travel/_tpls/B/TPL_000138_S.jsp' %><% /*<!-- [-CONTENT-] -->*/ %><div class="inr">
+	            	<div class="inr">
 	            	<div class="leafletBox1">
 	            		<div class="map"><img src="/seantour_map/images/travel/content/img_leaflet01.jpg" alt="리플렛1" usemap="#Map1" /></div>
 	            		<map name="Map1">
@@ -55,4 +56,5 @@
 							$('img[usemap]').rwdImageMaps();
 						});
 					</script>
+	             </div>
 	             </div><% /*<!-- /[-CONTENT-] -->*/ %><%@ include file='/travel/_tpls/B/TPL_000138_E.jsp' %>
