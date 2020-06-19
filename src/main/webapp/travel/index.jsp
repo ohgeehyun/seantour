@@ -10,10 +10,21 @@
 
 
 <%@ include file="/WEB-INF/jsp/travel/tpl/head.jsp" %>
+   <script>
+   	$(document).ready(function(){
+   		$('#close').click(function(){
+   			$('#pop').hide();
+   		});
+   	});
+   </script>
   </head>
 <body>
 	<div id="wrap">
 		<div id="accessibility"><a href="#content">본문 바로가기</a></div>
+       <div id="pop">
+         <div><img src="${pageContext.request.contextPath}/travel/common/images/main/img_popup_open.jpg" alt="" /></div>
+         <div id="close">close</div>
+      </div>
        <div class="dim-layer">
           <div class="dimBg"></div>
           <div id="layer2" class="pop-layer">
