@@ -594,7 +594,7 @@ a.btn-layerClose:hover {
 	.spotzone .main_visual_content_cell .visual_go .button{float:left;width:50%;margin:0;font-size:14px;}
 	
 	/* section01 */
-	.section01{display:none;}
+	.section01{display:block;}
 	/* section04 */
     .section04{padding:25px 0 30px;}
     .section04_inr .box{width:100%;}
@@ -679,6 +679,8 @@ a.btn-layerClose:hover {
 
 }	
 @media screen and (max-width:420px){
+	.section01 .minr>div{float:none;width:100%;margin-left:0;}
+	.section01 .minr>div:first-child{margin-bottom:10px;}
 	/* section02 */
 	.section02 .col01 .img>a{height:235px;}
 	.section02 .writer_recommend_box .main_writer_slider .main_writer_item .main_writer_txt .tit{font-size:16px;}

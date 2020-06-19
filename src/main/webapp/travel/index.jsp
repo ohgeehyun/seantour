@@ -158,7 +158,7 @@
 				<div class="section01 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
 					<div class="minr">
 						<div class="event_box">
-					    	<a href="${pageContext.request.contextPath}/images/travel/main/한적한해수욕장25선.pdf" class="btn-example"><img src="${pageContext.request.contextPath}/images/travel/main/img_main_pull.png" alt="한전학해수욕장25선" /></a>
+					    	<a href="${pageContext.request.contextPath}/images/travel/main/pull25.pdf" class="btn-example"><img src="${pageContext.request.contextPath}/images/travel/main/img_main_pull.png" alt="한전학해수욕장25선" /></a>
 					    </div>
 					    <div class="leaflet_box">
 					    	<a href="/seantour_map/travel/info_square/leaflet/index.jsp"><img src="${pageContext.request.contextPath}/images/travel/main/img_main_leaflet.jpg" alt="건강지키는 바다여행! 해양관광 리플렛 보러가기" /></a>
