@@ -1,0 +1,60 @@
+<<<<<<< HEAD
+#MENU_00069 (by Jnitcms 3.5)
+#Tue Jun 23 10:10:13 KST 2020
+pageNavTitle=\uCD94\uCC9C10\uC120&lt; \uC815\uBCF4\uAD11\uC7A5&lt; travel
+admId2=
+pageTitle=\uCD94\uCC9C10\uC120
+admNm=
+admTel2=
+admTel=
+pageCode=588bc3f7b1c57492bbb5273dca3636ffa81aa58ae319d3876c91154988e7ed
+cntId=CNT_0000000000000050
+pageHash=57163ea54e1e7f24b87a19f3a2ebb355714c9ce13b9c4a38a743ce3f74bd2
+pageImgTitle=\uCD94\uCC9C10\uC120
+menuId=MENU_00069
+pageLinkNav=<span id\='pageLinkNav'><a href\='/travel' class\='menu-home'><span>Home</span></a> <span class\='gt'> &gt; </span> <a href\='/travel/info_square'><span>\uC815\uBCF4\uAD11\uC7A5</span></a> <span class\='gt'> &gt; </span> <span class\='menu-active'>\uCD94\uCC9C10\uC120</span></span>
+subTitle=\uCD94\uCC9C10\uC120
+pageCcl=100
+cntModified=2020-06-23
+tplId=TPL_000135
+admId=
+siteId=SITE_00007
+pageNav=<span class\='menu-home'>Home</span> <span class\="gt"> &gt; </span> \uC815\uBCF4\uAD11\uC7A5 <span class\="gt"> &gt; </span> <span class\='menu-active'>\uCD94\uCC9C10\uC120</span>
+robotYn=0
+indexGet=Y
+admNm2=
+=======
+#MENU_00069 (by Jnitcms 3.5)
+#Tue Jun 23 09:41:12 KST 2020
+metaBuild=2020.06.23
+pageNavTitle=\uCD94\uCC9C10\uC120&lt; \uC815\uBCF4\uAD11\uC7A5&lt; travel
+admId2=
+pageTitle=\uCD94\uCC9C10\uC120
+admNm=
+admTel2=
+metaClassification=
+admTel=
+metaSubject=
+pageCode=588bc3f7b1c57492bbb5273dca3636ffa81aa58ae319d3876c91154988e7ed
+cntId=CNT_0000000000000050
+pageHash=3c644e3bd7ec993c35471d95eccea55d38c3e5e6378557615b978cb2e1b4f
+metaKeyword=
+pageImgTitle=\uCD94\uCC9C10\uC120
+metaTitle=\uCD94\uCC9C10\uC120
+metaLanguage=
+menuId=MENU_00069
+pageLinkNav=<span id\='pageLinkNav'><a href\='/travel' class\='menu-home'><span>Home</span></a> <span class\='gt'> &gt; </span> <a href\='/travel/info_square'><span>\uC815\uBCF4\uAD11\uC7A5</span></a> <span class\='gt'> &gt; </span> <span class\='menu-active'>\uCD94\uCC9C10\uC120</span></span>
+subTitle=\uCD94\uCC9C10\uC120
+pageCcl=100
+cntModified=2020-06-23
+tplId=TPL_000135
+metaDescription=
+admId=
+siteId=SITE_00007
+pageNav=<span class\='menu-home'>Home</span> <span class\="gt"> &gt; </span> \uC815\uBCF4\uAD11\uC7A5 <span class\="gt"> &gt; </span> <span class\='menu-active'>\uCD94\uCC9C10\uC120</span>
+robotYn=
+indexGet=Y
+menuPath=/travel/info_square/recommendation
+admNm2=
+metaReply=
+>>>>>>> efdee640b9e53ffc18eba658b29520c96585b962
