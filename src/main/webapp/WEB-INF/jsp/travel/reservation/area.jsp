@@ -126,14 +126,90 @@
 						</fieldset>
 					</div>
 					<!-- 검색 -->
+					<div class="reserv_wrap">
+	            		<dl class="form_group">
+	            			<dt>해수욕장</dt>
+	            			<dd><div class="reserv_view"><span class="loc">부산</span>/<span class="pool">해운대해수욕장</span></div>
+	            				<p class="note">선택하신 해수욕장이름과 지역을 꼭 확인해주세요</p>
+	            			</dd>
+	            		</dl>
+	            		<dl class="form_group">
+	            			<dt>파라솔번호</dt>
+	            			<dd><div class="reserv_view">10번</div></dd>
+	            		</dl>
+	            		<dl class="form_group">
+	            			<dt>날짜</dt>
+	            			<dd><input type="text" id="" name="" /></dd>
+	            		</dl>
+	            		<dl class="form_group">
+	            			<dt>시간</dt>
+	            			<dd><div class="reserv_view">10:00~12:00</div></dd>
+	            		</dl>
+	            		<dl class="form_group">
+	            			<dt>인원</dt>
+	            			<dd>
+	            				<select>
+	            					<option value="">1</option>
+	            					<option value="">2</option>
+	            					<option value="">3</option>
+	            					<option value="">4</option>
+	            					<option value="">5</option>
+	            					<option value="">6</option>
+	            					<option value="">7</option>
+	            					<option value="">8</option>
+	            					<option value="">9</option>
+	            					<option value="">10명이상</option>
+	            				</select>
+							</dd>
+	            		</dl>
+	            		<dl class="form_group">
+	            			<dt>이름</dt>
+	            			<dd><input type="text" id="" name="" /></dd>
+	            		</dl>
+	            		<dl class="form_group">
+	            			<dt>전화번호</dt>
+	            			<dd class="tel">
+	            				<select>
+	            					<option value="">010</option>
+	            					<option value="">017</option>
+	            					<option value="">019</option>
+	            				</select>
+	            				<em>-</em><input type="text" id="" name="" />
+	            				<em>-</em><input type="text" id="" name="" />
+	            				<p class="note">예약 확인을 위해 정확한 정보 입력 부탁드립니다.</p>
+	            			</dd>
+	            		</dl>
+	            	</div>
+	            	<h3 class="lec_privacy_tit">개인정보 수집 및 이용에 대한안내</h3>
+					<div class="lec_privacy">
+						<textarea cols="30" rows="10" title="개인정보수집 및 이용에 대한 안내">
+개인정보 수집 및 이용에 대한 안내
+바다여행일정만들기(이하 본 사이트)는 정보주체의 동의에 의해 개인정보를 수집·이용합니다.
+홈페이지 회원관리를 위해 수집·보유하고 있는 주요 개인정보 파일은 다음과 같습니다.
+- 수집 및 이용목적 : 시 홈페이지의 원활한 서비스 이용
+- 개인정보 항목 : 이름, 생년월일, 휴대전화번호, 이메일, 주소
+- 보유 및 이용기간 : 회원가입 ~ 회원탈퇴(탈퇴 시 삭제)
+- 정보주체의 권리 : 본인에 관한 개인정보 열람, 정정.삭제 청구권
+							                            
+				        </textarea>
+						<p>
+							<input type="checkbox" id="chkAgree2" name="agree_box" /> 
+							<label for="chkAgree2">동의합니다.</label>
+						</p>
+					</div>
+	            	<div class="reservBtn_box tac">
+	            		<a href="#none" class="button light_gray">이전화면</a>
+	            		<a href="#none" class="button red">예약하기</a>
+	            	</div>
+					<!-- 
 					<div class="reserv_info">
 						<strong for="my_reserv">나의 예약 조회</strong>
 						<span><lable for="my_reserv_name">이름</lable><input type=text" id="my_reserv_name" name="" /></span>
 						<span><lable for="my_reserv_tel">전화번호</lable><input type=text" id="my_reserv_tel" name="" placeholder="'-'없이 숫자만 입력 " /></span>
 						<a href="#none" class="btn">조회</a>
-					</div>
+					</div> -->
 					<!-- 구역 이미지 -->
-					<div class="reserv_img">
+					<!-- <div class="reserv_img">
 						<img src="/seantour_map/images/travel/content/img_reserv01.jpg" alt="" />
 					</div>
 					<div class="reserv_area">
@@ -358,7 +434,7 @@
 								</tr>	
 							</tbody>
 						</table>	
-					</div>
+					</div> -->
 					<!-- 달력  -->
 	            </div>	
             </div><!-- cont_body -->

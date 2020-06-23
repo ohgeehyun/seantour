@@ -64,7 +64,7 @@
 .tbl_calendar .reserv .btn_end{background:#a6a6a6;}
 */
 
-.reserv_wrap{box-sizing:border-box;width:45%;margin:0 auto;padding:30px 40px;border:1px solid #a6a6a6;}
+.reserv_wrap{box-sizing:border-box;width:45%;margin:40px auto 0;padding:30px 40px;border:1px solid #a6a6a6;}
 .reserv_wrap .form_group{margin-top:10px;}
 .reserv_wrap .form_group:first-child{margin-top:0;}
 .reserv_wrap .form_group:after{content:'';display:block;clear:both;}
@@ -90,6 +90,13 @@
 .reserv_wrap_confirm .form_group dd{float:left;height:40px;line-height:40px;}
 .reserv_wrap_confirm .form_group dt{width:25%;font-weight:600;}
 .reserv_wrap_confirm .form_group dd{width:calc(100% - 25%);}
+
+/* 개인정보 제공 동의 */
+.lec_privacy{box-sizing:border-box;width:45%;margin:0 auto;}
+.lec_privacy:after{content:'';display:block;clear:both;}
+.lec_privacy_tit{width:45%;margin:40px auto 0;}
+.lec_privacy textarea{width:100%; height:200px; padding:20px;}
+.lec_privacy p{float:right;margin:10px 0;}
 
 
 @media screen and (max-width:1000px){
