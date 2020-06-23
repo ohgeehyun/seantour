@@ -56,10 +56,10 @@
                                  <li><a href="<c:url value='/travel/info_square/recommendation/index.jsp'/>">추천10선</a></li>
                                	<li><a href="<c:url value='/travel/info_square/info_policy/index.jsp'/>">저작권정책</a></li>
                                	<li><a href="<c:url value='/travel/info_square/email/index.jsp'/>">이메일무단수집거부</a></li>
-
                             </ul>
-                        </div>
+                        </div> 
                     </li>
+                      <li><a href="<c:url value='/travel/destination/list.do'/>">여름시즌</a></li>
                 </ul>
              </div>
             <!-- // GNB -->

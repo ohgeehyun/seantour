@@ -1,5 +1,5 @@
 #(by Jnitcms 3.5)
-#Thu May 14 00:07:15 KST 2020
+#Tue Jun 23 15:06:52 KST 2020
 sso=1
 gpinauth=1
 ssl=0
@@ -10,4 +10,4 @@ pkiauth=0
 emailauth=1
 skinMode=black
 overlap=0
-redirectPath=/travel
+redirectPath=/travel/

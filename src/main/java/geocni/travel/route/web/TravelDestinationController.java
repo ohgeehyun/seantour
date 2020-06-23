@@ -490,5 +490,14 @@ public class TravelDestinationController {
 		
 		return dest;
 	}
+	/*급하게 만든 컨트롤러 메인 복사 때문에 만들었기 때문에 따로 컨트롤러 및 MVC패턴 구축시 옮기고 삭제해도 무방  - 오지현*/
+	
+	@RequestMapping(value="main.do")
+	public String mainPage(Model model) throws Exception {
+		
+		
+	
+		return "travel/main/" +"main";
+	}
 
 }
