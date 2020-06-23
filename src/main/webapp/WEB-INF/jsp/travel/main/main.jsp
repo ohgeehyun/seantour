@@ -9,7 +9,32 @@
 <%@ include file="/travel/common/config/handing/jsHanding.jsp" %>
 
 
-<%@ include file="/WEB-INF/jsp/travel/tpl/head.jsp" %>
+<%-- <%@ include file="/WEB-INF/jsp/travel/tpl/head.jsp" %>--%>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,maximum-scale=1,minimum-scale=1">
+	<title>바다여행 일정만들기</title>
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/travel/base.css'/>">
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/travel/font.css'/>">
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/travel/layout.css'/>">
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/travel/common.css'/>">
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/travel/board.css'/>">
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/travel/content.css'/>">
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/travel/reserv.css'/>">
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/travel/slick.css'/>">
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/travel/aos.css'/>">
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/travel/main.css'/>">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="<c:url value='/js/travel/jquery-1.12.2.min.js'/>"></script>
+	<script src="<c:url value='/js/travel/jquery.bxslider.js'/>"></script>
+	<script src="<c:url value='/js/travel/TweenMax.min.js'/>"></script>
+	<script src="<c:url value='/js/travel/slick.min.js'/>"></script>
+	<script src="<c:url value='/js/travel/aos.js'/>"></script>
+	<script src="<c:url value='/js/travel/common.js'/>"></script>
+	<script src="<c:url value='/js/travel/Sortable.js'/>"></script>
+	<script src="<c:url value='/js/travel/content.js'/>"></script>
+	<script src="<c:url value='/js/travel/travel.banfilter.js'/>"></script>
+	<script src="<c:url value='/js/travel/main.js'/>"></script>
    <script>
    	$(document).ready(function(){
    		$('#close').click(function(){
@@ -44,7 +69,7 @@
 			<%@ include file="/WEB-INF/jsp/travel/tpl/gnb.jsp" %>
 		<!-- // header -->
 	<!-- contaniner -->
-		<div id="container" >
+		<div id="container" class="main">
 			<!-- cont_main -->
 			<div class="cont_main" id="content">
 				<div class="spotzone trans400">
@@ -55,106 +80,120 @@
 					<div class="main_visual_wrap">
 						<div class="main_visual_content">
 							<div class="main_visual_content_cell">
-								<!--<div class="main_visual_content_cell_weather">
-									<div class="weather">
-
-                                   
-										<img src="${pageContext.request.contextPath}/travel/common/images/main/icon_weather_01.png" alt=''/>	
-
-										<span>7℃</span>
-									</div>
-									<div class="dust">
-										<dl>
-
-                                            <dt>미세먼지</dt>
-                                           <dd>좋음<img src="${pageContext.request.contextPath}/travel/common/images/main/icon_dust_good.png" alt='좋음'/></dd>
-										</dl>
-										<dl>
-                                            <dt>초미세먼지</dt>
-                                            <dd>나쁨<img src="${pageContext.request.contextPath}/travel/common/images/main/icon_dust_bad.png" alt='나쁨'/></dd>
-
-										</dl>
-									</div>
-											 <div class="vis-weather">
-     										   <p class="weather-date"></p>	
-   										</div>
-								</div>-->
 								  <div class="main_visual_content_cell_left">
-								 	<p class="tit">내가 만드는 <strong>바다여행</strong></p> 	 
-								 	<p class="sub_tit">
-								 		언제든 누구와든 함께 떠나기 좋은<br />
-										공기좋고 깨끗한 국내 바다여행 일정만들기
-								 	</p> 	 
-
-								  	<ul class="img_lst"> 
-								  		<li><img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual2_s1.png" alt='해파랑공원'/></li>
-                                        <li><img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual2_s2.png" alt='호미곶' /></li>
-                                        <li><img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual2_s3.png" alt='주상절리'/></li>  
-
-								  	</ul>
-								  </div>
-								 
-								  <div class="main_visual_content_cell_right">
-								  	 <div class="main_visual_content_cell_right_inr">
-									  	 <div class="visual_arrow">                                      
-                                                <img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual2_arrow.png" alt='' />
-                                             
-										  </div>
-                                          <!--  메인 지도 아이콘  class point 부분 css필요 -->
-                                          <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=강원" class='point point3'>강원</a>
-                                          <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경기" class='point point2'>경기</a>
-                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경남" class='point point10'>경남</a>
-                                          "<a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경북" class='point point6'>경북</a>
-                                          <!-- 	<li><a href="/travel/destination/list.do?destRegion=광주광역시">광주광역시</a></li> -->
-                                          <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=대구" class='point point7'>대구</a>
-                                          <!-- <li><a href="/travel/destination/list.do?destRegion=대전">대전광역시</a></li> -->
-                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=부산" class='point point11'>부산</a>
-                                		 <!-- <li><a href="/travel/destination/list.do?destRegion=서울">서울특별시</a></li>-->
-                                        <!-- <li><a href="/travel/destination/list.do?destRegion=세종">세종특별자치시</a></li> -->
-                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=울산" class='point point8'>울산</a>
-                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=인천" class='point point1'>인천</a>
-                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=전남" class='point point12'>전남</a>
-                                		 <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=전북" class='point point9'>전북</a>
-                                		 <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=제주" class='point point13'>제주</a>
-                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=충남" class='point point4'>충남</a>
-                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=충북" class='point point5'>충북</a>
-
+									 	<p class="tit">내가 만드는 <strong>바다여행</strong></p> 	 
+									 	<p class="sub_tit">
+									 		언제든 누구와든 함께 떠나기 좋은<br />
+											공기좋고 깨끗한 국내 바다여행 일정만들기
+									 	</p> 	 
+									 	 <div class="visual_go">
+									  		<a href="#none" class="button mv_btn01">여행일정 만들기</a>
+									  		<a href="#none" class="button mv_btn02">여행일정 검색</a>
+									  	</div>
 									  </div>
-								  </div>
-								  <div class="spot_search">
-								  	<div class="cssSelect">
-								  		<button type="button">부산광역시</button>
-								  		<ul class="lst">
-								  		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=강원">강원도</a></li>
-                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경기">경기도</a></li>
-                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경남">경상남도</a></li>
-                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경북">경상북도</a></li>
-                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=광주">광주광역시</a></li>
-                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=대구">경기도</a></li>
-                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=대전">대전광역시</a></li>
-                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=부산">부산광역시</a></li>
-                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=서울">서울특별시</a></li>
-                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=세종">세종특별자치시</a></li>
-                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=울산">울산광역시</a></li>
-                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=인천">인천광역시</a></li>
-                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=전남">전라남도</a></li>
-                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=전북">전라북도</a></li>
-                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=제주">제주도</a></li>
-                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=충남">충청남도</a></li>
-                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=충북">충청북도</a></li>
-
-								  		</ul>
-							  		</div>
-								  </div>
-								  <div class="visual_go">
-								  		<a href="${pageContext.request.contextPath}/travel/route/register.do" class="button mv_btn01">여행일정 만들기</a>
-								  		<a href="${pageContext.request.contextPath}/travel/route/list.do" class="button mv_btn02">여행일정 검색</a>
-
-								  </div>
+									  <div class="main_visual_content_cell_right">
+									  	 <div class="main_visual_content_cell_right_inr">
+									  	 	<div class="spot_title"><img src="/seantour_map/images/travel/main/img_map_tit.png" alt="해수욕장 혼잡도 신호등" /></div>
+									  	 	<div class="spot_info"><img src="/seantour_map/images/travel/main/img_info_box.png" alt="혼잡: 빨간색, 혼잡우려: 노란색, 적정: 녹색" /></div>
+										  	 <div class="spot spot1"><a href="#none" class="icon red_hover">화진포</a></div>
+										  	 <div class="spot spot2"><a href="#none" class="icon red_hover">송지호오토캠핑장</a></div>
+										  	 <div class="spot spot3"><a href="#none" class="icon red_hover">송지호</a></div>
+										  	 <div class="spot spot4"><a href="#none" class="icon green_hover">삼포</a></div>
+									  	   	 <div class="spot spot5"><a href="#none" class="icon red_hover">천진</a></div>
+										  	 <div class="spot spot6"><a href="#none" class="icon green_hover">등대</a></div>
+										  	 <div class="spot spot7"><a href="#none" class="icon green_hover">외옹치</a></div>
+										  	 <div class="spot spot8"><a href="#none" class="icon green_hover">하조대</a></div>
+										  	 <div class="spot spot9"><a href="#none" class="icon green_hover">중광정</a></div> 
+										  	 <div class="spot spot10"><a href="#none" class="icon green_hover">주문진</a></div>
+										  	 <div class="spot spot11"><a href="#none" class="icon green_hover">안목</a></div>
+										  	 <div class="spot spot12"><a href="#none" class="icon green_hover">정동진</a></div>
+										  	 <div class="spot spot13"><a href="#none" class="icon yellow_hover">노봉</a></div>
+										  	 <div class="spot spot14"><a href="#none" class="icon red_hover">추암</a></div>
+										  	 <div class="spot spot15"><a href="#none" class="icon red_hover">맹방</a></div>
+										  	 <div class="spot spot16"><a href="#none" class="icon green_hover">용화</a></div>
+										  	 <div class="spot spot17"><a href="#none" class="icon green_hover">장호</a></div>
+										  	 <div class="spot spot18"><a href="#none" class="icon red_hover">고래불</a></div>
+										  	 <div class="spot spot19"><a href="#none" class="icon yellow_hover">관성</a></div>
+										  	 <div class="spot spot20"><a href="#none" class="icon yellow_hover">일산</a></div>
+										  	 <div class="spot spot21"><a href="#none" class="icon yellow_hover">진하</a></div>
+										  	 <div class="spot spot22"><a href="#none" class="icon yellow_hover">임랑</a></div>
+										  	 <div class="spot spot23"><a href="#none" class="icon yellow_hover">일광</a></div>
+										  	 <div class="spot spot24"><a href="#none" class="icon yellow_hover">상주은모래비츼</a></div>
+										  	 <div class="spot spot25"><a href="#none" class="icon green_hover">명사십리</a></div>
+										  	 <div class="spot spot26"><a href="#none" class="icon red_hover">을왕리</a></div>
+										  	 <div class="spot spot27"><a href="#none" class="icon green_hover">하나개</div>
+										  	 <div class="spot spot28"><a href="#none" class="icon red_hover">신두리</a></div>
+										  	 <div class="spot spot29"><a href="#none" class="icon green_hover">만리포</a></div>
+										  	 <div class="spot spot30"><a href="#none" class="icon green_hover">삼봉</a></div>
+										  	 <div class="spot spot31"><a href="#none" class="icon red_hover">꽃지</a></div>
+										  	 <div class="spot spot32"><a href="#none" class="icon red_hover">무창포</a></div>
+										  	 <div class="spot spot33"><a href="#none" class="icon green_hover">춘장</a></div>
+										  	 <div class="spot spot34"><a href="#none" class="icon red_hover">몽산포</a></div>
+										  	 <div class="spot spot35"><a href="#none" class="icon red_hover">협재</a></div>
+										  	 <div class="spot spot36"><a href="#none" class="icon red_hover">곽지과물</a></div>
+										  	 <div class="spot spot37"><a href="#none" class="icon red_hover">이호테우</a></div>
+										  	 <div class="spot spot38"><a href="#none" class="icon red_hover">함덕서우봉</a></div>
+										  	 <div class="spot spot39"><a href="#none" class="icon red_hover">중문</a></div>
+										  	 <div class="spot spot40"><a href="#none" class="icon red_hover">금능으뜸원</a></div>
+										  	 <div class="blinker blinker1"><a href="#none" class="name">속초<span class="icon red"></span></a></div>
+										  	 <div class="blinker blinker2"><a href="#none" class="name">낙산<span class="icon red"></span></a></div>
+										  	 <div class="blinker blinker3"><a href="#none" class="name">경포<span class="icon yellow"></span></a></div>
+										  	 <div class="blinker blinker4"><a href="#none" class="name">삼척<span class="icon yellow"></span></a></div>
+										  	 <div class="blinker blinker5"><a href="#none" class="name">대천<span class="icon red"></span></a></div>
+										  	 <div class="blinker blinker6"><a href="#none" class="name">송도<span class="icon red"></span></a></div>
+										  	 <div class="blinker blinker7"><a href="#none" class="name">송정<span class="icon red"></span></a></div>
+										  	 <div class="blinker blinker8"><a href="#none" class="name">해운대<span class="icon yellow"></span></a></div>
+										  	 <div class="blinker blinker9"><a href="#none" class="name">광안리<span class="icon green"></span></a></div>
+										  	 <div class="blinker blinker10"><a href="#none" class="name">다대포<span class="icon green"></span></a></div>
+										  </div>
+									  </div>
+									  <div class="spot_search">
+									  	<div class="cssSelect">
+									  		<button type="button">부산광역시</button>
+									  		<ul class="lst">
+									  			<li><a href="#none">부산광역시</a></li>
+									  			<li><a href="#none">대구광역시</a></li>
+									  			<li><a href="#none">인천광역시</a></li>
+									  			<li><a href="#none">대전광역시</a></li>
+									  			<li><a href="#none">울산광역시</a></li>
+									  			<li><a href="#none">경기도</a></li>
+									  			<li><a href="#none">충청북도</a></li>
+									  			<li><a href="#none">충청남도</a></li>
+									  			<li><a href="#none">전라북도</a></li>
+									  			<li><a href="#none">전라남도</a></li>
+									  			<li><a href="#none">경상북도</a></li>
+									  			<li><a href="#none">경상남도</a></li>
+									  			<li><a href="#none">제주특별자치도</a></li>
+									  		</ul>
+								  		</div>
+									  </div>
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>
 				</div><!-- //spotzone -->
+				<div class="section00">
+					<div class="inr">
+						<p>해수욕장 혼잡도 신호등은 <span>네이버</span>와 함께 합니다.</p>
+					</div> 
+				</div>
+				<div class="section00_02 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+					<div class="minr">
+						<div class="tit_box">
+					        <p class="tit">해수욕장 <strong>예약시스템</strong></p>
+					    </div>
+					    <div class="reserv_lookup_box">
+					    	<div class="reserv_main_left">
+					    		<strong for="my_reserv">나의 예약 <br />조회</strong>
+								<span><input type="text" id="my_reserv_name" name="" placeholder="이름을 입력하세요. " /></span>
+								<span><input type=text" id="my_reserv_tel" name="" placeholder="전화번호를 입력하세요. " /></span>
+								<a href="#none" class="btn">조회</a>
+					    	</div>
+					    	<div class="reserv_main_right">
+					    		<img src="/seantour_map/images/travel/main/img_main_reserv_pull.png" alt="" />
+					    	</div>
+				    	</div>
+					</div>
+				</div>
 				<div class="section01 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
 					<div class="minr">
 						<div class="event_box">
