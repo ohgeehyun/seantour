@@ -111,13 +111,9 @@
 					<div class="reserv_wrap">
 	            		<dl class="form_group">
 	            			<dt>해수욕장</dt>
-	            			<dd><div class="reserv_view"><span class="loc">부산</span>/<span class="pool">해운대해수욕장</span></div>
+	            			<dd><div class="reserv_view"><span class="loc">전남</span>/<span class="pool">외달도해수욕장</span></div>
 	            				<p class="note">선택하신 해수욕장이름과 지역을 꼭 확인해주세요</p>
 	            			</dd>
-	            		</dl>
-	            		<dl class="form_group">
-	            			<dt>파라솔번호</dt>
-	            			<dd><div class="reserv_view">10번</div></dd>
 	            		</dl>
 	            		<dl class="form_group">
 	            			<dt>날짜</dt>
@@ -179,7 +175,7 @@
 						</p>
 					</div>
 	            	<div class="reservBtn_box tac">
-	            		<a href="#none" class="button light_gray">이전화면</a>
+	            		<!-- <a href="#none" class="button light_gray">이전화면</a> -->
 	            		<a href="#none" class="button red">예약하기</a>
 	            	</div>
 					<!-- 
