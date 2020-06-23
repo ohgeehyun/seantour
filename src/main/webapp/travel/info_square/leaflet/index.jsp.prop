@@ -1,5 +1,5 @@
 #MENU_00068 (by Jnitcms 3.5)
-#Tue Jun 23 10:42:58 KST 2020
+#Tue Jun 23 11:07:40 KST 2020
 pageNavTitle=\uB9AC\uD50C\uB81B&lt; \uC815\uBCF4\uAD11\uC7A5&lt; travel
 admId2=
 pageTitle=\uB9AC\uD50C\uB81B
@@ -8,7 +8,7 @@ admTel2=
 admTel=
 pageCode=47397b4e5c5a9648ecfcb647342dbf1b7c5713469852ca44de605968896672ca
 cntId=CNT_0000000000000049
-pageHash=3a5ad21f521b6f1e7c963fabfd713177e54f31eac8bc277a2d35dc7ffcc624
+pageHash=883a89e2faefa0ddcc9e21102b1c2a924e289cbd5a4c25366cbd2f85142798d
 pageImgTitle=\uB9AC\uD50C\uB81B
 menuId=MENU_00068
 pageLinkNav=<span id\='pageLinkNav'><a href\='/travel' class\='menu-home'><span>Home</span></a> <span class\='gt'> &gt; </span> <a href\='/travel/info_square'><span>\uC815\uBCF4\uAD11\uC7A5</span></a> <span class\='gt'> &gt; </span> <span class\='menu-active'>\uB9AC\uD50C\uB81B</span></span>
