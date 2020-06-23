@@ -42,6 +42,7 @@
 		            	<%-- <c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/statistics')}">통계</c:if> --%>
 		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/destination/stats')}">통계</c:if>
 		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/email')}">이메일무단수집거부</c:if>
+		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/recommendation')}">추천10선</c:if>
 		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/info_policy')}">저작권정책</c:if>
 		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/notice')}">공지사항</c:if>
 		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/faq/')}">Q&A</c:if>
@@ -110,6 +111,7 @@
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/email')}"><a href="#none">이메일수집거부</c:if>
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/updateinfo')}"><a href="#none">Q&A</c:if>
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/leaflet')}"><a href="#none">리플렛</c:if>
+						<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/recommendation')}"><a href="#none">추천10선</c:if>
 						<%-- 
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'member/clipboard')}"><a href="#none">공지사항</c:if>
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'member/clipboard')}"><a href="#none">Q&A</c:if> 
