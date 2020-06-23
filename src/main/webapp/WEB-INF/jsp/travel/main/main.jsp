@@ -200,7 +200,7 @@
 					    	<a href="/seantour_map/travel/info_square/recommendation/index.jsp" class="btn-example"><img src="${pageContext.request.contextPath}/images/travel/main/img_main_banner_10pull.jpg" alt="" /></a>
 					    </div>
 					    <div class="leaflet_box">
-					    	<a href="/seantour_map/travel/info_square/leaflet/index.jsp"><img src="${pageContext.request.contextPath}/images/travel/main/img_main_leaflet.jpg" alt="건강지키는 바다여행! 해양관광 리플렛 보러가기" /></a>
+					    	<a href="/seantour_map/travel/info_square/leaflet/index.jsp"><img src="${pageContext.request.contextPath}/images/travel/main/img_main_leaflet.png" alt="건강지키는 바다여행! 해양관광 리플렛 보러가기" /></a>
 					    </div>
 				    </div>
 			    </div> <!-- // section01 -->  
