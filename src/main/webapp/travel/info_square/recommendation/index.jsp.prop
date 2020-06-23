@@ -1,33 +1,24 @@
 #MENU_00069 (by Jnitcms 3.5)
-#Tue Jun 23 11:00:03 KST 2020
-metaBuild=2020.06.23
+#Tue Jun 23 12:46:53 KST 2020
 pageNavTitle=\uCD94\uCC9C10\uC120&lt; \uC815\uBCF4\uAD11\uC7A5&lt; travel
 admId2=
 pageTitle=\uCD94\uCC9C10\uC120
 admNm=
 admTel2=
-metaClassification=
 admTel=
-metaSubject=
 pageCode=588bc3f7b1c57492bbb5273dca3636ffa81aa58ae319d3876c91154988e7ed
 cntId=CNT_0000000000000050
-pageHash=f68c3d1be883c9a76e4c1661951eecb95a9dc738f671e58f717b18b1197f8a
-metaKeyword=
+pageHash=65138df35461de01b824be79b16c4ed4abd8ac776eb34b865d134ab519a759
 pageImgTitle=\uCD94\uCC9C10\uC120
-metaTitle=\uCD94\uCC9C10\uC120
-metaLanguage=
 menuId=MENU_00069
 pageLinkNav=<span id\='pageLinkNav'><a href\='/travel' class\='menu-home'><span>Home</span></a> <span class\='gt'> &gt; </span> <a href\='/travel/info_square'><span>\uC815\uBCF4\uAD11\uC7A5</span></a> <span class\='gt'> &gt; </span> <span class\='menu-active'>\uCD94\uCC9C10\uC120</span></span>
 subTitle=\uCD94\uCC9C10\uC120
 pageCcl=100
 cntModified=2020-06-23
 tplId=TPL_000138
-metaDescription=
 admId=
 siteId=SITE_00007
 pageNav=<span class\='menu-home'>Home</span> <span class\="gt"> &gt; </span> \uC815\uBCF4\uAD11\uC7A5 <span class\="gt"> &gt; </span> <span class\='menu-active'>\uCD94\uCC9C10\uC120</span>
-robotYn=
+robotYn=0
 indexGet=Y
-menuPath=/travel/info_square/recommendation
 admNm2=
-metaReply=
