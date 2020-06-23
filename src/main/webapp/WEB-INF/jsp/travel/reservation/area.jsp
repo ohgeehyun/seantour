@@ -31,47 +31,29 @@
 						<legend>검색</legend>
 						<div class="field01">
 							<select id="" name="" title="지역">
-				    	  		<option value="">지역선택</option>
-					      		<option value="">강원도</option>
-					      		<option value="">충청남도</option>
-					      		<option value="">전라북도</option>
 					      		<option value="">전라남도</option>
-					      		<option value="">경상북도</option>
-					      		<option value="">경상남도</option>
 				      		</select>	
 				      		<select id="" name="" title="해수용장">
 				    	  		<option value="">해수욕장 선택</option>
-					      		<option value="">복분해수욕장</option>
-					      		<option value="">노봉 해수욕장</option>
-					      		<option value="">사천 해수욕장</option>
-					      		<option value="">문암 해수욕장</option>
-					      		<option value="">원평 해수옥장</option>
-					      		<option value="">기지포 해수욕장</option>
-					      		<option value="">갈음이 해수욕장</option>
-					      		<option value="">난지섬 해수욕장</option>
-					      		<option value="">위도 해수욕장</option>
-					      		<option value="">모항 해수욕장</option>
-					      		<option value="">구시포 해수욕장</option>
-					      		<option value="">남열해돋이 해수요장</option>
-					      		<option value="">송호 해수욕장</option>
-					      		<option value="">예송 해수욕장</option>
-					      		<option value="">짱뚱어 해수욕장</option>
-					      		<option value="">수문 해수욕장</option>
-					      		<option value="">홀통 해수요장</option>
-					      		<option value="">기성망양 해수욕장</option>
-					      		<option value="">장사 해수욕장</option>
-					      		<option value="">경정 해수욕장</option>
-					      		<option value="">와현모래숲해변</option>
-					      		<option value="">옥계 해수욕장</option>
-					      		<option value="">여차해변 해수욕장</option>
-					      		<option value="">사량대항 해수욕장</option>
-					      		<option value="">남일대 해수욕장</option>
+					      		<option value="">외달도해수욕장</option>
+					      		<option value="">웅천해수욕장</option>
+					      		<option value="">풍류해수욕장</option>
+					      		<option value="">율포솔밭해수욕장</option>
+					      		<option value="">수문해수욕장</option>
+					      		<option value="">송호해수욕장</option>
+					      		<option value="">돌머리해수욕장</option>
+					      		<option value="">가마미해수욕장</option>
+					      		<option value="">송이도해수욕장</option>
+					      		<option value="">신지명사십리해수욕장</option>
+					      		<option value="">금갑해수욕장</option>
+					      		<option value="">대광해수욕장</option>
+					      		<option value="">백길해수욕장</option>
+					      		<option value="">짱뚱어해수욕장</option>
 				      		</select>
 			      		</div>
 			      		<div class="field02">
 				      		<select id="" name="" title="월">
 				    	  		<option value="">월선택</option>
-					      		<option value="">6월</option>
 					      		<option value="">7월</option>
 					      		<option value="">8월</option>
 					      		<option value="">9월</option>
@@ -184,14 +166,13 @@
 					<div class="lec_privacy">
 						<textarea cols="30" rows="10" title="개인정보수집 및 이용에 대한 안내">
 개인정보 수집 및 이용에 대한 안내
-바다여행일정만들기(이하 본 사이트)는 정보주체의 동의에 의해 개인정보를 수집·이용합니다.
+바다여행일정만들기 사이트는 정보주체의 동의에 의해 개인정보를 수집·이용합니다.
 홈페이지 회원관리를 위해 수집·보유하고 있는 주요 개인정보 파일은 다음과 같습니다.
-- 수집 및 이용목적 : 시 홈페이지의 원활한 서비스 이용
-- 개인정보 항목 : 이름, 생년월일, 휴대전화번호, 이메일, 주소
+- 수집 및 이용목적 : 바다여행일정만들기의 원활한 서비스 이용
+- 개인정보 항목 : 이름, 휴대전화번호
 - 보유 및 이용기간 : 회원가입 ~ 회원탈퇴(탈퇴 시 삭제)
 - 정보주체의 권리 : 본인에 관한 개인정보 열람, 정정.삭제 청구권
-							                            
-				        </textarea>
+ </textarea>
 						<p>
 							<input type="checkbox" id="chkAgree2" name="agree_box" /> 
 							<label for="chkAgree2">동의합니다.</label>
