@@ -22,6 +22,9 @@ public class TravelDestinationDAO extends EgovComAbstractDAO {
     	return (Integer)select("travelDestinationDAO.selectTravelDestinationListCnt", vo);
     }
     
+    public int selectTravelDestinationSummerListCnt(TravelDestination vo) {
+    	return (Integer)select("travelDestinationDAO.selectTravelDestinationSummerListCnt", vo);
+    }
     public TravelDestination selectTravelDestination(TravelDestination vo) throws Exception {
     	return (TravelDestination) select("travelDestinationDAO.selectTravelDestination", vo);
     }

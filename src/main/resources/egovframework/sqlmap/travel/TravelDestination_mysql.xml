@@ -323,6 +323,7 @@
 		]]>
 	</select>	
 	
+	
 	<select id="travelDestinationDAO.selectTravelDestinationSummerList" parameterClass="travelDestinationVO" resultMap="travelDestinationMax" remapResults="true">
 		<![CDATA[
 			SELECT
@@ -365,6 +366,10 @@
 		<![CDATA[
 			FROM geo_destination a
 			WHERE 1=1
+			AND DEST_TITLE LIKE '북분%해수욕장' OR DEST_TITLE LIKE '노봉%해수욕장' OR DEST_TITLE LIKE '사천%해수욕장' OR DEST_TITLE  LIKE '문암%해수욕장'or DEST_TITLE LIKE '원평%해수욕장'
+				OR DEST_TITLE LIKE '기지포%해수굑장' OR DEST_TITLE LIKE '갈음이%해수욕장' or DEST_TITLE LIKE '구시포%해수옥장' 
+				OR DEST_TITLE LIKE '남열%해수욕장' OR DEST_TITLE LIKE '송호%해수욕장'OR DEST_TITLE LIKE'예송%해수욕장' OR DEST_TITLE LIKE '짱둥어%해수욕장' OR DEST_TITLE LIKE '수문%해수욕장'OR DEST_TITLE LIKE '홀통 해수욕장'
+                OR DEST_TITLE LIKE '기성망양%해수욕장' OR DEST_TITLE LIKE '장사%해수욕장' OR DEST_TITLE LIKE '경정%해수욕장' OR DEST_TITLE LIKE '와현%모래숲해변' OR DEST_TITLE LIKE '여차%해수욕장' OR DEST_TITLE LIKE '사량대항%해수욕장' OR DEST_TITLE LIKE '남일대%해수욕장'
 		]]>
 			<include refid="travelDestinationDAO.travelDestinationWhereClause" />
 		<![CDATA[
@@ -375,9 +380,7 @@
 	
 	
 	
-	
-	
-	
+
 	
 	<select id="travelDestinationDAO.selectTravelDestinationListCnt" parameterClass="travelDestinationVO" resultClass="int">
 		<![CDATA[
@@ -388,6 +391,22 @@
 		]]>
 			<include refid="travelDestinationDAO.travelDestinationWhereClause" />
 	</select>
+	
+	<select id="travelDestinationDAO.selectTravelDestinationSummerListCnt" parameterClass="travelDestinationVO" resultClass="int">
+		<![CDATA[
+			SELECT 
+				COUNT(*) totcnt
+			FROM geo_destination a
+			WHERE 1=1
+			and DEST_TITLE LIKE '북분%해수욕장' OR DEST_TITLE LIKE '노봉%해수욕장' OR DEST_TITLE LIKE '사천%해수욕장' OR DEST_TITLE  LIKE '문암%해수욕장'or DEST_TITLE LIKE '원평%해수욕장'
+				OR DEST_TITLE LIKE '기지포%해수굑장' OR DEST_TITLE LIKE '갈음이%해수욕장' or DEST_TITLE LIKE '구시포%해수옥장' 
+				OR DEST_TITLE LIKE '남열%해수욕장' OR DEST_TITLE LIKE '송호%해수욕장'OR DEST_TITLE LIKE'예송%해수욕장' OR DEST_TITLE LIKE '짱둥어%해수욕장' OR DEST_TITLE LIKE '수문%해수욕장'OR DEST_TITLE LIKE '홀통 해수욕장'
+                OR DEST_TITLE LIKE '기성망양%해수욕장' OR DEST_TITLE LIKE '장사%해수욕장' OR DEST_TITLE LIKE '경정%해수욕장' OR DEST_TITLE LIKE '와현%모래숲해변' OR DEST_TITLE LIKE '여차%해수욕장' OR DEST_TITLE LIKE '사량대항%해수욕장' OR DEST_TITLE LIKE '남일대%해수욕장'
+		]]>
+			<include refid="travelDestinationDAO.travelDestinationWhereClause" />
+	</select>
+	
+	
 
 	<select id="travelDestinationDAO.selectTravelDestinationRegionList" parameterClass="travelDestinationVO" resultClass="travelDestinationVO">
 		<![CDATA[

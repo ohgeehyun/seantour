@@ -23,7 +23,7 @@
 			<form:form commandName="travelDestination" method="get" data-loginId="${loginVO.mbrId}">
 	            <div class="cont_head" data-loginId='<c:out value="${loginVO.mbrId}"/>'>
 	                <%-- <h2 class="title">부산광역시(BUSAN)</h2> --%>
-	                <h2 class="title"><c:out value="${empty travelDestination.destRegion ? '해수욕장' : travelDestination.destRegion}" /></h2>
+	                <h2 class="title"><c:out value="${empty travelDestination.destRegion ? '한적한 해수욕장' : travelDestination.destRegion}" /></h2>
 	            </div><!--// cont_head -->
 	            <div class="cont_body">
 		            <div class="inr">
@@ -193,7 +193,7 @@ function registerTravelDestFeedback(obj, type) {
 
 function fn_egov_link_page(pageNo){
 	document.getElementById("travelDestination").pageIndex.value = pageNo;
-	document.getElementById("travelDestination").action = "<c:url value='/travel/destination/list.do'/>";
+	document.getElementById("travelDestination").action = "<c:url value='/travel/destination/summerlist.do'/>";
    	document.getElementById("travelDestination").submit();
 }
 

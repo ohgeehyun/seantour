@@ -73,7 +73,7 @@ public class TravelDestinationServiceImpl extends EgovAbstractServiceImpl implem
     	
     	PaginationInfo paginationInfo = makePagination(vo);
     	
-    	int totCnt = travelDestinationDAO.selectTravelDestinationListCnt(vo);
+    	int totCnt = travelDestinationDAO.selectTravelDestinationSummerListCnt(vo);
     	paginationInfo.setTotalRecordCount(totCnt);
     	resultMap.put("paginationInfo", paginationInfo);
     	vo.setPageUnit(totCnt);
@@ -84,7 +84,7 @@ public class TravelDestinationServiceImpl extends EgovAbstractServiceImpl implem
     	
     	resultMap.put("resultList", list);
     	
-    	int allCnt = travelDestinationDAO.selectTravelDestinationListCnt(vo);
+    	int allCnt = travelDestinationDAO.selectTravelDestinationSummerListCnt(vo);
     	resultMap.put("allCnt", allCnt);
 
     	return resultMap;
