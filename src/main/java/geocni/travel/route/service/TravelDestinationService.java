@@ -43,4 +43,6 @@ public interface TravelDestinationService {
 	
 	List<?> selectRecoDestinationlist(TravelDestination vo) throws Exception;
 
+	Map<String, Object> selectTravelDestinationSummerListMap(TravelDestination vo) throws Exception;
+
 }

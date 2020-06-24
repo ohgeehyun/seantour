@@ -66,6 +66,29 @@ public class TravelDestinationServiceImpl extends EgovAbstractServiceImpl implem
 
     	return resultMap;
     }
+	
+	@Override
+	public Map<String, Object> selectTravelDestinationSummerListMap(TravelDestination vo) throws Exception {
+    	Map<String,Object> resultMap = new HashMap<String,Object>();
+    	
+    	PaginationInfo paginationInfo = makePagination(vo);
+    	
+    	int totCnt = travelDestinationDAO.selectTravelDestinationListCnt(vo);
+    	paginationInfo.setTotalRecordCount(totCnt);
+    	resultMap.put("paginationInfo", paginationInfo);
+    	vo.setPageUnit(totCnt);
+    	
+    	//List<?> resultList = travelDestinationDAO.selectTravelDestinationList(vo);
+    	@SuppressWarnings("unchecked")
+		List<TravelDestination> list = (List<TravelDestination>) travelDestinationDAO.selectTravelDestinationSummerList(vo);
+    	
+    	resultMap.put("resultList", list);
+    	
+    	int allCnt = travelDestinationDAO.selectTravelDestinationListCnt(vo);
+    	resultMap.put("allCnt", allCnt);
+
+    	return resultMap;
+    }
 
 	@Override
 	public List<?> selectTravelDestinationList(TravelDestination vo) throws Exception {

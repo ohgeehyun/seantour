@@ -323,6 +323,56 @@
 		]]>
 	</select>	
 	
+	<select id="travelDestinationDAO.selectTravelDestinationSummerList" parameterClass="travelDestinationVO" resultMap="travelDestinationMax" remapResults="true">
+		<![CDATA[
+			SELECT
+				  dest_id
+				, dest_title
+				, dest_ad_slogan
+				, dest_region
+				, dest_category
+				, dest_tag
+				, dest_website_url
+				, dest_img_path
+				, dest_phone
+				, dest_address
+				, dest_axis_x
+				, dest_axis_y
+				, dest_information
+				, dest_season
+				, dest_feature
+				, dest_description
+				, dest_recomm_point
+				, dest_clip_point
+				, dest_writer
+				, dest_reg_datetime
+				, dest_hit
+		]]>
+			<isEmpty property="destUserId">
+		<![CDATA[
+				, 0 AS my_recomm_count
+				, 0 AS my_clip_count
+		]]>
+			</isEmpty>
+		<![CDATA[
+		]]>
+			<isNotEmpty property="destUserId">
+		<![CDATA[
+				, (SELECT COUNT(*) FROM geo_reaction WHERE rxn_target_id=a.dest_id AND rxn_user_id=#destUserId# AND rxn_type='LIKE') AS my_recomm_count
+				, (SELECT COUNT(*) FROM geo_clipboard WHERE clip_page_id=a.dest_id AND clip_user_id=#destUserId#) AS my_clip_count
+		]]>
+			</isNotEmpty>
+		<![CDATA[
+			FROM geo_destination a
+			WHERE 1=1
+		]]>
+			<include refid="travelDestinationDAO.travelDestinationWhereClause" />
+		<![CDATA[
+			ORDER BY dest_reg_datetime DESC, dest_id DESC
+            LIMIT #firstIndex#, #recordCountPerPage#
+		]]>
+	</select>	
+	
 	
 	
 	

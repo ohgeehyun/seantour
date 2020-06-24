@@ -59,7 +59,13 @@
                             </ul>
                         </div> 
                     </li>
-                      <li><a href="<c:url value='/travel/destination/list.do'/>">여름시즌</a></li>
+                      <li><a href="<c:url value='/travel/destination/summerlist.do'/>">여름시즌</a>
+                       <div>
+                        <ul>
+                        <li><a href="<c:url value='/travel/reservation/area.do'/>">예약시스템</a></li>
+                       </ul>
+                        </div>
+                     </li>
                 </ul>
              </div>
             <!-- // GNB -->
@@ -115,6 +121,13 @@
                                			
                                     </ul>
                                 </li>
+                                 <li><a href="<c:url value='/travel/destination/summerlist.do'/>">여름시즌</a>
+                      				 <div>
+                      				  <ul>
+                       					 <li><a href="<c:url value='/travel/reservation/area.do'/>">예약시스템</a></li>
+                     				  </ul>
+                     			    </div>
+                     </li>
                             </ul>
                         </div>
                     </div>

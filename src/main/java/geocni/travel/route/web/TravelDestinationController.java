@@ -499,5 +499,39 @@ public class TravelDestinationController {
 	
 		return "travel/main/" +"main";
 	}
+	
+	@RequestMapping(value="summerlist.do")
+	public String summerList(
+			 @ModelAttribute("searchVO") TravelDefaultVO searchVO
+			,TravelDestination travelDestination
+            ,SessionStatus status
+			,Model model) throws Exception {
+		
+		try {
+			List<?> regionList = destService.selectTravelDestinationRegionList(travelDestination);
+			model.addAttribute("regionList", regionList);
+			
+			JnitcmsmbrVO loginVO = JnitMgovUtil.getLoginMember();
+			if(!NullUtil.isEmpty(loginVO.getMbrId())) {
+				travelDestination.setDestUserId(loginVO.getMbrId());
+			}
+
+			//travelDestination.setPageUnit(propertiesService.getInt("pageUnit"));
+			travelDestination.setPageUnit(8);
+			travelDestination.setPageSize(propertiesService.getInt("pageSize"));
+
+			model.addAllAttributes(destService.selectTravelDestinationSummerListMap(travelDestination));
+			status.setComplete();
+			
+			model.addAttribute("travelDestination", travelDestination);
+		
+		} catch (NullPointerException e) {
+			log.debug(e);
+		} catch (SQLException e) {
+			log.debug(e);
+		}
+		
+		return "travel/destination/" + "summer_list";
+	}
 
 }
