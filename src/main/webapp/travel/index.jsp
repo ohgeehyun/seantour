@@ -85,26 +85,29 @@
 								 		언제든 누구와든 함께 떠나기 좋은<br />
 										공기좋고 깨끗한 국내 바다여행 일정만들기
 								 	</p> 	 
-
-								  	<ul class="img_lst"> 
+									<div class="visual_go">
+								  		<a href="${pageContext.request.contextPath}/travel/route/register.do" class="button mv_btn01">여행일정 만들기</a>
+								  		<a href="${pageContext.request.contextPath}/travel/route/list.do" class="button mv_btn02">여행일정 검색</a>
+								  </div>
+								  	<%--<ul class="img_lst"> 
 								  		<li><img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual2_s1.png" alt='해파랑공원'/></li>
                                         <li><img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual2_s2.png" alt='호미곶' /></li>
                                         <li><img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual2_s3.png" alt='주상절리'/></li>  
 
-								  	</ul>
+								  	</ul>--%>
 								  </div>
 								 
 								  <div class="main_visual_content_cell_right">
 								  	 <div class="main_visual_content_cell_right_inr">
-									  	 <div class="visual_arrow">                                      
+									  	 <%--<div class="visual_arrow">                                      
                                                 <img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual2_arrow.png" alt='' />
                                              
-										  </div>
+										  </div>--%>
                                           <!--  메인 지도 아이콘  class point 부분 css필요 -->
                                           <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=강원" class='point point3'>강원</a>
                                           <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경기" class='point point2'>경기</a>
                                          <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경남" class='point point10'>경남</a>
-                                          "<a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경북" class='point point6'>경북</a>
+                                          <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경북" class='point point6'>경북</a>
                                           <!-- 	<li><a href="/travel/destination/list.do?destRegion=광주광역시">광주광역시</a></li> -->
                                           <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=대구" class='point point7'>대구</a>
                                           <!-- <li><a href="/travel/destination/list.do?destRegion=대전">대전광역시</a></li> -->
@@ -146,11 +149,7 @@
 								  		</ul>
 							  		</div>
 								  </div>
-								  <div class="visual_go">
-								  		<a href="${pageContext.request.contextPath}/travel/route/register.do" class="button mv_btn01">여행일정 만들기</a>
-								  		<a href="${pageContext.request.contextPath}/travel/route/list.do" class="button mv_btn02">여행일정 검색</a>
-
-								  </div>
+								  
 							</div>
 						</div>
 					</div>
