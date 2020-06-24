@@ -167,8 +167,53 @@
 			    </div> <!-- // section01 -->  
 			    <div class="section02 aos-init aos-animate" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
 			    	<div class="minr">
+
+						<div class="tit_box">
+				    		<p class="txt">국내 한적한 바다여행지를 추천해드립니다.</p>
+					        <p class="tit">한적한<strong>해수욕장</strong></p>
+					    </div>
+						<div class="vest_recommend_box">
+					    	<div class="col01">
+
+					    		<div class="img"><a href="/seantour_map/travel/destination/detail.do?destId=FCID000170"><img src="${pageContext.request.contextPath}/images/travel/main/img_m_pull01.jpg" alt="" /></a></div>
+
+					    		<div class="tbox">
+					    			<span>[경남]</span>
+					    			<p>와현모래숲해수욕장</p>
+					    		</div>
+					    	</div>
+					    	<div class="col02">
+					    		<ul>
+					    			<li>
+					    				<a href="/seantour_map/travel/destination/detail.do?destId=FCID000261">
+
+						    				<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_m_pull02.jpg" alt="" /></span>
+						    				<span class="text"><span class="local">[충남]</span>기지포해수욕장</span>
+					    				</a>
+					    			</li>
+					    			<li>
+					    				<a href="/seantour_map/travel/destination/detail.do?destId=FCID000249">
+						    				<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_m_pull03.jpg" alt="" /></span>
+						    				<span class="text"><span class="local">[충남]</span>난지섬해수욕장</span>
+					    				</a>
+					    			</li>
+					    			<li>
+					    				<a href="/seantour_map/travel/destination/detail.do?destId=FCID000069">
+						    				<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_m_pull04.jpg" alt="" /></span>
+						    				<span class="text"><span class="local">[전남]</span>남일해돋이해수욕장</span>
+					    				</a>
+					    			</li>
+					    			<li>
+					    				<a href="/seantour_map/travel/destination/detail.do?destId=FCID101869">
+						    				<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_m_pull05.jpg" alt="" /></span>
+						    				<span class="text"><span class="local">[경남]</span>남일대해수욕장</span>
+					    				</a>
+					    			</li>
+					    		</ul>
+					    	</div>
+					    </div> 
 					<%-- 실제 데이터가 축적되면 이 부분부터 삭제 또는 주석 처리  --%>
-				    	<%-- <div class="tit_box">
+				    	<%--<div class="tit_box">
 				    		<p class="txt">국내 인기 바다여행지를 추천해드립니다.</p>
 					        <p class="tit">베스트 <strong>여행 추천 일정</strong></p>
 					    </div>
@@ -212,13 +257,13 @@
 					    			</li>
 					    		</ul>
 					    	</div>
-					    </div>  --%>
+					    </div> --%>
 					<%-- 실제 데이터가 축적되면 이 부분까지 삭제 또는 주석 처리  --%>
-					<%-- 실제 데이터가 축적되면 아래 c:import 영역을 주석 해제 바람--%>
+					<%-- 실제 데이터가 축적되면 아래 c:import 영역을 주석 해제 바람
 						<c:import url="/travel/route/bestlatest.do" charEncoding="utf-8">
 						    <c:param name="pageUnit" value="5" />
 						</c:import>
-					
+					--%>
 					
 					<%-- 
 					    <div class="writer_recommend_box">
