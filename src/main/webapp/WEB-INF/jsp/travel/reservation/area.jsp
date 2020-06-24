@@ -95,11 +95,9 @@
 				      		</select>
 				      		<select id="" name="" title="시간">
 				    	  		<option value="">시간선택</option>
-				    	  		<option value="">09:00~10:00</option>
-					      		<option value="">10:00~12:00</option>
-					      		<option value="">12:00~14:00</option>
-					      		<option value="">14:00~16:00</option>
-					      		<option value="">16:00~18:00</option>
+				    	  		<option value="">오전</option>
+					      		<option value="">오후</option>
+					      		<option value="">종일</option>
 				      		</select>
 						</div>
 						<div class="btn">
@@ -117,11 +115,11 @@
 	            		</dl>
 	            		<dl class="form_group">
 	            			<dt>날짜</dt>
-	            			<dd><input type="text" id="" name="" /></dd>
+	            			<dd><div class="reserv_view"><span>2020</span>년 <span>7</span>월  <span>4</span>일</div></dd>
 	            		</dl>
 	            		<dl class="form_group">
 	            			<dt>시간</dt>
-	            			<dd><div class="reserv_view">10:00~12:00</div></dd>
+	            			<dd><div class="reserv_view">오후</div></dd>
 	            		</dl>
 	            		<dl class="form_group">
 	            			<dt>인원</dt>
