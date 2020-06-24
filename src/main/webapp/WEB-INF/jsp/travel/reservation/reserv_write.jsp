@@ -33,16 +33,12 @@
 	            			</dd>
 	            		</dl>
 	            		<dl class="form_group">
-	            			<dt>파라솔번호</dt>
-	            			<dd><div class="reserv_view">10번</div></dd>
-	            		</dl>
-	            		<dl class="form_group">
 	            			<dt>날짜</dt>
 	            			<dd><input type="text" id="" name="" /></dd>
 	            		</dl>
 	            		<dl class="form_group">
 	            			<dt>시간</dt>
-	            			<dd><div class="reserv_view">10:00~12:00</div></dd>
+	            			<dd><div class="reserv_view">오후</div></dd>
 	            		</dl>
 	            		<dl class="form_group">
 	            			<dt>인원</dt>

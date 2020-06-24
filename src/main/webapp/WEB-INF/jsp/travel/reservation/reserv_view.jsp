@@ -21,7 +21,7 @@
         	<div id="content" class="cont_wrap">
 
 			<div class="cont_head">
-                <h2 class="title">해수욕장 예약하기</h2>
+                <h2 class="title">해수욕장 예약확인</h2>
             </div><!--// cont_head -->
             <div class="cont_body">
 	           <div class="inr">
@@ -35,25 +35,19 @@
 	            		<dl class="form_group">
 	            			<dt>해수욕장</dt>
 	            			<dd>
-	            				<p>부산 / 해운대해수욕장</p>
-	            			</dd>
-	            		</dl>
-	            		<dl class="form_group">
-	            			<dt>파라솔 번호</dt>
-	            			<dd>
-	            				<p>10번</p>
+	            				<p>전남 / 외달도해수욕장</p>
 	            			</dd>
 	            		</dl>
 	            		<dl class="form_group">
 	            			<dt>날짜</dt>
 	            			<dd>
-	            				<p>2020년 6월 4일</p>
+	            				<p>2020년 7월 4일</p>
 	            			</dd>
 	            		</dl>
 	            		<dl class="form_group">
 	            			<dt>시간</dt>
 	            			<dd>
-	            				<p>10:00~12:00</p>
+	            				<p>오후</p>
 	            			</dd>
 	            		</dl>
 	            		<dl class="form_group">
