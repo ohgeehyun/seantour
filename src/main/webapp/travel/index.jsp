@@ -172,38 +172,256 @@
 					        <p class="tit">한적한<strong>해수욕장</strong></p>
 					    </div>
 						<div class="vest_recommend_box">
-					    	<div class="col01">
-
-					    		<div class="img"><a href="/seantour_map/travel/destination/detail.do?destId=FCID000170"><img src="${pageContext.request.contextPath}/images/travel/main/img_m_pull01.jpg" alt="" /></a></div>
-
-					    		<div class="tbox">
-					    			<span>[경남]</span>
-					    			<p>와현모래숲해수욕장</p>
+					    								<div class="col01 main_pull_slider">
+					    		<div class="pull_item">
+					    			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000442">
+							    		<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_slider_pull01.jpg" alt="" /></span>
+							    		<span class="tbox">
+							    			<strong>[강원]</strong>
+							    			<span>노봉해수욕장</span>
+						    			</span>
+						    		</a>
+					    		</div>
+								<div class="pull_item">
+					    			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000465">
+							    		<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_slider_pull02.jpg" alt="" /></span>
+							    		<span class="tbox">
+							    			<strong>[경남]</strong>
+							    			<span>남일대해수욕장</span>
+						    			</span>
+						    		</a>
+					    		</div>
+								<div class="pull_item">
+					    			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000460">
+							    		<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_slider_pull03.jpg" alt="" /></span>
+							    		<span class="tbox">
+							    			<strong>[경북]</strong>
+							    			<span>경정해수욕장</span>
+						    			</span>
+						    		</a>
+					    		</div>
+								<div class="pull_item">
+					    			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000452">
+							    		<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_slider_pull04.jpg" alt="" /></span>
+							    		<span class="tbox">
+							    			<strong>[전남]</strong>
+							    			<span>남열해돋이해수욕장</span>
+						    			</span>
+						    		</a>
+					    		</div>
+								<div class="pull_item">
+					    			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000451">
+							    		<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_slider_pull05.jpg" alt="" /></span>
+							    		<span class="tbox">
+							    			<strong>[전북]</strong>
+							    			<span>구시포해수욕장</span>
+						    			</span>
+						    		</a>
+					    		</div>
+								<div class="pull_item">
+					    			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000446">
+							    		<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_slider_pull06.jpg" alt="" /></span>
+							    		<span class="tbox">
+							    			<strong>[충남]</strong>
+							    			<span>기지포해수욕장</span>
+						    			</span>
+						    		</a>
+					    		</div>
+								<div class="pull_item">
+					    			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000444">
+							    		<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_slider_pull07.jpg" alt="" /></span>
+							    		<span class="tbox">
+							    			<strong>[강원]</strong>
+							    			<span>문암해수욕장</span>
+						    			</span>
+						    		</a>
+					    		</div>
+								<div class="pull_item">
+					    			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000464">
+							    		<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_slider_pull08.jpg" alt="" /></span>
+							    		<span class="tbox">
+							    			<strong>[경남]</strong>
+							    			<span>사량대항해수욕장</span>
+						    			</span>
+						    		</a>
+					    		</div>
+								<div class="pull_item">
+					    			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000458">
+							    		<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_slider_pull09.jpg" alt="" /></span>
+							    		<span class="tbox">
+							    			<strong>[경북]</strong>
+							    			<span>기성망양해수욕장</span>
+						    			</span>
+						    		</a>
+					    		</div>
+								<div class="pull_item">
+					    			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000453">
+							    		<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_slider_pull10.jpg" alt="" /></span>
+							    		<span class="tbox">
+							    			<strong>[전남]</strong>
+							    			<span>송호해수욕장</span>
+						    			</span>
+						    		</a>
+					    		</div>
+								<div class="pull_item">
+					    			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000450">
+							    		<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_slider_pull11.jpg" alt="" /></span>
+							    		<span class="tbox">
+							    			<strong>[전북]</strong>
+							    			<span>모항해수욕장</span>
+						    			</span>
+						    		</a>
+					    		</div>
+								<div class="pull_item">
+					    			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000447">
+							    		<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_slider_pull12.jpg" alt="" /></span>
+							    		<span class="tbox">
+							    			<strong>[충남]</strong>
+							    			<span>갈음이해수욕장</span>
+						    			</span>
+						    		</a>
+					    		</div>
+								<div class="pull_item">
+					    			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000441">
+							    		<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_slider_pull13.jpg" alt="" /></span>
+							    		<span class="tbox">
+							    			<strong>[강원]</strong>
+							    			<span>복분해수욕장</span>
+						    			</span>
+						    		</a>
+					    		</div>
+								<div class="pull_item">
+					    			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000463">
+							    		<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_slider_pull14.jpg" alt="" /></span>
+							    		<span class="tbox">
+							    			<strong>[경남]</strong>
+							    			<span>여차해변해수욕장</span>
+						    			</span>
+						    		</a>
+					    		</div>
+								<div class="pull_item">
+					    			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000459">
+							    		<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_slider_pull15.jpg" alt="" /></span>
+							    		<span class="tbox">
+							    			<strong>[경북]</strong>
+							    			<span>장사해수욕장</span>
+						    			</span>
+						    		</a>
+					    		</div>
+								<div class="pull_item">
+					    			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000456">
+							    		<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_slider_pull16.jpg" alt="" /></span>
+							    		<span class="tbox">
+							    			<strong>[전남]</strong>
+							    			<span>수문해수욕장</span>
+						    			</span>
+						    		</a>
+					    		</div>
+								<div class="pull_item">
+					    			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000449">
+							    		<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_slider_pull17.jpg" alt="" /></span>
+							    		<span class="tbox">
+							    			<strong>[전북]</strong>
+							    			<span>위도해수욕장</span>
+						    			</span>
+						    		</a>
+					    		</div>
+								<div class="pull_item">
+					    			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000448">
+							    		<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_slider_pull18.jpg" alt="" /></span>
+							    		<span class="tbox">
+							    			<strong>[충남]</strong>
+							    			<span>난지섬해수욕장</span>
+						    			</span>
+						    		</a>
+					    		</div>
+								<div class="pull_item">
+					    			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000443">
+							    		<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_slider_pull19.jpg" alt="" /></span>
+							    		<span class="tbox">
+							    			<strong>[강원]</strong>
+							    			<span>사천해수욕장</span>
+						    			</span>
+						    		</a>
+					    		</div>
+								<div class="pull_item">
+					    			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000462">
+							    		<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_slider_pull20.jpg" alt="" /></span>
+							    		<span class="tbox">
+							    			<strong>[경남]</strong>
+							    			<span>옥계해수욕장</span>
+						    			</span>
+						    		</a>
+					    		</div>
+								<div class="pull_item">
+					    			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000455">
+							    		<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_slider_pull21.jpg" alt="" /></span>
+							    		<span class="tbox">
+							    			<strong>[전남]</strong>
+							    			<span>짱뚱어해수욕장</span>
+						    			</span>
+						    		</a>
+					    		</div>
+								<div class="pull_item">
+					    			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000471">
+							    		<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_slider_pull22.jpg" alt="" /></span>
+							    		<span class="tbox">
+							    			<strong>[강원]</strong>
+							    			<span>원평해수욕장</span>
+						    			</span>
+						    		</a>
+					    		</div>
+								<div class="pull_item">
+					    			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000461">
+							    		<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_slider_pull23.jpg" alt="" /></span>
+							    		<span class="tbox">
+							    			<strong>[경남]</strong>
+							    			<span>와현모래숲해변</span>
+						    			</span>
+						    		</a>
+					    		</div>
+								<div class="pull_item">
+					    			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000457">
+							    		<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_slider_pull24.jpg" alt="" /></span>
+							    		<span class="tbox">
+							    			<strong>[전남]</strong>
+							    			<span>홍통해수욕장</span>
+						    			</span>
+						    		</a>
+					    		</div>
+								<div class="pull_item">
+					    			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000454">
+							    		<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_slider_pull25.jpg" alt="" /></span>
+							    		<span class="tbox">
+							    			<strong>[전남]</strong>
+							    			<span>예송해수욕장</span>
+						    			</span>
+						    		</a>
 					    		</div>
 					    	</div>
 					    	<div class="col02">
 					    		<ul>
 					    			<li>
-					    				<a href="/seantour_map/travel/destination/detail.do?destId=FCID000261">
+					    				<a href="/seantour_map/travel/destination/detail.do?destId=DEST000461">
 
-						    				<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_m_pull02.jpg" alt="" /></span>
-						    				<span class="text"><span class="local">[충남]</span>기지포해수욕장</span>
+						    				<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_m_pull01.jpg" alt="" /></span>
+						    				<span class="text"><span class="local">[경남]</span>와현모래숲해변</span>
 					    				</a>
 					    			</li>
 					    			<li>
-					    				<a href="/seantour_map/travel/destination/detail.do?destId=FCID000249">
+					    				<a href="/seantour_map/travel/destination/detail.do?destId=DEST000448">
 						    				<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_m_pull03.jpg" alt="" /></span>
 						    				<span class="text"><span class="local">[충남]</span>난지섬해수욕장</span>
 					    				</a>
 					    			</li>
 					    			<li>
-					    				<a href="/seantour_map/travel/destination/detail.do?destId=FCID000069">
+					    				<a href="/seantour_map/travel/destination/detail.do?destId=DEST000452">
 						    				<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_m_pull04.jpg" alt="" /></span>
 						    				<span class="text"><span class="local">[전남]</span>남일해돋이해수욕장</span>
 					    				</a>
 					    			</li>
 					    			<li>
-					    				<a href="/seantour_map/travel/destination/detail.do?destId=FCID101869">
+					    				<a href="/seantour_map/travel/destination/detail.do?destId=DEST000465">
 						    				<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_m_pull05.jpg" alt="" /></span>
 						    				<span class="text"><span class="local">[경남]</span>남일대해수욕장</span>
 					    				</a>

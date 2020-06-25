@@ -112,6 +112,50 @@ $(function(){
 };
 	$.fn.slide();
 });
+//main_pull_slider
+function main_pull_slider(){
+
+    var $slider = $('.main_pull_slider');
+
+    if( !$slider.length ){ return; }
+
+    // init
+    $slider.slick({
+		slidesToShow: 1,
+		slidesToScroll: 1,
+        speed: 1000,
+        autoplay: true,
+        arrows: false,
+        dots: false,
+        //dotsClass: 'slick-dots',
+        //appendDots: $(".main_event_wrap .area_ctrl"),
+       adaptiveHeight: true,
+        infinite: true,
+        responsive: [
+            {
+                breakpoint: 769,
+                settings: {
+                    slidesToShow: 1
+                }
+            },
+            {
+	      breakpoint: 600,
+	      settings: {
+	        slidesToShow: 1,
+	        slidesToScroll: 1
+	      }
+	    },
+	    {
+	      breakpoint: 480,
+	      settings: {
+	        slidesToShow: 1,
+	        slidesToScroll: 1
+	      }
+	    }
+        ]
+	});
+
+}
 // main recommendation slider
 function main_event_slider(){
 
@@ -283,6 +327,7 @@ function main_cont_slider(){
 }
 
 jQuery(function($) {
+main_pull_slider();
 main_event_slider();
 main_writer_slider();
 main_cont_slider();
