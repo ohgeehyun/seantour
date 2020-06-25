@@ -44,7 +44,7 @@
 			<%@ include file="/WEB-INF/jsp/travel/tpl/gnb.jsp" %>
 		<!-- // header -->
 	<!-- contaniner -->
-		<div id="container" >
+		<div id="container" class="main">
 			<!-- cont_main -->
 			<div class="cont_main" id="content">
 				<div class="spotzone trans400">
