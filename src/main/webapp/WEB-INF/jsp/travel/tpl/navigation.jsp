@@ -105,6 +105,8 @@
                          		 fn:contains(pageContext.request.requestURI, 'travel/destination/detail') ||
 								fn:contains(pageContext.request.requestURI, 'travel/member') ||
 								fn:contains(pageContext.request.requestURI, 'travel/destination/stats') ||
+								fn:contains(pageContext.request.requestURI, 'travel/destination/summer_list') ||
+								fn:contains(pageContext.request.requestURI, 'travel/reservation/') ||
 								fn:contains(pageContext.request.requestURI, 'travel/info_square')}">
 						
 								
@@ -121,6 +123,8 @@
 						<%-- <c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/statistics')}"><a href="#none">통계</c:if> --%>
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/destination/stats')}"><a href="#none">통계</c:if>
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/info_policy')}"><a href="#none">저작권정책</c:if>
+						<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/destination/summer_list')}"><a href="#none">한적한 해수욕장</c:if>
+							<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/reservation/area')}"><a href="#none">예약 시스템</c:if>
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/email')}"><a href="#none">이메일수집거부</c:if>
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/updateinfo')}"><a href="#none">Q&A</c:if>
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/leaflet')}"><a href="#none">리플렛</c:if>
@@ -174,6 +178,12 @@
 	                                <li><a href="<c:url value='/travel/info_square/info_policy/index.jsp'/>">저작권정책</a></li>
 	                                <li><a href="<c:url value='/travel/info_square/email/index.jsp'/>">이메일무단수집거부</a></li>
 								</c:if> 
+								 <c:if test="${fn:contains(pageContext.request.requestURI, 'travel/destination/summer_list')||
+												 fn:contains(pageContext.request.requestURI, 'travel/reservation')}">
+									<li><a href="<c:url value='/travel/destination/summerlist.do'/>">한적한 해수욕장25선</a></li>
+									<li><a href="<c:url value='/travel/reservation/area.do'/>">예약 시스템</a></li>							
+									</c:if>
+								
 			                	</ul>
 			                </div>
 			            </li> 

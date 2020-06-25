@@ -59,7 +59,7 @@
                             </ul>
                         </div> 
                     </li>
-                      <li><a href="<c:url value='/travel/destination/summerlist.do'/>">여름시즌</a>
+                      <li><a href="<c:url value='/travel/destination/summerlist.do'/>">해수욕장</a>
                        <div>
                         <ul>
                          <li><a href="<c:url value='/travel/destination/summerlist.do'/>">한적한 해수욕장25선</a></li>
@@ -122,7 +122,7 @@
                                			
                                     </ul>
                                 </li>
-                                 <li><a href="<c:url value='/travel/destination/summerlist.do'/>">여름시즌</a>
+                                 <li><a href="<c:url value='/travel/destination/summerlist.do'/>">해수욕장</a>
                       				 <div>
                       				  <ul>
                       				  	 <li><a href="<c:url value='/travel/destination/summerlist.do'/>">한적한 해수욕장25선</a></li>
