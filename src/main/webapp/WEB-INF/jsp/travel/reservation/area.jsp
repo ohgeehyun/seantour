@@ -93,7 +93,7 @@ function fn_display_none(){
 
 $(document).ready(function(){
 	map = 1;
-	$(".btn_srch").click(function(e){
+	$(".reserv_srch").click(function(e){
 		if(map !=1){
 			$(".jn_map").show();
 		}else{
