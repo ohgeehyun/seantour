@@ -29,7 +29,7 @@
 	            		<dl class="form_group">
 	            			<dt>예약번호</dt>
 	            			<dd>
-	            				<p>p21146348643</p>
+	            				<p>p21146348643<a href="#none" class="button reserv_btn">취소</a></p>
 	            			</dd>
 	            		</dl>
 	            		<dl class="form_group">

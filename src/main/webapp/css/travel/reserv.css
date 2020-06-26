@@ -83,6 +83,7 @@
 .reservBtn_box{margin-top:25px;}
 
 .reserv_wrap_confirm{box-sizing:border-box;width:45%;margin:0 auto;padding:30px 40px;background:#f8f8f8;border:1px solid #cbcbcb;}
+.reserv_wrap_confirm + .reserv_wrap_confirm{margin-top:15px;}
 .reserv_wrap_confirm .form_group{margin-top:10px;padding-top:10px;border-top:1px solid #d6d6d6;}
 .reserv_wrap_confirm .form_group:first-child{margin-top:0;padding-top:0;border-top:none;}
 .reserv_wrap_confirm .form_group:after{content:'';display:block;clear:both;}
@@ -90,6 +91,8 @@
 .reserv_wrap_confirm .form_group dd{float:left;height:40px;line-height:40px;}
 .reserv_wrap_confirm .form_group dt{width:25%;font-weight:600;}
 .reserv_wrap_confirm .form_group dd{width:calc(100% - 25%);}
+
+.reserv_wrap_confirm .form_group dd .reserv_btn{float:right;}
 
 /* 개인정보 제공 동의 */
 .lec_privacy{box-sizing:border-box;width:45%;margin:0 auto;}
