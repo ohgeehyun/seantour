@@ -90,6 +90,17 @@ function fn_display_none(){
 	document.getElementById("lec_privacy_tit").style.display = 'none';
 	document.getElementById("lec_privacy").style.display = 'none';
 }
+
+$(document).ready(function(){
+	map = 1;
+	$(".btn_srch").click(function(e){
+		if(map !=1){
+			$(".jn_map").show();
+		}else{
+			$(".jn_map").hide();
+		} 
+	});
+});
 </script>
 <body>
 	<div id="wrap">
@@ -155,7 +166,7 @@ function fn_display_none(){
 				      		</select>
 						</div>
 						<div class="btn">
-							<a href="javascript:fn_egov_link_page()">검색</a>
+							<a href="javascript:fn_egov_link_page()" class="reserv_srch">검색</a>
 						</div>
 						</fieldset>
 					</div>
