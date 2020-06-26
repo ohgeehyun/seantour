@@ -76,12 +76,7 @@
 		    geo_reservation_info.RESE_BEACH_ID = geo_reservation.RESE_BEACH_ID
 		        AND geo_reservation.RESE_BEACH_ID = #reseBeachId#
 		        AND geo_reservation.RESE_DATE = #reseDate#
-		<isEqual property="reseTime" compareValue="03">
-		        AND geo_reservation.RESE_TIME in ('01', '02')
-		</isEqual>
-		<isNotEqual property="reseTime" compareValue="03">
 		        AND geo_reservation.RESE_TIME = #reseTime#
-		</isNotEqual>
 	</select>
 
 	<select id="travelReservationDAO.selectTravelReservationDuplYn" parameterClass="travelReservationVO" resultClass="String">
@@ -95,12 +90,7 @@
 		WHERE
 		    RESE_BEACH_ID = #reseBeachId#
 		        AND RESE_DATE = #reseDate#
-		<isEqual property="reseTime" compareValue="03">
-		        AND RESE_TIME in ('01', '02')
-		</isEqual>
-		<isNotEqual property="reseTime" compareValue="03">
 		        AND RESE_TIME = #reseTime#
-		</isNotEqual>
 		        AND RESE_NAME = #reseName#
 		        AND RESE_TEL = #reseTel#
 	</select>

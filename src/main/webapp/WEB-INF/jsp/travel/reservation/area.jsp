@@ -149,9 +149,9 @@ function fn_display_none(){
 				      		</select>
 				      		<select id="reseTime" name="reseTime" title="시간" onchange="fn_display_none();">
 				    	  		<option value="">시간선택</option>
-				    	  		<option value="01" <c:if test="${travelReservation.reseTime eq '01'}">selected="selected"</c:if>>오전</option>
-					      		<option value="02" <c:if test="${travelReservation.reseTime eq '02'}">selected="selected"</c:if>>오후</option>
-					      		<option value="03" <c:if test="${travelReservation.reseTime eq '03'}">selected="selected"</c:if>>종일</option>
+				    	  		<option value="01" <c:if test="${travelReservation.reseTime eq '01'}">selected="selected"</c:if>>9:00 ~ 12:00</option>
+					      		<option value="02" <c:if test="${travelReservation.reseTime eq '02'}">selected="selected"</c:if>>12:00 ~ 15:00</option>
+					      		<option value="03" <c:if test="${travelReservation.reseTime eq '03'}">selected="selected"</c:if>>15:00 ~ 18:00</option>
 				      		</select>
 						</div>
 						<div class="btn">
@@ -182,9 +182,9 @@ function fn_display_none(){
 	            			<dt>시간</dt>
 	            			<dd>
 	            				<div class="reserv_view">
-	            					<c:if test="${travelReservation.reseTime eq '01'}">오전</c:if>
-	            					<c:if test="${travelReservation.reseTime eq '02'}">오후</c:if>
-	            					<c:if test="${travelReservation.reseTime eq '03'}">종일</c:if>
+	            					<c:if test="${travelReservation.reseTime eq '01'}">9:00 ~ 12:00</c:if>
+	            					<c:if test="${travelReservation.reseTime eq '02'}">12:00 ~ 15:00</c:if>
+	            					<c:if test="${travelReservation.reseTime eq '03'}">15:00 ~ 18:00</c:if>
 	            				</div>
 	            			</dd>
 	            		</dl>
@@ -192,7 +192,7 @@ function fn_display_none(){
 	            			<dt>인원</dt>
 	            			<dd>
 	            				<select id="resePersonnel" name="resePersonnel" title="인원">
-	            					<c:forEach var="i" begin="1" end="20" step="1">
+	            					<c:forEach var="i" begin="1" end="5" step="1">
 	            						<option value="${i}">${i}</option>
 	            					</c:forEach>
 	            				</select>

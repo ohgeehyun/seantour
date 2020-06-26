@@ -108,7 +108,11 @@ function fn_egov_link_page(pageNo){
 								<td><c:out value="${rese.reseNo}"/></td>
 								<td><c:out value="${rese.reseBeachName}"/></td>
 								<td><c:out value="${fn:substring(rese.reseDate, 0, 4)}"/>년 <c:out value="${fn:substring(rese.reseDate, 5, 7)}"/>월 <c:out value="${fn:substring(rese.reseDate, 8, 10)}"/>일</td>
-								<td><c:if test="${rese.reseTime eq '01'}">오전</c:if><c:if test="${rese.reseTime eq '02'}">오후</c:if></td>
+								<td>
+	            					<c:if test="${rese.reseTime eq '01'}">9:00 ~ 12:00</c:if>
+	            					<c:if test="${rese.reseTime eq '02'}">12:00 ~ 15:00</c:if>
+	            					<c:if test="${rese.reseTime eq '03'}">15:00 ~ 18:00</c:if>
+								</td>
 								<td><c:out value="${rese.resePersonnel}"/>명</td>
 								<td><c:out value="${rese.reseName}"/></td>
 								<td><c:out value="${fn:substring(rese.reseTel, 0, 3)}"/>-<c:out value="${fn:substring(rese.reseTel, 3, 7)}"/>-<c:out value="${fn:substring(rese.reseTel, 7, 11)}"/></td>

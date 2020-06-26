@@ -1,9 +1,9 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ include file="/WEB-INF/jsp/travel/tpl/include.jsp" %>
+<% request.setCharacterEncoding("UTF-8"); %> 
 
 <!DOCTYPE HTML>
 <html lang="ko">
-<% request.setCharacterEncoding("UTF-8"); %> 
 <head>
 	<%@ include file="/WEB-INF/jsp/travel/tpl/head.jsp" %>
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/travel/main.css'/>" />
@@ -25,7 +25,7 @@ function fn_reservView(){
 		return;
 	}
 	
-	location.href = "<c:url value='/travel/reservation/reserv_view.do'/>?reseName=" + encodeURI(reseName, "UTF-8") + "&reseTel=" + reseTel;
+	location.href = "<c:url value='/travel/reservation/reserv_view.do'/>?reseName=" + reseName + "&reseTel=" + reseTel;
 }
 </script>
 <body>
