@@ -161,7 +161,7 @@ public class TravelReservationController {
 			,HttpServletRequest request
 			,Model model) throws Exception {
 		String reseName = request.getParameter("reseName");
-		if(reseName != null) reseName = new String(reseName.getBytes("8859_1"),"UTF-8");
+		//if(reseName != null) reseName = new String(reseName.getBytes("8859_1"),"UTF-8");
 		String reseTel = request.getParameter("reseTel");
 		
 		travelReservation.setReseName(reseName);
