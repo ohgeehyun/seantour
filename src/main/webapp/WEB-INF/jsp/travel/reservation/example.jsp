@@ -3,7 +3,7 @@
 
 <!DOCTYPE HTML>
 <html lang="ko">
-<% request.setCharacterEncoding("UTF-8"); %>
+<% request.setCharacterEncoding("UTF-8"); %> 
 <head>
 	<%@ include file="/WEB-INF/jsp/travel/tpl/head.jsp" %>
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/travel/main.css'/>" />
