@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="travelMainDAO">
+
+    <typeAlias alias="travelMain" type="geocni.travel.route.domain.TravelMain" />
+    
+	<select id="travelMainDAO.selectBeachPerCnt" parameterClass="java.lang.String" resultClass="travelMain">
+        <![CDATA[
+			SELECT ETL_DT AS etlDt
+			     , SEQ_ID AS seqId
+			     , POI_NM AS poiNm
+			     , UNIQ_POP AS uniqPop
+			  FROM GEO_BEACH_CONGESTION
+             WHERE ETL_DT = #datestr#
+        ]]>
+    </select>
+</sqlMap>
