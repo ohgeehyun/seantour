@@ -94,6 +94,8 @@
 
 .reserv_wrap_confirm .form_group dd .reserv_btn{float:right;}
 
+.jn_map{margin-top:30px;text-align:center;background:#e4f2f8;}
+
 /* 개인정보 제공 동의 */
 .lec_privacy{box-sizing:border-box;width:45%;margin:0 auto;}
 .lec_privacy:after{content:'';display:block;clear:both;}

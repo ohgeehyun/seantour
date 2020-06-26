@@ -168,7 +168,7 @@ function fn_reservView(){
 								</div>
 							</div>
 						</div>
-				</div><!-- //spotzone -->
+				</div><!-- //spotzone --> 
 				<div class="section00">
 					<div class="inr">
 						<p>해수욕장 혼잡도 신호등은 <span>네이버</span>와 함께 합니다.</p>

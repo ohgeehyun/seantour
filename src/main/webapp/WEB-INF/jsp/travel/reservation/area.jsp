@@ -159,6 +159,7 @@ function fn_display_none(){
 						</div>
 						</fieldset>
 					</div>
+					<div class="jn_map"><img src="/seantour_map/images/travel/content/img_jn_map.png" /></div>
 					<div class="reserv_wrap" id="reserv_wrap" style="display:none">
 	            		<dl class="form_group">
 	            			<dt>해수욕장</dt>
