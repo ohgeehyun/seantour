@@ -1,0 +1,40 @@
+@charset "utf-8";
+
+
+/* Login CSS */
+.login_wrap{width:100%;height:100%;background:#fff;}
+.section_login{position:absolute; top:50%; left:50%; box-sizing:border-box; width:542px; /*height:356px;*/ height:272px; margin:-178px 0 0 -271px; padding:35px 40px; background:#f1f1f1;}
+.section_login .logo{text-align:center;}
+
+.section_login .bx_login{position:relative; width:100%; margin:25px auto 0;}
+.section_login .bx_login .inp_area{overflow:hidden; margin:0 0 8px;}
+.section_login .bx_login .inp_area label{float:left; width:46px; font-weight:bold; line-height:52px; font-size:14px; color:#231f20;}
+.section_login .bx_login .inp_area input{float:left; box-sizing:border-box; width:300px; height:52px; line-height:52px; padding:2px 0 0 3px; background:#fff; border:none;}
+.section_login .bx_login .btn_login{position:absolute; top:0; right:0; width:103px; height:112px; line-height:112px; background:#0072bc; font-size:16px; font-weight:600; color:#fff; text-align:center;}
+.section_login .util *{float:left;font-size:14px;color:#231f20;}
+.section_login .util{padding:10px 0 35px;border-bottom:1px solid #cdcdcd;}
+.section_login .util:after{content:'';display:block;clear:both;}
+.section_login .util input{display:inline-block;margin-right:5px;}
+.section_login .util ul{float:right;}
+.section_login .util ul li{position:relative;margin-left:10px;padding-left:10px;}
+.section_login .util ul li:before{content:'';display:inline-block;position:absolute;top:50%;left:0;margin-top:-6px;width:1px;height:12px;background:#a7a7a7;}
+.section_login .util ul li:first-child:before{display:none;}
+
+#footer{position:absolute; bottom:30px; left:0; width:100%; text-align:center; font-size:12px; color:#b1b1b1;}
+#footer p{margin:0 0 5px;}
+
+/* 회원가입 
+div.login_area {padding:30px 0;width:100%;border-top:2px solid #266fcc; border-bottom:1px solid #9f9f9f; background:#fff;}
+div.login_area .login_guide .txt1{padding:15px 0 5px; font-weight:bold; font-size:17px; color:#fa5c01;}
+div.login_area .bx_login{position:relative; width:380px; min-height:86px; margin:0 auto; padding:25px 0 0 80px; border:1px solid #d3d3cc;}
+div.login_area .bx_login .inp_area{overflow:hidden; margin:0 0 8px;}
+div.login_area .bx_login .inp_area label{float:left; min-width:63px; font-weight:bold; line-height:24px;}
+div.login_area .bx_login .inp_area input{float:left; width:142px; height:20px; padding:2px 0 0 3px; border:1px solid #d3d3cc;}
+div.login_area .bx_login .btn_login{position:absolute; top:25px; right:75px;}
+
+ul.login_join {overflow:hidden;margin:10px auto 0;width:201px;}
+ul.login_join li {float:left;padding:0 10px;background: url(/images/header/bg_top_line.gif) no-repeat 0 50%;}
+ul.login_join li:first-child {background:none;}
+ul.login_join li a:hover {text-decoration:underline;}
+.mgtype {margin-top:30px !important;}
+*/

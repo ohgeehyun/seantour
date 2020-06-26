@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="travelReservationDAO">
+
+	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias alias="travelReservationVO" type="geocni.travel.route.domain.TravelReservation" />
+	<typeAlias alias="travelFiles" type="geocni.travel.common.files.domain.TravelFiles" />
+
+	<resultMap id="travelReservationMin" class="geocni.travel.route.domain.TravelReservation">
+		<result property="reseBeachId" column="rese_beach_id" />
+		<result property="reseBeachRegionCd" column="rese_beach_region_cd" />
+		<result property="reseBeachNameCd" column="rese_beach_name_cd" />
+		<result property="reseBeachRegion" column="rese_beach_region" />
+		<result property="reseBeachName" column="rese_beach_name" />
+		<result property="reseBeachMax" column="rese_beach_max" />
+		<result property="useYn" column="use_yn" />
+		<result property="reseNo" column="rese_no" />
+		<result property="reseDate" column="rese_date" />
+		<result property="reseTime" column="rese_time" />
+		<result property="resePersonnel" column="rese_personnel" />
+		<result property="reseName" column="rese_name" />
+		<result property="reseTel" column="rese_tel" />
+		<result property="reservationYn" column="rese_tel" />
+	</resultMap>
+
+	<select id="travelReservationDAO.selectTravelReservationRegionList" parameterClass="travelReservationVO" resultClass="travelReservationVO">
+		<![CDATA[
+			SELECT DISTINCT
+			    rese_beach_region_cd AS reseBeachRegionCd,
+			    rese_beach_region AS reseBeachRegion
+			FROM
+			    geo_reservation_info
+			WHERE
+			    use_yn = 'Y'
+			ORDER BY rese_beach_region
+		]]>
+	</select>
+
+	<select id="travelReservationDAO.selectTravelReservationBeachList" parameterClass="travelReservationVO" resultClass="travelReservationVO">
+			SELECT DISTINCT
+			    rese_beach_region_cd AS reseBeachRegionCd,
+			    rese_beach_region AS reseBeachRegion,
+			    rese_beach_name_cd AS reseBeachNameCd,
+			    rese_beach_name AS reseBeachName
+			FROM
+			    geo_reservation_info
+			WHERE
+			    use_yn = 'Y'
+			ORDER BY rese_beach_region, rese_beach_name
+	</select>
+
+	<select id="travelReservationDAO.selectTravelOpenYn" parameterClass="travelReservationVO" resultClass="String">
+		SELECT 
+		    CASE
+		        WHEN COUNT(*) = 1 THEN 'Y'
+		        ELSE 'N'
+		    END AS openYn
+		FROM
+		    geo_reservation_info
+		WHERE
+		    RESE_BEACH_ID = #reseBeachId#
+		        AND #reseDate# BETWEEN START_DATE AND END_DATE
+	</select>
+
+	<select id="travelReservationDAO.selectTravelReservationYn" parameterClass="travelReservationVO" resultClass="String">
+		SELECT 
+		    CASE
+		        WHEN IFNULL(SUM(geo_reservation.RESE_PERSONNEL), 0) <isNotEmpty property="resePersonnel">+ $resePersonnel$</isNotEmpty> <![CDATA[>]]> (select RESE_BEACH_MAX from geo_reservation_info where RESE_BEACH_ID = #reseBeachId#) THEN 'N'
+		        ELSE 'Y'
+		    END AS reservationYn
+		FROM
+		    geo_reservation_info,
+		    geo_reservation
+		WHERE
+		    geo_reservation_info.RESE_BEACH_ID = geo_reservation.RESE_BEACH_ID
+		        AND geo_reservation.RESE_BEACH_ID = #reseBeachId#
+		        AND geo_reservation.RESE_DATE = #reseDate#
+		<isEqual property="reseTime" compareValue="03">
+		        AND geo_reservation.RESE_TIME in ('01', '02')
+		</isEqual>
+		<isNotEqual property="reseTime" compareValue="03">
+		        AND geo_reservation.RESE_TIME = #reseTime#
+		</isNotEqual>
+	</select>
+
+	<select id="travelReservationDAO.selectTravelReservationDuplYn" parameterClass="travelReservationVO" resultClass="String">
+		SELECT 
+		    CASE
+		        WHEN COUNT(*) <![CDATA[>]]> 0 THEN 'N'
+		        ELSE 'Y'
+		    END AS duplicationYn
+		FROM
+		    geo_reservation
+		WHERE
+		    RESE_BEACH_ID = #reseBeachId#
+		        AND RESE_DATE = #reseDate#
+		<isEqual property="reseTime" compareValue="03">
+		        AND RESE_TIME in ('01', '02')
+		</isEqual>
+		<isNotEqual property="reseTime" compareValue="03">
+		        AND RESE_TIME = #reseTime#
+		</isNotEqual>
+		        AND RESE_NAME = #reseName#
+		        AND RESE_TEL = #reseTel#
+	</select>
+	
+	<insert id="travelReservationDAO.insertTravelReservation">
+		<![CDATA[
+			INSERT INTO geo_reservation ( 
+				  rese_no
+				, rese_beach_id
+				, rese_date
+				, rese_time
+				, rese_personnel
+				, rese_name
+				, rese_tel
+				, rese_reg_date
+			) VALUES ( 
+				  concat(#reseBeachId#, #reseDate#, #reseTime#, IFNULL(lpad(substr((select max(rese_no) from (select rese_no from geo_reservation where rese_beach_id = #reseBeachId# and rese_date = #reseDate# and rese_time = #reseTime#) tmp), 16)+1, 5, '0'), '00001'))
+				, #reseBeachId#
+				, #reseDate#
+				, #reseTime#
+				, #resePersonnel#
+				, #reseName#
+				, #reseTel#
+				, NOW()
+			)
+		]]>
+	</insert>
+	
+	<delete id="travelReservationDAO.deleteTravelReservation">
+	    <![CDATA[
+			DELETE FROM geo_reservation
+            WHERE rese_no = #reseNo#
+		]]>
+	</delete>
+
+	<select id="travelReservationDAO.selectTravelReservationViewList" parameterClass="travelReservationVO" resultClass="travelReservationVO">
+		<![CDATA[
+			SELECT 
+			    rese_no AS reseNo,
+			    (SELECT 
+			            CONCAT(rese_beach_region,
+			                        ' / ',
+			                        rese_beach_name)
+			        FROM
+			            geo_reservation_info
+			        WHERE
+			            rese_beach_id = geo_reservation.rese_beach_id) AS reseBeachName,
+			    rese_date AS reseDate,
+			    rese_time AS reseTime,
+			    rese_personnel AS resePersonnel,
+			    rese_name AS reseName,
+			    rese_tel AS reseTel
+			FROM
+			    geo_reservation
+			WHERE
+			    RESE_NAME = #reseName#
+			        AND rese_tel = #reseTel#
+		]]>
+	</select>
+
+	<select id="travelReservationDAO.selectTravelReservationAdmin" parameterClass="travelReservationVO" resultClass="String">
+		SELECT 
+		    rese_beach_id
+		FROM
+		    geo_reservation_admin
+		WHERE
+		    RESE_ADMIN_ID = #reseAdminId#
+		        AND RESE_ADMIN_PW = #reseAdminPw#
+	</select>
+
+	<select id="travelReservationDAO.selectTravelReservationList" parameterClass="travelReservationVO" resultClass="travelReservationVO">
+		SELECT 
+		    rese_no AS reseNo,
+		    (SELECT 
+		            CONCAT(rese_beach_region,
+		                        ' / ',
+		                        rese_beach_name)
+		        FROM
+		            geo_reservation_info
+		        WHERE
+		            rese_beach_id = geo_reservation.rese_beach_id) AS reseBeachName,
+		    rese_date AS reseDate,
+		    rese_time AS reseTime,
+		    rese_personnel AS resePersonnel,
+		    rese_name AS reseName,
+		    rese_tel AS reseTel
+		FROM
+		    geo_reservation
+		WHERE
+		    RESE_BEACH_ID = #reseBeachId#
+		        AND RESE_DATE <![CDATA[>=]]> date_format(now(), '%Y%m%d')
+		<isNotEmpty property="searchKeyword">
+			<isEqual property="searchCondition" compareValue="0">
+		        AND RESE_NAME = #searchKeyword#
+			</isEqual>
+			<isEqual property="searchCondition" compareValue="1">
+		        AND RESE_TEL = #searchKeyword#
+			</isEqual>
+			<isEqual property="searchCondition" compareValue="2">
+		        AND RESE_NO = #searchKeyword#
+			</isEqual>
+		</isNotEmpty>
+		ORDER BY reseDate, reseName, reseTel, reseTime
+		LIMIT #firstIndex#, #recordCountPerPage#
+	</select>
+	
+	<select id="travelReservationDAO.selectTravelReservationListCnt" parameterClass="travelReservationVO" resultClass="int">
+		SELECT 
+			COUNT(*) totcnt
+		FROM geo_reservation
+		WHERE
+		    RESE_BEACH_ID = #reseBeachId#
+		        AND RESE_DATE <![CDATA[>=]]> date_format(now(), '%Y%m%d')
+		<isNotEmpty property="searchKeyword">
+			<isEqual property="searchCondition" compareValue="0">
+		        AND RESE_NAME = #searchKeyword#
+			</isEqual>
+			<isEqual property="searchCondition" compareValue="1">
+		        AND RESE_TEL = #searchKeyword#
+			</isEqual>
+			<isEqual property="searchCondition" compareValue="2">
+		        AND RESE_NO = #searchKeyword#
+			</isEqual>
+		</isNotEmpty>
+	</select>
+</sqlMap>

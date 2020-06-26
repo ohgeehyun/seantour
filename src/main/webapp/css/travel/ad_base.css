@@ -1,0 +1,33 @@
+@charset "utf-8";
+
+@import url(font.css);
+
+/*** Base Style ***/
+body,p,div,span,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0; padding:0;}
+body{font-family:'Nanum Gothic', '나눔고딕', '돋움', Dotum, '굴림', Gulim, Sans-serif; font-size:75%; line-height:1.3; color:#404040;}
+h1,h2,h3,h4,h5,h6,input,textarea,button,select,table{font-size:1em;}
+input,textarea,button,select{font-family:'굴림', Gulim, '돋움', Dotum, Sans-serif;}
+img, fieldset, button{border:0;}
+textarea{overflow:auto;}
+button{cursor:pointer;}
+img{vertical-align:top;}
+address, em{font-style:normal;}
+legend, .hidden{overflow:hidden; position:absolute; top:0; left:-2000em; line-height:0;}
+caption{overflow:hidden; line-height:0; text-indent:-2000em;}
+
+/* 링크 기본값 */
+a:link{text-decoration:none; color:#404040;}
+a:visited{text-decoration:none; color:#404040;}
+a:hover{text-decoration:none; color:#404040;}
+a:active{text-decoration:none;}
+a:focus{text-decoration:none;}
+
+/* 리스트 스타일 제거 */
+ul,ol,li{list-style:none;}
+
+/* Skip Navigation */
+#accessibility a {display:block; position:absolute; top:-40px; left:0; z-index:10; width:100%; height:25px; line-height:25px; text-align:center; font-weight:bold; transition:0.3s; -webkit-transition:0.3s; -moz-transition:0.3s; -o-transition:0.3s;}
+#accessibility a:hover {top: 0px; z-index:1000; padding:10px 0; background:#4764ce; color:#fff;}
+#accessibility a:active {top: 0px; z-index:1000; padding:10px 0; background:#4764ce; color:#fff;}
+#accessibility a:focus {top: 0px; z-index:1000; padding:10px 0; background:#4764ce; color:#fff;}
+a#content {margin:0; padding:0; font-size:0; line-height:0;}
