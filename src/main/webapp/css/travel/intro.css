@@ -43,7 +43,7 @@ body {-webkit-text-size-adjust:none;}
 /** Header **/
 #header{width:100%; height:72px; background:#fff;}
 #header .logo{padding-top:21px;text-align:center;}
-#header .logo a{z-index:30; text-indent:-9999px; display:block; width:284px;height:28px; margin:0 auto;background:url(../img/logo.png) 50% 50% no-repeat;background-size:100%;}
+#header .logo a{z-index:30; text-indent:-9999px; display:block; width:284px;height:28px; margin:0 auto;background:url(/seantour_map/images/travel/intro/logo.png) 50% 50% no-repeat;background-size:100%;}
 
 
 
