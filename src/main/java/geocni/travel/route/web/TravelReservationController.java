@@ -115,21 +115,13 @@ public class TravelReservationController {
 					model.addAttribute("alert", "예약이 불가능 합니다.\\n이미 신청한 내역이 있습니다.");
 					return "jnit/util/alertBack";
 				}
-				//인원 값 숫자여부와 20이상인 경우 오류
-				if(Integer.parseInt(travelReservation.getResePersonnel()) > 20 || !NumberUtil.isNumeric(travelReservation.getResePersonnel())) {
+				//인원 값 숫자여부와 5보다 큰 경우 오류
+				if(Integer.parseInt(travelReservation.getResePersonnel()) > 5 || !NumberUtil.isNumeric(travelReservation.getResePersonnel())) {
 					model.addAttribute("alert", "오류가 발생 하였습니다.");
 					return "jnit/util/alertBack";
 				}
 				
-				if("03".equals(travelReservation.getReseTime())) {
-					travelReservation.setReseTime("01");
-					reseService.insertTravelReservation(travelReservation);
-					travelReservation.setReseTime("02");
-					reseService.insertTravelReservation(travelReservation);
-					travelReservation.setReseTime("03");
-				} else {
-					reseService.insertTravelReservation(travelReservation);
-				}
+				reseService.insertTravelReservation(travelReservation);
 			}
 		} catch (NullPointerException e) {
 			log.debug(e);
@@ -161,7 +153,6 @@ public class TravelReservationController {
 			,HttpServletRequest request
 			,Model model) throws Exception {
 		String reseName = request.getParameter("reseName");
-		//if(reseName != null) reseName = new String(reseName.getBytes("8859_1"),"UTF-8");
 		String reseTel = request.getParameter("reseTel");
 		
 		travelReservation.setReseName(reseName);
@@ -269,4 +260,3 @@ public class TravelReservationController {
 		return skinPath + "intro";
 	}
 }
-

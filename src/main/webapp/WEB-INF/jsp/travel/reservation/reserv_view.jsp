@@ -80,8 +80,9 @@ function fn_delete(reseNo){
 	            			<dt>시간</dt>
 	            			<dd>
 	            				<p>
-	            					<c:if test="${view.reseTime eq '01'}">오전</c:if>
-	            					<c:if test="${view.reseTime eq '02'}">오후</c:if>
+	            					<c:if test="${view.reseTime eq '01'}">9:00 ~ 12:00</c:if>
+	            					<c:if test="${view.reseTime eq '02'}">12:00 ~ 15:00</c:if>
+	            					<c:if test="${view.reseTime eq '03'}">15:00 ~ 18:00</c:if>
 	            				</p>
 	            			</dd>
 	            		</dl>
