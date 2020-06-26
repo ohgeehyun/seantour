@@ -315,6 +315,7 @@ a.btn-layerClose:hover {
 .reserv_main_left{box-sizing:border-box;width:100%;height:110px;margin-bottom:30px;padding:25px 20px;border:1px solid #c3d2d5; background:#fff;text-align:center;vertical-align:;}
 .reserv_main_left:after{content:'';display:block;clear:both;}
 .reserv_main_left *{float:left;display:inline-block;}
+.reserv_main_left form{width:100%;}
 .reserv_main_left strong{position:relative;display:inline-block;width:calc(100% - 30% - 30% - 15% - 30px );margin-top:-7px;padding-left:35px;padding-top:10px;font-size:18px;color:#055794;letter-spacing:-1px;}
 .reserv_main_left strong:before{content:'';display:inline-block;position:absolute;top:50%;left:0;margin-top:-14px;width:28px;height:28px;background:url(/seantour_map/images/travel/main/icon_main_reserv.png) no-repeat 0 0;background-size:cover;}
 .reserv_main_left span{width:30%;margin-left:10px;}
