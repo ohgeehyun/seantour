@@ -81,20 +81,20 @@
 								  	   	 <div class="spot spot5"><a href="#none" class="icon red_hover">천진</a></div>
 									  	 <div class="spot spot6"><a href="/seantour_map/travel/destination/detail.do?destId=FCID000050" class="icon green_hover">등대</a></div>
 									  	 <div class="spot spot7"><a href="#none" class="icon green_hover">외옹치</a></div>
-									  	 <div class="spot spot8"><a href="#none" class="icon green_hover">하조대</a></div>
-									  	 <div class="spot spot9"><a href="#none" class="icon green_hover">중광정</a></div> 
-									  	 <div class="spot spot10"><a href="#none" class="icon green_hover">주문진</a></div>
-									  	 <div class="spot spot11"><a href="#none" class="icon green_hover">안목</a></div>
-									  	 <div class="spot spot12"><a href="#none" class="icon green_hover">정동진</a></div>
-									  	 <div class="spot spot13"><a href="#none" class="icon yellow_hover">노봉</a></div>
-									  	 <div class="spot spot14"><a href="#none" class="icon red_hover">추암</a></div>
-									  	 <div class="spot spot15"><a href="#none" class="icon red_hover">맹방</a></div>
-									  	 <div class="spot spot16"><a href="#none" class="icon green_hover">용화</a></div>
-									  	 <div class="spot spot17"><a href="#none" class="icon green_hover">장호</a></div>
-									  	 <div class="spot spot18"><a href="#none" class="icon red_hover">고래불</a></div>
+									  	 <div class="spot spot8"><a href="/seantour_map/travel/destination/detail.do?destId=FCID000293" class="icon green_hover">하조대</a></div>
+									  	 <div class="spot spot9"><a href="/seantour_map/travel/destination/detail.do?destId=FCID102542" class="icon green_hover">중광정</a></div> 
+									  	 <div class="spot spot10"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111605" class="icon green_hover">주문진</a></div>
+									  	 <div class="spot spot11"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111168" class="icon green_hover">안목</a></div>
+									  	 <div class="spot spot12"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111549" class="icon green_hover">정동진</a></div>
+									  	 <div class="spot spot13"><a href="/seantour_map/travel/destination/detail.do?destId=DEST000442" class="icon yellow_hover">노봉</a></div>
+									  	 <div class="spot spot14"><a href="/seantour_map/travel/destination/detail.do?destId=FCID003331" class="icon red_hover">추암</a></div>
+									  	 <div class="spot spot15"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110592" class="icon red_hover">맹방</a></div>
+									  	 <div class="spot spot16"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111358" class="icon green_hover">용화</a></div>
+									  	 <div class="spot spot17"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111527" class="icon green_hover">장호</a></div>
+									  	 <div class="spot spot18"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110180" class="icon red_hover">고래불</a></div>
 									  	 <div class="spot spot19"><a href="#none" class="icon yellow_hover">관성</a></div>
-									  	 <div class="spot spot20"><a href="#none" class="icon yellow_hover">일산</a></div>
-									  	 <div class="spot spot21"><a href="#none" class="icon yellow_hover">진하</a></div>
+									  	 <div class="spot spot20"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111470" class="icon yellow_hover">일산</a></div>
+									  	 <div class="spot spot21"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111658" class="icon yellow_hover">진하</a></div>
 									  	 <div class="spot spot22"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111476" class="icon yellow_hover">임랑</a></div>
 									  	 <div class="spot spot23"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111467" class="icon yellow_hover">일광</a></div>
 									  	 <div class="spot spot24"><a href="/seantour_map/travel/destination/detail.do?destId=FCID000206" class="icon yellow_hover">상주은모래비치</a></div>
