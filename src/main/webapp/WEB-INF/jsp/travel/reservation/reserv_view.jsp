@@ -6,6 +6,34 @@
 <head>
 	<%@ include file="/WEB-INF/jsp/travel/tpl/head.jsp" %>
 </head>
+<script>
+function fn_print(elem){
+	//Popup($(elem).html());
+	window.print();
+}
+
+function Popup(data){
+	var mywindow = window.open('', '해수욕장 예약확인', 'height=400,width=600');
+	mywindow.document.write('<html><head><title>해수욕장 예약확인</title>');
+	mywindow.document.write('</head><body>');
+	mywindow.document.write(data);
+	mywindow.document.write('</body></html>');
+	mywindow.document.close(); // IE >= 10에 필요
+	mywindow.focus(); // necessary for IE >= 10
+	mywindow.print();
+	mywindow.close();
+	return true;
+}
+
+function fn_delete(reseNo){
+	var result = confirm('예약번호 : ' + reseNo + '\n선택하신 예약을 취소 하시겠습니까?');
+	if(result){
+		document.getElementById("travelReservation").reseNo.value = reseNo;
+		document.getElementById("travelReservation").action = "<c:url value='/travel/reservation/delete.do'/>";
+	   	document.getElementById("travelReservation").submit();
+	}
+}
+</script>
 <body>
 	<div id="wrap">
 		<div id="accessibility"><a href="#content">본문 바로가기</a></div>
@@ -19,62 +47,70 @@
 			<%@ include file="/WEB-INF/jsp/travel/tpl/navigation.jsp" %>
 
         	<div id="content" class="cont_wrap">
-
+        	<form:form commandName="travelReservation" method="post">
+        	<form:hidden path="reseNo"/>
+        	<form:hidden path="reseName"/>
+        	<form:hidden path="reseTel"/>
 			<div class="cont_head">
                 <h2 class="title">해수욕장 예약확인</h2>
             </div><!--// cont_head -->
             <div class="cont_body">
-	           <div class="inr">
-	            	<div class="reserv_wrap_confirm">
+	            <div class="inr">
+	           		<c:forEach var="view" items="${viewList}" varStatus="status">
+	            	<div class="reserv_wrap_confirm" id="reserv_wrap_confirm_${status.index}">
 	            		<dl class="form_group">
 	            			<dt>예약번호</dt>
 	            			<dd>
-	            				<p>p21146348643<a href="#none" class="button reserv_btn">취소</a></p>
+	            				<p><c:out value="${view.reseNo}"/><a href="javascript:fn_delete('${view.reseNo}');" class="button reserv_btn">취소</a></p>
 	            			</dd>
 	            		</dl>
 	            		<dl class="form_group">
 	            			<dt>해수욕장</dt>
 	            			<dd>
-	            				<p>전남 / 외달도해수욕장</p>
+	            				<p><c:out value="${view.reseBeachName}"/></p>
 	            			</dd>
 	            		</dl>
 	            		<dl class="form_group">
 	            			<dt>날짜</dt>
 	            			<dd>
-	            				<p>2020년 7월 4일</p>
+	            				<p><c:out value="${fn:substring(view.reseDate, 0, 4)}"/>년 <c:out value="${fn:substring(view.reseDate, 5, 7)}"/>월 <c:out value="${fn:substring(view.reseDate, 8, 10)}"/>일</p>
 	            			</dd>
 	            		</dl>
 	            		<dl class="form_group">
 	            			<dt>시간</dt>
 	            			<dd>
-	            				<p>오후</p>
+	            				<p>
+	            					<c:if test="${view.reseTime eq '01'}">오전</c:if>
+	            					<c:if test="${view.reseTime eq '02'}">오후</c:if>
+	            				</p>
 	            			</dd>
 	            		</dl>
 	            		<dl class="form_group">
 	            			<dt>인원</dt>
 	            			<dd>
-	            				<p>2명</p>
+	            				<p><c:out value="${view.resePersonnel}"/>명</p>
 	            			</dd>
 	            		</dl>
 	            		<dl class="form_group">
 	            			<dt>이름</dt>
 	            			<dd>
-	            				<p>홍길동</p>
+	            				<p><c:out value="${view.reseName}"/></p>
 	            			</dd>
 	            		</dl>
 	            		<dl class="form_group">
 	            			<dt>전화번호</dt>
 	            			<dd>
-	            				<p>010-1246-2346</p>
+	            				<p><c:out value="${fn:substring(view.reseTel, 0, 3)}"/>-<c:out value="${fn:substring(view.reseTel, 3, 7)}"/>-<c:out value="${fn:substring(view.reseTel, 7, 11)}"/></p>
 	            			</dd>
 	            		</dl>
 	            	</div>	
+	            	</c:forEach>
 	            	<div class="reservBtn_box tac">
-	            		<a href="#none" class="button lightblue">출력하기</a>
+	            		<a href="javascript:fn_print();" class="button lightblue">출력하기</a>
 	            	</div>
             	</div>
             </div><!-- cont_body -->
-
+            </form:form>
         	</div><!-- // cont_wrap -->
         </div>
         <!--// container -->

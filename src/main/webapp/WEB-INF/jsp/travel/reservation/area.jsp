@@ -1,11 +1,96 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ include file="/WEB-INF/jsp/travel/tpl/include.jsp" %>
-
+<% String errCode = request.getParameter("errCode"); %>
+<c:set var="errCode" value="<%= errCode %>" />
 <!DOCTYPE HTML>
 <html lang="ko" class="skrollr skrollr-desktop">
 <head>
 	<%@ include file="/WEB-INF/jsp/travel/tpl/head.jsp" %>
 </head>
+<script>
+$(document).ready(function(){
+	if('${travelReservation.openYn}' == 'N'){
+		var alertVal = "";
+		switch('${travelReservation.reseBeachId}'){
+		case 'R0001' : alertVal = "외달도 해수욕장 개장일은 7.11.~8.23. 입니다."; break;
+		case 'R0002' : alertVal = "웅천 해수욕장 개장일은 7.11.~8.23. 입니다."; break;
+		case 'R0003' : alertVal = "풍류 해수욕장 개장일은 7.10.~8.16. 입니다."; break;
+		case 'R0004' : alertVal = "율포솔밭 해수욕장 개장일은 7.11.~8.30. 입니다."; break;
+		case 'R0005' : alertVal = "수문 해수욕장 개장일은 7.10.~8.9. 입니다."; break;
+		case 'R0006' : alertVal = "송호 해수욕장 개장일은 7.17.~8.9. 입니다."; break;
+		case 'R0007' : alertVal = "돌머리 해수욕장 개장일은 7.10.~8.16. 입니다."; break;
+		case 'R0008' : alertVal = "가마미 해수욕장 개장일은 7.10.~8.23. 입니다."; break;
+		case 'R0009' : alertVal = "송이도 해수욕장 개장일은 7.20.~8.11. 입니다."; break;
+		case 'R0010' : alertVal = "신지명사십리 해수욕장 개장일은 7.17.~8.23. 입니다."; break;
+		case 'R0011' : alertVal = "금갑 해수욕장 개장일은 7.10.~8.16. 입니다."; break;
+		case 'R0012' : alertVal = "대광 해수욕장 개장일은 7.13.~8.16. 입니다."; break;
+		case 'R0013' : alertVal = "백길 해수욕장 개장일은 7.13.~8.16. 입니다."; break;
+		case 'R0014' : alertVal = "짱뚱어 해수욕장 개장일은 7.13.~8.16. 입니다."; break;
+		}
+		alert(alertVal);
+		return;
+	}else if('${travelReservation.reservationYn}' == 'Y'){
+		document.getElementById("reserv_wrap").style.display = 'block';
+		document.getElementById("reservBtn_box").style.display = 'block';
+		document.getElementById("lec_privacy_tit").style.display = 'block';
+		document.getElementById("lec_privacy").style.display = 'block';
+	}else if('${travelReservation.reservationYn}' == 'N'){
+		alert('예약이 불가능 합니다.\n최대수용 인원을 초과 하였습니다.');
+		return;
+	}
+});
+
+function fn_egov_link_page(){
+	if($('#month').val() == ""){
+		alert('월을 선택해 주세요.');
+		return false;
+	}
+	if($('#day').val() == ""){
+		alert('일을 선택해 주세요.');
+		return false;
+	}
+	if($('#reseTime').val() == ""){
+		alert('시간을 선택해 주세요.');
+		return false;
+	}
+	
+	document.getElementById("travelReservation").action = "<c:url value='/travel/reservation/area.do'/>";
+   	document.getElementById("travelReservation").submit();
+}
+
+function fn_insert(){
+	if($('#resePersonnel').val() == ""){
+		alert('인원을 선택해 주세요.');
+		return false;
+	}
+	if($('#reseName').val() == ""){
+		alert('이름을 입력해 주세요.');
+		$('#reseName').focus();
+		return false;
+	}
+	if($('#reseTel_02').val() == "" || $('#reseTel_03').val() == ""){
+		alert('전화번호를 입력해 주세요.');
+		if($('#reseTel_02').val() == "") $('#reseTel_02').focus();
+		if($('#reseTel_03').val() == "") $('#reseTel_03').focus();
+		return false;
+	}
+	if($('#chkAgree2').prop('checked') == false){
+		alert('개인정보 수집에 동의해 주세요.');
+		$('#chkAgree2').focus();
+		return false;
+	}
+	
+	document.getElementById("travelReservation").action = "<c:url value='/travel/reservation/insert.do'/>";
+   	document.getElementById("travelReservation").submit();
+}
+
+function fn_display_none(){
+	document.getElementById("reserv_wrap").style.display = 'none';
+	document.getElementById("reservBtn_box").style.display = 'none';
+	document.getElementById("lec_privacy_tit").style.display = 'none';
+	document.getElementById("lec_privacy").style.display = 'none';
+}
+</script>
 <body>
 	<div id="wrap">
 		<div id="accessibility"><a href="#content">본문 바로가기</a></div>
@@ -19,8 +104,10 @@
 			<%@ include file="/WEB-INF/jsp/travel/tpl/navigation.jsp" %>
 
         	<div id="content" class="cont_wrap">
+        	
+        	<form:form commandName="travelReservation" method="post">
 
-			 <div class="cont_head">
+			<div class="cont_head">
                 <h2 class="title">해수욕장 예약시스템</h2>
             </div><!--// cont_head -->
             <div class="cont_body">
@@ -30,134 +117,106 @@
 						<fieldset>
 						<legend>검색</legend>
 						<div class="field01">
-							<select id="" name="" title="지역">
-					      		<option value="">전라남도</option>
-				      		</select>	
-				      		<select id="" name="" title="해수용장">
-				    	  		<option value="">해수욕장 선택</option>
-					      		<option value="">외달도해수욕장</option>
-					      		<option value="">웅천해수욕장</option>
-					      		<option value="">풍류해수욕장</option>
-					      		<option value="">율포솔밭해수욕장</option>
-					      		<option value="">수문해수욕장</option>
-					      		<option value="">송호해수욕장</option>
-					      		<option value="">돌머리해수욕장</option>
-					      		<option value="">가마미해수욕장</option>
-					      		<option value="">송이도해수욕장</option>
-					      		<option value="">신지명사십리해수욕장</option>
-					      		<option value="">금갑해수욕장</option>
-					      		<option value="">대광해수욕장</option>
-					      		<option value="">백길해수욕장</option>
-					      		<option value="">짱뚱어해수욕장</option>
+							<select id="reseBeachRegionCd" name="reseBeachRegionCd" title="지역">
+								<c:forEach var="region" items="${regionList}" varStatus="status">
+									<option value='<c:out value="${region.reseBeachRegionCd}"/>' <c:if test="${travelReservation.reseBeachRegionCd eq region.reseBeachRegionCd}">selected="selected"</c:if>><c:out value="${region.reseBeachRegion}"/></option>
+								</c:forEach>
+								<c:if test="${empty regionList}">
+									<li>등록된 지역이 없습니다</li>
+								</c:if>
+				      		</select>
+				      		<select id="reseBeachNameCd" name="reseBeachNameCd" title="해수용장" onchange="fn_display_none();">
+								<c:forEach var="beach" items="${beachList}" varStatus="status">
+									<option value='<c:out value="${beach.reseBeachNameCd}"/>' <c:if test="${travelReservation.reseBeachNameCd eq beach.reseBeachNameCd}">selected="selected"</c:if>><c:out value="${beach.reseBeachName}"/></option>
+								</c:forEach>
+								<c:if test="${empty beachList}">
+									<li>등록된 해수욕장이 없습니다</li>
+								</c:if>
 				      		</select>
 			      		</div>
 			      		<div class="field02">
-				      		<select id="" name="" title="월">
+				      		<select id="month" name="month" title="월" onchange="fn_display_none();">
 				    	  		<option value="">월선택</option>
-					      		<option value="">7월</option>
-					      		<option value="">8월</option>
-					      		<option value="">9월</option>
+					      		<option value="07" <c:if test="${travelReservation.month eq '07'}">selected="selected"</c:if>>7월</option>
+					      		<option value="08" <c:if test="${travelReservation.month eq '08'}">selected="selected"</c:if>>8월</option>
 				      		</select>
-				      		<select id="" name="" title="일">
+				      		<select id="day" name="day" title="일" onchange="fn_display_none();">
 				    	  		<option value="">일선택</option>
-				    	  		<option value="">1일</option>
-					      		<option value="">2일</option>
-					      		<option value="">3일</option>
-					      		<option value="">4일</option>
-					      		<option value="">5일</option>
-					      		<option value="">5일</option>
-					      		<option value="">6일</option>
-					      		<option value="">7일</option>
-					      		<option value="">8일</option>
-					      		<option value="">9일</option>
-					      		<option value="">10일</option>
-					      		<option value="">11일</option>
-					      		<option value="">12일</option>
-					      		<option value="">13일</option>
-					      		<option value="">14일</option>
-					      		<option value="">15일</option>
-					      		<option value="">16일</option>
-					      		<option value="">17일</option>
-					      		<option value="">18일</option>
-					      		<option value="">19일</option>
-					      		<option value="">20일</option>
-					      		<option value="">21일</option>
-					      		<option value="">22일</option>
-					      		<option value="">23일</option>
-					      		<option value="">24일</option>
-					      		<option value="">25일</option>
-					      		<option value="">26일</option>
-					      		<option value="">27일</option>
-					      		<option value="">28일</option>
-					      		<option value="">29일</option>
-					      		<option value="">30일</option>
-					      		<option value="">31일</option>
+				    	  		<c:forEach var="i" begin="1" end="31" step="1">
+				    	  			<c:if test="${i lt 10}"><option value="0${i}" <c:if test="${travelReservation.day eq i}">selected="selected"</c:if>>${i}일</option></c:if>
+				    	  			<c:if test="${i ge 10}"><option value="${i}" <c:if test="${travelReservation.day eq i}">selected="selected"</c:if>>${i}일</option></c:if>
+				    	  		</c:forEach>
 				      		</select>
-				      		<select id="" name="" title="시간">
+				      		<select id="reseTime" name="reseTime" title="시간" onchange="fn_display_none();">
 				    	  		<option value="">시간선택</option>
-				    	  		<option value="">오전</option>
-					      		<option value="">오후</option>
-					      		<option value="">종일</option>
+				    	  		<option value="01" <c:if test="${travelReservation.reseTime eq '01'}">selected="selected"</c:if>>오전</option>
+					      		<option value="02" <c:if test="${travelReservation.reseTime eq '02'}">selected="selected"</c:if>>오후</option>
+					      		<option value="03" <c:if test="${travelReservation.reseTime eq '03'}">selected="selected"</c:if>>종일</option>
 				      		</select>
 						</div>
 						<div class="btn">
-							<a href="#none">검색</a>
+							<a href="javascript:fn_egov_link_page()">검색</a>
 						</div>
 						</fieldset>
 					</div>
-					<!-- 검색 -->
-					<div class="reserv_wrap">
+					<div class="reserv_wrap" id="reserv_wrap" style="display:none">
 	            		<dl class="form_group">
 	            			<dt>해수욕장</dt>
-	            			<dd><div class="reserv_view"><span class="loc">전남</span>/<span class="pool">외달도해수욕장</span></div>
-	            				<p class="note">선택하신 해수욕장이름과 지역을 꼭 확인해주세요</p>
+	            			<dd>
+		            			<div class="reserv_view">
+			            			<span class="pool">
+			            				<c:forEach var="beach" items="${beachList}" varStatus="status">
+											<c:if test="${travelReservation.reseBeachNameCd eq beach.reseBeachNameCd}"><c:out value="${beach.reseBeachName}"/></c:if>
+										</c:forEach>
+			            			</span>
+		            			</div>
+	            				<p class="note">선택하신 해수욕장이름을 꼭 확인해주세요</p>
 	            			</dd>
 	            		</dl>
 	            		<dl class="form_group">
 	            			<dt>날짜</dt>
-	            			<dd><div class="reserv_view"><span>2020</span>년 <span>7</span>월  <span>4</span>일</div></dd>
+	            			<dd><div class="reserv_view">2020-${travelReservation.month}-${travelReservation.day}</div></dd>
 	            		</dl>
 	            		<dl class="form_group">
 	            			<dt>시간</dt>
-	            			<dd><div class="reserv_view">오후</div></dd>
+	            			<dd>
+	            				<div class="reserv_view">
+	            					<c:if test="${travelReservation.reseTime eq '01'}">오전</c:if>
+	            					<c:if test="${travelReservation.reseTime eq '02'}">오후</c:if>
+	            					<c:if test="${travelReservation.reseTime eq '03'}">종일</c:if>
+	            				</div>
+	            			</dd>
 	            		</dl>
 	            		<dl class="form_group">
 	            			<dt>인원</dt>
 	            			<dd>
-	            				<select>
-	            					<option value="">1</option>
-	            					<option value="">2</option>
-	            					<option value="">3</option>
-	            					<option value="">4</option>
-	            					<option value="">5</option>
-	            					<option value="">6</option>
-	            					<option value="">7</option>
-	            					<option value="">8</option>
-	            					<option value="">9</option>
-	            					<option value="">10명이상</option>
+	            				<select id="resePersonnel" name="resePersonnel" title="인원">
+	            					<c:forEach var="i" begin="1" end="20" step="1">
+	            						<option value="${i}">${i}</option>
+	            					</c:forEach>
 	            				</select>
 							</dd>
 	            		</dl>
 	            		<dl class="form_group">
 	            			<dt>이름</dt>
-	            			<dd><input type="text" id="" name="" /></dd>
+	            			<dd><input type="text" id="reseName" name="reseName" /></dd>
 	            		</dl>
 	            		<dl class="form_group">
 	            			<dt>전화번호</dt>
 	            			<dd class="tel">
-	            				<select>
-	            					<option value="">010</option>
-	            					<option value="">017</option>
-	            					<option value="">019</option>
+	            				<select id="reseTel_01" name="reseTel_01">
+	            					<option value="010">010</option>
+	            					<option value="017">017</option>
+	            					<option value="019">019</option>
 	            				</select>
-	            				<em>-</em><input type="text" id="" name="" />
-	            				<em>-</em><input type="text" id="" name="" />
+	            				<em>-</em><input type="text" id="reseTel_02" name="reseTel_02" maxlength="4" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>
+	            				<em>-</em><input type="text" id="reseTel_03" name="reseTel_03" maxlength="4" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>
 	            				<p class="note">예약 확인을 위해 정확한 정보 입력 부탁드립니다.</p>
 	            			</dd>
 	            		</dl>
 	            	</div>
-	            	<h3 class="lec_privacy_tit">개인정보 수집 및 이용에 대한안내</h3>
-					<div class="lec_privacy">
+	            	<h3 class="lec_privacy_tit" id="lec_privacy_tit" style="display:none">개인정보 수집 및 이용에 대한안내</h3>
+					<div class="lec_privacy" id="lec_privacy" style="display:none">
 						<textarea cols="30" rows="10" title="개인정보수집 및 이용에 대한 안내">
 개인정보 수집 및 이용에 대한 안내
 바다여행일정만들기 사이트는 정보주체의 동의에 의해 개인정보를 수집·이용합니다.
@@ -172,247 +231,13 @@
 							<label for="chkAgree2">동의합니다.</label>
 						</p>
 					</div>
-	            	<div class="reservBtn_box tac">
-	            		<!-- <a href="#none" class="button light_gray">이전화면</a> -->
-	            		<a href="#none" class="button red">예약하기</a>
+	            	<div class="reservBtn_box tac" id="reservBtn_box" style="display:none">
+	            		<!-- <a href="javascript:window.history.back();" class="button light_gray">이전화면</a> -->
+	            		<a href="javascript:fn_insert()" class="button red">예약하기</a>
 	            	</div>
-					<!-- 
-					<div class="reserv_info">
-						<strong for="my_reserv">나의 예약 조회</strong>
-						<span><lable for="my_reserv_name">이름</lable><input type=text" id="my_reserv_name" name="" /></span>
-						<span><lable for="my_reserv_tel">전화번호</lable><input type=text" id="my_reserv_tel" name="" placeholder="'-'없이 숫자만 입력 " /></span>
-						<a href="#none" class="btn">조회</a>
-					</div> -->
-					<!-- 구역 이미지 -->
-					<!-- <div class="reserv_img">
-						<img src="/seantour_map/images/travel/content/img_reserv01.jpg" alt="" />
-					</div>
-					<div class="reserv_area">
-						<table border="0" class="tbl_calendar">
-							<caption>달력</caption>
-							<colgroup>
-								<col style="width:16.666%;" />
-								<col style="width:16.666%;" />
-								<col style="width:16.666%;" />
-								<col style="width:16.666%;" />
-								<col style="width:16.666%;" />
-								<col />
-							</colgroup>
-							<thead>
-								<th scope="col">구역</th>
-								<th scope="col">가능여부</th>
-								<th scope="col">예약</th>
-								<th scope="col">구역</th>
-								<th scope="col">가능여부</th>
-								<th scope="col">예약</th>
-							</thead>
-							<tbody>
-								<tr>
-									<td>1구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_reserv">예약</a></td>
-									<td>26구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_reserv">예약</a></td>
-								</tr>	
-								<tr>
-									<td>2구역</td>
-									<td><p class="end">불가능</p></td>
-									<td><a href="#none" class="btn_end">종료</a></td>
-									<td>27구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_reserv">예약</a></td>
-								</tr>	
-								<tr>
-									<td>3구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_end">종료</a></td>
-									<td>28구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_reserv">예약</a></td>
-								</tr>	
-								<tr>
-									<td>4구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_end">종료</a></td>
-									<td>29구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_reserv">예약</a></td>
-								</tr>	
-								<tr>
-									<td>5구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_end">종료</a></td>
-									<td>30구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_reserv">예약</a></td>
-								</tr>	
-								<tr>
-									<td>6구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_end">종료</a></td>
-									<td>31구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_reserv">예약</a></td>
-								</tr>	
-								<tr>
-									<td>7구역</td>
-									<td><p class="end">불가능</p></td>
-									<td><a href="#none" class="btn_end">종료</a></td>
-									<td>32구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_reserv">예약</a></td>
-								</tr>	
-								<tr>
-									<td>8구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_end">종료</a></td>
-									<td>33구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_reserv">예약</a></td>
-								</tr>	
-								<tr>
-									<td>9구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_end">종료</a></td>
-									<td>34구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_reserv">예약</a></td>
-								</tr>	
-								<tr>
-									<td>10구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_end">종료</a></td>
-									<td>35구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_reserv">예약</a></td>
-								</tr>	
-								<tr>
-									<td>11구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_end">종료</a></td>
-									<td>36구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_reserv">예약</a></td>
-								</tr>	
-								<tr>
-									<td>12구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_end">종료</a></td>
-									<td>37구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_reserv">예약</a></td>
-								</tr>	
-								<tr>
-									<td>13구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_end">종료</a></td>
-									<td>38구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_reserv">예약</a></td>
-								</tr>	
-								<tr>
-									<td>14구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_end">종료</a></td>
-									<td>39구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_reserv">예약</a></td>
-								</tr>	
-								<tr>
-									<td>15구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_end">종료</a></td>
-									<td>40구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_reserv">예약</a></td>
-								</tr>	
-								<tr>
-									<td>16구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_end">종료</a></td>
-									<td>41구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_reserv">예약</a></td>
-								</tr>	
-								<tr>
-									<td>17구역</td>
-									<td><p class="end">불가능</p></td>
-									<td><a href="#none" class="btn_end">종료</a></td>
-									<td>42구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_reserv">예약</a></td>
-								</tr>	
-								<tr>
-									<td>18구역</td>
-									<td><p class="end">불가능</p></td>
-									<td><a href="#none" class="btn_end">종료</a></td>
-									<td>43구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_reserv">예약</a></td>
-								</tr>	
-								<tr>
-									<td>19구역</td>
-									<td><p class="end">불가능</p></td>
-									<td><a href="#none" class="btn_end">종료</a></td>
-									<td>44구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_reserv">예약</a></td>
-								</tr>	
-								<tr>
-									<td>20구역</td>
-									<td><p class="end">불가능</p></td>
-									<td><a href="#none" class="btn_end">종료</a></td>
-									<td>45구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_reserv">예약</a></td>
-								</tr>	
-								<tr>
-									<td>21구역</td>
-									<td><p class="end">불가능</p></td>
-									<td><a href="#none" class="btn_end">종료</a></td>
-									<td>46구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_reserv">예약</a></td>
-								</tr>	
-								<tr>
-									<td>22구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_end">종료</a></td>
-									<td>47구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_reserv">예약</a></td>
-								</tr>	
-								<tr>
-									<td>23구역</td>
-									<td><p class="end">불가능</p></td>
-									<td><a href="#none" class="btn_end">종료</a></td>
-									<td>48구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_reserv">예약</a></td>
-								</tr>	
-								<tr>
-									<td>24구역</td>
-									<td><p class="end">불가능</p></td>
-									<td><a href="#none" class="btn_end">종료</a></td>
-									<td>49구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_reserv">예약</a></td>
-								</tr>	
-								<tr>
-									<td>25구역</td>
-									<td><p class="end">불가능</p></td>
-									<td><a href="#none" class="btn_end">종료</a></td>
-									<td>50구역</td>
-									<td><p class="possible">가능</p></td>
-									<td><a href="#none" class="btn_reserv">예약</a></td>
-								</tr>	
-							</tbody>
-						</table>	
-					</div> -->
-					<!-- 달력  -->
 	            </div>	
             </div><!-- cont_body -->
+            </form:form>
 
         	</div><!-- // cont_wrap -->
         </div>

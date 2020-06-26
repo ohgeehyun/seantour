@@ -161,10 +161,12 @@
 					    </div>
 					    <div class="reserv_lookup_box">
 					    	<div class="reserv_main_left">
+					    	<form id="reserv_view" action="/seantour_map/travel/reservation/reserv_view.do">
 					    		<strong for="my_reserv">나의 예약 <br />조회</strong>
-								<span><input type="text" id="my_reserv_name" name="" placeholder="이름을 입력하세요." /></span>
-								<span><input type="text" id="my_reserv_tel" name="" placeholder="전화번호를 입력하세요." /></span>
-								<a href="#none" class="btn">조회</a>
+								<span><input type="text" id="reseName" name="reseName" placeholder="이름을 입력하세요." /></span>
+								<span><input type="text" id="reseTel" name="reseTel" maxlength="11" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="전화번호를 입력하세요." /></span>
+								<a href="#" onclick="document.getElementById('reserv_view').submit();" class="btn">조회</a>
+							</form>
 					    	</div>
 					    	<div class="reserv_main_right">
 					    		<a href="/seantour_map/travel/reservation/area.do"><img src="${pageContext.request.contextPath}/images/travel/main/img_main_reserv_pull.png" alt="" /></a>

@@ -6,4 +6,5 @@
 	<sqlMap resource="egovframework/sqlmap/travel/TravelMember_mysql.xml" />
 	<sqlMap resource="egovframework/sqlmap/travel/TravelFiles_mysql.xml" />
 	<sqlMap resource="egovframework/sqlmap/travel/TravelBanFilter_mysql.xml" />
+	<sqlMap resource="egovframework/sqlmap/travel/TravelReservation_mysql.xml" />
 </sqlMapConfig>

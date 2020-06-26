@@ -124,7 +124,7 @@
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/destination/stats')}"><a href="#none">통계</c:if>
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/info_policy')}"><a href="#none">저작권정책</c:if>
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/destination/summer_list')}"><a href="#none">한적한 해수욕장</c:if>
-							<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/reservation/area')}"><a href="#none">예약 시스템</c:if>
+							<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/reservation/')}"><a href="#none">예약 시스템</c:if>
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/email')}"><a href="#none">이메일수집거부</c:if>
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/updateinfo')}"><a href="#none">Q&A</c:if>
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/leaflet')}"><a href="#none">리플렛</c:if>
