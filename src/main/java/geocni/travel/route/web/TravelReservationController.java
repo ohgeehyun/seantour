@@ -79,6 +79,24 @@ public class TravelReservationController {
 			
 			return skinPath + "reserv_write";
 		}
+		
+		@RequestMapping(value="example.do")
+		public String reservationexample(
+				Model model) throws Exception {
+			
+		
+			
+			return skinPath + "example";
+		}
+		
+		@RequestMapping(value="intro.do")
+		public String reservationintro(
+				Model model) throws Exception {
+			
+		
+			
+			return skinPath + "intro";
+		}
 
 }
 
