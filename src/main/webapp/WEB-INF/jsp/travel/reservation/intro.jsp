@@ -21,7 +21,7 @@
 		<div id="container" >
 			<div class="introBox">
 				<a href="https://seantour.com" class="intro01"><img src="/seantour_map/images/travel/intro/img_intro01.png" alt="어촌관광 누리집 - 국내바다여행, 어촌여행에 대한 모든것을 알려드립니다." /></a>
-				<a href="/seantour_map/travel/reservation/area.do" class="intro02"><img src="/seantour_map/images/travel/intro/img_intro02.png" alt="해수욕장 혼잡도 신호등 해수욕장 사전예약-일정마들기, 한적한 해수욕장 서비스도 제공합니다." /></a>
+				<a href="/seantour_map/travel/reservation/example.do" class="intro02"><img src="/seantour_map/images/travel/intro/img_intro02.png" alt="해수욕장 혼잡도 신호등 해수욕장 사전예약-일정마들기, 한적한 해수욕장 서비스도 제공합니다." /></a>
 			</div>
 		</div>
 		<!--// container -->
