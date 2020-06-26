@@ -192,46 +192,46 @@ a.btn-layerClose:hover {
 .spotzone .spot .icon.red_hover{background:#ec3012;}
 .spotzone .spot .icon.yellow_hover{background:#deb113;}
 .spotzone .spot .icon.green_hover{background:#6eb357;}
-.spotzone .spot1{left:61.5%;top:0.5%;}
-.spotzone .spot2{left:62.7%;top:1.77%;}
-.spotzone .spot3{left:63.4%;top:3.4%;}
-.spotzone .spot4{left:64%;top:5%;}
-.spotzone .spot5{left:64.5%;top:6.5%;}
-.spotzone .spot6{left:64.8%;top:7.8%;}
-.spotzone .spot7{left:68.3%;top:11%;}
-.spotzone .spot8{left:73%;top:15.7%;}
-.spotzone .spot9{left:75.5%;top:17%;}
-.spotzone .spot10{left:78.6%;top:19.5%;}
-.spotzone .spot11{left:80%;top:21%;}
-.spotzone .spot12{left:81.2%;top:22.4%;}
-.spotzone .spot13{left:82.7%;top:24%;}
-.spotzone .spot14{left:83.7%;top:25.5%;}
-.spotzone .spot15{left:86%;top:28%;}
-.spotzone .spot16{left:85.4%;top:29.5%;}
-.spotzone .spot17{left:87.7%;top:29.5%;}
-.spotzone .spot18{left:87.3%;top:38.5%;}
-.spotzone .spot19{left:90.7%;top:54.5%;}
-.spotzone .spot20{left:89.5%;top:56%;}
-.spotzone .spot21{left:88.7%;top:58.5%;}
-.spotzone .spot22{left:88.7%;top:60.5%;}
-.spotzone .spot23{left:87.7%;top:62.5%;}
-.spotzone .spot24{left:49.7%;top:79.5%;}
-.spotzone .spot25{left:21%;top:88.5%;}
-.spotzone .spot26{left:15%;top:23.9%;}
-.spotzone .spot27{left:18%;top:24.4%;}
-.spotzone .spot28{left:6%;top:34.5%;}
-.spotzone .spot29{left:4.5%;top:36.5%;}
-.spotzone .spot30{left:4.5%;top:38.5%;}
-.spotzone .spot31{left:6.5%;top:39.5%;}
-.spotzone .spot32{left:11%;top:42.5%;}
-.spotzone .spot33{left:12%;top:44.5%;}
-.spotzone .spot34{left:8%;top:42%;}
-.spotzone .spot35{left:17%;top:94.5%;}
-.spotzone .spot36{left:19.5%;top:94%;}
-.spotzone .spot37{left:22.5%;top:93.8%;}
-.spotzone .spot38{left:26.5%;top:93.5%;}
-.spotzone .spot39{left:22.4%;top:98.8%;}
-.spotzone .spot40{left:16%;top:95.8%;}
+.spotzone .spot1{left:87.3%;top:38.5%;}/* 노봉 */
+.spotzone .spot2{left:19.5%;top:94%;}/* 맹방 */
+.spotzone .spot3{left:85.4%;top:29.5%;}/* 추암 */
+.spotzone .spot4{left:21%;top:88.5%;}/* 신지 명사십리 */
+.spotzone .spot5{left:4.5%;top:36.5%;}/* 만리포 */
+.spotzone .spot6{left:89.5%;top:56%;}/* 일산 */
+.spotzone .spot7{left:26.5%;top:93.5%;}/* 함덕서우봉 */
+.spotzone .spot8{left:88.7%;top:58.5%;}/* 진하 */
+.spotzone .spot9{left:73%;top:15.7%;}/* 하조대 */
+.spotzone .spot10{left:17%;top:94.5%;}/* 협제 */
+.spotzone .spot11{left:87.3%;top:38.5%;}/* 고래불 */
+.spotzone .spot12{left:78.6%;top:19.5%;}/* 주문진 */
+.spotzone .spot13{left:12%;top:44.5%;}/* 춘장대 */
+.spotzone .spot14{left:22.5%;top:93.8%;}/* 이호테우 */ 
+.spotzone .spot15{left:6.5%;top:39.5%;}/* 꽃지 */
+.spotzone .spot16{left:63.4%;top:3.4%;}/* 송지호 */
+.spotzone .spot17{left:19.5%;top:94%;}/* 곽지괴물 */
+.spotzone .spot18{left:61.5%;top:0.5%;}/* 화진포 */
+.spotzone .spot19{left:68.3%;top:11%;}/* 외옹치 */
+.spotzone .spot20{left:16%;top:95.8%;}/* 금능으뜸원  */
+.spotzone .spot21{left:64%;top:5%;}/* 삼포 */
+.spotzone .spot22{left:87.7%;top:62.5%;}/* 일광 */
+.spotzone .spot23{left:8%;top:42%;}/*몽산포 */
+.spotzone .spot24{left:88.7%;top:60.5%;}/* 임랑 */
+.spotzone .spot25{left:22.4%;top:98.8%;}/* 중문색달해변 */
+.spotzone .spot26{left:87.7%;top:29.5%;}/* 장호 */
+.spotzone .spot27{left:11%;top:42.5%;}/* 무창포 */
+.spotzone .spot28{left:80%;top:21%;}/* 안목 */
+.spotzone .spot29{left:49.7%;top:79.5%;}/* 상주은모래비치 */
+.spotzone .spot30{left:15%;top:23.9%;}/* 을왕리 */
+.spotzone .spot31{left:4.5%;top:38.5%;}/* 삼봉 */
+.spotzone .spot32{left:81.2%;top:22.4%;}/* 정동진 */
+.spotzone .spot33{left:85.4%;top:29.5%;}/* 용화 */
+.spotzone .spot34{left:64.8%;top:7.8%;}/* 등대 */
+.spotzone .spot35{left:18%;top:24.4%;}/* 하나개 */
+.spotzone .spot36{left:62.7%;top:1.77%;}/*송지호오토캠핑 */
+.spotzone .spot37{left:90.7%;top:54.5%;}/* 관성 */
+.spotzone .spot38{left:75.5%;top:17%;}/* 중광정 */
+.spotzone .spot39{left:64.5%;top:6.5%;}/* 천진 */
+.spotzone .spot40{left:6%;top:34.5%;}/* 신두리 */
 .spotzone .spot .icon.red_hover:hover,
 .spotzone .spot .icon.red_hover:focus,
 .spotzone .spot .icon.red_hover:active{position:relative;z-index:9999;width:40px;height:40px;margin:-25px 0 0 -10px;background:#ec3012;font-size:10px;color:#fff;line-height:40px;text-align:center;text-indent:0;}
@@ -243,27 +243,27 @@ a.btn-layerClose:hover {
 .spotzone .spot .icon.green_hover:active{position:relative;z-index:9999;width:40px;height:40px;margin:-25px 0 0 -10px;background:#6eb357;font-size:10px;color:#fff;line-height:40px;text-align:center;text-indent:0;}
 .spotzone .name{}
 .spotzone .blinker{position:absolute;width:60px;height:28px;line-height:1.5;background:#2c9eff;border:1px solid #1c91f4;border-radius:1em;-webkit-transition:all 0.4s;-moz-transition:all 0.4s;-o-transition:all 0.4s;-ms-transition:all 0.4s;transition:all 0.4s}
-.spotzone .blinker1{left:53.87%;top:8.33%;}
-.spotzone .blinker2{left:57.87%;top:13.33%;}
-.spotzone .blinker3{left:64%;top:17%;}
-.spotzone .blinker4{left:71.87%;top:25.5%;}
-.spotzone .blinker5{left:15.34%;top:38.4%;}
-.spotzone .blinker6{left:72.76%;top:74.03%;}
-.spotzone .blinker7{left:90.56%;top:61.8%;}
-.spotzone .blinker8{left:89.42%;top:66.52%;}
-.spotzone .blinker9{left:85.08%;top:70.38%;}
-.spotzone .blinker10{left:57.33%;top:71.36%;}
+.spotzone .blinker1{left:89.42%;top:66.52%;}/* 해운대 */
+.spotzone .blinker2{left:85.08%;top:70.38%}/* 광안리 */
+.spotzone .blinker3{left:72.76%;top:74.03%;}/*송도 */
+.spotzone .blinker4{left:15.34%;top:38.4%;}/* 대천 */
+.spotzone .blinker5{left:57.33%;top:71.36%;}/* 다대포 */
+.spotzone .blinker6{left:64%;top:17%;}/* 경포 */
+.spotzone .blinker7{left:90.56%;top:61.8%;}/* 송정 */
+.spotzone .blinker8{left:57.87%;top:13.33%;}/* 낙산 */
+.spotzone .blinker9{left:53.87%;top:8.33%;}/* 속초 */
+.spotzone .blinker10{left:64%;top:17%;}/* 삼척 */
 
 .spotzone .blinker .icon{position:absolute;top:-47px;right:-27px;display:inline-block;width:19px;height:65px;}
 .spotzone .blinker .icon.red{background:url(/seantour_map/images/travel/main/icon_blinker_red.png) no-repeat 0 0;background-size:cover;}
 .spotzone .blinker .icon.yellow{background:url(/seantour_map/images/travel/main/icon_blinker_yellow.png) no-repeat 0 0;background-size:cover;}
 .spotzone .blinker .icon.green{background:url(/seantour_map/images/travel/main/icon_blinker_green.png) no-repeat 0 0;background-size:cover;}
 
-.spotzone .blinker5 .icon,
+.spotzone .blinker4 .icon,
 .spotzone .blinker7 .icon,
-.spotzone .blinker8 .icon,
-.spotzone .blinker9 .icon{right:70px;}
-.spotzone .blinker6 .icon{top:-72px;right:22px;}
+.spotzone .blinker1 .icon,
+.spotzone .blinker2 .icon{right:70px;}
+.spotzone .blinker3 .icon{top:-72px;right:22px;}
 
 .spotzone .blinker .name{display:inline-block;position:absolute;top:0;left:0;width:100%;height:100%;line-height:2.1;font-size:15px;color:#fff !important;text-align:center;}          
 
