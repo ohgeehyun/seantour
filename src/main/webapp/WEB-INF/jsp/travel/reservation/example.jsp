@@ -9,6 +9,25 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/travel/main.css'/>" />
 	<script src="<c:url value='/js/travel/main.js'/>"></script>
 </head>
+<script type="text/javascript">
+function fn_reservView(){
+	var reseName = $('#reseName').val();
+	var reseTel = $('#reseTel').val();
+	
+	if(reseName == ''){
+		alert('이름을 입력하세요.');
+		$('#reseName').focus();
+		return;
+	}
+	if(reseTel == ''){
+		alert('전화번호를 입력하세요.');
+		$('#reseTel').focus();
+		return;
+	}
+	
+	location.href = "<c:url value='/travel/reservation/reserv_view.do'/>?reseName=" + encodeURI(reseName, "UTF-8") + "&reseTel=" + reseTel;
+}
+</script>
 <body>
 	<div id="wrap">
 		<div id="accessibility"><a href="#content">본문 바로가기</a></div>
@@ -166,7 +185,7 @@
 					    		<strong for="my_reserv">나의 예약 <br />조회</strong>
 								<span><input type="text" id="reseName" name="reseName" placeholder="이름을 입력하세요." /></span>
 								<span><input type="text" id="reseTel" name="reseTel" maxlength="11" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="전화번호를 입력하세요." /></span>
-								<a href="#" onclick="document.getElementById('reserv_view').submit();" class="btn">조회</a>
+								<a href="javascript:fn_reservView();" class="btn">조회</a>
 							</form>
 					    	</div>
 					    	<div class="reserv_main_right">
