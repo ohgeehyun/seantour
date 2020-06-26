@@ -1,0 +1,81 @@
+@charset "utf-8";
+@import url(nanumgothic.css);
+
+
+/* reset */
+* {box-sizing: border-box;}
+body,p,div,span,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0; padding:0;}
+body,input,textarea,button,select,pre{font-family:'notokr', 'Nanum Gothic', '나눔고딕', '맑은 고딕', '돋움', Dotum, '굴림', Gulim, Sans-serif; color:#5f5f5f;}
+body{/*font-size:0.875em;*/}
+h1,h2,h3,h4,h5,h6,input,textarea,button,select,table{font-size:1em;}
+img, fieldset, button{border:0;}
+textarea{overflow:auto;}
+input[type=submit],
+input[type=button],
+button{cursor:pointer;}
+img{vertical-align:top;}
+address, em{font-style:normal;}
+pre{white-space:pre-wrap;}
+table{border-spacing:0; border-collapse:collapse;}
+table,th,td{border:none;}
+caption{overflow:hidden; line-height:0; text-indent:-2000em;}
+legend, .hidden{overflow:hidden; position:absolute; top:0; left:-2000em; line-height:0;}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block;}
+
+/* 링크 기본값 */
+a:link{text-decoration:none; color:#444;}
+a:visited{text-decoration:none; color:#444;}
+a:hover{text-decoration:none; color:#444;}
+a:active{text-decoration:none;}
+a:focus{text-decoration:none;}
+
+/* 리스트 스타일 제거 */
+ul,ol,li{list-style:none;}
+
+/*** Layout CSS ***/
+html,body{width:100%;height:100%;}
+body {-webkit-text-size-adjust:none;}
+#wrap{width:100%; height:100%; background:#d6dde3;}
+
+
+/** Header **/
+#header{width:100%; height:72px; background:#fff;}
+#header .logo{padding-top:21px;text-align:center;}
+#header .logo a{z-index:30; text-indent:-9999px; display:block; width:284px;height:28px; margin:0 auto;background:url(../img/logo.png) 50% 50% no-repeat;background-size:100%;}
+
+
+
+/** Container **/
+#container{max-width:100%;height:calc(100% - 72px - 51px);background:#e4f2f8;}
+.introBox{padding-top:88px;text-align:center;}
+
+.introBox > a{display:inline-block;padding:0 30px;transition:all 0.4s;}
+.introBox .intro02{position:relative;}
+.introBox .intro02:after{content:'';display:inline-block;width:435px;height:383px;position:absolute;bottom:-200px;right:-200px;background:url(/seantour_map/images/travel/intro/bg_intro.png) no-repeat 0 0;background-size:cover;transition:all 0.4s;}
+
+/** Footer **/
+#footer{height:51px;line-height:1.5; padding-top:15px;background:#fff; text-align:center;}
+#footer .address{font-size:13px; color:#5d5d5d;}
+#footer .address br{display:none;transition:all 0.4s;}
+
+
+@media screen and (max-width:1024px){
+	.introBox > a{display:block;margin:0 auto;}
+	.introBox .intro02{margin-top:20px;}
+	.introBox .intro02:after{bottom:-240px;right:65px;}
+}
+
+@media screen and (max-width:1000px){
+	.introBox > a img{width:50%;}
+	.introBox .intro02:after{display:none;}
+}
+
+@media screen and (max-width:640px){
+	.introBox{padding-top:30px;}
+	.introBox > a img{width:70%;}
+	#footer{padding-top:10px;}
+	#footer .address{font-size:11px;}
+	#footer .address br{display:block;}
+}
