@@ -79,52 +79,72 @@
      										   <p class="weather-date"></p>	
    										</div>
 								</div>-->
-								  <div class="main_visual_content_cell_left">
-								 	<p class="tit">내가 만드는 <strong>바다여행</strong></p> 	 
-								 	<p class="sub_tit">
+								 
+								 	<!--<p class="sub_tit">
 								 		언제든 누구와든 함께 떠나기 좋은<br />
 										공기좋고 깨끗한 국내 바다여행 일정만들기
-								 	</p> 	 
-									<div class="visual_go">
+								 	</p> -->	 
+									<!--<div class="visual_go">
 								  		<a href="${pageContext.request.contextPath}/travel/route/register.do" class="button mv_btn01">여행일정 만들기</a>
 								  		<a href="${pageContext.request.contextPath}/travel/route/list.do" class="button mv_btn02">여행일정 검색</a>
-								  </div>
-								  	<%--<ul class="img_lst"> 
-								  		<li><img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual2_s1.png" alt='해파랑공원'/></li>
-                                        <li><img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual2_s2.png" alt='호미곶' /></li>
-                                        <li><img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual2_s3.png" alt='주상절리'/></li>  
-
-								  	</ul>--%>
-								  </div>
-								 
+								  </div>-->
 								  <div class="main_visual_content_cell_right">
-								  	 <div class="main_visual_content_cell_right_inr">
-									  	 <%--<div class="visual_arrow">                                      
-                                                <img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual2_arrow.png" alt='' />
-                                             
-										  </div>--%>
-                                          <!--  메인 지도 아이콘  class point 부분 css필요 -->
-                                          <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=강원" class='point point3'>강원</a>
-                                          <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경기" class='point point2'>경기</a>
-                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경남" class='point point10'>경남</a>
-                                          <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경북" class='point point6'>경북</a>
-                                          <!-- 	<li><a href="/travel/destination/list.do?destRegion=광주광역시">광주광역시</a></li> -->
-                                          <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=대구" class='point point7'>대구</a>
-                                          <!-- <li><a href="/travel/destination/list.do?destRegion=대전">대전광역시</a></li> -->
-                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=부산" class='point point11'>부산</a>
-                                		 <!-- <li><a href="/travel/destination/list.do?destRegion=서울">서울특별시</a></li>-->
-                                        <!-- <li><a href="/travel/destination/list.do?destRegion=세종">세종특별자치시</a></li> -->
-                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=울산" class='point point8'>울산</a>
-                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=인천" class='point point1'>인천</a>
-                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=전남" class='point point12'>전남</a>
-                                		 <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=전북" class='point point9'>전북</a>
-                                		 <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=제주" class='point point13'>제주</a>
-                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=충남" class='point point4'>충남</a>
-                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=충북" class='point point5'>충북</a>
-
+                          			<div class="main_visual_content_cell_right_inr">
+								  	 	<div class="spot_title"><img src="/seantour_map/images/travel/main/img_map_tit.png" alt="해수욕장 혼잡도 신호등" /></div>
+								  	 	<div class="spot_info"><img src="/seantour_map/images/travel/main/img_info_box.png" alt="혼잡: 빨간색, 혼잡우려: 노란색, 적정: 녹색" /></div>
+									  	 <div class="spot spot11"><a href="/seantour_map/travel/destination/detail.do?destId=FCID000136" class="icon red_hover">노봉</a></div>
+									  	 <div class="spot spot12"><a href="/seantour_map/travel/destination/detail.do?destId=FCID100892" class="icon red_hover">맹방</a></div>
+									  	 <div class="spot spot13"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111063" class="icon red_hover">추암</a></div>
+									  	 <div class="spot spot14"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110902" class="icon green_hover">명사십리</a></div>
+								  	   	 <div class="spot spot15"><a href="#none" class="icon red_hover">만리포</a></div>
+									  	 <div class="spot spot16"><a href="/seantour_map/travel/destination/detail.do?destId=FCID000050" class="icon green_hover">일산</a></div>
+									  	 <div class="spot spot17"><a href="#none" class="icon green_hover">함덕서우봉</a></div>
+									  	 <div class="spot spot18"><a href="/seantour_map/travel/destination/detail.do?destId=FCID000293" class="icon green_hover">진하</a></div>
+									  	 <div class="spot spot19"><a href="/seantour_map/travel/destination/detail.do?destId=FCID102542" class="icon green_hover">하조대</a></div> 
+									  	 <div class="spot spot20"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111605" class="icon green_hover">협제</a></div>
+									  	 <div class="spot spot21"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111168" class="icon green_hover">고래불</a></div>
+									  	 <div class="spot spot22"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111549" class="icon green_hover">주문진</a></div>
+									  	 <div class="spot spot23"><a href="/seantour_map/travel/destination/detail.do?destId=DEST000442" class="icon yellow_hover">춘장대</a></div>
+									  	 <div class="spot spot24"><a href="/seantour_map/travel/destination/detail.do?destId=FCID003331" class="icon red_hover">이호테우</a></div>
+									  	 <div class="spot spot25"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110592" class="icon red_hover">꽃지</a></div>
+									  	 <div class="spot spot26"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111358" class="icon green_hover">송지호</a></div>
+									  	 <div class="spot spot27"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111527" class="icon green_hover">곽지괴물</a></div>
+									  	 <div class="spot spot28"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110180" class="icon red_hover">화진포</a></div>
+									  	 <div class="spot spot29"><a href="#none" class="icon yellow_hover">외옹치</a></div>
+									  	 <div class="spot spot30"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111470" class="icon yellow_hover">금능으뜸원</a></div>
+									  	 <div class="spot spot31"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111658" class="icon yellow_hover">삼포</a></div>
+									  	 <div class="spot spot32"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111476" class="icon yellow_hover">일광</a></div>
+									  	 <div class="spot spot33"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111467" class="icon yellow_hover">몽산포</a></div>
+									  	 <div class="spot spot34"><a href="/seantour_map/travel/destination/detail.do?destId=FCID000206" class="icon yellow_hover">임랑</a></div>
+									  	 <div class="spot spot35"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111124" class="icon green_hover">중문</a></div>
+									  	 <div class="spot spot36"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111438" class="icon red_hover">장호</a></div>
+									  	 <div class="spot spot37"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111854" class="icon green_hover">무창포</div>
+									  	 <div class="spot spot38"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111108" class="icon red_hover">안목</a></div>
+									  	 <div class="spot spot39"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110572" class="icon green_hover">상주은모래비치</a></div>
+									  	 <div class="spot spot40"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110873" class="icon green_hover">을왕리</a></div>
+									  	 <div class="spot spot41"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110338" class="icon red_hover">삼봉</a></div>
+									  	 <div class="spot spot42"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110641" class="icon red_hover">정동진</a></div>
+									  	 <div class="spot spot43"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111741" class="icon green_hover">용화</a></div>
+									  	 <div class="spot spot44"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110626" class="icon red_hover">등대</a></div>
+									  	 <div class="spot spot45"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111959" class="icon red_hover">하나개</a></div>
+									  	 <div class="spot spot46"><a href="#none" class="icon red_hover">송지호오토캠핑</a></div>
+									  	 <div class="spot spot47"><a href="#none" class="icon red_hover">관성</a></div>
+									  	 <div class="spot spot48"><a href="#none" class="icon red_hover">중광정</a></div>
+									  	 <div class="spot spot49"><a href="/seantour_map/travel/destination/detail.do?destId=FCID000174" class="icon red_hover">천진</a></div>
+									  	 <div class="spot spot50"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110313" class="icon red_hover">신두리</a></div>
+									  	 <div class="blinker spot1"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111039" class="name">해운대<span class="icon red"></span></a></div>
+									  	 <div class="blinker spot2"><a href="/seantour_map/travel/destination/detail.do?destId=FCID000248" class="name">광안리<span class="icon red"></span></a></div>
+									  	 <div class="blinker spot3"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110072" class="name">송도<span class="icon yellow"></span></a></div>
+									  	 <div class="blinker spot4"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110894" class="name">대천<span class="icon yellow"></span></a></div>
+									  	 <div class="blinker spot5"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110458" class="name">다대포<span class="icon red"></span></a></div>
+									  	 <div class="blinker spot6"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110780" class="name">경포<span class="icon red"></span></a></div>
+									  	 <div class="blinker spot7"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111059" class="name">송정<span class="icon red"></span></a></div>
+									  	 <div class="blinker spot8"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111941" class="name">낙산<span class="icon yellow"></span></a></div>
+									  	 <div class="blinker spot9"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110239" class="name">속초<span class="icon green"></span></a></div>
+									  	 <div class="blinker spot10"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110405" class="name">삼척<span class="icon green"></span></a></div>
 									  </div>
 								  </div>
-								  <div class="spot_search">
+								  <%--<div class="spot_search">
 								  	<div class="cssSelect">
 								  		<button type="button">부산광역시</button>
 								  		<ul class="lst">
@@ -148,12 +168,52 @@
 
 								  		</ul>
 							  		</div>
-								  </div>
-								  
-							</div>
-						</div>
+								  </div>--%>
+		          				 <div class="main_visual_content_cell_left">
+		                           <p class="tit"><strong>슬기로운</strong> 해수욕장 이용</p> 
+		                           <div class="reserv_lookup_box">
+		                             <div class="reserv_main_right">
+		                               <a href="/seantour_map/travel/reservation/area.do"><img src="${pageContext.request.contextPath}/images/travel/main/img_main_reserv_pull.png" alt="" /></a>
+		                             </div>
+		                             <div class="reserv_main_left">
+		                               <form id="reserv_view" action="/seantour_map/travel/reservation/reserv_view.do">
+		                                 <strong for="my_reserv">나의 예약 <br />조회</strong>
+		                                 <span><input type="text" id="reseName" name="reseName" placeholder="이름을 입력하세요." /></span>
+		                                 <span><input type="text" id="reseTel" name="reseTel" maxlength="11" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="전화번호를 입력하세요." /></span>
+		                                 <a href="#" onclick="document.getElementById('reserv_view').submit();" class="btn">조회</a>
+		                               </form>
+		                             </div>
+		                           </div>
+	                          </div>
+                          </div>
+                      </div>
 					</div>
 				</div><!-- //spotzone -->
+              <div class="section00">
+					<div class="inr">
+						<p>해수욕장 혼잡도 신호등은 <span>네이버</span>와 함께 합니다.</p>
+					</div> 
+				</div>
+				<!--<div class="section00_02 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+					<div class="minr">
+						<div class="tit_box">
+					        <p class="tit">해수욕장 <strong>예약시스템</strong></p>
+					    </div>
+					    <div class="reserv_lookup_box">
+					    	<div class="reserv_main_left">
+					    	<form id="reserv_view" action="/seantour_map/travel/reservation/reserv_view.do">
+					    		<strong for="my_reserv">나의 예약 <br />조회</strong>
+								<span><input type="text" id="reseName" name="reseName" placeholder="이름을 입력하세요." /></span>
+								<span><input type="text" id="reseTel" name="reseTel" maxlength="11" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="전화번호를 입력하세요." /></span>
+								<a href="#" onclick="document.getElementById('reserv_view').submit();" class="btn">조회</a>
+							</form>
+					    	</div>
+					    	<div class="reserv_main_right">
+					    		<a href="/seantour_map/travel/reservation/area.do"><img src="${pageContext.request.contextPath}/images/travel/main/img_main_reserv_pull.png" alt="" /></a>
+					    	</div>
+				    	</div>
+					</div>
+				</div>-->
 				<div class="section01 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
 					<div class="minr">
 						<div class="event_box">

@@ -7,7 +7,7 @@ html,body {height: 100%;}
 .cont_main:after{content:''; display:block; clear:both;}
 [class$="minr"]{width:1200px;margin:0 auto;}
 [class$="minr"]:after{content:'';display:block;clear:both;}
-/*img{width:100%;height:100%;}*/
+img{width:100%;height:100%;}
 
 .bx-controls a{display:inline-block; overflow: hidden;  text-indent: -9999em; vertical-align:top;} 
 
@@ -130,7 +130,7 @@ a.btn-layerClose:hover {
 .spotzone .main_visual_wrap {z-index:101;position:absolute;top:0;left:0;right:0;width:1200px;margin:0 auto;height:850px;}
 .spotzone .main_visual_content{display: table;width: 100%;height: 100%;opacity: 1;}
 .spotzone .main_visual_content_cell {display: table-cell;padding-top:78px;vertical-align: middle;}
-.spotzone .main_visual_content_cell>div{float:left;width:50%;/*height:570px;*/color:#fff;}
+.spotzone .main_visual_content_cell>div{float:left;width:45%;/*height:570px;*/color:#fff;}
 
 .main_visual_content_cell {position:relative;}
 .main_visual_content_cell_weather {position:absolute; top:110px; width:auto !important; left:0px; background:rgba(0, 0, 0, 0.74); border-radius:7px; padding:15px 20px;}
@@ -144,8 +144,8 @@ a.btn-layerClose:hover {
 .main_visual_content_cell_weather .dust dl dd {display:inline-block; vertical-align: middle;}
 .main_visual_content_cell_weather .dust dl dd img {width:15px; margin-left:5px; vertical-align: middle;}
 
-.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit{margin:75px 0 15px;font-family:'AuctionGothic';font-size:45.95px;font-weight:600;letter-spacing:-1px;text-shadow: 4px 2px 2px rgba(0, 0, 0, 0.54);}
-.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit strong{font-family:'ti385000038';font-size:109.91px;font-weight:400;letter-spacing:-1px; }
+.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit{margin:75px 0 26px;font-family:'AuctionGothic';font-size:45.95px;font-weight:600;letter-spacing:-1px;text-shadow: 4px 2px 2px rgba(0, 0, 0, 0.54);}
+.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit strong{font-family:'ti385000038';font-size:80.91px;font-weight:400;letter-spacing:-1px; }
 .spotzone .main_visual_content_cell .main_visual_content_cell_left .sub_tit{font-size:20px;text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.54);}
 .spotzone .main_visual_content_cell .main_visual_content_cell_left .img_lst{margin-top:40px;}
 .spotzone .main_visual_content_cell .main_visual_content_cell_left .img_lst:after{content:'';display:block;clear:both;}
@@ -154,7 +154,7 @@ a.btn-layerClose:hover {
 .spotzone .main_visual_content_cell .main_visual_content_cell_left .img_lst li:first-child{margin-left:0;}
           
           
-.spotzone .main_visual_content_cell .main_visual_content_cell_right{}
+.spotzone .main_visual_content_cell .main_visual_content_cell_right{float:right;width:55%;}
 .spotzone .main_visual_content_cell .main_visual_content_cell_right_inr{float:right;position:relative;width:376px;height:573px;background:url(/seantour_map/images/travel/main/img_main_map.png) no-repeat 0 0;background-size:100%;}
 .spotzone .main_visual_content_cell .visual_arrow{position:absolute;top:305px;left:-280px;width:242px;height:27px;}
 .spotzone .main_visual_content_cell .main_visual_content_cell_right .point{position:absolute;background:url(/seantour_map/images/travel/main/icon_point2.png) no-repeat 0 0;background-size:100%;-webkit-transition:all 0.4s;-moz-transition:all 0.4s;-o-transition:all 0.4s;-ms-transition:all 0.4s;transition:all 0.4s}
@@ -192,46 +192,46 @@ a.btn-layerClose:hover {
 .spotzone .spot .icon.red_hover{background:#ec3012;}
 .spotzone .spot .icon.yellow_hover{background:#deb113;}
 .spotzone .spot .icon.green_hover{background:#6eb357;}
-.spotzone .spot1{left:87.3%;top:38.5%;}/* 노봉 */
-.spotzone .spot2{left:19.5%;top:94%;}/* 맹방 */
-.spotzone .spot3{left:85.4%;top:29.5%;}/* 추암 */
-.spotzone .spot4{left:21%;top:88.5%;}/* 신지 명사십리 */
-.spotzone .spot5{left:4.5%;top:36.5%;}/* 만리포 */
-.spotzone .spot6{left:89.5%;top:56%;}/* 일산 */
-.spotzone .spot7{left:26.5%;top:93.5%;}/* 함덕서우봉 */
-.spotzone .spot8{left:88.7%;top:58.5%;}/* 진하 */
-.spotzone .spot9{left:73%;top:15.7%;}/* 하조대 */
-.spotzone .spot10{left:17%;top:94.5%;}/* 협제 */
-.spotzone .spot11{left:87.3%;top:38.5%;}/* 고래불 */
-.spotzone .spot12{left:78.6%;top:19.5%;}/* 주문진 */
-.spotzone .spot13{left:12%;top:44.5%;}/* 춘장대 */
-.spotzone .spot14{left:22.5%;top:93.8%;}/* 이호테우 */ 
-.spotzone .spot15{left:6.5%;top:39.5%;}/* 꽃지 */
-.spotzone .spot16{left:63.4%;top:3.4%;}/* 송지호 */
-.spotzone .spot17{left:19.5%;top:94%;}/* 곽지괴물 */
-.spotzone .spot18{left:61.5%;top:0.5%;}/* 화진포 */
-.spotzone .spot19{left:68.3%;top:11%;}/* 외옹치 */
-.spotzone .spot20{left:16%;top:95.8%;}/* 금능으뜸원  */
-.spotzone .spot21{left:64%;top:5%;}/* 삼포 */
-.spotzone .spot22{left:87.7%;top:62.5%;}/* 일광 */
-.spotzone .spot23{left:8%;top:42%;}/*몽산포 */
-.spotzone .spot24{left:88.7%;top:60.5%;}/* 임랑 */
-.spotzone .spot25{left:22.4%;top:98.8%;}/* 중문색달해변 */
-.spotzone .spot26{left:87.7%;top:29.5%;}/* 장호 */
-.spotzone .spot27{left:11%;top:42.5%;}/* 무창포 */
-.spotzone .spot28{left:80%;top:21%;}/* 안목 */
-.spotzone .spot29{left:49.7%;top:79.5%;}/* 상주은모래비치 */
-.spotzone .spot30{left:15%;top:23.9%;}/* 을왕리 */
-.spotzone .spot31{left:4.5%;top:38.5%;}/* 삼봉 */
-.spotzone .spot32{left:81.2%;top:22.4%;}/* 정동진 */
-.spotzone .spot33{left:85.4%;top:29.5%;}/* 용화 */
-.spotzone .spot34{left:64.8%;top:7.8%;}/* 등대 */
-.spotzone .spot35{left:18%;top:24.4%;}/* 하나개 */
-.spotzone .spot36{left:62.7%;top:1.77%;}/*송지호오토캠핑 */
-.spotzone .spot37{left:90.7%;top:54.5%;}/* 관성 */
-.spotzone .spot38{left:75.5%;top:17%;}/* 중광정 */
-.spotzone .spot39{left:64.5%;top:6.5%;}/* 천진 */
-.spotzone .spot40{left:6%;top:34.5%;}/* 신두리 */
+.spotzone .spot11{left:87.3%;top:38.5%;}/* 노봉 */
+.spotzone .spot12{left:19.5%;top:94%;}/* 맹방 */
+.spotzone .spot13{left:85.4%;top:29.5%;}/* 추암 */
+.spotzone .spot14{left:21%;top:88.5%;}/* 신지 명사십리 */
+.spotzone .spot15{left:4.5%;top:36.5%;}/* 만리포 */
+.spotzone .spot16{left:89.5%;top:56%;}/* 일산 */
+.spotzone .spot17{left:26.5%;top:93.5%;}/* 함덕서우봉 */
+.spotzone .spot18{left:88.7%;top:58.5%;}/* 진하 */
+.spotzone .spot19{left:73%;top:15.7%;}/* 하조대 */
+.spotzone .spot20{left:17%;top:94.5%;}/* 협제 */
+.spotzone .spot21{left:87.3%;top:38.5%;}/* 고래불 */
+.spotzone .spot22{left:78.6%;top:19.5%;}/* 주문진 */
+.spotzone .spot23{left:12%;top:44.5%;}/* 춘장대 */
+.spotzone .spot24{left:22.5%;top:93.8%;}/* 이호테우 */ 
+.spotzone .spot25{left:6.5%;top:39.5%;}/* 꽃지 */
+.spotzone .spot26{left:63.4%;top:3.4%;}/* 송지호 */
+.spotzone .spot27{left:19.5%;top:94%;}/* 곽지괴물 */
+.spotzone .spot28{left:61.5%;top:0.5%;}/* 화진포 */
+.spotzone .spot29{left:68.3%;top:11%;}/* 외옹치 */
+.spotzone .spot30{left:16%;top:95.8%;}/* 금능으뜸원  */
+.spotzone .spot31{left:64%;top:5%;}/* 삼포 */
+.spotzone .spot32{left:87.7%;top:62.5%;}/* 일광 */
+.spotzone .spot33{left:8%;top:42%;}/*몽산포 */
+.spotzone .spot34{left:88.7%;top:60.5%;}/* 임랑 */
+.spotzone .spot35{left:22.4%;top:98.8%;}/* 중문색달해변 */
+.spotzone .spot36{left:87.7%;top:29.5%;}/* 장호 */
+.spotzone .spot37{left:11%;top:42.5%;}/* 무창포 */
+.spotzone .spot38{left:80%;top:21%;}/* 안목 */
+.spotzone .spot39{left:49.7%;top:79.5%;}/* 상주은모래비치 */
+.spotzone .spot40{left:15%;top:23.9%;}/* 을왕리 */
+.spotzone .spot41{left:4.5%;top:38.5%;}/* 삼봉 */
+.spotzone .spot42{left:81.2%;top:22.4%;}/* 정동진 */
+.spotzone .spot43{left:85.4%;top:29.5%;}/* 용화 */
+.spotzone .spot44{left:64.8%;top:7.8%;}/* 등대 */
+.spotzone .spot45{left:18%;top:24.4%;}/* 하나개 */
+.spotzone .spot46{left:62.7%;top:1.77%;}/*송지호오토캠핑 */
+.spotzone .spot47{left:90.7%;top:54.5%;}/* 관성 */
+.spotzone .spot48{left:75.5%;top:17%;}/* 중광정 */
+.spotzone .spot49{left:64.5%;top:6.5%;}/* 천진 */
+.spotzone .spot50{left:6%;top:34.5%;}/* 신두리 */
 .spotzone .spot .icon.red_hover:hover,
 .spotzone .spot .icon.red_hover:focus,
 .spotzone .spot .icon.red_hover:active{position:relative;z-index:9999;width:40px;height:40px;margin:-25px 0 0 -10px;background:#ec3012;font-size:10px;color:#fff;line-height:40px;text-align:center;text-indent:0;}
@@ -243,28 +243,27 @@ a.btn-layerClose:hover {
 .spotzone .spot .icon.green_hover:active{position:relative;z-index:9999;width:40px;height:40px;margin:-25px 0 0 -10px;background:#6eb357;font-size:10px;color:#fff;line-height:40px;text-align:center;text-indent:0;}
 .spotzone .name{}
 .spotzone .blinker{position:absolute;width:60px;height:28px;line-height:1.5;background:#2c9eff;border:1px solid #1c91f4;border-radius:1em;-webkit-transition:all 0.4s;-moz-transition:all 0.4s;-o-transition:all 0.4s;-ms-transition:all 0.4s;transition:all 0.4s}
-.spotzone .blinker1{left:89.42%;top:66.52%;}/* 해운대 */
-.spotzone .blinker2{left:85.08%;top:70.38%}/* 광안리 */
-.spotzone .blinker3{left:72.76%;top:74.03%;}/*송도 */
-.spotzone .blinker4{left:15.34%;top:38.4%;}/* 대천 */
-.spotzone .blinker5{left:57.33%;top:71.36%;}/* 다대포 */
-.spotzone .blinker6{left:64%;top:17%;}/* 경포 */
-.spotzone .blinker7{left:90.56%;top:61.8%;}/* 송정 */
-.spotzone .blinker8{left:57.87%;top:13.33%;}/* 낙산 */
-.spotzone .blinker9{left:53.87%;top:8.33%;}/* 속초 */
-.spotzone .blinker10{left:64%;top:17%;}/* 삼척 */
-
+.spotzone .spot1{left:89.42%;top:66.52%;}/* 해운대 */
+.spotzone .spot2{left:85.08%;top:70.38%}/* 광안리 */
+.spotzone .spot3{left:72.76%;top:74.03%;}/*송도 */
+.spotzone .spot4{left:15.34%;top:38.4%;}/* 대천 */
+.spotzone .spot5{left:57.33%;top:71.36%;}/* 다대포 */
+.spotzone .spot6{left:64%;top:17%;}/* 경포 */
+.spotzone .spot7{left:90.56%;top:61.8%;}/* 송정 */
+.spotzone .spot8{left:57.87%;top:13.33%;}/* 낙산 */
+.spotzone .spot9{left:53.87%;top:8.33%;}/* 속초 */
+.spotzone .spot10{left:64%;top:17%;}/* 삼척 */
 
 .spotzone .blinker .icon{position:absolute;top:-47px;right:-27px;display:inline-block;width:19px;height:65px;}
 .spotzone .blinker .icon.red{background:url(/seantour_map/images/travel/main/icon_blinker_red.png) no-repeat 0 0;background-size:cover;}
 .spotzone .blinker .icon.yellow{background:url(/seantour_map/images/travel/main/icon_blinker_yellow.png) no-repeat 0 0;background-size:cover;}
 .spotzone .blinker .icon.green{background:url(/seantour_map/images/travel/main/icon_blinker_green.png) no-repeat 0 0;background-size:cover;}
 
-.spotzone .blinker5 .icon,
-.spotzone .blinker7 .icon,
-.spotzone .blinker8 .icon,
-.spotzone .blinker9 .icon{right:70px;}
-.spotzone .blinker6 .icon{top:-72px;right:22px;}
+.spotzone .spot4 .icon,
+.spotzone .spot7 .icon,
+.spotzone .spot1 .icon,
+.spotzone .spot2 .icon{right:70px;}
+.spotzone .spot3 .icon{top:-72px;right:22px;}
 
 .spotzone .blinker .name{display:inline-block;position:absolute;top:0;left:0;width:100%;height:100%;line-height:2.1;font-size:15px;color:#fff !important;text-align:center;}          
 
@@ -310,13 +309,14 @@ a.btn-layerClose:hover {
 .section00 p{font-family:'ti385000038';font-size:30px;font-weight:600;}
 .section00 p span{font-size:34px;color:#2d9908;}
 
-.section00_02 .reserv_lookup_box{}
-.section00_02 .reserv_lookup_box .reserv_main_left{float:left;width:58%;}
-.section00_02 .reserv_lookup_box .reserv_main_right{float:right;width:40%;}
-.reserv_main_left{box-sizing:border-box;width:100%;height:110px;margin-bottom:30px;padding:25px 20px;border:1px solid #c3d2d5; background:#fff;text-align:center;vertical-align:;}
+.spotzone .reserv_lookup_box{}
+.spotzone .reserv_lookup_box .reserv_main_left{width:100%;}
+.spotzone .reserv_lookup_box .reserv_main_right{width:100%;text-align:center;}
+.reserv_main_left{box-sizing:border-box;width:100%;height:110px;margin-top:18px;padding:25px 20px;border:1px solid #c3d2d5; background:#fff;text-align:center;vertical-align:;}
 .reserv_main_left:after{content:'';display:block;clear:both;}
 .reserv_main_left *{float:left;display:inline-block;}
-.reserv_main_left strong{position:relative;display:inline-block;width:calc(100% - 30% - 30% - 15% - 30px );margin-top:-7px;padding-left:35px;padding-top:10px;font-size:18px;color:#055794;letter-spacing:-1px;}
+.reserv_main_left form{width:100%;}
+.reserv_main_left strong{position:relative;display:inline-block;width:calc(100% - 30% - 30% - 15% - 30px );margin-top:-7px;padding-left:35px;padding-top:10px;font-size:16px;color:#055794;letter-spacing:-1px;}
 .reserv_main_left strong:before{content:'';display:inline-block;position:absolute;top:50%;left:0;margin-top:-14px;width:28px;height:28px;background:url(/seantour_map/images/travel/main/icon_main_reserv.png) no-repeat 0 0;background-size:cover;}
 .reserv_main_left span{width:30%;margin-left:10px;}
 .reserv_main_left input{box-sizing:border-box;width:100%;height:58px;padding:5px 7px;border:1px solid #dedede;}
@@ -337,7 +337,7 @@ a.btn-layerClose:hover {
 	.reserv_main_left .btn{height:48px;line-height:48px;font-size:14px;}
 }
 @media screen and (max-width:640px){
-	.reserv_main_left{float:none !important;width:100% !important;margin-bottom:15px;}
+	.reserv_main_left{float:none !important;width:100% !important;}
 	.reserv_main_right{float:none !important;width:100% !important;}
 }
 @media screen and (max-width:480px){
@@ -347,7 +347,7 @@ a.btn-layerClose:hover {
 	.reserv_main_left strong br{display:none;}
 	.reserv_main_left span{width:37%;margin-left:5px;}
 	.reserv_main_left input{height:40px;}
-	.reserv_main_left .btn{width:calc(100% - 37% - 37% - 15px);height:40px;line-height:40px;margin-left:5px;}
+	.reserv_main_left .btn{width:calc(100% - 37% - 37% - 15px);height:40px;line-height:30px;margin-left:5px;}
 }
 
 /* **************************************** *
@@ -645,18 +645,23 @@ a.btn-layerClose:hover {
   	
   	/***********혼잡도************/
 	#container.main{padding-top:60px;}
-	.spotzone .main_visual_content_cell>div{width:45%;}
+	
 	#container.main .spotzone .main_visual_content_cell{padding-top:0 !important;}
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right_inr{float:right;position:relative;width:317px;height:489px;background:url(/seantour_map/images/travel/main/img_map_main3.png) no-repeat 0 0;background-size:cover;}
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right{padding-left:12%;}
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right_inr{float:left;position:relative;width:317px;height:489px;background:url(/seantour_map/images/travel/main/img_map_main3.png) no-repeat 0 0;background-size:cover;}
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker{position:absolute;width:18%;height:6%;}
 	
+	.spotzone .spot_info{right:-70px;}
+  	.spotzone .spot_title{top:-30px;}
+  	
 	.icon{position:absolute;top:-37px;right:-22px;display:inline-block;width:21px;height:67px;}
 	
 	
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker5 .icon,
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker7 .icon,
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker8 .icon{right:66px;}
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker9 .icon{top:-62px;right:16px;}
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot4 .icon,
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot7 .icon,
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot1 .icon,
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot2 .icon{right:66px;}
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot3 .icon{top:-62px;right:16px;}
 	
 	.name{font-size:13px;line-height:1.8;}          
 	
@@ -746,6 +751,9 @@ a.btn-layerClose:hover {
 	.spotzone .spot_title{top:5px;left:-130px;}
 	.spotzone .spot_title img{width:80%;}
 	
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right{padding-left:3%;}
+	
+	
     /* tit_box */
     .tit_box{margin:35px 0 15px;}
     .tit_box .tit{margin-bottom:5px;font-size:24px;}
@@ -774,7 +782,7 @@ a.btn-layerClose:hover {
 	/* spotzone */
 	.spotzone .list>li{height:400px;}
 	.spotzone .main_visual_wrap{/*position:relative;*/height:400px;}
-	.spotzone .main_visual_content_cell>div{width:100%;}
+	
 	.main_visual_content_cell_weather{left:50%;margin-left:-25%;padding:10px;}
 	.main_visual_content_cell_weather .weather img{width:23px;}
 	.main_visual_content_cell_weather .weather span{font-size:20px;}
@@ -790,19 +798,24 @@ a.btn-layerClose:hover {
 	.spotzone .main_visual_content_cell .visual_go{position:absolute;left:0;bottom:0;}
 	.spotzone .main_visual_content_cell .visual_go .button{float:left;width:50%;margin:0;font-size:14px;}
 	*/
+	.spotzone .main_visual_content_cell>div{width:100%;}
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right{width:100%;}
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker{width:12%;height:5%;}
 	.spotzone .blinker .name{font-size:12px;}
 	.spotzone .main_visual_wrap{height:550px;}
 	.spotzone .list>li{height:550px;}
-	.spotzone .main_visual_content_cell_left{display:none;}
+	.spotzone .main_visual_content_cell_left{/*display:none;*/}
+	.spotzone .main_visual_content_cell_left .tit{margin:25px 0 10px;}
+	.reserv_main_left{margin:10px 0 5px;}
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right_inr{float:left;margin:50px auto 0;padding:0;}
 	.spotzone .spot_title{top:-30px;left:0;}
 	.spotzone .spot_title img{width:70%;}
 	.spotzone .spot_info{top:-30px;}
 	.spotzone .spot_info img{width:70%;}
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker5 .icon, 
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker4 .icon, 
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker7 .icon, 
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker8 .icon{right:37px;}
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker1 .icon, 
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker2 .icon{right:37px;}
 	
 	/* section00 */
 	.section00{padding:15px 0;}
@@ -833,6 +846,17 @@ a.btn-layerClose:hover {
 	.spotzone .bx-controls .bx-controls-auto, 
 	.spotzone .bx-controls .bx-pager{bottom:18%;}
 	*/
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot4 .icon, 
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot7 .icon, 
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot1 .icon, 
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot2 .icon{right:42px;}
+	.spotzone .main_visual_wrap{height:850px;}
+	.spotzone .list>li{height:850px;}
+	.spotzone .main_visual_content_cell>div{width:100%;}
+	.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit{margin:15px 0 15px;font-size:22px;}
+	.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit strong{font-size:40px;}
+	
+	
 	.section00 {padding:10px 0;}
 	.section00 p{font-size:18px;}
 	.section00 p span{font-size:20px;}
@@ -841,7 +865,7 @@ a.btn-layerClose:hover {
 	/*.section02 .col01 .img>a{height:260px;}
    	.section02 .col01 .img>a>img{height:260px;}*/
    	.section02 .col01 a,
-	.section02 .col01>a img{height:260px;}
+	.section02 .col01 a img{height:260px;}
     .section02 .vest_recommend_box .name_tit{width:120px !important;height:32px;line-height:32px;font-size:14px;}
     .section02 .vest_recommend_box .col01 .tbox{font-size:24px;}
     .section02 .col02 .img{height:136px;}
@@ -897,7 +921,9 @@ a.btn-layerClose:hover {
 	
  }   
  
-@media screen and (max-width:500px){
+@media screen and (max-width:600px){
+	
+
 
 }	
 @media screen and (max-width:420px){
