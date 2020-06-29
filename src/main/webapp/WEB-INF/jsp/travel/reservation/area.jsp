@@ -8,6 +8,7 @@
 	<%@ include file="/WEB-INF/jsp/travel/tpl/head.jsp" %>
 </head>
 <script>
+var map;
 $(document).ready(function(){
 	if('${travelReservation.openYn}' == 'N'){
 		var alertVal = "";
@@ -92,14 +93,12 @@ function fn_display_none(){
 }
 
 $(document).ready(function(){
+	if($('#month').val() != "" && $('#day').val() != "" && $('#reseTime').val() != ""){
+		$(".jn_map").hide();
+	}
+
 	 $("#map").val();
-	$(".reserv_srch").click(function(e){
-		if(map !=1){
-			$(".jn_map").show();
-		}else{
-			$(".jn_map").hide();
-		} 
-	});
+
 });
 </script>
 <body>
