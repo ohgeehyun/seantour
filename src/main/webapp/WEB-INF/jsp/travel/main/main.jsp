@@ -43,80 +43,80 @@
   		
   		$.ajax({
   			type:'post',
-  			url:"/travel/mainBeachCongestion.do",
-  		    success: function(data) {				
+  			url:"/seantour_map/travel/mainBeachCongestion.do",
+  		    success: function(data) {  		    	
 				for(var i=0; i < data.length; i++){
 					if(i < 10){
-						$('.blinker ' + 'spot' + (i + 1)).find('span').removeClass();						
-						$('.blinker ' + 'spot' + (i + 1)).find('span').addClass('icon');
+						$('.spot' + (i + 1)).find('span').removeClass();						
+						$('.spot' + (i + 1)).find('span').addClass('icon');
 						var classNm = checkBeachCongestion(data[i].seqId, data[i].uniqPop);
-						$('.blinker ' + 'spot' + (i + 1)).find('span').addClass(classNm);
+						$('.spot' + (i + 1)).find('span').addClass(classNm);
 					}else{
-						$('.blinker ' + 'spot' + (i + 1)).find('a').removeClass();
-						$('.blinker ' + 'spot' + (i + 1)).find('a').addClass('icon');
+						$('.spot' + (i + 1)).find('a').removeClass();
+						$('.spot' + (i + 1)).find('a').addClass('icon');
 						var classNm = checkBeachCongestion(data[i].seqId, data[i].uniqPop);
-						$('.blinker ' + 'spot' + (i + 1)).find('a').addClass(classNm);						
+						$('.spot' + (i + 1)).find('a').addClass(classNm);						
 					}
 				}
 		    },
-		    error: function(err) {
-// 				alert("신호등 데이터를 가져오는 도중 오류가 발생하였습니다.");
+		    error: function(err) {		    	
+				alert("신호등 데이터를 가져오는 도중 오류가 발생하였습니다.");
 		    }
   		});
 	});
   	
   	function checkBeachCongestion(beachId, population){
   		var returnStr = '';
-  		if(beachId == 1){	if(population > 	32813	){ returnStr = "green";} else if(population > 	65625	){ returnStr = "yellow";} else { returnStr = "red";}}
-  		if(beachId == 2){	if(population > 	22297	){ returnStr = "green";} else if(population > 	44593	){ returnStr = "yellow";} else { returnStr = "red";}}
-  		if(beachId == 3){	if(population > 	12500	){ returnStr = "green";} else if(population > 	25000	){ returnStr = "yellow";} else { returnStr = "red";}}
-  		if(beachId == 4){	if(population > 	109375	){ returnStr = "green";} else if(population > 	218750	){ returnStr = "yellow";} else { returnStr = "red";}}
-  		if(beachId == 5){	if(population > 	17266	){ returnStr = "green";} else if(population > 	34531	){ returnStr = "yellow";} else { returnStr = "red";}}
-  		if(beachId == 6){	if(population > 	39375	){ returnStr = "green";} else if(population > 	78750	){ returnStr = "yellow";} else { returnStr = "red";}}
-  		if(beachId == 7){	if(population > 	11250	){ returnStr = "green";} else if(population > 	22500	){ returnStr = "yellow";} else { returnStr = "red";}}
-  		if(beachId == 8){	if(population > 	33938	){ returnStr = "green";} else if(population > 	67875	){ returnStr = "yellow";} else { returnStr = "red";}}
-  		if(beachId == 9){	if(population > 	3750	){ returnStr = "green";} else if(population > 	7500	){ returnStr = "yellow";} else { returnStr = "red";}}
-  		if(beachId == 10){	if(population > 	33750	){ returnStr = "green";} else if(population > 	67500	){ returnStr = "yellow";} else { returnStr = "red";}}
-  		if(beachId == 11){	if(population > 	46313	){ returnStr = "green_hover";} else if(population > 	92625	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 12){	if(population > 	18500	){ returnStr = "green_hover";} else if(population > 	37000	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 13){	if(population > 	2813	){ returnStr = "green_hover";} else if(population > 	5625	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 14){	if(population > 	178125	){ returnStr = "green_hover";} else if(population > 	356250	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 15){	if(population > 	28125	){ returnStr = "green_hover";} else if(population > 	56250	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 16){	if(population > 	9169	){ returnStr = "green_hover";} else if(population > 	18338	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 17){	if(population > 	2726	){ returnStr = "green_hover";} else if(population > 	5453	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 18){	if(population > 	68750	){ returnStr = "green_hover";} else if(population > 	137500	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 19){	if(population > 	5625	){ returnStr = "green_hover";} else if(population > 	11250	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 20){	if(population > 	4103	){ returnStr = "green_hover";} else if(population > 	8206	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 21){	if(population > 	50000	){ returnStr = "green_hover";} else if(population > 	100000	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 22){	if(population > 	27188	){ returnStr = "green_hover";} else if(population > 	54375	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 23){	if(population > 	117188	){ returnStr = "green_hover";} else if(population > 	234375	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 24){	if(population > 	10236	){ returnStr = "green_hover";} else if(population > 	20471	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 25){	if(population > 	40000	){ returnStr = "green_hover";} else if(population > 	80000	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 26){	if(population > 	13855	){ returnStr = "green_hover";} else if(population > 	27710	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 27){	if(population > 	4520	){ returnStr = "green_hover";} else if(population > 	9039	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 28){	if(population > 	20184	){ returnStr = "green_hover";} else if(population > 	40368	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 29){	if(population > 	1406	){ returnStr = "green_hover";} else if(population > 	2813	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 30){	if(population > 	1034	){ returnStr = "green_hover";} else if(population > 	2068	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 31){	if(population > 	14095	){ returnStr = "green_hover";} else if(population > 	28191	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 32){	if(population > 	4219	){ returnStr = "green_hover";} else if(population > 	8438	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 33){	if(population > 	15938	){ returnStr = "green_hover";} else if(population > 	31875	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 34){	if(population > 	2219	){ returnStr = "green_hover";} else if(population > 	4438	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 35){	if(population > 	8750	){ returnStr = "green_hover";} else if(population > 	17500	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 36){	if(population > 	23438	){ returnStr = "green_hover";} else if(population > 	46875	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 37){	if(population > 	3750	){ returnStr = "green_hover";} else if(population > 	7500	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 38){	if(population > 	4500	){ returnStr = "green_hover";} else if(population > 	9000	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 39){	if(population > 	170625	){ returnStr = "green_hover";} else if(population > 	341250	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 40){	if(population > 	3656	){ returnStr = "green_hover";} else if(population > 	7313	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 41){	if(population > 	10000	){ returnStr = "green_hover";} else if(population > 	20000	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 42){	if(population > 	25938	){ returnStr = "green_hover";} else if(population > 	51875	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 43){	if(population > 	7813	){ returnStr = "green_hover";} else if(population > 	15625	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 44){	if(population > 	2000	){ returnStr = "green_hover";} else if(population > 	4000	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 45){	if(population > 	2844	){ returnStr = "green_hover";} else if(population > 	5688	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 46){	if(population > 	4744	){ returnStr = "green_hover";} else if(population > 	9488	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 47){	if(population > 	9903	){ returnStr = "green_hover";} else if(population > 	19805	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 48){	if(population > 	5625	){ returnStr = "green_hover";} else if(population > 	11250	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 49){	if(population > 	10568	){ returnStr = "green_hover";} else if(population > 	21136	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
-  		if(beachId == 50){	if(population > 	29063	){ returnStr = "green_hover";} else if(population > 	58125	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 1){	if(population < 	32813	){ returnStr = "green";} else if(population < 	65625	){ returnStr = "yellow";} else { returnStr = "red";}}
+  		if(beachId == 2){	if(population < 	22297	){ returnStr = "green";} else if(population < 	44593	){ returnStr = "yellow";} else { returnStr = "red";}}
+  		if(beachId == 3){	if(population < 	12500	){ returnStr = "green";} else if(population < 	25000	){ returnStr = "yellow";} else { returnStr = "red";}}
+  		if(beachId == 4){	if(population < 	109375	){ returnStr = "green";} else if(population < 	218750	){ returnStr = "yellow";} else { returnStr = "red";}}
+  		if(beachId == 5){	if(population < 	17266	){ returnStr = "green";} else if(population < 	34531	){ returnStr = "yellow";} else { returnStr = "red";}}
+  		if(beachId == 6){	if(population < 	39375	){ returnStr = "green";} else if(population < 	78750	){ returnStr = "yellow";} else { returnStr = "red";}}
+  		if(beachId == 7){	if(population < 	11250	){ returnStr = "green";} else if(population < 	22500	){ returnStr = "yellow";} else { returnStr = "red";}}
+  		if(beachId == 8){	if(population < 	33938	){ returnStr = "green";} else if(population < 	67875	){ returnStr = "yellow";} else { returnStr = "red";}}
+  		if(beachId == 9){	if(population < 	3750	){ returnStr = "green";} else if(population < 	7500	){ returnStr = "yellow";} else { returnStr = "red";}}
+  		if(beachId == 10){	if(population < 	33750	){ returnStr = "green";} else if(population < 	67500	){ returnStr = "yellow";} else { returnStr = "red";}}
+  		if(beachId == 11){	if(population < 	46313	){ returnStr = "green_hover";} else if(population < 	92625	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 12){	if(population < 	18500	){ returnStr = "green_hover";} else if(population < 	37000	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 13){	if(population < 	2813	){ returnStr = "green_hover";} else if(population < 	5625	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 14){	if(population < 	178125	){ returnStr = "green_hover";} else if(population < 	356250	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 15){	if(population < 	28125	){ returnStr = "green_hover";} else if(population < 	56250	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 16){	if(population < 	9169	){ returnStr = "green_hover";} else if(population < 	18338	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 17){	if(population < 	2726	){ returnStr = "green_hover";} else if(population < 	5453	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 18){	if(population < 	68750	){ returnStr = "green_hover";} else if(population < 	137500	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 19){	if(population < 	5625	){ returnStr = "green_hover";} else if(population < 	11250	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 20){	if(population < 	4103	){ returnStr = "green_hover";} else if(population < 	8206	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 21){	if(population < 	50000	){ returnStr = "green_hover";} else if(population < 	100000	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 22){	if(population < 	27188	){ returnStr = "green_hover";} else if(population < 	54375	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 23){	if(population < 	117188	){ returnStr = "green_hover";} else if(population < 	234375	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 24){	if(population < 	10236	){ returnStr = "green_hover";} else if(population < 	20471	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 25){	if(population < 	40000	){ returnStr = "green_hover";} else if(population < 	80000	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 26){	if(population < 	13855	){ returnStr = "green_hover";} else if(population < 	27710	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 27){	if(population < 	4520	){ returnStr = "green_hover";} else if(population < 	9039	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 28){	if(population < 	20184	){ returnStr = "green_hover";} else if(population < 	40368	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 29){	if(population < 	1406	){ returnStr = "green_hover";} else if(population < 	2813	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 30){	if(population < 	1034	){ returnStr = "green_hover";} else if(population < 	2068	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 31){	if(population < 	14095	){ returnStr = "green_hover";} else if(population < 	28191	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 32){	if(population < 	4219	){ returnStr = "green_hover";} else if(population < 	8438	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 33){	if(population < 	15938	){ returnStr = "green_hover";} else if(population < 	31875	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 34){	if(population < 	2219	){ returnStr = "green_hover";} else if(population < 	4438	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 35){	if(population < 	8750	){ returnStr = "green_hover";} else if(population < 	17500	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 36){	if(population < 	23438	){ returnStr = "green_hover";} else if(population < 	46875	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 37){	if(population < 	3750	){ returnStr = "green_hover";} else if(population < 	7500	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 38){	if(population < 	4500	){ returnStr = "green_hover";} else if(population < 	9000	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 39){	if(population < 	170625	){ returnStr = "green_hover";} else if(population < 	341250	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 40){	if(population < 	3656	){ returnStr = "green_hover";} else if(population < 	7313	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 41){	if(population < 	10000	){ returnStr = "green_hover";} else if(population < 	20000	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 42){	if(population < 	25938	){ returnStr = "green_hover";} else if(population < 	51875	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 43){	if(population < 	7813	){ returnStr = "green_hover";} else if(population < 	15625	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 44){	if(population < 	2000	){ returnStr = "green_hover";} else if(population < 	4000	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 45){	if(population < 	2844	){ returnStr = "green_hover";} else if(population < 	5688	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 46){	if(population < 	4744	){ returnStr = "green_hover";} else if(population < 	9488	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 47){	if(population < 	9903	){ returnStr = "green_hover";} else if(population < 	19805	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 48){	if(population < 	5625	){ returnStr = "green_hover";} else if(population < 	11250	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 49){	if(population < 	10568	){ returnStr = "green_hover";} else if(population < 	21136	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 50){	if(population < 	29063	){ returnStr = "green_hover";} else if(population < 	58125	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
 
   		return returnStr;
   	}
