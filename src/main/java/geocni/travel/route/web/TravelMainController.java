@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
@@ -13,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.poi.util.SystemOutLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +31,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 
 import egovframework.com.cmm.EgovMessageSource;
+import egovframework.com.cmm.service.EgovProperties;
 import egovframework.com.utl.fcc.service.NullUtil;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import geocni.travel.common.TravelDefaultVO;
@@ -76,11 +81,36 @@ public class TravelMainController {
 	}
 
 	@RequestMapping(value="cronBeachCongestion.do")
-	public String cronBeachCongestion(
+	public void cronBeachCongestion(
 			 SessionStatus status
 			,Model model) throws Exception {
+		//DB 호출해서 정보값 가져오도록 할것.
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
+		String datestr = sdf.format(cal.getTime());
+		
+		int minute = Integer.valueOf(datestr.substring(10, 11));
+		
+		if(minute > 0 && minute < 30) {
+			datestr = Integer.valueOf(datestr.substring(0, 10)) + "00";
+		}else {
+			datestr = Integer.valueOf(datestr.substring(0, 10)) + "30";
+		}
+				
 		//파일을 불러와서 DB에 파일 넣어줄것.
-				return null;
+		String filePath = EgovProperties.getProperty("Globals.fileStorePath");
+		filePath = filePath + "main/mof_beach_sum_" + datestr + ".txt";
+		//mof_beach_sum_년월일시분.txt		
+		
+		List<String> lines = Files.readAllLines(Paths.get(filePath), StandardCharsets.UTF_8);
+		StringBuffer sb = new StringBuffer();
+		for(String line:lines) {
+			//1.테이블에서 해당 시간 count
+			//2.데이터 존재 여부 확인
+			//3.line에서 "|"로 split해서 travelMain 객체에 넣음
+			//4.데이터 insert			
+			System.out.println(line);
+		}
 	}
 	
 //	@RequestMapping(value="latest.do")
