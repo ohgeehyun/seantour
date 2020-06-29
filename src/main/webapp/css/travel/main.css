@@ -7,7 +7,7 @@ html,body {height: 100%;}
 .cont_main:after{content:''; display:block; clear:both;}
 [class$="minr"]{width:1200px;margin:0 auto;}
 [class$="minr"]:after{content:'';display:block;clear:both;}
-/*img{width:100%;height:100%;}*/
+img{width:100%;height:100%;}
 
 .bx-controls a{display:inline-block; overflow: hidden;  text-indent: -9999em; vertical-align:top;} 
 
@@ -130,7 +130,7 @@ a.btn-layerClose:hover {
 .spotzone .main_visual_wrap {z-index:101;position:absolute;top:0;left:0;right:0;width:1200px;margin:0 auto;height:850px;}
 .spotzone .main_visual_content{display: table;width: 100%;height: 100%;opacity: 1;}
 .spotzone .main_visual_content_cell {display: table-cell;padding-top:78px;vertical-align: middle;}
-.spotzone .main_visual_content_cell>div{float:left;width:50%;/*height:570px;*/color:#fff;}
+.spotzone .main_visual_content_cell>div{float:left;width:45%;/*height:570px;*/color:#fff;}
 
 .main_visual_content_cell {position:relative;}
 .main_visual_content_cell_weather {position:absolute; top:110px; width:auto !important; left:0px; background:rgba(0, 0, 0, 0.74); border-radius:7px; padding:15px 20px;}
@@ -145,7 +145,7 @@ a.btn-layerClose:hover {
 .main_visual_content_cell_weather .dust dl dd img {width:15px; margin-left:5px; vertical-align: middle;}
 
 .spotzone .main_visual_content_cell .main_visual_content_cell_left .tit{margin:75px 0 26px;font-family:'AuctionGothic';font-size:45.95px;font-weight:600;letter-spacing:-1px;text-shadow: 4px 2px 2px rgba(0, 0, 0, 0.54);}
-.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit strong{font-family:'ti385000038';font-size:95.91px;font-weight:400;letter-spacing:-1px; }
+.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit strong{font-family:'ti385000038';font-size:80.91px;font-weight:400;letter-spacing:-1px; }
 .spotzone .main_visual_content_cell .main_visual_content_cell_left .sub_tit{font-size:20px;text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.54);}
 .spotzone .main_visual_content_cell .main_visual_content_cell_left .img_lst{margin-top:40px;}
 .spotzone .main_visual_content_cell .main_visual_content_cell_left .img_lst:after{content:'';display:block;clear:both;}
@@ -154,7 +154,7 @@ a.btn-layerClose:hover {
 .spotzone .main_visual_content_cell .main_visual_content_cell_left .img_lst li:first-child{margin-left:0;}
           
           
-.spotzone .main_visual_content_cell .main_visual_content_cell_right{}
+.spotzone .main_visual_content_cell .main_visual_content_cell_right{float:right;width:55%;}
 .spotzone .main_visual_content_cell .main_visual_content_cell_right_inr{float:right;position:relative;width:376px;height:573px;background:url(/seantour_map/images/travel/main/img_main_map.png) no-repeat 0 0;background-size:100%;}
 .spotzone .main_visual_content_cell .visual_arrow{position:absolute;top:305px;left:-280px;width:242px;height:27px;}
 .spotzone .main_visual_content_cell .main_visual_content_cell_right .point{position:absolute;background:url(/seantour_map/images/travel/main/icon_point2.png) no-repeat 0 0;background-size:100%;-webkit-transition:all 0.4s;-moz-transition:all 0.4s;-o-transition:all 0.4s;-ms-transition:all 0.4s;transition:all 0.4s}
@@ -259,11 +259,11 @@ a.btn-layerClose:hover {
 .spotzone .blinker .icon.yellow{background:url(/seantour_map/images/travel/main/icon_blinker_yellow.png) no-repeat 0 0;background-size:cover;}
 .spotzone .blinker .icon.green{background:url(/seantour_map/images/travel/main/icon_blinker_green.png) no-repeat 0 0;background-size:cover;}
 
-.spotzone .blinker4 .icon,
-.spotzone .blinker7 .icon,
-.spotzone .blinker1 .icon,
-.spotzone .blinker2 .icon{right:70px;}
-.spotzone .blinker3 .icon{top:-72px;right:22px;}
+.spotzone .spot4 .icon,
+.spotzone .spot7 .icon,
+.spotzone .spot1 .icon,
+.spotzone .spot2 .icon{right:70px;}
+.spotzone .spot3 .icon{top:-72px;right:22px;}
 
 .spotzone .blinker .name{display:inline-block;position:absolute;top:0;left:0;width:100%;height:100%;line-height:2.1;font-size:15px;color:#fff !important;text-align:center;}          
 
@@ -316,7 +316,7 @@ a.btn-layerClose:hover {
 .reserv_main_left:after{content:'';display:block;clear:both;}
 .reserv_main_left *{float:left;display:inline-block;}
 .reserv_main_left form{width:100%;}
-.reserv_main_left strong{position:relative;display:inline-block;width:calc(100% - 30% - 30% - 15% - 30px );margin-top:-7px;padding-left:35px;padding-top:10px;font-size:18px;color:#055794;letter-spacing:-1px;}
+.reserv_main_left strong{position:relative;display:inline-block;width:calc(100% - 30% - 30% - 15% - 30px );margin-top:-7px;padding-left:35px;padding-top:10px;font-size:16px;color:#055794;letter-spacing:-1px;}
 .reserv_main_left strong:before{content:'';display:inline-block;position:absolute;top:50%;left:0;margin-top:-14px;width:28px;height:28px;background:url(/seantour_map/images/travel/main/icon_main_reserv.png) no-repeat 0 0;background-size:cover;}
 .reserv_main_left span{width:30%;margin-left:10px;}
 .reserv_main_left input{box-sizing:border-box;width:100%;height:58px;padding:5px 7px;border:1px solid #dedede;}
@@ -337,7 +337,7 @@ a.btn-layerClose:hover {
 	.reserv_main_left .btn{height:48px;line-height:48px;font-size:14px;}
 }
 @media screen and (max-width:640px){
-	.reserv_main_left{float:none !important;width:100% !important;margin-bottom:15px;}
+	.reserv_main_left{float:none !important;width:100% !important;}
 	.reserv_main_right{float:none !important;width:100% !important;}
 }
 @media screen and (max-width:480px){
@@ -347,7 +347,7 @@ a.btn-layerClose:hover {
 	.reserv_main_left strong br{display:none;}
 	.reserv_main_left span{width:37%;margin-left:5px;}
 	.reserv_main_left input{height:40px;}
-	.reserv_main_left .btn{width:calc(100% - 37% - 37% - 15px);height:40px;line-height:40px;margin-left:5px;}
+	.reserv_main_left .btn{width:calc(100% - 37% - 37% - 15px);height:40px;line-height:30px;margin-left:5px;}
 }
 
 /* **************************************** *
@@ -577,7 +577,6 @@ a.btn-layerClose:hover {
 	/*.section02 .col01 .img>a{height:364px;}
 	.section02 .col01 .img>a>img{height:364px;}
 	*/
-	.section02 .col02 a{height:178px;}
 	.section02 .col02 .img{height:177px;}
 	.section02 .col02 .img img{height:177px;}
 	
@@ -646,18 +645,23 @@ a.btn-layerClose:hover {
   	
   	/***********혼잡도************/
 	#container.main{padding-top:60px;}
-	.spotzone .main_visual_content_cell>div{width:45%;}
+	
 	#container.main .spotzone .main_visual_content_cell{padding-top:0 !important;}
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right_inr{float:right;position:relative;width:317px;height:489px;background:url(/seantour_map/images/travel/main/img_map_main3.png) no-repeat 0 0;background-size:cover;}
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right{padding-left:12%;}
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right_inr{float:left;position:relative;width:317px;height:489px;background:url(/seantour_map/images/travel/main/img_map_main3.png) no-repeat 0 0;background-size:cover;}
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker{position:absolute;width:18%;height:6%;}
 	
+	.spotzone .spot_info{right:-70px;}
+  	.spotzone .spot_title{top:-30px;}
+  	
 	.icon{position:absolute;top:-37px;right:-22px;display:inline-block;width:21px;height:67px;}
 	
 	
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker5 .icon,
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker7 .icon,
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker8 .icon{right:66px;}
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker9 .icon{top:-62px;right:16px;}
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot4 .icon,
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot7 .icon,
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot1 .icon,
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot2 .icon{right:66px;}
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot3 .icon{top:-62px;right:16px;}
 	
 	.name{font-size:13px;line-height:1.8;}          
 	
@@ -747,6 +751,9 @@ a.btn-layerClose:hover {
 	.spotzone .spot_title{top:5px;left:-130px;}
 	.spotzone .spot_title img{width:80%;}
 	
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right{padding-left:3%;}
+	
+	
     /* tit_box */
     .tit_box{margin:35px 0 15px;}
     .tit_box .tit{margin-bottom:5px;font-size:24px;}
@@ -765,7 +772,6 @@ a.btn-layerClose:hover {
   .section02 .vest_recommend_box .col02 ul{margin:0 0 0 -10px;}
   .section02 .vest_recommend_box .col02 ul li{width:calc(50% - 10px);margin:10px 0 0 10px;}
   
-  
    /* section04 */
   .section04 .main_event_wrap .area_ctrl{bottom:20px;}
   
@@ -776,7 +782,7 @@ a.btn-layerClose:hover {
 	/* spotzone */
 	.spotzone .list>li{height:400px;}
 	.spotzone .main_visual_wrap{/*position:relative;*/height:400px;}
-	.spotzone .main_visual_content_cell>div{width:100%;}
+	
 	.main_visual_content_cell_weather{left:50%;margin-left:-25%;padding:10px;}
 	.main_visual_content_cell_weather .weather img{width:23px;}
 	.main_visual_content_cell_weather .weather span{font-size:20px;}
@@ -792,19 +798,24 @@ a.btn-layerClose:hover {
 	.spotzone .main_visual_content_cell .visual_go{position:absolute;left:0;bottom:0;}
 	.spotzone .main_visual_content_cell .visual_go .button{float:left;width:50%;margin:0;font-size:14px;}
 	*/
+	.spotzone .main_visual_content_cell>div{width:100%;}
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right{width:100%;}
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker{width:12%;height:5%;}
 	.spotzone .blinker .name{font-size:12px;}
 	.spotzone .main_visual_wrap{height:550px;}
 	.spotzone .list>li{height:550px;}
-	.spotzone .main_visual_content_cell_left{display:none;}
+	.spotzone .main_visual_content_cell_left{/*display:none;*/}
+	.spotzone .main_visual_content_cell_left .tit{margin:25px 0 10px;}
+	.reserv_main_left{margin:10px 0 5px;}
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right_inr{float:left;margin:50px auto 0;padding:0;}
 	.spotzone .spot_title{top:-30px;left:0;}
 	.spotzone .spot_title img{width:70%;}
 	.spotzone .spot_info{top:-30px;}
 	.spotzone .spot_info img{width:70%;}
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker5 .icon, 
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker4 .icon, 
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker7 .icon, 
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker8 .icon{right:37px;}
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker1 .icon, 
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker2 .icon{right:37px;}
 	
 	/* section00 */
 	.section00{padding:15px 0;}
@@ -835,6 +846,17 @@ a.btn-layerClose:hover {
 	.spotzone .bx-controls .bx-controls-auto, 
 	.spotzone .bx-controls .bx-pager{bottom:18%;}
 	*/
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot4 .icon, 
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot7 .icon, 
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot1 .icon, 
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot2 .icon{right:42px;}
+	.spotzone .main_visual_wrap{height:850px;}
+	.spotzone .list>li{height:850px;}
+	.spotzone .main_visual_content_cell>div{width:100%;}
+	.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit{margin:15px 0 15px;font-size:22px;}
+	.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit strong{font-size:40px;}
+	
+	
 	.section00 {padding:10px 0;}
 	.section00 p{font-size:18px;}
 	.section00 p span{font-size:20px;}
@@ -843,7 +865,7 @@ a.btn-layerClose:hover {
 	/*.section02 .col01 .img>a{height:260px;}
    	.section02 .col01 .img>a>img{height:260px;}*/
    	.section02 .col01 a,
-	.section02 .col01>a img{height:260px;}
+	.section02 .col01 a img{height:260px;}
     .section02 .vest_recommend_box .name_tit{width:120px !important;height:32px;line-height:32px;font-size:14px;}
     .section02 .vest_recommend_box .col01 .tbox{font-size:24px;}
     .section02 .col02 .img{height:136px;}
@@ -899,7 +921,9 @@ a.btn-layerClose:hover {
 	
  }   
  
-@media screen and (max-width:500px){
+@media screen and (max-width:600px){
+	
+
 
 }	
 @media screen and (max-width:420px){
