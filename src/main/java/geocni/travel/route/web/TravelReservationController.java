@@ -77,6 +77,16 @@ public class TravelReservationController {
 			travelReservation.setReservationYn(reservationYn);
 		}
 		
+		//날짜 체크 - 7월 1일 이후부터 예약 가능
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date resvStDate = dateFormat.parse("2020-07-01");
+		Date nowDate = new Date();
+		int compare = nowDate.compareTo(resvStDate);
+		if(compare < 0) {
+			model.addAttribute("alert", "2020년 7월 1일부터 예약 가능합니다.");
+			return "jnit/util/alertBack";
+		}
+		
 		return skinPath + "area";
 	}
 	
@@ -98,10 +108,10 @@ public class TravelReservationController {
 				Date resvStDate = dateFormat.parse("2020-07-01");
 				Date nowDate = new Date();
 				int compare = nowDate.compareTo(resvStDate);
-				/*if(compare < 0) {
+				if(compare < 0) {
 					model.addAttribute("alert", "2020년 7월 1일부터 예약 가능합니다.");
 					return "jnit/util/alertBack";
-				}*/
+				}
 				
 				//최대수용 인원을 초과 체크
 				String reservationYn = reseService.selectTravelReservationYn(travelReservation);
@@ -158,6 +168,14 @@ public class TravelReservationController {
 		travelReservation.setReseName(reseName);
 		travelReservation.setReseTel(reseTel);
 		List<?> viewList = reseService.selectTravelReservationViewList(travelReservation);
+		
+		if(viewList.size() == 0) {
+			model.addAttribute("alert", "예약내역이 없습니다.");
+			model.addAttribute("path", "/");
+
+			return "/jnit/util/alertMove";
+		}
+		
 		model.addAttribute("viewList", viewList);
 		
 		return skinPath + "reserv_view";
