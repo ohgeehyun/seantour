@@ -25,6 +25,10 @@ public class TravelReservationDAO extends EgovComAbstractDAO {
 		return (String)select("travelReservationDAO.selectTravelReservationYn", vo);
 	}
 
+	public String selectTravelReservationPossCnt(TravelReservation vo) throws Exception {
+		return (String)select("travelReservationDAO.selectTravelReservationPossCnt", vo);
+	}
+
 	public String selectTravelReservationDuplYn(TravelReservation vo) throws Exception {
 		return (String)select("travelReservationDAO.selectTravelReservationDuplYn", vo);
 	}

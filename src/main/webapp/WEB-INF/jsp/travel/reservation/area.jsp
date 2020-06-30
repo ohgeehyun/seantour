@@ -13,20 +13,21 @@ $(document).ready(function(){
 	if('${travelReservation.openYn}' == 'N'){
 		var alertVal = "";
 		switch('${travelReservation.reseBeachId}'){
-		case 'R0001' : alertVal = "외달도 해수욕장 개장일은 7.11.~8.23. 입니다."; break;
-		case 'R0002' : alertVal = "웅천 해수욕장 개장일은 7.11.~8.23. 입니다."; break;
-		case 'R0003' : alertVal = "풍류 해수욕장 개장일은 7.10.~8.16. 입니다."; break;
-		case 'R0004' : alertVal = "율포솔밭 해수욕장 개장일은 7.11.~8.30. 입니다."; break;
-		case 'R0005' : alertVal = "수문 해수욕장 개장일은 7.10.~8.9. 입니다."; break;
-		case 'R0006' : alertVal = "송호 해수욕장 개장일은 7.17.~8.9. 입니다."; break;
-		case 'R0007' : alertVal = "돌머리 해수욕장 개장일은 7.10.~8.16. 입니다."; break;
-		case 'R0008' : alertVal = "가마미 해수욕장 개장일은 7.10.~8.23. 입니다."; break;
-		case 'R0009' : alertVal = "송이도 해수욕장 개장일은 7.20.~8.11. 입니다."; break;
-		case 'R0010' : alertVal = "신지명사십리 해수욕장 개장일은 7.17.~8.23. 입니다."; break;
-		case 'R0011' : alertVal = "금갑 해수욕장 개장일은 7.10.~8.16. 입니다."; break;
-		case 'R0012' : alertVal = "대광 해수욕장 개장일은 7.13.~8.16. 입니다."; break;
-		case 'R0013' : alertVal = "백길 해수욕장 개장일은 7.13.~8.16. 입니다."; break;
-		case 'R0014' : alertVal = "짱뚱어 해수욕장 개장일은 7.13.~8.16. 입니다."; break;
+			case 'R0001' : alertVal = "외달도 해수욕장 개장일은 7.11.~8.23. 입니다."; break;
+			case 'R0002' : alertVal = "웅천 해수욕장 개장일은 7.11.~8.23. 입니다."; break;
+			case 'R0003' : alertVal = "풍류 해수욕장 개장일은 7.10.~8.16. 입니다."; break;
+			case 'R0004' : alertVal = "율포솔밭 해수욕장 개장일은 7.11.~8.30. 입니다."; break;
+			case 'R0005' : alertVal = "수문 해수욕장 개장일은 7.10.~8.9. 입니다."; break;
+			case 'R0006' : alertVal = "송호 해수욕장 개장일은 7.17.~8.9. 입니다."; break;
+			case 'R0007' : alertVal = "돌머리 해수욕장 개장일은 7.10.~8.16. 입니다."; break;
+			case 'R0008' : alertVal = "가마미 해수욕장 개장일은 7.10.~8.23. 입니다."; break;
+			case 'R0009' : alertVal = "송이도 해수욕장 개장일은 7.20.~8.11. 입니다."; break;
+			case 'R0010' : alertVal = "신지명사십리 해수욕장 개장일은 7.17.~8.23. 입니다."; break;
+			case 'R0011' : alertVal = "금갑 해수욕장 개장일은 7.10.~8.16. 입니다."; break;
+			case 'R0012' : alertVal = "대광 해수욕장 개장일은 7.13.~8.16. 입니다."; break;
+			case 'R0013' : alertVal = "백길 해수욕장 개장일은 7.13.~8.16. 입니다."; break;
+			case 'R0014' : alertVal = "짱뚱어 해수욕장 개장일은 7.13.~8.16. 입니다."; break;
+			case 'R0015' : alertVal = "가계 해수욕장 개장일은 7.10.~8.16. 입니다."; break;
 		}
 		alert(alertVal);
 		return;
@@ -93,7 +94,7 @@ function fn_display_none(){
 }
 
 $(document).ready(function(){
-	if($('#month').val() != "" && $('#day').val() != "" && $('#reseTime').val() != ""){
+	if('${travelReservation.reservationYn}' == 'Y'){
 		$(".jn_map").hide();
 	}
 
@@ -199,6 +200,10 @@ $(document).ready(function(){
 	            			</dd>
 	            		</dl>
 	            		<dl class="form_group">
+	            			<dt>예약가능인원</dt>
+	            			<dd><div class="reserv_view">${travelReservation.resePossCnt}명</div></dd>
+	            		</dl>
+	            		<dl class="form_group">
 	            			<dt>인원</dt>
 	            			<dd>
 	            				<select id="resePersonnel" name="resePersonnel" title="인원">
@@ -234,6 +239,7 @@ $(document).ready(function(){
 홈페이지 회원관리를 위해 수집·보유하고 있는 주요 개인정보 파일은 다음과 같습니다.
 - 수집 및 이용목적 : 바다여행일정만들기의 원활한 서비스 이용
 - 개인정보 항목 : 이름, 휴대전화번호
+- 보유 및 이용기간 : 회원가입 ~ 회원탈퇴(탈퇴 시 삭제)
 - 정보주체의 권리 : 본인에 관한 개인정보 열람, 정정.삭제 청구권
  </textarea>
 						<p>

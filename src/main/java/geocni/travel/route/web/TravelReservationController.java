@@ -1,10 +1,12 @@
 package geocni.travel.route.web;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.net.URLEncoder;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import javax.annotation.Resource;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,6 +43,8 @@ import jnit.cms.AdminUtil;
 import jnit.cms.mbr.JnitcmsmbrVO;
 import jnit.mgov.module.JnitMgovUtil;
 import jnit.util.NumberUtil;
+import net.nurigo.java_sdk.api.Message;
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 @Controller
 //@SessionAttributes(types=TravelRoute.class)
@@ -55,6 +60,27 @@ public class TravelReservationController {
 	private Log log = LogFactory.getLog(getClass());
 	
 	private String skinPath = "travel/reservation/";
+	
+	//날짜 체크 - 7월 1일 09시 이후부터 예약 가능
+	public boolean compareDate() {
+		boolean rtnVal = false;
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH");
+		Date resvStDate = new Date();
+		try {
+			resvStDate = dateFormat.parse("2020-07-01 09");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		Date nowDate = new Date();
+		int compare = nowDate.compareTo(resvStDate);
+		if(compare < 0) {
+			rtnVal = false;	//오늘 날짜가 해수욕장 예약 시작일(resvStDate) 이전인 경우 false
+		} else {
+			rtnVal = true;	//오늘 날짜가 해수욕장 예약 시작일(resvStDate) 이후인 경우 true
+		}
+		//rtnVal = true;	//해수욕장 예약 테스트 시 주석해제 -> 무조건 예약 가능
+		return rtnVal;
+	}
 	
 	@RequestMapping(value="area.do")
 	public String reservationArea(
@@ -73,20 +99,20 @@ public class TravelReservationController {
 			travelReservation.setReseBeachId("R" + travelReservation.getReseBeachRegionCd() + travelReservation.getReseBeachNameCd());
 			String openYn = reseService.selectTravelOpenYn(travelReservation);
 			travelReservation.setOpenYn(openYn);
-			String reservationYn = reseService.selectTravelReservationYn(travelReservation);
-			travelReservation.setReservationYn(reservationYn);
+			if("Y".equals(openYn)) {
+				String reservationYn = reseService.selectTravelReservationYn(travelReservation);
+				travelReservation.setReservationYn(reservationYn);
+				String reseAvaiCnt = reseService.selectTravelReservationPossCnt(travelReservation);
+				travelReservation.setResePossCnt(reseAvaiCnt);
+			}
 		}
 		
-		//날짜 체크 - 7월 1일 이후부터 예약 가능
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		Date resvStDate = dateFormat.parse("2020-07-01");
-		Date nowDate = new Date();
-		int compare = nowDate.compareTo(resvStDate);
-		/*if(compare < 0) {
-			model.addAttribute("alert", "2020년 7월 1일부터 예약 가능합니다.");
+		//날짜 체크 - 7월 1일 09시 이후부터 예약 가능
+		if(!compareDate()) {
+			model.addAttribute("alert", "2020년 7월 1일 9시 부터 예약 가능합니다.");
 			return "jnit/util/alertBack";
 		}
-		*/
+		
 		return skinPath + "area";
 	}
 	
@@ -103,15 +129,11 @@ public class TravelReservationController {
 				travelReservation.setReseBeachId("R" + travelReservation.getReseBeachRegionCd() + travelReservation.getReseBeachNameCd());
 				travelReservation.setReseTel(travelReservation.getReseTel_01() + travelReservation.getReseTel_02() + travelReservation.getReseTel_03());
 				
-				//날짜 체크 - 7월 1일 이후부터 예약 가능
-				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-				Date resvStDate = dateFormat.parse("2020-07-01");
-				Date nowDate = new Date();
-				int compare = nowDate.compareTo(resvStDate);
-				/*if(compare < 0) {
-					model.addAttribute("alert", "2020년 7월 1일부터 예약 가능합니다.");
+				//날짜 체크 - 7월 1일 09시 이후부터 예약 가능
+				if(!compareDate()) {
+					model.addAttribute("alert", "2020년 7월 1일 9시 부터 예약 가능합니다.");
 					return "jnit/util/alertBack";
-				}*/
+				}
 				
 				//최대수용 인원을 초과 체크
 				String reservationYn = reseService.selectTravelReservationYn(travelReservation);
@@ -132,6 +154,31 @@ public class TravelReservationController {
 				}
 				
 				reseService.insertTravelReservation(travelReservation);
+				
+				//예약 후 SMS 보내기
+				String api_key = "NCSDUEW5R2MDNLJJ";
+				String api_secret = "2YG5WXA0SZPLJBFHW41DCWYDD2AWSWUD";
+				Message coolsms = new Message(api_key, api_secret);
+				
+				HashMap<String, String> params = new HashMap<String, String>();
+				String text = "[해수욕장 예약시스템]\n2020년 " + travelReservation.getMonth() + "월 " + travelReservation.getDay() + "일 ";
+				if("01".equals(travelReservation.getReseTime())) text += "9:00 ~ 12:00";
+				else if("02".equals(travelReservation.getReseTime())) text += "12:00 ~ 15:00";
+				else if("03".equals(travelReservation.getReseTime())) text += "15:00 ~ 18:00";
+				text += "시 " + travelReservation.getReseBeachName() + " 예약이 완료 되었습니다.";
+				params.put("to", travelReservation.getReseTel());
+				params.put("from", "07048824404");
+				params.put("type", "SMS");
+			    params.put("text", text);
+			    params.put("app_version", "test app 1.2"); // application name and version
+
+			    try {
+			      JSONObject obj = (JSONObject) coolsms.send(params);
+			      System.out.println(obj.toString());
+			    } catch (CoolsmsException e) {
+			      System.out.println(e.getMessage());
+			      System.out.println(e.getCode());
+			    }
 			}
 		} catch (NullPointerException e) {
 			log.debug(e);
