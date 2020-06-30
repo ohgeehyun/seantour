@@ -14,6 +14,10 @@ public class TravelMainDAO extends EgovComAbstractDAO {
 	public List<TravelMain> selectBeachPerCnt(String datestr) throws Exception {		
 		return (List<TravelMain>) list("travelMainDAO.selectBeachPerCnt", datestr);
 	}
+	
+	public void  insertBeachPer(TravelMain vo) throws Exception {		
+		insert("travelMainDAO.insertBeachPer", vo);
+	}
 //
 //    public List<?> selectTravelRouteList(TravelRoute vo) throws Exception {
 ////    	return list("travelRouteDAO.selectTravelRouteList", vo);

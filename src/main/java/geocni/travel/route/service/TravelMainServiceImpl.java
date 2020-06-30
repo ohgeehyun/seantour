@@ -43,6 +43,10 @@ public class TravelMainServiceImpl extends EgovAbstractServiceImpl implements Tr
 		System.out.println("------------------------"+datestr);
 		return travelMainDAO.selectBeachPerCnt(datestr);
 	}
+	@Override
+	public  void insertBeachPer(TravelMain vo) throws Exception{
+		travelMainDAO.insertBeachPer(vo);
+	}
 //
 //	@Override
 //	public List<?> selectTravelRouteList(TravelRoute vo) throws Exception {
