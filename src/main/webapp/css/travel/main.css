@@ -189,9 +189,10 @@ a.btn-layerClose:hover {
 .spotzone .spot_info img{border-radius:0.5em;box-shadow:5px 5px 5px 5px rgba(0,0,0, 0.4);}
 .spotzone .spot{position:absolute;width:11px;height:11px;}
 .spotzone .spot .icon{position:absolute;top:0;left:0;display:inline-block;width:100%;height:100%;border-radius:50%;font-size:10px;white-space:nowrap;text-indent:-999em;-webkit-transition:all 0.4s;-moz-transition:all 0.4s;-o-transition:all 0.4s;-ms-transition:all 0.4s;transition:all 0.4s;}
+.spotzone .spot .icon em{display:inline-block;text-indent:-999em;}
 .spotzone .spot .icon.red_hover{background:#ec3012;}
-.spotzone .spot .icon.yellow_hover{background:#deb113;}
-.spotzone .spot .icon.green_hover{background:#6eb357;}
+.spotzone .spot .icon.yellow_hover{background:#fbdb02;}
+.spotzone .spot .icon.green_hover{background:#8aff62;}
 .spotzone .spot11{left:87.3%;top:38.5%;}/* 노봉 */
 .spotzone .spot12{left:19.5%;top:94%;}/* 맹방 */
 .spotzone .spot13{left:85.4%;top:29.5%;}/* 추암 */
@@ -232,17 +233,19 @@ a.btn-layerClose:hover {
 .spotzone .spot48{left:75.5%;top:17%;}/* 중광정 */
 .spotzone .spot49{left:64.5%;top:6.5%;}/* 천진 */
 .spotzone .spot50{left:6%;top:34.5%;}/* 신두리 */
+.spotzone .spot .icon:hover{padding:12px 0;}
+.spotzone .spot .icon:hover em{text-indent:0;}
 .spotzone .spot .icon.red_hover:hover,
 .spotzone .spot .icon.red_hover:focus,
-.spotzone .spot .icon.red_hover:active{position:relative;z-index:9999;width:40px;height:40px;margin:-25px 0 0 -10px;background:#ec3012;font-size:10px;color:#fff;line-height:40px;text-align:center;text-indent:0;}
+.spotzone .spot .icon.red_hover:active{position:relative;z-index:9999;width:60px;height:60px;margin:-25px 0 0 -10px;background:#ec3012;font-size:12px;color:#fff;line-height:1.4;text-align:center;text-indent:0;}
 .spotzone .spot .icon.yellow_hover:hover,
 .spotzone .spot .icon.yellow_hover:focus,
-.spotzone .spot .icon.yellow_hover:active{position:relative;z-index:9999;width:40px;height:40px;margin:-25px 0 0 -10px;background:#deb113;font-size:10px;color:#fff;line-height:40px;text-align:center;text-indent:0;}
+.spotzone .spot .icon.yellow_hover:active{position:relative;z-index:9999;width:60px;height:60px;margin:-25px 0 0 -10px;background:#deb113;font-size:12px;color:#fff;line-height:1.4;text-align:center;text-indent:0;}
 .spotzone .spot .icon.green_hover:hover,
 .spotzone .spot .icon.green_hover:focus,
-.spotzone .spot .icon.green_hover:active{position:relative;z-index:9999;width:40px;height:40px;margin:-25px 0 0 -10px;background:#6eb357;font-size:10px;color:#fff;line-height:40px;text-align:center;text-indent:0;}
+.spotzone .spot .icon.green_hover:active{position:relative;z-index:9999;width:60px;height:60px;margin:-25px 0 0 -10px;background:#6eb357;font-size:12px;color:#fff;line-height:1.4;text-align:center;text-indent:0;}
 .spotzone .name{}
-.spotzone .blinker{position:absolute;width:60px;height:28px;line-height:1.5;background:#2c9eff;border:1px solid #1c91f4;border-radius:1em;-webkit-transition:all 0.4s;-moz-transition:all 0.4s;-o-transition:all 0.4s;-ms-transition:all 0.4s;transition:all 0.4s}
+.spotzone .blinker{position:absolute;width:60px;height:40px;line-height:1.5;background:#2c9eff;border:1px solid #1c91f4;border-radius:1em;-webkit-transition:all 0.4s;-moz-transition:all 0.4s;-o-transition:all 0.4s;-ms-transition:all 0.4s;transition:all 0.4s}
 .spotzone .spot1{left:89.42%;top:66.52%;}/* 해운대 */
 .spotzone .spot2{left:85.08%;top:70.38%}/* 광안리 */
 .spotzone .spot3{left:72.76%;top:74.03%;}/*송도 */
@@ -252,7 +255,7 @@ a.btn-layerClose:hover {
 .spotzone .spot7{left:90.56%;top:61.8%;}/* 송정 */
 .spotzone .spot8{left:57.87%;top:13.33%;}/* 낙산 */
 .spotzone .spot9{left:53.87%;top:8.33%;}/* 속초 */
-.spotzone .spot10{left:64%;top:17%;}/* 삼척 */
+.spotzone .spot10{left:68%;top:22%;}/* 삼척 */
 
 .spotzone .blinker .icon{position:absolute;top:-47px;right:-27px;display:inline-block;width:19px;height:65px;}
 .spotzone .blinker .icon.red{background:url(/seantour_map/images/travel/main/icon_blinker_red.png) no-repeat 0 0;background-size:cover;}
@@ -265,7 +268,7 @@ a.btn-layerClose:hover {
 .spotzone .spot2 .icon{right:70px;}
 .spotzone .spot3 .icon{top:-72px;right:22px;}
 
-.spotzone .blinker .name{display:inline-block;position:absolute;top:0;left:0;width:100%;height:100%;line-height:2.1;font-size:15px;color:#fff !important;text-align:center;}          
+.spotzone .blinker .name{display:inline-block;position:absolute;top:0;left:0;width:100%;height:100%;line-height:1.4;font-size:13px;color:#fff !important;text-align:center;}
 
 
 
