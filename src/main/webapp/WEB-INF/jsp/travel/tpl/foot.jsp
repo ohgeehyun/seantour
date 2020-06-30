@@ -11,7 +11,7 @@
 					<ul class="foot_info">
 						<li>세종특별자치시 다솜2로 94 정부세종청사 5동</li>
 						<li><strong class="color_light_red">044-200-5258</strong> 평일 09:00 ~ 18:00, 점심시간 12:00 ~ 13:00<br />ysj5254@korea.kr</li>
-						<li>해양수산부 해양정책실 해양레저관광과 | 윤성준 전문관님</li>
+						<li>해양수산부 해양정책실 해양레저관광과 | 윤성준 전문관</li>
 					</ul>
 				</div>
 				<div class="footer_go">
