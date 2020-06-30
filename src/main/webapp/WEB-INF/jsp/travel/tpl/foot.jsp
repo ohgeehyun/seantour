@@ -9,9 +9,9 @@
 						 <li><a href="<c:url value='/travel/info_square/faq_customer/index.jsp'/>">고객의소리</a></li>
 					</ul>
 					<ul class="foot_info">
-						<li>08588 서울특별시 금천구 가산디지털2로 53 한라시그마밸리 12층</li>
-						<li><strong class="color_light_red">080-500-8579</strong>(파도친구) 평일 09:00 ~ 18:00, 점심시간 12:00 ~ 13:00<br /> seantourfipa@gmail.com</li>
-						<li>(사) 전국어촌체험마을연합회 | 대표 권영환</li>
+						<li>세종특별자치시 다솜2로 94 정부세종청사 5동</li>
+						<li><strong class="color_light_red">044-200-5258</strong> 평일 09:00 ~ 18:00, 점심시간 12:00 ~ 13:00<br />ysj5254@korea.kr</li>
+						<li>해양수산부 해양정책실 해양레저관광과 | 윤성준 전문관님</li>
 					</ul>
 				</div>
 				<div class="footer_go">

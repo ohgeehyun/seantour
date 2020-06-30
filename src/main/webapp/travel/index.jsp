@@ -12,10 +12,89 @@
 <%@ include file="/WEB-INF/jsp/travel/tpl/head.jsp" %>
    <script>
    	$(document).ready(function(){
-   		$('#close').click(function(){
-   			$('#pop').hide();
-   		});
-   	});
+  		$('#close').click(function(){
+  			$('#pop').hide();
+  		});
+  		
+  		$.ajax({
+  			type:'post',
+  			url:"/seantour_map/travel/mainBeachCongestion.do",
+  		    success: function(data) {  		    	
+				for(var i=0; i < data.length; i++){
+					if(i < 10){
+						$('.spot' + (i + 1)).find('span').removeClass();						
+						$('.spot' + (i + 1)).find('span').addClass('icon');
+						var classNm = checkBeachCongestion(data[i].seqId, data[i].uniqPop);
+						$('.spot' + (i + 1)).find('span').addClass(classNm);
+					}else{
+						$('.spot' + (i + 1)).find('a').removeClass();
+						$('.spot' + (i + 1)).find('a').addClass('icon');
+						var classNm = checkBeachCongestion(data[i].seqId, data[i].uniqPop);
+						$('.spot' + (i + 1)).find('a').addClass(classNm);						
+					}
+				}
+		    },
+		    error: function(err) {		    	
+				alert("신호등 데이터를 가져오는 도중 오류가 발생하였습니다.");
+		    }
+  		});
+	});
+
+	function checkBeachCongestion(beachId, population){
+  		var returnStr = '';
+  		if(beachId == 1){	if(population < 	32813	){ returnStr = "green";} else if(population < 	65625	){ returnStr = "yellow";} else { returnStr = "red";}}
+  		if(beachId == 2){	if(population < 	22297	){ returnStr = "green";} else if(population < 	44593	){ returnStr = "yellow";} else { returnStr = "red";}}
+  		if(beachId == 3){	if(population < 	12500	){ returnStr = "green";} else if(population < 	25000	){ returnStr = "yellow";} else { returnStr = "red";}}
+  		if(beachId == 4){	if(population < 	109375	){ returnStr = "green";} else if(population < 	218750	){ returnStr = "yellow";} else { returnStr = "red";}}
+  		if(beachId == 5){	if(population < 	17266	){ returnStr = "green";} else if(population < 	34531	){ returnStr = "yellow";} else { returnStr = "red";}}
+  		if(beachId == 6){	if(population < 	39375	){ returnStr = "green";} else if(population < 	78750	){ returnStr = "yellow";} else { returnStr = "red";}}
+  		if(beachId == 7){	if(population < 	11250	){ returnStr = "green";} else if(population < 	22500	){ returnStr = "yellow";} else { returnStr = "red";}}
+  		if(beachId == 8){	if(population < 	33938	){ returnStr = "green";} else if(population < 	67875	){ returnStr = "yellow";} else { returnStr = "red";}}
+  		if(beachId == 9){	if(population < 	3750	){ returnStr = "green";} else if(population < 	7500	){ returnStr = "yellow";} else { returnStr = "red";}}
+  		if(beachId == 10){	if(population < 	33750	){ returnStr = "green";} else if(population < 	67500	){ returnStr = "yellow";} else { returnStr = "red";}}
+  		if(beachId == 11){	if(population < 	46313	){ returnStr = "green_hover";} else if(population < 	92625	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 12){	if(population < 	18500	){ returnStr = "green_hover";} else if(population < 	37000	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 13){	if(population < 	2813	){ returnStr = "green_hover";} else if(population < 	5625	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 14){	if(population < 	178125	){ returnStr = "green_hover";} else if(population < 	356250	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 15){	if(population < 	28125	){ returnStr = "green_hover";} else if(population < 	56250	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 16){	if(population < 	9169	){ returnStr = "green_hover";} else if(population < 	18338	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 17){	if(population < 	2726	){ returnStr = "green_hover";} else if(population < 	5453	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 18){	if(population < 	68750	){ returnStr = "green_hover";} else if(population < 	137500	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 19){	if(population < 	5625	){ returnStr = "green_hover";} else if(population < 	11250	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 20){	if(population < 	4103	){ returnStr = "green_hover";} else if(population < 	8206	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 21){	if(population < 	50000	){ returnStr = "green_hover";} else if(population < 	100000	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 22){	if(population < 	27188	){ returnStr = "green_hover";} else if(population < 	54375	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 23){	if(population < 	117188	){ returnStr = "green_hover";} else if(population < 	234375	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 24){	if(population < 	10236	){ returnStr = "green_hover";} else if(population < 	20471	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 25){	if(population < 	40000	){ returnStr = "green_hover";} else if(population < 	80000	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 26){	if(population < 	13855	){ returnStr = "green_hover";} else if(population < 	27710	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 27){	if(population < 	4520	){ returnStr = "green_hover";} else if(population < 	9039	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 28){	if(population < 	20184	){ returnStr = "green_hover";} else if(population < 	40368	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 29){	if(population < 	1406	){ returnStr = "green_hover";} else if(population < 	2813	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 30){	if(population < 	1034	){ returnStr = "green_hover";} else if(population < 	2068	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 31){	if(population < 	14095	){ returnStr = "green_hover";} else if(population < 	28191	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 32){	if(population < 	4219	){ returnStr = "green_hover";} else if(population < 	8438	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 33){	if(population < 	15938	){ returnStr = "green_hover";} else if(population < 	31875	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 34){	if(population < 	2219	){ returnStr = "green_hover";} else if(population < 	4438	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 35){	if(population < 	8750	){ returnStr = "green_hover";} else if(population < 	17500	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 36){	if(population < 	23438	){ returnStr = "green_hover";} else if(population < 	46875	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 37){	if(population < 	3750	){ returnStr = "green_hover";} else if(population < 	7500	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 38){	if(population < 	4500	){ returnStr = "green_hover";} else if(population < 	9000	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 39){	if(population < 	170625	){ returnStr = "green_hover";} else if(population < 	341250	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 40){	if(population < 	3656	){ returnStr = "green_hover";} else if(population < 	7313	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 41){	if(population < 	10000	){ returnStr = "green_hover";} else if(population < 	20000	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 42){	if(population < 	25938	){ returnStr = "green_hover";} else if(population < 	51875	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 43){	if(population < 	7813	){ returnStr = "green_hover";} else if(population < 	15625	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 44){	if(population < 	2000	){ returnStr = "green_hover";} else if(population < 	4000	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 45){	if(population < 	2844	){ returnStr = "green_hover";} else if(population < 	5688	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 46){	if(population < 	4744	){ returnStr = "green_hover";} else if(population < 	9488	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 47){	if(population < 	9903	){ returnStr = "green_hover";} else if(population < 	19805	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 48){	if(population < 	5625	){ returnStr = "green_hover";} else if(population < 	11250	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 49){	if(population < 	10568	){ returnStr = "green_hover";} else if(population < 	21136	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+  		if(beachId == 50){	if(population < 	29063	){ returnStr = "green_hover";} else if(population < 	58125	){ returnStr = "yellow_hover";} else { returnStr = "red_hover";}}
+
+  		return returnStr;
+  	}
    </script>
   <script type="text/javascript">
 function fn_reservView(){
@@ -99,33 +178,62 @@ function fn_reservView(){
    										</div>
 								</div>-->
                          	
-								 
 								  <div class="main_visual_content_cell_right">
-								  	 <div class="main_visual_content_cell_right_inr">
-									  	 <%--<div class="visual_arrow">                                      
-                                                <img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual2_arrow.png" alt='' />
-                                             
-										  </div>--%>
-                                          <!--  메인 지도 아이콘  class point 부분 css필요 -->
-                                          <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=강원" class='point point3'>강원</a>
-                                          <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경기" class='point point2'>경기</a>
-                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경남" class='point point10'>경남</a>
-                                          <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경북" class='point point6'>경북</a>
-                                          <!-- 	<li><a href="/travel/destination/list.do?destRegion=광주광역시">광주광역시</a></li> -->
-                                          <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=대구" class='point point7'>대구</a>
-                                          <!-- <li><a href="/travel/destination/list.do?destRegion=대전">대전광역시</a></li> -->
-                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=부산" class='point point11'>부산</a>
-                                		 <!-- <li><a href="/travel/destination/list.do?destRegion=서울">서울특별시</a></li>-->
-                                        <!-- <li><a href="/travel/destination/list.do?destRegion=세종">세종특별자치시</a></li> -->
-                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=울산" class='point point8'>울산</a>
-                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=인천" class='point point1'>인천</a>
-                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=전남" class='point point12'>전남</a>
-                                		 <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=전북" class='point point9'>전북</a>
-                                		 <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=제주" class='point point13'>제주</a>
-                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=충남" class='point point4'>충남</a>
-                                         <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=충북" class='point point5'>충북</a>
-
-									  </div>
+									 <div class="main_visual_content_cell_right_inr">
+										<div class="spot_title"><img src="/seantour_map/images/travel/main/img_map_tit.png" alt="해수욕장 혼잡도 신호등" /></div>
+										<div class="spot_info"><img src="/seantour_map/images/travel/main/img_info_box.png" alt="혼잡: 빨간색, 혼잡우려: 노란색, 적정: 녹색" /></div>
+										 <div class="spot spot11"><a href="/seantour_map/travel/destination/detail.do?destId=DEST000442" class="icon red_hover">노봉</a></div>
+										  	 <div class="spot spot12"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110592" class="icon red_hover">맹방</a></div>
+										  	 <div class="spot spot13"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111738" class="icon red_hover">추암</a></div>
+										  	 <div class="spot spot14"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111124" class="icon green_hover">명사십리</a></div>
+									  	   	 <div class="spot spot15"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110572" class="icon red_hover">만리포</a></div>
+										  	 <div class="spot spot16"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111470" class="icon green_hover">일산</a></div>
+										  	 <div class="spot spot17"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111899" class="icon green_hover">함덕서우봉</a></div>
+										  	 <div class="spot spot18"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111658" class="icon green_hover">진하</a></div>
+										  	 <div class="spot spot19"><a href="/seantour_map/travel/destination/detail.do?destId=FCID000293" class="icon green_hover">하조대</a></div> 
+										  	 <div class="spot spot20"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111959" class="icon green_hover">협재</a></div>
+										  	 <div class="spot spot21"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110180" class="icon green_hover">고래불</a></div>
+										  	 <div class="spot spot22"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111605" class="icon green_hover">주문진</a></div>
+										  	 <div class="spot spot23"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111741" class="icon yellow_hover">춘장대</a></div>
+										  	 <div class="spot spot24"><a href="/seantour_map/travel/destination/detail.do?destId=DEST000481" class="icon red_hover">이호테우</a></div>
+										  	 <div class="spot spot25"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110338" class="icon red_hover">꽃지</a></div>
+										  	 <div class="spot spot26"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111063" class="icon green_hover">송지호</a></div>
+										  	 <div class="spot spot27"><a href="/seantour_map/travel/destination/detail.do?destId=DEST000482" class="icon green_hover">곽지과물</a></div>
+										  	 <div class="spot spot28"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111998" class="icon red_hover">화진포</a></div>
+										  	 <div class="spot spot29"><a href="/seantour_map/travel/destination/detail.do?destId=DEST000483" class="icon yellow_hover">외옹치</a></div>
+										  	 <div class="spot spot30"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110313" class="icon yellow_hover">금능으뜸원</a></div>
+										  	 <div class="spot spot31"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110902" class="icon yellow_hover">삼포</a></div>
+										  	 <div class="spot spot32"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111467" class="icon yellow_hover">일광</a></div>
+										  	 <div class="spot spot33"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110626" class="icon yellow_hover">몽산포</a></div>
+										  	 <div class="spot spot34"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111476" class="icon yellow_hover">임랑</a></div>
+										  	 <div class="spot spot35"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111628" class="icon green_hover">중문</a></div>
+										  	 <div class="spot spot36"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111527" class="icon red_hover">장호</a></div>
+										  	 <div class="spot spot37"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110641" class="icon green_hover">무창포</div>
+										  	 <div class="spot spot38"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111168" class="icon red_hover">안목</a></div>
+										  	 <div class="spot spot39"><a href="/seantour_map/travel/destination/detail.do?destId=FCID007759" class="icon green_hover">상주은모래비치</a></div>
+										  	 <div class="spot spot40"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111438" class="icon green_hover">을왕리</a></div>
+										  	 <div class="spot spot41"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110873" class="icon red_hover">삼봉</a></div>
+										  	 <div class="spot spot42"><a href="/seantour_map/travel/destination/detail.do?destId=FCID003274" class="icon red_hover">정동진</a></div>
+										  	 <div class="spot spot43"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111358" class="icon green_hover">용화</a></div>
+										  	 <div class="spot spot44"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110533" class="icon red_hover">등대</a></div>
+										  	 <div class="spot spot45"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111854" class="icon red_hover">하나개</a></div>
+										  	 <div class="spot spot46"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111062" class="icon red_hover">송지호오토캠핑</a></div>
+										  	 <div class="spot spot47"><a href="/seantour_map/travel/destination/detail.do?destId=DEST000484" class="icon red_hover">관성</a></div>
+										  	 <div class="spot spot48"><a href="/seantour_map/travel/destination/detail.do?destId=FCID102542" class="icon red_hover">중광정</a></div>
+										  	 <div class="spot spot49"><a href="/seantour_map/travel/destination/detail.do?destId=DEST000485" class="icon red_hover">천진</a></div>
+										  	 <div class="spot spot50"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111108" class="icon red_hover">신두리</a></div>
+                                          
+										<div class="blinker spot1"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111941" class="name">해운대<span class="icon green"></span></a></div>
+                                           <div class="blinker spot2"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110239" class="name">광안리<span class="icon green"></span></a></div>
+                                           <div class="blinker spot3"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110780" class="name">송도<span class="icon green"></span></a></div>
+                                           <div class="blinker spot4"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110458" class="name">대천<span class="icon green"></span></a></div>
+                                           <div class="blinker spot5"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110405" class="name">다대포<span class="icon green"></span></a></div>
+                                           <div class="blinker spot6"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110072" class="name">경포<span class="icon green"></span></a></div>
+                                           <div class="blinker spot7"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111059" class="name">송정<span class="icon green"></span></a></div>
+                                           <div class="blinker spot8"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110349" class="name">낙산<span class="icon green"></span></a></div>
+                                           <div class="blinker spot9"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111039" class="name">속초<span class="icon green"></span></a></div>
+                                           <div class="blinker spot10"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110894" class="name">삼척<span class="icon green"></span></a></div>
+									  </div>								 
 								  </div>
                                 <div class="main_visual_content_cell_left">
                                   <p class="tit"><strong>슬기로운</strong> 해수욕장 이용</p> 
