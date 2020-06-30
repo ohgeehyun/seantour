@@ -45,6 +45,11 @@ public class TravelReservationServiceImpl extends EgovAbstractServiceImpl implem
 	}
 	
 	@Override
+	public String selectTravelReservationPossCnt(TravelReservation vo) throws Exception {
+		return travelReservationDAO.selectTravelReservationPossCnt(vo);
+	}
+	
+	@Override
 	public String selectTravelReservationDuplYn(TravelReservation vo) throws Exception {
 		return travelReservationDAO.selectTravelReservationDuplYn(vo);
 	}

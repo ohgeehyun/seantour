@@ -79,6 +79,25 @@
 		        AND geo_reservation.RESE_TIME = #reseTime#
 	</select>
 
+	<select id="travelReservationDAO.selectTravelReservationPossCnt" parameterClass="travelReservationVO" resultClass="String">
+		SELECT 
+		    RESE_BEACH_MAX - IFNULL((SELECT 
+		                    SUM(RESE_PERSONNEL)
+		                FROM
+		                    (SELECT 
+		                        RESE_PERSONNEL
+		                    FROM
+		                        geo_reservation
+		                    WHERE
+		                        RESE_BEACH_ID = #reseBeachId#
+		                            AND RESE_DATE = #reseDate#
+		                            AND rese_time = #reseTime#) tmp), 0) AS reseAvaiCnt
+		FROM
+		    geo_reservation_info
+		WHERE
+		    RESE_BEACH_ID = #reseBeachId#
+	</select>
+
 	<select id="travelReservationDAO.selectTravelReservationDuplYn" parameterClass="travelReservationVO" resultClass="String">
 		SELECT 
 		    CASE

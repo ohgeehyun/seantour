@@ -29,6 +29,7 @@ public class TravelReservation extends TravelDefaultVO {
 	private String reseAdminPw;
 	private String searchCondition;
 	private String searchKeyword;
+	private String resePossCnt;
 	
 	public String getReseBeachId() {
 		return reseBeachId;
@@ -179,5 +180,11 @@ public class TravelReservation extends TravelDefaultVO {
 	}
 	public void setSearchKeyword(String searchKeyword) {
 		this.searchKeyword = searchKeyword;
+	}
+	public String getResePossCnt() {
+		return resePossCnt;
+	}
+	public void setResePossCnt(String resePossCnt) {
+		this.resePossCnt = resePossCnt;
 	}
 }

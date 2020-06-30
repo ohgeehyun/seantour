@@ -14,6 +14,8 @@ public interface TravelReservationService {
 	
 	String selectTravelReservationYn(TravelReservation vo) throws Exception;
 	
+	String selectTravelReservationPossCnt(TravelReservation vo) throws Exception;
+	
 	String selectTravelReservationDuplYn(TravelReservation vo) throws Exception;
 	
 	String insertTravelReservation(TravelReservation vo) throws Exception;
