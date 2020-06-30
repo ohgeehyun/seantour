@@ -6,8 +6,10 @@ import geocni.travel.route.domain.TravelMain;
 
 public interface TravelMainService {	
 
-	List<TravelMain> selectBeachPerCnt() throws Exception;
-
+	List<?> selectBeachPerCnt() throws Exception;
+	
+	void insertBeachPer(TravelMain vo) throws Exception;
+	
 //	int selectTravelRouteListCnt(TravelRoute vo) throws Exception;
 //	
 //	List<?> selectTravelRouteBestList(TravelRoute vo) throws Exception;

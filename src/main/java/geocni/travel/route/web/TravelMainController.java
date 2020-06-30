@@ -1,14 +1,12 @@
 package geocni.travel.route.web;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -16,34 +14,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.poi.util.SystemOutLogger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
-import org.springmodules.validation.commons.DefaultBeanValidator;
+
+
 
 import egovframework.com.cmm.EgovMessageSource;
 import egovframework.com.cmm.service.EgovProperties;
-import egovframework.com.utl.fcc.service.NullUtil;
-import egovframework.rte.fdl.property.EgovPropertyService;
-import geocni.travel.common.TravelDefaultVO;
-import geocni.travel.route.domain.TravelDestination;
 import geocni.travel.route.domain.TravelMain;
-import geocni.travel.route.domain.TravelRoute;
-import geocni.travel.route.service.TravelDestinationService;
 import geocni.travel.route.service.TravelMainService;
-import geocni.travel.route.service.TravelRouteService;
-import jnit.cms.mbr.JnitcmsmbrVO;
-import jnit.mgov.module.JnitMgovUtil;
-import net.sf.json.JSONObject;
 
 @Controller
 @RequestMapping(value="/travel/")
@@ -59,10 +42,11 @@ public class TravelMainController {
 //	@Autowired
 //    private DefaultBeanValidator beanValidator;
 
-//	private Log log = LogFactory.getLog(getClass());
+	private Log log = LogFactory.getLog(getClass());
 	
     	
-    @RequestMapping(value="mainBeachCongestion.do", method=RequestMethod.POST)
+    @SuppressWarnings("unchecked")
+	@RequestMapping(value="mainBeachCongestion.do", method=RequestMethod.POST)
     @ResponseBody
 	public List<TravelMain> mainBeachCongestion(
 			 HttpServletRequest request	
@@ -72,7 +56,7 @@ public class TravelMainController {
 		
 		List<TravelMain> beachPerPopulationList = null;
 		try {
-			beachPerPopulationList = mainService.selectBeachPerCnt();
+			beachPerPopulationList =  (List<TravelMain>) mainService.selectBeachPerCnt();
 		} catch(Exception e) {
 			beachPerPopulationList = null;
 		}
@@ -104,11 +88,33 @@ public class TravelMainController {
 		
 		List<String> lines = Files.readAllLines(Paths.get(filePath), StandardCharsets.UTF_8);
 		StringBuffer sb = new StringBuffer();
+		
 		for(String line:lines) {
 			//1.테이블에서 해당 시간 count
-			//2.데이터 존재 여부 확인
-			//3.line에서 "|"로 split해서 travelMain 객체에 넣음
-			//4.데이터 insert			
+			List<?> viewList = mainService.selectBeachPerCnt();
+			
+			//2.데이터 존재 여부 확인			
+			if(viewList.size()==0)
+			{
+				//3.line에서 "|"로 split해서 travelMain 객체에 넣음
+				String[] temp = line.split("\\|");
+				TravelMain travelMain = new TravelMain();
+				travelMain.setEtlDt(temp[0]);
+				travelMain.setSeqId(temp[1]);
+				travelMain.setPoiNm(temp[2]);
+				travelMain.setUniqPop(temp[3]);
+				//4.데이터 insert	
+				try {
+				mainService.insertBeachPer(travelMain);
+				}catch(SQLException e) {
+					log.debug(e);
+				}catch(Exception e) {
+					log.debug(e);
+				}				
+			}else {
+				break;
+			}
+			
 			System.out.println(line);
 		}
 	}

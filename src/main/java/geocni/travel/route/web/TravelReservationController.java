@@ -82,11 +82,11 @@ public class TravelReservationController {
 		Date resvStDate = dateFormat.parse("2020-07-01");
 		Date nowDate = new Date();
 		int compare = nowDate.compareTo(resvStDate);
-		if(compare < 0) {
+		/*if(compare < 0) {
 			model.addAttribute("alert", "2020년 7월 1일부터 예약 가능합니다.");
 			return "jnit/util/alertBack";
 		}
-		
+		*/
 		return skinPath + "area";
 	}
 	
@@ -108,10 +108,10 @@ public class TravelReservationController {
 				Date resvStDate = dateFormat.parse("2020-07-01");
 				Date nowDate = new Date();
 				int compare = nowDate.compareTo(resvStDate);
-				if(compare < 0) {
+				/*if(compare < 0) {
 					model.addAttribute("alert", "2020년 7월 1일부터 예약 가능합니다.");
 					return "jnit/util/alertBack";
-				}
+				}*/
 				
 				//최대수용 인원을 초과 체크
 				String reservationYn = reseService.selectTravelReservationYn(travelReservation);

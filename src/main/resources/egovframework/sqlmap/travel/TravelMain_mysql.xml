@@ -15,4 +15,22 @@
              WHERE ETL_DT = #datestr#
         ]]>
     </select>
+    
+    <insert id="travelMainDAO.insertBeachPer">
+		<![CDATA[
+			INSERT INTO GEO_BEACH_CONGESTION ( 
+					ETL_DT 
+			     , SEQ_ID 
+			     , POI_NM 
+			     , UNIQ_POP 
+			) VALUES ( 
+				  #etlDt#
+				, #seqId#
+				, #poiNm#
+				, #uniqPop#
+			)
+		]]>
+	</insert>
+    
+    
 </sqlMap>
