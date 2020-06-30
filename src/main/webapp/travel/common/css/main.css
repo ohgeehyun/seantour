@@ -189,7 +189,6 @@ a.btn-layerClose:hover {
 .spotzone .spot_info img{border-radius:0.5em;box-shadow:5px 5px 5px 5px rgba(0,0,0, 0.4);}
 .spotzone .spot{position:absolute;width:11px;height:11px;}
 .spotzone .spot .icon{position:absolute;top:0;left:0;display:inline-block;width:100%;height:100%;border-radius:50%;font-size:10px;white-space:nowrap;text-indent:-999em;-webkit-transition:all 0.4s;-moz-transition:all 0.4s;-o-transition:all 0.4s;-ms-transition:all 0.4s;transition:all 0.4s;}
-.spotzone .spot .icon em{display:inline-block;text-indent:-999em;}
 .spotzone .spot .icon.red_hover{background:#ec3012;}
 .spotzone .spot .icon.yellow_hover{background:#fbdb02;}
 .spotzone .spot .icon.green_hover{background:#8aff62;}
@@ -233,19 +232,17 @@ a.btn-layerClose:hover {
 .spotzone .spot48{left:75.5%;top:17%;}/* 중광정 */
 .spotzone .spot49{left:64.5%;top:6.5%;}/* 천진 */
 .spotzone .spot50{left:6%;top:34.5%;}/* 신두리 */
-.spotzone .spot .icon:hover{padding:12px 0;}
-.spotzone .spot .icon:hover em{text-indent:0;}
 .spotzone .spot .icon.red_hover:hover,
 .spotzone .spot .icon.red_hover:focus,
-.spotzone .spot .icon.red_hover:active{position:relative;z-index:9999;width:60px;height:60px;margin:-25px 0 0 -10px;background:#ec3012;font-size:12px;color:#fff;line-height:1.4;text-align:center;text-indent:0;}
+.spotzone .spot .icon.red_hover:active{position:relative;z-index:9999;width:40px;height:40px;margin:-25px 0 0 -10px;background:#ec3012;font-size:10px;color:#fff;line-height:40px;text-align:center;text-indent:0;}
 .spotzone .spot .icon.yellow_hover:hover,
 .spotzone .spot .icon.yellow_hover:focus,
-.spotzone .spot .icon.yellow_hover:active{position:relative;z-index:9999;width:60px;height:60px;margin:-25px 0 0 -10px;background:#deb113;font-size:12px;color:#fff;line-height:1.4;text-align:center;text-indent:0;}
+.spotzone .spot .icon.yellow_hover:active{position:relative;z-index:9999;width:40px;height:40px;margin:-25px 0 0 -10px;background:#deb113;font-size:10px;color:#fff;line-height:40px;text-align:center;text-indent:0;}
 .spotzone .spot .icon.green_hover:hover,
 .spotzone .spot .icon.green_hover:focus,
-.spotzone .spot .icon.green_hover:active{position:relative;z-index:9999;width:60px;height:60px;margin:-25px 0 0 -10px;background:#6eb357;font-size:12px;color:#fff;line-height:1.4;text-align:center;text-indent:0;}
+.spotzone .spot .icon.green_hover:active{position:relative;z-index:9999;width:40px;height:40px;margin:-25px 0 0 -10px;background:#6eb357;font-size:10px;color:#fff;line-height:40px;text-align:center;text-indent:0;}
 .spotzone .name{}
-.spotzone .blinker{position:absolute;width:60px;height:40px;line-height:1.5;background:#2c9eff;border:1px solid #1c91f4;border-radius:1em;-webkit-transition:all 0.4s;-moz-transition:all 0.4s;-o-transition:all 0.4s;-ms-transition:all 0.4s;transition:all 0.4s}
+.spotzone .blinker{position:absolute;width:60px;height:28px;line-height:1.5;background:#2c9eff;border:1px solid #1c91f4;border-radius:1em;-webkit-transition:all 0.4s;-moz-transition:all 0.4s;-o-transition:all 0.4s;-ms-transition:all 0.4s;transition:all 0.4s}
 .spotzone .spot1{left:89.42%;top:66.52%;}/* 해운대 */
 .spotzone .spot2{left:85.08%;top:70.38%}/* 광안리 */
 .spotzone .spot3{left:72.76%;top:74.03%;}/*송도 */
@@ -268,7 +265,7 @@ a.btn-layerClose:hover {
 .spotzone .spot2 .icon{right:70px;}
 .spotzone .spot3 .icon{top:-72px;right:22px;}
 
-.spotzone .blinker .name{display:inline-block;position:absolute;top:0;left:0;width:100%;height:100%;line-height:1.4;font-size:13px;color:#fff !important;text-align:center;}
+.spotzone .blinker .name{display:inline-block;position:absolute;top:0;left:0;width:100%;height:100%;line-height:2.1;font-size:15px;color:#fff !important;text-align:center;}          
 
 
 
@@ -322,7 +319,7 @@ a.btn-layerClose:hover {
 .reserv_main_left strong{position:relative;display:inline-block;width:calc(100% - 30% - 30% - 15% - 30px );margin-top:-7px;padding-left:35px;padding-top:10px;font-size:16px;color:#055794;letter-spacing:-1px;}
 .reserv_main_left strong:before{content:'';display:inline-block;position:absolute;top:50%;left:0;margin-top:-14px;width:28px;height:28px;background:url(/seantour_map/images/travel/main/icon_main_reserv.png) no-repeat 0 0;background-size:cover;}
 .reserv_main_left span{width:30%;margin-left:10px;}
-.reserv_main_left input{box-sizing:border-box;width:100%;height:58px;padding:5px 7px;border:1px solid #dedede;}
+.reserv_main_left input{box-sizing:border-box;width:100%;height:58px;padding:5px 7px;border:1px solid #dedede;font-size:13px;}
 .reserv_main_left lable{display:inline-block;margin-right:10px;line-height:58px;}
 .reserv_main_left .btn{display:inline-block;box-sizing:border-box;width:15%;height:58px;line-height:58px;margin-left:10px;background:#0099ff;border:none;font-size:16px;color:#fff;vertical-align:middle;}
 .reserv_main_right{width:100%;height:110px;}
@@ -336,7 +333,7 @@ a.btn-layerClose:hover {
 	.reserv_main_right{height:90px;}
 	.reserv_main_left strong{margin-top:-2px;padding-left:20px;font-size:12px;}
 	.reserv_main_left strong:before{width:20px;height:20px;margin-top:-10px;}
-	.reserv_main_left input{height:48px;font-size:13px;}
+	.reserv_main_left input{height:48px;font-size:11px;}
 	.reserv_main_left .btn{height:48px;line-height:48px;font-size:14px;}
 }
 @media screen and (max-width:640px){
