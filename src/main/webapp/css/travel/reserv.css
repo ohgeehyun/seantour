@@ -6,6 +6,17 @@
  * 예약시스템
  * **************************************** */
 
+/* **************************************** *
+ * 이벤트 팝업
+ * **************************************** */
+ #pop{z-index:9999;position:absolute;top:100px;left:100px;width:500px;height:auto;}
+ #pop #close{position:absolute;bottom:0;right:0;width:55px;height:35px;line-height:35px;background:#0099ff;font-size:13px;color:#fff;text-align:center;cursor:pointer;}
+ 
+@media screen and (max-width:640px){
+    #pop{top:10px;left:10px;width:300px;height:auto;}
+ }
+
+
 .cont_body .bx_srch_event{box-sizing:border-box;width:100%;height:150px;padding:25px 0;border:1px solid #d4d4d4;border-top:2px solid #444; background:#f8f8f8;text-align:center; }
 .cont_body .bx_srch_event fieldset{position:relative;display:inline-block;width:55%;}
 .cont_body .bx_srch_event select{float:left;display:inline-block;border:1px solid #dedede;}

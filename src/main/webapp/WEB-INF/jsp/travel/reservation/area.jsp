@@ -8,6 +8,12 @@
 	<%@ include file="/WEB-INF/jsp/travel/tpl/head.jsp" %>
 </head>
 <script>
+
+$(document).ready(function(){
+	$('#close').click(function(){
+		$('#pop').hide();
+	});
+});	
 var map;
 $(document).ready(function(){
 	if('${travelReservation.openYn}' == 'N'){
@@ -105,6 +111,10 @@ $(document).ready(function(){
 <body>
 	<div id="wrap">
 		<div id="accessibility"><a href="#content">본문 바로가기</a></div>
+		 <div id="pop">
+         <div><img src="${pageContext.request.contextPath}/travel/common/images/content/img_popup_faq.jpg" alt="" /></div>
+         <div id="close">close</div>
+      </div>
 		<!-- header -->
 			<%@ include file="/WEB-INF/jsp/travel/tpl/gnb.jsp" %>
 		<!-- // header -->
