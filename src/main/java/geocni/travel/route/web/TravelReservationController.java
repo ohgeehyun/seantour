@@ -172,9 +172,8 @@ public class TravelReservationController {
 				text += "예약조회 : https://seantour.com/seantour_map/travel/";
 				params.put("to", travelReservation.getReseTel());
 				params.put("from", "0442005254");
-				params.put("type", "SMS");
 			    params.put("text", text);
-			    params.put("app_version", "test app 1.2"); // application name and version
+			    params.put("type", "lms"); // 문자 타입
 
 			    try {
 			      JSONObject obj = (JSONObject) coolsms.send(params);
