@@ -178,7 +178,10 @@ $(document).ready(function(){
 		            			<div class="reserv_view">
 			            			<span class="pool">
 			            				<c:forEach var="beach" items="${beachList}" varStatus="status">
-											<c:if test="${travelReservation.reseBeachNameCd eq beach.reseBeachNameCd}"><c:out value="${beach.reseBeachName}"/></c:if>
+											<c:if test="${travelReservation.reseBeachNameCd eq beach.reseBeachNameCd}">
+												<c:out value="${beach.reseBeachName}"/>
+												<input type="hidden" id="reseBeachName" name="reseBeachName" value="<c:out value="${beach.reseBeachName}"/>">
+											</c:if>
 										</c:forEach>
 			            			</span>
 		            			</div>
