@@ -80,9 +80,18 @@ function fn_delete(reseNo){
 	            			<dt>시간</dt>
 	            			<dd>
 	            				<p>
-	            					<c:if test="${view.reseTime eq '01'}">9:00 ~ 12:00</c:if>
-	            					<c:if test="${view.reseTime eq '02'}">12:00 ~ 15:00</c:if>
-	            					<c:if test="${view.reseTime eq '03'}">15:00 ~ 18:00</c:if>
+	            					<c:choose>
+	            						<c:when test="${fn:substring(view.reseNo, 3, 5) eq '12' || fn:substring(view.reseNo, 3, 5) eq '13' || fn:substring(view.reseNo, 3, 5) eq '14'}">
+			            					<c:if test="${view.reseTime eq '01'}">10:00 ~ 13:00</c:if>
+			            					<c:if test="${view.reseTime eq '02'}">13:00 ~ 16:00</c:if>
+			            					<c:if test="${view.reseTime eq '03'}">16:00 ~ 19:00</c:if>
+	            						</c:when>
+	            						<c:otherwise>
+			            					<c:if test="${view.reseTime eq '01'}">9:00 ~ 12:00</c:if>
+			            					<c:if test="${view.reseTime eq '02'}">12:00 ~ 15:00</c:if>
+			            					<c:if test="${view.reseTime eq '03'}">15:00 ~ 18:00</c:if>
+	            						</c:otherwise>
+	            					</c:choose>
 	            				</p>
 	            			</dd>
 	            		</dl>
@@ -101,7 +110,10 @@ function fn_delete(reseNo){
 	            		<dl class="form_group">
 	            			<dt>전화번호</dt>
 	            			<dd>
-	            				<p><c:out value="${fn:substring(view.reseTel, 0, 3)}"/>-<c:out value="${fn:substring(view.reseTel, 3, 7)}"/>-<c:out value="${fn:substring(view.reseTel, 7, 11)}"/></p>
+	            				<p>
+	            					<c:if test="${fn:length(view.reseTel) eq 10}"><c:out value="${fn:substring(view.reseTel, 0, 3)}"/>-<c:out value="${fn:substring(view.reseTel, 3, 6)}"/>-<c:out value="${fn:substring(view.reseTel, 6, 10)}"/></c:if>
+	            					<c:if test="${fn:length(view.reseTel) ne 10}"><c:out value="${fn:substring(view.reseTel, 0, 3)}"/>-<c:out value="${fn:substring(view.reseTel, 3, 7)}"/>-<c:out value="${fn:substring(view.reseTel, 7, 11)}"/></c:if>
+	            				</p>
 	            			</dd>
 	            		</dl>
 	            	</div>	

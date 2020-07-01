@@ -104,14 +104,23 @@ function fn_egov_link_page(pageNo){
 						<tbody>
 							<c:forEach var="rese" items="${reseList}" varStatus="status">
 							<tr>
-								<td><c:out value="${status.index + 1}"/></td>
+								<td><c:out value="${((paginationInfo.currentPageNo - 1) * 50) + (status.index + 1)}"/></td>
 								<td><c:out value="${rese.reseNo}"/></td>
 								<td><c:out value="${rese.reseBeachName}"/></td>
 								<td><c:out value="${fn:substring(rese.reseDate, 0, 4)}"/>년 <c:out value="${fn:substring(rese.reseDate, 5, 7)}"/>월 <c:out value="${fn:substring(rese.reseDate, 8, 10)}"/>일</td>
 								<td>
-	            					<c:if test="${rese.reseTime eq '01'}">9:00 ~ 12:00</c:if>
-	            					<c:if test="${rese.reseTime eq '02'}">12:00 ~ 15:00</c:if>
-	            					<c:if test="${rese.reseTime eq '03'}">15:00 ~ 18:00</c:if>
+	            					<c:choose>
+	            						<c:when test="${fn:substring(rese.reseNo, 3, 5) eq '12' || fn:substring(view.reseNo, 3, 5) eq '13' || fn:substring(view.reseNo, 3, 5) eq '14'}">
+			            					<c:if test="${rese.reseTime eq '01'}">10:00 ~ 13:00</c:if>
+			            					<c:if test="${rese.reseTime eq '02'}">13:00 ~ 16:00</c:if>
+			            					<c:if test="${rese.reseTime eq '03'}">16:00 ~ 19:00</c:if>
+	            						</c:when>
+	            						<c:otherwise>
+			            					<c:if test="${rese.reseTime eq '01'}">9:00 ~ 12:00</c:if>
+			            					<c:if test="${rese.reseTime eq '02'}">12:00 ~ 15:00</c:if>
+			            					<c:if test="${rese.reseTime eq '03'}">15:00 ~ 18:00</c:if>
+	            						</c:otherwise>
+	            					</c:choose>
 								</td>
 								<td><c:out value="${rese.resePersonnel}"/>명</td>
 								<td><c:out value="${rese.reseName}"/></td>

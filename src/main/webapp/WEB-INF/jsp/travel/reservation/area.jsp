@@ -99,6 +99,27 @@ function fn_display_none(){
 	document.getElementById("lec_privacy").style.display = 'none';
 }
 
+function fn_timeChange(val){
+	var tmp = $('#reseTime').val();
+	$('#reseTime').empty();
+	$('#reseTime').append('<option value="">시간선택</option>');
+	if(val == '12' || val == '13' || val == '14'){
+		if(tmp == '01') $('#reseTime').append('<option value="01" selected="selected">10:00 ~ 13:00</option>');
+		else $('#reseTime').append('<option value="01">10:00 ~ 13:00</option>');
+		if(tmp == '02') $('#reseTime').append('<option value="02" selected="selected">13:00 ~ 16:00</option>');
+		else $('#reseTime').append('<option value="02">13:00 ~ 16:00</option>');
+		if(tmp == '03') $('#reseTime').append('<option value="03" selected="selected">16:00 ~ 19:00</option>');
+		else $('#reseTime').append('<option value="03">16:00 ~ 19:00</option>');
+	}else{
+		if(tmp == '01') $('#reseTime').append('<option value="01" selected="selected">9:00 ~ 12:00</option>');
+		else $('#reseTime').append('<option value="01">9:00 ~ 12:00</option>');
+		if(tmp == '02') $('#reseTime').append('<option value="02" selected="selected">12:00 ~ 15:00</option>');
+		else $('#reseTime').append('<option value="02">12:00 ~ 15:00</option>');
+		if(tmp == '03') $('#reseTime').append('<option value="03" selected="selected">15:00 ~ 18:00</option>');
+		else $('#reseTime').append('<option value="03">15:00 ~ 18:00</option>');
+	}
+}
+
 $(document).ready(function(){
 	if('${travelReservation.reservationYn}' == 'Y'){
 		$(".jn_map").hide();
@@ -146,7 +167,7 @@ $(document).ready(function(){
 									<li>등록된 지역이 없습니다</li>
 								</c:if>
 				      		</select>
-				      		<select id="reseBeachNameCd" name="reseBeachNameCd" title="해수용장" onchange="fn_display_none();">
+				      		<select id="reseBeachNameCd" name="reseBeachNameCd" title="해수용장" onchange="fn_display_none(); fn_timeChange(this.value);">
 								<c:forEach var="beach" items="${beachList}" varStatus="status">
 									<option value='<c:out value="${beach.reseBeachNameCd}"/>' <c:if test="${travelReservation.reseBeachNameCd eq beach.reseBeachNameCd}">selected="selected"</c:if>><c:out value="${beach.reseBeachName}"/></option>
 								</c:forEach>
@@ -169,10 +190,20 @@ $(document).ready(function(){
 				    	  		</c:forEach>
 				      		</select>
 				      		<select id="reseTime" name="reseTime" title="시간" onchange="fn_display_none();">
-				    	  		<option value="">시간선택</option>
-				    	  		<option value="01" <c:if test="${travelReservation.reseTime eq '01'}">selected="selected"</c:if>>9:00 ~ 12:00</option>
-					      		<option value="02" <c:if test="${travelReservation.reseTime eq '02'}">selected="selected"</c:if>>12:00 ~ 15:00</option>
-					      		<option value="03" <c:if test="${travelReservation.reseTime eq '03'}">selected="selected"</c:if>>15:00 ~ 18:00</option>
+				      			<c:choose>
+					      			<c:when test="${travelReservation.reseBeachNameCd eq '12' || travelReservation.reseBeachNameCd eq '13' || travelReservation.reseBeachNameCd eq '14'}">
+					      				<option value="">시간선택</option>
+						    	  		<option value="01" <c:if test="${travelReservation.reseTime eq '01'}">selected="selected"</c:if>>10:00 ~ 13:00</option>
+							      		<option value="02" <c:if test="${travelReservation.reseTime eq '02'}">selected="selected"</c:if>>13:00 ~ 16:00</option>
+							      		<option value="03" <c:if test="${travelReservation.reseTime eq '03'}">selected="selected"</c:if>>16:00 ~ 19:00</option>
+					      			</c:when>
+					      			<c:otherwise>
+						    	  		<option value="">시간선택</option>
+						    	  		<option value="01" <c:if test="${travelReservation.reseTime eq '01'}">selected="selected"</c:if>>9:00 ~ 12:00</option>
+							      		<option value="02" <c:if test="${travelReservation.reseTime eq '02'}">selected="selected"</c:if>>12:00 ~ 15:00</option>
+							      		<option value="03" <c:if test="${travelReservation.reseTime eq '03'}">selected="selected"</c:if>>15:00 ~ 18:00</option>
+					      			</c:otherwise>
+				      			</c:choose>
 				      		</select>
 						</div>
 						<div class="btn">
@@ -206,9 +237,18 @@ $(document).ready(function(){
 	            			<dt>시간</dt>
 	            			<dd>
 	            				<div class="reserv_view">
-	            					<c:if test="${travelReservation.reseTime eq '01'}">9:00 ~ 12:00</c:if>
-	            					<c:if test="${travelReservation.reseTime eq '02'}">12:00 ~ 15:00</c:if>
-	            					<c:if test="${travelReservation.reseTime eq '03'}">15:00 ~ 18:00</c:if>
+	            					<c:choose>
+	            						<c:when test="${travelReservation.reseBeachNameCd eq '12' || travelReservation.reseBeachNameCd eq '13' || travelReservation.reseBeachNameCd eq '14'}">
+	            							<c:if test="${travelReservation.reseTime eq '01'}">10:00 ~ 13:00</c:if>
+			            					<c:if test="${travelReservation.reseTime eq '02'}">13:00 ~ 16:00</c:if>
+			            					<c:if test="${travelReservation.reseTime eq '03'}">16:00 ~ 19:00</c:if>
+	            						</c:when>
+	            						<c:otherwise>
+			            					<c:if test="${travelReservation.reseTime eq '01'}">9:00 ~ 12:00</c:if>
+			            					<c:if test="${travelReservation.reseTime eq '02'}">12:00 ~ 15:00</c:if>
+			            					<c:if test="${travelReservation.reseTime eq '03'}">15:00 ~ 18:00</c:if>
+	            						</c:otherwise>
+	            					</c:choose>
 	            				</div>
 	            			</dd>
 	            		</dl>
@@ -235,6 +275,7 @@ $(document).ready(function(){
 	            			<dd class="tel">
 	            				<select id="reseTel_01" name="reseTel_01">
 	            					<option value="010">010</option>
+	            					<option value="011">011</option>
 	            					<option value="017">017</option>
 	            					<option value="019">019</option>
 	            				</select>
