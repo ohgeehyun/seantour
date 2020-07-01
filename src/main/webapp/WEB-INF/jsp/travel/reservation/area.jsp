@@ -25,7 +25,7 @@ $(document).ready(function(){
 			case 'R0004' : alertVal = "율포솔밭 해수욕장 개장일은 7.11.~8.30. 입니다."; break;
 			case 'R0005' : alertVal = "수문 해수욕장 개장일은 7.10.~8.9. 입니다."; break;
 			case 'R0006' : alertVal = "송호 해수욕장 개장일은 7.17.~8.9. 입니다."; break;
-			case 'R0007' : alertVal = "돌머리 해수욕장 개장일은 7.10.~8.16. 입니다."; break;
+			case 'R0007' : alertVal = "돌머리 해수욕장 개장일은 7.17.~8.16. 입니다."; break;
 			case 'R0008' : alertVal = "가마미 해수욕장 개장일은 7.10.~8.23. 입니다."; break;
 			case 'R0009' : alertVal = "송이도 해수욕장 개장일은 7.20.~8.11. 입니다."; break;
 			case 'R0010' : alertVal = "신지명사십리 해수욕장 개장일은 7.17.~8.23. 입니다."; break;
