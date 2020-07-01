@@ -110,7 +110,7 @@ function fn_egov_link_page(pageNo){
 								<td><c:out value="${fn:substring(rese.reseDate, 0, 4)}"/>년 <c:out value="${fn:substring(rese.reseDate, 5, 7)}"/>월 <c:out value="${fn:substring(rese.reseDate, 8, 10)}"/>일</td>
 								<td>
 	            					<c:choose>
-	            						<c:when test="${fn:substring(rese.reseNo, 3, 5) eq '12' || fn:substring(view.reseNo, 3, 5) eq '13' || fn:substring(view.reseNo, 3, 5) eq '14'}">
+	            						<c:when test="${fn:substring(rese.reseNo, 3, 5) eq '12' || fn:substring(rese.reseNo, 3, 5) eq '13' || fn:substring(rese.reseNo, 3, 5) eq '14'}">
 			            					<c:if test="${rese.reseTime eq '01'}">10:00 ~ 13:00</c:if>
 			            					<c:if test="${rese.reseTime eq '02'}">13:00 ~ 16:00</c:if>
 			            					<c:if test="${rese.reseTime eq '03'}">16:00 ~ 19:00</c:if>
