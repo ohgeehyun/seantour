@@ -161,13 +161,17 @@ public class TravelReservationController {
 				Message coolsms = new Message(api_key, api_secret);
 				
 				HashMap<String, String> params = new HashMap<String, String>();
-				String text = "[해수욕장 예약시스템]\n2020년 " + travelReservation.getMonth() + "월 " + travelReservation.getDay() + "일 ";
+				String text = "[해수욕장 예약시스템]\n";
+				text += travelReservation.getReseBeachName() + " 예약이 완료 되었습니다.\n";
+				text += "날짜 : 2020년 " + travelReservation.getMonth() + "월 " + travelReservation.getDay() + "일\n시간 : ";
 				if("01".equals(travelReservation.getReseTime())) text += "9:00 ~ 12:00";
 				else if("02".equals(travelReservation.getReseTime())) text += "12:00 ~ 15:00";
 				else if("03".equals(travelReservation.getReseTime())) text += "15:00 ~ 18:00";
-				text += "시 " + travelReservation.getReseBeachName() + " 예약이 완료 되었습니다.";
+				text += "시\n";
+				text += "인원 : " + travelReservation.getResePersonnel() + "명\n";
+				text += "예약조회 : https://seantour.com/seantour_map/travel/";
 				params.put("to", travelReservation.getReseTel());
-				params.put("from", "07048824404");
+				params.put("from", "0442005254");
 				params.put("type", "SMS");
 			    params.put("text", text);
 			    params.put("app_version", "test app 1.2"); // application name and version

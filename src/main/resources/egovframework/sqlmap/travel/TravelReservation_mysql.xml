@@ -199,7 +199,12 @@
 		FROM
 		    geo_reservation
 		WHERE
+		<isEqual property="reseBeachId" compareValue="R0000">
+		    1=1
+		</isEqual>
+		<isNotEqual property="reseBeachId" compareValue="R0000">
 		    RESE_BEACH_ID = #reseBeachId#
+		</isNotEqual>
 		        AND RESE_DATE <![CDATA[>=]]> date_format(now(), '%Y%m%d')
 		<isNotEmpty property="searchKeyword">
 			<isEqual property="searchCondition" compareValue="0">
@@ -212,7 +217,7 @@
 		        AND RESE_NO = #searchKeyword#
 			</isEqual>
 		</isNotEmpty>
-		ORDER BY reseDate, reseName, reseTel, reseTime
+		ORDER BY reseBeachName, reseDate, reseName, reseTel, reseTime
 		LIMIT #firstIndex#, #recordCountPerPage#
 	</select>
 	
@@ -221,7 +226,12 @@
 			COUNT(*) totcnt
 		FROM geo_reservation
 		WHERE
+		<isEqual property="reseBeachId" compareValue="R0000">
+		    1=1
+		</isEqual>
+		<isNotEqual property="reseBeachId" compareValue="R0000">
 		    RESE_BEACH_ID = #reseBeachId#
+		</isNotEqual>
 		        AND RESE_DATE <![CDATA[>=]]> date_format(now(), '%Y%m%d')
 		<isNotEmpty property="searchKeyword">
 			<isEqual property="searchCondition" compareValue="0">
