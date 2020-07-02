@@ -7,7 +7,8 @@
 <%@ include file="/WEB-INF/jsp/jnit/_common/header.jsp" %>
 
 <%-- <script type='text/javascript' src='http://www.google.com/jsapi'></script> --%>
-<script type='text/javascript' src='<c:url value="/resources/stats/plugins/jsapi.js" />'></script>
+<%-- <script type='text/javascript' src='<c:url value="/resources/stats/plugins/jsapi.js" />'></script> --%>
+<script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
 <script type="text/javaScript" src="<c:url value="/resources/js/jnit/filego.js"/>" ></script>
 <script type='text/javascript'>
   var cpuUsage = 0;
@@ -49,8 +50,8 @@
 		});
 }
   
-  google.load('visualization', '1', {packages:['gauge', 'imagechart']});
-  google.setOnLoadCallback(drawChart);
+  google.charts.load('visualization', '1', {packages:['gauge', 'imagechart']});
+  google.charts.setOnLoadCallback(drawChart);
  
   
   var _data1;
@@ -65,13 +66,17 @@
   var _chart2;
   var _chart3;
   function drawChart() {
-	  	drawChart1();
-	  	drawChart2();
-	  	drawChart3();
-	  	
-	  	$("div.infoBox1 table, div.infoBox2 table, div.infoBox3 table").css("margin", "");
-	  	
-  }
+      _chart1 = new google.visualization.Gauge(document.getElementById('Chart1'));
+    _chart2 = new google.visualization.Gauge(document.getElementById('Chart2'));
+    _chart3 = new google.visualization.Gauge(document.getElementById('Chart3'));
+    
+      drawChart1();
+      drawChart2();
+      drawChart3();
+      
+      $("div.infoBox1 table, div.infoBox2 table, div.infoBox3 table").css("margin", "");
+      
+}
   
   function drawChart1() {
 	    _data1 = google.visualization.arrayToDataTable([
@@ -124,14 +129,10 @@
   }
   
   $(document).ready(function(){
-		_chart1 = new google.visualization.Gauge(document.getElementById('Chart1'));
-		_chart2 = new google.visualization.Gauge(document.getElementById('Chart2'));
-		_chart3 = new google.visualization.Gauge(document.getElementById('Chart3'));
-		
-	  getUsages();
-	  getNetUsages();
-	  var usageInterval = setInterval(getUsages, 3000);
-	  var netusageInterval = setInterval(getNetUsages, 60000);  
+      getUsages();
+      getNetUsages();
+      var usageInterval = setInterval(getUsages, 3000);
+      var netusageInterval = setInterval(getNetUsages, 60000);  
   });
 
 </script>
