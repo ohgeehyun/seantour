@@ -13,7 +13,7 @@ body {-webkit-text-size-adjust:none;}
 #wrap:after{content:""; display:block; height:0; clear:both; visibility:hidden;}
 
 /* Header */
-#header{position:fixed; top:0; left:0; width:100%;height:78px; background:#fff; /*background:rgba(48,54,63,.34);*/z-index:999;}
+#header{position:relative; top:0; left:0; width:100%;height:78px; background:#fff; /*background:rgba(48,54,63,.34);*/z-index:999;}
 #header h1.logo{z-index:99; position:absolute; top:15px; left:5%; width:138px;}
 #header h1.logo>a{z-index:30; text-indent:-9999px; display:block; height:36px; background:url(/seantour_map/images/travel/common/logo.png) 50% 50% no-repeat;background-size:100%;}
 #header .util_top{z-index:32;position:absolute;top:20px;right:5%;}
@@ -71,7 +71,8 @@ body {-webkit-text-size-adjust:none;}
 .mobile_wholeview{display:none;}
 
 /* scroll */
-#header.scroll {height:60px;}
+#header.pop {position:relative;height:60px;top:0;}
+#header.scroll {position:fixed;height:60px;top:0;}
 #header.scroll h1 {top:10px;}
 #header.scroll .goto_cu{top:17px;}
 #header.scroll .lang{top:22px;}
@@ -82,7 +83,7 @@ body {-webkit-text-size-adjust:none;}
 
 /*** container ****/
 #container{position:relative;}
-#header.scroll + #container{padding-top:60px;}
+/*#header.scroll + #container{padding-top:60px;}*/
 
 /* section_visual */
 #container .section_visual{display:table;width:100%;height:305px;}
@@ -262,7 +263,7 @@ body {-webkit-text-size-adjust:none;}
   #header{height:60px;background:#fff;}
   #header h1.logo{left:10px;top:17px;}
   #header h1.logo a{width:290px;height:24px;background:url(/seantour_map/images/travel/common/logo_mob.png) no-repeat 0 0;}
-  #container{padding-top:60px;}
+  /*#container{padding-top:60px;}*/
      /* 모바일 전체메뉴 */
     .mobile_wholeview{display:block;}
     .mobile_wholeview .btn_wv{position:absolute; top:22px; right:10px; z-index:30; overflow:hidden; width:35px; height:22px;background:url(/seantour_map/images/travel/common/ico_mobile_wholeview.gif) no-repeat 0 0;text-indent:-999em;}

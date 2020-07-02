@@ -53,7 +53,15 @@ $(function(){
 	  else {
 		$("#header").removeClass('scroll transit');
 	  }
+	 
 	});
+	
+	 if($("#wrap").hasClass("pop_ly") == false) {
+		  $("#header").addClass('transit pop');
+	  }else {
+		$("#header").removeClass('transit pop');
+	  }
+	
 });  
 
 
