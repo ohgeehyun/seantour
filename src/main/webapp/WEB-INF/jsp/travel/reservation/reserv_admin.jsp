@@ -17,15 +17,22 @@ function fn_logout(){
 	document.getElementById("travelReservation").action = "<c:url value='/travel/reservation/reserv_logout.do'/>";
    	document.getElementById("travelReservation").submit();
 }
+
 function enterkey(){
     if (window.event.keyCode == 13) {
          // 엔터키가 눌렸을 때 실행할 내용
          document.getElementById("travelReservation").submit();
     }
 }
+
 function fn_egov_link_page(pageNo){
 	document.getElementById("travelReservation").pageIndex.value = pageNo;
 	document.getElementById("travelReservation").action = "<c:url value='/travel/reservation/reserv_admin.do'/>";
+   	document.getElementById("travelReservation").submit();
+}
+
+function fn_excelDown(){
+	document.getElementById("travelReservation").action = "<c:url value='/travel/reservation/reserv_admin_excelDown.do'/>";
    	document.getElementById("travelReservation").submit();
 }
 </script>
@@ -58,6 +65,7 @@ function fn_egov_link_page(pageNo){
 			</div>
 			<div id="content" class="cont_wrap">
 				<form:form commandName="travelReservation" method="post">
+				<input type="hidden" id="reseBeachId" name="reseBeachId" value="${travelReservation.reseBeachId}"/>
 				<div class="cont_head">
 					<h1 class="tit">회원정보관리</h1>
 					<div class="search_area">
@@ -75,6 +83,7 @@ function fn_egov_link_page(pageNo){
 					</div>
 				</div>
 				<div class="cont_body">	
+					<a href="javascript:fn_excelDown();" class="button" style="float:right;">엑셀다운로드</a>
 					<table border="0" cellpadding="0" class="tbl01 tac">
 						<caption>예약회원 현황 - 번호,이름,소속기관,소속부서,전화번호</caption>
 						<thead>

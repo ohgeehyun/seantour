@@ -59,7 +59,7 @@ input,
 textarea,
 select{vertical-align:middle;}
 input[type=text],
-input[type=password]{height:40px; padding:3px 0 0 5px; border:1px solid #d3d2d2; background:#fff; line-height:40px;}
+input[type=password]{padding:3px 0 0 5px; border:1px solid #d3d2d2; background:#fff; line-height:40px;}
 input[type=radio],
 input[type=checkbox]{width:16px; height:16px; vertical-align:top;}
 select{height:28px; border:1px solid #d3d2d2; vertical-align:middle;}

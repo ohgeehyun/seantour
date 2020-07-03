@@ -131,8 +131,8 @@
 				, #reseDate#
 				, #reseTime#
 				, #resePersonnel#
-				, #reseName#
-				, #reseTel#
+				, TRIM(#reseName#)
+				, TRIM(#reseTel#)
 				, NOW()
 			)
 		]]>
@@ -218,7 +218,9 @@
 			</isEqual>
 		</isNotEmpty>
 		ORDER BY reseBeachName, reseDate, reseName, reseTel, reseTime
+		<isNotEqual property="isExcelDown" compareValue="Y">
 		LIMIT #firstIndex#, #recordCountPerPage#
+		</isNotEqual>
 	</select>
 	
 	<select id="travelReservationDAO.selectTravelReservationListCnt" parameterClass="travelReservationVO" resultClass="int">
