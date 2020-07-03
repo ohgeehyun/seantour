@@ -30,6 +30,7 @@ public class TravelReservation extends TravelDefaultVO {
 	private String searchCondition;
 	private String searchKeyword;
 	private String resePossCnt;
+	private String isExcelDown;
 	
 	public String getReseBeachId() {
 		return reseBeachId;
@@ -186,5 +187,11 @@ public class TravelReservation extends TravelDefaultVO {
 	}
 	public void setResePossCnt(String resePossCnt) {
 		this.resePossCnt = resePossCnt;
+	}
+	public String getIsExcelDown() {
+		return isExcelDown;
+	}
+	public void setIsExcelDown(String isExcelDown) {
+		this.isExcelDown = isExcelDown;
 	}
 }

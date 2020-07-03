@@ -11,9 +11,18 @@ import java.text.SimpleDateFormat;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -189,7 +198,7 @@ public class TravelReservationController {
 			log.debug(e);
 		}
 		
-		return "redirect:/" + skinPath + "reserv_view.do?reseName=" + URLEncoder.encode(travelReservation.getReseName(), "UTF-8") + "&reseTel=" + travelReservation.getReseTel();
+		return "redirect:/" + skinPath + "reserv_view.do?reseName=" + URLEncoder.encode(travelReservation.getReseName().trim(), "UTF-8") + "&reseTel=" + travelReservation.getReseTel().trim();
 	}
 	
 	@RequestMapping(value="delete.do")
@@ -215,8 +224,8 @@ public class TravelReservationController {
 		String reseName = request.getParameter("reseName");
 		String reseTel = request.getParameter("reseTel");
 		
-		travelReservation.setReseName(reseName);
-		travelReservation.setReseTel(reseTel);
+		travelReservation.setReseName(reseName.trim());
+		travelReservation.setReseTel(reseTel.trim());
 		List<?> viewList = reseService.selectTravelReservationViewList(travelReservation);
 		
 		if(viewList.size() == 0) {
@@ -326,5 +335,125 @@ public class TravelReservationController {
 	
 		
 		return skinPath + "intro";
+	}
+	
+	@RequestMapping(value="reserv_admin_excelDown.do")
+	public void reservationExcelDown(
+			 TravelReservation travelReservation
+			,HttpServletRequest request
+			,HttpServletResponse response
+			,Model model) throws Exception {
+		travelReservation.setIsExcelDown("Y");
+		Map<String, Object> resultMap = reseService.selectTravelReservationList(travelReservation);
+		List<TravelReservation> excelList = (List<TravelReservation>) resultMap.get("reseList");
+		
+		// 워크북 생성
+	    Workbook wb = new XSSFWorkbook();
+	    Sheet sheet = wb.createSheet("Sheet1");
+	    Row row = null;
+	    Cell cell = null;
+	    int rowNo = 0;
+
+	    // 테이블 헤더용 스타일
+	    CellStyle headStyle = wb.createCellStyle();
+	    // 가는 경계선
+	    headStyle.setBorderTop(HSSFCellStyle.BORDER_THIN);
+	    headStyle.setBorderBottom(HSSFCellStyle.BORDER_THIN);
+	    headStyle.setBorderLeft(HSSFCellStyle.BORDER_THIN);
+	    headStyle.setBorderRight(HSSFCellStyle.BORDER_THIN);
+
+	    // 헤더 배경색
+	    headStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+	    headStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
+
+	    // 헤더 가운데 정렬
+	    headStyle.setAlignment(CellStyle.ALIGN_CENTER);
+
+	    // 데이터용 경계 스타일 테두리만 지정
+	    CellStyle bodyStyle = wb.createCellStyle();
+	    bodyStyle.setBorderTop(HSSFCellStyle.BORDER_THIN);
+	    bodyStyle.setBorderBottom(HSSFCellStyle.BORDER_THIN);
+	    bodyStyle.setBorderLeft(HSSFCellStyle.BORDER_THIN);
+	    bodyStyle.setBorderRight(HSSFCellStyle.BORDER_THIN);
+
+	    // 헤더 생성
+	    row = sheet.createRow(rowNo++);
+	    cell = row.createCell(0);
+	    cell.setCellStyle(headStyle);
+	    cell.setCellValue("예약번호");
+	    cell = row.createCell(1);
+	    cell.setCellStyle(headStyle);
+	    cell.setCellValue("지역 / 해수욕장");
+	    cell = row.createCell(2);
+	    cell.setCellStyle(headStyle);
+	    cell.setCellValue("날짜");
+	    cell = row.createCell(3);
+	    cell.setCellStyle(headStyle);
+	    cell.setCellValue("시간");
+	    cell = row.createCell(4);
+	    cell.setCellStyle(headStyle);
+	    cell.setCellValue("인원");
+	    cell = row.createCell(5);
+	    cell.setCellStyle(headStyle);
+	    cell.setCellValue("이름");
+	    cell = row.createCell(6);
+	    cell.setCellStyle(headStyle);
+	    cell.setCellValue("전화번호");
+
+	    // 데이터 부분 생성
+	    for(TravelReservation vo : excelList) {
+	        row = sheet.createRow(rowNo++);
+	        cell = row.createCell(0);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(vo.getReseNo());
+	        cell = row.createCell(1);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(vo.getReseBeachName());
+	        cell = row.createCell(2);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(vo.getReseDate().substring(0, 4) + "년 " + vo.getReseDate().substring(5, 7) + "월 " + vo.getReseDate().substring(8, 10) + "일");
+	        cell = row.createCell(3);
+	        cell.setCellStyle(bodyStyle);
+	        String time = "";
+	        if("R0012".equals(vo.getReseNo().substring(0, 5)) || "R0013".equals(vo.getReseNo().substring(0, 5)) || "R0014".equals(vo.getReseNo().substring(0, 5))) {
+	        	if("01".equals(vo.getReseTime())) time = "10:00 ~ 13:00";
+	        	else if("02".equals(vo.getReseTime())) time = "13:00 ~ 16:00";
+	        	else if("03".equals(vo.getReseTime())) time = "16:00 ~ 19:00";
+	        } else {
+	        	if("01".equals(vo.getReseTime())) time = "9:00 ~ 12:00";
+	        	else if("02".equals(vo.getReseTime())) time = "12:00 ~ 15:00";
+	        	else if("03".equals(vo.getReseTime())) time = "15:00 ~ 18:00";
+	        }
+	        cell.setCellValue(time);
+	        cell = row.createCell(4);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(vo.getResePersonnel() + "명");
+	        cell = row.createCell(5);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(vo.getReseName());
+	        cell = row.createCell(6);
+	        cell.setCellStyle(bodyStyle);
+	        String telNo = "";
+	        if(vo.getReseTel().length() == 10) {
+	        	telNo = vo.getReseTel().substring(0, 3) + "-" + vo.getReseTel().substring(3, 6) + "-" + vo.getReseTel().substring(6, 10);
+	        } else {
+	        	telNo = vo.getReseTel().substring(0, 3) + "-" + vo.getReseTel().substring(3, 7) + "-" + vo.getReseTel().substring(7, 11);
+	        }
+	        cell.setCellValue(telNo);
+	    }
+	    
+	    // 셀 크기 자동조절
+	    for(int i=0; i<7; i++) {
+	    	sheet.autoSizeColumn(i);
+	    	sheet.setColumnWidth(i, (sheet.getColumnWidth(i))+512 );
+	    }
+
+	    // 컨텐츠 타입과 파일명 지정
+	    response.setContentType("ms-vnd/excel");
+	    response.setHeader("Content-Disposition", "attachment;filename=reservationList.xlsx");
+
+	    // 엑셀 출력
+	    wb.write(response.getOutputStream());
+	    wb.close();
 	}
 }
