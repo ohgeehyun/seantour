@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.type.CalendarTimeType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -73,12 +74,29 @@ public class TravelMainController {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
 		String datestr = sdf.format(cal.getTime());
 		
-		int minute = Integer.valueOf(datestr.substring(10, 11));
+		int datestrtimechange = Integer.valueOf(datestr.substring(8,10));//시간변경
+		int minute = Integer.valueOf(datestr.substring(10, 12));
+		String datestrtemp = datestr.substring(0,8);
+		
+		if(datestrtimechange == 0)
+		{
+			cal.add(Calendar.DATE, -1);
+			datestr =sdf.format(cal.getTime());
+			datestrtemp = datestr.substring(0,8);
+			datestrtimechange = 23; //23시
+		}else {
+			cal.add(Calendar.HOUR, -1);
+			datestr =sdf.format(cal.getTime());
+			datestrtemp = datestr.substring(0,8);
+			datestrtimechange = datestrtimechange -1; //23시 // 13시 일경우 12시 30분의 데이터를 가저와야하기 때문 시간 -1 
+		}
+		
 		
 		if(minute > 0 && minute < 30) {
-			datestr = Integer.valueOf(datestr.substring(0, 10)) + "00";
+		
+			datestr = datestrtemp + datestrtimechange+"30";
 		}else {
-			datestr = Integer.valueOf(datestr.substring(0, 10)) + "30";
+			datestr = Integer.valueOf(datestr.substring(8, 10)) + "00";
 		}
 				
 		//파일을 불러와서 DB에 파일 넣어줄것.
@@ -88,10 +106,10 @@ public class TravelMainController {
 		
 		List<String> lines = Files.readAllLines(Paths.get(filePath), StandardCharsets.UTF_8);
 		StringBuffer sb = new StringBuffer();
-		
+		List<?> viewList = mainService.selectBeachPerCnt();
 		for(String line:lines) {
 			//1.테이블에서 해당 시간 count
-			List<?> viewList = mainService.selectBeachPerCnt();
+			
 			
 			//2.데이터 존재 여부 확인			
 			if(viewList.size()==0)

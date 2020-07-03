@@ -32,13 +32,30 @@ public class TravelMainServiceImpl extends EgovAbstractServiceImpl implements Tr
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
 		String datestr = sdf.format(cal.getTime());
 		
-		int minute = Integer.valueOf(datestr.substring(10, 11));
+		int minute = Integer.valueOf(datestr.substring(10, 12));
+		String datestrtemp = datestr.substring(0,8);
+		int datestrtimechange = Integer.valueOf(datestr.substring(8,10));//시간변경
+		
+		if(datestrtimechange == 0)
+		{
+			cal.add(Calendar.DATE, -1);
+			datestr =sdf.format(cal.getTime());
+			datestrtemp = datestr.substring(0,8);
+			datestrtimechange = 23; //23시
+		}else {
+			cal.add(Calendar.HOUR, -1);
+			datestr =sdf.format(cal.getTime());
+			datestrtemp = datestr.substring(0,8);
+			datestrtimechange = datestrtimechange -1; // 13시 일경우 12시 30분의 데이터를 가저와야하기 때문 시간 -1 
+		}
 		
 		if(minute > 0 && minute < 30) {
-			datestr = Integer.valueOf(datestr.substring(0, 10)) + "00";
+		
+			datestr = datestrtemp + datestrtimechange+"30";
 		}else {
-			datestr = Integer.valueOf(datestr.substring(0, 10)) + "30";
+			datestr = Integer.valueOf(datestr.substring(8, 10)) + "00";
 		}
+
 		
 		System.out.println("------------------------"+datestr);
 		return travelMainDAO.selectBeachPerCnt(datestr);
