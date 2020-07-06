@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -87,7 +88,7 @@ public class TravelReservationController {
 		} else {
 			rtnVal = true;	//오늘 날짜가 해수욕장 예약 시작일(resvStDate) 이후인 경우 true
 		}
-		//rtnVal = true;	//해수욕장 예약 테스트 시 주석해제 -> 무조건 예약 가능
+		//rtnVal = false;	//해수욕장 예약 테스트 시 사용 : true=예약가능 / false=예약불가능
 		return rtnVal;
 	}
 	
@@ -101,6 +102,8 @@ public class TravelReservationController {
 		model.addAttribute("regionList", regionList);
 		List<?> beachList = reseService.selectTravelReservationBeachList(travelReservation);
 		model.addAttribute("beachList", beachList);
+		//List<?> areaList = reseService.selectTravelReservationAreaList(travelReservation);
+		//model.addAttribute("areaList", areaList);
 		model.addAttribute("travelReservation", travelReservation);
 		
 		if(travelReservation.getMonth() != null && travelReservation.getDay() != null && travelReservation.getReseTime() != null) {
@@ -119,7 +122,8 @@ public class TravelReservationController {
 		//날짜 체크 - 7월 1일 09시 이후부터 예약 가능
 		if(!compareDate()) {
 			model.addAttribute("alert", "2020년 7월 1일 9시 부터 예약 가능합니다.");
-			return "jnit/util/alertBack";
+			model.addAttribute("path", "/");
+			return "/jnit/util/alertMove";
 		}
 		
 		return skinPath + "area";
@@ -141,7 +145,8 @@ public class TravelReservationController {
 				//날짜 체크 - 7월 1일 09시 이후부터 예약 가능
 				if(!compareDate()) {
 					model.addAttribute("alert", "2020년 7월 1일 9시 부터 예약 가능합니다.");
-					return "jnit/util/alertBack";
+					model.addAttribute("path", "/");
+					return "/jnit/util/alertMove";
 				}
 				
 				//최대수용 인원을 초과 체크
@@ -173,9 +178,15 @@ public class TravelReservationController {
 				String text = "[해수욕장 예약시스템]\n";
 				text += travelReservation.getReseBeachName() + " 예약이 완료 되었습니다.\n";
 				text += "날짜 : 2020년 " + travelReservation.getMonth() + "월 " + travelReservation.getDay() + "일\n시간 : ";
-				if("01".equals(travelReservation.getReseTime())) text += "9:00 ~ 12:00";
-				else if("02".equals(travelReservation.getReseTime())) text += "12:00 ~ 15:00";
-				else if("03".equals(travelReservation.getReseTime())) text += "15:00 ~ 18:00";
+				if("R0012".equals(travelReservation.getReseBeachId()) || "R0013".equals(travelReservation.getReseBeachId()) || "R0014".equals(travelReservation.getReseBeachId())) {
+					if("01".equals(travelReservation.getReseTime())) text += "10:00 ~ 13:00";
+					else if("02".equals(travelReservation.getReseTime())) text += "13:00 ~ 16:00";
+					else if("03".equals(travelReservation.getReseTime())) text += "16:00 ~ 19:00";
+				} else {
+					if("01".equals(travelReservation.getReseTime())) text += "9:00 ~ 12:00";
+					else if("02".equals(travelReservation.getReseTime())) text += "12:00 ~ 15:00";
+					else if("03".equals(travelReservation.getReseTime())) text += "15:00 ~ 18:00";
+				}
 				text += "시\n";
 				text += "인원 : " + travelReservation.getResePersonnel() + "명\n";
 				text += "예약조회 : https://seantour.com/seantour_map/travel/";
@@ -222,6 +233,7 @@ public class TravelReservationController {
 			,HttpServletRequest request
 			,Model model) throws Exception {
 		String reseName = request.getParameter("reseName");
+		while(reseName.indexOf("%") > -1) reseName = URLDecoder.decode(reseName, "UTF-8");
 		String reseTel = request.getParameter("reseTel");
 		
 		travelReservation.setReseName(reseName.trim());
