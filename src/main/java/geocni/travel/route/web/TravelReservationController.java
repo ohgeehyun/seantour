@@ -468,4 +468,36 @@ public class TravelReservationController {
 	    wb.write(response.getOutputStream());
 	    wb.close();
 	}
+	
+	@RequestMapping(value="reserv_admin_cond.do")
+	public String reservationintroAdminCond(
+			 TravelRoute travelRoute
+			,TravelReservation travelReservation
+			,HttpServletRequest request
+			,SessionStatus status
+			,Model model) throws Exception {
+		String adminBeachId = (String)request.getSession().getAttribute("adminBeachId");
+		if("".equals(adminBeachId) || adminBeachId == null) {
+			model.addAttribute("alert", "로그인 후 이용해 주세요.");
+			model.addAttribute("path", "/travel/reservation/reserv_admin_login.do");
+			return "/jnit/util/alertMove";
+		}
+		
+		String searchCondition = request.getParameter("searchCondition");
+		String searchKeyword = request.getParameter("searchKeyword");
+		if(!"".equals(searchKeyword) && searchKeyword != null) {
+			//전화번호 검색인 경우 하이픈(-) 제거
+			if("1".equals(searchCondition)) searchKeyword = searchKeyword.replaceAll("-", "");
+			travelReservation.setSearchCondition(searchCondition);
+			travelReservation.setSearchKeyword(searchKeyword);
+		}
+		
+		travelReservation.setPageUnit(50);
+		travelReservation.setPageSize(10);
+		
+		travelReservation.setReseBeachId(adminBeachId);
+		model.addAllAttributes(reseService.selectTravelReservationList(travelReservation));
+		model.addAttribute("travelReservation", travelReservation);
+		return skinPath + "reserv_admin_cond";
+	}
 }
