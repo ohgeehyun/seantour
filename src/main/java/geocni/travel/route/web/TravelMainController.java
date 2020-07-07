@@ -40,12 +40,13 @@ public class TravelMainController {
     private EgovMessageSource msgSrc;
     
 //    @SuppressWarnings("unused")
-//	@Autowired
+//	  @Autowired
 //    private DefaultBeanValidator beanValidator;
 
 	private Log log = LogFactory.getLog(getClass());
 	
     	
+	//메인페이지 신호등 조작 컨트롤러 
     @SuppressWarnings("unchecked")
 	@RequestMapping(value="mainBeachCongestion.do", method=RequestMethod.POST)
     @ResponseBody
@@ -54,7 +55,6 @@ public class TravelMainController {
 			,HttpServletResponse response 
             ,SessionStatus status
 			,Model model) throws Exception {
-		
 		List<TravelMain> beachPerPopulationList = null;
 		try {
 			beachPerPopulationList =  (List<TravelMain>) mainService.selectBeachPerCnt();
@@ -64,7 +64,8 @@ public class TravelMainController {
 		
 		return beachPerPopulationList;
 	}
-
+    
+    ///kt 서버에서 데이터를 가저와서 우리 서버에 저장된 파일을 자동으로 DB에 백업 
 	@RequestMapping(value="cronBeachCongestion.do")
 	public void cronBeachCongestion(
 			 SessionStatus status
@@ -109,7 +110,6 @@ public class TravelMainController {
 		List<?> viewList = mainService.selectBeachPerCnt();
 		for(String line:lines) {
 			//1.테이블에서 해당 시간 count
-			
 			
 			//2.데이터 존재 여부 확인			
 			if(viewList.size()==0)
