@@ -90,6 +90,17 @@ public class TravelReservationServiceImpl extends EgovAbstractServiceImpl implem
     	
 		return resultMap;
 	}
+	
+	
+	@Override
+	public Map<String, Object> selectBeachManagementList(TravelReservation vo) throws Exception {
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		
+    	List<TravelReservation> blist = (List<TravelReservation>) travelReservationDAO.selectBeachManagementList(vo);
+    	resultMap.put("bList", blist);
+    	
+		return resultMap;
+	}
 
 	private PaginationInfo makePagination(TravelDefaultVO vo) {
 		PaginationInfo paginationInfo = new PaginationInfo();

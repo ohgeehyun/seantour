@@ -469,6 +469,93 @@ public class TravelReservationController {
 	    wb.close();
 	}
 	
+	@RequestMapping(value="reserv_admin_cond_excelDown.do")
+	public void reservationCondExcelDown(
+			 TravelReservation travelReservation
+			,HttpServletRequest request
+			,HttpServletResponse response
+			,Model model) throws Exception {
+		travelReservation.setIsExcelDown("Y");
+		Map<String, Object> resultMap = reseService.selectBeachManagementList(travelReservation);
+		List<TravelReservation> excelList = (List<TravelReservation>) resultMap.get("bList");
+		
+		// 워크북 생성
+	    Workbook wb = new XSSFWorkbook();
+	    Sheet sheet = wb.createSheet("Sheet1");
+	    Row row = null;
+	    Cell cell = null;
+	    int rowNo = 0;
+
+	    // 테이블 헤더용 스타일
+	    CellStyle headStyle = wb.createCellStyle();
+	    // 가는 경계선
+	    headStyle.setBorderTop(HSSFCellStyle.BORDER_THIN);
+	    headStyle.setBorderBottom(HSSFCellStyle.BORDER_THIN);
+	    headStyle.setBorderLeft(HSSFCellStyle.BORDER_THIN);
+	    headStyle.setBorderRight(HSSFCellStyle.BORDER_THIN);
+
+	    // 헤더 배경색
+	    headStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+	    headStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
+
+	    // 헤더 가운데 정렬
+	    headStyle.setAlignment(CellStyle.ALIGN_CENTER);
+
+	    // 데이터용 경계 스타일 테두리만 지정
+	    CellStyle bodyStyle = wb.createCellStyle();
+	    bodyStyle.setBorderTop(HSSFCellStyle.BORDER_THIN);
+	    bodyStyle.setBorderBottom(HSSFCellStyle.BORDER_THIN);
+	    bodyStyle.setBorderLeft(HSSFCellStyle.BORDER_THIN);
+	    bodyStyle.setBorderRight(HSSFCellStyle.BORDER_THIN);
+	    bodyStyle.setAlignment(CellStyle.ALIGN_CENTER);
+
+	    // 헤더 생성
+	    row = sheet.createRow(rowNo++);
+	    cell = row.createCell(0);
+	    cell.setCellStyle(headStyle);
+	    cell.setCellValue("NO");
+	    cell = row.createCell(1);
+	    cell.setCellStyle(headStyle);
+	    cell.setCellValue("해수욕장명");
+	    cell = row.createCell(2);
+	    cell.setCellStyle(headStyle);
+	    cell.setCellValue("인원");
+	    cell = row.createCell(3);
+	    cell.setCellStyle(headStyle);
+	    cell.setCellValue("시간");
+
+	    // 데이터 부분 생성
+	    for(TravelReservation vo : excelList) {
+	        row = sheet.createRow(rowNo++);
+	        cell = row.createCell(0);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(vo.getSeq_id());
+	        cell = row.createCell(1);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(vo.getPoi_nm());
+	        cell = row.createCell(2);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(vo.getMax_uniq_pop()+"명");
+	        cell = row.createCell(3);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(vo.getMax_time().substring(0, 4) + "년 " + vo.getMax_time().substring(5, 7) + "월 " + vo.getMax_time().substring(8, 10) + "일 " + vo.getMax_time().substring(11, 13) + "시" + vo.getMax_time().substring(14, 16) + "분");
+	    }
+	    
+	    // 셀 크기 자동조절
+	    for(int i=0; i<5; i++) {
+	    	sheet.autoSizeColumn(i);
+	    	sheet.setColumnWidth(i, (sheet.getColumnWidth(i))+612 );
+	    }
+	    
+	    // 컨텐츠 타입과 파일명 지정
+	    response.setContentType("ms-vnd/excel");
+	    response.setHeader("Content-Disposition", "attachment;filename=reservationCondList.xlsx");
+
+	    // 엑셀 출력
+	    wb.write(response.getOutputStream());
+	    wb.close();
+	}
+	
 	@RequestMapping(value="reserv_admin_cond.do")
 	public String reservationintroAdminCond(
 			 TravelRoute travelRoute
@@ -481,23 +568,13 @@ public class TravelReservationController {
 			model.addAttribute("alert", "로그인 후 이용해 주세요.");
 			model.addAttribute("path", "/travel/reservation/reserv_admin_login.do");
 			return "/jnit/util/alertMove";
-		}
-		
-		String searchCondition = request.getParameter("searchCondition");
-		String searchKeyword = request.getParameter("searchKeyword");
-		if(!"".equals(searchKeyword) && searchKeyword != null) {
-			//전화번호 검색인 경우 하이픈(-) 제거
-			if("1".equals(searchCondition)) searchKeyword = searchKeyword.replaceAll("-", "");
-			travelReservation.setSearchCondition(searchCondition);
-			travelReservation.setSearchKeyword(searchKeyword);
-		}
-		
-		travelReservation.setPageUnit(50);
-		travelReservation.setPageSize(10);
+		}	
 		
 		travelReservation.setReseBeachId(adminBeachId);
-		model.addAllAttributes(reseService.selectTravelReservationList(travelReservation));
+		model.addAllAttributes(reseService.selectBeachManagementList(travelReservation));
 		model.addAttribute("travelReservation", travelReservation);
+		
 		return skinPath + "reserv_admin_cond";
 	}
+	
 }

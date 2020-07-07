@@ -18,21 +18,8 @@ function fn_logout(){
    	document.getElementById("travelReservation").submit();
 }
 
-function enterkey(){
-    if (window.event.keyCode == 13) {
-         // 엔터키가 눌렸을 때 실행할 내용
-         document.getElementById("travelReservation").submit();
-    }
-}
-
-function fn_egov_link_page(pageNo){
-	document.getElementById("travelReservation").pageIndex.value = pageNo;
-	document.getElementById("travelReservation").action = "<c:url value='/travel/reservation/reserv_admin.do'/>";
-   	document.getElementById("travelReservation").submit();
-}
-
 function fn_excelDown(){
-	document.getElementById("travelReservation").action = "<c:url value='/travel/reservation/reserv_admin_excelDown.do'/>";
+	document.getElementById("travelReservation").action = "<c:url value='/travel/reservation/reserv_admin_cond_excelDown.do'/>";
    	document.getElementById("travelReservation").submit();
 }
 </script>
@@ -69,79 +56,36 @@ function fn_excelDown(){
 				<input type="hidden" id="reseBeachId" name="reseBeachId" value="${travelReservation.reseBeachId}"/>
 				<div class="cont_head">
 					<h1 class="tit">해수욕장현황관리</h1>
-					<div class="search_area">
-						<label for="sbscrbSttus"> 
-							<select id="searchCondition" name="searchCondition" title="검색어 항목" class="slt">
-								<option value="0" <c:if test="${travelReservation.searchCondition eq '0'}">selected="selected"</c:if>>이름</option>
-								<option value="1" <c:if test="${travelReservation.searchCondition eq '1'}">selected="selected"</c:if>>전화번호</option>
-								<option value="2" <c:if test="${travelReservation.searchCondition eq '2'}">selected="selected"</c:if>>예약번호</option>
-							</select> 
-							<span class="inp_area">
-								<input id="searchKeyword" name="searchKeyword" title="검색어" class="word" type="text" value="${travelReservation.searchKeyword}" onkeyup="enterkey();"/>
-							</span> 
-							<input type="image" src="<c:url value="/images/travel/admin/btn_search.jpg"/>" alt="검색" class="btn_srch" onclick="fn_egov_link_page(1);" />
-						</label>
-					</div>
 				</div>
 				<div class="cont_body">	
 					<a href="javascript:fn_excelDown();" class="button" style="float:right;">엑셀다운로드</a>
 					<table border="0" cellpadding="0" class="tbl01 tac">
-						<caption>예약회원 현황 - 번호,이름,소속기관,소속부서,전화번호</caption>
+						<caption>해수욕장현황관리 - 번호,해수욕장,시간,인원</caption>
 						<thead>
 							<colgroup>
 								<col />
 								<col />
 								<col />
 								<col />
-								<col />
-								<col />
-								<col />
-								<col />
-								<col style="width: 15%;" />
 							</colgroup>
 							<tr>
 								<th scope="col">NO</th>
-								<th scope="col">예약번호</th>
-								<th scope="col">지역/해수욕장</th>
-								<th scope="col">날짜</th>
-								<th scope="col">시간</th>
-								<th scope="col">인원</th>
-								<th scope="col">이름</th>
-								<th scope="col">전화번호</th>
-								<th scope="col">비고</th>
+								<th scope="col">해수욕장명</th>
+								<th scope="col">시간대 최대인원</th>
+								<th scope="col">피크시간</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="rese" items="${reseList}" varStatus="status">
+							<c:forEach var="bList" items="${bList}" varStatus="status">
 							<tr>
-								<td><c:out value="${((paginationInfo.currentPageNo - 1) * 50) + (status.index + 1)}"/></td>
-								<td><c:out value="${rese.reseNo}"/></td>
-								<td><c:out value="${rese.reseBeachName}"/></td>
-								<td><c:out value="${fn:substring(rese.reseDate, 0, 4)}"/>년 <c:out value="${fn:substring(rese.reseDate, 5, 7)}"/>월 <c:out value="${fn:substring(rese.reseDate, 8, 10)}"/>일</td>
-								<td>
-	            					<c:choose>
-	            						<c:when test="${fn:substring(rese.reseNo, 3, 5) eq '12' || fn:substring(rese.reseNo, 3, 5) eq '13' || fn:substring(rese.reseNo, 3, 5) eq '14'}">
-			            					<c:if test="${rese.reseTime eq '01'}">10:00 ~ 13:00</c:if>
-			            					<c:if test="${rese.reseTime eq '02'}">13:00 ~ 16:00</c:if>
-			            					<c:if test="${rese.reseTime eq '03'}">16:00 ~ 19:00</c:if>
-	            						</c:when>
-	            						<c:otherwise>
-			            					<c:if test="${rese.reseTime eq '01'}">9:00 ~ 12:00</c:if>
-			            					<c:if test="${rese.reseTime eq '02'}">12:00 ~ 15:00</c:if>
-			            					<c:if test="${rese.reseTime eq '03'}">15:00 ~ 18:00</c:if>
-	            						</c:otherwise>
-	            					</c:choose>
-								</td>
-								<td><c:out value="${rese.resePersonnel}"/>명</td>
-								<td><c:out value="${rese.reseName}"/></td>
-								<td><c:out value="${fn:substring(rese.reseTel, 0, 3)}"/>-<c:out value="${fn:substring(rese.reseTel, 3, 7)}"/>-<c:out value="${fn:substring(rese.reseTel, 7, 11)}"/></td>
-								<td></td>
+								<td><c:out value="${bList.seq_id}"/></td>
+								<td><c:out value="${bList.poi_nm}"/></td>
+								<td><c:out value="${bList.max_uniq_pop}"/> 명</td>
+								<td><c:out value="${fn:substring(bList.max_time, 0, 4)}"/>년 <c:out value="${fn:substring(bList.max_time, 5, 7)}"/>월 <c:out value="${fn:substring(bList.max_time, 8, 10)}"/>일   <c:out value="${fn:substring(bList.max_time, 11, 13)}"/>시 <c:out value="${fn:substring(bList.max_time, 14, 16)}"/>분</td>
 							</tr>
 							</c:forEach>
 						</tbody>
 					</table>
-					<ui:pagination paginationInfo="${paginationInfo}" type="travelFront" jsFunction="fn_egov_link_page" />
-					<form:hidden path="pageIndex" />
 				</div>
 				</form:form>
 			</div>

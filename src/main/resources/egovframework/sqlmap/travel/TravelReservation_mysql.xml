@@ -223,6 +223,24 @@
 		</isNotEqual>
 	</select>
 	
+	<select id="travelReservationDAO.selectBeachManagementList" parameterClass="travelReservationVO" resultClass="travelReservationVO">
+		select *,
+		 (select concat(substring(etl_dt, 1, 4), '-', substring(etl_dt, 5, 2), '-', substring(etl_dt, 7, 2), ' ', substring(etl_dt, 9, 2), ':', substring(etl_dt, 11, 2)) 
+		    from geo_beach_congestion 
+		   where etl_dt between concat(DATE_FORMAT(date_add(now(),INTERVAL -1 DAY),'%Y%m%d'),'1900')
+		     and concat(DATE_FORMAT(now(),'%Y%m%d'),'1830') 
+		     and seq_id = a.seq_id 
+		     and uniq_pop = a.max_uniq_pop      
+		order by etl_dt desc limit 1) as max_time
+		from(
+		select seq_id     
+			, min(poi_nm) as poi_nm  
+			, max(uniq_pop) as max_uniq_pop   
+		from geo_beach_congestion 
+		where etl_dt between concat(DATE_FORMAT(date_add(now(),INTERVAL -1 DAY),'%Y%m%d'),'1900') and concat(DATE_FORMAT(now(),'%Y%m%d'),'1830')
+		group by seq_id) a;
+	</select>
+	
 	<select id="travelReservationDAO.selectTravelReservationListCnt" parameterClass="travelReservationVO" resultClass="int">
 		SELECT 
 			COUNT(*) totcnt

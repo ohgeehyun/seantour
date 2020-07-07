@@ -31,7 +31,35 @@ public class TravelReservation extends TravelDefaultVO {
 	private String searchKeyword;
 	private String resePossCnt;
 	private String isExcelDown;
+	private String seq_id;
+	private String poi_nm;
+	private String max_uniq_pop;
+	private String max_time;
 	
+	public String getSeq_id() {
+		return seq_id;
+	}
+	public void setSeq_id(String seq_id) {
+		this.seq_id = seq_id;
+	}
+	public String getPoi_nm() {
+		return poi_nm;
+	}
+	public void setPoi_nm(String poi_nm) {
+		this.poi_nm = poi_nm;
+	}
+	public String getMax_uniq_pop() {
+		return max_uniq_pop;
+	}
+	public void setMax_uniq_pop(String max_uniq_pop) {
+		this.max_uniq_pop = max_uniq_pop;
+	}
+	public String getMax_time() {
+		return max_time;
+	}
+	public void setMax_time(String max_time) {
+		this.max_time = max_time;
+	}
 	public String getReseBeachId() {
 		return reseBeachId;
 	}

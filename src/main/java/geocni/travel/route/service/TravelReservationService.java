@@ -27,4 +27,6 @@ public interface TravelReservationService {
 	String selectTravelReservationAdmin(TravelReservation vo) throws Exception;
 	
 	Map<String, Object> selectTravelReservationList(TravelReservation vo) throws Exception;
+	
+	Map<String, Object> selectBeachManagementList(TravelReservation vo) throws Exception;
 }
