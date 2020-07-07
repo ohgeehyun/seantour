@@ -3,6 +3,7 @@
 
 <sqlMap namespace="travelMainDAO">
 
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
     <typeAlias alias="travelMain" type="geocni.travel.route.domain.TravelMain" />
     
 	<select id="travelMainDAO.selectBeachPerCnt" parameterClass="java.lang.String" resultClass="travelMain">
@@ -15,6 +16,20 @@
              WHERE ETL_DT = #datestr#
         ]]>
     </select>
+    
+    
+    <select id="travelMainDAO.selectBeachPerCntapi" parameterClass="java.lang.String" resultClass="egovMap">
+        <![CDATA[
+			SELECT ETL_DT AS etlDt
+			     , SEQ_ID AS seqId
+			     , POI_NM AS poiNm
+			     , UNIQ_POP AS uniqPop
+			  FROM GEO_BEACH_CONGESTION
+             WHERE ETL_DT = #datestr#
+        ]]>
+    </select>
+    
+    
     
     <insert id="travelMainDAO.insertBeachPer">
 		<![CDATA[

@@ -6,7 +6,9 @@ import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -15,21 +17,32 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.type.CalendarTimeType;
+import org.springframework.context.ApplicationEventPublisherAware;
+import org.springframework.social.connect.ApiAdapter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-
+import com.google.api.services.analytics.Analytics.Data;
+import com.sun.star.io.IOException;
 
 import egovframework.com.cmm.EgovMessageSource;
 import egovframework.com.cmm.service.EgovProperties;
+import egovframework.rte.psl.dataaccess.util.EgovMap;
+import geocni.travel.route.dao.TravelMainDAO;
+import geocni.travel.route.domain.TravelDestination;
 import geocni.travel.route.domain.TravelMain;
 import geocni.travel.route.service.TravelMainService;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 @Controller
+@SessionAttributes(types=TravelMain.class)
 @RequestMapping(value="/travel/")
 public class TravelMainController {
 
@@ -39,13 +52,16 @@ public class TravelMainController {
     @Resource(name="egovMessageSource")
     private EgovMessageSource msgSrc;
     
+    @Resource(name="travelMainDAO")
+    private TravelMainDAO travelMainDAO;
 //    @SuppressWarnings("unused")
-//	@Autowired
+//	  @Autowired
 //    private DefaultBeanValidator beanValidator;
 
 	private Log log = LogFactory.getLog(getClass());
 	
     	
+	//메인페이지 신호등 조작 컨트롤러 
     @SuppressWarnings("unchecked")
 	@RequestMapping(value="mainBeachCongestion.do", method=RequestMethod.POST)
     @ResponseBody
@@ -54,7 +70,6 @@ public class TravelMainController {
 			,HttpServletResponse response 
             ,SessionStatus status
 			,Model model) throws Exception {
-		
 		List<TravelMain> beachPerPopulationList = null;
 		try {
 			beachPerPopulationList =  (List<TravelMain>) mainService.selectBeachPerCnt();
@@ -64,7 +79,8 @@ public class TravelMainController {
 		
 		return beachPerPopulationList;
 	}
-
+    
+    ///kt 서버에서 데이터를 가저와서 우리 서버에 저장된 파일을 자동으로 DB에 백업 
 	@RequestMapping(value="cronBeachCongestion.do")
 	public void cronBeachCongestion(
 			 SessionStatus status
@@ -74,29 +90,31 @@ public class TravelMainController {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
 		String datestr = sdf.format(cal.getTime());
 		
-		int datestrtimechange = Integer.valueOf(datestr.substring(8,10));//시간변경
+		String datestrtimechange = String.valueOf(Integer.valueOf(datestr.substring(8,10)));//시간변경
+		if (Integer.parseInt(datestrtimechange) <10)
+		{
+			datestrtimechange= "0"+datestrtimechange;
+		}
 		int minute = Integer.valueOf(datestr.substring(10, 12));
 		String datestrtemp = datestr.substring(0,8);
 		
-		if(datestrtimechange == 0)
+		if(datestrtimechange == "00")
 		{
 			cal.add(Calendar.DATE, -1);
 			datestr =sdf.format(cal.getTime());
 			datestrtemp = datestr.substring(0,8);
-			datestrtimechange = 23; //23시
-		}else {
-			cal.add(Calendar.HOUR, -1);
-			datestr =sdf.format(cal.getTime());
-			datestrtemp = datestr.substring(0,8);
-			datestrtimechange = datestrtimechange -1; //23시 // 13시 일경우 12시 30분의 데이터를 가저와야하기 때문 시간 -1 
+			datestrtimechange = "23"; //23시
 		}
 		
-		
 		if(minute > 0 && minute < 30) {
-		
+			if (Integer.parseInt(datestrtimechange) <10)
+			{
+			datestrtimechange= "0"+ String.valueOf(Integer.valueOf(datestrtimechange)-1);
+			}
+			datestrtimechange= String.valueOf((Integer.parseInt(datestrtimechange)-1));
 			datestr = datestrtemp + datestrtimechange+"30";
 		}else {
-			datestr = Integer.valueOf(datestr.substring(8, 10)) + "00";
+			datestr = Integer.valueOf(datestr.substring(0, 10)) + "00";
 		}
 				
 		//파일을 불러와서 DB에 파일 넣어줄것.
@@ -109,7 +127,6 @@ public class TravelMainController {
 		List<?> viewList = mainService.selectBeachPerCnt();
 		for(String line:lines) {
 			//1.테이블에서 해당 시간 count
-			
 			
 			//2.데이터 존재 여부 확인			
 			if(viewList.size()==0)
@@ -136,6 +153,27 @@ public class TravelMainController {
 			System.out.println(line);
 		}
 	}
+	
+	
+	@RequestMapping(value="api.do")
+	@ResponseBody
+	public JSONObject responseApi() throws Exception{
+	
+		List<?> api = (List<?>) mainService.selectBeachPerCntapi();
+		/*List<?> data = (List<?>) mainService.selectBeachPerCnt();*/
+		JSONObject sObject = new JSONObject();
+		
+		for(int i=0; i < api.size(); i++)
+		{
+			sObject.put("Beach"+ i , api.get(i));
+		}
+			
+		return sObject;
+	}
+	
+	
+
+
 	
 //	@RequestMapping(value="latest.do")
 //	public String routeLatestList(

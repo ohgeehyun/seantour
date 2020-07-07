@@ -16,21 +16,29 @@
   			$('#pop').hide();
   		});
   		
+  		//5분마다 페이지 reload  	
+  		setTimeout('location.reload()',60000*5);
+
   		$.ajax({
   			type:'post',
   			url:"/seantour_map/travel/mainBeachCongestion.do",
-  		    success: function(data) {  		    	
+  		    success: function(data) {
+  		    	
 				for(var i=0; i < data.length; i++){
 					if(i < 10){
 						$('.spot' + (i + 1)).find('span').removeClass();						
 						$('.spot' + (i + 1)).find('span').addClass('icon');
 						var classNm = checkBeachCongestion(data[i].seqId, data[i].uniqPop);
 						$('.spot' + (i + 1)).find('span').addClass(classNm);
+						//.spot 하단에 있는 em태그의 text를 data[i].uniqPop 값으로 변경
+						$('.spot' + (i + 1)).find('em').text(data[i].uniqPop + "명");
+						
 					}else{
 						$('.spot' + (i + 1)).find('a').removeClass();
 						$('.spot' + (i + 1)).find('a').addClass('icon');
 						var classNm = checkBeachCongestion(data[i].seqId, data[i].uniqPop);
-						$('.spot' + (i + 1)).find('a').addClass(classNm);						
+						$('.spot' + (i + 1)).find('a').addClass(classNm);
+						$('.spot' + (i + 1)).find('em').text(data[i].uniqPop + "명");
 					}
 				}
 		    },
@@ -39,8 +47,10 @@
 		    }
   		});
 	});
+	
 
 	function checkBeachCongestion(beachId, population){
+		debugger;
   		var returnStr = '';
   		if(beachId == 1){	if(population < 	32813	){ returnStr = "green";} else if(population < 	65625	){ returnStr = "yellow";} else { returnStr = "red";}}
   		if(beachId == 2){	if(population < 	22297	){ returnStr = "green";} else if(population < 	44593	){ returnStr = "yellow";} else { returnStr = "red";}}
@@ -120,7 +130,7 @@ function fn_reservView(){
 	<div id="wrap">
 		<div id="accessibility"><a href="#content">본문 바로가기</a></div>
        <div id="pop">
-         <div><img src="${pageContext.request.contextPath}/travel/common/images/main/img_popup_open.jpg" alt="" /></div>
+         <div><img src="${pageContext.request.contextPath}/travel/common/images/main/main_pop2.jpg" alt="" /></div>
          <div id="close">close</div>
       </div>
        <div class="dim-layer">
@@ -233,6 +243,7 @@ function fn_reservView(){
                                            <div class="blinker spot8"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110349" class="name">낙산<br /><em>200명</em><span class="icon green"></span></a></div>
                                            <div class="blinker spot9"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111039" class="name">속초<br /><em>200명</em><span class="icon green"></span></a></div>
                                            <div class="blinker spot10"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110894" class="name">삼척<br /><em>200명</em><span class="icon green"></span></a></div>
+                                       <div class="time">기준시각<br/><span>13:00</span></div>
 									  </div>								 
 								  </div>
                                 <div class="main_visual_content_cell_left">
