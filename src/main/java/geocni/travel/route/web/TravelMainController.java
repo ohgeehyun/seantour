@@ -110,6 +110,7 @@ public class TravelMainController {
 			{
 			datestrtimechange= "0"+ String.valueOf(Integer.valueOf(datestrtimechange)-1);
 			}
+			datestrtimechange= String.valueOf((Integer.parseInt(datestrtimechange)-1));
 			datestr = datestrtemp + datestrtimechange+"30";
 		}else {
 			datestr = Integer.valueOf(datestr.substring(0, 10)) + "00";
