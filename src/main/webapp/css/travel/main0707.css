@@ -23,49 +23,7 @@ img{width:100%;height:100%;}
 /* **************************************** *
  * 이벤트 팝업
  * **************************************** */
-  /* pop_ly */
-.pop_ly{position:relative; width:100%; padding:10px 0;}
-.pop_ly:after{content:''; display:block; position:absolute; bottom:0; left:0; right:0; width:100%; height:5px; background:url(/seantour_map/images/travel/main/bg_header_top_line.jpg) no-repeat 50% 0; background-size:100% 5px;}
-.pop_ly .pop_area{width:100%; min-height:115px; margin:0 auto;}
-.pop_ly .pop_area img{float:left;width:auto;height:auto;}
-.pop_ly .pop_area div{padding:15px 0 0 185px;}
-.pop_ly .pop_area div strong{display:inline-block; margin-bottom:10px; border-bottom:1px solid #8e8e8e; font-size:19.5px;}
-.pop_ly .pop_area div strong span{color:#177fd8;}
-.pop_ly .pop_area div p{font-size:22px; line-height:1.2; color:#1c1c1c;}
-.pop_ly .pop_area div p span {color:#ea0909;}
-.pop_ly .close{position:absolute; right:10px;bottom:25px; text-align:right; color:#fff;}
-.pop_ly .close input,
-.pop_ly .close span{display:inline-block; margin:0 5px 0 0; vertical-align:middle;}
-.pop_ly .close input{margin:2px 0 0;}
-.pop_ly .close span{position:relative; display:inline-block; padding-right:25px; font-size:14px;}
-.pop_ly .close span:after{content:''; display:inline-block; position:absolute; top:1px; right:0; width:14px; height:14px; background:url('/seantour_map/images/travel/main/ico_pop_close.gif') no-repeat 0 0;}
- 
- @media screen and (max-width:1024px){
- 	.pop_ly .pop_area{min-height:100px;}
-    .pop_ly .pop_area img{width:14%;}
-    .pop_ly .pop_area div{padding:5px 0 0 170px;}
-    .pop_ly .pop_area div strong{font-size:16px;}
-    .pop_ly .pop_area div p{font-size:18px;}
- }
- @media screen and (max-width:1000px){
- 	.pop_ly .pop_area{min-height:100px;}
-    .pop_ly .pop_area img{display:none;}
-    .pop_ly .pop_area div{padding:0 0 0 20px;}
-    .pop_ly .pop_area div strong{font-size:14px;}
-    .pop_ly .pop_area div p{font-size:16px;}
- }
- 
- @media screen and (max-width:640px){
- .pop_ly .pop_area{min-height:90px;}
-    .pop_ly .pop_area div{padding:0 0 0 20px;}
-    .pop_ly .pop_area div strong{font-size:12px;}
-    .pop_ly .pop_area div p{font-size:14px;}
-    .pop_ly .close span{font-size:12px;}
-    .pop_ly .close{bottom:16px;}
- }
-
-
- #pop{z-index:9999;position:absolute;top:100px;left:100px;width:500px;height:auto;}
+  #pop{z-index:9999;position:absolute;top:100px;left:100px;width:500px;height:auto;}
  #pop #close{position:absolute;bottom:0;right:0;width:55px;height:35px;line-height:35px;background:#0099ff;font-size:13px;color:#fff;text-align:center;cursor:pointer;}
  
 @media screen and (max-width:640px){
@@ -141,6 +99,48 @@ a.btn-layerClose:hover {
   background-color: #1f326a;
   color: #fff;
 }
+
+ /* pop_ly */
+.pop_ly{position:relative; width:100%; padding:10px 0;}
+.pop_ly:after{content:''; display:block; position:absolute; bottom:0; left:0; right:0; min-width:1000px; height:5px; background:url(/seantour_map/images/travel/main/bg_header_top_line.jpg) no-repeat 50% 0; background-size:2400px 5px;}
+.pop_ly .pop_area{width:100%; min-height:115px; margin:0 auto;}
+.pop_ly .pop_area img{float:left;width:auto;height:auto;}
+.pop_ly .pop_area div{padding:15px 0 0 185px;}
+.pop_ly .pop_area div strong{display:inline-block; margin-bottom:10px; border-bottom:1px solid #8e8e8e; font-size:19.5px;}
+.pop_ly .pop_area div strong span{color:#177fd8;}
+.pop_ly .pop_area div p{font-size:22px; line-height:1.2; color:#1c1c1c;}
+.pop_ly .pop_area div p span {color:#ea0909;}
+.pop_ly .close{position:absolute; right:10px;bottom:25px; text-align:right; color:#fff;}
+.pop_ly .close input,
+.pop_ly .close span{display:inline-block; margin:0 5px 0 0; vertical-align:middle;}
+.pop_ly .close input{margin:2px 0 0;}
+.pop_ly .close span{position:relative; display:inline-block; padding-right:25px; font-size:14px;}
+.pop_ly .close span:after{content:''; display:inline-block; position:absolute; top:1px; right:0; width:14px; height:14px; background:url('/seantour_map/images/travel/main/ico_pop_close.gif') no-repeat 0 0;}
+ 
+ @media screen and (max-width:1024px){
+ 	.pop_ly .pop_area{min-height:100px;}
+    .pop_ly .pop_area img{width:14%;}
+    .pop_ly .pop_area div{padding:5px 0 0 170px;}
+    .pop_ly .pop_area div strong{font-size:16px;}
+    .pop_ly .pop_area div p{font-size:18px;}
+ }
+ @media screen and (max-width:1000px){
+ 	.pop_ly .pop_area{min-height:100px;}
+    .pop_ly .pop_area img{display:none;}
+    .pop_ly .pop_area div{padding:0 0 0 20px;}
+    .pop_ly .pop_area div strong{font-size:14px;}
+    .pop_ly .pop_area div p{font-size:16px;}
+ }
+ 
+ @media screen and (max-width:640px){
+ .pop_ly .pop_area{min-height:90px;}
+    .pop_ly .pop_area div{padding:0 0 0 20px;}
+    .pop_ly .pop_area div strong{font-size:12px;}
+    .pop_ly .pop_area div p{font-size:14px;}
+    .pop_ly .close span{font-size:12px;}
+    .pop_ly .close{bottom:16px;}
+ }
+ 
 
 /* **************************************** *
  * spotzone
@@ -223,18 +223,18 @@ a.btn-layerClose:hover {
 .spotzone .time:before{content:'';display:inline-block;position:absolute;top:0;left:0;width:43px;height:43px;background:url(/seantour_map/images/travel/main/icon_time.png) no-repeat 0 0;background-size:cover;}
 .spotzone .time span{font-size:24px;}
 
-
 /* **************************************** *
  * 혼잡도
  * **************************************** */
-/*#container.main{padding-top:78px;}*/
+#container.main{/*padding-top:78px;*/}
 #container.main .spotzone .main_visual_content_cell{padding-top:0 !important;}
 .spotzone .main_visual_content_cell .main_visual_content_cell_right_inr{float:right;position:relative;width:517px;height:789px;background:url(/seantour_map/images/travel/main/img_map_main3.png) no-repeat 0 0;background-size:100%;}
 .spotzone .spot_title{position:absolute;top:10px;left:-130px;}
-.spotzone .spot_info{position:absolute;bottom:10px;right:5px;width:55%;}
-.spotzone .spot_info img{width:100%;border-radius:0.5em;box-shadow:5px 5px 5px 5px rgba(0,0,0, 0.4);}
+.spotzone .spot_info{position:absolute;bottom:10px;right:5px;}
+.spotzone .spot_info img{border-radius:0.5em;box-shadow:5px 5px 5px 5px rgba(0,0,0, 0.4);}
 .spotzone .spot{position:absolute;width:11px;height:11px;}
 .spotzone .spot .icon{position:absolute;top:0;left:0;display:inline-block;width:100%;height:100%;border-radius:50%;font-size:10px;white-space:nowrap;text-indent:-999em;-webkit-transition:all 0.4s;-moz-transition:all 0.4s;-o-transition:all 0.4s;-ms-transition:all 0.4s;transition:all 0.4s;}
+.spotzone .spot .icon em{display:inline-block;text-indent:-999em;}
 .spotzone .spot .icon.red_hover{background:#ec3012;}
 .spotzone .spot .icon.yellow_hover{background:#fbdb02;}
 .spotzone .spot .icon.green_hover{background:#8aff62;}
@@ -278,17 +278,19 @@ a.btn-layerClose:hover {
 .spotzone .spot48{left:75.5%;top:17%;}/* 중광정 */
 .spotzone .spot49{left:64.5%;top:6.5%;}/* 천진 */
 .spotzone .spot50{left:6%;top:34.5%;}/* 신두리 */
+.spotzone .spot .icon:hover{padding:12px 0;}
+.spotzone .spot .icon:hover em{text-indent:0;}
 .spotzone .spot .icon.red_hover:hover,
 .spotzone .spot .icon.red_hover:focus,
-.spotzone .spot .icon.red_hover:active{position:relative;z-index:9999;width:40px;height:40px;margin:-25px 0 0 -10px;background:#ec3012;font-size:10px;color:#fff;line-height:40px;text-align:center;text-indent:0;}
+.spotzone .spot .icon.red_hover:active{position:relative;z-index:9999;width:60px;height:60px;margin:-25px 0 0 -10px;background:#ec3012;font-size:12px;color:#fff;line-height:1.4;text-align:center;text-indent:0;}
 .spotzone .spot .icon.yellow_hover:hover,
 .spotzone .spot .icon.yellow_hover:focus,
-.spotzone .spot .icon.yellow_hover:active{position:relative;z-index:9999;width:40px;height:40px;margin:-25px 0 0 -10px;background:#deb113;font-size:10px;color:#fff;line-height:40px;text-align:center;text-indent:0;}
+.spotzone .spot .icon.yellow_hover:active{position:relative;z-index:9999;width:60px;height:60px;margin:-25px 0 0 -10px;background:#deb113;font-size:12px;color:#fff;line-height:1.4;text-align:center;text-indent:0;}
 .spotzone .spot .icon.green_hover:hover,
 .spotzone .spot .icon.green_hover:focus,
-.spotzone .spot .icon.green_hover:active{position:relative;z-index:9999;width:40px;height:40px;margin:-25px 0 0 -10px;background:#6eb357;font-size:10px;color:#fff;line-height:40px;text-align:center;text-indent:0;}
+.spotzone .spot .icon.green_hover:active{position:relative;z-index:9999;width:60px;height:60px;margin:-25px 0 0 -10px;background:#6eb357;font-size:12px;color:#fff;line-height:1.4;text-align:center;text-indent:0;}
 .spotzone .name{}
-.spotzone .blinker{position:absolute;width:60px;height:28px;line-height:1.5;background:#2c9eff;border:1px solid #1c91f4;border-radius:1em;-webkit-transition:all 0.4s;-moz-transition:all 0.4s;-o-transition:all 0.4s;-ms-transition:all 0.4s;transition:all 0.4s}
+.spotzone .blinker{position:absolute;width:60px;height:40px;line-height:1.5;background:#2c9eff;border:1px solid #1c91f4;border-radius:1em;-webkit-transition:all 0.4s;-moz-transition:all 0.4s;-o-transition:all 0.4s;-ms-transition:all 0.4s;transition:all 0.4s}
 .spotzone .spot1{left:89.42%;top:66.52%;}/* 해운대 */
 .spotzone .spot2{left:85.08%;top:70.38%}/* 광안리 */
 .spotzone .spot3{left:72.76%;top:74.03%;}/*송도 */
@@ -311,7 +313,7 @@ a.btn-layerClose:hover {
 .spotzone .spot2 .icon{right:70px;}
 .spotzone .spot3 .icon{top:-72px;right:22px;}
 
-.spotzone .blinker .name{display:inline-block;position:absolute;top:0;left:0;width:100%;height:100%;line-height:1.8;font-size:15px;color:#fff !important;text-align:center;}          
+.spotzone .blinker .name{display:inline-block;position:absolute;top:0;left:0;width:100%;height:100%;line-height:1.4;font-size:13px;color:#fff !important;text-align:center;}
 
 
 
@@ -365,7 +367,7 @@ a.btn-layerClose:hover {
 .reserv_main_left strong{position:relative;display:inline-block;width:calc(100% - 30% - 30% - 15% - 30px );margin-top:-7px;padding-left:35px;padding-top:10px;font-size:16px;color:#055794;letter-spacing:-1px;}
 .reserv_main_left strong:before{content:'';display:inline-block;position:absolute;top:50%;left:0;margin-top:-14px;width:28px;height:28px;background:url(/seantour_map/images/travel/main/icon_main_reserv.png) no-repeat 0 0;background-size:cover;}
 .reserv_main_left span{width:30%;margin-left:10px;}
-.reserv_main_left input{box-sizing:border-box;width:100%;height:58px;padding:5px 7px;border:1px solid #dedede;font-size:13px;}
+.reserv_main_left input{box-sizing:border-box;width:100%;height:58px;padding:5px 7px;border:1px solid #dedede;}
 .reserv_main_left lable{display:inline-block;margin-right:10px;line-height:58px;}
 .reserv_main_left .btn{display:inline-block;box-sizing:border-box;width:15%;height:58px;line-height:58px;margin-left:10px;background:#0099ff;border:none;font-size:16px;color:#fff;vertical-align:middle;}
 .reserv_main_right{width:100%;height:110px;}
@@ -379,13 +381,10 @@ a.btn-layerClose:hover {
 	.reserv_main_right{height:90px;}
 	.reserv_main_left strong{margin-top:-2px;padding-left:20px;font-size:12px;}
 	.reserv_main_left strong:before{width:20px;height:20px;margin-top:-10px;}
-	.reserv_main_left input{height:48px;font-size:11px;}
-	.reserv_main_left .btn{height:48px;line-height:35px;font-size:14px;}
+	.reserv_main_left input{height:48px;font-size:13px;}
+	.reserv_main_left .btn{height:48px;line-height:48px;font-size:14px;}
 }
 @media screen and (max-width:640px){
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right_inr{float:none !important;}
-	
-	
 	.reserv_main_left{float:none !important;width:100% !important;}
 	.reserv_main_right{float:none !important;width:100% !important;}
 }
@@ -620,7 +619,7 @@ a.btn-layerClose:hover {
 	.section02 .vest_recommend_box .col01{width:40%;}
 	.section02 .vest_recommend_box .col02{width:57%;margin-left:3%;}
 	.section02 .vest_recommend_box .col02 ul{margin-top:-10px;}
-	.section02 .vest_recommend_box .col02 ul li{width:calc(50% - 10px);height:178px;margin:10px 0 0 10px;}
+	.section02 .vest_recommend_box .col02 ul li{width:calc(50% - 10px);margin:10px 0 0 10px;}
 	.section02 .col01 a,
 	.section02 .col01>a img{height:364px;}
 	/*.section02 .col01 .img>a{height:364px;}
@@ -692,18 +691,19 @@ a.btn-layerClose:hover {
   	.spotzone .main_visual_content_cell .visual_go .button{width:200px;height:55px;line-height:55px;padding-left:20px;font-size:16px;}
   	.spotzone .main_visual_content_cell .visual_go .button:before{left:22px;}
   	
-  	.spotzone .time{padding-left:37px;font-size:13px;}
+    .spotzone .time{padding-left:37px;font-size:13px;}
   	.spotzone .time:before{width:35px;height:35px;}
 	.spotzone .time span{font-size:18px;}
-	
+
   	/***********혼잡도************/
-	/*#container.main{padding-top:60px;}*/
+	#container.main{/*padding-top:60px;*/}
 	
 	#container.main .spotzone .main_visual_content_cell{padding-top:0 !important;}
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right{padding-left:12%;}
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right_inr{float:left;position:relative;width:317px;height:489px;background:url(/seantour_map/images/travel/main/img_map_main3.png) no-repeat 0 0;background-size:cover;}
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker{position:absolute;width:18%;height:6%;}
 	
+	.spotzone .spot_info{bottom:-10px;right:-70px;}
   	.spotzone .spot_title{top:-30px;}
   	
 	.icon{position:absolute;top:-37px;right:-22px;display:inline-block;width:21px;height:67px;}
@@ -749,7 +749,6 @@ a.btn-layerClose:hover {
 
 
 @media screen and (max-width:1023px){
-/*#container.main{padding-top:60px;}*/
 	/* spotzone */
 	.spotzone .main_visual_content_cell{padding-top:0;}
 	.main_visual_content_cell_weather{top:26px;}
@@ -787,8 +786,8 @@ a.btn-layerClose:hover {
 	.spotzone .main_visual_wrap{height:550px;}
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right_inr{/*width:290px;height:400px;*/}
 	.spotzone .main_visual_content_cell .visual_arrow{top:265px;left:-90px;width:75px;}
-	.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit{font-size:25px;}
-	.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit strong{font-size:43px;}
+	.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit{font-size:26px;}
+	.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit strong{font-size:50px;}
 	.spotzone .main_visual_content_cell .visual_go{margin-top:20px;}
 	.spotzone .main_visual_content_cell .visual_go .button{width:170px;height:45px;line-height:45px;}
 	.spotzone .main_visual_content_cell .visual_go .button:before{left:17px;width:20px;height:21px;margin-top:-10.5px;}
@@ -806,11 +805,6 @@ a.btn-layerClose:hover {
 	
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right{padding-left:3%;}
 	
-	.reserv_main_left span{margin-left:5px;}
-	.reserv_main_left strong{padding-left:0;}
-	.reserv_main_left strong:before{display:none;}
-	.reserv_main_left{padding:20px 10px;}
-	.reserv_main_left .btn{font-size:12px;}
 	
     /* tit_box */
     .tit_box{margin:35px 0 15px;}
@@ -856,8 +850,8 @@ a.btn-layerClose:hover {
 	.spotzone .main_visual_content_cell .visual_go{position:absolute;left:0;bottom:0;}
 	.spotzone .main_visual_content_cell .visual_go .button{float:left;width:50%;margin:0;font-size:14px;}
 	*/
-	/*.spotzone .main_visual_content_cell>div{width:100%;}*/
-	/*.spotzone .main_visual_content_cell .main_visual_content_cell_right{width:100%;}*/
+	.spotzone .main_visual_content_cell>div{width:100%;}
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right{width:100%;}
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker{width:12%;height:5%;}
 	.spotzone .blinker .name{font-size:12px;}
 	.spotzone .main_visual_wrap{height:550px;}
@@ -865,15 +859,15 @@ a.btn-layerClose:hover {
 	.spotzone .main_visual_content_cell_left{/*display:none;*/}
 	.spotzone .main_visual_content_cell_left .tit{margin:25px 0 10px;}
 	.reserv_main_left{margin:10px 0 5px;}
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right_inr{float:right;margin:50px auto 0;padding:0;}
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right_inr{float:left;margin:50px auto 0;padding:0;}
 	.spotzone .spot_title{top:-30px;left:0;}
 	.spotzone .spot_title img{width:70%;}
-	.spotzone .spot_info img{width:100%;height:auto;}
+	/*.spotzone .spot_info{top:-30px;}*/
+	.spotzone .spot_info img{width:70%;}
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker4 .icon, 
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker7 .icon, 
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker1 .icon, 
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker2 .icon{right:37px;}
-	
 	
 	/* section00 */
 	.section00{padding:15px 0;}
@@ -904,8 +898,6 @@ a.btn-layerClose:hover {
 	.spotzone .bx-controls .bx-controls-auto, 
 	.spotzone .bx-controls .bx-pager{bottom:18%;}
 	*/
-	.spotzone .main_visual_content_cell>div{width:100%;}
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right{width:100%;}
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot4 .icon, 
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot7 .icon, 
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot1 .icon, 
@@ -916,10 +908,9 @@ a.btn-layerClose:hover {
 	.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit{margin:15px 0 15px;font-size:22px;}
 	.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit strong{font-size:40px;}
 	
-	.spotzone .time{padding-left:37px;font-size:11px;}
+    .spotzone .time{padding-left:37px;font-size:11px;}
   	.spotzone .time:before{width:35px;height:35px;}
 	.spotzone .time span{font-size:16px;}
-	
 
 	.section00 {padding:10px 0;}
 	.section00 p{font-size:18px;}
@@ -991,9 +982,6 @@ a.btn-layerClose:hover {
 
 }	
 @media screen and (max-width:420px){
-	
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right_inr{float:left;}
-	
 	.section01 .minr>div{float:none;width:100%;margin-left:0;}
 	.section01 .minr>div:first-child{margin-bottom:10px;}
 
@@ -1008,12 +996,11 @@ a.btn-layerClose:hover {
 }
 
 @media screen and (max-width:400px){
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right_inr{width:295px;}
+	
 	.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit{font-size:20px;}
 	.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit strong{font-size:40px;}
 	.spotzone .main_visual_content_cell .spot_search .cssSelect{width:60%;}
 	
-
 	.section02 .writer_recommend_box .main_writer_slider .main_writer_item .main_writer_img{height:215px;}
 	.section02 .writer_recommend_box .area_ctrl{bottom:25px;right:6px;}
 	.section02 .writer_recommend_box .area_ctrl .slick-dots{margin-right:5px;}
