@@ -8,8 +8,17 @@
 	<%@ include file="/WEB-INF/jsp/travel/tpl/head.jsp" %>
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/travel/main.css'/>" />
 	<script src="<c:url value='/js/travel/main.js'/>"></script>
+	<script src="<c:url value='/js/travel/jpuery.cookie.js'/>"></script>
+
 </head>
 <script type="text/javascript">
+
+	$(document).ready(function(){
+		$('#close').click(function(){
+			$('#pop').hide();
+		});
+	});
+
 function fn_reservView(){
 	var reseName = $('#reseName').val();
 	var reseTel = $('#reseTel').val();
@@ -29,13 +38,67 @@ function fn_reservView(){
 }
 </script>
 <body>
-	<div id="wrap">
+<div id="wrap">
 		<div id="accessibility"><a href="#content">본문 바로가기</a></div>
+      <div class="pop_ly">
+			<div class="pop_area">
+				<img src="/seantour_map/images/travel/main/ico_pop_ly.jpg" alt="" />
+				<div>
+					<strong>슬기롭게 해수욕장을 <span>이용하는 방법!!</span></strong>
+					<p><span>빨간불이 켜진 해수욕장은 방문을 자제해주세요. </span><br />
+					해수욕장에서도 2m 거리두기! 성숙한 이용문화가 코로나19 극복의 힘이 됩니다!
+					</p>
+				</div>
+			</div>
+			<div class="close"><input type="checkbox" id="pop_check" />
+				<a href="#" id="pop_btn">
+					<span>1일간 열지 않음</span>
+				</a>
+			</div>
+		</div>
+		<script type="text/javascript">
+		(function(){
+			if ( $.cookie( 'hideBanner' ) != 'true') {
+				$(".pop_ly").show();
+			}else{
+				$(".pop_ly").hide();
+			}
+		})();
+		//<![CDATA[  
+		$(function() {
+			$("#pop_btn").on("click", function() {
+				if ( $("#pop_check").prop("checked") ) {
+					$.cookie( 'hideBanner', 'true', { expires: 1, path : '/' } );
+				}
+
+				$(".pop_ly").hide();
+			});
+		});		
+		//]]>
+		</script>
+       <div id="pop">
+         <div><img src="${pageContext.request.contextPath}/travel/common/images/main/img_popup_open.jpg" alt="" /></div>
+         <div id="close">close</div>
+      </div>
+       <div class="dim-layer">
+          <div class="dimBg"></div>
+          <div id="layer2" class="pop-layer">
+            <div class="pop-container">
+              <div class="pop-conts">
+                <!--content //-->
+                <img src="/seantour_map/images/travel/main/event_popup.jpg" alt="SNS 친구초대 이벤트! SNS를 통해 친구를 초대하면 추첨을 통해 오누리 상품권을 드립니다. 바다여행을 좋아하는 친구들을 초대하고 온누리 상품권을 받으세요 이벤트기간:6월 한달간" />
+                <div class="btn-r">
+                  <a href="#" class="btn-layerClose">Close</a>
+                </div>
+                <!--// content-->
+              </div>
+            </div>
+          </div>
+        </div>
 		<!-- header -->
 			<%@ include file="/WEB-INF/jsp/travel/tpl/gnb.jsp" %>
 		<!-- // header -->
-
-		<!-- contaniner -->
+	<!-- contaniner -->
 		<div id="container" class="main">
 			<!-- cont_main -->
 			<div class="cont_main" id="content">
@@ -71,30 +134,13 @@ function fn_reservView(){
      										   <p class="weather-date"></p>	
    										</div>
 								</div>-->
-								  <div class="main_visual_content_cell_left">
-								 	<p class="tit">내가 만드는 <strong>바다여행</strong></p> 	 
-								 	<p class="sub_tit">
-								 		언제든 누구와든 함께 떠나기 좋은<br />
-										공기좋고 깨끗한 국내 바다여행 일정만들기
-								 	</p> 	 
-									<div class="visual_go">
-								  		<a href="${pageContext.request.contextPath}/travel/route/register.do" class="button mv_btn01">여행일정 만들기</a>
-								  		<a href="${pageContext.request.contextPath}/travel/route/list.do" class="button mv_btn02">여행일정 검색</a>
-								  </div>
-								  	<%--<ul class="img_lst"> 
-								  		<li><img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual2_s1.png" alt='해파랑공원'/></li>
-                                        <li><img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual2_s2.png" alt='호미곶' /></li>
-                                        <li><img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual2_s3.png" alt='주상절리'/></li>  
-
-								  	</ul>--%>
-								  </div>
-								 
-								 <div class="main_visual_content_cell_right">
+                         	
+								  <div class="main_visual_content_cell_right">
 								  	 <div class="main_visual_content_cell_right_inr">
 								  	 	<div class="spot_title"><img src="${pageContext.request.contextPath}/images/travel/main/img_map_tit.png" alt="해수욕장 혼잡도 신호등" /></div>
 								  	 	<div class="spot_info"><img src="${pageContext.request.contextPath}/images/travel/main/img_info_box.png" alt="혼잡: 빨간색, 혼잡우려: 노란색, 적정: 녹색" /></div>
-									  	 <div class="spot spot11"><a href="/seantour_map/travel/destination/detail.do?destId=FCID000136" class="icon red_hover">화진포<br /><em>200명</em></a></div>
-									  	 <div class="spot spot12"><a href="/seantour_map/travel/destination/detail.do?destId=FCID100892" class="icon red_hover">송지호오토캠핑장<br /><em>200명</em></a></div>
+									  	 <div class="spot spot11"><a href="/seantour_map/travel/destination/detail.do?destId=FCID000136" class="icon red_hover">화진포</a></div>
+									  	 <div class="spot spot12"><a href="/seantour_map/travel/destination/detail.do?destId=FCID100892" class="icon red_hover">송지호오토캠핑</a></div>
 									  	 <div class="spot spot13"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111063" class="icon red_hover">송지호</a></div>
 									  	 <div class="spot spot14"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110902" class="icon green_hover">삼포</a></div>
 								  	   	 <div class="spot spot15"><a href="#none" class="icon red_hover">천진</a></div>
@@ -110,7 +156,7 @@ function fn_reservView(){
 									  	 <div class="spot spot25"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110592" class="icon red_hover">맹방</a></div>
 									  	 <div class="spot spot26"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111358" class="icon green_hover">용화</a></div>
 									  	 <div class="spot spot27"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111527" class="icon green_hover">장호</a></div>
-									  	 <div class="spot spot28"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110180" class="icon red_hover">고래불<br /><em>200명</em></a></div>
+									  	 <div class="spot spot28"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110180" class="icon red_hover">고래불</a></div>
 									  	 <div class="spot spot29"><a href="#none" class="icon yellow_hover">관성</a></div>
 									  	 <div class="spot spot30"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111470" class="icon yellow_hover">일산</a></div>
 									  	 <div class="spot spot31"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111658" class="icon yellow_hover">진하</a></div>
@@ -133,67 +179,66 @@ function fn_reservView(){
 									  	 <div class="spot spot48"><a href="#none" class="icon red_hover">함덕서우봉</a></div>
 									  	 <div class="spot spot49"><a href="/seantour_map/travel/destination/detail.do?destId=FCID000174" class="icon red_hover">중문</a></div>
 									  	 <div class="spot spot50"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110313" class="icon red_hover">금능으뜸원</a></div>
-									  	 <div class="blinker spot1"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111039" class="name">속초<br /><em>2000명</em><span class="icon red"></span></a></div>
-									  	 <div class="blinker spot2"><a href="/seantour_map/travel/destination/detail.do?destId=FCID000248" class="name">낙산<br /><em>2000명</em><span class="icon red"></span></a></div>
-									  	 <div class="blinker spot3"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110072" class="name">경포<br /><em>2000명</em><span class="icon yellow"></span></a></div>
-									  	 <div class="blinker spot4"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110894" class="name">삼척<br /><em>2000명</em><span class="icon yellow"></span></a></div>
-									  	 <div class="blinker spot5"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110458" class="name">대천<br /><em>2000명</em><span class="icon red"></span></a></div>
-									  	 <div class="blinker spot6"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110780" class="name">송도<br /><em>2000명</em><span class="icon red"></span></a></div>
-									  	 <div class="blinker spot7"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111059" class="name">송정<br /><em>2000명</em><span class="icon red"></span></a></div>
-									  	 <div class="blinker spot8"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111941" class="name">해운대<br /><em>2000명</em><span class="icon yellow"></span></a></div>
-									  	 <div class="blinker spot9"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110239" class="name">광안리<br /><em>2000명</em><span class="icon green"></span></a></div>
-									  	 <div class="blinker spot10"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110405" class="name">다대포<br /><em>2000명</em><span class="icon green"></span></a></div>
+									  	 <div class="blinker spot1"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111039" class="name">해운대<span class="icon red"></span></a></div>
+									  	 <div class="blinker spot2"><a href="/seantour_map/travel/destination/detail.do?destId=FCID000248" class="name">광안리<span class="icon red"></span></a></div>
+									  	 <div class="blinker spot3"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110072" class="name">송도<span class="icon yellow"></span></a></div>
+									  	 <div class="blinker spot4"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110894" class="name">대천<span class="icon yellow"></span></a></div>
+									  	 <div class="blinker spot5"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110458" class="name">다대포<span class="icon red"></span></a></div>
+									  	 <div class="blinker spot6"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110780" class="name">경포<span class="icon red"></span></a></div>
+									  	 <div class="blinker spot7"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111059" class="name">송정<span class="icon red"></span></a></div>
+									  	 <div class="blinker spot8"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111941" class="name">낙산<span class="icon yellow"></span></a></div>
+									  	 <div class="blinker spot9"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110239" class="name">속초<span class="icon green"></span></a></div>
+									  	 <div class="blinker spot10"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110405" class="name">삼척<span class="icon green"></span></a></div>
+									  	 <div class="time">기준시각<br/><span>13:00</span></div>
 									  </div>
 								  </div>
+                                <div class="main_visual_content_cell_left">
+                                  <p class="tit"><strong>슬기로운</strong> 해수욕장 이용</p> 
+                                  <div class="reserv_lookup_box">
+                                    <div class="reserv_main_right">
+                                        <a href="/seantour_map/travel/reservation/area.do"><img src="${pageContext.request.contextPath}/images/travel/main/img_main_reserv_pull.png" alt="" /></a>
+                                    </div>
+                                    <div class="reserv_main_left">
+                                    <form id="reserv_view" action="/seantour_map/travel/reservation/reserv_view.do">
+                                        <strong for="my_reserv">나의 예약 <br />조회</strong>
+                                        <span><input type="text" id="reseName" name="reseName" placeholder="이름을 입력하세요." /></span>
+                                        <span><input type="text" id="reseTel" name="reseTel" maxlength="11" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="전화번호를 입력하세요." /></span>
+                                        <a href="javascript:fn_reservView();" class="btn">조회</a>
+                                    </form>
+                                    </div>
+                                    
+                                </div>
+								 </div>
 								  <div class="spot_search">
 								  	<div class="cssSelect">
 								  		<button type="button">부산광역시</button>
 								  		<ul class="lst">
-								  			<li><a href="#none">부산광역시</a></li>
-								  			<li><a href="#none">대구광역시</a></li>
-								  			<li><a href="#none">인천광역시</a></li>
-								  			<li><a href="#none">대전광역시</a></li>
-								  			<li><a href="#none">울산광역시</a></li>
-								  			<li><a href="#none">경기도</a></li>
-								  			<li><a href="#none">충청북도</a></li>
-								  			<li><a href="#none">충청남도</a></li>
-								  			<li><a href="#none">전라북도</a></li>
-								  			<li><a href="#none">전라남도</a></li>
-								  			<li><a href="#none">경상북도</a></li>
-								  			<li><a href="#none">경상남도</a></li>
-								  			<li><a href="#none">제주특별자치도</a></li>
+								  		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=강원">강원도</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경기">경기도</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경남">경상남도</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경북">경상북도</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=광주">광주광역시</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=대구">경기도</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=대전">대전광역시</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=부산">부산광역시</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=서울">서울특별시</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=세종">세종특별자치시</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=울산">울산광역시</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=인천">인천광역시</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=전남">전라남도</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=전북">전라북도</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=제주">제주도</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=충남">충청남도</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=충북">충청북도</a></li>
+
 								  		</ul>
 							  		</div>
 								  </div>
-								</div>
+								</div>  
 							</div>
-						</div>
-				</div><!-- //spotzone --> 
-				<div class="section00">
-					<div class="inr">
-						<p>해수욕장 혼잡도 신호등은 <span>네이버</span>와 함께 합니다.</p>
-					</div> 
-				</div>
-				<div class="section00_02 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-					<div class="minr">
-						<div class="tit_box">
-					        <p class="tit">해수욕장 <strong>예약시스템</strong></p>
-					    </div>
-					    <div class="reserv_lookup_box">
-					    	<div class="reserv_main_left">
-					    	<form id="reserv_view" action="/seantour_map/travel/reservation/reserv_view.do">
-					    		<strong for="my_reserv">나의 예약 <br />조회</strong>
-								<span><input type="text" id="reseName" name="reseName" placeholder="이름을 입력하세요." /></span>
-								<span><input type="text" id="reseTel" name="reseTel" maxlength="11" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="전화번호를 입력하세요." /></span>
-								<a href="javascript:fn_reservView();" class="btn">조회</a>
-							</form>
-					    	</div>
-					    	<div class="reserv_main_right">
-					    		<a href="/seantour_map/travel/reservation/area.do"><img src="${pageContext.request.contextPath}/images/travel/main/img_main_reserv_pull.png" alt="" /></a>
-					    	</div>
-				    	</div>
 					</div>
-				</div>
+				</div><!-- //spotzone -->
+     
 				<div class="section01 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
 					<div class="minr">
 						<div class="event_box">
@@ -212,7 +257,7 @@ function fn_reservView(){
 					        <p class="tit">한적한<strong>해수욕장</strong></p>
 					    </div>
 						<div class="vest_recommend_box">
-					    								<div class="col01 main_pull_slider">
+  								<div class="col01 main_pull_slider">
 					    		<div class="pull_item">
 					    			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000442">
 							    		<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_slider_pull01.jpg" alt="" /></span>
@@ -469,6 +514,7 @@ function fn_reservView(){
 					    		</ul>
 					    	</div>
 					    </div> 
+				    </div>
 					<%-- 실제 데이터가 축적되면 이 부분부터 삭제 또는 주석 처리  --%>
 				    	<%--<div class="tit_box">
 				    		<p class="txt">국내 인기 바다여행지를 추천해드립니다.</p>
@@ -573,14 +619,14 @@ function fn_reservView(){
 								</div> 
 							</div>
 					    </div>
-					--%>
+					
 						<c:import url="/travel/route/latest.do" charEncoding="utf-8">
 						    <c:param name="pageUnit" value="5" />
 						    <c:param name="titleLen" value="350" />
 						</c:import>
 
 			    	</div>
-			    </div><!-- // section02 -->
+			    </div><!-- // section02 -->--%>
 			     <c:import url="/travel/destination/recolist.do" charEncoding="utf-8"></c:import>
 			    
 			   <%--  <div class="section03 aos-init aos-animate" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
@@ -708,7 +754,7 @@ function fn_reservView(){
 						</div>
 					</div>
 				</div> --%><!-- // section03 --> 
-			    <div class="section04 aos-init aos-animate" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+			   <%-- <div class="section04 aos-init aos-animate" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
 					<div class="minr">
 	                    <div class="main_event_wrap">
 	                    	<div class="cont_tit">바다여행 축제일정</div>
@@ -837,7 +883,7 @@ function fn_reservView(){
 							</ul>
 						</div>
 					</div>
-				</div><!-- // section04 --> 
+				</div><!-- // section04 --> --%>
 				<script>// <![CDATA[
 			       AOS.init({
 			          offset: 0,
@@ -848,11 +894,13 @@ function fn_reservView(){
 			<!--// cont_main -->
 		</div>
 		<!--// container -->
-
 		<!-- footer -->
 		<%@ include file="/WEB-INF/jsp/travel/tpl/foot.jsp" %>
 		<!--//footer -->
 	</div>
+	<!-- // wrap -->
+</body>
+	
 	
 </body>
 
