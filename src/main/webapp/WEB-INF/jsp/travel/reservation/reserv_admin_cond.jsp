@@ -68,7 +68,7 @@ function fn_excelDown(){
 				<form:form commandName="travelReservation" method="post">
 				<input type="hidden" id="reseBeachId" name="reseBeachId" value="${travelReservation.reseBeachId}"/>
 				<div class="cont_head">
-					<h1 class="tit">회원정보관리</h1>
+					<h1 class="tit">해수욕장현황관리</h1>
 					<div class="search_area">
 						<label for="sbscrbSttus"> 
 							<select id="searchCondition" name="searchCondition" title="검색어 항목" class="slt">
