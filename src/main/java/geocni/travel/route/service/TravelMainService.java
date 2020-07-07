@@ -1,12 +1,15 @@
 package geocni.travel.route.service;
 
 import java.util.List;
+import java.util.Map;
 
 import geocni.travel.route.domain.TravelMain;
 
 public interface TravelMainService {	
 
 	List<?> selectBeachPerCnt() throws Exception;
+	
+	List<?> selectBeachPerCntapi() throws Exception;
 	
 	void insertBeachPer(TravelMain vo) throws Exception;
 	
