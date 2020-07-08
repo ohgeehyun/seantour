@@ -22,7 +22,7 @@
 .button.lg{height:55px; padding:0 65px;  font-size:17px; line-height:55px;}
 /* Button Color */
 .button{background-color:#444; color:#fff !important;}
-.button.gray{background-color:#555; color:#fff !important;}
+.button.gray{background-color:#eaeaea; color:#eaeaea !important;}
 .button.violet{background-color:#5a63bf; color:#fff !important;}
 .button.lightblue{background-color:#0198d7; color:#fff !important;}
 .button.orange{background-color:#d27108; color:#fff !important;}
