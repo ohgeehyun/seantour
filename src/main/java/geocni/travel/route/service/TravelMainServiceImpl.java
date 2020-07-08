@@ -34,26 +34,32 @@ public class TravelMainServiceImpl extends EgovAbstractServiceImpl implements Tr
 		
 		int minute = Integer.valueOf(datestr.substring(10, 12));
 		String datestrtemp = datestr.substring(0,8);
-		int datestrtimechange = Integer.valueOf(datestr.substring(8,10));//시간변경
+		String datestrtimechange = String.valueOf(Integer.valueOf(datestr.substring(8,10)));//시간변경
 		
-		if(datestrtimechange == 0)
+		if (Integer.parseInt(datestrtimechange) <10)
+		{
+			datestrtimechange= "0"+datestrtimechange;
+		}
+		
+		
+		if(datestrtimechange == "00")
 		{
 			cal.add(Calendar.DATE, -1);
 			datestr =sdf.format(cal.getTime());
 			datestrtemp = datestr.substring(0,8);
-			datestrtimechange = 23; //23시
+			datestrtimechange = "23"; //23시
 		}else {
 			cal.add(Calendar.HOUR, -1);
 			datestr =sdf.format(cal.getTime());
 			datestrtemp = datestr.substring(0,8);
-			datestrtimechange = datestrtimechange -1; // 13시 일경우 12시 30분의 데이터를 가저와야하기 때문 시간 -1 
+			datestrtimechange = String.valueOf((Integer.parseInt(datestrtimechange)-1)); // 13시 일경우 12시 30분의 데이터를 가저와야하기 때문 시간 -1 
 		}
 		
 		if(minute > 0 && minute < 30) {
 		
-			datestr = datestrtemp + datestrtimechange+"30";
+			datestrtimechange=  String.valueOf(Integer.valueOf(datestrtimechange)-1);
 		}else {
-			datestr = Integer.valueOf(datestr.substring(8, 10)) + "00";
+			datestr = Integer.valueOf(datestr.substring(0, 10)) + "00";
 		}
 
 		
@@ -64,6 +70,45 @@ public class TravelMainServiceImpl extends EgovAbstractServiceImpl implements Tr
 	public  void insertBeachPer(TravelMain vo) throws Exception{
 		travelMainDAO.insertBeachPer(vo);
 	}
+	
+	@Override
+	public List<?> selectBeachPerCntapi() throws Exception {
+		//DB 호출해서 정보값 가져오도록 할것.
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
+		String datestr = sdf.format(cal.getTime());
+		
+		String datestrtimechange = String.valueOf(Integer.valueOf(datestr.substring(8,10)));//시간변경
+		if (Integer.parseInt(datestrtimechange) <10)
+		{
+			datestrtimechange= "0"+datestrtimechange;
+		}
+		int minute = Integer.valueOf(datestr.substring(10, 12));
+		String datestrtemp = datestr.substring(0,8);
+		
+		if(datestrtimechange == "00")
+		{
+			cal.add(Calendar.DATE, -1);
+			datestr =sdf.format(cal.getTime());
+			datestrtemp = datestr.substring(0,8);
+			datestrtimechange = "23"; //23시
+		}
+		
+		if(minute > 0 && minute < 30) {
+			if (Integer.parseInt(datestrtimechange) <10)
+			{
+			datestrtimechange= "0"+ String.valueOf(Integer.valueOf(datestrtimechange)-1);
+			}
+			datestrtimechange= String.valueOf((Integer.parseInt(datestrtimechange)-1));
+			datestr = datestrtemp + datestrtimechange+"30";
+		}else {
+			datestr = Integer.valueOf(datestr.substring(0, 10)) + "00";
+		}
+		
+		System.out.println("------------------------"+datestr);
+		return (List<?>)travelMainDAO.selectBeachPerCntapi(datestr);
+	}
+
 //
 //	@Override
 //	public List<?> selectTravelRouteList(TravelRoute vo) throws Exception {

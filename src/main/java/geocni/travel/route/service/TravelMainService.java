@@ -10,6 +10,8 @@ public interface TravelMainService {
 	
 	void insertBeachPer(TravelMain vo) throws Exception;
 	
+	List<?> selectBeachPerCntapi() throws Exception;
+	
 //	int selectTravelRouteListCnt(TravelRoute vo) throws Exception;
 //	
 //	List<?> selectTravelRouteBestList(TravelRoute vo) throws Exception;
