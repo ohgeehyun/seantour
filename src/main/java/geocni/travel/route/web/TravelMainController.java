@@ -135,7 +135,32 @@ public class TravelMainController {
 			
 			System.out.println(line);
 		}
+		
 	}
+	
+
+	
+	@RequestMapping(value="api.do")
+	@ResponseBody
+	public JSONObject responseApi() throws Exception{
+	
+		List<?> api = (List<?>) mainService.selectBeachPerCntapi();
+		/*List<?> data = (List<?>) mainService.selectBeachPerCnt();*/
+		JSONObject sObject = new JSONObject();
+		
+		for(int i=0; i < api.size(); i++)
+		{
+			sObject.put("Beach"+ i , api.get(i));
+		}
+			
+		return sObject;
+	}
+	
+	
+	
+	
+	
+	
 	
 //	@RequestMapping(value="latest.do")
 //	public String routeLatestList(

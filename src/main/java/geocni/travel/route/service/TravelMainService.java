@@ -29,4 +29,5 @@ public interface TravelMainService {
 //	void deleteTravelRoutePhysically(TravelRoute vo) throws Exception;
 //
 //	List<?> selectTravelRouteStats(Integer recordCountPerPage) throws Exception;
+	
 }
