@@ -284,6 +284,17 @@ $(document).ready(function(){
 	            				<p class="note">예약 확인을 위해 정확한 정보 입력 부탁드립니다.</p>
 	            			</dd>
 	            		</dl>
+	            		<dl class="form_group">
+	            			<dt>주소</dt>
+	            			<dd class="slt50">
+	            				<select id="" name="" title="시">
+	            						<option value=""></option>
+	            				</select>
+	            				<select id="" name="" title="군">
+	            						<option value=""></option>
+	            				</select>
+							</dd>
+	            		</dl>
 	            	</div>
 	            	<h3 class="lec_privacy_tit" id="lec_privacy_tit" style="display:none">개인정보 수집 및 이용에 대한안내</h3>
 					<div class="lec_privacy" id="lec_privacy" style="display:none">

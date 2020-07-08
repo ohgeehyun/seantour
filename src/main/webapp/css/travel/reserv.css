@@ -91,6 +91,8 @@
 .reserv_wrap .form_group dd.tel em{display:inline-block;width:4px;}
 .reserv_wrap .form_group dd.tel select{width:33.3333%;}
 .reserv_wrap .form_group dd .note{margin-top:10px;font-size:12px;color:#f55b78;}
+.reserv_wrap .form_group dd.slt50 select{float:left;width:calc(50% - 4px) !important;margin-left:4px;}
+.reserv_wrap .form_group dd.slt50 select:first-child{margin-left:0;}
 .reservBtn_box{margin-top:25px;}
 
 .reserv_wrap_confirm{box-sizing:border-box;width:45%;margin:0 auto;padding:30px 40px;background:#f8f8f8;border:1px solid #cbcbcb;}
