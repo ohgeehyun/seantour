@@ -1,7 +1,6 @@
 package geocni.travel.route.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -16,10 +15,6 @@ public class TravelMainDAO extends EgovComAbstractDAO {
 		return (List<TravelMain>) list("travelMainDAO.selectBeachPerCnt", datestr);
 	}
 	
-	public List<?> selectBeachPerCntapi(String datestr) throws Exception {		
-		return  list("travelMainDAO.selectBeachPerCntapi", datestr);
-	}
-
 	public void  insertBeachPer(TravelMain vo) throws Exception {		
 		insert("travelMainDAO.insertBeachPer", vo);
 	}

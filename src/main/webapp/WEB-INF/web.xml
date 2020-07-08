@@ -100,10 +100,6 @@
 		<servlet-name>action</servlet-name>
 		<url-pattern>/board/file/*</url-pattern>
 	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>action</servlet-name>
-			<url-pattern>*.json</url-pattern>
-	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>jsp</servlet-name>
