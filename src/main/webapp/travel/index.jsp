@@ -15,7 +15,15 @@
   		$('#close').click(function(){
   			$('#pop').hide();
   		});
-  		
+  		var d = new Date(); 
+		var currentDate = d.getFullYear() + "년 " + ( d.getMonth() + 1 ) + "월 " + d.getDate() + "일 "; 
+		var currentTime = "";
+		if(d.getMinutes() < 30){
+			currentTime = (d.getHours() -1) + "시 30분 기준;
+		}else{
+			currentTime = d.getHours() + "시 00분 기준;
+		}
+		$('.time_area ').text(currentDate + currentTime );
   		$.ajax({
   			type:'post',
   			url:"/seantour_map/travel/mainBeachCongestion.do",
@@ -233,6 +241,7 @@ function fn_reservView(){
                                            <div class="blinker spot8"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110349" class="name">낙산<br /><em>200명</em><span class="icon green"></span></a></div>
                                            <div class="blinker spot9"><a href="/seantour_map/travel/destination/detail.do?destId=FCID111039" class="name">속초<br /><em>200명</em><span class="icon green"></span></a></div>
                                            <div class="blinker spot10"><a href="/seantour_map/travel/destination/detail.do?destId=FCID110894" class="name">삼척<br /><em>200명</em><span class="icon green"></span></a></div>
+                                       <div class="time">기준시각<br/><span class="time_area">13:00</span></div>
 									  </div>								 
 								  </div>
                                 <div class="main_visual_content_cell_left">
