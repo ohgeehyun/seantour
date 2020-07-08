@@ -16,29 +16,21 @@
   			$('#pop').hide();
   		});
   		
-  		//5분마다 페이지 reload  	
-  		setTimeout('location.reload()',60000*5);
-
   		$.ajax({
   			type:'post',
   			url:"/seantour_map/travel/mainBeachCongestion.do",
-  		    success: function(data) {
-  		    	
+  		    success: function(data) {  		    	
 				for(var i=0; i < data.length; i++){
 					if(i < 10){
 						$('.spot' + (i + 1)).find('span').removeClass();						
 						$('.spot' + (i + 1)).find('span').addClass('icon');
 						var classNm = checkBeachCongestion(data[i].seqId, data[i].uniqPop);
 						$('.spot' + (i + 1)).find('span').addClass(classNm);
-						//.spot 하단에 있는 em태그의 text를 data[i].uniqPop 값으로 변경
-						$('.spot' + (i + 1)).find('em').text(data[i].uniqPop + "명");
-						
 					}else{
 						$('.spot' + (i + 1)).find('a').removeClass();
 						$('.spot' + (i + 1)).find('a').addClass('icon');
 						var classNm = checkBeachCongestion(data[i].seqId, data[i].uniqPop);
-						$('.spot' + (i + 1)).find('a').addClass(classNm);
-						$('.spot' + (i + 1)).find('em').text(data[i].uniqPop + "명");
+						$('.spot' + (i + 1)).find('a').addClass(classNm);						
 					}
 				}
 		    },
@@ -47,10 +39,8 @@
 		    }
   		});
 	});
-	
 
 	function checkBeachCongestion(beachId, population){
-		debugger;
   		var returnStr = '';
   		if(beachId == 1){	if(population < 	32813	){ returnStr = "green";} else if(population < 	65625	){ returnStr = "yellow";} else { returnStr = "red";}}
   		if(beachId == 2){	if(population < 	22297	){ returnStr = "green";} else if(population < 	44593	){ returnStr = "yellow";} else { returnStr = "red";}}
