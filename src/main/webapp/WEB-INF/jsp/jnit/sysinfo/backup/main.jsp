@@ -6,6 +6,7 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ include file="/WEB-INF/jsp/jnit/_common/header.jsp" %>
 
+
 <%-- <script type='text/javascript' src='http://www.google.com/jsapi'></script> --%>
 <script type='text/javascript' src='<c:url value="/resources/stats/plugins/jsapi.js" />'></script>
 <script type="text/javaScript" src="<c:url value="/resources/js/jnit/filego.js"/>" ></script>

@@ -7,6 +7,7 @@
 
 <%@ include file="header.jsp" %>
 
+
 <c:if test="${not useSkeleton}">
 <!DOCTYPE html>
 <html>
