@@ -577,4 +577,25 @@ public class TravelReservationController {
 		return skinPath + "reserv_admin_cond";
 	}
 	
+	@RequestMapping(value="reserv_admin_time.do")
+	public String reservationintroAdminTime(
+			 TravelRoute travelRoute
+			,TravelReservation travelReservation
+			,HttpServletRequest request
+			,SessionStatus status
+			,Model model) throws Exception {
+		String adminBeachId = (String)request.getSession().getAttribute("adminBeachId");
+		if("".equals(adminBeachId) || adminBeachId == null) {
+			model.addAttribute("alert", "로그인 후 이용해 주세요.");
+			model.addAttribute("path", "/travel/reservation/reserv_admin_login.do");
+			return "/jnit/util/alertMove";
+		}	
+		
+		travelReservation.setReseBeachId(adminBeachId);
+		model.addAllAttributes(reseService.selectBeachManagementList(travelReservation));
+		model.addAttribute("travelReservation", travelReservation);
+		
+		return skinPath + "reserv_admin_time";
+	}
+	
 }

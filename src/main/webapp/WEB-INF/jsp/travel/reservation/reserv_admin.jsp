@@ -61,7 +61,8 @@ function fn_excelDown(){
 				<h2 class="title">관리자페이지</h2>
 				<ul id="snb">
 					<li><a href="<c:url value="/travel/reservation/reserv_admin.do"/>" class="on">회원관리</a></li>
-					<li><a href="<c:url value="/travel/reservation/reserv_admin_cond.do"/>" class="on">해수욕장현황</a></li>
+					<li><a href="<c:url value="/travel/reservation/reserv_admin_cond.do"/>" class="on">피크타임현황</a></li>
+					<li><a href="<c:url value="/travel/reservation/reserv_admin_time.do"/>" class="on">시간대별현황</a></li>
 				</ul>
 			</div>
 			<div id="content" class="cont_wrap">
