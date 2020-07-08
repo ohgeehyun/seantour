@@ -40,7 +40,7 @@
 	<div class="row-fluid boardWrap <c:out value="${boardinfoVO.boardType}${mobileMode?'_mobile':''}" /> <c:out value="${boardId}" />">
 		<c:if test="${empty error}">
 			<c:if test="${useSkeleton}">
-				<script type="text/javaScript">				
+				<script type="text/javaScript">
 				
 				/* $(document).ready(function(){					
 					var pageTitle = document.title;

@@ -7,8 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,maximum-scale=1,minimum-scale=1">
-<meta hame="description" content="국내 여행지 소개,해수욕장 예약,해수욕장 혼잡도 확인, 일정 만들기, 추천일정, 공지사항, 예약, 리플렛 제공.">
-<title>바다여행 일정만들기</title>
+<title>해양관광</title>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/travel/intro.css'/>" />
 </head>
 <body>
