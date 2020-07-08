@@ -257,3 +257,18 @@ filter: alpha(opacity=0);
 .xdsoft_datetimepicker .xdsoft_today_button {
 	background-image: url(/cmsh/startup.daegu.go.kr/images/board/sp_datepicker.png);
 }
+
+
+/* **************************************** *
+ * 검색
+ * **************************************** */
+
+.bbsSrch{width:100%;height:45px;margin:25px auto; padding:25px 0 25px; border:1px solid #f0f4fb; font-size:14px; text-align:center; background:#f0f4fb;}
+.bbsSrch:after{content:""; display:block; clear:both;}
+.bbsSrch .tit{font-size:16px;}
+.bbsSrch select,
+.bbsSrch input[type=text]{height:45px;line-height:45px;padding:0 8px;font-size:16px;}
+.bbsSrch select{margin-left:15px;width:125px;}
+.bbsSrch input.word{width:35%;background:#f7f7f7;}
+.bbsSrch .bbs_btn{width:110px;height:45px;line-height:45px;margin-left:20px;background:#1d61b5;border:none;font-family:'Nanum Gothic', '나눔고딕';font-size:16px;color:#fff;text-align:center;}
+

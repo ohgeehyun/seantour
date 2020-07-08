@@ -47,8 +47,8 @@ function fn_excelDown(){
 			<div id="side">
 				<h2 class="title">관리자페이지</h2>
 				<ul id="snb">
-					<li><a href="<c:url value="/travel/reservation/reserv_admin.do"/>" class="on">회원관리</a></li>
-					<li><a href="<c:url value="/travel/reservation/reserv_admin_cond.do"/>" class="on">피크타임현황</a></li>
+					<li><a href="<c:url value="/travel/reservation/reserv_admin.do"/>">회원관리</a></li>
+					<li><a href="<c:url value="/travel/reservation/reserv_admin_cond.do"/>">피크타임현황</a></li>
 					<li><a href="<c:url value="/travel/reservation/reserv_admin_time.do"/>" class="on">시간대별현황</a></li>
 				</ul>
 			</div>
@@ -58,8 +58,71 @@ function fn_excelDown(){
 				<div class="cont_head">
 					<h1 class="tit">시간대별 해수욕장현황관리</h1>
 				</div>
-				<div class="cont_body">	
-					<a href="javascript:fn_excelDown();" class="button" style="float:right;">엑셀다운로드</a>
+				<div class="cont_body">
+					<div class="bbsSrch">
+					<fieldset>
+					<legend>날짜검색</legend>
+						<span class="tit">날짜선택</span>
+						<select id="ssyear" name="ssyear" title="연도">
+							<option value="2020">2020</option>
+							<option value="2021">2021</option>
+						</select>	
+						년
+						<select id="month" name="month" title="월">
+							<option value="01">1</option>
+							<option value="02">2</option>
+							<option value="03">3</option>
+							<option value="04">4</option>
+							<option value="05">5</option>
+							<option value="06">6</option>
+							<option value="07">7</option>
+							<option value="08">8</option>
+							<option value="09">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+						</select>
+						월
+						<select id="date" name="date" title="일">
+							<option value="01">1</option>
+							<option value="02">2</option>
+							<option value="03">3</option>
+							<option value="04">4</option>
+							<option value="05">5</option>
+							<option value="06">6</option>
+							<option value="07">7</option>
+							<option value="08">8</option>
+							<option value="09">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="20">21</option>
+							<option value="20">22</option>
+							<option value="20">23</option>
+							<option value="20">24</option>
+							<option value="20">25</option>
+							<option value="20">26</option>
+							<option value="20">27</option>
+							<option value="20">28</option>
+							<option value="20">29</option>
+							<option value="20">30</option>
+							<option value="20">31</option>
+						</select>
+						일	
+						<input type="button" id="" name="" class="bbs_btn" value="검색" title="검색" />
+						</fieldset>
+					</div>
+						
+					
+					<a href="javascript:fn_excelDown();" class="button" style="float:right;font-size:14px;">엑셀다운로드</a>
 					<table border="0" cellpadding="0" class="tbl01 tac">
 						<caption>해수욕장현황관리 - 번호,해수욕장,시간,인원</caption>
 						<thead>

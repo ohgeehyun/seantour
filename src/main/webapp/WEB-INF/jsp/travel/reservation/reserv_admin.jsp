@@ -61,8 +61,8 @@ function fn_excelDown(){
 				<h2 class="title">관리자페이지</h2>
 				<ul id="snb">
 					<li><a href="<c:url value="/travel/reservation/reserv_admin.do"/>" class="on">회원관리</a></li>
-					<li><a href="<c:url value="/travel/reservation/reserv_admin_cond.do"/>" class="on">피크타임현황</a></li>
-					<li><a href="<c:url value="/travel/reservation/reserv_admin_time.do"/>" class="on">시간대별현황</a></li>
+					<li><a href="<c:url value="/travel/reservation/reserv_admin_cond.do"/>">피크타임현황</a></li>
+					<li><a href="<c:url value="/travel/reservation/reserv_admin_time.do"/>">시간대별현황</a></li>
 				</ul>
 			</div>
 			<div id="content" class="cont_wrap">
@@ -85,7 +85,7 @@ function fn_excelDown(){
 					</div>
 				</div>
 				<div class="cont_body">	
-					<a href="javascript:fn_excelDown();" class="button" style="float:right;">엑셀다운로드</a>
+					<a href="javascript:fn_excelDown();" class="button" style="float:right;font-size:14px;">엑셀다운로드</a>
 					<table border="0" cellpadding="0" class="tbl01 tac">
 						<caption>예약회원 현황 - 번호,이름,소속기관,소속부서,전화번호</caption>
 						<thead>
