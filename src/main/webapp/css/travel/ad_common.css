@@ -39,6 +39,7 @@
 
 /** Table **/
 table.fixed{table-layout:fixed;}
+.scroll{width:100%;overflow-x:scroll;}
 .tbl01{width:100%; border-collapse:collapse; border-spacing:0; border-top:2px solid #266fcc; border-bottom:1px solid #848484;}
 .tbl01 th,
 .tbl01 td{border:1px solid #ddd;}
@@ -47,6 +48,7 @@ table.fixed{table-layout:fixed;}
 .tbl01 th:last-child,
 .tbl01 td:last-child{border-right:none;}
 .tbl01 th{padding:12px 5px; border-bottom:1px solid #848484; background:#fafbfc;}
+.scroll .tbl01 tbody th{width:70px !important;}
 .tbl01 td{padding:10px 5px; border-top:1px solid #ddd; white-space:normal;}
 .tbl01 tr:hover{backgrould:#aaacff;}
 .tbl02{width:100%; margin-bottom:30px; border-collapse:separate; border-spacing:0; border-top:1px solid #848484;}

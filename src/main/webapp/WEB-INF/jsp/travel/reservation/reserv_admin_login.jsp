@@ -13,6 +13,10 @@
 <script src="<c:url value='/js/travel/jquery-1.12.2.min.js'/>"></script>
 </head>
 <script>
+$(document).ready(function(){
+	$('#reseAdminId').focus();
+});
+
 function fn_login(){
 	if($('#reseAdminId').val() == ""){
 		alert('ID를 입력해 주세요.');
@@ -26,6 +30,7 @@ function fn_login(){
 	document.getElementById("reservAdminLogin").action = "<c:url value='/travel/reservation/reserv_login.do'/>";
    	document.getElementById("reservAdminLogin").submit();
 }
+
 function enterkey() {
     if (window.event.keyCode == 13) {
          // 엔터키가 눌렸을 때 실행할 내용

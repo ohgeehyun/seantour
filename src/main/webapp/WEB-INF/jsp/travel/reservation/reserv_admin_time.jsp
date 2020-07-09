@@ -19,15 +19,21 @@ function fn_logout(){
 }
 
 function fn_excelDown(){
-	document.getElementById("travelReservation").action = "<c:url value='/travel/reservation/reserv_admin_cond_excelDown.do'/>";
+	document.getElementById("travelReservation").action = "<c:url value='/travel/reservation/reserv_admin_time_excelDown.do'/>";
    	document.getElementById("travelReservation").submit();
 }
+
+function day_search(){;
+	document.getElementById("travelReservation").action = "<c:url value='/travel/reservation/reserv_admin_time.do'/>";
+   	document.getElementById("travelReservation").submit();
+}
+
 </script>
 <body>
 	<div id="wrap">
 		<div id="header">
 			<div class="header_top">
-				<div class="logo"><a href=""><img src="<c:url value="/images/travel/admin/login_logo.png"/>" alt="바다여행일정 만들기 관리자" /></a></div>
+				<div class="logo"><a href="<c:url value="/travel/reservation/reserv_admin.do"/>"><img src="<c:url value="/images/travel/admin/login_logo.png"/>" alt="바다여행일정 만들기 관리자" /></a></div>
 				<div class="member_area">
 					<a href="<c:url value="/travel/reservation/area.do"/>" target="_blank" class="home">사용자 바로가기</a>
 					<a href="javascript:fn_logout();" class="login">관리자 로그아웃</a>
@@ -36,7 +42,7 @@ function fn_excelDown(){
 			<div class="loc_area">
 				<ol class="location">
 					<li class="home">홈</li>
-					<li class="current">회원관리</li>
+					<li class="current">시간대별현황</li>
 				</ol>
 			</div>
 	
@@ -48,8 +54,10 @@ function fn_excelDown(){
 				<h2 class="title">관리자페이지</h2>
 				<ul id="snb">
 					<li><a href="<c:url value="/travel/reservation/reserv_admin.do"/>">회원관리</a></li>
-					<li><a href="<c:url value="/travel/reservation/reserv_admin_cond.do"/>">피크타임현황</a></li>
-					<li><a href="<c:url value="/travel/reservation/reserv_admin_time.do"/>" class="on">시간대별현황</a></li>
+					<c:if test="${travelReservation.reseBeachId eq 'R0000'}">
+						<li><a href="<c:url value="/travel/reservation/reserv_admin_cond.do"/>">피크타임현황</a></li>
+						<li><a href="<c:url value="/travel/reservation/reserv_admin_time.do"/>" class="on">시간대별현황</a></li>
+					</c:if>
 				</ul>
 			</div>
 			<div id="content" class="cont_wrap">
@@ -64,92 +72,142 @@ function fn_excelDown(){
 					<legend>날짜검색</legend>
 						<span class="tit">날짜선택</span>
 						<select id="ssyear" name="ssyear" title="연도">
-							<option value="2020">2020</option>
-							<option value="2021">2021</option>
+							<option value="2020" <c:if test="${travelReservation.ssyear eq '2020'}">selected="selected"</c:if>>2020</option>
+							<option value="2021" <c:if test="${travelReservation.ssyear eq '2021'}">selected="selected"</c:if>>2021</option>
 						</select>	
 						년
-						<select id="month" name="month" title="월">
-							<option value="01">1</option>
-							<option value="02">2</option>
-							<option value="03">3</option>
-							<option value="04">4</option>
-							<option value="05">5</option>
-							<option value="06">6</option>
-							<option value="07">7</option>
-							<option value="08">8</option>
-							<option value="09">9</option>
-							<option value="10">10</option>
-							<option value="11">11</option>
-							<option value="12">12</option>
+						<select id="ssmonth" name="ssmonth" title="월">
+							<option value="01" <c:if test="${travelReservation.ssmonth eq '01'}">selected="selected"</c:if>>1</option>
+							<option value="02" <c:if test="${travelReservation.ssmonth eq '02'}">selected="selected"</c:if>>2</option>
+							<option value="03" <c:if test="${travelReservation.ssmonth eq '03'}">selected="selected"</c:if>>3</option>
+							<option value="04" <c:if test="${travelReservation.ssmonth eq '04'}">selected="selected"</c:if>>4</option>
+							<option value="05" <c:if test="${travelReservation.ssmonth eq '05'}">selected="selected"</c:if>>5</option>
+							<option value="06" <c:if test="${travelReservation.ssmonth eq '06'}">selected="selected"</c:if>>6</option>
+							<option value="07" <c:if test="${travelReservation.ssmonth eq '07'}">selected="selected"</c:if>>7</option>
+							<option value="08" <c:if test="${travelReservation.ssmonth eq '08'}">selected="selected"</c:if>>8</option>
+							<option value="09" <c:if test="${travelReservation.ssmonth eq '09'}">selected="selected"</c:if>>9</option>
+							<option value="10" <c:if test="${travelReservation.ssmonth eq '10'}">selected="selected"</c:if>>10</option>
+							<option value="11" <c:if test="${travelReservation.ssmonth eq '11'}">selected="selected"</c:if>>11</option>
+							<option value="12" <c:if test="${travelReservation.ssmonth eq '12'}">selected="selected"</c:if>>12</option>
 						</select>
 						월
-						<select id="date" name="date" title="일">
-							<option value="01">1</option>
-							<option value="02">2</option>
-							<option value="03">3</option>
-							<option value="04">4</option>
-							<option value="05">5</option>
-							<option value="06">6</option>
-							<option value="07">7</option>
-							<option value="08">8</option>
-							<option value="09">9</option>
-							<option value="10">10</option>
-							<option value="11">11</option>
-							<option value="12">12</option>
-							<option value="13">13</option>
-							<option value="14">14</option>
-							<option value="15">15</option>
-							<option value="16">16</option>
-							<option value="17">17</option>
-							<option value="18">18</option>
-							<option value="19">19</option>
-							<option value="20">20</option>
-							<option value="20">21</option>
-							<option value="20">22</option>
-							<option value="20">23</option>
-							<option value="20">24</option>
-							<option value="20">25</option>
-							<option value="20">26</option>
-							<option value="20">27</option>
-							<option value="20">28</option>
-							<option value="20">29</option>
-							<option value="20">30</option>
-							<option value="20">31</option>
+						<select id="ssdate" name="ssdate" title="일">
+							<option value="01" <c:if test="${travelReservation.ssdate eq '01'}">selected="selected"</c:if>>1</option>
+							<option value="02" <c:if test="${travelReservation.ssdate eq '02'}">selected="selected"</c:if>>2</option>
+							<option value="03" <c:if test="${travelReservation.ssdate eq '03'}">selected="selected"</c:if>>3</option>
+							<option value="04" <c:if test="${travelReservation.ssdate eq '04'}">selected="selected"</c:if>>4</option>
+							<option value="05" <c:if test="${travelReservation.ssdate eq '05'}">selected="selected"</c:if>>5</option>
+							<option value="06" <c:if test="${travelReservation.ssdate eq '06'}">selected="selected"</c:if>>6</option>
+							<option value="07" <c:if test="${travelReservation.ssdate eq '07'}">selected="selected"</c:if>>7</option>
+							<option value="08" <c:if test="${travelReservation.ssdate eq '08'}">selected="selected"</c:if>>8</option>
+							<option value="09" <c:if test="${travelReservation.ssdate eq '09'}">selected="selected"</c:if>>9</option>
+							<option value="10" <c:if test="${travelReservation.ssdate eq '10'}">selected="selected"</c:if>>10</option>
+							<option value="11" <c:if test="${travelReservation.ssdate eq '11'}">selected="selected"</c:if>>11</option>
+							<option value="12" <c:if test="${travelReservation.ssdate eq '12'}">selected="selected"</c:if>>12</option>
+							<option value="13" <c:if test="${travelReservation.ssdate eq '13'}">selected="selected"</c:if>>13</option>
+							<option value="14" <c:if test="${travelReservation.ssdate eq '14'}">selected="selected"</c:if>>14</option>
+							<option value="15" <c:if test="${travelReservation.ssdate eq '15'}">selected="selected"</c:if>>15</option>
+							<option value="16" <c:if test="${travelReservation.ssdate eq '16'}">selected="selected"</c:if>>16</option>
+							<option value="17" <c:if test="${travelReservation.ssdate eq '17'}">selected="selected"</c:if>>17</option>
+							<option value="18" <c:if test="${travelReservation.ssdate eq '18'}">selected="selected"</c:if>>18</option>
+							<option value="19" <c:if test="${travelReservation.ssdate eq '19'}">selected="selected"</c:if>>19</option>
+							<option value="20" <c:if test="${travelReservation.ssdate eq '20'}">selected="selected"</c:if>>20</option>
+							<option value="21" <c:if test="${travelReservation.ssdate eq '21'}">selected="selected"</c:if>>21</option>
+							<option value="22" <c:if test="${travelReservation.ssdate eq '22'}">selected="selected"</c:if>>22</option>
+							<option value="23" <c:if test="${travelReservation.ssdate eq '23'}">selected="selected"</c:if>>23</option>
+							<option value="24" <c:if test="${travelReservation.ssdate eq '24'}">selected="selected"</c:if>>24</option>
+							<option value="25" <c:if test="${travelReservation.ssdate eq '25'}">selected="selected"</c:if>>25</option>
+							<option value="26" <c:if test="${travelReservation.ssdate eq '26'}">selected="selected"</c:if>>26</option>
+							<option value="27" <c:if test="${travelReservation.ssdate eq '27'}">selected="selected"</c:if>>27</option>
+							<option value="28" <c:if test="${travelReservation.ssdate eq '28'}">selected="selected"</c:if>>28</option>
+							<option value="29" <c:if test="${travelReservation.ssdate eq '29'}">selected="selected"</c:if>>29</option>
+							<option value="30" <c:if test="${travelReservation.ssdate eq '30'}">selected="selected"</c:if>>30</option>
+							<option value="31" <c:if test="${travelReservation.ssdate eq '31'}">selected="selected"</c:if>>31</option>
 						</select>
 						일	
-						<input type="button" id="" name="" class="bbs_btn" value="검색" title="검색" />
+						<input type="button" id="date" name="" class="bbs_btn" value="검색" title="검색" onclick="day_search()"/>
 						</fieldset>
 					</div>
 						
 					
 					<a href="javascript:fn_excelDown();" class="button" style="float:right;font-size:14px;">엑셀다운로드</a>
-					<table border="0" cellpadding="0" class="tbl01 tac">
-						<caption>해수욕장현황관리 - 번호,해수욕장,시간,인원</caption>
+					<div class="scroll">
+					<table border="0" cellpadding="0" class="tbl01 tac fixed">
+						<caption>해수욕장시간별현황관리 - 번호,해수욕장,시간</caption>
 						<thead>
 							<colgroup>
-								<col />
-								<col />
-								<col />
-								<col />
+									<c:forEach begin="1" end="50" step="1">
+	            						<col style="width:70px;" />
+	            					</c:forEach>
 							</colgroup>
 							<tr>
 								<th scope="col">NO</th>
 								<th scope="col">해수욕장명</th>
-								<th scope="col">시간대 최대인원</th>
-								<th scope="col">피크시간</th>
+								<c:forEach var="i" begin="0" end="23" step="1">
+	            						<c:forEach var="j" begin="0" end="3" step="3">
+	            							<th scope="col"><c:out value="${i}"/>시<c:out value="${j}"/>0분</th>
+	            						</c:forEach>
+	            				</c:forEach>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="bList" items="${bList}" varStatus="status">
+							<c:forEach var="tlist" items="${timelist}" varStatus="status">
 							<tr>
-								<td><c:out value="${bList.seq_id}"/></td>
-								<td><c:out value="${bList.poi_nm}"/></td>
-								<td><c:out value="${bList.max_uniq_pop}"/> 명</td>
-								<td><c:out value="${fn:substring(bList.max_time, 0, 4)}"/>년 <c:out value="${fn:substring(bList.max_time, 5, 7)}"/>월 <c:out value="${fn:substring(bList.max_time, 8, 10)}"/>일   <c:out value="${fn:substring(bList.max_time, 11, 13)}"/>시 <c:out value="${fn:substring(bList.max_time, 14, 16)}"/>분</td>
+								<td><c:out value="${tlist.seq_id}"/></td>
+								<td><c:out value="${tlist.poi_nm}"/></td>
+								<td><c:out value="${tlist.time0000}"/></td>
+								<td><c:out value="${tlist.time0030}"/></td>
+								<td><c:out value="${tlist.time0100}"/></td>
+								<td><c:out value="${tlist.time0130}"/></td>
+								<td><c:out value="${tlist.time0200}"/></td>
+								<td><c:out value="${tlist.time0230}"/></td>
+								<td><c:out value="${tlist.time0300}"/></td>
+								<td><c:out value="${tlist.time0330}"/></td>
+								<td><c:out value="${tlist.time0400}"/></td>
+								<td><c:out value="${tlist.time0430}"/></td>
+								<td><c:out value="${tlist.time0500}"/></td>
+								<td><c:out value="${tlist.time0530}"/></td>
+								<td><c:out value="${tlist.time0600}"/></td>
+								<td><c:out value="${tlist.time0630}"/></td>
+								<td><c:out value="${tlist.time0700}"/></td>
+								<td><c:out value="${tlist.time0730}"/></td>
+								<td><c:out value="${tlist.time0800}"/></td>
+								<td><c:out value="${tlist.time0830}"/></td>
+								<td><c:out value="${tlist.time0900}"/></td>
+								<td><c:out value="${tlist.time0930}"/></td>
+								<td><c:out value="${tlist.time1000}"/></td>
+								<td><c:out value="${tlist.time1030}"/></td>
+								<td><c:out value="${tlist.time1100}"/></td>
+								<td><c:out value="${tlist.time1130}"/></td>
+								<td><c:out value="${tlist.time1200}"/></td>
+								<td><c:out value="${tlist.time1230}"/></td>
+								<td><c:out value="${tlist.time1300}"/></td>
+								<td><c:out value="${tlist.time1330}"/></td>
+								<td><c:out value="${tlist.time1400}"/></td>
+								<td><c:out value="${tlist.time1430}"/></td>
+								<td><c:out value="${tlist.time1500}"/></td>
+								<td><c:out value="${tlist.time1530}"/></td>
+								<td><c:out value="${tlist.time1600}"/></td>
+								<td><c:out value="${tlist.time1630}"/></td>
+								<td><c:out value="${tlist.time1700}"/></td>
+								<td><c:out value="${tlist.time1730}"/></td>
+								<td><c:out value="${tlist.time1800}"/></td>
+								<td><c:out value="${tlist.time1830}"/></td>
+								<td><c:out value="${tlist.time1900}"/></td>
+								<td><c:out value="${tlist.time1930}"/></td>
+								<td><c:out value="${tlist.time2000}"/></td>
+								<td><c:out value="${tlist.time2030}"/></td>
+								<td><c:out value="${tlist.time2100}"/></td>
+								<td><c:out value="${tlist.time2130}"/></td>
+								<td><c:out value="${tlist.time2200}"/></td>
+								<td><c:out value="${tlist.time2230}"/></td>
+								<td><c:out value="${tlist.time2300}"/></td>
+								<td><c:out value="${tlist.time2330}"/></td>
 							</tr>
 							</c:forEach>
 						</tbody>
 					</table>
+					</div>
 				</div>
 				</form:form>
 			</div>

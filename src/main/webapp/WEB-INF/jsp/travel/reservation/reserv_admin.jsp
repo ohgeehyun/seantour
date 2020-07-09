@@ -35,12 +35,22 @@ function fn_excelDown(){
 	document.getElementById("travelReservation").action = "<c:url value='/travel/reservation/reserv_admin_excelDown.do'/>";
    	document.getElementById("travelReservation").submit();
 }
+
+function fn_delete(reseNo){
+	var result = confirm('예약번호 : ' + reseNo + '\n선택하신 예약을 취소 하시겠습니까?');
+	if(result){
+		document.getElementById("travelReservation").reseNo.value = reseNo;
+		document.getElementById("travelReservation").useYn.value = 'Y';
+		document.getElementById("travelReservation").action = "<c:url value='/travel/reservation/delete.do'/>";
+	   	document.getElementById("travelReservation").submit();
+	}
+}
 </script>
 <body>
 	<div id="wrap">
 		<div id="header">
 			<div class="header_top">
-				<div class="logo"><a href=""><img src="<c:url value="/images/travel/admin/login_logo.png"/>" alt="바다여행일정 만들기 관리자" /></a></div>
+				<div class="logo"><a href="<c:url value="/travel/reservation/reserv_admin.do"/>"><img src="<c:url value="/images/travel/admin/login_logo.png"/>" alt="바다여행일정 만들기 관리자" /></a></div>
 				<div class="member_area">
 					<a href="<c:url value="/travel/reservation/area.do"/>" target="_blank" class="home">사용자 바로가기</a>
 					<a href="javascript:fn_logout();" class="login">관리자 로그아웃</a>
@@ -61,12 +71,16 @@ function fn_excelDown(){
 				<h2 class="title">관리자페이지</h2>
 				<ul id="snb">
 					<li><a href="<c:url value="/travel/reservation/reserv_admin.do"/>" class="on">회원관리</a></li>
-					<li><a href="<c:url value="/travel/reservation/reserv_admin_cond.do"/>">피크타임현황</a></li>
-					<li><a href="<c:url value="/travel/reservation/reserv_admin_time.do"/>">시간대별현황</a></li>
+					<c:if test="${travelReservation.reseBeachId eq 'R0000'}">
+						<li><a href="<c:url value="/travel/reservation/reserv_admin_cond.do"/>">피크타임현황</a></li>
+						<!-- <li><a href="<c:url value="/travel/reservation/reserv_admin_time.do"/>">시간대별현황</a></li> -->
+					</c:if>
 				</ul>
 			</div>
 			<div id="content" class="cont_wrap">
 				<form:form commandName="travelReservation" method="post">
+				<form:hidden path="reseNo"/>
+				<form:hidden path="useYn"/>
 				<input type="hidden" id="reseBeachId" name="reseBeachId" value="${travelReservation.reseBeachId}"/>
 				<div class="cont_head">
 					<h1 class="tit">회원정보관리</h1>
@@ -98,7 +112,8 @@ function fn_excelDown(){
 								<col />
 								<col />
 								<col />
-								<col style="width: 15%;" />
+								<col />
+								<col />
 							</colgroup>
 							<tr>
 								<th scope="col">NO</th>
@@ -109,7 +124,8 @@ function fn_excelDown(){
 								<th scope="col">인원</th>
 								<th scope="col">이름</th>
 								<th scope="col">전화번호</th>
-								<th scope="col">비고</th>
+								<th scope="col">예약자주소</th>
+								<th scope="col">예약취소</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -133,10 +149,11 @@ function fn_excelDown(){
 	            						</c:otherwise>
 	            					</c:choose>
 								</td>
-								<td><c:out value="${rese.resePersonnel}"/>명</td>
+								<td><c:out value="${rese.resePersonnel}"/></td>
 								<td><c:out value="${rese.reseName}"/></td>
 								<td><c:out value="${fn:substring(rese.reseTel, 0, 3)}"/>-<c:out value="${fn:substring(rese.reseTel, 3, 7)}"/>-<c:out value="${fn:substring(rese.reseTel, 7, 11)}"/></td>
-								<td></td>
+								<td><c:out value="${rese.reseAreaName}"/></td>
+								<td><a href="javascript:fn_delete('${rese.reseNo}');" class="button xs lightblue">취소</a></td>
 							</tr>
 							</c:forEach>
 						</tbody>
