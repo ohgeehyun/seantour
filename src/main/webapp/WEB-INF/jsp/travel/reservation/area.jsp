@@ -144,8 +144,13 @@ function fn_areaChange(val){
 		}
 	</c:forEach>
 	//세종 선택 시 구/군 비활성화
-	if(val == '08') $('#reseAreaCd_2').attr('disabled', true);
-	else $('#reseAreaCd_2').attr('disabled', false);
+	if(val == '08'){
+		$('#reseAreaCd_2').attr('disabled', true);
+		$('#reseAreaCd_2').attr('style', 'background:#e8e8e8;');
+	}else{
+		$('#reseAreaCd_2').attr('disabled', false);
+		$('#reseAreaCd_2').attr('style', 'background:#fff;');
+	}
 }
 
 $(document).ready(function(){
