@@ -13,6 +13,9 @@ $(document).ready(function(){
 	$('#close').click(function(){
 		$('#pop').hide();
 	});
+	$('#close2').click(function(){
+		$('#pop2').hide();
+	});
 });	
 var map;
 $(document).ready(function(){
@@ -155,6 +158,12 @@ $(document).ready(function(){
 			<div><img src="${pageContext.request.contextPath}/travel/common/images/content/img_popup_faq.jpg" alt="" /></div>
 			<div id="close">close</div>
 		</div>
+		<div id="pop2">
+         <div><img src="${pageContext.request.contextPath}/travel/common/images/content/img_popup_qna2.jpg" alt="" usemap="#button"/>
+         <map name="button" id="button"><area shape="rect" target="_blank" coords="49,250,200,282" href="http://songhobeach.kr" alt=""></map>
+         </div>
+         <div id="close2">close</div>
+      	</div>
 		<!-- header -->
 			<%@ include file="/WEB-INF/jsp/travel/tpl/gnb.jsp" %>
 		<!-- // header -->
