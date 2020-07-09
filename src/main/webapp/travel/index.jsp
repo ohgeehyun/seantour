@@ -12,23 +12,27 @@
 
 <%@ include file="/WEB-INF/jsp/travel/tpl/head.jsp" %>
    <script>
-   	$(document).ready(function(){
+    	$(document).ready(function(){
   		$('#close').click(function(){
   			$('#pop').hide();
+     
   		});
-  		var d = new Date(); 
+	});
+  	   var d = new Date(); 
 		var currentDate = d.getFullYear() + "년 " + ( d.getMonth() + 1 ) + "월 " + d.getDate() + "일 "; 
 		var currentTime = "";
 		if(d.getMinutes() < 30){
-			currentTime = (d.getHours() -1) + "시 30분 기준;
+			currentTime = (d.getHours()) + "시00분";
 		}else{
-			currentTime = d.getHours() + "시 00분 기준;
+			currentTime = d.getHours() + "시30분";
 		}
-		$('.time_area ').text(currentDate + currentTime );
+		$('.time').find('span').text(currentDate + currentTime);
+  		
   		$.ajax({
   			type:'post',
   			url:"/seantour_map/travel/mainBeachCongestion.do",
-  		    success: function(data) {  		    	
+  		    success: function(data) {  		
+                $('.time').find('span').text(currentTime);
 				for(var i=0; i < data.length; i++){
 					if(i < 10){
 						$('.spot' + (i + 1)).find('span').removeClass();						
@@ -39,15 +43,15 @@
 						$('.spot' + (i + 1)).find('a').removeClass();
 						$('.spot' + (i + 1)).find('a').addClass('icon');
 						var classNm = checkBeachCongestion(data[i].seqId, data[i].uniqPop);
-						$('.spot' + (i + 1)).find('a').addClass(classNm);						
-					}
+						$('.spot' + (i + 1)).find('a').addClass(classNm);	
+					}            
 				}
 		    },
 		    error: function(err) {		    	
-				alert("신호등 데이터를 가져오는 도중 오류가 발생하였습니다.");
+			/* 	alert("신호등 데이터를 가져오는 도중 오류가 발생하였습니다."); */
 		    }
-  		});
-	});
+     })
+
 
 	function checkBeachCongestion(beachId, population){
   		var returnStr = '';

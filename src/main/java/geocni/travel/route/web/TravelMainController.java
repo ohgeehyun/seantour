@@ -101,20 +101,16 @@ public class TravelMainController {
 			datestr =sdf.format(cal.getTime());
 			datestrtemp = datestr.substring(0,8);
 			datestrtimechange = "23"; //23시
-		}else {
-			cal.add(Calendar.HOUR, -1);
-			datestr =sdf.format(cal.getTime());
-			datestrtemp = datestr.substring(0,8);
-			datestrtimechange = String.valueOf(Integer.valueOf(datestrtimechange) -1); //23시 // 13시 일경우 12시 30분의 데이터를 가저와야하기 때문 시간 -1 
 		}
 		
 		
 		if(minute > 0 && minute < 30) {
-			if (Integer.parseInt(datestrtimechange) <10)
+			if (Integer.parseInt(datestrtimechange) <= 10)
 			{
 			datestrtimechange= "0"+ String.valueOf(Integer.valueOf(datestrtimechange)-1);
 			}
-			datestrtimechange= String.valueOf((Integer.parseInt(datestrtimechange)-1));
+			datestrtimechange= String.valueOf(Integer.valueOf(datestrtimechange)-1);
+			datestr = datestrtemp + datestrtimechange + "30";
 		}else {
 			datestr = Integer.valueOf(datestr.substring(0, 10)) + "00";
 		}
