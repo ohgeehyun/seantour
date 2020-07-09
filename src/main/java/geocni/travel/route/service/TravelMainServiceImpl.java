@@ -28,89 +28,121 @@ public class TravelMainServiceImpl extends EgovAbstractServiceImpl implements Tr
 	@Override
 	public List<TravelMain> selectBeachPerCnt() throws Exception {
 		//DB 호출해서 정보값 가져오도록 할것.
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
-		String datestr = sdf.format(cal.getTime());
-		
-		int minute = Integer.valueOf(datestr.substring(10, 12));
-		String datestrtemp = datestr.substring(0,8);
-		String datestrtimechange = String.valueOf(Integer.valueOf(datestr.substring(8,10)));//시간변경
-		
-		if (Integer.parseInt(datestrtimechange) <10)
-		{
-			datestrtimechange= "0"+datestrtimechange;
-		}
-		
-		
-		if(datestrtimechange == "00")
-		{
-			cal.add(Calendar.DATE, -1);
-			datestr =sdf.format(cal.getTime());
-			datestrtemp = datestr.substring(0,8);
-			datestrtimechange = "23"; //23시
-		}else {
-			cal.add(Calendar.HOUR, -1);
-			datestr =sdf.format(cal.getTime());
-			datestrtemp = datestr.substring(0,8);
-			datestrtimechange = String.valueOf((Integer.parseInt(datestrtimechange)-1)); // 13시 일경우 12시 30분의 데이터를 가저와야하기 때문 시간 -1 
-		}
-		
-		if(minute > 0 && minute < 30) {
-		
-			datestrtimechange=  String.valueOf(Integer.valueOf(datestrtimechange)-1);
-		}else {
-			datestr = Integer.valueOf(datestr.substring(0, 10)) + "00";
-		}
+				Calendar cal = Calendar.getInstance();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
+				String datestr = sdf.format(cal.getTime());
+				
+				String datestrtimechange = String.valueOf(Integer.valueOf(datestr.substring(8,10)));//시간변경
+				int minute = Integer.valueOf(datestr.substring(10, 12));   // 분
+				String datestrtemp = datestr.substring(0,8);               // 년도 월 일 부분 교체 하기 위함 
+				
+				if(datestrtimechange == "00")                              // 00시 일 경우 전 날 23시 30분 에 대한 정보가 필요
+				{
+					cal.add(Calendar.DATE, -1);                            //전날 
+					datestr =sdf.format(cal.getTime());
+					datestrtemp = datestr.substring(0,8);                  // 년도 월 일 
+					datestrtimechange = "23"; //23시                        //시간        --> 최종적으로 datestrtemp+datestrtimechange 년도 월 일 시간 이 되어야함 
+				}
+				
+																			//하나 추가 해야하는게 00시 30분일때 는 당일 00시에 대한정보를 가저와야한다 고로 이 부분을 추가해주자.
+				if(minute > 0 && minute < 30) {                                                           
+					if (Integer.parseInt(datestrtimechange) <= 10)
+					{
+					datestrtimechange= "0"+ String.valueOf(Integer.valueOf(datestrtimechange)-1);    //0분일 경우 전 시간에 대한 정보가 필요하다 또한 10시 미만일경우 int로 형변환후 계산시 숫자가 하나로 표기됨
+					}else{
+					datestrtimechange= String.valueOf(Integer.valueOf(datestrtimechange)-1);         // 시간에 -1 을 해도 2자리수일경우 굳이 "0"을 안붙혀줘도 된다. 
+					}
+					datestr = datestrtemp + datestrtimechange + "30";                               //끝에 30분 추가
+				}else {
+					datestr = Integer.valueOf(datestr.substring(0, 10)) + "00";                       // 30분 이상일 경우는 그 시간대에 00분 정보를 가저와야 함
+				}
+						
 
 		
 		System.out.println("------------------------"+datestr);
 		return travelMainDAO.selectBeachPerCnt(datestr);
 	}
-	@Override
-	public  void insertBeachPer(TravelMain vo) throws Exception{
-		travelMainDAO.insertBeachPer(vo);
-	}
 	
 	@Override
-	public List<?> selectBeachPerCntapi() throws Exception {
+	public List<TravelMain> newselectBeachPerCnt() throws Exception {
 		//DB 호출해서 정보값 가져오도록 할것.
 				Calendar cal = Calendar.getInstance();
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
 				String datestr = sdf.format(cal.getTime());
 				
 				String datestrtimechange = String.valueOf(Integer.valueOf(datestr.substring(8,10)));//시간변경
-				if (Integer.parseInt(datestrtimechange) <10)
-				{
-					datestrtimechange= "0"+datestrtimechange;
-				}
-				int minute = Integer.valueOf(datestr.substring(10, 12));
-				String datestrtemp = datestr.substring(0,8);
+				int minute = Integer.valueOf(datestr.substring(10, 12));   // 분
+				String datestrtemp = datestr.substring(0,8);               // 년도 월 일 부분 교체 하기 위함 
 				
-				if(datestrtimechange == "00")
+				if(datestrtimechange == "00")                              // 00시 일 경우 전 날 23시 30분 에 대한 정보가 필요
 				{
-					cal.add(Calendar.DATE, -1);
+					cal.add(Calendar.DATE, -1);                            //전날 
 					datestr =sdf.format(cal.getTime());
-					datestrtemp = datestr.substring(0,8);
-					datestrtimechange = "23"; //23시
+					datestrtemp = datestr.substring(0,8);                  // 년도 월 일 
+					datestrtimechange = "23"; //23시                        //시간        --> 최종적으로 datestrtemp+datestrtimechange 년도 월 일 시간 이 되어야함 
 				}
 				
-				
-				if(minute > 0 && minute < 30) {
+																			//하나 추가 해야하는게 00시 30분일때 는 당일 00시에 대한정보를 가저와야한다 고로 이 부분을 추가해주자.
+				if(minute > 0 && minute < 30) {                                                           
 					if (Integer.parseInt(datestrtimechange) <= 10)
 					{
-					datestrtimechange= "0"+ String.valueOf(Integer.valueOf(datestrtimechange)-1);
+					datestrtimechange= "0"+ String.valueOf(Integer.valueOf(datestrtimechange)-1);    //0분일 경우 전 시간에 대한 정보가 필요하다 또한 10시 미만일경우 int로 형변환후 계산시 숫자가 하나로 표기됨
+					}else{
+					datestrtimechange= String.valueOf(Integer.valueOf(datestrtimechange)-1);         // 시간에 -1 을 해도 2자리수일경우 굳이 "0"을 안붙혀줘도 된다. 
 					}
-					datestrtimechange= String.valueOf(Integer.valueOf(datestrtimechange)-1);
-					datestr = datestrtemp + datestrtimechange + "30";
+					datestr = datestrtemp + datestrtimechange + "30";                               //끝에 30분 추가
 				}else {
-					datestr = Integer.valueOf(datestr.substring(0, 10)) + "00";
+					datestr = Integer.valueOf(datestr.substring(0, 10)) + "00";                       // 30분 이상일 경우는 그 시간대에 00분 정보를 가저와야 함
 				}
+						
+
+		
+		System.out.println("------------------------"+datestr);
+		return travelMainDAO.selectBeachPerCnt(datestr);
+	}
+	
+	@Override
+	public List<?> selectBeachPerCntapi() throws Exception {
+		//DB 호출해서 정보값 가져오도록 할것.
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
+		String datestr = sdf.format(cal.getTime());
+		
+		String datestrtimechange = String.valueOf(Integer.valueOf(datestr.substring(8,10)));//시간변경
+		int minute = Integer.valueOf(datestr.substring(10, 12));   // 분
+		String datestrtemp = datestr.substring(0,8);               // 년도 월 일 부분 교체 하기 위함 
+		
+		if(datestrtimechange == "00")                              // 00시 일 경우 전 날 23시 30분 에 대한 정보가 필요
+		{
+			cal.add(Calendar.DATE, -1);                            //전날 
+			datestr =sdf.format(cal.getTime());
+			datestrtemp = datestr.substring(0,8);                  // 년도 월 일 
+			datestrtimechange = "23"; //23시                        //시간        --> 최종적으로 datestrtemp+datestrtimechange 년도 월 일 시간 이 되어야함 
+		}
+		
+																	//하나 추가 해야하는게 00시 30분일때 는 당일 00시에 대한정보를 가저와야한다 고로 이 부분을 추가해주자.
+		if(minute > 0 && minute < 30) {                                                           
+			if (Integer.parseInt(datestrtimechange) <= 10)
+			{
+			datestrtimechange= "0"+ String.valueOf(Integer.valueOf(datestrtimechange)-1);    //0분일 경우 전 시간에 대한 정보가 필요하다 또한 10시 미만일경우 int로 형변환후 계산시 숫자가 하나로 표기됨
+			}else{
+			datestrtimechange= String.valueOf(Integer.valueOf(datestrtimechange)-1);         // 시간에 -1 을 해도 2자리수일경우 굳이 "0"을 안붙혀줘도 된다. 
+			}
+			datestr = datestrtemp + datestrtimechange + "30";                               //끝에 30분 추가
+		}else {
+			datestr = Integer.valueOf(datestr.substring(0, 10)) + "00";                       // 30분 이상일 경우는 그 시간대에 00분 정보를 가저와야 함
+		}
+				
 						
 		
 		System.out.println("------------------------"+datestr);
 		return (List<?>)travelMainDAO.selectBeachPerCntapi(datestr);
 	}
 
+	@Override
+	public  void insertBeachPer(TravelMain vo) throws Exception{
+		travelMainDAO.insertBeachPer(vo);
+	}
 //
 //	@Override
 //	public List<?> selectTravelRouteList(TravelRoute vo) throws Exception {

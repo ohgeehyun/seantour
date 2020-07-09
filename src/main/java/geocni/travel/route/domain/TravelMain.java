@@ -19,6 +19,16 @@ public class TravelMain extends TravelDefaultVO {
 
     /*해수욕장별 인구수*/
     private String uniqPop;
+    
+    private String congestion;
+    
+    public String getCongestion() {
+    	return congestion;
+    }
+    
+    public void setCongestion(String congestion) {
+    	this.congestion = congestion;
+    }
 
 	public String getEtlDt() {
 		return etlDt;
