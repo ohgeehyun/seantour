@@ -143,6 +143,9 @@ function fn_areaChange(val){
 			$('#reseAreaCd_2').append('<option value="${area2.reseAreaCd_2}">${area2.reseAreaName_2}</option>');
 		}
 	</c:forEach>
+	//세종 선택 시 구/군 비활성화
+	if(val == '08') $('#reseAreaCd_2').attr('disabled', true);
+	else $('#reseAreaCd_2').attr('disabled', false);
 }
 
 $(document).ready(function(){
@@ -159,11 +162,11 @@ $(document).ready(function(){
 			<div id="close">close</div>
 		</div>
 		<div id="pop2">
-         <div><img src="${pageContext.request.contextPath}/travel/common/images/content/img_popup_qna2.jpg" alt="" usemap="#button"/>
-         <map name="button" id="button"><area shape="rect" target="_blank" coords="49,250,200,282" href="http://songhobeach.kr" alt=""></map>
-         </div>
-         <div id="close2">close</div>
-      	</div>
+			<div><img src="${pageContext.request.contextPath}/travel/common/images/content/img_popup_qna2.jpg" alt="" usemap="#button"/>
+			<map name="button" id="button"><area shape="rect" target="_blank" coords="49,250,200,282" href="http://songhobeach.kr" alt=""></map>
+			</div>
+			<div id="close2">close</div>
+		</div>
 		<!-- header -->
 			<%@ include file="/WEB-INF/jsp/travel/tpl/gnb.jsp" %>
 		<!-- // header -->
