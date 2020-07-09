@@ -27,7 +27,7 @@ function fn_excelDown(){
 	<div id="wrap">
 		<div id="header">
 			<div class="header_top">
-				<div class="logo"><a href=""><img src="<c:url value="/images/travel/admin/login_logo.png"/>" alt="바다여행일정 만들기 관리자" /></a></div>
+				<div class="logo"><a href="<c:url value="/travel/reservation/reserv_admin.do"/>"><img src="<c:url value="/images/travel/admin/login_logo.png"/>" alt="바다여행일정 만들기 관리자" /></a></div>
 				<div class="member_area">
 					<a href="<c:url value="/travel/reservation/area.do"/>" target="_blank" class="home">사용자 바로가기</a>
 					<a href="javascript:fn_logout();" class="login">관리자 로그아웃</a>
@@ -48,8 +48,10 @@ function fn_excelDown(){
 				<h2 class="title">관리자페이지</h2>
 				<ul id="snb">
 					<li><a href="<c:url value="/travel/reservation/reserv_admin.do"/>">회원관리</a></li>
-					<li><a href="<c:url value="/travel/reservation/reserv_admin_cond.do"/>" class="on">피크타임현황</a></li>
-					<li><a href="<c:url value="/travel/reservation/reserv_admin_time.do"/>">시간대별현황</a></li>
+					<c:if test="${travelReservation.reseBeachId eq 'R0000'}">
+						<li><a href="<c:url value="/travel/reservation/reserv_admin_cond.do"/>" class="on">피크타임현황</a></li>
+						<!-- <li><a href="<c:url value="/travel/reservation/reserv_admin_time.do"/>">시간대별현황</a></li> -->
+					</c:if>
 				</ul>
 			</div>
 			<div id="content" class="cont_wrap">
@@ -81,7 +83,7 @@ function fn_excelDown(){
 							<tr>
 								<td><c:out value="${bList.seq_id}"/></td>
 								<td><c:out value="${bList.poi_nm}"/></td>
-								<td><c:out value="${bList.max_uniq_pop}"/> 명</td>
+								<td><c:out value="${bList.max_uniq_pop}"/></td>
 								<td><c:out value="${fn:substring(bList.max_time, 0, 4)}"/>년 <c:out value="${fn:substring(bList.max_time, 5, 7)}"/>월 <c:out value="${fn:substring(bList.max_time, 8, 10)}"/>일   <c:out value="${fn:substring(bList.max_time, 11, 13)}"/>시 <c:out value="${fn:substring(bList.max_time, 14, 16)}"/>분</td>
 							</tr>
 							</c:forEach>

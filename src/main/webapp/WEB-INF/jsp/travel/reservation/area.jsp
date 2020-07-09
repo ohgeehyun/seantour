@@ -24,7 +24,7 @@ $(document).ready(function(){
 			case 'R0003' : alertVal = "풍류 해수욕장 개장일은 7.10.~8.16. 입니다."; break;
 			case 'R0004' : alertVal = "율포솔밭 해수욕장 개장일은 7.11.~8.30. 입니다."; break;
 			case 'R0005' : alertVal = "수문 해수욕장 개장일은 7.10.~8.9. 입니다."; break;
-			case 'R0006' : alertVal = "송호 해수욕장 개장일은 7.17.~8.9. 입니다."; break;
+			case 'R0006' : alertVal = "송호 해수욕장 개장일은 7.18.~8.9. 입니다."; break;
 			case 'R0007' : alertVal = "돌머리 해수욕장 개장일은 7.17.~8.16. 입니다."; break;
 			case 'R0008' : alertVal = "가마미 해수욕장 개장일은 7.10.~8.23. 입니다."; break;
 			case 'R0009' : alertVal = "송이도 해수욕장 개장일은 7.20.~8.11. 입니다."; break;
@@ -69,6 +69,7 @@ function fn_egov_link_page(){
 function fn_insert(){
 	if($('#resePersonnel').val() == ""){
 		alert('인원을 선택해 주세요.');
+		$('#resePersonnel').focus();
 		return false;
 	}
 	if($('#reseName').val() == ""){
@@ -80,6 +81,16 @@ function fn_insert(){
 		alert('전화번호를 입력해 주세요.');
 		if($('#reseTel_02').val() == "") $('#reseTel_02').focus();
 		if($('#reseTel_03').val() == "") $('#reseTel_03').focus();
+		return false;
+	}
+	if($('#reseAreaCd').val() == ""){
+		alert('예약자주소 시/도를 선택해 주세요.');
+		$('#reseAreaCd').focus();
+		return false;
+	}
+	if($('#reseAreaCd_2').val() == "" && $('#reseAreaCd').val() != "08"){
+		alert('예약자주소 구/군을 선택해 주세요.');
+		$('#reseAreaCd_2').focus();
 		return false;
 	}
 	if($('#chkAgree2').prop('checked') == false){
@@ -118,6 +129,16 @@ function fn_timeChange(val){
 		if(tmp == '03') $('#reseTime').append('<option value="03" selected="selected">15:00 ~ 18:00</option>');
 		else $('#reseTime').append('<option value="03">15:00 ~ 18:00</option>');
 	}
+}
+
+function fn_areaChange(val){
+	$('#reseAreaCd_2').empty();
+	$('#reseAreaCd_2').append('<option value="">구/군 선택</option>');
+	<c:forEach items="${areaList2}" var="area2">
+		if("${area2.reseAreaCd}" == val){
+			$('#reseAreaCd_2').append('<option value="${area2.reseAreaCd_2}">${area2.reseAreaName_2}</option>');
+		}
+	</c:forEach>
 }
 
 $(document).ready(function(){
@@ -285,15 +306,23 @@ $(document).ready(function(){
 	            			</dd>
 	            		</dl>
 	            		<dl class="form_group">
-	            			<dt>주소</dt>
+	            			<dt>예약자주소</dt>
 	            			<dd class="slt50">
-	            				<select id="" name="" title="시">
-	            						<option value=""></option>
-	            				</select>
-	            				<select id="" name="" title="군">
-	            						<option value=""></option>
-	            				</select>
-							</dd>
+	            				<select id="reseAreaCd" name="reseAreaCd" title="시/도" onchange="fn_areaChange(this.value);">
+	            					<option value=''>시/도 선택</option>
+		            				<c:forEach var="area" items="${areaList}" varStatus="status">
+										<option value='<c:out value="${area.reseAreaCd}"/>'><c:out value="${area.reseAreaName}"/></option>
+									</c:forEach>
+								</select>
+	            				<select id="reseAreaCd_2" name="reseAreaCd_2" title="구/군">
+	            					<option value=''>구/군 선택</option>
+		            				<c:forEach var="area2" items="${areaList2}" varStatus="status">
+		            					<c:if test="${travelReservation.reseAreaCd eq fn:substring(area2.reseAreaCd, 0, 2)}">
+											<option value='<c:out value="${area2.reseAreaCd_2}"/>'><c:out value="${area2.reseAreaName_2}"/></option>
+										</c:if>
+									</c:forEach>
+								</select>
+	            			</dd>
 	            		</dl>
 	            	</div>
 	            	<h3 class="lec_privacy_tit" id="lec_privacy_tit" style="display:none">개인정보 수집 및 이용에 대한안내</h3>

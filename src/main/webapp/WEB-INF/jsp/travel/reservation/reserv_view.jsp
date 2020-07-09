@@ -116,6 +116,12 @@ function fn_delete(reseNo){
 	            				</p>
 	            			</dd>
 	            		</dl>
+	            		<dl class="form_group">
+	            			<dt>예약자주소</dt>
+	            			<dd>
+	            				<p><c:out value="${view.reseAreaName}"/></p>
+	            			</dd>
+	            		</dl>
 	            	</div>	
 	            	</c:forEach>
 	            	<div class="reservBtn_box tac">

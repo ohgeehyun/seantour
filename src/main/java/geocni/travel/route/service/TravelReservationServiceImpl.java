@@ -101,6 +101,16 @@ public class TravelReservationServiceImpl extends EgovAbstractServiceImpl implem
     	
 		return resultMap;
 	}
+	
+	@Override
+	public List<?> selectTravelReservationAreaList(TravelReservation vo) throws Exception {
+		return travelReservationDAO.selectTravelReservationAreaList(vo);
+	}
+	
+	@Override
+	public List<?> selectTravelReservationAreaList2(TravelReservation vo) throws Exception {
+		return travelReservationDAO.selectTravelReservationAreaList2(vo);
+	}
 
 	private PaginationInfo makePagination(TravelDefaultVO vo) {
 		PaginationInfo paginationInfo = new PaginationInfo();

@@ -98,22 +98,31 @@ public class TravelReservationController {
 			,TravelReservation travelReservation
 			,SessionStatus status
 			,Model model) throws Exception {
+		//해수욕장 지역목록
 		List<?> regionList = reseService.selectTravelReservationRegionList(travelReservation);
 		model.addAttribute("regionList", regionList);
+		//해수욕장 목록
 		List<?> beachList = reseService.selectTravelReservationBeachList(travelReservation);
 		model.addAttribute("beachList", beachList);
-		//List<?> areaList = reseService.selectTravelReservationAreaList(travelReservation);
-		//model.addAttribute("areaList", areaList);
+		//예약자주소 시/도
+		List<?> areaList = reseService.selectTravelReservationAreaList(travelReservation);
+		model.addAttribute("areaList", areaList);
+		//예약자주소 구/군
+		List<?> areaList2 = reseService.selectTravelReservationAreaList2(travelReservation);
+		model.addAttribute("areaList2", areaList2);
 		model.addAttribute("travelReservation", travelReservation);
 		
 		if(travelReservation.getMonth() != null && travelReservation.getDay() != null && travelReservation.getReseTime() != null) {
 			travelReservation.setReseDate("2020" + travelReservation.getMonth() + travelReservation.getDay());
 			travelReservation.setReseBeachId("R" + travelReservation.getReseBeachRegionCd() + travelReservation.getReseBeachNameCd());
+			//해수욕장 개장여부 조회
 			String openYn = reseService.selectTravelOpenYn(travelReservation);
 			travelReservation.setOpenYn(openYn);
-			if("Y".equals(openYn)) {
+			if("Y".equals(openYn)) {	//해수욕장 개장인 경우
+				//최대수용 인원 초과 체크
 				String reservationYn = reseService.selectTravelReservationYn(travelReservation);
 				travelReservation.setReservationYn(reservationYn);
+				//해수욕장 예약가능인원 조회
 				String reseAvaiCnt = reseService.selectTravelReservationPossCnt(travelReservation);
 				travelReservation.setResePossCnt(reseAvaiCnt);
 			}
@@ -149,7 +158,7 @@ public class TravelReservationController {
 					return "/jnit/util/alertMove";
 				}
 				
-				//최대수용 인원을 초과 체크
+				//최대수용 인원 초과 체크
 				String reservationYn = reseService.selectTravelReservationYn(travelReservation);
 				if("N".equals(reservationYn)) {
 					model.addAttribute("alert", "예약이 불가능 합니다.\\n최대수용 인원을 초과 하였습니다.");
@@ -161,12 +170,14 @@ public class TravelReservationController {
 					model.addAttribute("alert", "예약이 불가능 합니다.\\n이미 신청한 내역이 있습니다.");
 					return "jnit/util/alertBack";
 				}
-				//인원 값 숫자여부와 5보다 큰 경우 오류
-				if(Integer.parseInt(travelReservation.getResePersonnel()) > 5 || !NumberUtil.isNumeric(travelReservation.getResePersonnel())) {
+				//인원 값 숫자여부와 1보다 작거나 5보다 큰 경우 오류
+				if(Integer.parseInt(travelReservation.getResePersonnel()) < 1 || Integer.parseInt(travelReservation.getResePersonnel()) > 5 || !NumberUtil.isNumeric(travelReservation.getResePersonnel())) {
 					model.addAttribute("alert", "오류가 발생 하였습니다.");
 					return "jnit/util/alertBack";
 				}
 				
+				//세종인 경우 0800으로 값 넣기
+				if("08".equals(travelReservation.getReseAreaCd())) travelReservation.setReseAreaCd_2("0800");
 				reseService.insertTravelReservation(travelReservation);
 				
 				//예약 후 SMS 보내기
@@ -221,6 +232,11 @@ public class TravelReservationController {
 			,Model model) throws Exception {
 		
 		reseService.deleteTravelReservation(travelReservation);
+		
+		String adminBeachId = (String)request.getSession().getAttribute("adminBeachId");
+		if(!"".equals(adminBeachId) && adminBeachId != null && "Y".equals(travelReservation.getUseYn())) {
+			return "redirect:/" + skinPath + "reserv_admin.do";
+		}
 
 		return "redirect:/" + skinPath + "reserv_view.do?reseName=" + URLEncoder.encode(travelReservation.getReseName(), "UTF-8") + "&reseTel=" + travelReservation.getReseTel();
 	}
@@ -233,6 +249,7 @@ public class TravelReservationController {
 			,HttpServletRequest request
 			,Model model) throws Exception {
 		String reseName = request.getParameter("reseName");
+		//예약자 이름 Encoding된 경우 Decoding
 		while(reseName.indexOf("%") > -1) reseName = URLDecoder.decode(reseName, "UTF-8");
 		String reseTel = request.getParameter("reseTel");
 		
@@ -273,6 +290,7 @@ public class TravelReservationController {
 		travelReservation.setReseAdminId(reseAdminId);
 		travelReservation.setReseAdminPw(enReseAdminPw);
 		
+		//로그인 ID, PW로 해수욕장 ID 조회
 		String adminBeachId = reseService.selectTravelReservationAdmin(travelReservation);
 		
 		if("".equals(adminBeachId) || adminBeachId == null) {
@@ -291,6 +309,7 @@ public class TravelReservationController {
 			,HttpServletRequest request
 			,SessionStatus status
 			,Model model) throws Exception {
+		//로그인 여부 확인
 		String adminBeachId = (String)request.getSession().getAttribute("adminBeachId");
 		if("".equals(adminBeachId) || adminBeachId == null) {
 			model.addAttribute("alert", "로그인 후 이용해 주세요.");
@@ -307,6 +326,7 @@ public class TravelReservationController {
 			travelReservation.setSearchKeyword(searchKeyword);
 		}
 		
+		//페이징 세팅 - 한페이지에 보여지는 건수(50), 페이지수(10)
 		travelReservation.setPageUnit(50);
 		travelReservation.setPageSize(10);
 		
@@ -323,6 +343,7 @@ public class TravelReservationController {
 			,HttpServletRequest request
 			,SessionStatus status
 			,Model model) throws Exception {
+		//해수욕장 ID값 세션에서 제거
 		request.getSession().setAttribute("adminBeachId", null);
 
 		model.addAttribute("alert", "로그아웃 되었습니다.");
@@ -411,6 +432,9 @@ public class TravelReservationController {
 	    cell = row.createCell(6);
 	    cell.setCellStyle(headStyle);
 	    cell.setCellValue("전화번호");
+	    cell = row.createCell(7);
+	    cell.setCellStyle(headStyle);
+	    cell.setCellValue("예약자주소");
 
 	    // 데이터 부분 생성
 	    for(TravelReservation vo : excelList) {
@@ -439,7 +463,7 @@ public class TravelReservationController {
 	        cell.setCellValue(time);
 	        cell = row.createCell(4);
 	        cell.setCellStyle(bodyStyle);
-	        cell.setCellValue(vo.getResePersonnel() + "명");
+	        cell.setCellValue(Integer.parseInt(vo.getResePersonnel()));
 	        cell = row.createCell(5);
 	        cell.setCellStyle(bodyStyle);
 	        cell.setCellValue(vo.getReseName());
@@ -452,10 +476,13 @@ public class TravelReservationController {
 	        	telNo = vo.getReseTel().substring(0, 3) + "-" + vo.getReseTel().substring(3, 7) + "-" + vo.getReseTel().substring(7, 11);
 	        }
 	        cell.setCellValue(telNo);
+	        cell = row.createCell(7);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(vo.getReseAreaName());
 	    }
 	    
 	    // 셀 크기 자동조절
-	    for(int i=0; i<7; i++) {
+	    for(int i=0; i<=7; i++) {
 	    	sheet.autoSizeColumn(i);
 	    	sheet.setColumnWidth(i, (sheet.getColumnWidth(i))+512 );
 	    }
@@ -535,7 +562,7 @@ public class TravelReservationController {
 	        cell.setCellValue(vo.getPoi_nm());
 	        cell = row.createCell(2);
 	        cell.setCellStyle(bodyStyle);
-	        cell.setCellValue(vo.getMax_uniq_pop()+"명");
+	        cell.setCellValue(Integer.parseInt(vo.getMax_uniq_pop()));
 	        cell = row.createCell(3);
 	        cell.setCellStyle(bodyStyle);
 	        cell.setCellValue(vo.getMax_time().substring(0, 4) + "년 " + vo.getMax_time().substring(5, 7) + "월 " + vo.getMax_time().substring(8, 10) + "일 " + vo.getMax_time().substring(11, 13) + "시" + vo.getMax_time().substring(14, 16) + "분");
