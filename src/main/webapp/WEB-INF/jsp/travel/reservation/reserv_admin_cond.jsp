@@ -36,7 +36,7 @@ function fn_excelDown(){
 			<div class="loc_area">
 				<ol class="location">
 					<li class="home">홈</li>
-					<li class="current">회원관리</li>
+					<li class="current">피크타임현황</li>
 				</ol>
 			</div>
 	

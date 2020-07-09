@@ -103,6 +103,16 @@ public class TravelReservationServiceImpl extends EgovAbstractServiceImpl implem
 	}
 	
 	@Override
+	public Map<String, Object> selectBeachTimeList(TravelReservation vo) throws Exception {
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		
+    	List<TravelReservation> tlist = (List<TravelReservation>) travelReservationDAO.selectBeachTimeList(vo);
+    	resultMap.put("timelist", tlist);
+    	
+		return resultMap;
+	}
+	
+	@Override
 	public List<?> selectTravelReservationAreaList(TravelReservation vo) throws Exception {
 		return travelReservationDAO.selectTravelReservationAreaList(vo);
 	}

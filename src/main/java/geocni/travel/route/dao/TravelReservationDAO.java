@@ -61,6 +61,10 @@ public class TravelReservationDAO extends EgovComAbstractDAO {
 		return list("travelReservationDAO.selectBeachManagementList", vo);
 	}
 	
+	public List<?> selectBeachTimeList(TravelReservation vo) throws Exception {
+		return list("travelReservationDAO.selectBeachTimeList", vo);
+	}
+	
 	public List<?> selectTravelReservationAreaList(TravelReservation vo) throws Exception {
 		return list("travelReservationDAO.selectTravelReservationAreaList", vo);
 	}

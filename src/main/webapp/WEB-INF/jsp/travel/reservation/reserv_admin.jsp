@@ -50,7 +50,7 @@ function fn_delete(reseNo){
 	<div id="wrap">
 		<div id="header">
 			<div class="header_top">
-				<div class="logo"><a href=""><img src="<c:url value="/images/travel/admin/login_logo.png"/>" alt="바다여행일정 만들기 관리자" /></a></div>
+				<div class="logo"><a href="<c:url value="/travel/reservation/reserv_admin.do"/>"><img src="<c:url value="/images/travel/admin/login_logo.png"/>" alt="바다여행일정 만들기 관리자" /></a></div>
 				<div class="member_area">
 					<a href="<c:url value="/travel/reservation/area.do"/>" target="_blank" class="home">사용자 바로가기</a>
 					<a href="javascript:fn_logout();" class="login">관리자 로그아웃</a>

@@ -254,6 +254,62 @@
 		group by seq_id) a;
 	</select>
 	
+	<select id="travelReservationDAO.selectBeachTimeList" parameterClass="travelReservationVO" resultClass="travelReservationVO">
+		select seq_id, min(poi_nm) as poi_nm
+			, sum(case when a.etl_dt = '0000' then a.uniq_pop else 0 end) as time0000
+			, sum(case when a.etl_dt = '0030' then a.uniq_pop else 0 end) as time0030
+			, sum(case when a.etl_dt = '0100' then a.uniq_pop else 0 end) as time0100
+			, sum(case when a.etl_dt = '0130' then a.uniq_pop else 0 end) as time0130
+			, sum(case when a.etl_dt = '0200' then a.uniq_pop else 0 end) as time0200
+			, sum(case when a.etl_dt = '0230' then a.uniq_pop else 0 end) as time0230
+			, sum(case when a.etl_dt = '0300' then a.uniq_pop else 0 end) as time0300
+			, sum(case when a.etl_dt = '0330' then a.uniq_pop else 0 end) as time0330
+			, sum(case when a.etl_dt = '0400' then a.uniq_pop else 0 end) as time0400
+			, sum(case when a.etl_dt = '0430' then a.uniq_pop else 0 end) as time0430
+			, sum(case when a.etl_dt = '0500' then a.uniq_pop else 0 end) as time0500
+			, sum(case when a.etl_dt = '0530' then a.uniq_pop else 0 end) as time0530
+			, sum(case when a.etl_dt = '0600' then a.uniq_pop else 0 end) as time0600
+			, sum(case when a.etl_dt = '0630' then a.uniq_pop else 0 end) as time0630
+			, sum(case when a.etl_dt = '0700' then a.uniq_pop else 0 end) as time0700
+			, sum(case when a.etl_dt = '0730' then a.uniq_pop else 0 end) as time0730
+			, sum(case when a.etl_dt = '0800' then a.uniq_pop else 0 end) as time0800
+			, sum(case when a.etl_dt = '0830' then a.uniq_pop else 0 end) as time0830
+			, sum(case when a.etl_dt = '0900' then a.uniq_pop else 0 end) as time0900
+			, sum(case when a.etl_dt = '0930' then a.uniq_pop else 0 end) as time0930
+			, sum(case when a.etl_dt = '1000' then a.uniq_pop else 0 end) as time1000
+			, sum(case when a.etl_dt = '1030' then a.uniq_pop else 0 end) as time1030
+			, sum(case when a.etl_dt = '1100' then a.uniq_pop else 0 end) as time1100
+			, sum(case when a.etl_dt = '1130' then a.uniq_pop else 0 end) as time1130
+			, sum(case when a.etl_dt = '1200' then a.uniq_pop else 0 end) as time1200
+			, sum(case when a.etl_dt = '1230' then a.uniq_pop else 0 end) as time1230
+			, sum(case when a.etl_dt = '1300' then a.uniq_pop else 0 end) as time1300
+			, sum(case when a.etl_dt = '1330' then a.uniq_pop else 0 end) as time1330
+			, sum(case when a.etl_dt = '1400' then a.uniq_pop else 0 end) as time1400
+			, sum(case when a.etl_dt = '1430' then a.uniq_pop else 0 end) as time1430
+			, sum(case when a.etl_dt = '1500' then a.uniq_pop else 0 end) as time1500
+			, sum(case when a.etl_dt = '1530' then a.uniq_pop else 0 end) as time1530
+			, sum(case when a.etl_dt = '1600' then a.uniq_pop else 0 end) as time1600
+			, sum(case when a.etl_dt = '1630' then a.uniq_pop else 0 end) as time1630
+			, sum(case when a.etl_dt = '1700' then a.uniq_pop else 0 end) as time1700
+			, sum(case when a.etl_dt = '1730' then a.uniq_pop else 0 end) as time1730
+			, sum(case when a.etl_dt = '1800' then a.uniq_pop else 0 end) as time1800
+			, sum(case when a.etl_dt = '1830' then a.uniq_pop else 0 end) as time1830
+			, sum(case when a.etl_dt = '1900' then a.uniq_pop else 0 end) as time1900
+			, sum(case when a.etl_dt = '1930' then a.uniq_pop else 0 end) as time1930
+			, sum(case when a.etl_dt = '2000' then a.uniq_pop else 0 end) as time2000
+			, sum(case when a.etl_dt = '2030' then a.uniq_pop else 0 end) as time2030
+			, sum(case when a.etl_dt = '2100' then a.uniq_pop else 0 end) as time2100
+			, sum(case when a.etl_dt = '2130' then a.uniq_pop else 0 end) as time2130
+			, sum(case when a.etl_dt = '2200' then a.uniq_pop else 0 end) as time2200
+			, sum(case when a.etl_dt = '2230' then a.uniq_pop else 0 end) as time2230
+			, sum(case when a.etl_dt = '2300' then a.uniq_pop else 0 end) as time2300
+			, sum(case when a.etl_dt = '2330' then a.uniq_pop else 0 end) as time2330
+			from (select substr(etl_dt, 9, 4) as etl_dt, seq_id, poi_nm, uniq_pop
+			from geo_beach_congestion
+			where etl_dt like concat(#ssyear#,#ssmonth#,#ssdate#,'%')) a
+			group by seq_id;
+	</select>
+	
 	<select id="travelReservationDAO.selectTravelReservationListCnt" parameterClass="travelReservationVO" resultClass="int">
 		SELECT 
 			COUNT(*) totcnt

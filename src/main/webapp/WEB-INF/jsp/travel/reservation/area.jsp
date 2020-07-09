@@ -42,6 +42,7 @@ $(document).ready(function(){
 		document.getElementById("reservBtn_box").style.display = 'block';
 		document.getElementById("lec_privacy_tit").style.display = 'block';
 		document.getElementById("lec_privacy").style.display = 'block';
+		$('#pop').hide();
 	}else if('${travelReservation.reservationYn}' == 'N'){
 		alert('예약이 불가능 합니다.\n최대수용 인원을 초과 하였습니다.');
 		return;
@@ -145,18 +146,15 @@ $(document).ready(function(){
 	if('${travelReservation.reservationYn}' == 'Y'){
 		$(".jn_map").hide();
 	}
-
-	 $("#map").val();
-
 });
 </script>
 <body>
 	<div id="wrap">
 		<div id="accessibility"><a href="#content">본문 바로가기</a></div>
-		 <div id="pop">
-         <div><img src="${pageContext.request.contextPath}/travel/common/images/content/img_popup_faq.jpg" alt="" /></div>
-         <div id="close">close</div>
-      </div>
+		<div id="pop">
+			<div><img src="${pageContext.request.contextPath}/travel/common/images/content/img_popup_faq.jpg" alt="" /></div>
+			<div id="close">close</div>
+		</div>
 		<!-- header -->
 			<%@ include file="/WEB-INF/jsp/travel/tpl/gnb.jsp" %>
 		<!-- // header -->

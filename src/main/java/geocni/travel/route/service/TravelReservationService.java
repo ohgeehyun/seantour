@@ -30,6 +30,8 @@ public interface TravelReservationService {
 	
 	Map<String, Object> selectBeachManagementList(TravelReservation vo) throws Exception;
 	
+	Map<String, Object> selectBeachTimeList(TravelReservation vo) throws Exception;
+	
 	List<?> selectTravelReservationAreaList(TravelReservation vo) throws Exception;
 	
 	List<?> selectTravelReservationAreaList2(TravelReservation vo) throws Exception;

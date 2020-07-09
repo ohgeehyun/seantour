@@ -1,8 +1,11 @@
 package geocni.travel.common;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 
 public class TravelDefaultVO implements Serializable {
+	Calendar cal = Calendar.getInstance();
 
     private static final long serialVersionUID = 1L;
 
@@ -41,6 +44,37 @@ public class TravelDefaultVO implements Serializable {
 
     /** recordCountPerPage */
     private int recordCountPerPage = 10;
+    
+    private String ssyear = String.valueOf(cal.get(Calendar.YEAR));
+    
+    private String ssmonth =  String.format("%02d",cal.get(Calendar.MONTH) + 1);
+    
+    private String ssdate =  String.format("%02d",cal.get(Calendar.DAY_OF_MONTH));
+
+
+	public String getSsmonth() {
+		return ssmonth;
+	}
+
+	public void setSsmonth(String ssmonth) {
+		this.ssmonth = ssmonth;
+	}
+
+	public String getSsdate() {
+		return ssdate;
+	}
+
+	public void setSsdate(String ssdate) {
+		this.ssdate = ssdate;
+	}
+
+	public String getSsyear() {
+		return ssyear;
+	}
+
+	public void setSsyear(String ssyear) {
+		this.ssyear = ssyear;
+	}
 
 	public String getSearchCondition() {
 		return searchCondition;

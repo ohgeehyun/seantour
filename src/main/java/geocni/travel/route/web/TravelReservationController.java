@@ -583,6 +583,235 @@ public class TravelReservationController {
 	    wb.close();
 	}
 	
+	@RequestMapping(value="reserv_admin_time_excelDown.do")
+	public void reservationTimeExcelDown(
+			 TravelReservation travelReservation
+			,HttpServletRequest request
+			,HttpServletResponse response
+			,Model model) throws Exception {
+		travelReservation.setIsExcelDown("Y");
+		Map<String, Object> resultMap = reseService.selectBeachTimeList(travelReservation);
+		List<TravelReservation> excelList = (List<TravelReservation>) resultMap.get("timelist");
+		
+		// 워크북 생성
+	    Workbook wb = new XSSFWorkbook();
+	    Sheet sheet = wb.createSheet("Sheet1");
+	    Row row = null;
+	    Cell cell = null;
+	    int rowNo = 0;
+
+	    // 테이블 헤더용 스타일
+	    CellStyle headStyle = wb.createCellStyle();
+	    // 가는 경계선
+	    headStyle.setBorderTop(HSSFCellStyle.BORDER_THIN);
+	    headStyle.setBorderBottom(HSSFCellStyle.BORDER_THIN);
+	    headStyle.setBorderLeft(HSSFCellStyle.BORDER_THIN);
+	    headStyle.setBorderRight(HSSFCellStyle.BORDER_THIN);
+
+	    // 헤더 배경색
+	    headStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+	    headStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
+
+	    // 헤더 가운데 정렬
+	    headStyle.setAlignment(CellStyle.ALIGN_CENTER);
+
+	    // 데이터용 경계 스타일 테두리만 지정
+	    CellStyle bodyStyle = wb.createCellStyle();
+	    bodyStyle.setBorderTop(HSSFCellStyle.BORDER_THIN);
+	    bodyStyle.setBorderBottom(HSSFCellStyle.BORDER_THIN);
+	    bodyStyle.setBorderLeft(HSSFCellStyle.BORDER_THIN);
+	    bodyStyle.setBorderRight(HSSFCellStyle.BORDER_THIN);
+	    bodyStyle.setAlignment(CellStyle.ALIGN_CENTER);
+
+	    // 헤더 생성
+	    row = sheet.createRow(rowNo++);
+	    cell = row.createCell(0);
+	    cell.setCellStyle(headStyle);
+	    cell.setCellValue("NO");
+	    cell = row.createCell(1);
+	    cell.setCellStyle(headStyle);
+	    cell.setCellValue("해수욕장명");
+	    int z = 2;
+	    for(int x=0; x<24; x++) {
+	    	for(int y=0; y<4; y=y+3) { 		
+	    		cell = row.createCell(z);
+	    	    cell.setCellStyle(headStyle);
+	    	    cell.setCellValue(x+"시 " + y +"0분");
+	    	    z++;
+	    	}
+	    }
+
+	    // 데이터 부분 생성
+	    for(TravelReservation vo : excelList) {
+	        row = sheet.createRow(rowNo++);	        
+	        cell = row.createCell(0);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(vo.getSeq_id());	        
+	        cell = row.createCell(1);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(vo.getPoi_nm());
+	        cell = row.createCell(2);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime0000()));
+	        cell = row.createCell(3);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime0030()));
+	        cell = row.createCell(4);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime0100()));
+	        cell = row.createCell(5);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime0130()));
+	        cell = row.createCell(6);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime0200()));
+	        cell = row.createCell(7);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime0230()));
+	        cell = row.createCell(8);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime0300()));
+	        cell = row.createCell(9);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime0330()));
+	        cell = row.createCell(10);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime0400()));
+	        cell = row.createCell(11);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime0430()));
+	        cell = row.createCell(12);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime0500()));
+	        cell = row.createCell(13);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime0530()));
+	        cell = row.createCell(14);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime0600()));
+	        cell = row.createCell(15);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime0630()));
+	        cell = row.createCell(16);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime0700()));
+	        cell = row.createCell(17);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime0730()));
+	        cell = row.createCell(18);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime0800()));
+	        cell = row.createCell(19);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime0830()));
+	        cell = row.createCell(20);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime0900()));
+	        cell = row.createCell(21);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime0930()));
+	        cell = row.createCell(22);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime1000()));
+	        cell = row.createCell(23);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime1030()));
+	        cell = row.createCell(24);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime1100()));
+	        cell = row.createCell(25);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime1130()));
+	        cell = row.createCell(26);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime1200()));
+	        cell = row.createCell(27);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime1230()));
+	        cell = row.createCell(28);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime1300()));
+	        cell = row.createCell(29);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime1330()));
+	        cell = row.createCell(30);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime1400()));
+	        cell = row.createCell(31);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime1430()));
+	        cell = row.createCell(32);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime1500()));
+	        cell = row.createCell(33);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime1530()));
+	        cell = row.createCell(34);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime1600()));
+	        cell = row.createCell(35);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime1630()));
+	        cell = row.createCell(36);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime1700()));
+	        cell = row.createCell(37);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime1730()));
+	        cell = row.createCell(38);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime1800()));
+	        cell = row.createCell(39);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime1830()));
+	        cell = row.createCell(40);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime1900()));
+	        cell = row.createCell(41);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime1930()));
+	        cell = row.createCell(42);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime2000()));
+	        cell = row.createCell(43);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime2030()));
+	        cell = row.createCell(44);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime2100()));
+	        cell = row.createCell(45);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime2130()));
+	        cell = row.createCell(46);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime2200()));
+	        cell = row.createCell(47);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime2230()));
+	        cell = row.createCell(48);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime2300()));
+	        cell = row.createCell(49);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(Integer.parseInt(vo.getTime2330()));	        
+	    }
+	    
+	    
+	    // 셀 크기 자동조절
+	    for(int i=0; i<50; i++) {
+	    	sheet.autoSizeColumn(i);
+	    	sheet.setColumnWidth(i, (sheet.getColumnWidth(i))+612 );
+	    }
+	    
+	    // 컨텐츠 타입과 파일명 지정
+	    response.setContentType("ms-vnd/excel");
+	    response.setHeader("Content-Disposition", "attachment;filename=reservationTimeList.xlsx");
+
+	    // 엑셀 출력
+	    wb.write(response.getOutputStream());
+	    wb.close();
+	}
+	
 	@RequestMapping(value="reserv_admin_cond.do")
 	public String reservationintroAdminCond(
 			 TravelRoute travelRoute
@@ -619,7 +848,7 @@ public class TravelReservationController {
 		}	
 		
 		travelReservation.setReseBeachId(adminBeachId);
-		model.addAllAttributes(reseService.selectBeachManagementList(travelReservation));
+		model.addAllAttributes(reseService.selectBeachTimeList(travelReservation));
 		model.addAttribute("travelReservation", travelReservation);
 		
 		return skinPath + "reserv_admin_time";
