@@ -337,7 +337,7 @@ public class TravelReservationController {
 		
 	
 		
-		return "/travel/reservation/example";
+		return skinPath + "example";
 	}
 	
 	@RequestMapping(value="intro.do")
