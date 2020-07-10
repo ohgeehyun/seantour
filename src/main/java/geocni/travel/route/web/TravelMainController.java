@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
@@ -92,7 +93,7 @@ public class TravelMainController {
 		int minute = Integer.valueOf(datestr.substring(10, 12));   // 분
 		String datestrtemp = datestr.substring(0,8);               // 년도 월 일 부분 교체 하기 위함 
 		
-		if(datestrtimechange == "00")                              // 00시 일 경우 전 날 23시 30분 에 대한 정보가 필요
+		if(datestrtimechange == "00" && minute <= 30)                              // 00시 일 경우 전 날 23시 30분 에 대한 정보가 필요
 		{
 			cal.add(Calendar.DATE, -1);                            //전날 
 			datestr =sdf.format(cal.getTime());
@@ -124,26 +125,35 @@ public class TravelMainController {
 		StringBuffer sb = new StringBuffer();
 		List<?> viewList = mainService.selectBeachPerCnt();
 		List<?> congestion = mainService.selectCongestion();
-		Object test = congestion.get(0);
-	      
+		
+	    
 		for(String line:lines) {
 			//1.테이블에서 해당 시간 count
 			int count =0;
-		
+			Map<?,?> tempcongest =  (Map<?, ?>) congestion.get(count);
 			
 			//2.데이터 존재 여부 확인			
 			if(viewList.size()==0)
 			{
-				//3.line에서 "|"로 split해서 travelMain 객체에 넣음
+				//3.line에서 "|"로 split해서 travelMain 객체에 넣음 ( congest부분 -- 코드 깔끔하게 다시 다듬을 필요있음) 
 				String[] temp = line.split("\\|");
 				TravelMain travelMain = new TravelMain();
 				travelMain.setEtlDt(temp[0]);
 				travelMain.setSeqId(temp[1]);
 				travelMain.setPoiNm(temp[2]);
 				travelMain.setUniqPop(temp[3]);
-			
+				
+				int capacity =  (int)((int)tempcongest.get("area")/4);
+				if(Double.parseDouble(temp[3]) <= capacity){
+				travelMain.setCongestion("1");
+				}else if(Double.parseDouble(temp[3]) < (int)tempcongest.get("area")/2 ){
+					travelMain.setCongestion("2");
+				}else{
+					travelMain.setCongestion("3");
+				}
 				//4.데이터 insert	
 				try {
+				count ++;
 				mainService.insertBeachPer(travelMain);
 				}catch(SQLException e) {
 					log.debug(e);

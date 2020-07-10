@@ -38,6 +38,7 @@
 			     , SEQ_ID AS seqId
 			     , POI_NM AS poiNm
 			     , UNIQ_POP AS uniqPop
+			     , CONGESTION AS congestion
 			  FROM GEO_BEACH_CONGESTION
              WHERE ETL_DT = #datestr#
         ]]>
@@ -50,11 +51,13 @@
 			     , SEQ_ID 
 			     , POI_NM 
 			     , UNIQ_POP 
+			     , CONGESTION
 			) VALUES ( 
 				  #etlDt#
 				, #seqId#
 				, #poiNm#
 				, #uniqPop#
+				, #congestion#
 			)
 		]]>
 	</insert>
