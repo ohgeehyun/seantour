@@ -168,7 +168,7 @@ $(document).ready(function(){
 		</div>
 		<div id="pop2">
 			<div><img src="${pageContext.request.contextPath}/travel/common/images/content/img_popup_qna2.jpg" alt="" usemap="#button"/>
-			<map name="button" id="button"><area shape="rect" target="_blank" coords="49,250,200,282" href="http://songhobeach.kr" alt=""></map>
+			<map name="button" id="button"><area shape="rect" target="_blank" coords="49,289,202,323" href="http://songhobeach.kr" alt=""></map>
 			</div>
 			<div id="close2">close</div>
 		</div>
