@@ -143,6 +143,10 @@ public class TravelMainServiceImpl extends EgovAbstractServiceImpl implements Tr
 	public  void insertBeachPer(TravelMain vo) throws Exception{
 		travelMainDAO.insertBeachPer(vo);
 	}
+	
+	public List<?> selectCongestion() throws Exception {
+		return travelMainDAO.selectCongestion();
+	}
 //
 //	@Override
 //	public List<?> selectTravelRouteList(TravelRoute vo) throws Exception {

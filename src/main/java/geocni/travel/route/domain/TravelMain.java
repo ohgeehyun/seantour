@@ -22,6 +22,62 @@ public class TravelMain extends TravelDefaultVO {
     
     private String congestion;
     
+    private String capacity;
+    
+    private String area;
+    
+    private String beach_name;
+    
+    private String length;
+    
+    private String width;
+    
+    
+    public String Width() {
+    	return width;
+    }
+    
+    public void setWidth(String width) {
+    	this.width = width;
+    }
+    
+    public String getLength() {
+    	return length;
+    }
+    
+    public void setLength(String length) {
+    	this.length = length;
+    }
+    
+    
+    
+    public String getBeach_name() {
+    	return beach_name;
+    }
+    
+    public void setBeach_name(String beach_name) {
+    	this.beach_name = beach_name;
+    }
+    
+    
+    public String getArea() {
+    	return area;
+    }
+    
+    public void setArea(String area) {
+    	this.area = area;
+    }
+    
+    
+    public String getCapacity() {
+    	return capacity;
+    }
+    
+    public void setCapacity(String capacity) {
+    	this.capacity = capacity;
+    }
+    
+    
     public String getCongestion() {
     	return congestion;
     }

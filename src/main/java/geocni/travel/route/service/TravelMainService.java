@@ -14,6 +14,8 @@ public interface TravelMainService {
 	
 	List<?> newselectBeachPerCnt() throws Exception;
 	
+	List<?> selectCongestion() throws Exception;
+	
 //	int selectTravelRouteListCnt(TravelRoute vo) throws Exception;
 //	
 //	List<?> selectTravelRouteBestList(TravelRoute vo) throws Exception;

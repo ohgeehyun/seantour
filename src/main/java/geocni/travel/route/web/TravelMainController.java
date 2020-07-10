@@ -123,9 +123,13 @@ public class TravelMainController {
 		List<String> lines = Files.readAllLines(Paths.get(filePath), StandardCharsets.UTF_8);
 		StringBuffer sb = new StringBuffer();
 		List<?> viewList = mainService.selectBeachPerCnt();
+		List<?> congestion = mainService.selectCongestion();
+		Object test = congestion.get(0);
+	      
 		for(String line:lines) {
 			//1.테이블에서 해당 시간 count
-			
+			int count =0;
+		
 			
 			//2.데이터 존재 여부 확인			
 			if(viewList.size()==0)
@@ -137,6 +141,7 @@ public class TravelMainController {
 				travelMain.setSeqId(temp[1]);
 				travelMain.setPoiNm(temp[2]);
 				travelMain.setUniqPop(temp[3]);
+			
 				//4.데이터 insert	
 				try {
 				mainService.insertBeachPer(travelMain);
@@ -156,7 +161,7 @@ public class TravelMainController {
 	
 
 	
-	@RequestMapping(value="api.do")
+	@RequestMapping(value="getBeachCongestionApi.do")
 	@ResponseBody
 	public JSONObject responseApi() throws Exception{
 	

@@ -58,7 +58,16 @@
 			)
 		]]>
 	</insert>
+	
+	<select id="travelMainDAO.selectCongestion" parameterClass="java.lang.String" resultClass="egovMap">
+        <![CDATA[
+			SELECT AREA AS area
+			  FROM GEO_BEACH_INFO
+        ]]>
+    </select>
     
+	
+
     
     
 </sqlMap>
