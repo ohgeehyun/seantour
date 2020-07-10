@@ -368,8 +368,8 @@
 			WHERE 1=1
 			AND DEST_TITLE = '북분 해수욕장' or DEST_TITLE = '노봉 해수욕장' or DEST_TITLE = '사천 해수욕장' or DEST_TITLE = '문암 해수욕장' or DEST_TITLE = '원평 해수욕장' or
 				DEST_TITLE = '기지포 해수욕장' or DEST_TITLE = '갈음이 해수욕장' or DEST_TITLE = '난지섬 해수욕장' or DEST_TITLE = '위도 해수욕장' or DEST_TITLE = '모항 해수욕장' or	
-				DEST_TITLE = '구시포 해수욕장' or DEST_TITLE = '남열해돋이 해수욕장' or DEST_TITLE = '송호 해수욕장' or DEST_TITLE = '예송 해수욕장' or DEST_TITLE = '짱뚱어 해수욕장' or
-				DEST_TITLE = '수문 해수욕장' or DEST_TITLE = '홀통 해수욕장' or DEST_TITLE = '기성망양 해수욕장' or DEST_TITLE = '장사 해수욕장' or DEST_TITLE = '경정 해수욕장' or
+				DEST_TITLE = '구시포 해수욕장' or DEST_TITLE = '남열해돋이 해수욕장' or DEST_TITLE = '송호 해수욕장' or DEST_TITLE = '예송 해수욕장' or DEST_TITLE = '짱뚱어 해수욕장' or 
+				DEST_TITLE = '기성망양 해수욕장' or DEST_TITLE = '장사 해수욕장' or DEST_TITLE = '경정 해수욕장' or
 				DEST_TITLE = '와현모래숲해변' or DEST_TITLE = '옥계 해수욕장' or DEST_TITLE = '여차해변 해수욕장' or DEST_TITLE = '사량대항 해수욕장' or DEST_TITLE = '남일대 해수욕장'
 		]]>
 			<include refid="travelDestinationDAO.travelDestinationWhereClause" />
@@ -399,10 +399,10 @@
 				COUNT(*) totcnt
 			FROM geo_destination a
 			WHERE 1=1
-			and DEST_TITLE = '북분 해수욕장' or DEST_TITLE = '노봉 해수욕장' or DEST_TITLE = '사천 해수욕장' or DEST_TITLE = '문암 해수욕장' or DEST_TITLE = '원평 해수욕장' or
+			AND DEST_TITLE = '북분 해수욕장' or DEST_TITLE = '노봉 해수욕장' or DEST_TITLE = '사천 해수욕장' or DEST_TITLE = '문암 해수욕장' or DEST_TITLE = '원평 해수욕장' or
 				DEST_TITLE = '기지포 해수욕장' or DEST_TITLE = '갈음이 해수욕장' or DEST_TITLE = '난지섬 해수욕장' or DEST_TITLE = '위도 해수욕장' or DEST_TITLE = '모항 해수욕장' or	
-				DEST_TITLE = '구시포 해수욕장' or DEST_TITLE = '남열해돋이 해수욕장' or DEST_TITLE = '송호 해수욕장' or DEST_TITLE = '예송 해수욕장' or DEST_TITLE = '짱뚱어 해수욕장' or
-				DEST_TITLE = '수문 해수욕장' or DEST_TITLE = '홀통 해수욕장' or DEST_TITLE = '기성망양 해수욕장' or DEST_TITLE = '장사 해수욕장' or DEST_TITLE = '경정 해수욕장' or
+				DEST_TITLE = '구시포 해수욕장' or DEST_TITLE = '남열해돋이 해수욕장' or DEST_TITLE = '송호 해수욕장' or DEST_TITLE = '예송 해수욕장' or DEST_TITLE = '짱뚱어 해수욕장' or 
+				DEST_TITLE = '기성망양 해수욕장' or DEST_TITLE = '장사 해수욕장' or DEST_TITLE = '경정 해수욕장' or
 				DEST_TITLE = '와현모래숲해변' or DEST_TITLE = '옥계 해수욕장' or DEST_TITLE = '여차해변 해수욕장' or DEST_TITLE = '사량대항 해수욕장' or DEST_TITLE = '남일대 해수욕장'
 		]]>
 			<include refid="travelDestinationDAO.travelDestinationWhereClause" />
