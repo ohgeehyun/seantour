@@ -50,7 +50,7 @@ function fn_excelDown(){
 					<li><a href="<c:url value="/travel/reservation/reserv_admin.do"/>">회원관리</a></li>
 					<c:if test="${travelReservation.reseBeachId eq 'R0000'}">
 						<li><a href="<c:url value="/travel/reservation/reserv_admin_cond.do"/>" class="on">피크타임현황</a></li>
-						<!-- <li><a href="<c:url value="/travel/reservation/reserv_admin_time.do"/>">시간대별현황</a></li> -->
+						<li><a href="<c:url value="/travel/reservation/reserv_admin_time.do"/>">시간대별현황</a></li>
 					</c:if>
 				</ul>
 			</div>

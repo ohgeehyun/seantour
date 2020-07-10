@@ -805,7 +805,7 @@ public class TravelReservationController {
 	    
 	    // 컨텐츠 타입과 파일명 지정
 	    response.setContentType("ms-vnd/excel");
-	    response.setHeader("Content-Disposition", "attachment;filename=reservationTimeList.xlsx");
+	    response.setHeader("Content-Disposition", "attachment;filename=reseTimeList_"+ travelReservation.getSsyear() +travelReservation.getSsmonth() + travelReservation.getSsdate() + ".xlsx");
 
 	    // 엑셀 출력
 	    wb.write(response.getOutputStream());

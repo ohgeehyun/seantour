@@ -28,6 +28,10 @@ function day_search(){;
    	document.getElementById("travelReservation").submit();
 }
 
+function fn_display_none(){
+	document.getElementById("scroll").style.display = 'none';
+	document.getElementById("excelButton").style.display = 'none';
+}
 </script>
 <body>
 	<div id="wrap">
@@ -71,12 +75,12 @@ function day_search(){;
 					<fieldset>
 					<legend>날짜검색</legend>
 						<span class="tit">날짜선택</span>
-						<select id="ssyear" name="ssyear" title="연도">
+						<select id="ssyear" name="ssyear" title="연도" onchange="fn_display_none();">
 							<option value="2020" <c:if test="${travelReservation.ssyear eq '2020'}">selected="selected"</c:if>>2020</option>
 							<option value="2021" <c:if test="${travelReservation.ssyear eq '2021'}">selected="selected"</c:if>>2021</option>
 						</select>	
 						년
-						<select id="ssmonth" name="ssmonth" title="월">
+						<select id="ssmonth" name="ssmonth" title="월" onchange="fn_display_none();">
 							<option value="01" <c:if test="${travelReservation.ssmonth eq '01'}">selected="selected"</c:if>>1</option>
 							<option value="02" <c:if test="${travelReservation.ssmonth eq '02'}">selected="selected"</c:if>>2</option>
 							<option value="03" <c:if test="${travelReservation.ssmonth eq '03'}">selected="selected"</c:if>>3</option>
@@ -91,7 +95,7 @@ function day_search(){;
 							<option value="12" <c:if test="${travelReservation.ssmonth eq '12'}">selected="selected"</c:if>>12</option>
 						</select>
 						월
-						<select id="ssdate" name="ssdate" title="일">
+						<select id="ssdate" name="ssdate" title="일" onchange="fn_display_none();">
 							<option value="01" <c:if test="${travelReservation.ssdate eq '01'}">selected="selected"</c:if>>1</option>
 							<option value="02" <c:if test="${travelReservation.ssdate eq '02'}">selected="selected"</c:if>>2</option>
 							<option value="03" <c:if test="${travelReservation.ssdate eq '03'}">selected="selected"</c:if>>3</option>
@@ -130,8 +134,8 @@ function day_search(){;
 					</div>
 						
 					
-					<a href="javascript:fn_excelDown();" class="button" style="float:right;font-size:14px;">엑셀다운로드</a>
-					<div class="scroll">
+					<a href="javascript:fn_excelDown();" id="excelButton" class="button" style="float:right;font-size:14px;">엑셀다운로드</a>
+					<div class="scroll" id="scroll">
 					<table border="0" cellpadding="0" class="tbl01 tac fixed">
 						<caption>해수욕장시간별현황관리 - 번호,해수욕장,시간</caption>
 						<thead>
