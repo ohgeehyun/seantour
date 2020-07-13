@@ -25,3 +25,12 @@
 	<script src="<c:url value='/js/travel/Sortable.js'/>"></script>
 	<script src="<c:url value='/js/travel/content.js'/>"></script>
 	<script src="<c:url value='/js/travel/travel.banfilter.js'/>"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172483742-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'UA-172483742-1');
+	</script>
