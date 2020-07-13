@@ -11,6 +11,15 @@
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/travel/ad_common.css'/>">
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/travel/ad_login.css'/>">
 <script src="<c:url value='/js/travel/jquery-1.12.2.min.js'/>"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172483742-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-172483742-1');
+</script>
 </head>
 <script>
 $(document).ready(function(){
