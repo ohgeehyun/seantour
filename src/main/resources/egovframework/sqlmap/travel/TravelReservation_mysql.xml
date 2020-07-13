@@ -218,16 +218,15 @@
 		<isNotEqual property="reseBeachId" compareValue="R0000">
 		    RESE_BEACH_ID = #reseBeachId#
 		</isNotEqual>
-		        AND RESE_DATE <![CDATA[>=]]> date_format(now(), '%Y%m%d')
 		<isNotEmpty property="searchKeyword">
 			<isEqual property="searchCondition" compareValue="0">
-		        AND RESE_NAME = #searchKeyword#
+		        AND RESE_NAME LIKE concat('%', #searchKeyword#, '%')
 			</isEqual>
 			<isEqual property="searchCondition" compareValue="1">
-		        AND RESE_TEL = #searchKeyword#
+		        AND RESE_TEL LIKE concat('%', #searchKeyword#, '%')
 			</isEqual>
 			<isEqual property="searchCondition" compareValue="2">
-		        AND RESE_NO = #searchKeyword#
+		        AND RESE_NO LIKE concat('%', #searchKeyword#, '%')
 			</isEqual>
 		</isNotEmpty>
 		ORDER BY reseBeachName, reseDate, reseName, reseTel, reseTime
@@ -321,16 +320,15 @@
 		<isNotEqual property="reseBeachId" compareValue="R0000">
 		    RESE_BEACH_ID = #reseBeachId#
 		</isNotEqual>
-		        AND RESE_DATE <![CDATA[>=]]> date_format(now(), '%Y%m%d')
 		<isNotEmpty property="searchKeyword">
 			<isEqual property="searchCondition" compareValue="0">
-		        AND RESE_NAME = #searchKeyword#
+		        AND RESE_NAME LIKE concat('%', #searchKeyword#, '%')
 			</isEqual>
 			<isEqual property="searchCondition" compareValue="1">
-		        AND RESE_TEL = #searchKeyword#
+		        AND RESE_TEL LIKE concat('%', #searchKeyword#, '%')
 			</isEqual>
 			<isEqual property="searchCondition" compareValue="2">
-		        AND RESE_NO = #searchKeyword#
+		        AND RESE_NO LIKE concat('%', #searchKeyword#, '%')
 			</isEqual>
 		</isNotEmpty>
 	</select>
