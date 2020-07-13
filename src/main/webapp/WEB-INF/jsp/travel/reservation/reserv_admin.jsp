@@ -114,6 +114,7 @@ function fn_delete(reseNo){
 								<col />
 								<col />
 								<col />
+								<col />
 							</colgroup>
 							<tr>
 								<th scope="col">NO</th>
@@ -125,6 +126,7 @@ function fn_delete(reseNo){
 								<th scope="col">이름</th>
 								<th scope="col">전화번호</th>
 								<th scope="col">예약자주소</th>
+								<th scope="col">등록일자</th>
 								<th scope="col">예약취소</th>
 							</tr>
 						</thead>
@@ -153,6 +155,7 @@ function fn_delete(reseNo){
 								<td><c:out value="${rese.reseName}"/></td>
 								<td><c:out value="${fn:substring(rese.reseTel, 0, 3)}"/>-<c:out value="${fn:substring(rese.reseTel, 3, 7)}"/>-<c:out value="${fn:substring(rese.reseTel, 7, 11)}"/></td>
 								<td><c:out value="${rese.reseAreaName}"/></td>
+								<td><c:out value="${rese.reseRegDate}"/></td>
 								<td><a href="javascript:fn_delete('${rese.reseNo}');" class="button xs lightblue">취소</a></td>
 							</tr>
 							</c:forEach>

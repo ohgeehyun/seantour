@@ -435,6 +435,9 @@ public class TravelReservationController {
 	    cell = row.createCell(7);
 	    cell.setCellStyle(headStyle);
 	    cell.setCellValue("예약자주소");
+	    cell = row.createCell(8);
+	    cell.setCellStyle(headStyle);
+	    cell.setCellValue("등록일자");
 
 	    // 데이터 부분 생성
 	    for(TravelReservation vo : excelList) {
@@ -479,10 +482,13 @@ public class TravelReservationController {
 	        cell = row.createCell(7);
 	        cell.setCellStyle(bodyStyle);
 	        cell.setCellValue(vo.getReseAreaName());
+	        cell = row.createCell(8);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(vo.getReseRegDate());
 	    }
 	    
 	    // 셀 크기 자동조절
-	    for(int i=0; i<=7; i++) {
+	    for(int i=0; i<=8; i++) {
 	    	sheet.autoSizeColumn(i);
 	    	sheet.setColumnWidth(i, (sheet.getColumnWidth(i))+512 );
 	    }

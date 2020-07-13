@@ -35,6 +35,7 @@ public class TravelReservation extends TravelDefaultVO {
 	private String reseAreaName;		//예약자 시/도 이름
 	private String reseAreaCd_2;		//예약자 구/군 코드
 	private String reseAreaName_2;		//예약자 구/군 이름
+	private String reseRegDate;			//등록일자
 	private String seq_id;
 	private String poi_nm;
 	private String max_uniq_pop;
@@ -587,5 +588,11 @@ public class TravelReservation extends TravelDefaultVO {
 	}
 	public void setReseAreaName_2(String reseAreaName_2) {
 		this.reseAreaName_2 = reseAreaName_2;
+	}
+	public String getReseRegDate() {
+		return reseRegDate;
+	}
+	public void setReseRegDate(String reseRegDate) {
+		this.reseRegDate = reseRegDate;
 	}
 }

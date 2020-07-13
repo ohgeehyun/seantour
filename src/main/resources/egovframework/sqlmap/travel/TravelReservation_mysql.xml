@@ -168,6 +168,7 @@
 			    rese_name AS reseName,
 			    rese_tel AS reseTel,
 			    rese_area_cd AS reseAreaCd,
+		    	rese_reg_date AS reseRegDate,
 			    (SELECT case when geo_reservation.rese_area_cd = '0800' then p_cd_nm 
 			            else concat(p_cd_nm, ' ', cd_nm) end 
 			     FROM fipa_area_code WHERE use_yn = 'Y' AND code = geo_reservation.rese_area_cd) AS reseAreaName
@@ -206,6 +207,7 @@
 		    rese_name AS reseName,
 		    rese_tel AS reseTel,
 		    rese_area_cd AS reseAreaCd,
+		    rese_reg_date AS reseRegDate,
 		    (SELECT case when geo_reservation.rese_area_cd = '0800' then p_cd_nm 
 		            else concat(p_cd_nm, ' ', cd_nm) end 
 		     FROM fipa_area_code WHERE use_yn = 'Y' AND code = geo_reservation.rese_area_cd) AS reseAreaName
