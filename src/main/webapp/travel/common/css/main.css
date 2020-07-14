@@ -877,6 +877,11 @@ a.btn-layerClose:hover {
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker1 .icon, 
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker2 .icon{right:37px;}
 	
+	.spotzone .blinker .icon{width:12px;height:12px;}
+	.blinkerpop{width:90%;}
+	.blinkerpop .reserv ul{padding:5px 5px 5px 45px;font-size:13px;}
+	.blinkerpop .reserv .box_icon{top:10px;left:10px;width:16px;height:55px;}
+	.blinkerpop .reserv a{position:static;width:70px;margin:15px auto 0;font-size:12px;text-align:center;}
 	
 	/* section00 */
 	.section00{padding:15px 0;}
