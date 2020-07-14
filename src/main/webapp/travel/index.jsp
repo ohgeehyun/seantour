@@ -3,7 +3,7 @@
 <html lang="ko">
 <head>
 
-
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/travel/main.css'/>" />
 
 <%@ include file="/travel/common/config/handing/cssHanding.jsp" %>
 
@@ -191,11 +191,11 @@ function fn_reservView(){
 								  				$("#blinkerpop${i}").show();
 								  			});
 								  		</c:forEach>
-								  	  $("#pop_close").click(function(){
-								  	    $("[id^='blinkerpop']").each(function(){
-								  	    	$(this).hide();
+								  	  $(".pop_close").click(function(){
+								  	    //$("[id^='blinkerpop']").each(function(){
+								  	    	$(this).closest(".blinkerpop").hide();
 								  	    });
-								  	  });
+								  	 
 								  	});
 							  	 </script>
 								  <div class="main_visual_content_cell_right">
@@ -253,8 +253,8 @@ function fn_reservView(){
 									  	 <div class="blinker spot49"><a href="#" class="icon red"><span class="name">천진</span></a></div>
 									  	 <div class="blinker spot50"><a href="#" class="icon red"><span class="name">신두리</span></a></div>
 									  	 <div class="time">기준시각<br/><span>13:00</span></div>
-									  	 <div id="blinkerpop1">
-								  	 		<div class="title">[부산]해운대 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop1" class="blinkerpop">
+								  	 		<div class="title">[부산]해운대 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -264,8 +264,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111941">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-								  	 	 <div id="blinkerpop2">
-								  	 		<div class="title">[부산]광안리 해수욕장<button id="pop_close">닫기</button></div>
+								  	 	 <div id="blinkerpop2" class="blinkerpop">
+								  	 		<div class="title">[부산]광안리 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -275,8 +275,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110239">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop3">
-								  	 		<div class="title">[부산]송도 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop3" class="blinkerpop">
+								  	 		<div class="title">[부산]송도 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -286,8 +286,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110780">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop4">
-								  	 		<div class="title">[충청]대천 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop4" class="blinkerpop">
+								  	 		<div class="title">[충청]대천 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -297,8 +297,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110458">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop5">
-								  	 		<div class="title">[부산]다대포 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop5" class="blinkerpop">
+								  	 		<div class="title">[부산]다대포 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -308,8 +308,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110405">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop6">
-								  	 		<div class="title">[강원]경포 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop6" class="blinkerpop">
+								  	 		<div class="title">[강원]경포 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -319,8 +319,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110072">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop7">
-								  	 		<div class="title">[부산]송정 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop7" class="blinkerpop">
+								  	 		<div class="title">[부산]송정 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -330,8 +330,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111059">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop8">
-								  	 		<div class="title">[강원]낙산 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop8" class="blinkerpop">
+								  	 		<div class="title">[강원]낙산 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -341,8 +341,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110349">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop9">
-								  	 		<div class="title">[강원]속초 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop9" class="blinkerpop">
+								  	 		<div class="title">[강원]속초 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -352,8 +352,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111039">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop10">
-								  	 		<div class="title">[강원]삼척 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop10" class="blinkerpop">
+								  	 		<div class="title">[강원]삼척 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -363,8 +363,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110894">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop11">
-								  	 		<div class="title">[강원]망상 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop11" class="blinkerpop">
+								  	 		<div class="title">[강원]망상 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -374,8 +374,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110580">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop12">
-								  	 		<div class="title">[강원]맹방 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop12" class="blinkerpop">
+								  	 		<div class="title">[강원]맹방 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -385,8 +385,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110592">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop13">
-								  	 		<div class="title">[강원]추암 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop13" class="blinkerpop">
+								  	 		<div class="title">[강원]추암 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -396,8 +396,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111738">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop14">
-								  	 		<div class="title">[전남]신지명사십리 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop14" class="blinkerpop">
+								  	 		<div class="title">[전남]신지명사십리 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -407,8 +407,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111124">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop15">
-								  	 		<div class="title">[충청]만리포 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop15" class="blinkerpop">
+								  	 		<div class="title">[충청]만리포 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -418,8 +418,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110572">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop16">
-								  	 		<div class="title">[울산]일산 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop16" class="blinkerpop">
+								  	 		<div class="title">[울산]일산 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -429,8 +429,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111470">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop17">
-								  	 		<div class="title">[제주]함덕 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop17" class="blinkerpop">
+								  	 		<div class="title">[제주]함덕 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -440,8 +440,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111899">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop18">
-								  	 		<div class="title">[울산]진하 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop18" class="blinkerpop">
+								  	 		<div class="title">[울산]진하 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -451,8 +451,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111658">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop19">
-								  	 		<div class="title">[강원]하조대 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop19" class="blinkerpop">
+								  	 		<div class="title">[강원]하조대 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -462,8 +462,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID000293">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop20">
-								  	 		<div class="title">[제주]협재 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop20" class="blinkerpop">
+								  	 		<div class="title">[제주]협재 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -473,8 +473,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111959">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop21">
-								  	 		<div class="title">[경북]고래불 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop21" class="blinkerpop">
+								  	 		<div class="title">[경북]고래불 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -484,8 +484,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110180">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop22">
-								  	 		<div class="title">[강원]주문진 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop22" class="blinkerpop">
+								  	 		<div class="title">[강원]주문진 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -495,8 +495,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111605">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop23">
-								  	 		<div class="title">[충청]춘장대 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop23" class="blinkerpop">
+								  	 		<div class="title">[충청]춘장대 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -506,8 +506,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111741">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop24">
-								  	 		<div class="title">[제주]이호테우 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop24" class="blinkerpop">
+								  	 		<div class="title">[제주]이호테우 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -517,8 +517,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000481">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop25">
-								  	 		<div class="title">[충청]꽃지 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop25" class="blinkerpop">
+								  	 		<div class="title">[충청]꽃지 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -528,8 +528,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110338">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop26">
-								  	 		<div class="title">[강원]송지호 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop26" class="blinkerpop">
+								  	 		<div class="title">[강원]송지호 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -539,8 +539,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111063">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop27">
-								  	 		<div class="title">[제주]곽지 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop27" class="blinkerpop">
+								  	 		<div class="title">[제주]곽지 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -550,8 +550,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000482">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop28">
-								  	 		<div class="title">[강원]화진포 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop28" class="blinkerpop">
+								  	 		<div class="title">[강원]화진포 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -561,8 +561,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111998">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop29">
-								  	 		<div class="title">[강원]외옹치 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop29" class="blinkerpop">
+								  	 		<div class="title">[강원]외옹치 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -572,8 +572,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000483">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop30">
-								  	 		<div class="title">[제주]금능 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop30" class="blinkerpop">
+								  	 		<div class="title">[제주]금능 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -583,8 +583,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110313">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop31">
-								  	 		<div class="title">[강원]삼포 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop31" class="blinkerpop">
+								  	 		<div class="title">[강원]삼포 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -594,8 +594,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110902">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop32">
-								  	 		<div class="title">[부산]일광 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop32" class="blinkerpop">
+								  	 		<div class="title">[부산]일광 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -605,8 +605,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111467">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop33">
-								  	 		<div class="title">[충청]몽산포 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop33" class="blinkerpop">
+								  	 		<div class="title">[충청]몽산포 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -616,8 +616,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110626">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop34">
-								  	 		<div class="title">[부산]임랑 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop34" class="blinkerpop">
+								  	 		<div class="title">[부산]임랑 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -627,8 +627,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111476">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop35">
-								  	 		<div class="title">[제주]중문색달 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop35" class="blinkerpop">
+								  	 		<div class="title">[제주]중문색달 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -638,8 +638,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111628">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop36">
-								  	 		<div class="title">[충청]무창포 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop36" class="blinkerpop">
+								  	 		<div class="title">[충청]무창포 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -649,8 +649,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110641">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop37">
-								  	 		<div class="title">[제주]김녕 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop37" class="blinkerpop">
+								  	 		<div class="title">[제주]김녕 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -660,8 +660,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110331">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop38">
-								  	 		<div class="title">[강원]안목 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop38" class="blinkerpop">
+								  	 		<div class="title">[강원]안목 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -671,8 +671,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111168">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop39">
-								  	 		<div class="title">[경남]상주은모래비치 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop39" class="blinkerpop">
+								  	 		<div class="title">[경남]상주은모래비치 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -682,8 +682,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID007759">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop40">
-								  	 		<div class="title">[인천]을왕리 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop40" class="blinkerpop">
+								  	 		<div class="title">[인천]을왕리 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -693,8 +693,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111438">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop41">
-								  	 		<div class="title">[충청]삼봉 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop41" class="blinkerpop">
+								  	 		<div class="title">[충청]삼봉 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -704,8 +704,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110873">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop42">
-								  	 		<div class="title">[강원]정동진 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop42" class="blinkerpop">
+								  	 		<div class="title">[강원]정동진 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -715,8 +715,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID003274">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop43">
-								  	 		<div class="title">[강원]용화 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop43" class="blinkerpop">
+								  	 		<div class="title">[강원]용화 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -726,8 +726,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111358">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop44">
-								  	 		<div class="title">[강원]등대 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop44" class="blinkerpop">
+								  	 		<div class="title">[강원]등대 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -737,8 +737,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110533">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop45">
-								  	 		<div class="title">[인천]하나개 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop45" class="blinkerpop">
+								  	 		<div class="title">[인천]하나개 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -748,8 +748,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111854">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop46">
-								  	 		<div class="title">[강원]송지호오토캠핑장 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop46" class="blinkerpop">
+								  	 		<div class="title">[강원]송지호오토캠핑장 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -759,8 +759,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111062">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop47">
-								  	 		<div class="title">[경북]관성솔밭 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop47" class="blinkerpop">
+								  	 		<div class="title">[경북]관성솔밭 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -770,8 +770,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000484">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop48">
-								  	 		<div class="title">[강원]중광정 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop48" class="blinkerpop">
+								  	 		<div class="title">[강원]중광정 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -781,8 +781,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID102542">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop49">
-								  	 		<div class="title">[강원]천진 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop49" class="blinkerpop">
+								  	 		<div class="title">[강원]천진 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -792,8 +792,8 @@ function fn_reservView(){
 								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000485">상세보기</a>
 								  	 		</div>
 								  	 	 </div>
-									  	 <div id="blinkerpop50">
-								  	 		<div class="title">[충청]신두리 해수욕장<button id="pop_close">닫기</button></div>
+									  	 <div id="blinkerpop50" class="blinkerpop">
+								  	 		<div class="title">[충청]신두리 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
 								  	 			<span class="box_icon box_red"></span>
 								  	 			<ul>
@@ -874,7 +874,7 @@ function fn_reservView(){
 					        <p class="tit">한적한<strong>해수욕장</strong></p>
 					    </div>
 						<div class="vest_recommend_box">
-					    								<div class="col01 main_pull_slider">
+					    	<div class="col01 main_pull_slider">
 					    		<div class="pull_item">
 					    			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000442">
 							    		<span class="img"><img src="${pageContext.request.contextPath}/images/travel/main/img_slider_pull01.jpg" alt="" /></span>
