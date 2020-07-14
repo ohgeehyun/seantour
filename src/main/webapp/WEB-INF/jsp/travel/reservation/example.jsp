@@ -201,7 +201,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop">
 									  	 		<div class="title">[부산]해운대 해수욕장<button id="pop_close">닫기</button></div>
 									  	 		<div class="reserv">
-									  	 			<span class="red"></span>
+									  	 			<span class="box_icon box_red"></span>
 									  	 			<ul>
 									  	 				<li><span>수용인원</span>150명</li>
 									  	 				<li><span>개장일</span>2020년 7월 2일</li>

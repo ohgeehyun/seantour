@@ -310,8 +310,10 @@ a.btn-layerClose:hover {
 #blinkerpop .title {position:relative; background:#eaebec; color:#000; padding:10px 19px; font-size:16px; font-weight:bold; color:#1f4784;}
 #blinkerpop .title button {position:absolute; right:19px; top:50%; transform:translateY(-50%); font-size:0px; width:22px; height:22px; background:url(/seantour_map/images/travel/main/close_btn_pop.png) no-repeat 0 0;}
 #blinkerpop .reserv {position:relative;}
-#blinkerpop .reserv > span {position:absolute; top:10px; left:30px; width:19px; height:65px; }
-#blinkerpop .reserv > span.red {background:url(/seantour_map/images/travel/main/icon_blinker_red_ver2.png) no-repeat 0 0; background-size:cover;}
+#blinkerpop .reserv .box_icon {position:absolute; top:10px; left:30px; width:19px; height:65px; }
+#blinkerpop .reserv .box_icon.box_red {background:url(/seantour_map/images/travel/main/icon_blinker_red_ver2.png) no-repeat 0 0; background-size:cover;}
+#blinkerpop .reserv .box_icon.box_green {background:url(/seantour_map/images/travel/main/icon_blinker_green_ver2.png) no-repeat 0 0; background-size:cover;}
+#blinkerpop .reserv .box_icon.box_yellow {background:url(/seantour_map/images/travel/main/icon_blinker_yellow_ver2.png) no-repeat 0 0; background-size:cover;}
 #blinkerpop .reserv ul {padding:15px 15px 15px 75px;}
 #blinkerpop .reserv ul li {color:#000; line-height:27px;}
 #blinkerpop .reserv ul li span {position:relative; display:inline-block; width:90px;}
