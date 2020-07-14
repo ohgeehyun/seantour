@@ -220,7 +220,7 @@ a.btn-layerClose:hover {
 .spotzone .main_visual_content_cell .main_visual_content_cell_right .point:active{width:50px;height:50px;background:url(/seantour_map/images/travel/main/icon_point_hover.png) no-repeat 0 0;background-size:cover;font-size:12px;color:#fff;line-height:50px;text-align:center;z-index:999;}
 
 .spotzone .time{position:absolute;top:35%;left:40%;padding-left:45px;font-family:'Notable-Regular';font-size:13px;font-weight:bold;color:#000;line-height:1.1;letter-spacing:-1px;}
-.spotzone .time:before{content:'';display:inline-block;position:absolute;top:0;left:0;width:43px;height:43px;background:url(/seantour_map/images/travel/main/icon_time.png) no-repeat 0 0;background-size:cover;}
+/*.spotzone .time:before{content:'';display:inline-block;position:absolute;top:0;left:0;width:43px;height:43px;background:url(/seantour_map/images/travel/main/icon_time.png) no-repeat 0 0;background-size:cover;}*/
 .spotzone .time span{font-size:24px;}
 
 
