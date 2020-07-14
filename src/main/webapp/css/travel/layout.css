@@ -441,6 +441,8 @@ body {-webkit-text-size-adjust:none;}
   	
 }
 @media screen and (max-width:420px){
+    #header h1.logo{width:235px;}
+    #header h1.logo>a{width:235px;}
     
     #footer .foot_wrap .foot_util li a{padding:0 8px;}
   	/* skip_top */	

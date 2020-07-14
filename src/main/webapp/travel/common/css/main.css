@@ -922,7 +922,7 @@ a.btn-layerClose:hover {
 	.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit{margin:15px 0 15px;font-size:22px;}
 	.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit strong{font-size:40px;}
 	
-	.spotzone .time{padding-left:37px;font-size:11px;}
+	.spotzone .time{font-size:11px;}
   	.spotzone .time:before{width:35px;height:35px;}
 	.spotzone .time span{font-size:16px;}
 	
