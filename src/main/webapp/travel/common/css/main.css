@@ -219,7 +219,7 @@ a.btn-layerClose:hover {
 .spotzone .main_visual_content_cell .main_visual_content_cell_right .point:focus,
 .spotzone .main_visual_content_cell .main_visual_content_cell_right .point:active{width:50px;height:50px;background:url(/seantour_map/images/travel/main/icon_point_hover.png) no-repeat 0 0;background-size:cover;font-size:12px;color:#fff;line-height:50px;text-align:center;z-index:999;}
 
-.spotzone .time{position:absolute;top:35%;left:40%;padding-left:45px;font-family:'Notable-Regular';font-size:13px;font-weight:bold;color:#000;line-height:1.1;letter-spacing:-1px;}
+.spotzone .time{position:absolute;top:35%;left:42%;font-family:'Notable-Regular';font-size:13px;font-weight:bold;color:#000;line-height:1.1;letter-spacing:-1px;}
 /*.spotzone .time:before{content:'';display:inline-block;position:absolute;top:0;left:0;width:43px;height:43px;background:url(/seantour_map/images/travel/main/icon_time.png) no-repeat 0 0;background-size:cover;}*/
 .spotzone .time span{font-size:24px;}
 
@@ -231,7 +231,7 @@ a.btn-layerClose:hover {
 #container.main .spotzone .main_visual_content_cell{padding-top:0 !important;}
 .spotzone .main_visual_content_cell .main_visual_content_cell_right_inr{float:right;position:relative;width:517px;height:789px;background:url(/seantour_map/images/travel/main/img_map_main3.png) no-repeat 0 0;background-size:100%;}
 .spotzone .spot_title{position:absolute;top:10px;left:-130px;}
-.spotzone .spot_info{position:absolute;bottom:10px;right:5px;width:40%;}
+.spotzone .spot_info{position:absolute;bottom:10px;right:5px;width:43%;}
 .spotzone .spot_info img{width:100%;border-radius:0.5em;box-shadow:5px 5px 5px 5px rgba(0,0,0, 0.4);}
 .spotzone .spot{position:absolute;width:11px;height:11px;}
 .spotzone .blinker.spot1{left:79%;top:69%;}/* 해운대 */
