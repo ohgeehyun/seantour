@@ -206,7 +206,7 @@ function fn_reservView(){
 									  	 				<li><span>수용인원</span>150명</li>
 									  	 				<li><span>개장일</span>2020년 7월 2일</li>
 									  	 			</ul>
-									  	 			<a href="#a">상세보기</a>
+									  	 			<a href="#">상세보기</a>
 									  	 		</div>
 									  	 	</div>
 									  </div>
