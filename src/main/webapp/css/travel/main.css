@@ -231,8 +231,8 @@ a.btn-layerClose:hover {
 #container.main .spotzone .main_visual_content_cell{padding-top:0 !important;}
 .spotzone .main_visual_content_cell .main_visual_content_cell_right_inr{float:right;position:relative;width:517px;height:789px;background:url(/seantour_map/images/travel/main/img_map_main3.png) no-repeat 0 0;background-size:100%;}
 .spotzone .spot_title{position:absolute;top:10px;left:-130px;}
-.spotzone .spot_info{position:absolute;bottom:10px;right:5px;width:55%;}
-.spotzone .spot_info img{width:100%;border-radius:0.5em;box-shadow:5px 5px 5px 5px rgba(0,0,0, 0.4);}
+.spotzone .spot_info{position:absolute;bottom:10px;right:5px;width:45%;}
+.spotzone .spot_info img{width:100%;border-radius:0.5em;box-shadow:3px 3px 3px 3px rgba(0,0,0, 0.2);}
 .spotzone .spot{position:absolute;width:11px;height:11px;}
 .spotzone .blinker.spot1{left:79%;top:69%;}/* 해운대 */
 .spotzone .blinker.spot2{left:78.08%;top:70.38%}/* 광안리 */
