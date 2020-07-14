@@ -287,14 +287,6 @@ a.btn-layerClose:hover {
 .spotzone .blinker.spot49{left:64.5%;top:5%;}/* 천진 */
 .spotzone .blinker.spot50{left:6%;top:34.5%;}/* 신두리 */
 
-@media screen and (max-width:1024px){
-	
-	
-	/* .spotzone .blinker .icon {width:15px !important; height:15px !important;} */
-	.spotzone .blinker {width:30px;}
-	.spotzone .blinker a .name{display:none;}   
-	.spotzone .blinker a:hover .name {display:none;}
-		}
 
 .spotzone .blinker{position:absolute;/*width:120px;*/width:auto !important;}
 .spotzone .blinker .icon{position:relative;display:inline-block;width:19px;height:19px;}
@@ -302,7 +294,7 @@ a.btn-layerClose:hover {
 .spotzone .blinker .icon.yellow{background:url(/seantour_map/images/travel/main/icon_blinker_yellow.png) no-repeat 0 0;background-size:cover;}
 .spotzone .blinker .icon.green{background:url(/seantour_map/images/travel/main/icon_blinker_green.png) no-repeat 0 0;background-size:cover;}
 
-.spotzone .blinker a .name{display:none;width:60px;}   
+.spotzone .blinker a .name{display:none;padding:5px;white-space:nowrap;}   
 .spotzone .blinker a:hover .name{display:block;position:absolute; left:30px; top:-3px;padding:5px 10px; text-align:center; line-height:1.2; background:#fff; border:1px solid #555; white-space:nowarp; border-radius:10px; font-size:12px; font-weight:bold;text-indent:0;}
 .spotzone .blinker .name:before {content:""; position:absolute; top:10px; left:-11px; width:10px; height:1px; background:#fff;}
 
@@ -695,7 +687,7 @@ a.btn-layerClose:hover {
   	.spotzone .main_visual_content_cell .visual_go .button{width:200px;height:55px;line-height:55px;padding-left:20px;font-size:16px;}
   	.spotzone .main_visual_content_cell .visual_go .button:before{left:22px;}
   	
-  	.spotzone .time{padding-left:37px;font-size:13px;}
+  	.spotzone .time{left:29%;font-size:13px;}
   	.spotzone .time:before{width:35px;height:35px;}
 	.spotzone .time span{font-size:18px;}
 	
@@ -721,7 +713,7 @@ a.btn-layerClose:hover {
 	.name{font-size:13px;line-height:1.8;}          
 	
 	.spotzone .main_visual_content_cell .visual_go .button{width:155px;}
-	  	
+	  
   	
 	/* section01 */
 	.section01{height:120px;padding-top:28px;}
@@ -809,6 +801,16 @@ a.btn-layerClose:hover {
 	
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right{padding-left:3%;}
 	
+	.spotzone .blinker .icon{width:12px;height:12px;}
+	/*.spotzone .blinker {width:30px;}*/
+	.spotzone .blinker a .name{display:none;}   
+	.spotzone .blinker a:hover .name {display:none;}  	
+	.blinkerpop{width:90%;}
+	.blinkerpop .reserv ul{padding:5px 5px 5px 45px;font-size:13px;}
+	.blinkerpop .reserv .box_icon{top:10px;left:10px;width:16px;height:55px;}
+	.blinkerpop .reserv a{position:static;width:70px;margin:15px auto 0;font-size:12px;text-align:center;}
+	
+	
 	.reserv_main_left span{margin-left:5px;}
 	.reserv_main_left strong{padding-left:0;}
 	.reserv_main_left strong:before{display:none;}
@@ -877,11 +879,6 @@ a.btn-layerClose:hover {
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker1 .icon, 
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker2 .icon{right:37px;}
 	
-	.spotzone .blinker .icon{width:12px;height:12px;}
-	.blinkerpop{width:90%;}
-	.blinkerpop .reserv ul{padding:5px 5px 5px 45px;font-size:13px;}
-	.blinkerpop .reserv .box_icon{top:10px;left:10px;width:16px;height:55px;}
-	.blinkerpop .reserv a{position:static;width:70px;margin:15px auto 0;font-size:12px;text-align:center;}
 	
 	/* section00 */
 	.section00{padding:15px 0;}
@@ -912,8 +909,9 @@ a.btn-layerClose:hover {
 	.spotzone .bx-controls .bx-controls-auto, 
 	.spotzone .bx-controls .bx-pager{bottom:18%;}
 	*/
+	.spotzone .main_visual_wrap{padding:0;}
 	.spotzone .main_visual_content_cell>div{width:100%;}
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right{width:100%;}
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right{width:100%;padding-left:0;}
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot4 .icon, 
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot7 .icon, 
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot1 .icon, 
@@ -1016,7 +1014,7 @@ a.btn-layerClose:hover {
 }
 
 @media screen and (max-width:400px){
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right_inr{width:295px;}
+	
 	.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit{font-size:20px;}
 	.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit strong{font-size:40px;}
 	.spotzone .main_visual_content_cell .spot_search .cssSelect{width:60%;}

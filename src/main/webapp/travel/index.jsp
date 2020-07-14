@@ -823,8 +823,7 @@ function fn_reservView(){
                                         <a href="javascript:fn_reservView();" class="btn">조회</a>
                                     </form>
                                     </div>
-                                    
-                                </div>
+                                	</div>
 								 </div>
 								  <div class="spot_search">
 								  	<div class="cssSelect">
@@ -855,11 +854,11 @@ function fn_reservView(){
 							</div>
 					</div>
 				</div><!-- //spotzone -->
-              <div class="section00">
+              <!-- <div class="section00">
 					<div class="inr">
 						<p>해수욕장 혼잡도 신호등은 <span>네이버</span>와 함께 합니다.</p>
 					</div> 
-				</div>
+				</div> -->
 				<div class="section01 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
 					<div class="minr">
 						<div class="event_box">
@@ -1245,10 +1244,9 @@ function fn_reservView(){
 						    <c:param name="titleLen" value="350" />
 						</c:import>
 
-			    	</div>
-			    </div><!-- // section02 -->--%>
+			    	</div>--%>
+			    </div><!-- // section02 -->
 			     <c:import url="/travel/destination/recolist.do" charEncoding="utf-8"></c:import>
-			    
 			   <%--  <div class="section03 aos-init aos-animate" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
 					<div class="minr">
 					    <div class="tit_box">
