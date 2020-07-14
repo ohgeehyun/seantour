@@ -231,7 +231,7 @@ a.btn-layerClose:hover {
 #container.main .spotzone .main_visual_content_cell{padding-top:0 !important;}
 .spotzone .main_visual_content_cell .main_visual_content_cell_right_inr{float:right;position:relative;width:517px;height:789px;background:url(/seantour_map/images/travel/main/img_map_main3.png) no-repeat 0 0;background-size:100%;}
 .spotzone .spot_title{position:absolute;top:10px;left:-130px;}
-.spotzone .spot_info{position:absolute;bottom:10px;right:5px;width:55%;}
+.spotzone .spot_info{position:absolute;bottom:10px;right:5px;width:40%;}
 .spotzone .spot_info img{width:100%;border-radius:0.5em;box-shadow:5px 5px 5px 5px rgba(0,0,0, 0.4);}
 .spotzone .spot{position:absolute;width:11px;height:11px;}
 .spotzone .blinker.spot1{left:79%;top:69%;}/* 해운대 */
@@ -278,7 +278,7 @@ a.btn-layerClose:hover {
 .spotzone .blinker.spot40{left:15%;top:23.9%;}/* 을왕리 */
 .spotzone .blinker.spot41{left:6.5%;top:41.5%;}/* 삼봉 */
 .spotzone .blinker.spot42{left:80.2%;top:21.8%;}/* 정동진 */
-.spotzone .blinker.spot43{left:84.4%;top:25.3%;}/* 용화 */
+.spotzone .blinker.spot43{left:84.4%;top:26.3%;}/* 용화 */
 .spotzone .blinker.spot44{left:65%;top:6.8%;}/* 등대 */
 .spotzone .blinker.spot45{left:18%;top:24.4%;}/* 하나개 */
 .spotzone .blinker.spot46{left:59.7%;top:-0.23%;}/*송지호오토캠핑 */
@@ -296,8 +296,7 @@ a.btn-layerClose:hover {
 	.spotzone .blinker a:hover .name {display:none;}
 		}
 
-
-.spotzone .blinker{position:absolute;/*width:120px;*/}
+.spotzone .blinker{position:absolute;/*width:120px;*/width:auto !important;}
 .spotzone .blinker .icon{position:relative;display:inline-block;width:19px;height:19px;}
 .spotzone .blinker .icon.red{background:url(/seantour_map/images/travel/main/icon_blinker_red.png) no-repeat 0 0;background-size:cover;}
 .spotzone .blinker .icon.yellow{background:url(/seantour_map/images/travel/main/icon_blinker_yellow.png) no-repeat 0 0;background-size:cover;}
@@ -307,19 +306,19 @@ a.btn-layerClose:hover {
 .spotzone .blinker a:hover .name{display:block;position:absolute; left:30px; top:-3px;padding:5px 10px; text-align:center; line-height:1.2; background:#fff; border:1px solid #555; white-space:nowarp; border-radius:10px; font-size:12px; font-weight:bold;text-indent:0;}
 .spotzone .blinker .name:before {content:""; position:absolute; top:10px; left:-11px; width:10px; height:1px; background:#fff;}
 
-#blinkerpop {display:none;position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); background:#fff; border:1px solid #c9c9c9; width:390px; z-index:9999;}
-#blinkerpop .title {position:relative; background:#eaebec; color:#000; padding:10px 19px; font-size:16px; font-weight:bold; color:#1f4784;}
-#blinkerpop .title button {position:absolute; right:19px; top:50%; transform:translateY(-50%); font-size:0px; width:22px; height:22px; background:url(/seantour_map/images/travel/main/close_btn_pop.png) no-repeat 0 0;}
-#blinkerpop .reserv {position:relative;}
-#blinkerpop .reserv .box_icon {position:absolute; top:10px; left:30px; width:19px; height:65px; }
-#blinkerpop .reserv .box_icon.box_red {background:url(/seantour_map/images/travel/main/icon_blinker_red_ver2.png) no-repeat 0 0; background-size:cover;}
-#blinkerpop .reserv .box_icon.box_green {background:url(/seantour_map/images/travel/main/icon_blinker_green_ver2.png) no-repeat 0 0; background-size:cover;}
-#blinkerpop .reserv .box_icon.box_yellow {background:url(/seantour_map/images/travel/main/icon_blinker_yellow_ver2.png) no-repeat 0 0; background-size:cover;}
-#blinkerpop .reserv ul {padding:15px 15px 15px 75px;}
-#blinkerpop .reserv ul li {color:#000; line-height:27px;}
-#blinkerpop .reserv ul li span {position:relative; display:inline-block; width:90px;}
-#blinkerpop .reserv ul li span:after {content:""; position:absolute; right:15px; top:50%; transform:translateY(-50%); width:1px; height:13px; background:#999; vertical-align:middle;}
-#blinkerpop .reserv a {position:absolute; display:block; font-size:14px; padding:5px 8px; background:#1f4784; color:#fff; right:15px; top:50%; transform:translateY(-50%);}
+.blinkerpop {display:none;position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); background:#fff; border:1px solid #c9c9c9; width:390px; z-index:9999;}
+.blinkerpop .title {position:relative; background:#eaebec; color:#000; padding:10px 19px; font-size:16px; font-weight:bold; color:#1f4784;}
+.blinkerpop .title button {position:absolute; right:19px; top:50%; transform:translateY(-50%); font-size:0px; width:22px; height:22px; background:url(/seantour_map/images/travel/main/close_btn_pop.png) no-repeat 0 0;}
+.blinkerpop .reserv {position:relative;}
+.blinkerpop .reserv .box_icon {position:absolute; top:10px; left:30px; width:19px; height:65px; }
+.blinkerpop .reserv .box_icon.box_red {background:url(/seantour_map/images/travel/main/icon_blinker_red_ver2.png) no-repeat 0 0; background-size:cover;}
+.blinkerpop .reserv .box_icon.box_green {background:url(/seantour_map/images/travel/main/icon_blinker_green_ver2.png) no-repeat 0 0; background-size:cover;}
+.blinkerpop .reserv .box_icon.box_yellow {background:url(/seantour_map/images/travel/main/icon_blinker_yellow_ver2.png) no-repeat 0 0; background-size:cover;}
+.blinkerpop .reserv ul {padding:15px 15px 15px 75px;}
+.blinkerpop .reserv ul li {color:#000; line-height:27px;}
+.blinkerpop .reserv ul li span {position:relative; display:inline-block; width:90px;}
+.blinkerpop .reserv ul li span:after {content:""; position:absolute; right:15px; top:50%; transform:translateY(-50%); width:1px; height:13px; background:#999; vertical-align:middle;}
+.blinkerpop .reserv a {position:absolute; display:block; font-size:14px; padding:5px 8px; background:#1f4784; color:#fff; right:15px; top:50%; transform:translateY(-50%);}
 
 
           
