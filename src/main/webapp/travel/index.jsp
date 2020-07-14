@@ -37,7 +37,8 @@
 					$('.spot' + (i + 1)).find('a').removeClass();
 					$('.spot' + (i + 1)).find('a').addClass('icon');
 					var classNm = checkBeachCongestion(data[i].seqId, data[i].uniqPop);
-					$('.spot' + (i + 1)).find('a').addClass(classNm);	
+					$('.spot' + (i + 1)).find('a').addClass(classNm);
+					$('#blinkerpop' + (i + 1)).find('.box_icon').addClass('box_' + classNm);
 				}
 		    },
 		    error: function(err) {		    	
@@ -188,6 +189,9 @@ function fn_reservView(){
 								  	$(document).ready(function(){
 								  		<c:forEach var="i" begin="1" end="50" step="1">
 								  			$(".spot${i} a").click(function(){
+								  				$("[id^='blinkerpop']").each(function(){
+								  					$(this).closest(".blinkerpop").hide();
+								  				});
 								  				$("#blinkerpop${i}").show();
 								  			});
 								  		</c:forEach>
@@ -256,7 +260,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop1" class="blinkerpop">
 								  	 		<div class="title">[부산]해운대 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>29,250명</li>
 								  	 				<li><span>개장일</span>2020년 6월 1일</li>
@@ -267,7 +271,7 @@ function fn_reservView(){
 								  	 	 <div id="blinkerpop2" class="blinkerpop">
 								  	 		<div class="title">[부산]광안리 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>18,000명</li>
 								  	 				<li><span>개장일</span>2020년 7월 1일</li>
@@ -278,7 +282,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop3" class="blinkerpop">
 								  	 		<div class="title">[부산]송도 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>10,000명</li>
 								  	 				<li><span>개장일</span>2020년 7월 1일</li>
@@ -289,7 +293,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop4" class="blinkerpop">
 								  	 		<div class="title">[충청]대천 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>48,750명</li>
 								  	 				<li><span>개장일</span>2020년 7월 4일</li>
@@ -300,7 +304,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop5" class="blinkerpop">
 								  	 		<div class="title">[부산]다대포 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>13,813명</li>
 								  	 				<li><span>개장일</span>2020년 7월 1일</li>
@@ -311,7 +315,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop6" class="blinkerpop">
 								  	 		<div class="title">[강원]경포 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>26,377명</li>
 								  	 				<li><span>개장일</span>2020년 7월 17일</li>
@@ -322,7 +326,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop7" class="blinkerpop">
 								  	 		<div class="title">[부산]송정 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>12,900명</li>
 								  	 				<li><span>개장일</span>2020년 6월 1일</li>
@@ -333,7 +337,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop8" class="blinkerpop">
 								  	 		<div class="title">[강원]낙산 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>26,793명</li>
 								  	 				<li><span>개장일</span>2020년 7월 17일</li>
@@ -344,7 +348,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop9" class="blinkerpop">
 								  	 		<div class="title">[강원]속초 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>6,000명</li>
 								  	 				<li><span>개장일</span>2020년 7월 10일</li>
@@ -355,7 +359,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop10" class="blinkerpop">
 								  	 		<div class="title">[강원]삼척 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>14,825명</li>
 								  	 				<li><span>개장일</span>2020년 7월 10일</li>
@@ -366,7 +370,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop11" class="blinkerpop">
 								  	 		<div class="title">[강원]망상 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>19,186명</li>
 								  	 				<li><span>개장일</span>2020년 7월 15일</li>
@@ -377,7 +381,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop12" class="blinkerpop">
 								  	 		<div class="title">[강원]맹방 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>7,175명</li>
 								  	 				<li><span>개장일</span>2020년 7월 10일</li>
@@ -388,7 +392,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop13" class="blinkerpop">
 								  	 		<div class="title">[강원]추암 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>1,948명</li>
 								  	 				<li><span>개장일</span>2020년 7월 15일</li>
@@ -399,7 +403,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop14" class="blinkerpop">
 								  	 		<div class="title">[전남]신지명사십리 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>47,500명</li>
 								  	 				<li><span>개장일</span>2020년 7월 10일</li>
@@ -410,7 +414,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop15" class="blinkerpop">
 								  	 		<div class="title">[충청]만리포 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>5,625명</li>
 								  	 				<li><span>개장일</span>2020년 6월 6일</li>
@@ -421,7 +425,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop16" class="blinkerpop">
 								  	 		<div class="title">[울산]일산 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>9,461명</li>
 								  	 				<li><span>개장일</span>2020년 7월 1일</li>
@@ -432,7 +436,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop17" class="blinkerpop">
 								  	 		<div class="title">[제주]함덕 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>5,500명</li>
 								  	 				<li><span>개장일</span>2020년 7월 1일</li>
@@ -443,7 +447,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop18" class="blinkerpop">
 								  	 		<div class="title">[울산]진하 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>10,191명</li>
 								  	 				<li><span>개장일</span>2020년 7월 1일</li>
@@ -454,7 +458,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop19" class="blinkerpop">
 								  	 		<div class="title">[강원]하조대 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>4,500명</li>
 								  	 				<li><span>개장일</span>2020년 7월 17일</li>
@@ -465,7 +469,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop20" class="blinkerpop">
 								  	 		<div class="title">[제주]협재 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>5,000명</li>
 								  	 				<li><span>개장일</span>2020년 7월 1일</li>
@@ -476,7 +480,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop21" class="blinkerpop">
 								  	 		<div class="title">[경북]고래불 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>58,940명</li>
 								  	 				<li><span>개장일</span>2020년 7월 17일</li>
@@ -487,7 +491,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop22" class="blinkerpop">
 								  	 		<div class="title">[강원]주문진 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>16,548명</li>
 								  	 				<li><span>개장일</span>2020년 7월 17일</li>
@@ -498,7 +502,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop23" class="blinkerpop">
 								  	 		<div class="title">[충청]춘장대 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>23,438명</li>
 								  	 				<li><span>개장일</span>2020년 7월 11일</li>
@@ -509,7 +513,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop24" class="blinkerpop">
 								  	 		<div class="title">[제주]이호테우 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>6,250명</li>
 								  	 				<li><span>개장일</span>2020년 7월 1일</li>
@@ -520,7 +524,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop25" class="blinkerpop">
 								  	 		<div class="title">[충청]꽃지 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>8,000명</li>
 								  	 				<li><span>개장일</span>2020년 7월 4일</li>
@@ -531,7 +535,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop26" class="blinkerpop">
 								  	 		<div class="title">[강원]송지호 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>8,343명</li>
 								  	 				<li><span>개장일</span>2020년 7월 15일</li>
@@ -542,7 +546,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop27" class="blinkerpop">
 								  	 		<div class="title">[제주]곽지 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>7,000명</li>
 								  	 				<li><span>개장일</span>2020년 7월 1일</li>
@@ -553,7 +557,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop28" class="blinkerpop">
 								  	 		<div class="title">[강원]화진포 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>15,403명</li>
 								  	 				<li><span>개장일</span>2020년 7월 1일</li>
@@ -564,7 +568,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop29" class="blinkerpop">
 								  	 		<div class="title">[강원]외옹치 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>250명</li>
 								  	 				<li><span>개장일</span>2020년 7월 10일</li>
@@ -575,7 +579,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop30" class="blinkerpop">
 								  	 		<div class="title">[제주]금능 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>2,500명</li>
 								  	 				<li><span>개장일</span>2020년 7월 1일</li>
@@ -586,7 +590,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop31" class="blinkerpop">
 								  	 		<div class="title">[강원]삼포 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>8,640명</li>
 								  	 				<li><span>개장일</span>2020년 7월 10일</li>
@@ -597,7 +601,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop32" class="blinkerpop">
 								  	 		<div class="title">[부산]일광 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>4,661명</li>
 								  	 				<li><span>개장일</span>2020년 7월 1일</li>
@@ -608,7 +612,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop33" class="blinkerpop">
 								  	 		<div class="title">[충청]몽산포 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>3,188명</li>
 								  	 				<li><span>개장일</span>2020년 7월 4일</li>
@@ -619,7 +623,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop34" class="blinkerpop">
 								  	 		<div class="title">[부산]임랑 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>3,658명</li>
 								  	 				<li><span>개장일</span>2020년 7월 1일</li>
@@ -630,7 +634,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop35" class="blinkerpop">
 								  	 		<div class="title">[제주]중문색달 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>7,000명</li>
 								  	 				<li><span>개장일</span>2020년 7월 1일</li>
@@ -641,7 +645,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop36" class="blinkerpop">
 								  	 		<div class="title">[충청]무창포 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>19,688명</li>
 								  	 				<li><span>개장일</span>2020년 7월 17일</li>
@@ -652,7 +656,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop37" class="blinkerpop">
 								  	 		<div class="title">[제주]김녕 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>5,500명</li>
 								  	 				<li><span>개장일</span>2020년 7월 1일</li>
@@ -663,7 +667,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop38" class="blinkerpop">
 								  	 		<div class="title">[강원]안목 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>4,171명</li>
 								  	 				<li><span>개장일</span>2020년 7월 17일</li>
@@ -674,7 +678,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop39" class="blinkerpop">
 								  	 		<div class="title">[경남]상주은모래비치 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>104,598명</li>
 								  	 				<li><span>개장일</span>2020년 7월 5일</li>
@@ -685,7 +689,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop40" class="blinkerpop">
 								  	 		<div class="title">[인천]을왕리 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>4,725명</li>
 								  	 				<li><span>개장일</span>2020년 7월 1일</li>
@@ -696,7 +700,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop41" class="blinkerpop">
 								  	 		<div class="title">[충청]삼봉 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>2,000명</li>
 								  	 				<li><span>개장일</span>2020년 7월 4일</li>
@@ -707,7 +711,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop42" class="blinkerpop">
 								  	 		<div class="title">[강원]정동진 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>28,173명</li>
 								  	 				<li><span>개장일</span>2020년 7월 17일</li>
@@ -718,7 +722,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop43" class="blinkerpop">
 								  	 		<div class="title">[강원]용화 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>2,293명</li>
 								  	 				<li><span>개장일</span>2020년 7월 10일</li>
@@ -729,7 +733,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop44" class="blinkerpop">
 								  	 		<div class="title">[강원]등대 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>243명</li>
 								  	 				<li><span>개장일</span>2020년 7월 10일</li>
@@ -740,7 +744,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop45" class="blinkerpop">
 								  	 		<div class="title">[인천]하나개 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>4,825명</li>
 								  	 				<li><span>개장일</span>2020년 7월 1일</li>
@@ -751,7 +755,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop46" class="blinkerpop">
 								  	 		<div class="title">[강원]송지호오토캠핑장 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>4,496명</li>
 								  	 				<li><span>개장일</span>2020년 7월 1일</li>
@@ -762,7 +766,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop47" class="blinkerpop">
 								  	 		<div class="title">[경북]관성솔밭 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>8,859명</li>
 								  	 				<li><span>개장일</span>2020년 7월 10일</li>
@@ -773,7 +777,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop48" class="blinkerpop">
 								  	 		<div class="title">[강원]중광정 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>4,499명</li>
 								  	 				<li><span>개장일</span>2020년 7월 17일</li>
@@ -784,7 +788,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop49" class="blinkerpop">
 								  	 		<div class="title">[강원]천진 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>4,439명</li>
 								  	 				<li><span>개장일</span>2020년 7월 10일</li>
@@ -795,7 +799,7 @@ function fn_reservView(){
 									  	 <div id="blinkerpop50" class="blinkerpop">
 								  	 		<div class="title">[충청]신두리 해수욕장<button class="pop_close">닫기</button></div>
 								  	 		<div class="reserv">
-								  	 			<span class="box_icon box_red"></span>
+								  	 			<span class="box_icon"></span>
 								  	 			<ul>
 								  	 				<li><span>수용인원</span>5,813명</li>
 								  	 				<li><span>개장일</span>2020년 7월 4일</li>
