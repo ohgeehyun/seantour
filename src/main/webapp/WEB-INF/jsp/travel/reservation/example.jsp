@@ -18,6 +18,11 @@
 			$('#pop').hide();
 		});
 	});
+	$(document).ready(function(){
+		$('#close2').click(function(){
+			$('#pop_main2').hide();
+		});
+	});
 
 function fn_reservView(){
 	var reseName = $('#reseName').val();
@@ -79,6 +84,10 @@ function fn_reservView(){
        <div id="pop">
          <div><img src="${pageContext.request.contextPath}/travel/common/images/main/img_popup_open.jpg" alt="" /></div>
          <div id="close">close</div>
+      </div>
+      <div id="pop_main2">
+         <div><img src="${pageContext.request.contextPath}/travel/common/images/main/img_popup_open2.jpg" alt="" /></div>
+         <div id="close2">close</div>
       </div>
        <div class="dim-layer">
           <div class="dimBg"></div>

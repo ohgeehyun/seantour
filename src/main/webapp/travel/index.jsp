@@ -20,6 +20,11 @@
      
   		});
 	});
+	$(document).ready(function(){
+		$('#close2').click(function(){
+			$('#pop_main2').hide();
+		});
+	});
   	   var d = new Date(); 
 		var currentDate = d.getFullYear() + "년 " + ( d.getMonth() + 1 ) + "월 " + d.getDate() + "일 "; 
 		var currentTime = "";
@@ -248,6 +253,10 @@ function init() {
           <div><img src="${pageContext.request.contextPath}/travel/common/images/main/main_pop2.jpg" alt="" /></div>
          <div id="close">close</div>
       </div>
+      <!-- <div id="pop_main2">
+         <div><img src="${pageContext.request.contextPath}/travel/common/images/main/img_popup_open2.jpg" alt="" /></div>
+         <div id="close2">close</div>
+      </div> -->
        <div class="dim-layer">
           <div class="dimBg"></div>
           <div id="layer2" class="pop-layer">
