@@ -294,8 +294,8 @@ a.btn-layerClose:hover {
 .spotzone .blinker .icon.yellow{background:url(/seantour_map/images/travel/main/icon_blinker_yellow.png) no-repeat 0 0;background-size:cover;}
 .spotzone .blinker .icon.green{background:url(/seantour_map/images/travel/main/icon_blinker_green.png) no-repeat 0 0;background-size:cover;}
 
-.spotzone .blinker a .name{display:none;padding:5px;white-space:nowrap;}   
-.spotzone .blinker a:hover .name{display:block;position:absolute; left:30px; top:-3px;padding:5px 10px; text-align:center; line-height:1.2; background:#fff; border:1px solid #555; white-space:nowarp; border-radius:10px; font-size:12px; font-weight:bold;text-indent:0;}
+.spotzone .blinker a .name{display:none;position:absolute; left:30px; top:-3px;padding:5px 10px; text-align:center; line-height:1.2; background:#fff; border:1px solid #555; white-space:nowarp; border-radius:10px; font-size:12px; font-weight:bold;text-indent:0;padding:5px;white-space:nowrap;}   
+.spotzone .blinker a:hover .name{display:block;}
 .spotzone .blinker .name:before {content:""; position:absolute; top:10px; left:-11px; width:10px; height:1px; background:#fff;}
 
 .blinkerpop {display:none;position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); background:#fff; border:1px solid #c9c9c9; width:390px; z-index:9999;}
@@ -687,7 +687,7 @@ a.btn-layerClose:hover {
   	.spotzone .main_visual_content_cell .visual_go .button{width:200px;height:55px;line-height:55px;padding-left:20px;font-size:16px;}
   	.spotzone .main_visual_content_cell .visual_go .button:before{left:22px;}
   	
-  	.spotzone .time{left:29%;font-size:13px;}
+  	.spotzone .time{font-size:13px;}
   	.spotzone .time:before{width:35px;height:35px;}
 	.spotzone .time span{font-size:18px;}
 	
