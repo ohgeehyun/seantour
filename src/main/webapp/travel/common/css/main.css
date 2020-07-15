@@ -704,11 +704,11 @@ a.btn-layerClose:hover {
 	.icon{position:absolute;/*top:-37px;right:-22px;*/display:inline-block;width:21px;height:67px;}
 	
 	
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot4 .icon,
+	/* .spotzone .main_visual_content_cell .main_visual_content_cell_right .spot4 .icon,
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot7 .icon,
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot1 .icon,
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot2 .icon{right:66px;}
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot3 .icon{top:-62px;right:16px;}
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot3 .icon{top:-62px;right:16px;} */
 	
 	.name{font-size:13px;line-height:1.8;}          
 	
@@ -912,10 +912,10 @@ a.btn-layerClose:hover {
 	.spotzone .main_visual_wrap{padding:0;}
 	.spotzone .main_visual_content_cell>div{width:100%;}
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right{width:100%;padding-left:0;}
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot4 .icon, 
+	/* .spotzone .main_visual_content_cell .main_visual_content_cell_right .spot4 .icon, 
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot7 .icon, 
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot1 .icon, 
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot2 .icon{right:42px;}
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot2 .icon{right:42px;} */
 	.spotzone .main_visual_wrap{height:850px;}
 	.spotzone .list>li{height:850px;}
 	.spotzone .main_visual_content_cell>div{width:100%;}

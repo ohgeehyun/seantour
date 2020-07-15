@@ -3,7 +3,7 @@
 <html lang="ko">
 <head>
 
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/travel/main.css'/>" />
+<%-- <link rel="stylesheet" type="text/css" href="<c:url value='/css/travel/main.css'/>" /> --%>
 
 <%@ include file="/travel/common/config/handing/cssHanding.jsp" %>
 
