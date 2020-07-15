@@ -4,6 +4,8 @@
 <head>
 
 
+<%-- <link rel="stylesheet" type="text/css" href="<c:url value='/css/travel/main.css'/>" /> --%>
+
 
 <%@ include file="/travel/common/config/handing/cssHanding.jsp" %>
 
@@ -206,56 +208,56 @@ function fn_reservView(){
 								  	 <div class="main_visual_content_cell_right_inr">
 								  	 	<div class="spot_title"><img src="${pageContext.request.contextPath}/images/travel/main/img_map_tit.png" alt="해수욕장 혼잡도 신호등" /></div>
 								  	 	<div class="spot_info"><img src="${pageContext.request.contextPath}/images/travel/main/img_info_box.png" alt="혼잡: 빨간색, 혼잡우려: 노란색, 적정: 녹색" /></div>
-									  	 <div class="blinker spot1"><a href="#" class="icon red"><span class="name">해운대</span></a></div>
-									  	 <div class="blinker spot2"><a href="#" class="icon red"><span class="name">광안리</span></a></div>
-									  	 <div class="blinker spot3"><a href="#" class="icon red"><span class="name">송도</span></a></div>
-									  	 <div class="blinker spot4"><a href="#" class="icon red"><span class="name">대천</span></a></div>
-									  	 <div class="blinker spot5"><a href="#" class="icon red"><span class="name">다대포</span></a></div>
-									  	 <div class="blinker spot6"><a href="#" class="icon red"><span class="name">경포</span></a></div>
-									  	 <div class="blinker spot7"><a href="#" class="icon red"><span class="name">송정</span></a></div>
-									  	 <div class="blinker spot8"><a href="#" class="icon red"><span class="name">낙산</span></a></div>
-									  	 <div class="blinker spot9"><a href="#" class="icon red"><span class="name">속초</span></a></div>
-									  	 <div class="blinker spot10"><a href="#" class="icon red"><span class="name">삼척</span></a></div>
-									  	 <div class="blinker spot11"><a href="#" class="icon red"><span class="name">망상</span></a></div>
-									  	 <div class="blinker spot12"><a href="#" class="icon red"><span class="name">맹방</span></a></div>
-									  	 <div class="blinker spot13"><a href="#" class="icon red"><span class="name">추암</span></a></div>
-									  	 <div class="blinker spot14"><a href="#" class="icon green"><span class="name">신지명사십리</span></a></div>
-								  	   	 <div class="blinker spot15"><a href="#" class="icon red"><span class="name">만리포</span></a></div>
-									  	 <div class="blinker spot16"><a href="#" class="icon green"><span class="name">일산</span></a></div>
-									  	 <div class="blinker spot17"><a href="#" class="icon green"><span class="name">함덕</span></a></div>
-									  	 <div class="blinker spot18"><a href="#" class="icon green"><span class="name">진하</span></a></div>
-									  	 <div class="blinker spot19"><a href="#" class="icon green"><span class="name">하조대</span></a></div> 
-									  	 <div class="blinker spot20"><a href="#" class="icon green"><span class="name">협재</span></a></div>
-									  	 <div class="blinker spot21"><a href="#" class="icon green"><span class="name">고래불</span></a></div>
-									  	 <div class="blinker spot22"><a href="#" class="icon green"><span class="name">주문진</span></a></div>
-									  	 <div class="blinker spot23"><a href="#" class="icon yellow"><span class="name">춘장대</span></a></div>
-									  	 <div class="blinker spot24"><a href="#" class="icon red"><span class="name">이호테우</span></a></div>
-									  	 <div class="blinker spot25"><a href="#" class="icon red"><span class="name">꽃지</span></a></div>
-									  	 <div class="blinker spot26"><a href="#" class="icon green"><span class="name">송지호</span></a></div>
-									  	 <div class="blinker spot27"><a href="#" class="icon green"><span class="name">곽지</span></a></div>
-									  	 <div class="blinker spot28"><a href="#" class="icon green"><span class="name">화진포</span></a></div>
-									  	 <div class="blinker spot29"><a href="#" class="icon yellow"><span class="name">외옹치</span></a></div>
-									  	 <div class="blinker spot30"><a href="#" class="icon yellow"><span class="name">금능</span></a></div>
-									  	 <div class="blinker spot31"><a href="#" class="icon yellow"><span class="name">삼포</span></a></div>
-									  	 <div class="blinker spot32"><a href="#" class="icon yellow"><span class="name">일광</span></a></div>
-									  	 <div class="blinker spot33"><a href="#" class="icon yellow"><span class="name">몽산포</span></a></div>
-									  	 <div class="blinker spot34"><a href="#" class="icon yellow"><span class="name">임랑</span></a></div>
-									  	 <div class="blinker spot35"><a href="#" class="icon green"><span class="name">중문색달</span></a></div>
-									  	 <div class="blinker spot36"><a href="#" class="icon red"><span class="name">무창포</span></a></div>
-									  	 <div class="blinker spot37"><a href="#" class="icon green"><span class="name">김녕</span></a></div>
-									  	 <div class="blinker spot38"><a href="#" class="icon red"><span class="name">안목</span></a></div>
-									  	 <div class="blinker spot39"><a href="#" class="icon green"><span class="name">상주은모래비치</span></a></div>
-									  	 <div class="blinker spot40"><a href="#" class="icon green"><span class="name">을왕리</span></a></div>
-									  	 <div class="blinker spot41"><a href="#" class="icon red"><span class="name">삼봉</span></a></div>
-									  	 <div class="blinker spot42"><a href="#" class="icon red"><span class="name">정동진</span></a></div>
-									  	 <div class="blinker spot43"><a href="#" class="icon green"><span class="name">용화</span></a></div>
-									  	 <div class="blinker spot44"><a href="#" class="icon red"><span class="name">등대</span></a></div>
-									  	 <div class="blinker spot45"><a href="#" class="icon red"><span class="name">하나개</span></a></div>
-									  	 <div class="blinker spot46"><a href="#" class="icon red"><span class="name">송지호오토캠핑장</span></a></div>
-									  	 <div class="blinker spot47"><a href="#" class="icon red"><span class="name">관성솔밭</span></a></div>
-									  	 <div class="blinker spot48"><a href="#" class="icon red"><span class="name">중광정</span></a></div>
-									  	 <div class="blinker spot49"><a href="#" class="icon red"><span class="name">천진</span></a></div>
-									  	 <div class="blinker spot50"><a href="#" class="icon red"><span class="name">신두리</span></a></div>
+									  	 <div class="blinker spot1"><a href="#" class="icon"><span class="name">해운대</span></a></div>
+									  	 <div class="blinker spot2"><a href="#" class="icon"><span class="name">광안리</span></a></div>
+									  	 <div class="blinker spot3"><a href="#" class="icon"><span class="name">송도</span></a></div>
+									  	 <div class="blinker spot4"><a href="#" class="icon"><span class="name">대천</span></a></div>
+									  	 <div class="blinker spot5"><a href="#" class="icon"><span class="name">다대포</span></a></div>
+									  	 <div class="blinker spot6"><a href="#" class="icon"><span class="name">경포</span></a></div>
+									  	 <div class="blinker spot7"><a href="#" class="icon"><span class="name">송정</span></a></div>
+									  	 <div class="blinker spot8"><a href="#" class="icon"><span class="name">낙산</span></a></div>
+									  	 <div class="blinker spot9"><a href="#" class="icon"><span class="name">속초</span></a></div>
+									  	 <div class="blinker spot10"><a href="#" class="icon"><span class="name">삼척</span></a></div>
+									  	 <div class="blinker spot11"><a href="#" class="icon"><span class="name">망상</span></a></div>
+									  	 <div class="blinker spot12"><a href="#" class="icon"><span class="name">맹방</span></a></div>
+									  	 <div class="blinker spot13"><a href="#" class="icon"><span class="name">추암</span></a></div>
+									  	 <div class="blinker spot14"><a href="#" class="icon"><span class="name">신지명사십리</span></a></div>
+								  	   	 <div class="blinker spot15"><a href="#" class="icon"><span class="name">만리포</span></a></div>
+									  	 <div class="blinker spot16"><a href="#" class="icon"><span class="name">일산</span></a></div>
+									  	 <div class="blinker spot17"><a href="#" class="icon"><span class="name">함덕</span></a></div>
+									  	 <div class="blinker spot18"><a href="#" class="icon"><span class="name">진하</span></a></div>
+									  	 <div class="blinker spot19"><a href="#" class="icon"><span class="name">하조대</span></a></div> 
+									  	 <div class="blinker spot20"><a href="#" class="icon"><span class="name">협재</span></a></div>
+									  	 <div class="blinker spot21"><a href="#" class="icon"><span class="name">고래불</span></a></div>
+									  	 <div class="blinker spot22"><a href="#" class="icon"><span class="name">주문진</span></a></div>
+									  	 <div class="blinker spot23"><a href="#" class="icon"><span class="name">춘장대</span></a></div>
+									  	 <div class="blinker spot24"><a href="#" class="icon"><span class="name">이호테우</span></a></div>
+									  	 <div class="blinker spot25"><a href="#" class="icon"><span class="name">꽃지</span></a></div>
+									  	 <div class="blinker spot26"><a href="#" class="icon"><span class="name">송지호</span></a></div>
+									  	 <div class="blinker spot27"><a href="#" class="icon"><span class="name">곽지</span></a></div>
+									  	 <div class="blinker spot28"><a href="#" class="icon"><span class="name">화진포</span></a></div>
+									  	 <div class="blinker spot29"><a href="#" class="icon"><span class="name">외옹치</span></a></div>
+									  	 <div class="blinker spot30"><a href="#" class="icon"><span class="name">금능</span></a></div>
+									  	 <div class="blinker spot31"><a href="#" class="icon"><span class="name">삼포</span></a></div>
+									  	 <div class="blinker spot32"><a href="#" class="icon"><span class="name">일광</span></a></div>
+									  	 <div class="blinker spot33"><a href="#" class="icon"><span class="name">몽산포</span></a></div>
+									  	 <div class="blinker spot34"><a href="#" class="icon"><span class="name">임랑</span></a></div>
+									  	 <div class="blinker spot35"><a href="#" class="icon"><span class="name">중문색달</span></a></div>
+									  	 <div class="blinker spot36"><a href="#" class="icon"><span class="name">무창포</span></a></div>
+									  	 <div class="blinker spot37"><a href="#" class="icon"><span class="name">김녕</span></a></div>
+									  	 <div class="blinker spot38"><a href="#" class="icon"><span class="name">안목</span></a></div>
+									  	 <div class="blinker spot39"><a href="#" class="icon"><span class="name">상주은모래비치</span></a></div>
+									  	 <div class="blinker spot40"><a href="#" class="icon"><span class="name">을왕리</span></a></div>
+									  	 <div class="blinker spot41"><a href="#" class="icon"><span class="name">삼봉</span></a></div>
+									  	 <div class="blinker spot42"><a href="#" class="icon"><span class="name">정동진</span></a></div>
+									  	 <div class="blinker spot43"><a href="#" class="icon"><span class="name">용화</span></a></div>
+									  	 <div class="blinker spot44"><a href="#" class="icon"><span class="name">등대</span></a></div>
+									  	 <div class="blinker spot45"><a href="#" class="icon"><span class="name">하나개</span></a></div>
+									  	 <div class="blinker spot46"><a href="#" class="icon"><span class="name">송지호오토캠핑장</span></a></div>
+									  	 <div class="blinker spot47"><a href="#" class="icon"><span class="name">관성솔밭</span></a></div>
+									  	 <div class="blinker spot48"><a href="#" class="icon"><span class="name">중광정</span></a></div>
+									  	 <div class="blinker spot49"><a href="#" class="icon"><span class="name">천진</span></a></div>
+									  	 <div class="blinker spot50"><a href="#" class="icon"><span class="name">신두리</span></a></div>
 									  	 <div class="time">기준시각<br/><span>13:00</span></div>
 									  	 <div id="blinkerpop1" class="blinkerpop">
 								  	 		<div class="title">[부산]해운대 해수욕장<button class="pop_close">닫기</button></div>
