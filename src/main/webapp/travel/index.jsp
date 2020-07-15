@@ -124,8 +124,124 @@ function fn_reservView(){
 	location.href = "<c:url value='/travel/reservation/reserv_view.do'/>?reseName=" + encodeURI(reseName, "UTF-8") + "&reseTel=" + reseTel;
 }
 </script>
+<script>
+// Log events flag
+var logEvents = false;
+
+// Global vars to cache event state
+var evCache = new Array();
+var prevDiff = -1;
+
+// Logging/debugging functions
+function enableLog(ev) {
+  logEvents = logEvents ? false : true;
+}
+
+function log(prefix, ev) {
+  if (!logEvents) return;
+  var o = document.getElementsByTagName('output')[0];
+  var s = prefix + ": pointerID = " + ev.pointerId +
+                " ; pointerType = " + ev.pointerType +
+                " ; isPrimary = " + ev.isPrimary;
+  o.innerHTML += s + " <br>";
+} 
+
+function clearLog(event) {
+ var o = document.getElementsByTagName('output')[0];
+ o.innerHTML = "";
+}
+
+function pointerdown_handler(ev) {
+ // The pointerdown event signals the start of a touch interaction.
+ // This event is cached to support 2-finger gestures
+ evCache.push(ev);
+ log("pointerDown", ev);
+}
+
+function pointermove_handler(ev) {
+ // This function implements a 2-pointer horizontal pinch/zoom gesture. 
+ //
+ // If the distance between the two pointers has increased (zoom in), 
+ // the taget element's background is changed to "pink" and if the 
+ // distance is decreasing (zoom out), the color is changed to "lightblue".
+ //
+ // This function sets the target element's border to "dashed" to visually
+ // indicate the pointer's target received a move event.
+ log("pointerMove", ev);
+ //ev.target.style.border = "dashed";
+
+ // Find this event in the cache and update its record with this event
+ for (var i = 0; i < evCache.length; i++) {
+   if (ev.pointerId == evCache[i].pointerId) {
+      evCache[i] = ev;
+   break;
+   }
+ }
+
+ // If two pointers are down, check for pinch gestures
+ if (evCache.length == 2) {
+   // Calculate the distance between the two pointers
+   var curDiff = Math.abs(evCache[0].clientX - evCache[1].clientX);
+
+   if (prevDiff > 0) {
+     if (curDiff > prevDiff) {
+       // The distance between the two pointers has increased
+       log("Pinch moving OUT -> Zoom in", ev);
+      // ev.target.style.background = "pink";
+      $(".name").css("display", "block");
+     }
+     if (curDiff < prevDiff) {
+       // The distance between the two pointers has decreased
+       log("Pinch moving IN -> Zoom out",ev);
+       $(".name").css("display", "none");
+     }
+   }
+
+   // Cache the distance for the next move event 
+   prevDiff = curDiff;
+ }
+}
+
+function pointerup_handler(ev) {
+  log(ev.type, ev);
+  // Remove this pointer from the cache and reset the target's
+  // background and border
+  remove_event(ev);
+  //ev.target.style.background = "white";
+  //ev.target.style.border = "1px solid black";
+ 
+  // If the number of pointers down is less than two then reset diff tracker
+  if (evCache.length < 2) prevDiff = -1;
+}
+
+function remove_event(ev) {
+ // Remove this event from the target's cache
+ for (var i = 0; i < evCache.length; i++) {
+   if (evCache[i].pointerId == ev.pointerId) {
+     evCache.splice(i, 1);
+     break;
+   }
+ }
+}
+
+function init() {
+ // Install event handlers for the pointer target
+ var el=document.getElementById("target");
+ el.onpointerdown = pointerdown_handler;
+ el.onpointermove = pointermove_handler;
+
+ // Use same handler for pointer{up,cancel,out,leave} events since
+ // the semantics for these events - in this app - are the same.
+ el.onpointerup = pointerup_handler;
+ el.onpointercancel = pointerup_handler;
+ el.onpointerout = pointerup_handler;
+ el.onpointerleave = pointerup_handler;
+}
+
+</script>
+
   </head>
-<body>
+<body onload="init();">
 	<div id="wrap">
 		<div id="accessibility"><a href="#content">본문 바로가기</a></div>
        <div id="pop">
@@ -205,7 +321,7 @@ function fn_reservView(){
 								  	});
 							  	 </script>
 								  <div class="main_visual_content_cell_right">
-								  	 <div class="main_visual_content_cell_right_inr">
+								  	 <div id="target" class="main_visual_content_cell_right_inr">
 								  	 	<div class="spot_title"><img src="${pageContext.request.contextPath}/images/travel/main/img_map_tit.png" alt="해수욕장 혼잡도 신호등" /></div>
 								  	 	<div class="spot_info"><img src="${pageContext.request.contextPath}/images/travel/main/img_info_box.png" alt="혼잡: 빨간색, 혼잡우려: 노란색, 적정: 녹색" /></div>
 									  	 <div class="blinker spot1"><a href="#" class="icon"><span class="name">해운대</span></a></div>
