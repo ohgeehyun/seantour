@@ -295,7 +295,9 @@ a.btn-layerClose:hover {
 .spotzone .blinker .icon.green{background:url(/seantour_map/images/travel/main/icon_blinker_green.png) no-repeat 0 0;background-size:cover;}
 
 .spotzone .blinker a .name{display:none;position:absolute; left:30px; top:-3px;padding:5px 10px; text-align:center; line-height:1.2; background:#fff; border:1px solid #555; white-space:nowarp; border-radius:10px; font-size:12px; font-weight:bold;text-indent:0;padding:5px;white-space:nowrap;}   
-.spotzone .blinker a:hover .name{display:block;}
+.spotzone .blinker a:hover .name,
+.spotzone .blinker a:focus .name,
+.spotzone .blinker a:active .name{display:block;}
 .spotzone .blinker .name:before {content:""; position:absolute; top:10px; left:-11px; width:10px; height:1px; background:#fff;}
 
 .blinkerpop {display:none;position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); background:#fff; border:1px solid #c9c9c9; width:390px; z-index:9999;}
@@ -803,8 +805,8 @@ a.btn-layerClose:hover {
 	
 	.spotzone .blinker .icon{width:12px;height:12px;}
 	/*.spotzone .blinker {width:30px;}*/
-	.spotzone .blinker a .name{display:none;}   
-	.spotzone .blinker a:hover .name {display:none;}  	
+	/*.spotzone .blinker a .name{display:none;}   
+	.spotzone .blinker a:hover .name {display:none;}*/  	
 	.blinkerpop{width:90%;}
 	.blinkerpop .reserv ul{padding:5px 5px 5px 45px;font-size:13px;}
 	.blinkerpop .reserv .box_icon{top:10px;left:10px;width:16px;height:55px;}
@@ -992,7 +994,7 @@ a.btn-layerClose:hover {
  }   
  
 @media screen and (max-width:600px){
-	.spotzone .blinker a .name{top:0;left:23px;padding:1px;line-height:1;font-size:5px;}
+	.spotzone .blinker a .name{top:0;left:23px;padding:3px;line-height:1;font-size:7px;}
 	.spotzone .blinker a .name:before{top:4px;}
 
 }	
