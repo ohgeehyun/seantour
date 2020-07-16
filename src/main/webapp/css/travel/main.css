@@ -67,12 +67,9 @@ img{width:100%;height:100%;}
 
  #pop{z-index:9999;position:absolute;top:100px;left:100px;width:500px;height:auto;}
  #pop #close{position:absolute;bottom:0;right:0;width:55px;height:35px;line-height:35px;background:#0099ff;font-size:13px;color:#fff;text-align:center;cursor:pointer;}
- #pop_main2{z-index:9999;position:absolute;top:200px;left:500px;width:500px;height:auto;}
- #pop_main2 #close2{position:absolute;bottom:0;right:0;width:55px;height:35px;line-height:35px;background:#0099ff;font-size:13px;color:#fff;text-align:center;cursor:pointer;}
  
 @media screen and (max-width:640px){
     #pop{top:10px;left:10px;width:300px;height:auto;}
-    #pop_main2{top:10px;left:10px;width:300px;height:auto;}
  }
 
  .pop-layer .pop-container {
@@ -234,8 +231,8 @@ a.btn-layerClose:hover {
 #container.main .spotzone .main_visual_content_cell{padding-top:0 !important;}
 .spotzone .main_visual_content_cell .main_visual_content_cell_right_inr{float:right;position:relative;width:517px;height:789px;background:url(/seantour_map/images/travel/main/img_map_main3.png) no-repeat 0 0;background-size:100%;}
 .spotzone .spot_title{position:absolute;top:10px;left:-130px;}
-.spotzone .spot_info{position:absolute;bottom:10px;right:5px;width:45%;}
-.spotzone .spot_info img{width:100%;border-radius:0.5em;box-shadow:3px 3px 3px 3px rgba(0,0,0, 0.2);}
+.spotzone .spot_info{position:absolute;bottom:10px;right:5px;width:43%;}
+.spotzone .spot_info img{width:100%;border-radius:0.5em;box-shadow:5px 5px 5px 5px rgba(0,0,0, 0.4);}
 .spotzone .spot{position:absolute;width:11px;height:11px;}
 .spotzone .blinker.spot1{left:79%;top:69%;}/* 해운대 */
 .spotzone .blinker.spot2{left:78.08%;top:70.38%}/* 광안리 */
@@ -246,9 +243,9 @@ a.btn-layerClose:hover {
 .spotzone .blinker.spot7{left:81%;top:67.5%;}/* 송정 */
 .spotzone .blinker.spot8{left:68.87%;top:12.33%;}/* 낙산 */
 .spotzone .blinker.spot9{left:65.87%;top:8.33%;}/* 속초 */
-.spotzone .blinker.spot10{left:83%;top:23.5%;}/* 삼척 */
+.spotzone .blinker.spot10{left:83%;top:24.5%;}/* 삼척 */
 
-.spotzone .blinker.spot11{left:87.3%;top:38.5%;}/* 노봉 */
+.spotzone .blinker.spot11{left:82.3%;top:22.5%;}/* 망상 */
 .spotzone .blinker.spot12{left:19.5%;top:94%;}/* 맹방 */
 .spotzone .blinker.spot13{left:85.4%;top:28.5%;}/* 추암 */
 .spotzone .blinker.spot14{left:21%;top:88.5%;}/* 신지 명사십리 */
@@ -273,14 +270,15 @@ a.btn-layerClose:hover {
 .spotzone .blinker.spot33{left:7%;top:40%;}/*몽산포 */
 .spotzone .blinker.spot34{left:84.5%;top:64.5%;}/* 임랑 */
 .spotzone .blinker.spot35{left:22.4%;top:98.8%;}/* 중문색달해변 */
-.spotzone .blinker.spot36{left:84.7%;top:27%;}/* 장호 */
-.spotzone .blinker.spot37{left:11%;top:46.3%;}/* 무창포 */
+
+.spotzone .blinker.spot36{left:11%;top:46.3%;}/* 무창포 */
+.spotzone .blinker.spot37{left:29%;top:93.3%;}/* 김녕 */
 .spotzone .blinker.spot38{left:79%;top:20.3%;}/* 안목 */
 .spotzone .blinker.spot39{left:49.7%;top:79.5%;}/* 상주은모래비치 */
 .spotzone .blinker.spot40{left:15%;top:23.9%;}/* 을왕리 */
 .spotzone .blinker.spot41{left:6.5%;top:41.5%;}/* 삼봉 */
 .spotzone .blinker.spot42{left:80.2%;top:21.8%;}/* 정동진 */
-.spotzone .blinker.spot43{left:84.4%;top:25.3%;}/* 용화 */
+.spotzone .blinker.spot43{left:84.4%;top:26.3%;}/* 용화 */
 .spotzone .blinker.spot44{left:65%;top:6.8%;}/* 등대 */
 .spotzone .blinker.spot45{left:18%;top:24.4%;}/* 하나개 */
 .spotzone .blinker.spot46{left:59.7%;top:-0.23%;}/*송지호오토캠핑 */
@@ -289,24 +287,15 @@ a.btn-layerClose:hover {
 .spotzone .blinker.spot49{left:64.5%;top:5%;}/* 천진 */
 .spotzone .blinker.spot50{left:6%;top:34.5%;}/* 신두리 */
 
-@media screen and (max-width:1024px){
-	
-	
-	/* .spotzone .blinker .icon {width:15px !important; height:15px !important;} */
-	.spotzone .blinker {width:30px;}
-	.spotzone .blinker a .name{display:none;}   
-	.spotzone .blinker a:hover .name {display:none;}
-		}
 
-
-.spotzone .blinker{position:absolute;width:120px;}
-.spotzone .blinker .icon{display:inline-block;width:19px;height:19px;}
+.spotzone .blinker{position:absolute;/*width:120px;*/width:auto !important;}
+.spotzone .blinker .icon{position:relative;display:inline-block;width:19px;height:19px;}
 .spotzone .blinker .icon.red{background:url(/seantour_map/images/travel/main/icon_blinker_red.png) no-repeat 0 0;background-size:cover;}
 .spotzone .blinker .icon.yellow{background:url(/seantour_map/images/travel/main/icon_blinker_yellow.png) no-repeat 0 0;background-size:cover;}
 .spotzone .blinker .icon.green{background:url(/seantour_map/images/travel/main/icon_blinker_green.png) no-repeat 0 0;background-size:cover;}
 
-.spotzone .blinker a .name{display:none;}   
-.spotzone .blinker a:hover .name{display:block;position:absolute; left:30px; top:-3px;padding:5px 10px; text-align:center; line-height:1.2; background:#fff; border:1px solid #555; white-space:nowarp; border-radius:10px; font-size:12px; font-weight:bold;text-indent:0;}
+.spotzone .blinker a .name{display:none;position:absolute; left:30px; top:-3px;padding:5px 10px; text-align:center; line-height:1.2; background:#fff; border:1px solid #555; white-space:nowarp; border-radius:10px; font-size:12px; font-weight:bold;text-indent:0;padding:5px;white-space:nowrap;}   
+.spotzone .blinker a:hover .name{display:block;}
 .spotzone .blinker .name:before {content:""; position:absolute; top:10px; left:-11px; width:10px; height:1px; background:#fff;}
 
 .blinkerpop {display:none;position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); background:#fff; border:1px solid #c9c9c9; width:390px; z-index:9999;}
@@ -698,7 +687,7 @@ a.btn-layerClose:hover {
   	.spotzone .main_visual_content_cell .visual_go .button{width:200px;height:55px;line-height:55px;padding-left:20px;font-size:16px;}
   	.spotzone .main_visual_content_cell .visual_go .button:before{left:22px;}
   	
-  	.spotzone .time{padding-left:37px;font-size:13px;}
+  	.spotzone .time{font-size:13px;}
   	.spotzone .time:before{width:35px;height:35px;}
 	.spotzone .time span{font-size:18px;}
 	
@@ -715,16 +704,16 @@ a.btn-layerClose:hover {
 	.icon{position:absolute;/*top:-37px;right:-22px;*/display:inline-block;width:21px;height:67px;}
 	
 	
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot4 .icon,
+	/* .spotzone .main_visual_content_cell .main_visual_content_cell_right .spot4 .icon,
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot7 .icon,
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot1 .icon,
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot2 .icon{right:66px;}
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot3 .icon{top:-62px;right:16px;}
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot3 .icon{top:-62px;right:16px;} */
 	
 	.name{font-size:13px;line-height:1.8;}          
 	
 	.spotzone .main_visual_content_cell .visual_go .button{width:155px;}
-	  	
+	  
   	
 	/* section01 */
 	.section01{height:120px;padding-top:28px;}
@@ -811,6 +800,16 @@ a.btn-layerClose:hover {
 	.spotzone .spot_title img{width:80%;}
 	
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right{padding-left:3%;}
+	
+	.spotzone .blinker .icon{width:12px;height:12px;}
+	/*.spotzone .blinker {width:30px;}*/
+	.spotzone .blinker a .name{display:none;}   
+	.spotzone .blinker a:hover .name {display:none;}  	
+	.blinkerpop{width:90%;}
+	.blinkerpop .reserv ul{padding:5px 5px 5px 45px;font-size:13px;}
+	.blinkerpop .reserv .box_icon{top:10px;left:10px;width:16px;height:55px;}
+	.blinkerpop .reserv a{position:static;width:70px;margin:15px auto 0;font-size:12px;text-align:center;}
+	
 	
 	.reserv_main_left span{margin-left:5px;}
 	.reserv_main_left strong{padding-left:0;}
@@ -910,19 +909,20 @@ a.btn-layerClose:hover {
 	.spotzone .bx-controls .bx-controls-auto, 
 	.spotzone .bx-controls .bx-pager{bottom:18%;}
 	*/
+	.spotzone .main_visual_wrap{padding:0;}
 	.spotzone .main_visual_content_cell>div{width:100%;}
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right{width:100%;}
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot4 .icon, 
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right{width:100%;padding-left:0;}
+	/* .spotzone .main_visual_content_cell .main_visual_content_cell_right .spot4 .icon, 
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot7 .icon, 
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot1 .icon, 
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot2 .icon{right:42px;}
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot2 .icon{right:42px;} */
 	.spotzone .main_visual_wrap{height:850px;}
 	.spotzone .list>li{height:850px;}
 	.spotzone .main_visual_content_cell>div{width:100%;}
 	.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit{margin:15px 0 15px;font-size:22px;}
 	.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit strong{font-size:40px;}
 	
-	.spotzone .time{padding-left:37px;font-size:11px;}
+	.spotzone .time{font-size:11px;}
   	.spotzone .time:before{width:35px;height:35px;}
 	.spotzone .time span{font-size:16px;}
 	
@@ -992,8 +992,8 @@ a.btn-layerClose:hover {
  }   
  
 @media screen and (max-width:600px){
-	
-
+	.spotzone .blinker a .name{top:0;left:23px;padding:2px;font-size:5px;}
+	.spotzone .blinker a .name:before{top:4px;}
 
 }	
 @media screen and (max-width:420px){
@@ -1014,7 +1014,7 @@ a.btn-layerClose:hover {
 }
 
 @media screen and (max-width:400px){
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right_inr{width:295px;}
+	
 	.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit{font-size:20px;}
 	.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit strong{font-size:40px;}
 	.spotzone .main_visual_content_cell .spot_search .cssSelect{width:60%;}
