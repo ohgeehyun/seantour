@@ -475,8 +475,10 @@ public class TravelReservationController {
 	        String telNo = "";
 	        if(vo.getReseTel().length() == 10) {
 	        	telNo = vo.getReseTel().substring(0, 3) + "-" + vo.getReseTel().substring(3, 6) + "-" + vo.getReseTel().substring(6, 10);
-	        } else {
+	        } else if(vo.getReseTel().length() == 11) {
 	        	telNo = vo.getReseTel().substring(0, 3) + "-" + vo.getReseTel().substring(3, 7) + "-" + vo.getReseTel().substring(7, 11);
+	        } else {
+	        	telNo = vo.getReseTel();
 	        }
 	        cell.setCellValue(telNo);
 	        cell = row.createCell(7);
