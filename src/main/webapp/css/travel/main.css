@@ -879,6 +879,7 @@ a.btn-layerClose:hover {
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker1 .icon, 
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker2 .icon{right:37px;}
 	
+	/*.blinkerpop{position:static;transform:translate(0 , 0);width:300px;height:150px;}*/
 	
 	/* section00 */
 	.section00{padding:15px 0;}
