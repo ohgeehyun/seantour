@@ -67,9 +67,11 @@ img{width:100%;height:100%;}
 
  #pop{z-index:9999;position:absolute;top:100px;left:100px;width:500px;height:auto;}
  #pop #close{position:absolute;bottom:0;right:0;width:55px;height:35px;line-height:35px;background:#0099ff;font-size:13px;color:#fff;text-align:center;cursor:pointer;}
- 
+ #pop_main2 {z-index:9999;position:absolute;top:200px;left:220px;width:500px;height:auto;}
+ #pop_main2 #close2{position:absolute;bottom:0;right:0;width:55px;height:35px;line-height:35px;background:#0099ff;font-size:13px;color:#fff;text-align:center;cursor:pointer;}
 @media screen and (max-width:640px){
     #pop{top:10px;left:10px;width:300px;height:auto;}
+    #pop_main2 {top:260px; left:10px; width:300px; height:auto;}
  }
 
  .pop-layer .pop-container {
@@ -260,9 +262,9 @@ a.btn-layerClose:hover {
 .spotzone .blinker.spot23{left:12%;top:47.8%;}/* 춘장대 */
 .spotzone .blinker.spot24{left:22.5%;top:92.9%;}/* 이호테우 */ 
 .spotzone .blinker.spot25{left:8.5%;top:42.9%;}/* 꽃지 */
-.spotzone .blinker.spot26{left:61%;top:1%;}/* 송지호 */
+.spotzone .blinker.spot26{left:63%;top:1.5%;}/* 송지호 */
 .spotzone .blinker.spot27{left:19.5%;top:94%;}/* 곽지괴물 */
-.spotzone .blinker.spot28{left:61.5%;top:0.5%;}/* 화진포 */
+.spotzone .blinker.spot28{left:58.7%;top:-0.6%;}/* 화진포 */
 .spotzone .blinker.spot29{left:67.3%;top:10.5%;}/* 외옹치 */
 .spotzone .blinker.spot30{left:16%;top:95.8%;}/* 금능으뜸원  */
 .spotzone .blinker.spot31{left:63%;top:3.5%;}/* 삼포 */
@@ -281,7 +283,7 @@ a.btn-layerClose:hover {
 .spotzone .blinker.spot43{left:84.4%;top:26.3%;}/* 용화 */
 .spotzone .blinker.spot44{left:65%;top:6.8%;}/* 등대 */
 .spotzone .blinker.spot45{left:18%;top:24.4%;}/* 하나개 */
-.spotzone .blinker.spot46{left:59.7%;top:-0.23%;}/*송지호오토캠핑 */
+.spotzone .blinker.spot46{left:60.5%;top:0.6%;}/*송지호오토캠핑 */
 .spotzone .blinker.spot47{left:89%;top:55%;}/* 관성 */
 .spotzone .blinker.spot48{left:73.5%;top:16%;}/* 중광정 */
 .spotzone .blinker.spot49{left:64.5%;top:5%;}/* 천진 */
