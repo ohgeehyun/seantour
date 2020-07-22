@@ -200,7 +200,7 @@ public class TravelReservationController {
 				}
 				text += "시\n";
 				text += "인원 : " + travelReservation.getResePersonnel() + "명\n";
-				text += "예약조회 : https://seantour.com/seantour_map/travel/";
+				text += "예약조회 : https://tournmaster.com/seantour_map/travel/";
 				params.put("to", travelReservation.getReseTel());
 				params.put("from", "0442005254");
 			    params.put("text", text);
