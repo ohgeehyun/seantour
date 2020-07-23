@@ -114,7 +114,7 @@
 		        AND RESE_DATE = #reseDate#
 		        AND RESE_TIME = #reseTime#
 		        AND RESE_NAME = #reseName#
-		        AND RESE_TEL = #reseTel#
+		        AND RESE_TEL = dguard.ENCRYPT('TBL', 'ENC', #reseTel#) 
 	</select>
 	
 	<insert id="travelReservationDAO.insertTravelReservation">
@@ -136,7 +136,7 @@
 				, #reseTime#
 				, #resePersonnel#
 				, TRIM(#reseName#)
-				, TRIM(#reseTel#)
+				, dguard.ENCRYPT('TBL', 'ENC', TRIM(#reseTel#))
 				, NOW()
 				, #reseAreaCd_2#
 			)
@@ -166,7 +166,7 @@
 			    rese_time AS reseTime,
 			    rese_personnel AS resePersonnel,
 			    rese_name AS reseName,
-			    rese_tel AS reseTel,
+			    dguard.DECRYPT('TBL', 'ENC', rese_tel) AS reseTel,
 			    rese_area_cd AS reseAreaCd,
 		    	rese_reg_date AS reseRegDate,
 			    (SELECT case when geo_reservation.rese_area_cd = '0800' then p_cd_nm 
@@ -176,7 +176,7 @@
 			    geo_reservation
 			WHERE
 			    RESE_NAME = #reseName#
-			        AND rese_tel = #reseTel#
+			        AND rese_tel = dguard.ENCRYPT('TBL', 'ENC', #reseTel#)
 		]]>
 	</select>
 
@@ -205,7 +205,7 @@
 		    rese_time AS reseTime,
 		    rese_personnel AS resePersonnel,
 		    rese_name AS reseName,
-		    rese_tel AS reseTel,
+		    dguard.DECRYPT('TBL', 'ENC', rese_tel) AS reseTel,
 		    rese_area_cd AS reseAreaCd,
 		    rese_reg_date AS reseRegDate,
 		    (SELECT case when geo_reservation.rese_area_cd = '0800' then p_cd_nm 
@@ -225,7 +225,7 @@
 		        AND RESE_NAME LIKE concat('%', #searchKeyword#, '%')
 			</isEqual>
 			<isEqual property="searchCondition" compareValue="1">
-		        AND RESE_TEL LIKE concat('%', #searchKeyword#, '%')
+		        AND RESE_TEL = dguard.ENCRYPT('TBL', 'ENC', #searchKeyword#)
 			</isEqual>
 			<isEqual property="searchCondition" compareValue="2">
 		        AND RESE_NO LIKE concat('%', #searchKeyword#, '%')
@@ -327,7 +327,7 @@
 		        AND RESE_NAME LIKE concat('%', #searchKeyword#, '%')
 			</isEqual>
 			<isEqual property="searchCondition" compareValue="1">
-		        AND RESE_TEL LIKE concat('%', #searchKeyword#, '%')
+		        AND RESE_TEL = dguard.ENCRYPT('TBL', 'ENC', #searchKeyword#)
 			</isEqual>
 			<isEqual property="searchCondition" compareValue="2">
 		        AND RESE_NO LIKE concat('%', #searchKeyword#, '%')
