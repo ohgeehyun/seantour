@@ -114,7 +114,7 @@
 		        AND RESE_DATE = #reseDate#
 		        AND RESE_TIME = #reseTime#
 		        AND RESE_NAME = #reseName#
-		        AND RESE_TEL = dguard.ENCRYPT('TBL', 'ENC', #reseTel#)
+		        AND RESE_TEL = dguard.ENCRYPT('TBL', 'ENC', #reseTel#) 
 	</select>
 	
 	<insert id="travelReservationDAO.insertTravelReservation">
