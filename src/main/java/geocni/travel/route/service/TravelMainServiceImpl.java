@@ -147,6 +147,44 @@ public class TravelMainServiceImpl extends EgovAbstractServiceImpl implements Tr
 	public List<?> selectCongestion() throws Exception {
 		return travelMainDAO.selectCongestion();
 	}
+	
+@Override
+public List<TravelMain> selectBeachPerCntInsert() throws Exception {
+	//DB 호출해서 정보값 가져오도록 할것.
+			Calendar cal = Calendar.getInstance();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
+			String datestr = sdf.format(cal.getTime());
+			
+			String datestrtimechange = String.valueOf(Integer.valueOf(datestr.substring(8,10)));//시간변경
+			int minute = Integer.valueOf(datestr.substring(10, 12));   // 분
+			String datestrtemp = datestr.substring(0,8);               // 년도 월 일 부분 교체 하기 위함 
+			
+			if(datestrtimechange == "00")                              // 00시 일 경우 전 날 23시 30분 에 대한 정보가 필요
+			{
+				cal.add(Calendar.DATE, -1);                            //전날 
+				datestr =sdf.format(cal.getTime());
+				datestrtemp = datestr.substring(0,8);                  // 년도 월 일 
+				datestrtimechange = "23"; //23시                        //시간        --> 최종적으로 datestrtemp+datestrtimechange 년도 월 일 시간 이 되어야함 
+			}
+			
+																		//하나 추가 해야하는게 00시 30분일때 는 당일 00시에 대한정보를 가저와야한다 고로 이 부분을 추가해주자.
+			if(minute > 0 && minute < 30) {                                                           
+				if (Integer.parseInt(datestrtimechange) <= 10)
+				{
+				datestrtimechange= "0"+ String.valueOf(Integer.valueOf(datestrtimechange)-1);    //0분일 경우 전 시간에 대한 정보가 필요하다 또한 10시 미만일경우 int로 형변환후 계산시 숫자가 하나로 표기됨
+				}else{
+				datestrtimechange= String.valueOf(Integer.valueOf(datestrtimechange)-1);         // 시간에 -1 을 해도 2자리수일경우 굳이 "0"을 안붙혀줘도 된다. 
+				}
+				datestr = datestrtemp + datestrtimechange + "30";                               //끝에 30분 추가
+			}else {
+				datestr = Integer.valueOf(datestr.substring(0, 10)) + "00";                       // 30분 이상일 경우는 그 시간대에 00분 정보를 가저와야 함
+			}
+					
+
+	
+	System.out.println("------------------------"+datestr);
+	return travelMainDAO.selectBeachPerCntInsert(datestr);
+}
 //
 //	@Override
 //	public List<?> selectTravelRouteList(TravelRoute vo) throws Exception {

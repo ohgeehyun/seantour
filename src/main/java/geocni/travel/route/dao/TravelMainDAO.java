@@ -33,6 +33,11 @@ public class TravelMainDAO extends EgovComAbstractDAO {
 		return (List<TravelMain>) list("travelMainDAO.selectCongestion");
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<TravelMain> selectBeachPerCntInsert(String datestr) throws Exception {		
+		return (List<TravelMain>) list("travelMainDAO.selectBeachPerCntInsert", datestr);
+	}
+
 //
 //    public List<?> selectTravelRouteList(TravelRoute vo) throws Exception {
 ////    	return list("travelRouteDAO.selectTravelRouteList", vo);

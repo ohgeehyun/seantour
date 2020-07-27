@@ -13,7 +13,7 @@
 			     , POI_NM AS poiNm
 			     , UNIQ_POP AS uniqPop
 			  FROM GEO_BEACH_CONGESTION
-             WHERE ETL_DT = #datestr#
+             WHERE ETL_DT = (SELECT MAX(ETL_DT) FROM GEO_BEACH_CONGESTION)
         ]]>
     </select>
     
@@ -40,7 +40,7 @@
 			     , UNIQ_POP AS uniqPop
 			     , CONGESTION AS congestion
 			  FROM GEO_BEACH_CONGESTION
-             WHERE ETL_DT = #datestr#
+             WHERE ETL_DT = (SELECT MAX(ETL_DT) FROM GEO_BEACH_CONGESTION)
         ]]>
     </select>
     
@@ -66,6 +66,17 @@
         <![CDATA[
 			SELECT AREA AS area
 			  FROM GEO_BEACH_INFO
+        ]]>
+    </select>
+    
+	<select id="travelMainDAO.selectBeachPerCntInsert" parameterClass="java.lang.String" resultClass="travelMain">
+        <![CDATA[
+			SELECT ETL_DT AS etlDt
+			     , SEQ_ID AS seqId
+			     , POI_NM AS poiNm
+			     , UNIQ_POP AS uniqPop
+			  FROM GEO_BEACH_CONGESTION
+             WHERE ETL_DT = #datestr#
         ]]>
     </select>
     

@@ -123,7 +123,7 @@ public class TravelMainController {
 		
 		List<String> lines = Files.readAllLines(Paths.get(filePath), StandardCharsets.UTF_8);
 		StringBuffer sb = new StringBuffer();
-		List<?> viewList = mainService.selectBeachPerCnt();
+		List<?> viewList = mainService.selectBeachPerCntInsert();
 		List<?> congestion = mainService.selectCongestion();
 		
 	    
