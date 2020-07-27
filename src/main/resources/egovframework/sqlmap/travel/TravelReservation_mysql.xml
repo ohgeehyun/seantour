@@ -355,7 +355,7 @@
 			FROM FIPA_AREA_CODE
 			WHERE P_CODE IN ('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17')
 			AND SUBSTR(CODE, 3, 2) != '00'
-			ORDER BY CODE
+			ORDER BY P_CODE, CD_NM
 		]]>
 	</select>
 </sqlMap>
