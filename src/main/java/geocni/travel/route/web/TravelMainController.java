@@ -316,60 +316,6 @@ public class TravelMainController {
 		return sObject;
 	}
 	
-	@RequestMapping(value="checkBeachCongestion.do")
-    @ResponseBody
-	public void checkBeachCongestion(
-			 HttpServletRequest request	
-			,HttpServletResponse response 
-            ,SessionStatus status
-			,Model model) throws Exception {
-    	
-    	String api_key = "NCSDUEW5R2MDNLJJ";
-		String api_secret = "2YG5WXA0SZPLJBFHW41DCWYDD2AWSWUD";
-		Message coolsms = new Message(api_key, api_secret);
-		HashMap<String, String> params = new HashMap<String, String>();
-		String text = "[해수욕장 예약시스템]\n";
-		
-		List<TravelMain> beachPerPopulationList = null;
-		try {
-			beachPerPopulationList =  (List<TravelMain>) mainService.selectBeachPerCnt();
-		} catch(Exception e) {
-			beachPerPopulationList = null;
-		}
-		int index=0;
-		int count=0;
-		for(TravelMain i : beachPerPopulationList){
-			if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion())>1)
-				{
-					System.out.println(beachPerPopulationList.get(index).getCongestion());
-					text += beachPerPopulationList.get(index).getCongestion()+"\n";
-					text += "현재 혼잡 이상 입니다.";
-					params.put("to", "01028222484");
-					params.put("from", "0442005254");
-				    params.put("text", text);
-				    params.put("type", "lms"); // 문자 타입
-				    count ++;
-				}
-			index++;
-		}
-		   try {
-			   if(count>0) {
-				   /*params.put("to", "01052721274");
-				   params.put("from", "0442005254");
-				   params.put("text", text);
-				   params.put("type", "lms");*/
-			      JSONObject obj = (JSONObject) coolsms.send(params);
-			      System.out.println(obj.toString());
-			      count= 0;
-			   }
-			    } catch (CoolsmsException e) {
-			      System.out.println(e.getMessage());
-			      System.out.println(e.getCode());
-			    }
-		
-	
-	}
-	
 	
 	
 	
