@@ -1,5 +1,6 @@
 package geocni.travel.route.web;
 
+import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -27,6 +28,7 @@ import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.social.connect.ApiAdapter;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.json.simple.JSONObject;
 import egovframework.com.cmm.EgovMessageSource;
 import egovframework.com.cmm.service.EgovProperties;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
@@ -34,10 +36,15 @@ import geocni.travel.route.dao.TravelMainDAO;
 import geocni.travel.route.domain.TravelDestination;
 import geocni.travel.route.domain.TravelMain;
 import geocni.travel.route.service.TravelMainService;
-import net.sf.json.JSONObject;
+
 import com.google.api.services.analytics.Analytics.Data;
 import com.sun.star.io.IOException;
+
+
+import net.nurigo.java_sdk.api.Message;
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import net.sf.json.JSONArray;
+
 
 @Controller
 @SessionAttributes(types=TravelMain.class)
@@ -187,6 +194,59 @@ public class TravelMainController {
 		return sObject;
 	}
 	
+	@RequestMapping(value="checkBeachCongestion.do")
+    @ResponseBody
+	public void checkBeachCongestion(
+			 HttpServletRequest request	
+			,HttpServletResponse response 
+            ,SessionStatus status
+			,Model model) throws Exception {
+    	
+    	String api_key = "NCSDUEW5R2MDNLJJ";
+		String api_secret = "2YG5WXA0SZPLJBFHW41DCWYDD2AWSWUD";
+		Message coolsms = new Message(api_key, api_secret);
+		HashMap<String, String> params = new HashMap<String, String>();
+		String text = "[해수욕장 예약시스템]\n";
+		
+		List<TravelMain> beachPerPopulationList = null;
+		try {
+			beachPerPopulationList =  (List<TravelMain>) mainService.selectBeachPerCnt();
+		} catch(Exception e) {
+			beachPerPopulationList = null;
+		}
+		int index=0;
+		int count=0;
+		for(TravelMain i : beachPerPopulationList){
+			if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion())>1)
+				{
+					System.out.println(beachPerPopulationList.get(index).getCongestion());
+					text += beachPerPopulationList.get(index).getCongestion()+"\n";
+					text += "현재 혼잡 이상 입니다.";
+					params.put("to", "01028222484");
+					params.put("from", "0442005254");
+				    params.put("text", text);
+				    params.put("type", "lms"); // 문자 타입
+				    count ++;
+				}
+			index++;
+		}
+		   try {
+			   if(count>0) {
+				   /*params.put("to", "01052721274");
+				   params.put("from", "0442005254");
+				   params.put("text", text);
+				   params.put("type", "lms");*/
+			      JSONObject obj = (JSONObject) coolsms.send(params);
+			      System.out.println(obj.toString());
+			      count= 0;
+			   }
+			    } catch (CoolsmsException e) {
+			      System.out.println(e.getMessage());
+			      System.out.println(e.getCode());
+			    }
+		
+	
+	}
 	
 	
 	
