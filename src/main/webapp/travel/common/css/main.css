@@ -67,9 +67,11 @@ img{width:100%;height:100%;}
 
  #pop{z-index:9999;position:absolute;top:100px;left:100px;width:500px;height:auto;}
  #pop #close{position:absolute;bottom:0;right:0;width:55px;height:35px;line-height:35px;background:#0099ff;font-size:13px;color:#fff;text-align:center;cursor:pointer;}
- 
+ #pop_main2 {z-index:9999;position:absolute;top:200px;left:220px;width:500px;height:auto;}
+ #pop_main2 #close2{position:absolute;bottom:0;right:0;width:55px;height:35px;line-height:35px;background:#0099ff;font-size:13px;color:#fff;text-align:center;cursor:pointer;}
 @media screen and (max-width:640px){
     #pop{top:10px;left:10px;width:300px;height:auto;}
+    #pop_main2 {top:260px; left:10px; width:300px; height:auto;}
  }
 
  .pop-layer .pop-container {
@@ -243,29 +245,29 @@ a.btn-layerClose:hover {
 .spotzone .blinker.spot7{left:81%;top:67.5%;}/* 송정 */
 .spotzone .blinker.spot8{left:68.87%;top:12.33%;}/* 낙산 */
 .spotzone .blinker.spot9{left:65.87%;top:8.33%;}/* 속초 */
-.spotzone .blinker.spot10{left:83%;top:24.5%;}/* 삼척 */
+.spotzone .blinker.spot10{left:83%;top:24.1%;}/* 삼척 */
 
 .spotzone .blinker.spot11{left:82.3%;top:22.5%;}/* 망상 */
-.spotzone .blinker.spot12{left:19.5%;top:94%;}/* 맹방 */
+.spotzone .blinker.spot12{left:84.4%;top:25.5%;}/* 맹방 */
 .spotzone .blinker.spot13{left:85.4%;top:28.5%;}/* 추암 */
 .spotzone .blinker.spot14{left:21%;top:88.5%;}/* 신지 명사십리 */
 .spotzone .blinker.spot15{left:4.5%;top:36.5%;}/* 만리포 */
 .spotzone .blinker.spot16{left:88.3%;top:58.5%;}/* 일산 */
 .spotzone .blinker.spot17{left:26.5%;top:92%;}/* 함덕서우봉 */
 .spotzone .blinker.spot18{left:88%;top:60.5%;}/* 진하 */
-.spotzone .blinker.spot19{left:72%;top:14.7%;}/* 하조대 */
+.spotzone .blinker.spot19{left:73.5%;top:15.8%;}/* 하조대 */
 .spotzone .blinker.spot20{left:17%;top:94.5%;}/* 협제 */
 .spotzone .blinker.spot21{left:87.3%;top:38.5%;}/* 고래불 */
 .spotzone .blinker.spot22{left:75%;top:17.3%;}/* 주문진 */
 .spotzone .blinker.spot23{left:12%;top:47.8%;}/* 춘장대 */
 .spotzone .blinker.spot24{left:22.5%;top:92.9%;}/* 이호테우 */ 
 .spotzone .blinker.spot25{left:8.5%;top:42.9%;}/* 꽃지 */
-.spotzone .blinker.spot26{left:61%;top:1%;}/* 송지호 */
+.spotzone .blinker.spot26{left:63%;top:1.5%;}/* 송지호 */
 .spotzone .blinker.spot27{left:19.5%;top:94%;}/* 곽지괴물 */
-.spotzone .blinker.spot28{left:61.5%;top:0.5%;}/* 화진포 */
+.spotzone .blinker.spot28{left:58.7%;top:-0.6%;}/* 화진포 */
 .spotzone .blinker.spot29{left:67.3%;top:10.5%;}/* 외옹치 */
 .spotzone .blinker.spot30{left:16%;top:95.8%;}/* 금능으뜸원  */
-.spotzone .blinker.spot31{left:63%;top:3.5%;}/* 삼포 */
+.spotzone .blinker.spot31{left:63%;top:3.3%;}/* 삼포 */
 .spotzone .blinker.spot32{left:84.56%;top:66.8%;}/* 일광 */
 .spotzone .blinker.spot33{left:7%;top:40%;}/*몽산포 */
 .spotzone .blinker.spot34{left:84.5%;top:64.5%;}/* 임랑 */
@@ -278,12 +280,12 @@ a.btn-layerClose:hover {
 .spotzone .blinker.spot40{left:15%;top:23.9%;}/* 을왕리 */
 .spotzone .blinker.spot41{left:6.5%;top:41.5%;}/* 삼봉 */
 .spotzone .blinker.spot42{left:80.2%;top:21.8%;}/* 정동진 */
-.spotzone .blinker.spot43{left:84.4%;top:26.3%;}/* 용화 */
+.spotzone .blinker.spot43{left:85%;top:27%;}/* 용화 */
 .spotzone .blinker.spot44{left:65%;top:6.8%;}/* 등대 */
 .spotzone .blinker.spot45{left:18%;top:24.4%;}/* 하나개 */
-.spotzone .blinker.spot46{left:59.7%;top:-0.23%;}/*송지호오토캠핑 */
+.spotzone .blinker.spot46{left:60.5%;top:0.6%;}/*송지호오토캠핑 */
 .spotzone .blinker.spot47{left:89%;top:55%;}/* 관성 */
-.spotzone .blinker.spot48{left:73.5%;top:16%;}/* 중광정 */
+.spotzone .blinker.spot48{left:72%;top:14.1%;}/* 중광정 */
 .spotzone .blinker.spot49{left:64.5%;top:5%;}/* 천진 */
 .spotzone .blinker.spot50{left:6%;top:34.5%;}/* 신두리 */
 
@@ -881,6 +883,7 @@ a.btn-layerClose:hover {
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker1 .icon, 
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker2 .icon{right:37px;}
 	
+	/*.blinkerpop{position:static;transform:translate(0 , 0);width:300px;height:150px;}*/
 	
 	/* section00 */
 	.section00{padding:15px 0;}

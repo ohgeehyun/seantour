@@ -20,11 +20,6 @@
      
   		});
 	});
-	$(document).ready(function(){
-		$('#close2').click(function(){
-			$('#pop_main2').hide();
-		});
-	});
   	   var d = new Date(); 
 		var currentDate = d.getFullYear() + "년 " + ( d.getMonth() + 1 ) + "월 " + d.getDate() + "일 "; 
 		var currentTime = "";
@@ -129,7 +124,7 @@ function fn_reservView(){
 	location.href = "<c:url value='/travel/reservation/reserv_view.do'/>?reseName=" + encodeURI(reseName, "UTF-8") + "&reseTel=" + reseTel;
 }
 </script>
-<script>
+<%--<script>
 // Log events flag
 var logEvents = false;
 
@@ -193,12 +188,12 @@ function pointermove_handler(ev) {
        // The distance between the two pointers has increased
        log("Pinch moving OUT -> Zoom in", ev);
       // ev.target.style.background = "pink";
-      $(".name").css("display", "block");
+      ev.target.find(".name").css("dispaly", "block");
      }
      if (curDiff < prevDiff) {
        // The distance between the two pointers has decreased
        log("Pinch moving IN -> Zoom out",ev);
-       $(".name").css("display", "none");
+     //  ev.target.style.background = "lightblue";
      }
    }
 
@@ -243,7 +238,7 @@ function init() {
  el.onpointerleave = pointerup_handler;
 }
 
-</script>
+</script> --%>
 
   </head>
 <body onload="init();">
@@ -253,10 +248,10 @@ function init() {
           <div><img src="${pageContext.request.contextPath}/travel/common/images/main/main_pop2.jpg" alt="" /></div>
          <div id="close">close</div>
       </div>
-      <!-- <div id="pop_main2">
-         <div><img src="${pageContext.request.contextPath}/travel/common/images/main/img_popup_open2.jpg" alt="" /></div>
+      <div id="pop_main2">
+         <div><img src="${pageContext.request.contextPath}/travel/common/images/main/main_pop_reserv.jpg" alt="" /></div>
          <div id="close2">close</div>
-      </div> -->
+      </div>
        <div class="dim-layer">
           <div class="dimBg"></div>
           <div id="layer2" class="pop-layer">

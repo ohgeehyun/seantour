@@ -167,8 +167,8 @@ $(document).ready(function(){
 			<div id="close">close</div>
 		</div>
 		<div id="pop2">
-			<div><img src="${pageContext.request.contextPath}/travel/common/images/content/img_popup_qna2.jpg" alt="" usemap="#button"/>
-			<map name="button" id="button"><area shape="rect" target="_blank" coords="58,400,208,438" href="http://songhobeach.kr" alt=""></map>
+			<div><img src="${pageContext.request.contextPath}/travel/common/images/content/img_popup_qna2.jpg" alt=""/>
+			<a href="http://songhobeach.kr" target="_blank">예약사이트바로가기</a>
 			</div>
 			<div id="close2">close</div>
 		</div>

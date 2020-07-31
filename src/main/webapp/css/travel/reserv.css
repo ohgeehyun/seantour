@@ -13,6 +13,7 @@
  #pop #close{position:absolute;bottom:0;right:0;width:55px;height:35px;line-height:35px;background:#0099ff;font-size:13px;color:#fff;text-align:center;cursor:pointer;}
  #pop2{z-index:9999;position:absolute;top:300px;left:150px;width:592px;height:auto;}
  #pop2 #close2{position:absolute;bottom:0;right:0;width:55px;height:35px;line-height:35px;background:#0099ff;font-size:13px;color:#fff;text-align:center;cursor:pointer;}
+ #pop2 a {position:absolute; top:84%; left:9.5%; width:26%; height:8%; font-size:0px; color:transparent;}
  
 @media screen and (max-width:640px){
     #pop{top:10px;left:10px;width:300px;height:auto;}
