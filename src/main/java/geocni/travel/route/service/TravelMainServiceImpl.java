@@ -147,6 +147,13 @@ public class TravelMainServiceImpl extends EgovAbstractServiceImpl implements Tr
 	public List<?> selectCongestion() throws Exception {
 		return travelMainDAO.selectCongestion();
 	}
+	
+	@Override
+	public int selectDataExistCnt(String substring) throws Exception {
+		return travelMainDAO.selectDataExistCnt(substring);
+	}
+
+	
 //
 //	@Override
 //	public List<?> selectTravelRouteList(TravelRoute vo) throws Exception {

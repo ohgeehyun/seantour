@@ -16,6 +16,8 @@ public interface TravelMainService {
 	
 	List<?> selectCongestion() throws Exception;
 	
+	int selectDataExistCnt(String substring) throws Exception;
+	
 //	int selectTravelRouteListCnt(TravelRoute vo) throws Exception;
 //	
 //	List<?> selectTravelRouteBestList(TravelRoute vo) throws Exception;

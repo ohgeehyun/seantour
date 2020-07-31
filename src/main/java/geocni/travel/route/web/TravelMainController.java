@@ -1,5 +1,6 @@
 package geocni.travel.route.web;
 
+import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -27,6 +28,7 @@ import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.social.connect.ApiAdapter;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.json.simple.JSONObject;
 import egovframework.com.cmm.EgovMessageSource;
 import egovframework.com.cmm.service.EgovProperties;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
@@ -34,9 +36,13 @@ import geocni.travel.route.dao.TravelMainDAO;
 import geocni.travel.route.domain.TravelDestination;
 import geocni.travel.route.domain.TravelMain;
 import geocni.travel.route.service.TravelMainService;
-import net.sf.json.JSONObject;
+
 import com.google.api.services.analytics.Analytics.Data;
 import com.sun.star.io.IOException;
+
+
+import net.nurigo.java_sdk.api.Message;
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import net.sf.json.JSONArray;
 
 @Controller
@@ -75,9 +81,74 @@ public class TravelMainController {
 		} catch(Exception e) {
 			beachPerPopulationList = null;
 		}
-		
+		int index=0;
+		for(TravelMain i : beachPerPopulationList){
+			if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion())==1)
+				{
+					System.out.println(beachPerPopulationList.get(index).getCongestion());
+				}
+			index++;
+		}
 		return beachPerPopulationList;
 	}
+    
+    @RequestMapping(value="checkBeachCongestion.do")
+    @ResponseBody
+	public void checkBeachCongestion(
+			 HttpServletRequest request	
+			,HttpServletResponse response 
+            ,SessionStatus status
+			,Model model) throws Exception {
+    	
+    	String api_key = "NCSDUEW5R2MDNLJJ";
+		String api_secret = "2YG5WXA0SZPLJBFHW41DCWYDD2AWSWUD";
+		Message coolsms = new Message(api_key, api_secret);
+		HashMap<String, String> params = new HashMap<String, String>();
+		String text = "[해수욕장 예약시스템]\n";
+		
+		List<TravelMain> beachPerPopulationList = null;
+		try {
+			beachPerPopulationList =  (List<TravelMain>) mainService.selectBeachPerCnt();
+		} catch(Exception e) {
+			beachPerPopulationList = null;
+		}
+		int index=0;
+		int count=0;
+		for(TravelMain i : beachPerPopulationList){
+			if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion())>1)
+				{
+					System.out.println(beachPerPopulationList.get(index).getCongestion());
+					text += beachPerPopulationList.get(index).getCongestion()+"\n";
+					text += "현재 혼잡 이상 입니다.";
+					params.put("to", "01067779217");
+					params.put("from", "0442005254");
+				    params.put("text", text);
+				    params.put("type", "lms"); // 문자 타입
+				    count ++;
+				}
+			index++;
+		}
+		   try {
+			   if(count>0) {
+				   /*params.put("to", "01052721274");
+				   params.put("from", "0442005254");
+				   params.put("text", text);
+				   params.put("type", "lms");*/
+			      JSONObject obj = (JSONObject) coolsms.send(params);
+			      System.out.println(obj.toString());
+			      count= 0;
+			   }
+			    } catch (CoolsmsException e) {
+			      System.out.println(e.getMessage());
+			      System.out.println(e.getCode());
+			    }
+		
+	
+	}
+    
+    
+    
+    
   ///kt 서버에서 데이터를 가저와서 우리 서버에 저장된 파일을 자동으로 DB에 백업
 	@RequestMapping(value="cronBeachCongestion.do")
 	public void cronBeachCongestion(
@@ -88,7 +159,64 @@ public class TravelMainController {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
 		String datestr = sdf.format(cal.getTime());
 		
-		String datestrtimechange = String.valueOf(Integer.valueOf(datestr.substring(8,10)));//시간변경
+		String filePath = EgovProperties.getProperty("Globals.fileStorePath");		
+		
+		File dir = new File(filePath + "main/");
+		File []fileList = dir.listFiles();
+		List<?> congestion = mainService.selectCongestion();
+		
+		for(File file:fileList) {
+			if(file.isFile()) {
+				String fileNm = file.getName();
+				String fileDate = fileNm.substring(14, 26);
+				
+				int viewList = mainService.selectDataExistCnt(fileDate);
+				
+				if(viewList > 0) {
+					continue;
+				}
+				
+				String tempfilePath = filePath + "main/" + fileNm;
+				
+				List<String> lines = Files.readAllLines(Paths.get(tempfilePath), StandardCharsets.UTF_8);
+				
+				for(String line:lines) {
+					int count = 0;
+					Map<?,?> tempcongest =  (Map<?, ?>) congestion.get(count);
+					String[] temp = line.split("\\|");
+					TravelMain travelMain = new TravelMain();
+					travelMain.setEtlDt(temp[0]);
+					travelMain.setSeqId(temp[1]);
+					travelMain.setPoiNm(temp[2]);
+					travelMain.setUniqPop(temp[3]);
+		
+					int capacity =  (int)((int)tempcongest.get("area")/4);
+					if(Double.parseDouble(temp[3]) <= capacity){
+					travelMain.setCongestion("1");
+					}else if(Double.parseDouble(temp[3]) < (int)tempcongest.get("area")/2 ){
+						travelMain.setCongestion("2");
+					}else{
+						travelMain.setCongestion("3");
+					}
+					
+					//4.데이터 insert
+					try {
+						count++;
+					mainService.insertBeachPer(travelMain);
+					}catch(SQLException e) {
+						log.debug(e);
+					}catch(Exception e) {
+						log.debug(e);
+					}
+					
+					System.out.println(line);
+				}
+			}
+		}
+		
+		
+		///////////
+	/*	String datestrtimechange = String.valueOf(Integer.valueOf(datestr.substring(8,10)));//시간변경
 	
 		int minute = Integer.valueOf(datestr.substring(10, 12));   // 분
 		String datestrtemp = datestr.substring(0,8);               // 년도 월 일 부분 교체 하기 위함 
@@ -166,7 +294,7 @@ public class TravelMainController {
 			
 			System.out.println(line);
 		}
-		
+		*/
 	}
 	
 

@@ -33,6 +33,10 @@ public class TravelMainDAO extends EgovComAbstractDAO {
 		return (List<TravelMain>) list("travelMainDAO.selectCongestion");
 	}
 
+	public int selectDataExistCnt(String substring) {
+		return (int) select("travelMainDAO.selectDataExistCnt", substring);
+	}
+	
 //
 //    public List<?> selectTravelRouteList(TravelRoute vo) throws Exception {
 ////    	return list("travelRouteDAO.selectTravelRouteList", vo);
