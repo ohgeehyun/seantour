@@ -25,7 +25,7 @@ $(document).ready(function(){
 			case 'R0001' : alertVal = "외달도 해수욕장 개장일은 7.11.~8.23. 입니다."; break;
 			case 'R0002' : alertVal = "웅천 해수욕장 개장일은 7.11.~8.23. 입니다."; break;
 			case 'R0003' : alertVal = "풍류 해수욕장 개장일은 7.10.~8.16. 입니다."; break;
-			case 'R0004' : alertVal = "율포솔밭 해수욕장 개장일은 7.11.~8.30. 입니다."; break;
+			case 'R0004' : alertVal = "율포솔밭 해수욕장 개장일은 8.3.~8.30. 입니다."; break;
 			case 'R0005' : alertVal = "수문 해수욕장 개장일은 7.10.~8.9. 입니다."; break;
 			case 'R0006' : alertVal = "송호 해수욕장 개장일은 7.18.~8.9. 입니다."; break;
 			case 'R0007' : alertVal = "돌머리 해수욕장 개장일은 7.17.~8.16. 입니다."; break;
