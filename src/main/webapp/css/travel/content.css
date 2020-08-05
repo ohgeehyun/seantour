@@ -190,14 +190,15 @@
 .local_info_area{margin:50px 0 0;padding:25px 35px;border:1px solid #ddd;}
 .local_info_area .info_lst{margin-top:-8px;margin-bottom:50px;padding-bottom:30px;border-bottom:1px dashed #aaa;}
 .local_info_area .info_lst:after{content:'';display:block;clear:both;}
-.local_info_area .info_lst li{position:relative;float:left;box-sizing:border-box;width:50%;margin-top:8px;padding-left:10px;transition:all 0.4s;}
-.local_info_area .info_lst li img{width:100%;}
-.local_info_area .info_lst li:before{content:'';display:inline-block;position:absolute;top:10px;left:0;width:2px;height:2px;background:#d2d2d2;}
-.local_info_area .info_lst li *{float:left;display:inline-block;}
-.local_info_area .info_lst li span{position:relative;width:15%;margin-right:2.5%;padding-right:2.5%;}
-.local_info_area .info_lst li span:after{content:'';display:inline-block;position:absolute;top:5px;right:0;width:1px;height:15px;background:#d2d2d2;}
-.local_info_area .info_lst li p{width:calc(100% - 20%);}
-
+.local_info_area .info_lst .list>li{position:relative;float:left;box-sizing:border-box;width:50%;margin-top:8px;padding-left:10px;transition:all 0.4s;}
+.local_info_area .info_lst .list>li img{width:100%;}
+.local_info_area .info_lst .list>li:before{content:'';display:inline-block;position:absolute;top:10px;left:0;width:2px;height:2px;background:#d2d2d2;}
+.local_info_area .info_lst .list>li *{float:left;display:inline-block;}
+.local_info_area .info_lst .list>li span{position:relative;width:15%;margin-right:2.5%;padding-right:2.5%;}
+.local_info_area .info_lst .list>li span:after{content:'';display:inline-block;position:absolute;top:5px;right:0;width:1px;height:15px;background:#d2d2d2;}
+.local_info_area .info_lst .list>li ul{width:calc(100% - 20%);}
+.local_info_area .info_lst .list>li ul li,
+.local_info_area .info_lst .list>li ul li p{float:none;display:block;}
 .local_info_area .info_txt{margin-bottom:40px;}
 .local_info_area .info_txt .tit{position:relative;margin-bottom:10px;padding-left:28px;font-size:18px;font-weight:600;}
 .local_info_area .info_txt .tit:before{content:'';display:inline-block;position:absolute;top:4px;left:0;width:18px;height:18px;background:url(/seantour_map/images/travel/content/icon_local_detail.gif) no-repeat 0 0;background-size:cover;}

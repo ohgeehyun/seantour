@@ -65,10 +65,26 @@
 									</div>
 								</div>
 								<ul class="list">
-									<li><span class="tit">지역</span><p><c:out value="${travelDestination.destRegion}" /></p></li>
-									<li><span class="tit">연락처</span><p><c:out value="${travelDestination.destPhone}" escapeXml="false" /></p></li>
-									<li><span class="tit">주소</span><p><c:out value="${travelDestination.destAddress}" escapeXml="false" /></p></li>
-									<li><span class="tit">홈페이지</span><p><c:out value="${travelDestination.destWebsiteUrl}" escapeXml="false" /></p></li>
+									<li><span class="tit">지역</span>
+										<ul>
+											<li><c:out value="${travelDestination.destRegion}" /></li>
+										</ul>
+									</li>
+									<li><span class="tit">연락처</span>
+										<ul>
+											<li><c:out value="${travelDestination.destPhone}" escapeXml="false" /></li>
+										</ul>
+									</li>
+									<li><span class="tit">주소</span>
+										<ul>
+											<li><c:out value="${travelDestination.destAddress}" escapeXml="false" /></li>
+										</ul>
+									</li>
+									<li><span class="tit">홈페이지</span>
+										<ul>
+											<li><c:out value="${travelDestination.destWebsiteUrl}" escapeXml="false" /></li>
+										</ul>
+									</li>
 									<%-- <li><span class="tit">관리기관</span><p>밀양시</p></li>
 									<li><span class="tit">편의시설</span><p>주차장, 수유실</p></li> --%>
 								</ul>
