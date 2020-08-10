@@ -96,14 +96,16 @@
 		<isNotEmpty property="routRegion" prepend="AND">
 			<![CDATA[	a.rout_region = #routRegion#	]]>
 		</isNotEmpty>
-			
+		
+	<isEqual prepend="AND" property="searchCondition" compareValue="">
+			<![CDATA[	a.rout_title LIKE CONCAT('%',#searchKeyword#,'%') ]]>
+			</isEqual>	
 	<isEqual prepend="AND" property="searchCondition" compareValue="1">
 			<![CDATA[	a.rout_title LIKE CONCAT('%',#searchKeyword#,'%') ]]>
 			</isEqual>
 	<isEqual prepend="AND" property="searchCondition" compareValue="2">
 			<![CDATA[	 b.mbr_nm  LIKE  CONCAT('%',#searchKeyword#,'%') ]]>
 			</isEqual>
-		
 	</sql>
     
 	<select id="travelRouteDAO.selectTravelRouteListAll" parameterClass="travelRoute" resultMap="travelRouteVO">

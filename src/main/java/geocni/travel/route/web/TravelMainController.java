@@ -57,99 +57,798 @@ public class TravelMainController {
     @Resource(name="travelMainDAO")
     private TravelMainDAO travelMainDAO;
     
-    @Resource(name="egovMessageSource")
-    private EgovMessageSource msgSrc;
-    
-//    @SuppressWarnings("unused")
-//	@Autowired
-//    private DefaultBeanValidator beanValidator;
+	@Resource(name = "egovMessageSource")
+	private EgovMessageSource msgSrc;
+
+	// @SuppressWarnings("unused")
+	// @Autowired
+	// private DefaultBeanValidator beanValidator;
 
 	private Log log = LogFactory.getLog(getClass());
-	
-	//메인페이지 신호등 조작 컨트롤러 
-    @SuppressWarnings("unchecked")
-	@RequestMapping(value="mainBeachCongestion.do", method=RequestMethod.POST)
-    @ResponseBody
-	public List<TravelMain> mainBeachCongestion(
-			 HttpServletRequest request	
-			,HttpServletResponse response 
-            ,SessionStatus status
-			,Model model) throws Exception {
-		
+
+	// 메인페이지 신호등 조작 컨트롤러
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "mainBeachCongestion.do", method = RequestMethod.POST)
+	@ResponseBody
+	public List<TravelMain> mainBeachCongestion(HttpServletRequest request, HttpServletResponse response,
+			SessionStatus status, Model model) throws Exception {
+
 		List<TravelMain> beachPerPopulationList = null;
 		try {
-			beachPerPopulationList =  (List<TravelMain>) mainService.selectBeachPerCnt();
-		} catch(Exception e) {
+			beachPerPopulationList = (List<TravelMain>) mainService.selectBeachPerCnt();
+		} catch (Exception e) {
 			beachPerPopulationList = null;
 		}
-		int index=0;
-		for(TravelMain i : beachPerPopulationList){
-			if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion())==1)
-				{
-					System.out.println(beachPerPopulationList.get(index).getCongestion());
-				}
+		int index = 0;
+		for (TravelMain i : beachPerPopulationList) {
+			if (Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 1) {
+				System.out.println(beachPerPopulationList.get(index).getCongestion());
+			}
 			index++;
 		}
 		return beachPerPopulationList;
 	}
-    
-    @RequestMapping(value="checkBeachCongestion.do")
-    @ResponseBody
-	public void checkBeachCongestion(
-			 HttpServletRequest request	
-			,HttpServletResponse response 
-            ,SessionStatus status
-			,Model model) throws Exception {
-    	
-    	String api_key = "NCSDUEW5R2MDNLJJ";
+
+	@RequestMapping(value = "checkBeachCongestion.do")
+	@ResponseBody
+	public void checkBeachCongestion() throws Exception {
+
+		String api_key = "NCSDUEW5R2MDNLJJ";
 		String api_secret = "2YG5WXA0SZPLJBFHW41DCWYDD2AWSWUD";
 		Message coolsms = new Message(api_key, api_secret);
-		HashMap<String, String> params = new HashMap<String, String>();
+		HashMap<String, String> params = new HashMap<String, String>(); // 도청
+		HashMap<String, String> params2 = new HashMap<String, String>();// 시청
 		String text = "[해수욕장 예약시스템]\n";
-		
+		String text2 = "[해수욕장 예약시스템]\n";
+		String text3 = "[해수욕장 예약시스템]\n";
+		String text4 = "[해수욕장 예약시스템]\n";
+		String text5 = "[해수욕장 예약시스템]\n";
+		String text6 = "[해수욕장 예약시스템]\n";
+		String text7 = "[해수욕장 예약시스템]\n";
 		List<TravelMain> beachPerPopulationList = null;
 		try {
-			beachPerPopulationList =  (List<TravelMain>) mainService.selectBeachPerCnt();
-		} catch(Exception e) {
+			beachPerPopulationList = (List<TravelMain>) mainService.selectBeachPerCnt();
+		} catch (Exception e) {
 			beachPerPopulationList = null;
 		}
-		int index=0;
-		int count=0;
-		for(TravelMain i : beachPerPopulationList){
-			if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion())>1)
-				{
-					System.out.println(beachPerPopulationList.get(index).getCongestion());
-					text += beachPerPopulationList.get(index).getCongestion()+"\n";
-					text += "현재 혼잡 이상 입니다.";
-					params.put("to", "01067779217");
-					params.put("from", "0442005254");
-				    params.put("text", text);
-				    params.put("type", "lms"); // 문자 타입
-				    count ++;
+		int index = 0; // beachPerPopulationList 리스트의 번호
+		int count = 0; // 혼잡 이상의 숫자 카운트
+		int taean = 0; // 태안군 분류
+		int seachun = 0; //서천 분류
+		int boryung = 0; //서천 분류
+		int jeju = 0; //제주시
+		int Seogwipo = 0; //서귀포시
+		int donggu =0; //울산 동구
+		int ulju =0; //울산 을주 
+		int heaundaegu =0; //부산 해운대구
+		int busanseogu =0;//부산 서구
+		int sahagu =0; //부산 사하구
+		int suyunggu =0;// 부산 수영구
+		int gijanggu =0;//부산 기장구
+		int yungduk =0;
+		int gyunju =0;
+		int gangleng =0;
+		int yangyang =0;
+		int sokcho = 0;
+		int samchuck =0;
+		int donghea =0;
+		int gosung =0;
+		String[] government = new String[10]; // 도청 전화번호
+		government[0] = "01097951156,01089010442,01095114900,01086102805,01063217699";// 강원도청
+		government[1] = "01038872641,01040395434,01091707832,01086102805,01063217699";// 경남도청
+		government[2] = "01048995675,01092772373,01029076383,01086102805,01063217699";// 경북도청
+		government[3] = "01020559177,01077463664,01045667560,01086102805,01063217699";// 부산시청
+		government[4] = "01029670026,010548641347,01020762755,01086102805,01063217699";// 울산시청
+		government[5] = "01020165122,01073448896,01090721027,01086102805,01063217699";// 인천시청
+		government[6] = "01056159451,01036075669,01094709406,01086102805,01063217699";// 전남도청
+		government[7] = "01027765157,01073707086,01040031075,01086102805,01063217699";// 전북도청
+		government[8] = "01036908641,01046926996,01051892677,01086102805,01063217699";// 제주시청
+		government[9] = "01095590831,01079339665,01040658913,01086102805,01063217699";// 충남도청
+
+		for (TravelMain i : beachPerPopulationList) {
+			if (Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) > 1) { // 혼잡도가 1이상 인 경우
+				if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 36
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 4
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 50
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 41
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 33
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 25
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 23
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 15) { // 충남도청
+					text += beachPerPopulationList.get(index).getPoiNm() + "\n";
+					count++;
 				}
+				if(Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 15
+					||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 25
+					||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 33
+					||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 41
+					||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 50){ //태안군
+					text2 += beachPerPopulationList.get(index).getPoiNm() + "\n";
+					taean++;
+				}else if(Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 23) {//서천군
+					text3 += beachPerPopulationList.get(index).getPoiNm() + "\n";
+					seachun++;
+				}else {
+					text4 += beachPerPopulationList.get(index).getPoiNm() + "\n";
+					boryung ++;
+				}
+			}
 			index++;
+			if (index == 50) {
+				index = 0;
+				break;
+			}
 		}
-		   try {
-			   if(count>0) {
-				   /*params.put("to", "01052721274");
-				   params.put("from", "0442005254");
-				   params.put("text", text);
-				   params.put("type", "lms");*/
-			      JSONObject obj = (JSONObject) coolsms.send(params);
-			      System.out.println(obj.toString());
-			      count= 0;
-			   }
-			    } catch (CoolsmsException e) {
-			      System.out.println(e.getMessage());
-			      System.out.println(e.getCode());
-			    }
+		try {
+			if (count > 0) {
+				text += "현재 혼잡 이상 입니다.";
+				params.put("to", government[9]);
+				params.put("from", "0442005254");
+				params.put("text", text);
+				params.put("type", "lms");
+				JSONObject obj = (JSONObject) coolsms.send(params);
+				System.out.println(obj.toString());
+				count = 0;
+				text = "[해수욕장 예약시스템]\n";
+			}
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
 		
-	
+		try {
+			if (taean > 0) {
+				text2 += "현재 혼잡 이상 입니다.";
+				params2.put("to", "01034859434,01020945896,01097007131,01086102805,01063217699");
+				params2.put("from", "0442005254");
+				params2.put("text", text2);
+				params2.put("type", "lms");
+				JSONObject obj = (JSONObject) coolsms.send(params2);
+				System.out.println(obj.toString());
+				text2 = "[해수욕장 예약시스템]\n";
+			}
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
+		try {
+			if (seachun > 0) {
+				text3 += "현재 혼잡 이상 입니다.";
+				params2.put("to", "01051088958,01054940976,01024066975,01086102805,01063217699");
+				params2.put("from", "0442005254");
+				params2.put("text", text3);
+				params2.put("type", "lms");
+				JSONObject obj = (JSONObject) coolsms.send(params2);
+				System.out.println(obj.toString());
+				text3 = "[해수욕장 예약시스템]\n";
+			}
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
+		try {
+			if (boryung > 0) {
+				text4 += "현재 혼잡 이상 입니다.";
+				params2.put("to", "01088163415,01093043379,01029305452,01086102805,01063217699");
+				params2.put("from", "0442005254");
+				params2.put("text", text4);
+				params2.put("type", "lms");
+				JSONObject obj = (JSONObject) coolsms.send(params2);
+				System.out.println(obj.toString());
+				text4 = "[해수욕장 예약시스템]\n";
+			}
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
+
+		for (TravelMain i : beachPerPopulationList) {
+			if (Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) > 1) { // 혼잡도가 1이상 인 경우
+				if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 17
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 20
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 24
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 27
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 35
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 37
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 30) { // 제주시청
+					text += beachPerPopulationList.get(index).getPoiNm() + "\n";
+					count++;
+				}
+				if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 17
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 20
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 24
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 27
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 37
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 30) { // 제주시
+					text2 += beachPerPopulationList.get(index).getPoiNm() + "\n";
+					jeju ++;
+				}else {
+					text3 += beachPerPopulationList.get(index).getPoiNm() + "\n";               //서귀포시
+					Seogwipo ++;
+				}
+			}
+			index++;
+			if (index == 50) {
+				index = 0;
+				break;
+			}
+		}
+		try {
+			if (count > 0) {
+				text += "현재 혼잡 이상 입니다.";
+				params.put("to", government[8]);
+				params.put("from", "0442005254");
+				params.put("text", text);
+				params.put("type", "lms");
+				JSONObject obj = (JSONObject) coolsms.send(params);
+				System.out.println(obj.toString());
+				count = 0;
+				text = "[해수욕장 예약시스템]\n";
+			}
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
+		try {
+			if (jeju > 0) {
+				text2 += "현재 혼잡 이상 입니다.";
+				params2.put("to", "01099269858,01052222749,01076237179,01086102805,01063217699");
+				params2.put("from", "0442005254");
+				params2.put("text", text2);
+				params2.put("type", "lms");
+				JSONObject obj = (JSONObject) coolsms.send(params2);
+				System.out.println(obj.toString());
+				text2 = "[해수욕장 예약시스템]\n";
+			}
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
+		try {
+			if (Seogwipo > 0) {
+				text3 += "현재 혼잡 이상 입니다.";
+				params2.put("to", "01020222989,01086223495,01063554199,01086102805,01063217699");
+				params2.put("from", "0442005254");
+				params2.put("text", text3);
+				params2.put("type", "lms");
+				JSONObject obj = (JSONObject) coolsms.send(params2);
+				System.out.println(obj.toString());
+				text3 = "[해수욕장 예약시스템]\n";
+			}
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
+
+		for (TravelMain i : beachPerPopulationList) {
+			if (Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) > 1) { // 혼잡도가 1이상 인 경우
+				if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 14) { // 전남도청 한 곳 이 끝
+					text += beachPerPopulationList.get(index).getPoiNm() + "\n";
+					count++;
+				}
+			}
+			index++;
+			if (index == 50) {
+				index = 0;
+				break;
+			}
+		}
+		try {
+			if (count > 0) {
+				text += "현재 혼잡 이상 입니다.";
+				params.put("to", government[6]+",01041931911,01088205763,01050311738");
+				params.put("from", "0442005254");
+				params.put("text", text);
+				params.put("type", "lms");
+				JSONObject obj = (JSONObject) coolsms.send(params);
+				System.out.println(obj.toString());
+				count = 0;
+				text = "[해수욕장 예약시스템]\n";
+			}
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
+
+		for (TravelMain i : beachPerPopulationList) {
+			if (Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) > 1) { // 혼잡도가 1이상 인 경우
+				if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 40
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 45) { // 인천시청
+					text += beachPerPopulationList.get(index).getPoiNm() + "\n";
+					count++;
+				}
+			}
+			index++;
+			if (index == 50) {
+				index = 0;
+				break;
+			}
+		}
+		try {
+			if (count > 0) {
+				text += "현재 혼잡 이상 입니다.";
+				params.put("to", government[5]+",01028316024,01090505613,01041182737");
+				params.put("from", "0442005254");
+				params.put("text", text);
+				params.put("type", "lms");
+				JSONObject obj = (JSONObject) coolsms.send(params);
+				System.out.println(obj.toString());
+				count = 0;
+				text = "[해수욕장 예약시스템]\n";
+			}
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
+
+		for (TravelMain i : beachPerPopulationList) {
+			if (Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) > 1) { // 혼잡도가 1이상 인 경우
+				if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 16
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 18) { // 울산시청
+					text += beachPerPopulationList.get(index).getPoiNm() + "\n";
+					count++;
+				}
+				if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 16) { // 울산 동구
+					text2 += beachPerPopulationList.get(index).getPoiNm() + "\n";
+					donggu++;
+				}else {
+					text3 += beachPerPopulationList.get(index).getPoiNm() + "\n"; // 울산 을주군
+					ulju++;
+				}
+			}
+			index++;
+			if (index == 50) {
+				index = 0;
+				break;
+			}
+		}
+		try {
+			if (count > 0) {
+				text += "현재 혼잡 이상 입니다.";
+				params.put("to", government[4]);
+				params.put("from", "0442005254");
+				params.put("text", text);
+				params.put("type", "lms");
+				JSONObject obj = (JSONObject) coolsms.send(params);
+				System.out.println(obj.toString());
+				count = 0;
+				text = "[해수욕장 예약시스템]\n";
+			}
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
+		
+		try {
+			if (donggu > 0) {
+				text2 += "현재 혼잡 이상 입니다.";
+				params2.put("to", "01035821995,01092348786,01040543451,01086102805,01063217699");
+				params2.put("from", "0442005254");
+				params2.put("text", text2);
+				params2.put("type", "lms");
+				JSONObject obj = (JSONObject) coolsms.send(params2);
+				System.out.println(obj.toString());
+				text2 = "[해수욕장 예약시스템]\n";
+			}
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
+		
+		try {
+			if (ulju > 0) {
+				text3 += "현재 혼잡 이상 입니다.";
+				params2.put("to", "01053039073,01030585828,01065870009,01086102805,01063217699");
+				params2.put("from", "0442005254");
+				params2.put("text", text3);
+				params2.put("type", "lms");
+				JSONObject obj = (JSONObject) coolsms.send(params2);
+				System.out.println(obj.toString());
+				text3 = "[해수욕장 예약시스템]\n";
+			}
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
+
+		for (TravelMain i : beachPerPopulationList) {
+			if (Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) > 1) { // 혼잡도가 1이상 인 경우
+				if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 1
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 3
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 5
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 7
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 32
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 2
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 34) { // 부산시청
+					text += beachPerPopulationList.get(index).getPoiNm() + "\n";
+					count++;
+				}
+				if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 1			
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 7) { // 해운대구
+					text2 += beachPerPopulationList.get(index).getPoiNm() + "\n";
+					heaundaegu++;
+				}else if(Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 3) { //부산 서구
+					text3 += beachPerPopulationList.get(index).getPoiNm() + "\n";
+					busanseogu++;
+				}else if(Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 5) { //부산 사하구
+					text4 += beachPerPopulationList.get(index).getPoiNm() + "\n";
+					sahagu++;
+				}else if(Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 32
+						||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 34){ //부산 기장구
+					text5 += beachPerPopulationList.get(index).getPoiNm() + "\n";
+					gijanggu++;
+				}else {
+					text6 += beachPerPopulationList.get(index).getPoiNm() + "\n";               //부산 수영구
+					suyunggu++;
+				}
+			}
+			index++;
+			if (index == 50) {
+				index = 0;
+				break;
+			}
+		}
+		try {
+			if (count > 0) {
+				text += "현재 혼잡 이상 입니다.";
+				params.put("to", government[3]);
+				params.put("from", "0442005254");
+				params.put("text", text);
+				params.put("type", "lms");
+				JSONObject obj = (JSONObject) coolsms.send(params);
+				System.out.println(obj.toString());
+				count = 0;
+				text = "[해수욕장 예약시스템]\n";
+			}
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
+		try {
+			if (heaundaegu > 0) {
+				text2 += "현재 혼잡 이상 입니다.";
+				params2.put("to", "01063621302,010548641347,01020762755,01086102805,01063217699");
+				params2.put("from", "0442005254");
+				params2.put("text", text2);
+				params2.put("type", "lms");
+				JSONObject obj = (JSONObject) coolsms.send(params2);
+				System.out.println(obj.toString());
+				text2 = "[해수욕장 예약시스템]\n";
+			}
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
+		try {
+			if (busanseogu > 0) {
+				text3 += "현재 혼잡 이상 입니다.";
+				params2.put("to", "01028309342,01085599824,01051691470,01086102805,01063217699");
+				params2.put("from", "0442005254");
+				params2.put("text", text3);
+				params2.put("type", "lms");
+				JSONObject obj = (JSONObject) coolsms.send(params2);
+				System.out.println(obj.toString());
+				text3 = "[해수욕장 예약시스템]\n";
+			}
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
+		try {
+			if (sahagu > 0) {
+				text4 += "현재 혼잡 이상 입니다.";
+				params2.put("to", "01028288143,01040895417,01086102805,01063217699");
+				params2.put("from", "0442005254");
+				params2.put("text", text4);
+				params2.put("type", "lms");
+				JSONObject obj = (JSONObject) coolsms.send(params2);
+				System.out.println(obj.toString());
+				text4 = "[해수욕장 예약시스템]\n";
+			}
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
+		try {
+			if (gijanggu > 0) {
+				text5 += "현재 혼잡 이상 입니다.";
+				params2.put("to", "01077471822,01039071332,01063857924,01086102805,01063217699");
+				params2.put("from", "0442005254");
+				params2.put("text", text5);
+				params2.put("type", "lms");
+				JSONObject obj = (JSONObject) coolsms.send(params2);
+				System.out.println(obj.toString());
+				text5 = "[해수욕장 예약시스템]\n";
+			}
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
+		try {
+			if (suyunggu > 0) {
+				text6 += "현재 혼잡 이상 입니다.";
+				params2.put("to", "01065873304,01092367390,01055581698,01086102805,01063217699");
+				params2.put("from", "0442005254");
+				params2.put("text", text6);
+				params2.put("type", "lms");
+				JSONObject obj = (JSONObject) coolsms.send(params2);
+				System.out.println(obj.toString());
+				text6 = "[해수욕장 예약시스템]\n";
+			}
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
+
+		for (TravelMain i : beachPerPopulationList) {
+			if (Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) > 1) { // 혼잡도가 1이상 인 경우
+				if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 21
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 47) { // 경북도청
+					text += beachPerPopulationList.get(index).getPoiNm() + "\n";
+					count++;
+				}
+				if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 21) { // 경북도청 영덕군
+					text += beachPerPopulationList.get(index).getPoiNm() + "\n";
+					yungduk++;
+				}else {
+					text2 += beachPerPopulationList.get(index).getPoiNm() + "\n";      // 경북도청 경주시
+					gyunju++;
+				}
+			}
+			index++;
+			if (index == 50) {
+				index = 0;
+				break;
+			}
+		}
+		try {
+			if (count > 0) {
+				text += "현재 혼잡 이상 입니다.";
+				params.put("to",government[2]);
+				params.put("from", "0442005254");
+				params.put("text", text);
+				params.put("type", "lms");
+				JSONObject obj = (JSONObject) coolsms.send(params);
+				System.out.println(obj.toString());
+				count = 0;
+				text = "[해수욕장 예약시스템]\n";
+			}
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
+		
+		try {
+			if (yungduk > 0) {
+				text2 += "현재 혼잡 이상 입니다.";
+				params2.put("to", "01035484030,01067345003,01038603317,01086102805,01063217699");
+				params2.put("from", "0442005254");
+				params2.put("text", text2);
+				params2.put("type", "lms");
+				JSONObject obj = (JSONObject) coolsms.send(params2);
+				System.out.println(obj.toString());
+				text2 = "[해수욕장 예약시스템]\n";
+			}
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
+		
+		try {
+			if (gyunju > 0) {
+				text3 += "현재 혼잡 이상 입니다.";
+				params2.put("to", "01035371979,01035016701,01026302943,01086102805,01063217699");
+				params2.put("from", "0442005254");
+				params2.put("text", text3);
+				params2.put("type", "lms");
+				JSONObject obj = (JSONObject) coolsms.send(params2);
+				System.out.println(obj.toString());
+				text3 = "[해수욕장 예약시스템]\n";
+			}
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
+
+		for (TravelMain i : beachPerPopulationList) {
+			if (Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) > 1) { // 혼잡도가 1이상 인 경우
+				if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 39) { // 경남도청
+					text += beachPerPopulationList.get(index).getPoiNm() + "\n";
+					count++;
+				}
+			}
+			index++;
+			if (index == 50) {
+				index = 0;
+				break;
+			}
+		}
+		try {
+			if (count > 0) {
+				text += "현재 혼잡 이상 입니다.";
+				params.put("to", government[1]+",01038644365,01073581225,01094507295");
+				params.put("from", "0442005254");
+				params.put("text", text);
+				params.put("type", "lms");
+				JSONObject obj = (JSONObject) coolsms.send(params);
+				System.out.println(obj.toString());
+				count = 0;
+				text = "[해수욕장 예약시스템]\n";
+			}
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
+
+		for (TravelMain i : beachPerPopulationList) {
+			if (Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) > 1) { // 혼잡도가 1이상 인 경우
+				if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 38
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 6
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 8
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 9
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 10
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 11
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 12
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 13
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 19
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 22
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 26
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 28
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 29
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 31
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 42
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 43
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 44
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 46
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 48
+						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 49) { // 강원도청
+					text += beachPerPopulationList.get(index).getPoiNm() + "\n";
+					count++;
+				}
+					if(Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 38
+						||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 6
+						||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 38
+						||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 42) { //강원도청 강릉시
+						text2 += beachPerPopulationList.get(index).getPoiNm() + "\n";
+						gangleng++;
+					}else if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 8
+								||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 19
+								||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 48) {//강원도청 양양군
+						text3 += beachPerPopulationList.get(index).getPoiNm() + "\n";
+						yangyang++;
+					}else if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 9
+								||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 29
+								||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 44) { //강원도청 속초시
+						text4 += beachPerPopulationList.get(index).getPoiNm() + "\n";
+						sokcho++;
+					}else if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 10
+							||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 12
+							||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 43) { //강원도청 삼척시
+					text5 += beachPerPopulationList.get(index).getPoiNm() + "\n";
+					samchuck++;
+				}else if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 11
+						||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 13) { //강원도청 동해시
+				text6 += beachPerPopulationList.get(index).getPoiNm() + "\n";
+				donghea++;
+			}else {
+				text7 += beachPerPopulationList.get(index).getPoiNm() + "\n";                   //강원도청 고성군
+				gosung++;
+			}
+			}
+			index++;
+			if (index == 50) {
+				index = 0;
+				break;
+			}
+		}
+		try {
+			if (count > 0) {
+				text += "현재 혼잡 이상 입니다.";
+				params.put("to", government[0] );
+				params.put("from", "0442005254");
+				params.put("text", text);
+				params.put("type", "lms");
+				JSONObject obj = (JSONObject) coolsms.send(params);
+				System.out.println(obj.toString());
+				count = 0;
+				text = "[해수욕장 예약시스템]\n";
+			}
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
+		try {
+			if (gangleng > 0) {
+				text2 += "현재 혼잡 이상 입니다.";
+				params2.put("to", "01035263537,01033775137,01092050542,01086102805,01063217699");
+				params2.put("from", "0442005254");
+				params2.put("text", text2);
+				params2.put("type", "lms");
+				JSONObject obj = (JSONObject) coolsms.send(params2);
+				System.out.println(obj.toString());
+				text2 = "[해수욕장 예약시스템]\n";
+			}
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
+		try {
+			if (yangyang > 0) {
+				text3 += "현재 혼잡 이상 입니다.";
+				params2.put("to", "01067498215,01020283161,01029650240,01086102805,01063217699");
+				params2.put("from", "0442005254");
+				params2.put("text", text3);
+				params2.put("type", "lms");
+				JSONObject obj = (JSONObject) coolsms.send(params2);
+				System.out.println(obj.toString());
+				text3 = "[해수욕장 예약시스템]\n";
+			}
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
+		try {
+			if (sokcho > 0) {
+				text4 += "현재 혼잡 이상 입니다.";
+				params2.put("to", "01044899491,01026748312,01096902849,01086102805,01063217699");
+				params2.put("from", "0442005254");
+				params2.put("text", text4);
+				params2.put("type", "lms");
+				JSONObject obj = (JSONObject) coolsms.send(params2);
+				System.out.println(obj.toString());
+				text4 = "[해수욕장 예약시스템]\n";
+			}
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
+		try {
+			if (samchuck > 0) {
+				text5 += "현재 혼잡 이상 입니다.";
+				params2.put("to", "01033553109,01099585844,01050996593,01086102805,01063217699");
+				params2.put("from", "0442005254");
+				params2.put("text", text5);
+				params2.put("type", "lms");
+				JSONObject obj = (JSONObject) coolsms.send(params2);
+				System.out.println(obj.toString());
+				text5 = "[해수욕장 예약시스템]\n";
+			}
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
+		try {
+			if (donghea > 0) {
+				text6 += "현재 혼잡 이상 입니다.";
+				params2.put("to", "01025039263,01041509813,01040751870,01086102805,01063217699");
+				params2.put("from", "0442005254");
+				params2.put("text", text6);
+				params2.put("type", "lms");
+				JSONObject obj = (JSONObject) coolsms.send(params2);
+				System.out.println(obj.toString());
+				text6 = "[해수욕장 예약시스템]\n";
+			}
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
+		try {
+			if (gosung > 0) {
+				text7 += "현재 혼잡 이상 입니다.";
+				params2.put("to", "01053793151,01066834660,01051792306,01086102805,01063217699");
+				params2.put("from", "0442005254");
+				params2.put("text", text7);
+				params2.put("type", "lms");
+				JSONObject obj = (JSONObject) coolsms.send(params2);
+				System.out.println(obj.toString());
+				text7 = "[해수욕장 예약시스템]\n";
+			}
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
 	}
-    
-    
-    
-    
+
   ///kt 서버에서 데이터를 가저와서 우리 서버에 저장된 파일을 자동으로 DB에 백업
 	@RequestMapping(value="cronBeachCongestion.do")
 	public void cronBeachCongestion(
@@ -180,9 +879,8 @@ public class TravelMainController {
 				String tempfilePath = filePath + "main/" + fileNm;
 				
 				List<String> lines = Files.readAllLines(Paths.get(tempfilePath), StandardCharsets.UTF_8);
-				
+				int count = 0;
 				for(String line:lines) {
-					int count = 0;
 					Map<?,?> tempcongest =  (Map<?, ?>) congestion.get(count);
 					String[] temp = line.split("\\|");
 					TravelMain travelMain = new TravelMain();
@@ -321,377 +1019,4 @@ public class TravelMainController {
 	
 	
 	
-//	@RequestMapping(value="latest.do")
-//	public String routeLatestList(
-//			 TravelRoute travelRoute
-//			,@RequestParam(value="titleLen",required=false, defaultValue="350")String titleLen
-//			,SessionStatus status
-//			,Model model) throws Exception {
-//		
-//		//travelRoute.setPageUnit(propertiesService.getInt("pageUnit"));
-//		travelRoute.setPageSize(propertiesService.getInt("pageSize"));
-//		travelRoute.setRoutType("W");
-//		
-//		model.addAllAttributes(routeService.selectTravelRouteListMap(travelRoute));
-//		status.setComplete();
-//		
-//		model.addAttribute("titleLen", titleLen);
-////		model.addAttribute("travelRoute", travelRoute);
-//		
-//		return skinPath + "latest";
-//	}
-//	
-//    @RequestMapping(value="detail.do")
-//    public String destinationDetail(
-//    		 @ModelAttribute("searchVO") TravelDefaultVO searchVO
-//  			,TravelRoute travelRoute
-//            ,HttpServletRequest req
-//    		,ModelMap model) throws Exception {
-//    	
-//    	try{
-//
-//    		if(NullUtil.isEmpty(travelRoute.getRoutId())) {
-//    			throw new NullPointerException("조회 대상 정보가 없습니다");
-//    		}
-//
-//    		routeService.updateTravelRouteHitCount(travelRoute.getRoutId());
-//
-//    		model.addAttribute("travelRoute", routeService.selectTravelRoute(travelRoute));
-//
-//    	} catch (NullPointerException e){
-//			log.error(e.getMessage());
-//    	}catch(Exception e){
-//    		log.error(e.getMessage());
-//    	}
-//    	
-//    	return skinPath + "detail";
-//    }
-//
-//    @RequestMapping(value="register.do")
-//    public String registerTravelRoute(
-//    		 TravelRoute travelRoute
-// 			,TravelDestination travelDestination
-//            ,HttpServletRequest req
-//            ,SessionStatus status
-//    		,Model model) throws Exception {
-//
-//    	String viewPath = skinPath + "register";
-//    	/*Device device = DeviceUtils.getCurrentDevice(req);
-//    	
-//    	if(device != null && (device.isMobile() || device.isTablet())) {
-//    		viewPath = skinPath + "register_mob";
-//    		travelDestination.setPageUnit(5);
-//    		travelDestination.setPageSize(5);
-//
-//    	} else {*/
-//    		travelDestination.setPageUnit(6);
-//    		travelDestination.setPageSize(10);
-//    	/*}*/
-//    	
-//    	try{
-//	
-//			List<?> regionList = destService.selectTravelDestinationRegionList(travelDestination);
-//			model.addAttribute("regionList", regionList);
-//	    	
-//			List<String> searchCatList = new ArrayList<>();
-//			searchCatList.add("관광지");
-//			searchCatList.add("숙박");
-//			searchCatList.add("체험");
-//			searchCatList.add("음식점");
-//			searchCatList.add("쇼핑");
-//			Map<?,?> catList = destService.selectTravelDestiCategoryList(searchCatList);
-//			model.addAttribute("catList", catList);
-//			
-//	    	travelDestination.setDestRegion("강원");
-//	    	travelDestination.setDestCategory("관광지");
-//			model.addAllAttributes(destService.selectTravelDestinationListMap(travelDestination));
-//	    	
-////	    	model.addAttribute("thumbPath", "https://www.seantour.com");
-//	    	model.addAttribute("thumbPath", "");
-////	    	model.addAttribute("absPath", "/geocni/travel");
-//
-//			travelRoute.setRoutRegion(travelDestination.getDestRegion());
-//	        model.addAttribute("travelRoute", travelRoute);
-//	    	
-//    	} catch (NullPointerException e){
-//			log.error(e.getMessage());
-//    	}catch(Exception e){
-//    		log.error(e.getMessage());
-//    	}
-//    	
-//    	return viewPath;
-//    }
-//
-//	@ResponseBody
-//	@RequestMapping(value="insertAsync.do", produces="application/text;charset=utf8", method=RequestMethod.POST)
-//    public String insertTravelRouteAsync(
-//    		 TravelRoute travelRoute
-//            ,HttpServletRequest req
-// 			,Model model) throws Exception {
-//    	
-//		JSONObject JSON = new JSONObject();
-//		try {
-//			JnitcmsmbrVO loginVO = JnitMgovUtil.getLoginMember();
-//			travelRoute.setRoutRegMember(loginVO.getMbrId());
-//
-//			if(NullUtil.isEmpty(loginVO.getMbrId())) {
-//				throw new NullPointerException();
-//			}
-//			
-//			travelRoute.setRoutType("U"); //일정 타입(''U''-사용자, ''W''-작가)
-//			travelRoute.setRoutOpen("N"); //공개 여부("Y"-공개, "N"-비공개)
-//			travelRoute = routeService.insertTravelRoute(travelRoute);
-//
-//			JSON.put("status", "success");
-//			JSON.put("routId", travelRoute.getRoutId());
-//			JSON.put("title", travelRoute.getRoutTitle());
-//
-//		} catch (NullPointerException e){
-//			JSON.put("status", "error");
-//			JSON.put("result", e.getMessage());
-//		} catch (Exception e) {
-//			JSON.put("status", "error");
-//		}
-//
-//		//return "";
-//		return JSON.toString();
-//    	
-//    }
-//    
-//    @RequestMapping(value="insert.do", method=RequestMethod.POST)
-//    public String insertTravelRoute(
-//    		 @ModelAttribute("travelRoute") TravelRoute travelRoute
-//            ,BindingResult bindingResult
-//            ,SessionStatus status
-//            ,HttpServletRequest req
-//    		,Model model) throws Exception {
-//    	
-//		try {
-//			
-//			JnitcmsmbrVO loginVO = JnitMgovUtil.getLoginMember();
-//			travelRoute.setRoutRegMember(loginVO.getMbrId());
-//
-//			if(NullUtil.isEmpty(loginVO.getMbrId())) {
-//				throw new NullPointerException();
-//			}
-//			
-//			travelRoute.setRoutType("U"); //일정 타입(''U''-사용자, ''W''-작가)
-//			travelRoute.setRoutOpen("N"); //공개 여부("Y"-공개, "N"-비공개)
-//			travelRoute = routeService.insertTravelRoute(travelRoute);
-//
-//		} catch (NullPointerException e){
-//			e.printStackTrace();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//
-//		return "redirect:/cms/travel/route/list.do";
-//    }
-//
-//    @RequestMapping(value="modify.do")
-//    public String modifyTravelRoute(
-//    		 @ModelAttribute("searchVO") TravelDefaultVO searchVO
-//    		,TravelRoute travelRoute
-// 			,TravelDestination travelDestination
-//            ,HttpServletRequest req
-//    		,ModelMap model) throws Exception {
-//    	
-//    	String viewPath = skinPath + "register";
-//    	/*Device device = DeviceUtils.getCurrentDevice(req);
-//    	
-//    	if(device != null && (device.isMobile() || device.isTablet())) {
-//    		viewPath = skinPath + "register_mob";
-//    		travelDestination.setPageUnit(5);
-//    		travelDestination.setPageSize(5);
-//
-//    	} else {*/
-//    		travelDestination.setPageUnit(6);
-//    		travelDestination.setPageSize(10);
-//    	/*}*/
-//    	
-//    	try{
-//
-//    		List<?> regionList = destService.selectTravelDestinationRegionList(travelDestination);
-//    		model.addAttribute("regionList", regionList);
-//        	
-//        	travelDestination.setDestRegion("강원");
-//        	travelDestination.setDestCategory("관광지");
-//			model.addAllAttributes(destService.selectTravelDestinationListMap(travelDestination));
-//        	
-////        	model.addAttribute("thumbPath", "https://www.seantour.com");
-//        	model.addAttribute("thumbPath", "");
-////        	model.addAttribute("absPath", "/geocni/travel");
-//
-//        	travelRoute = routeService.selectTravelRoute(travelRoute);
-//
-//        	JnitcmsmbrVO loginVO = JnitMgovUtil.getLoginMember();
-//			travelRoute.setRoutRegMember(loginVO.getMbrId());
-//
-//			if(NullUtil.isEmpty(loginVO.getMbrId())) {
-//				throw new NullPointerException();
-//			} else {
-//				if(!loginVO.getMbrId().equals(travelRoute.getRoutRegMember())) {
-//					return "redirect:/";
-//				} else {
-//					model.addAttribute("travelRoute", travelRoute);
-//				}
-//			}
-//
-//    	} catch (NullPointerException e){
-//			log.error(e.getMessage());
-//    	}catch(Exception e){
-//    		log.error(e.getMessage());
-//    	}
-//    	
-//    	return viewPath;
-//    }
-//
-//	@ResponseBody
-//	@RequestMapping(value="updateAsync.do", produces="application/text;charset=utf8", method=RequestMethod.POST)
-//    public String updateTravelRouteAsync(
-//    		 TravelRoute travelRoute
-//            ,HttpServletRequest req
-// 			,Model model) throws Exception {
-//    	
-//		JSONObject JSON = new JSONObject();
-//		try {
-//			
-//			JnitcmsmbrVO loginVO = JnitMgovUtil.getLoginMember();
-//			travelRoute.setRoutRegMember(loginVO.getMbrId());
-//
-//			if(NullUtil.isEmpty(loginVO.getMbrId())) {
-//				throw new NullPointerException();
-//			}
-//			
-//			if(NullUtil.isEmpty(travelRoute.getRoutId()) 
-//					|| NullUtil.isEmpty(travelRoute.getRoutId())) {
-//				throw new NullPointerException();
-//			}
-//			
-//			TravelRoute route = new TravelRoute();
-//			route.setRoutId(travelRoute.getRoutId());
-//			route = routeService.selectTravelRoute(route);
-//			if(NullUtil.isEmpty(route.getRoutRegMember()) 
-//					|| !route.getRoutRegMember().equals(travelRoute.getRoutRegMember())) {
-//				throw new Exception();
-//			}
-//			
-//			travelRoute.setRoutType("U"); //일정 타입(''U''-사용자, ''W''-작가)
-//			travelRoute.setRoutOpen("N"); //공개 여부("Y"-공개, "N"-비공개)
-//			routeService.updateTravelRoute(travelRoute);
-//
-//			JSON.put("status", "success");
-//			JSON.put("routId", travelRoute.getRoutId());
-//			JSON.put("title", travelRoute.getRoutTitle());
-//		
-//		} catch (NullPointerException e){
-//			JSON.put("status", "error");
-//			JSON.put("result", e.getMessage());
-//		} catch (Exception e) {
-//			JSON.put("status", "error");
-//		}
-//
-//		//return "";
-//		return JSON.toString();
-//    	
-//    }
-//    
-//    @RequestMapping(value="update.do", method=RequestMethod.POST)
-//    public String updateTravelRoute(
-//    		 @ModelAttribute("searchVO") TravelDefaultVO searchVO
-//     		,@ModelAttribute("travelRoute") TravelRoute travelRoute
-//            ,BindingResult bindingResult
-//            ,SessionStatus status
-//            ,HttpServletRequest req
-//    		,Model model) throws Exception {
-//    	
-//    		try {
-//
-//    			JnitcmsmbrVO loginVO = JnitMgovUtil.getLoginMember();
-//    			travelRoute.setRoutRegMember(loginVO.getMbrId());
-//
-//    			if(NullUtil.isEmpty(loginVO.getMbrId())) {
-//    				throw new NullPointerException();
-//    			}
-//    			
-//    			if(NullUtil.isEmpty(travelRoute.getRoutId()) 
-//    					|| NullUtil.isEmpty(travelRoute.getRoutId())) {
-//    				throw new NullPointerException();
-//    			}
-//    			
-//    			TravelRoute route = new TravelRoute();
-//    			route.setRoutId(travelRoute.getRoutId());
-//    			route = routeService.selectTravelRoute(route);
-//    			if(NullUtil.isEmpty(route.getRoutRegMember()) 
-//    					|| !route.getRoutRegMember().equals(travelRoute.getRoutRegMember())) {
-//    				throw new Exception();
-//    			}
-//    			
-//    			travelRoute.setRoutType("U"); //일정 타입(''U''-사용자, ''W''-작가)
-//    			travelRoute.setRoutOpen("N"); //공개 여부("Y"-공개, "N"-비공개)
-//
-//    			routeService.updateTravelRoute(travelRoute);
-//
-//    		} catch (SQLException e) {
-//				log.debug(e);;
-//			} catch (NullPointerException e) {
-//				log.debug(e);
-//			}
-//			
-//    		return "redirect:/travel/member/myroute.do";
-//    }
-//    
-//    @RequestMapping(value="delete.do", method=RequestMethod.POST)
-//    public String deleteTravelRoute(
-//    		 TravelRoute travelRoute
-//            ,SessionStatus status
-//            ,HttpServletRequest req
-//    		,Model model) throws Exception {
-//    	
-//    		try {
-//   				if(NullUtil.isEmpty(travelRoute.getRoutId())) {
-//    				return "redirect:/travel/member/myroute.do";
-//    			} else {
-//    				routeService.deleteTravelRoutePhysically(travelRoute);
-//    			}
-//    			
-//			} catch (SQLException e) {
-//				log.debug(e);;
-//			} catch (NullPointerException e) {
-//				log.debug(e);
-//			}
-//			
-//            status.setComplete();
-//    		return "redirect:/travel/member/myroute.do";
-//    }
-//    
-//    @RequestMapping(value="address.do")
-//    public String searchAddress(
-//    		 TravelRoute travelRoute
-//            ,HttpServletRequest req
-//            ,@RequestParam("status") String status
-//            ,@RequestParam("idx") String idx
-//    		,Model model) throws Exception {
-//    	
-////    	model.addAttribute("absPath", "/geocni/travel");
-//    	model.addAttribute("status", status);
-//    	model.addAttribute("idx", idx);
-//
-//    	return skinPath + "address";
-//    }
-//
-//    @RequestMapping(value="searchpoint.do")
-//    public String searchPoint(
-//    		 HttpServletRequest req
-//    		,@RequestParam("status") String status
-//            ,@RequestParam("idx") String idx
-//    		,Model model) throws Exception {
-//    	
-////    	model.addAttribute("absPath", "/geocni/travel");
-//    	model.addAttribute("status", status);
-//    	model.addAttribute("idx", idx);
-//    	
-//    	return skinPath + "searchPoint";
-//    }
-//    
 }

@@ -32,7 +32,8 @@
   		
   		$.ajax({
   			type:'post',
-  			url:"/seantour_map/travel/mainBeachCongestion.do",
+  			 url:"/travel/mainBeachCongestion.do",
+  			/* url:"/seantour_map/travel/mainBeachCongestion.do", */
   		    success: function(data) {  		
                 $('.time').find('span').text(currentTime);
 				for(var i=0; i < data.length; i++){
