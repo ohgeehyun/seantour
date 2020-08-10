@@ -210,6 +210,10 @@
 .local_info_area .info_txt .near_points_box .near_point{height:250px;}
 .local_info_area .info_txt .near_points .near_tit{display:inline-block;margin-bottom:5px;font-size:15px;cursor:pointer;}
 
+.stastic_info{margin-top:60px;}
+.stastic_info .tit{position:relative;margin-bottom:10px;padding-left:25px;font-size:20px;}
+.stastic_info .tit:after{content:'';display:inline-block;position:absolute;top:7px;left:0;width:18px;height:18px;background:url(/seantour_map/images/travel/content/icon_local_detail.gif) no-repeat 0 0;background-size:cover;}
+.stastic_info .chart{padding:15px;border:1px solid #ddd;}
 /* **************************************** *
  * 명성 
  * **************************************** */

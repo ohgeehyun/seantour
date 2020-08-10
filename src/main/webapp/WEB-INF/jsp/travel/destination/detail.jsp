@@ -117,6 +117,12 @@
 						</c:if>	
 
 						</div>
+						<div class="stastic_info">
+							<h3 class="tit">전날 해수욕장 방문자 통계정보</h3>
+							<div class="chart">
+								
+							</div>
+						</div>
 						<div class="btnArea tar">
 						<form name="travelDestination" method="post">
 							<input type="hidden" name="destId" value="<c:out value="${travelDestination.destId}"/>">
