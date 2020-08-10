@@ -12,6 +12,7 @@
 			     , SEQ_ID AS seqId
 			     , POI_NM AS poiNm
 			     , UNIQ_POP AS uniqPop
+			     , CONGESTION AS congestion
 			  FROM GEO_BEACH_CONGESTION
              WHERE ETL_DT = (SELECT MAX(ETL_DT) FROM GEO_BEACH_CONGESTION)
         ]]>
@@ -80,6 +81,13 @@
         ]]>
     </select>
     
+     <select id="travelMainDAO.selectDataExistCnt" parameterClass="java.lang.String" resultClass="int">
+        <![CDATA[
+			SELECT count(*) AS cnt
+			  FROM GEO_BEACH_CONGESTION
+             WHERE ETL_DT = #datestr#
+        ]]>
+    </select>
 	
 
     

@@ -74,7 +74,7 @@ public class TravelRouteMngController {
 		travelRoute.setRoutType("W");
 		
 		model.addAllAttributes(routeService.selectTravelRouteListMap(travelRoute));
-		status.setComplete();
+		status.setComplete(); 
 		
         model.addAttribute("travelRoute", travelRoute);
 		
