@@ -32,8 +32,40 @@ public class TravelMain extends TravelDefaultVO {
     
     private String width;
     
+    private String destId;
     
-    public String Width() {
+    private String datestrtemp;
+    
+    private String datestrtemp2;
+    
+    
+    public String getDatestrtemp2() {
+    	return datestrtemp2;
+    }
+    
+    public void setDatestrtemp2(String datestrtemp2) {
+    	this.datestrtemp2 = datestrtemp2;
+    }
+    
+    
+    public String getDatestrtemp() {
+    	return datestrtemp;
+    }
+    
+    public void setDatestrtemp(String datestrtemp) {
+    	this.datestrtemp = datestrtemp;
+    }
+    
+    public String getDestId() {
+    	return destId;
+    }
+    
+    public void setDestId(String destId) {
+    	this.destId = destId;
+    }
+    
+    
+    public String getWidth() {
     	return width;
     }
     

@@ -18,6 +18,22 @@
         ]]>
     </select>
     
+    
+   
+    <select id="travelMainDAO.selectTravelMainDestination" parameterClass="travelMain" resultClass="egovMap">
+        <![CDATA[
+			SELECT
+					a.etl_dt AS etlDt,
+					a.poi_nm AS poiNm,
+					a.uniq_pop AS uniqPop
+			FROM geo_beach_congestion a
+			JOIN geo_beach_congestion_destination b
+			ON a.seq_id = b.seq_id 
+			WHERE b.destId = #destId# AND 
+			(a.etl_dt LIKE CONCAT ('%',#datestrtemp#,'%') or a.etl_dt LIKE CONCAT ('%',#datestrtemp2#,'%'));
+        ]]>
+    </select> 
+    
      
      <select id="travelMainDAO.newselectBeachPerCnt" parameterClass="java.lang.String" resultClass="travelMain">
         <![CDATA[

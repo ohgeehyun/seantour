@@ -18,6 +18,8 @@ public interface TravelMainService {
 
 	List<?> selectBeachPerCntInsert() throws Exception;
 	
+	List<?> selectTravelMainDestination(TravelMain travelMain) throws Exception;
+	
 	int selectDataExistCnt(String substring) throws Exception;
 	
 //	int selectTravelRouteListCnt(TravelRoute vo) throws Exception;

@@ -6,11 +6,96 @@
 <head>
 
 <%@ include file="/WEB-INF/jsp/travel/tpl/head.jsp" %>
+
 <!-- tmap api -->
 <script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=<spring:message code='Travel.Api.Tmap.Appkey' />"></script>
 <script src="<c:url value="/js/travel/kakao.js"/>"></script>
 <script type="text/javascript">Kakao.init("<spring:message code='Travel.Api.Kakao.Appkey' />");</script>
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+ <script type="text/javascript">
+ 
+ window.addEventListener("DOMContentLoaded",function(){
+	 if(destId =="FCID111941" || destId =="FCID110239" || destId == 'FCID110780' ||destId =='FCID110458' ||destId =='FCID110405' ||
+				destId =="FCID110072" ||destId =="FCID111059" ||destId =='FCID110349' ||destId == 'FCID111039' ||destId =='FCID110894'||
+				destId =='FCID110580' ||destId =='FCID110592' ||destId == 'FCID111738' ||destId == 'FCID111124' ||destId =='FCID110572'||
+				destId =='FCID111470' ||destId == 'FCID111899'||destId =='FCID111658' ||destId =='FCID000293' ||destId =='FCID111959' ||
+				destId =='FCID110180' ||destId == 'FCID111605'||destId =='FCID111741' ||destId =='DEST000481' ||destId =='FCID110338' ||
+				destId =='FCID111063' ||destId =='DEST000482' ||destId == 'FCID111998' ||destId =='DEST000483' ||destId =='FCID110313' ||
+				destId =='FCID110902' ||destId =='FCID111467' ||destId =='FCID110626' ||destId =='FCID111476' ||destId =='FCID111628' ||
+				destId =='FCID110641' ||destId =='FCID110331' ||destId =='FCID111168' ||destId =='FCID007759' ||destId =='FCID111438' ||
+				destId =='FCID110873' ||destId =='FCID003274' ||destId =='FCID111358' ||destId =='FCID110533' ||destId =='FCID111854' ||
+				destId =='FCID111062' ||destId =='DEST000484' ||destId =='FCID102542' ||destId =='DEST000485' ||destId =='FCID111108'){
+	 
+	 }else{
+	 $(".stastic_info").hide();
+	 }
+ })
+	
+ function getParameterByName(name) {
+     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+             results = regex.exec(location.search);
+     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+ }
+ 
+ 
+ var destId = getParameterByName('destId'); 
+ 
+if(destId =="FCID111941" || destId =="FCID110239" || destId == 'FCID110780' ||destId =='FCID110458' ||destId =='FCID110405' ||
+		destId =="FCID110072" ||destId =="FCID111059" ||destId =='FCID110349' ||destId == 'FCID111039' ||destId =='FCID110894'||
+		destId =='FCID110580' ||destId =='FCID110592' ||destId == 'FCID111738' ||destId == 'FCID111124' ||destId =='FCID110572'||
+		destId =='FCID111470' ||destId == 'FCID111899'||destId =='FCID111658' ||destId =='FCID000293' ||destId =='FCID111959' ||
+		destId =='FCID110180' ||destId == 'FCID111605'||destId =='FCID111741' ||destId =='DEST000481' ||destId =='FCID110338' ||
+		destId =='FCID111063' ||destId =='DEST000482' ||destId == 'FCID111998' ||destId =='DEST000483' ||destId =='FCID110313' ||
+		destId =='FCID110902' ||destId =='FCID111467' ||destId =='FCID110626' ||destId =='FCID111476' ||destId =='FCID111628' ||
+		destId =='FCID110641' ||destId =='FCID110331' ||destId =='FCID111168' ||destId =='FCID007759' ||destId =='FCID111438' ||
+		destId =='FCID110873' ||destId =='FCID003274' ||destId =='FCID111358' ||destId =='FCID110533' ||destId =='FCID111854' ||
+		destId =='FCID111062' ||destId =='DEST000484' ||destId =='FCID102542' ||destId =='DEST000485' ||destId =='FCID111108')
+{
+   $.ajax({  type:"GET" ,
+			url: "<c:url value='/travel/destination/travelMainDestination.do'/>",
+			contentType:'application/json; charset=utf-8',
+			dataType: 'json',
+			data: {destId:destId},        
+			
+			success: function(result){
+			
+				
+				var data1 = [['TIME', '방문자 수']]
+				var month;
+				var day;
+				var hour;
+				var second;
+				
+				Object.keys(result).forEach(function(i){
+					 time = result[i].etlDt.substr(4,2);
+					 day = result[i].etlDt.substr(6,2);
+					 hour = result[i].etlDt.substr(8,2);
+					 second = result[i].etlDt.substr(10,2);
+					 data1.push([time+'/'+day+'/'+hour+':'+second,result[i].uniqPop*1])
+				});
+				
+				
+				google.charts.load('current', {'packages':['corechart']});
+				 google.charts.setOnLoadCallback(drawChart);
+				 function drawChart() {
+				   var data = google.visualization.arrayToDataTable(data1);
 
+				   var options = {
+				     title: ' ',
+				     hAxis: {title: '방문 자 수 ',  titleTextStyle: {color: '#333'}},
+				     vAxis: {minValue: 0}
+				   };
+
+				   var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+				   chart.draw(data, options);
+				 }
+			}	
+		});
+}
+
+ 
+    </script>
 </head>
 
 <body onload="initTmap()">
@@ -115,14 +200,17 @@
 								</div>
 							</div>
 						</c:if>	
-
 						</div>
+						
+	
 						<div class="stastic_info">
 							<h3 class="tit">전날 해수욕장 방문자 통계정보</h3>
 							<div class="chart">
-								
+								<div id="chart_div" style="width: 100%; height: 500px;"></div>
 							</div>
 						</div>
+				
+						
 						<div class="btnArea tar">
 						<form name="travelDestination" method="post">
 							<input type="hidden" name="destId" value="<c:out value="${travelDestination.destId}"/>">

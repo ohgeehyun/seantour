@@ -2,13 +2,17 @@ package geocni.travel.route.web;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -20,6 +24,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -36,11 +41,16 @@ import geocni.travel.common.TravelDefaultVO;
 import geocni.travel.common.files.domain.TravelFiles;
 import geocni.travel.common.files.service.TravelFilesService;
 import geocni.travel.route.domain.TravelDestination;
+import geocni.travel.route.domain.TravelMain;
 import geocni.travel.route.service.TravelDestinationService;
+import geocni.travel.route.service.TravelMainService;
 import geocni.travel.route.service.TravelRouteService;
 import jnit.cms.mbr.JnitcmsmbrVO;
 import jnit.mgov.module.JnitMgovUtil;
 import jnit.util.PathUtil;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 
 @Controller
 @SessionAttributes(types=TravelDestination.class)
@@ -58,6 +68,8 @@ public class TravelDestinationController {
     
 	@Resource(name = "propertiesService")
     protected EgovPropertyService propertiesService;
+	@Resource(name = "travelMainService")
+	protected TravelMainService travelmainService;
 
 	@Resource(name="egovMessageSource")
     private EgovMessageSource msgSrc;
@@ -125,22 +137,79 @@ public class TravelDestinationController {
 			status.setComplete();
 		return skinPath + "recolist";
 	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "travelMainDestination.do", method = RequestMethod.GET)
+	@ResponseBody
+	public List<?> mainBeachCongestion(
+			HttpServletRequest request
+			,HttpServletResponse respons
+			 ,@ModelAttribute("searchVO") TravelDefaultVO searchVO
+	 			,TravelDestination travelDestination
+	            ,SessionStatus status
+	            ,HttpServletRequest req
+	    		,ModelMap model
+	    		,TravelMain travelMain) throws Exception{
+		
+    		Calendar cal = Calendar.getInstance();
+    		cal.add(Calendar.DATE, -1);
+    		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
+    		String datestr = sdf.format(cal.getTime());
+    		String datestrtemp = datestr.substring(0,8);
+    		
+    		
+    		Calendar cal2 = Calendar.getInstance();
+    		cal2.get(Calendar.DATE);
+    		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMddHHmm");
+    		String datestr2 = sdf2.format(cal2.getTime());
+    		String datestrtemp2 = datestr2.substring(0,8);
+    		
+    		travelMain.setDatestrtemp(datestrtemp);
+    		travelMain.setDatestrtemp2(datestrtemp2);
+    		travelMain.setDestId(travelDestination.getDestId());
+    		
+    		List<?> travelMainDestination = travelmainService.selectTravelMainDestination(travelMain);
+    	/*	JSONObject sObject = new JSONObject();
+    		
+    		for(int i=0; i < travelMainDestination.size(); i++)
+    		{
+    			sObject.put(i,travelMainDestination.get(i));
+    		}
+    			*/
+		return travelMainDestination;
+	}
 
-    @RequestMapping(value="detail.do")
-    public String destinationDetail(
-    		 @ModelAttribute("searchVO") TravelDefaultVO searchVO
- 			,TravelDestination travelDestination
-            ,SessionStatus status
-            ,HttpServletRequest req
-    		,ModelMap model) throws Exception {
-    	
-    	try{
+	@RequestMapping(value = "detail.do")
+	public String destinationDetail(@ModelAttribute("searchVO") TravelDefaultVO searchVO,
+			TravelDestination travelDestination, SessionStatus status, HttpServletRequest req, ModelMap model,
+			TravelMain travelMain) throws Exception {
 
+		try {
+
+			Calendar cal = Calendar.getInstance();
+			cal.add(Calendar.DATE, -1);
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
+			String datestr = sdf.format(cal.getTime());
+			String datestrtemp = datestr.substring(0, 8);
+
+    		Calendar cal2 = Calendar.getInstance();
+    		cal2.get(Calendar.DATE);
+    		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMddHHmm");
+    		String datestr2 = sdf2.format(cal2.getTime());
+    		String datestrtemp2 = datestr2.substring(0,8);
+    		
+    		travelMain.setDatestrtemp(datestrtemp);
+    		travelMain.setDatestrtemp2(datestrtemp2);
+    		travelMain.setDestId(travelDestination.getDestId());
+    		
+    		
+    		List<?> travelMainDestination = travelmainService.selectTravelMainDestination(travelMain);
+    		
     		JnitcmsmbrVO loginVO = JnitMgovUtil.getLoginMember();
     		if(!NullUtil.isEmpty(loginVO.getMbrId())) {
     			travelDestination.setDestUserId(loginVO.getMbrId());
     		}
-
+    		model.addAttribute("travelMainDestination",travelMainDestination);
     		travelDestination = destService.selectTravelDestination(travelDestination);
 	        model.addAttribute("travelDestination", travelDestination);
 
@@ -154,8 +223,8 @@ public class TravelDestinationController {
 	        travelDestination.setDestCategory("체험");
 	        List<?> nearPlayPoints = destService.selectTravelDestinationNearPointList(travelDestination);
 	        model.addAttribute("nearPlayPoints", nearPlayPoints);
-	        
-	        status.setComplete();
+
+	        status.setComplete();    
 	        
     	} catch (NullPointerException e){
 			log.error(e.getMessage());

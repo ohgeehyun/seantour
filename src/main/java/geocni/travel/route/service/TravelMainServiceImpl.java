@@ -152,6 +152,11 @@ public class TravelMainServiceImpl extends EgovAbstractServiceImpl implements Tr
 	public int selectDataExistCnt(String substring) throws Exception {
 		return travelMainDAO.selectDataExistCnt(substring);
 	}
+	
+	@Override
+	public List<?> selectTravelMainDestination(TravelMain travelmain) throws Exception {
+		return travelMainDAO.selectTravelMainDestination(travelmain);
+	}
 
 @Override
 public List<TravelMain> selectBeachPerCntInsert() throws Exception {

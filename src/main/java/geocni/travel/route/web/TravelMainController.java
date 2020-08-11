@@ -98,13 +98,13 @@ public class TravelMainController {
 		Message coolsms = new Message(api_key, api_secret);
 		HashMap<String, String> params = new HashMap<String, String>(); // 도청
 		HashMap<String, String> params2 = new HashMap<String, String>();// 시청
-		String text = "[해수욕장 예약시스템]\n";
-		String text2 = "[해수욕장 예약시스템]\n";
-		String text3 = "[해수욕장 예약시스템]\n";
-		String text4 = "[해수욕장 예약시스템]\n";
-		String text5 = "[해수욕장 예약시스템]\n";
-		String text6 = "[해수욕장 예약시스템]\n";
-		String text7 = "[해수욕장 예약시스템]\n";
+		String text = "[해수욕장 혼잡도 신호등]\n";
+		String text2 = "[해수욕장 혼잡도 신호등]\n";
+		String text3 = "[해수욕장 혼잡도 신호등]\n";
+		String text4 = "[해수욕장 혼잡도 신호등]\n";
+		String text5 = "[해수욕장 혼잡도 신호등]\n";
+		String text6 = "[해수욕장 혼잡도 신호등]\n";
+		String text7 = "[해수욕장 혼잡도 신호등]\n";
 		List<TravelMain> beachPerPopulationList = null;
 		try {
 			beachPerPopulationList = (List<TravelMain>) mainService.selectBeachPerCnt();
@@ -134,16 +134,16 @@ public class TravelMainController {
 		int donghea =0;
 		int gosung =0;
 		String[] government = new String[10]; // 도청 전화번호
-		government[0] = "01097951156,01089010442,01095114900,01086102805,01063217699";// 강원도청
-		government[1] = "01038872641,01040395434,01091707832,01086102805,01063217699";// 경남도청
-		government[2] = "01048995675,01092772373,01029076383,01086102805,01063217699";// 경북도청
-		government[3] = "01020559177,01077463664,01045667560,01086102805,01063217699";// 부산시청
-		government[4] = "01029670026,010548641347,01020762755,01086102805,01063217699";// 울산시청
-		government[5] = "01020165122,01073448896,01090721027,01086102805,01063217699";// 인천시청
-		government[6] = "01056159451,01036075669,01094709406,01086102805,01063217699";// 전남도청
-		government[7] = "01027765157,01073707086,01040031075,01086102805,01063217699";// 전북도청
-		government[8] = "01036908641,01046926996,01051892677,01086102805,01063217699";// 제주시청
-		government[9] = "01095590831,01079339665,01040658913,01086102805,01063217699";// 충남도청
+		government[0] = "01097951156,01089010442,01095114900,01086102805,01063217699,01028222484";// 강원도청
+		government[1] = "01038872641,01040395434,01091707832,01086102805,01063217699,01028222484";// 경남도청
+		government[2] = "01048995675,01092772373,01029076383,01086102805,01063217699,01028222484";// 경북도청
+		government[3] = "01020559177,01077463664,01045667560,01086102805,01063217699,01028222484";// 부산시청
+		government[4] = "01029670026,010548641347,01020762755,01086102805,01063217699,01028222484";// 울산시청
+		government[5] = "01020165122,01073448896,01090721027,01086102805,01063217699,01028222484";// 인천시청
+		government[6] = "01056159451,01036075669,01094709406,01086102805,01063217699,01028222484";// 전남도청
+		government[7] = "01027765157,01073707086,01040031075,01086102805,01063217699,01028222484";// 전북도청
+		government[8] = "01036908641,01046926996,01051892677,01086102805,01063217699,01028222484";// 제주시청
+		government[9] = "01095590831,01079339665,01040658913,01086102805,01063217699,01028222484";// 충남도청
 
 		for (TravelMain i : beachPerPopulationList) {
 			if (Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) > 1) { // 혼잡도가 1이상 인 경우
@@ -155,22 +155,43 @@ public class TravelMainController {
 						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 25
 						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 23
 						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 15) { // 충남도청
-					text += beachPerPopulationList.get(index).getPoiNm() + "\n";
-					count++;
+					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+						text += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다. \n";
+						count++;
+					}else {
+						text += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+						count++;
+					}
+					
 				}
 				if(Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 15
 					||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 25
 					||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 33
 					||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 41
 					||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 50){ //태안군
-					text2 += beachPerPopulationList.get(index).getPoiNm() + "\n";
-					taean++;
+					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+						text2 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다. \n";
+						taean++;
+					}else {
+						text2 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+						taean++;
+					}			
 				}else if(Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 23) {//서천군
-					text3 += beachPerPopulationList.get(index).getPoiNm() + "\n";
+					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+					text3 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다. \n";
 					seachun++;
+					}else {
+						text3 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+						seachun++;
+					}
 				}else {
-					text4 += beachPerPopulationList.get(index).getPoiNm() + "\n";
-					boryung ++;
+					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+						text4 += beachPerPopulationList.get(index).getPoiNm() +" 노란색 입니다. \n";		//보령
+						boryung ++;
+					}else {
+						text4 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+						boryung ++;
+					}
 				}
 			}
 			index++;
@@ -181,7 +202,7 @@ public class TravelMainController {
 		}
 		try {
 			if (count > 0) {
-				text += "현재 혼잡 이상 입니다.";
+				text += "현재 신호등 상황 입니다.";
 				params.put("to", government[9]);
 				params.put("from", "0442005254");
 				params.put("text", text);
@@ -189,7 +210,7 @@ public class TravelMainController {
 				JSONObject obj = (JSONObject) coolsms.send(params);
 				System.out.println(obj.toString());
 				count = 0;
-				text = "[해수욕장 예약시스템]\n";
+				text = "[해수욕장 혼잡도 신호등]\n";
 			}
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());
@@ -198,14 +219,14 @@ public class TravelMainController {
 		
 		try {
 			if (taean > 0) {
-				text2 += "현재 혼잡 이상 입니다.";
-				params2.put("to", "01034859434,01020945896,01097007131,01086102805,01063217699");
+				text2 += "현재 신호등 상황 입니다.";
+				params2.put("to", "01034859434,01020945896,01097007131");
 				params2.put("from", "0442005254");
 				params2.put("text", text2);
 				params2.put("type", "lms");
 				JSONObject obj = (JSONObject) coolsms.send(params2);
 				System.out.println(obj.toString());
-				text2 = "[해수욕장 예약시스템]\n";
+				text2 = "[해수욕장 혼잡도 신호등]\n";
 			}
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());
@@ -213,14 +234,14 @@ public class TravelMainController {
 		}
 		try {
 			if (seachun > 0) {
-				text3 += "현재 혼잡 이상 입니다.";
-				params2.put("to", "01051088958,01054940976,01024066975,01086102805,01063217699");
+				text3 += "현재 신호등 상황 입니다.";
+				params2.put("to", "01051088958,01054940976,01024066975");
 				params2.put("from", "0442005254");
 				params2.put("text", text3);
 				params2.put("type", "lms");
 				JSONObject obj = (JSONObject) coolsms.send(params2);
 				System.out.println(obj.toString());
-				text3 = "[해수욕장 예약시스템]\n";
+				text3 = "[해수욕장 혼잡도 신호등]\n";
 			}
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());
@@ -228,14 +249,14 @@ public class TravelMainController {
 		}
 		try {
 			if (boryung > 0) {
-				text4 += "현재 혼잡 이상 입니다.";
-				params2.put("to", "01088163415,01093043379,01029305452,01086102805,01063217699");
+				text4 += "현재 신호등 상황 입니다.";
+				params2.put("to", "01088163415,01093043379,01029305452");
 				params2.put("from", "0442005254");
 				params2.put("text", text4);
 				params2.put("type", "lms");
 				JSONObject obj = (JSONObject) coolsms.send(params2);
 				System.out.println(obj.toString());
-				text4 = "[해수욕장 예약시스템]\n";
+				text4 = "[해수욕장 혼잡도 신호등]\n";
 			}
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());
@@ -251,8 +272,13 @@ public class TravelMainController {
 						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 35
 						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 37
 						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 30) { // 제주시청
-					text += beachPerPopulationList.get(index).getPoiNm() + "\n";
-					count++;
+					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+						text += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다. \n";	
+						count++;
+					}else {
+						text += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다. \n";	
+						count++;
+					}
 				}
 				if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 17
 						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 20
@@ -260,11 +286,21 @@ public class TravelMainController {
 						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 27
 						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 37
 						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 30) { // 제주시
-					text2 += beachPerPopulationList.get(index).getPoiNm() + "\n";
-					jeju ++;
+					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+						text2 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다. \n";	
+						jeju ++;
+					}else {
+						text2 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다. \n";
+						jeju ++;
+					}
 				}else {
-					text3 += beachPerPopulationList.get(index).getPoiNm() + "\n";               //서귀포시
-					Seogwipo ++;
+					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+						text3 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다. \n"; //서귀포시
+						Seogwipo ++;
+					}else {
+						text3 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다. \n";           
+						Seogwipo ++;
+					}
 				}
 			}
 			index++;
@@ -275,7 +311,7 @@ public class TravelMainController {
 		}
 		try {
 			if (count > 0) {
-				text += "현재 혼잡 이상 입니다.";
+				text += "현재 신호등 상황 입니다.";
 				params.put("to", government[8]);
 				params.put("from", "0442005254");
 				params.put("text", text);
@@ -283,7 +319,7 @@ public class TravelMainController {
 				JSONObject obj = (JSONObject) coolsms.send(params);
 				System.out.println(obj.toString());
 				count = 0;
-				text = "[해수욕장 예약시스템]\n";
+				text = "[해수욕장 혼잡도 신호등]\n";
 			}
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());
@@ -291,14 +327,14 @@ public class TravelMainController {
 		}
 		try {
 			if (jeju > 0) {
-				text2 += "현재 혼잡 이상 입니다.";
-				params2.put("to", "01099269858,01052222749,01076237179,01086102805,01063217699");
+				text2 += "현재 신호등 상황 입니다.";
+				params2.put("to", "01099269858,01052222749,01076237179");
 				params2.put("from", "0442005254");
 				params2.put("text", text2);
 				params2.put("type", "lms");
 				JSONObject obj = (JSONObject) coolsms.send(params2);
 				System.out.println(obj.toString());
-				text2 = "[해수욕장 예약시스템]\n";
+				text2 = "[해수욕장 혼잡도 신호등]\n";
 			}
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());
@@ -306,14 +342,14 @@ public class TravelMainController {
 		}
 		try {
 			if (Seogwipo > 0) {
-				text3 += "현재 혼잡 이상 입니다.";
-				params2.put("to", "01020222989,01086223495,01063554199,01086102805,01063217699");
+				text3 += "현재 신호등 상황 입니다.";
+				params2.put("to", "01020222989,01086223495,01063554199");
 				params2.put("from", "0442005254");
 				params2.put("text", text3);
 				params2.put("type", "lms");
 				JSONObject obj = (JSONObject) coolsms.send(params2);
 				System.out.println(obj.toString());
-				text3 = "[해수욕장 예약시스템]\n";
+				text3 = "[해수욕장 혼잡도 신호등]\n";
 			}
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());
@@ -323,9 +359,14 @@ public class TravelMainController {
 		for (TravelMain i : beachPerPopulationList) {
 			if (Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) > 1) { // 혼잡도가 1이상 인 경우
 				if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 14) { // 전남도청 한 곳 이 끝
-					text += beachPerPopulationList.get(index).getPoiNm() + "\n";
+					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+					text += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다. \n";
+					count++;
+				}else {
+					text += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다. \n";
 					count++;
 				}
+			}
 			}
 			index++;
 			if (index == 50) {
@@ -335,7 +376,7 @@ public class TravelMainController {
 		}
 		try {
 			if (count > 0) {
-				text += "현재 혼잡 이상 입니다.";
+				text += "현재 신호등 상황 입니다.";
 				params.put("to", government[6]+",01041931911,01088205763,01050311738");
 				params.put("from", "0442005254");
 				params.put("text", text);
@@ -343,7 +384,7 @@ public class TravelMainController {
 				JSONObject obj = (JSONObject) coolsms.send(params);
 				System.out.println(obj.toString());
 				count = 0;
-				text = "[해수욕장 예약시스템]\n";
+				text = "[해수욕장 혼잡도 신호등]\n";
 			}
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());
@@ -354,8 +395,13 @@ public class TravelMainController {
 			if (Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) > 1) { // 혼잡도가 1이상 인 경우
 				if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 40
 						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 45) { // 인천시청
-					text += beachPerPopulationList.get(index).getPoiNm() + "\n";
-					count++;
+					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+						text += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다. \n";
+						count++;
+					}else {
+						text += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다. \n";
+						count++;
+					}
 				}
 			}
 			index++;
@@ -366,7 +412,7 @@ public class TravelMainController {
 		}
 		try {
 			if (count > 0) {
-				text += "현재 혼잡 이상 입니다.";
+				text += "현재 신호등 상황 입니다.";
 				params.put("to", government[5]+",01028316024,01090505613,01041182737");
 				params.put("from", "0442005254");
 				params.put("text", text);
@@ -374,7 +420,7 @@ public class TravelMainController {
 				JSONObject obj = (JSONObject) coolsms.send(params);
 				System.out.println(obj.toString());
 				count = 0;
-				text = "[해수욕장 예약시스템]\n";
+				text = "[해수욕장 혼잡도 신호등]\n";
 			}
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());
@@ -385,15 +431,30 @@ public class TravelMainController {
 			if (Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) > 1) { // 혼잡도가 1이상 인 경우
 				if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 16
 						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 18) { // 울산시청
-					text += beachPerPopulationList.get(index).getPoiNm() + "\n";
-					count++;
+					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+						text += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
+						count++;
+					}else {
+						text += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+						count++;
+					}
 				}
 				if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 16) { // 울산 동구
-					text2 += beachPerPopulationList.get(index).getPoiNm() + "\n";
-					donggu++;
+					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+						text2 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
+						donggu++;
+					}else {
+						text2 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+						donggu++;
+					}
 				}else {
-					text3 += beachPerPopulationList.get(index).getPoiNm() + "\n"; // 울산 을주군
-					ulju++;
+					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+						text3 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n"; // 울산 을주군
+						ulju++;
+					}else {
+						text3 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n"; 
+						ulju++;
+					}
 				}
 			}
 			index++;
@@ -404,7 +465,7 @@ public class TravelMainController {
 		}
 		try {
 			if (count > 0) {
-				text += "현재 혼잡 이상 입니다.";
+				text += "현재 신호등 상황 입니다.";
 				params.put("to", government[4]);
 				params.put("from", "0442005254");
 				params.put("text", text);
@@ -412,7 +473,7 @@ public class TravelMainController {
 				JSONObject obj = (JSONObject) coolsms.send(params);
 				System.out.println(obj.toString());
 				count = 0;
-				text = "[해수욕장 예약시스템]\n";
+				text = "[해수욕장 혼잡도 신호등]\n";
 			}
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());
@@ -421,14 +482,14 @@ public class TravelMainController {
 		
 		try {
 			if (donggu > 0) {
-				text2 += "현재 혼잡 이상 입니다.";
-				params2.put("to", "01035821995,01092348786,01040543451,01086102805,01063217699");
+				text2 += "현재 신호등 상황 입니다.";
+				params2.put("to", "01035821995,01092348786,01040543451");
 				params2.put("from", "0442005254");
 				params2.put("text", text2);
 				params2.put("type", "lms");
 				JSONObject obj = (JSONObject) coolsms.send(params2);
 				System.out.println(obj.toString());
-				text2 = "[해수욕장 예약시스템]\n";
+				text2 = "[해수욕장 혼잡도 신호등]\n";
 			}
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());
@@ -437,14 +498,14 @@ public class TravelMainController {
 		
 		try {
 			if (ulju > 0) {
-				text3 += "현재 혼잡 이상 입니다.";
-				params2.put("to", "01053039073,01030585828,01065870009,01086102805,01063217699");
+				text3 += "현재 신호등 상황 입니다.";
+				params2.put("to", "01053039073,01030585828,01065870009");
 				params2.put("from", "0442005254");
 				params2.put("text", text3);
 				params2.put("type", "lms");
 				JSONObject obj = (JSONObject) coolsms.send(params2);
 				System.out.println(obj.toString());
-				text3 = "[해수욕장 예약시스템]\n";
+				text3 = "[해수욕장 혼잡도 신호등]\n";
 			}
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());
@@ -460,26 +521,56 @@ public class TravelMainController {
 						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 32
 						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 2
 						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 34) { // 부산시청
-					text += beachPerPopulationList.get(index).getPoiNm() + "\n";
-					count++;
+					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+						text += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
+						count++;
+					}else {
+						text += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+						count++;
+					}
 				}
 				if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 1			
 						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 7) { // 해운대구
-					text2 += beachPerPopulationList.get(index).getPoiNm() + "\n";
-					heaundaegu++;
+					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+						text2 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
+						heaundaegu++;
+					}else {
+						text2 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+						heaundaegu++;
+					}
 				}else if(Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 3) { //부산 서구
-					text3 += beachPerPopulationList.get(index).getPoiNm() + "\n";
-					busanseogu++;
+					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+						text3 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
+						busanseogu++;
+					}else {
+						text3 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+						busanseogu++;
+					}
 				}else if(Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 5) { //부산 사하구
-					text4 += beachPerPopulationList.get(index).getPoiNm() + "\n";
-					sahagu++;
+					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+						text4 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
+						sahagu++;
+					}else {
+						text4 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+						sahagu++;
+					}
 				}else if(Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 32
 						||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 34){ //부산 기장구
-					text5 += beachPerPopulationList.get(index).getPoiNm() + "\n";
-					gijanggu++;
+					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+						text5 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
+						gijanggu++;
+					}else {
+						text5 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+						gijanggu++;
+					}
 				}else {
-					text6 += beachPerPopulationList.get(index).getPoiNm() + "\n";               //부산 수영구
-					suyunggu++;
+					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+						text6 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";               //부산 수영구
+						suyunggu++;
+					}else {
+						text6 += beachPerPopulationList.get(index).getPoiNm() +  " 빨강색 입니다.\n";               
+						suyunggu++;
+					}
 				}
 			}
 			index++;
@@ -490,7 +581,7 @@ public class TravelMainController {
 		}
 		try {
 			if (count > 0) {
-				text += "현재 혼잡 이상 입니다.";
+				text += "현재 신호등 상황 입니다.";
 				params.put("to", government[3]);
 				params.put("from", "0442005254");
 				params.put("text", text);
@@ -498,7 +589,7 @@ public class TravelMainController {
 				JSONObject obj = (JSONObject) coolsms.send(params);
 				System.out.println(obj.toString());
 				count = 0;
-				text = "[해수욕장 예약시스템]\n";
+				text = "[해수욕장 혼잡도 신호등]\n";
 			}
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());
@@ -506,14 +597,14 @@ public class TravelMainController {
 		}
 		try {
 			if (heaundaegu > 0) {
-				text2 += "현재 혼잡 이상 입니다.";
-				params2.put("to", "01063621302,010548641347,01020762755,01086102805,01063217699");
+				text2 += "현재 신호등 상황 입니다.";
+				params2.put("to", "01063621302,010548641347,01020762755");
 				params2.put("from", "0442005254");
 				params2.put("text", text2);
 				params2.put("type", "lms");
 				JSONObject obj = (JSONObject) coolsms.send(params2);
 				System.out.println(obj.toString());
-				text2 = "[해수욕장 예약시스템]\n";
+				text2 = "[해수욕장 혼잡도 신호등]\n";
 			}
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());
@@ -521,14 +612,14 @@ public class TravelMainController {
 		}
 		try {
 			if (busanseogu > 0) {
-				text3 += "현재 혼잡 이상 입니다.";
-				params2.put("to", "01028309342,01085599824,01051691470,01086102805,01063217699");
+				text3 += "현재 신호등 상황 입니다.";
+				params2.put("to", "01028309342,01085599824,01051691470");
 				params2.put("from", "0442005254");
 				params2.put("text", text3);
 				params2.put("type", "lms");
 				JSONObject obj = (JSONObject) coolsms.send(params2);
 				System.out.println(obj.toString());
-				text3 = "[해수욕장 예약시스템]\n";
+				text3 = "[해수욕장 혼잡도 신호등]\n";
 			}
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());
@@ -536,14 +627,14 @@ public class TravelMainController {
 		}
 		try {
 			if (sahagu > 0) {
-				text4 += "현재 혼잡 이상 입니다.";
-				params2.put("to", "01028288143,01040895417,01086102805,01063217699");
+				text4 += "현재 신호등 상황 입니다.";
+				params2.put("to", "01028288143,01040895417");
 				params2.put("from", "0442005254");
 				params2.put("text", text4);
 				params2.put("type", "lms");
 				JSONObject obj = (JSONObject) coolsms.send(params2);
 				System.out.println(obj.toString());
-				text4 = "[해수욕장 예약시스템]\n";
+				text4 = "[해수욕장 혼잡도 신호등]\n";
 			}
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());
@@ -551,14 +642,14 @@ public class TravelMainController {
 		}
 		try {
 			if (gijanggu > 0) {
-				text5 += "현재 혼잡 이상 입니다.";
-				params2.put("to", "01077471822,01039071332,01063857924,01086102805,01063217699");
+				text5 += "현재 신호등 상황 입니다.";
+				params2.put("to", "01077471822,01039071332,01063857924");
 				params2.put("from", "0442005254");
 				params2.put("text", text5);
 				params2.put("type", "lms");
 				JSONObject obj = (JSONObject) coolsms.send(params2);
 				System.out.println(obj.toString());
-				text5 = "[해수욕장 예약시스템]\n";
+				text5 = "[해수욕장 혼잡도 신호등]\n";
 			}
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());
@@ -566,14 +657,14 @@ public class TravelMainController {
 		}
 		try {
 			if (suyunggu > 0) {
-				text6 += "현재 혼잡 이상 입니다.";
-				params2.put("to", "01065873304,01092367390,01055581698,01086102805,01063217699");
+				text6 += "현재 신호등 상황 입니다.";
+				params2.put("to", "01065873304,01092367390,01055581698");
 				params2.put("from", "0442005254");
 				params2.put("text", text6);
 				params2.put("type", "lms");
 				JSONObject obj = (JSONObject) coolsms.send(params2);
 				System.out.println(obj.toString());
-				text6 = "[해수욕장 예약시스템]\n";
+				text6 = "[해수욕장 혼잡도 신호등]\n";
 			}
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());
@@ -584,15 +675,30 @@ public class TravelMainController {
 			if (Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) > 1) { // 혼잡도가 1이상 인 경우
 				if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 21
 						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 47) { // 경북도청
-					text += beachPerPopulationList.get(index).getPoiNm() + "\n";
-					count++;
+					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+						text += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
+						count++;
+					}else {
+						text += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+						count++;
+					}
 				}
 				if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 21) { // 경북도청 영덕군
-					text += beachPerPopulationList.get(index).getPoiNm() + "\n";
-					yungduk++;
+					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+						text2 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
+						yungduk++;
+					}else {
+						text2 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+						yungduk++;
+					}
 				}else {
-					text2 += beachPerPopulationList.get(index).getPoiNm() + "\n";      // 경북도청 경주시
-					gyunju++;
+					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+						text3 += beachPerPopulationList.get(index).getPoiNm() +  " 노란색 입니다.\n";   // 경북도청 경주시
+						gyunju++;
+					}else {
+						text3 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";      
+						gyunju++;
+					}
 				}
 			}
 			index++;
@@ -603,7 +709,7 @@ public class TravelMainController {
 		}
 		try {
 			if (count > 0) {
-				text += "현재 혼잡 이상 입니다.";
+				text += "현재 신호등 상황 입니다.";
 				params.put("to",government[2]);
 				params.put("from", "0442005254");
 				params.put("text", text);
@@ -611,7 +717,7 @@ public class TravelMainController {
 				JSONObject obj = (JSONObject) coolsms.send(params);
 				System.out.println(obj.toString());
 				count = 0;
-				text = "[해수욕장 예약시스템]\n";
+				text = "[해수욕장 혼잡도 신호등]\n";
 			}
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());
@@ -620,14 +726,14 @@ public class TravelMainController {
 		
 		try {
 			if (yungduk > 0) {
-				text2 += "현재 혼잡 이상 입니다.";
-				params2.put("to", "01035484030,01067345003,01038603317,01086102805,01063217699");
+				text2 += "현재 신호등 상황 입니다.";
+				params2.put("to", "01035484030,01067345003,01038603317");
 				params2.put("from", "0442005254");
 				params2.put("text", text2);
 				params2.put("type", "lms");
 				JSONObject obj = (JSONObject) coolsms.send(params2);
 				System.out.println(obj.toString());
-				text2 = "[해수욕장 예약시스템]\n";
+				text2 = "[해수욕장 혼잡도 신호등]\n";
 			}
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());
@@ -636,14 +742,14 @@ public class TravelMainController {
 		
 		try {
 			if (gyunju > 0) {
-				text3 += "현재 혼잡 이상 입니다.";
-				params2.put("to", "01035371979,01035016701,01026302943,01086102805,01063217699");
+				text3 += "현재 신호등 상황 입니다.";
+				params2.put("to", "01035371979,01035016701,01026302943");
 				params2.put("from", "0442005254");
 				params2.put("text", text3);
 				params2.put("type", "lms");
 				JSONObject obj = (JSONObject) coolsms.send(params2);
 				System.out.println(obj.toString());
-				text3 = "[해수욕장 예약시스템]\n";
+				text3 = "[해수욕장 혼잡도 신호등]\n";
 			}
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());
@@ -653,8 +759,13 @@ public class TravelMainController {
 		for (TravelMain i : beachPerPopulationList) {
 			if (Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) > 1) { // 혼잡도가 1이상 인 경우
 				if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 39) { // 경남도청
-					text += beachPerPopulationList.get(index).getPoiNm() + "\n";
-					count++;
+					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+						text += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
+						count++;
+					}else {
+						text += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+						count++;	
+					}
 				}
 			}
 			index++;
@@ -665,7 +776,7 @@ public class TravelMainController {
 		}
 		try {
 			if (count > 0) {
-				text += "현재 혼잡 이상 입니다.";
+				text += "현재 신호등 상황 입니다.";
 				params.put("to", government[1]+",01038644365,01073581225,01094507295");
 				params.put("from", "0442005254");
 				params.put("text", text);
@@ -673,7 +784,7 @@ public class TravelMainController {
 				JSONObject obj = (JSONObject) coolsms.send(params);
 				System.out.println(obj.toString());
 				count = 0;
-				text = "[해수욕장 예약시스템]\n";
+				text = "[해수욕장 혼잡도 신호등]\n";
 			}
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());
@@ -702,37 +813,72 @@ public class TravelMainController {
 						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 46
 						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 48
 						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 49) { // 강원도청
-					text += beachPerPopulationList.get(index).getPoiNm() + "\n";
-					count++;
+					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+						text += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
+						count++;
+					}else {
+						text += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+						count++;
+					}
 				}
 					if(Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 38
 						||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 6
 						||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 38
 						||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 42) { //강원도청 강릉시
-						text2 += beachPerPopulationList.get(index).getPoiNm() + "\n";
-						gangleng++;
+						if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+							text2 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
+							gangleng++;
+						}else {
+							text2 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+							gangleng++;
+						}
 					}else if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 8
 								||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 19
 								||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 48) {//강원도청 양양군
-						text3 += beachPerPopulationList.get(index).getPoiNm() + "\n";
-						yangyang++;
+						if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+							text3 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
+							yangyang++;
+						}else {
+							text3 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+							yangyang++;
+						}
 					}else if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 9
 								||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 29
 								||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 44) { //강원도청 속초시
-						text4 += beachPerPopulationList.get(index).getPoiNm() + "\n";
-						sokcho++;
+						if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+							text4 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
+							sokcho++;
+						}else {
+							text4 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+							sokcho++;
+						}
 					}else if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 10
 							||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 12
 							||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 43) { //강원도청 삼척시
-					text5 += beachPerPopulationList.get(index).getPoiNm() + "\n";
-					samchuck++;
+						if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+							text5 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
+							samchuck++;
+						}else {
+							text5 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+							samchuck++;
+						}
 				}else if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 11
 						||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 13) { //강원도청 동해시
-				text6 += beachPerPopulationList.get(index).getPoiNm() + "\n";
-				donghea++;
+					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+						text6 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
+						donghea++;
+					}else {
+						text6 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+						donghea++;
+					}
 			}else {
-				text7 += beachPerPopulationList.get(index).getPoiNm() + "\n";                   //강원도청 고성군
-				gosung++;
+				if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+					text7 += beachPerPopulationList.get(index).getPoiNm() +  " 노란색 입니다.\n";//강원도청 고성군
+					gosung++;
+				}else {
+					text7 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";          
+					gosung++;
+				}
 			}
 			}
 			index++;
@@ -743,7 +889,7 @@ public class TravelMainController {
 		}
 		try {
 			if (count > 0) {
-				text += "현재 혼잡 이상 입니다.";
+				text += "현재 신호등 상황 입니다.";
 				params.put("to", government[0] );
 				params.put("from", "0442005254");
 				params.put("text", text);
@@ -751,7 +897,7 @@ public class TravelMainController {
 				JSONObject obj = (JSONObject) coolsms.send(params);
 				System.out.println(obj.toString());
 				count = 0;
-				text = "[해수욕장 예약시스템]\n";
+				text = "[해수욕장 혼잡도 신호등]\n";
 			}
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());
@@ -759,14 +905,14 @@ public class TravelMainController {
 		}
 		try {
 			if (gangleng > 0) {
-				text2 += "현재 혼잡 이상 입니다.";
-				params2.put("to", "01035263537,01033775137,01092050542,01086102805,01063217699");
+				text2 += "현재 신호등 상황 입니다.";
+				params2.put("to", "01035263537,01033775137,01092050542");
 				params2.put("from", "0442005254");
 				params2.put("text", text2);
 				params2.put("type", "lms");
 				JSONObject obj = (JSONObject) coolsms.send(params2);
 				System.out.println(obj.toString());
-				text2 = "[해수욕장 예약시스템]\n";
+				text2 = "[해수욕장 혼잡도 신호등]\n";
 			}
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());
@@ -774,14 +920,14 @@ public class TravelMainController {
 		}
 		try {
 			if (yangyang > 0) {
-				text3 += "현재 혼잡 이상 입니다.";
-				params2.put("to", "01067498215,01020283161,01029650240,01086102805,01063217699");
+				text3 += "현재 신호등 상황 입니다.";
+				params2.put("to", "01067498215,01020283161,01029650240");
 				params2.put("from", "0442005254");
 				params2.put("text", text3);
 				params2.put("type", "lms");
 				JSONObject obj = (JSONObject) coolsms.send(params2);
 				System.out.println(obj.toString());
-				text3 = "[해수욕장 예약시스템]\n";
+				text3 = "[해수욕장 혼잡도 신호등]\n";
 			}
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());
@@ -789,14 +935,14 @@ public class TravelMainController {
 		}
 		try {
 			if (sokcho > 0) {
-				text4 += "현재 혼잡 이상 입니다.";
-				params2.put("to", "01044899491,01026748312,01096902849,01086102805,01063217699");
+				text4 += "현재 신호등 상황 입니다.";
+				params2.put("to", "01044899491,01026748312,01096902849");
 				params2.put("from", "0442005254");
 				params2.put("text", text4);
 				params2.put("type", "lms");
 				JSONObject obj = (JSONObject) coolsms.send(params2);
 				System.out.println(obj.toString());
-				text4 = "[해수욕장 예약시스템]\n";
+				text4 = "[해수욕장 혼잡도 신호등]\n";
 			}
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());
@@ -804,14 +950,14 @@ public class TravelMainController {
 		}
 		try {
 			if (samchuck > 0) {
-				text5 += "현재 혼잡 이상 입니다.";
-				params2.put("to", "01033553109,01099585844,01050996593,01086102805,01063217699");
+				text5 += "현재 신호등 상황 입니다.";
+				params2.put("to", "01033553109,01099585844,01050996593");
 				params2.put("from", "0442005254");
 				params2.put("text", text5);
 				params2.put("type", "lms");
 				JSONObject obj = (JSONObject) coolsms.send(params2);
 				System.out.println(obj.toString());
-				text5 = "[해수욕장 예약시스템]\n";
+				text5 = "[해수욕장 혼잡도 신호등]\n";
 			}
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());
@@ -819,14 +965,14 @@ public class TravelMainController {
 		}
 		try {
 			if (donghea > 0) {
-				text6 += "현재 혼잡 이상 입니다.";
-				params2.put("to", "01025039263,01041509813,01040751870,01086102805,01063217699");
+				text6 += "현재 신호등 상황 입니다.";
+				params2.put("to", "01025039263,01041509813,01040751870");
 				params2.put("from", "0442005254");
 				params2.put("text", text6);
 				params2.put("type", "lms");
 				JSONObject obj = (JSONObject) coolsms.send(params2);
 				System.out.println(obj.toString());
-				text6 = "[해수욕장 예약시스템]\n";
+				text6 = "[해수욕장 혼잡도 신호등]\n";
 			}
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());
@@ -834,14 +980,14 @@ public class TravelMainController {
 		}
 		try {
 			if (gosung > 0) {
-				text7 += "현재 혼잡 이상 입니다.";
-				params2.put("to", "01053793151,01066834660,01051792306,01086102805,01063217699");
+				text7 += "현재 신호등 상황 입니다.";
+				params2.put("to", "01053793151,01066834660,01051792306");
 				params2.put("from", "0442005254");
 				params2.put("text", text7);
 				params2.put("type", "lms");
 				JSONObject obj = (JSONObject) coolsms.send(params2);
 				System.out.println(obj.toString());
-				text7 = "[해수욕장 예약시스템]\n";
+				text7 = "[해수욕장 혼잡도 신호등]\n";
 			}
 		} catch (CoolsmsException e) {
 			System.out.println(e.getMessage());

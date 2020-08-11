@@ -20,6 +20,11 @@ public class TravelMainDAO extends EgovComAbstractDAO {
 		return (List<TravelMain>) list("travelMainDAO.newselectBeachPerCnt", datestr);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<TravelMain> selectTravelMainDestination(TravelMain travelMain) throws Exception {		
+		return (List<TravelMain>) list("travelMainDAO.selectTravelMainDestination",travelMain);
+	}
+	
 	public void  insertBeachPer(TravelMain vo) throws Exception {		
 		insert("travelMainDAO.insertBeachPer", vo);
 	}
