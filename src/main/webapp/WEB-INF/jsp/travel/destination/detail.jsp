@@ -25,7 +25,7 @@
 				destId =='FCID110641' ||destId =='FCID110331' ||destId =='FCID111168' ||destId =='FCID007759' ||destId =='FCID111438' ||
 				destId =='FCID110873' ||destId =='FCID003274' ||destId =='FCID111358' ||destId =='FCID110533' ||destId =='FCID111854' ||
 				destId =='FCID111062' ||destId =='DEST000484' ||destId =='FCID102542' ||destId =='DEST000485' ||destId =='FCID111108'){
-	 
+	 $(".stastic_info").hide();
 	 }else{
 	 $(".stastic_info").hide();
 	 }
@@ -41,7 +41,7 @@
  
  var destId = getParameterByName('destId'); 
  
-if(destId =="FCID111941" || destId =="FCID110239" || destId == 'FCID110780' ||destId =='FCID110458' ||destId =='FCID110405' ||
+/*if(destId =="FCID111941" || destId =="FCID110239" || destId == 'FCID110780' ||destId =='FCID110458' ||destId =='FCID110405' ||
 		destId =="FCID110072" ||destId =="FCID111059" ||destId =='FCID110349' ||destId == 'FCID111039' ||destId =='FCID110894'||
 		destId =='FCID110580' ||destId =='FCID110592' ||destId == 'FCID111738' ||destId == 'FCID111124' ||destId =='FCID110572'||
 		destId =='FCID111470' ||destId == 'FCID111899'||destId =='FCID111658' ||destId =='FCID000293' ||destId =='FCID111959' ||
@@ -92,7 +92,7 @@ if(destId =="FCID111941" || destId =="FCID110239" || destId == 'FCID110780' ||de
 				 }
 			}	
 		});
-}
+}*/
 
  
     </script>
