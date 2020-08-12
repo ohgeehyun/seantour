@@ -212,7 +212,7 @@
 
 .stastic_info{margin-top:60px;}
 .stastic_info .tit{position:relative;margin-bottom:10px;padding-left:25px;font-size:20px;}
-.stastic_info .tit:after{content:'';display:inline-block;position:absolute;top:7px;left:0;width:18px;height:18px;background:url(/seantour_map/images/travel/content/icon_local_detail.gif) no-repeat 0 0;background-size:cover;}
+.stastic_info .tit:after{content:'';display:inline-block;position:absolute;top:50%;left:0;margin-top:-9px;width:18px;height:18px;background:url(/seantour_map/images/travel/content/icon_local_detail.gif) no-repeat 0 0;background-size:cover;}
 .stastic_info .chart{padding:15px;border:1px solid #ddd;}
 /* **************************************** *
  * 명성 
@@ -650,6 +650,8 @@
 	.local_info_area .info_txt .near_points_box{width:calc(33.3333% - 15px);margin-left:15px;}
 	.local_info_area .info_txt .near_points_box .near_points{transition:all 0.4s;}
 	.local_info_area .info_txt .near_points_box .near_points>div{height:200px !important;}
+	
+	.stastic_info .tit{font-size:16px;}
 	
 	.fame_infobox{margin-top:40px;padding:30px 25px;}
 	.fame_tit{margin-bottom:20px;padding-left:26px;font-size:18px;}
