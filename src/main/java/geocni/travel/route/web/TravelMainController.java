@@ -163,34 +163,34 @@ public class TravelMainController {
 						count++;
 					}
 					
-				}
-				if(Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 15
-					||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 25
-					||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 33
-					||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 41
-					||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 50){ //태안군
-					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
-						text2 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다. \n";
-						taean++;
+					if(Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 15
+							||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 25
+							||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 33
+							||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 41
+							||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 50){ //태안군
+						if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+							text2 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다. \n";
+							taean++;
+						}else {
+							text2 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+							taean++;
+						}			
+					}else if(Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 23) {//서천군
+						if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+							text3 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다. \n";
+							seachun++;
+						}else {
+							text3 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+							seachun++;
+						}
 					}else {
-						text2 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
-						taean++;
-					}			
-				}else if(Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 23) {//서천군
-					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
-					text3 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다. \n";
-					seachun++;
-					}else {
-						text3 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
-						seachun++;
-					}
-				}else {
-					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
-						text4 += beachPerPopulationList.get(index).getPoiNm() +" 노란색 입니다. \n";		//보령
-						boryung ++;
-					}else {
-						text4 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
-						boryung ++;
+						if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+							text4 += beachPerPopulationList.get(index).getPoiNm() +" 노란색 입니다. \n";		//보령
+							boryung ++;
+						}else {
+							text4 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+							boryung ++;
+						}
 					}
 				}
 			}
@@ -279,27 +279,27 @@ public class TravelMainController {
 						text += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다. \n";	
 						count++;
 					}
-				}
-				if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 17
-						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 20
-						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 24
-						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 27
-						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 37
-						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 30) { // 제주시
-					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
-						text2 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다. \n";	
-						jeju ++;
+					if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 17
+							|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 20
+							|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 24
+							|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 27
+							|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 37
+							|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 30) { // 제주시
+						if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+							text2 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다. \n";	
+							jeju ++;
+						}else {
+							text2 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다. \n";
+							jeju ++;
+						}
 					}else {
-						text2 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다. \n";
-						jeju ++;
-					}
-				}else {
-					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
-						text3 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다. \n"; //서귀포시
-						Seogwipo ++;
-					}else {
-						text3 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다. \n";           
-						Seogwipo ++;
+						if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+							text3 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다. \n"; //서귀포시
+							Seogwipo ++;
+						}else {
+							text3 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다. \n";           
+							Seogwipo ++;
+						}
 					}
 				}
 			}
@@ -360,13 +360,13 @@ public class TravelMainController {
 			if (Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) > 1) { // 혼잡도가 1이상 인 경우
 				if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 14) { // 전남도청 한 곳 이 끝
 					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
-					text += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다. \n";
-					count++;
-				}else {
-					text += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다. \n";
-					count++;
+						text += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다. \n";
+						count++;
+					}else {
+						text += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다. \n";
+						count++;
+					}
 				}
-			}
 			}
 			index++;
 			if (index == 50) {
@@ -438,22 +438,22 @@ public class TravelMainController {
 						text += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
 						count++;
 					}
-				}
-				if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 16) { // 울산 동구
-					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
-						text2 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
-						donggu++;
+					if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 16) { // 울산 동구
+						if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+							text2 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
+							donggu++;
+						}else {
+							text2 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+							donggu++;
+						}
 					}else {
-						text2 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
-						donggu++;
-					}
-				}else {
-					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
-						text3 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n"; // 울산 을주군
-						ulju++;
-					}else {
-						text3 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n"; 
-						ulju++;
+						if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+							text3 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n"; // 울산 을주군
+							ulju++;
+						}else {
+							text3 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n"; 
+							ulju++;
+						}
 					}
 				}
 			}
@@ -528,48 +528,48 @@ public class TravelMainController {
 						text += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
 						count++;
 					}
-				}
-				if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 1			
-						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 7) { // 해운대구
-					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
-						text2 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
-						heaundaegu++;
+					if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 1			
+							|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 7) { // 해운대구
+						if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+							text2 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
+							heaundaegu++;
+						}else {
+							text2 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+							heaundaegu++;
+						}
+					}else if(Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 3) { //부산 서구
+						if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+							text3 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
+							busanseogu++;
+						}else {
+							text3 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+							busanseogu++;
+						}
+					}else if(Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 5) { //부산 사하구
+						if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+							text4 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
+							sahagu++;
+						}else {
+							text4 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+							sahagu++;
+						}
+					}else if(Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 32
+							||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 34){ //부산 기장구
+						if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+							text5 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
+							gijanggu++;
+						}else {
+							text5 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+							gijanggu++;
+						}
 					}else {
-						text2 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
-						heaundaegu++;
-					}
-				}else if(Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 3) { //부산 서구
-					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
-						text3 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
-						busanseogu++;
-					}else {
-						text3 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
-						busanseogu++;
-					}
-				}else if(Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 5) { //부산 사하구
-					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
-						text4 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
-						sahagu++;
-					}else {
-						text4 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
-						sahagu++;
-					}
-				}else if(Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 32
-						||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 34){ //부산 기장구
-					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
-						text5 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
-						gijanggu++;
-					}else {
-						text5 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
-						gijanggu++;
-					}
-				}else {
-					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
-						text6 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";               //부산 수영구
-						suyunggu++;
-					}else {
-						text6 += beachPerPopulationList.get(index).getPoiNm() +  " 빨강색 입니다.\n";               
-						suyunggu++;
+						if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+							text6 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";               //부산 수영구
+							suyunggu++;
+						}else {
+							text6 += beachPerPopulationList.get(index).getPoiNm() +  " 빨강색 입니다.\n";               
+							suyunggu++;
+						}
 					}
 				}
 			}
@@ -682,22 +682,22 @@ public class TravelMainController {
 						text += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
 						count++;
 					}
-				}
-				if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 21) { // 경북도청 영덕군
-					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
-						text2 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
-						yungduk++;
+					if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 21) { // 경북도청 영덕군
+						if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+							text2 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
+							yungduk++;
+						}else {
+							text2 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+							yungduk++;
+						}
 					}else {
-						text2 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
-						yungduk++;
-					}
-				}else {
-					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
-						text3 += beachPerPopulationList.get(index).getPoiNm() +  " 노란색 입니다.\n";   // 경북도청 경주시
-						gyunju++;
-					}else {
-						text3 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";      
-						gyunju++;
+						if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+							text3 += beachPerPopulationList.get(index).getPoiNm() +  " 노란색 입니다.\n";   // 경북도청 경주시
+							gyunju++;
+						}else {
+							text3 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";      
+							gyunju++;
+						}
 					}
 				}
 			}
@@ -813,73 +813,73 @@ public class TravelMainController {
 						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 46
 						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 48
 						|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 49) { // 강원도청
-					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+					if (Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
 						text += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
 						count++;
-					}else {
+					} else {
 						text += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
 						count++;
 					}
-				}
-					if(Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 38
-						||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 6
-						||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 38
-						||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 42) { //강원도청 강릉시
-						if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+					if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 38
+							|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 6
+							|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 38
+							|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 42) { // 강원도청 강릉시
+						if (Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
 							text2 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
 							gangleng++;
-						}else {
+						} else {
 							text2 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
 							gangleng++;
 						}
-					}else if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 8
-								||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 19
-								||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 48) {//강원도청 양양군
-						if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+					} else if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 8
+							|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 19
+							|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 48) {// 강원도청 양양군
+						if (Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
 							text3 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
 							yangyang++;
-						}else {
+						} else {
 							text3 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
 							yangyang++;
 						}
-					}else if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 9
-								||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 29
-								||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 44) { //강원도청 속초시
-						if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+					} else if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 9
+							|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 29
+							|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 44) { // 강원도청 속초시
+						if (Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
 							text4 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
 							sokcho++;
-						}else {
+						} else {
 							text4 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
 							sokcho++;
 						}
-					}else if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 10
-							||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 12
-							||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 43) { //강원도청 삼척시
-						if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+					} else if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 10
+							|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 12
+							|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 43) { // 강원도청 삼척시
+						if (Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
 							text5 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
 							samchuck++;
-						}else {
+						} else {
 							text5 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
 							samchuck++;
 						}
-				}else if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 11
-						||Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 13) { //강원도청 동해시
-					if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
-						text6 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
-						donghea++;
-					}else {
-						text6 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
-						donghea++;
+					} else if (Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 11
+							|| Integer.valueOf(beachPerPopulationList.get(index).getSeqId()) == 13) { // 강원도청 동해시
+						if (Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+							text6 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";
+							donghea++;
+						} else {
+							text6 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+							donghea++;
+						}
+					} else {
+						if (Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
+							text7 += beachPerPopulationList.get(index).getPoiNm() + " 노란색 입니다.\n";// 강원도청 고성군
+							gosung++;
+						} else {
+							text7 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";
+							gosung++;
+						}
 					}
-			}else {
-				if(Integer.valueOf(beachPerPopulationList.get(index).getCongestion()) == 2) {
-					text7 += beachPerPopulationList.get(index).getPoiNm() +  " 노란색 입니다.\n";//강원도청 고성군
-					gosung++;
-				}else {
-					text7 += beachPerPopulationList.get(index).getPoiNm() + " 빨강색 입니다.\n";          
-					gosung++;
 				}
-			}
 			}
 			index++;
 			if (index == 50) {
