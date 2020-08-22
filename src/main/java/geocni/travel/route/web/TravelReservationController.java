@@ -88,7 +88,7 @@ public class TravelReservationController {
 		} else {
 			rtnVal = true;	//오늘 날짜가 해수욕장 예약 시작일(resvStDate) 이후인 경우 true
 		}
-		//rtnVal = false;	//해수욕장 예약 테스트 시 사용 : true=예약가능 / false=예약불가능
+		rtnVal = false;	//해수욕장 예약 테스트 시 사용 : true=예약가능 / false=예약불가능
 		return rtnVal;
 	}
 	
@@ -130,7 +130,7 @@ public class TravelReservationController {
 		
 		//날짜 체크 - 7월 1일 09시 이후부터 예약 가능
 		if(!compareDate()) {
-			model.addAttribute("alert", "2020년 7월 1일 9시 부터 예약 가능합니다.");
+			model.addAttribute("alert", "해수욕장 조기 폐장으로 인하여\\n예약시스템이 종료 되었습니다.");
 			model.addAttribute("path", "/");
 			return "/jnit/util/alertMove";
 		}
