@@ -59,14 +59,14 @@
                             </ul>
                         </div> 
                     </li>
-                      <li><a href="<c:url value='/travel/destination/summerlist.do'/>">해수욕장</a>
+                   <%--    <li><a href="<c:url value='/travel/destination/summerlist.do'/>">해수욕장</a>
                        <div>
                         <ul>
                          <li><a href="<c:url value='/travel/destination/summerlist.do'/>">한적한 해수욕장25선</a></li>
                         <li><a href="<c:url value='/travel/reservation/area.do'/>">예약시스템</a></li>
                        </ul>
                         </div>
-                     </li>
+                     </li> --%>
                 </ul>
              </div>
             <!-- // GNB -->

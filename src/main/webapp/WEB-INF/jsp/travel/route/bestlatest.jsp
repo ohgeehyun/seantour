@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/jsp/travel/tpl/include.jsp" %>
 
 <div class="tit_box">
-	<p class="txt">국내 인기 바다여행지를 추천해드립니다.</p>
+	<p class="txt">국내 인기 여행지를 추천해드립니다.</p>
     <p class="tit">베스트 <strong>여행 추천 일정</strong></p>
 </div>
 <div class="vest_recommend_box">

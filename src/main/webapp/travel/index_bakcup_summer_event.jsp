@@ -13,7 +13,7 @@
 
 
 <%@ include file="/WEB-INF/jsp/travel/tpl/head.jsp" %>
-  <!--  <script>
+   <script>
     	$(document).ready(function(){
   		$('#close').click(function(){
   			$('#pop').hide();
@@ -106,7 +106,7 @@
 
   		return returnStr;
   	}
-   </script> -->
+   </script>
   <script type="text/javascript">
 function fn_reservView(){
 	var reseName = $('#reseName').val();
@@ -246,14 +246,14 @@ function init() {
 <body onload="init();">
 	<div id="wrap">
 		<div id="accessibility"><a href="#content">본문 바로가기</a></div>
-    <%--    <div id="pop">
+       <div id="pop">
           <div><img src="${pageContext.request.contextPath}/travel/common/images/main/main_pop2.jpg" alt="" /></div>
          <div id="close">close</div>
       </div>
       <div id="pop_main2">
          <div><img src="${pageContext.request.contextPath}/travel/common/images/main/main_pop_reserv.jpg" alt="" /></div>
          <div id="close2">close</div>
-      </div> --%>
+      </div>
        <div class="dim-layer">
           <div class="dimBg"></div>
           <div id="layer2" class="pop-layer">
@@ -278,140 +278,712 @@ function init() {
 			<div class="cont_main" id="content">
 				<div class="spotzone trans400">
 					<ul class="list">
-						<li class="n01">
-							<div class="main_visual_wrap">
-								<div class="main_visual_content">
-									<div class="main_visual_content_cell">
-									  <div class="main_visual_content_cell_left">
-									 	<p class="tit">내가 만드는 <strong>바다여행</strong></p> 	 
-									 	<p class="sub_tit">
-									 		언제든 누구와든 함께 떠나기 좋은<br />
-											공기좋고 깨끗한 국내 바다여행 일정만들기
-									 	</p> 
-									  	<ul class="img_lst">
-									  		<li><img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual2_s1.png" alt="해파랑공원" /></li>
-									  		<li><img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual2_s2.png" alt="호미곶" /></li>
-									  		<li><img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual2_s3.png" alt="주상절리" /></li>
-									  	</ul>
-									  </div>
-									 
-									  <div class="main_visual_content_cell_right">
-									  	 <div class="main_visual_content_cell_right_inr">
-										  	 <div class="visual_arrow">
-											  	 <img src="./images/main/img_visual2_arrow.png" alt="" />
-											  </div>
-										  	 <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=인천" class="point point1">인천광역시</a>
-										  	 <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경기" class="point point2">경기도</a>
-										  	 <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=강원" class="point point3">강원도</a>
-										  	 <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=충남" class="point point4">충청남도</a>
-										  	 <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=충북" class="point point5">충청북도</a>
-										  	 <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경북" class="point point6">경상북도</a>
-										  	 <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=대구" class="point point7">대구광역시</a>
-										  	 <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=울산" class="point point8">울산광역시</a>
-										  	 <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=전북" class="point point9">전라북도</a>
-										  	 <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경남" class="point point10">경상남도</a>
-										  	 <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=부산" class="point point11">부산광역시</a>
-										  	 <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=전남" class="point point12">전라남도</a>
-										  	 <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=제주" class="point point13">제주특별시</a>
-										  </div>
-									  </div>
-									  <div class="spot_search">
-									  	<div class="cssSelect">
-									  		<button type="button">부산광역시</button>
-									  		<ul class="lst">
-									  		 <li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=인천">인천광역시</a></li>
-										  	 <li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경기">경기도</a></li>
-										  	 <li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=강원">강원도</a></li>
-										  	 <li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=충남">충청남도</a></li>
-										  	 <li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=충북">충청북도</a></li>
-										  	 <li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경북">경상북도</a></li>
-										  	 <li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=대구">대구광역시</a></li>
-										  	 <li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=울산">울산광역시</a></li>
-										  	 <li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=전북">전라북도</a></li>
-										  	 <li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경남">경상남도</a></li>
-										  	 <li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=부산">부산광역시</a></li>
-										  	 <li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=전남">전라남도</a></li>
-										  	 <li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=제주">제주특별시</a></li>
-									  		</ul>
-								  		</div>
-									  </div>
-									  <div class="visual_go">
-									  		<a href="${pageContext.request.contextPath}/travel/route/register.do" class="button mv_btn01">여행일정 만들기</a>
-									  		<a href="${pageContext.request.contextPath}/travel/route/list.do" class="button mv_btn02">여행일정 검색</a>
-									  </div>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="n02">
-							<div class="main_visual_wrap">
-								<div class="main_visual_content">
-									<div class="main_visual_content_cell">
-									  <div class="main_visual_content_cell_left">
-									 	<p class="tit">내가 만드는 <strong>바다여행</strong></p> 	 
-									 	<p class="sub_tit">
-									 		언제든 누구와든 함께 떠나기 좋은<br />
-											공기좋고 깨끗한 국내 바다여행 일정만들기
-									 	</p> 	 
-									  	<ul class="img_lst">
-									  		<li><img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual2_s1.png" alt="해파랑공원" /></li>
-									  		<li><img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual2_s2.png" alt="호미곶" /></li>
-									  		<li><img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual2_s3.png" alt="주상절리" /></li>
-									  	</ul>
-									  </div>
-									 
-									  <div class="main_visual_content_cell_right">
-									  	 <div class="main_visual_content_cell_right_inr">
-										  	 <div class="visual_arrow">
-											  	 <img src="${pageContext.request.contextPath}/travel/common/images/main/main/img_visual_arrow2.png" alt="" />
-											  </div>
-										  	 <a href="#none" class="point point1">인천</a>
-										  	 <a href="#none" class="point point2">경기</a>
-										  	 <a href="#none" class="point point3">강원</a>
-										  	 <a href="#none" class="point point4">충남</a>
-										  	 <a href="#none" class="point point5">충북</a>
-										  	 <a href="#none" class="point point6">경북</a>
-										  	 <a href="#none" class="point point7">대구</a>
-										  	 <a href="#none" class="point point8">울산</a>
-										  	 <a href="#none" class="point point9">전북</a>
-										  	 <a href="#none" class="point point10">경남</a>
-										  	 <a href="#none" class="point point11">부산</a>
-										  	 <a href="#none" class="point point12">전남</a>
-										  	 <a href="#none" class="point point13">제주</a>
-										  </div>
-									  </div>
-									  <div class="spot_search">
-									  	<div class="cssSelect">
-									  		<button type="button">부산광역시</button>
-									  		<ul class="lst">
-									  			<li><a href="#none">부산광역시</a></li>
-									  			<li><a href="#none">대구광역시</a></li>
-									  			<li><a href="#none">인천광역시</a></li>
-									  			<li><a href="#none">대전광역시</a></li>
-									  			<li><a href="#none">울산광역시</a></li>
-									  			<li><a href="#none">경기도</a></li>
-									  			<li><a href="#none">충청북도</a></li>
-									  			<li><a href="#none">충청남도</a></li>
-									  			<li><a href="#none">전라북도</a></li>
-									  			<li><a href="#none">전라남도</a></li>
-									  			<li><a href="#none">경상북도</a></li>
-									  			<li><a href="#none">경상남도</a></li>
-									  			<li><a href="#none">제주특별자치도</a></li>
-									  		</ul>
-								  		</div>
-									  </div>
-									  <div class="visual_go">
-									  		<a href="#none" class="button mv_btn01">여행일정 만들기</a>
-									  		<a href="#none" class="button mv_btn02">여행일정 검색</a>
-									  </div>
-									</div>
-								</div>
-							</div>
-						</li>
+						<li class="n01"></li>
+						<li class="n02"></li>
 					</ul>
+					<div class="main_visual_wrap">
+						<div class="main_visual_content">
+							<div class="main_visual_content_cell">
+								<!--<div class="main_visual_content_cell_weather">
+									<div class="weather">
+
+                                   
+										<img src="${pageContext.request.contextPath}/travel/common/images/main/icon_weather_01.png" alt=''/>	
+
+										<span>7℃</span>
+									</div>
+									<div class="dust">
+										<dl>
+
+                                            <dt>미세먼지</dt>
+                                           <dd>좋음<img src="${pageContext.request.contextPath}/travel/common/images/main/icon_dust_good.png" alt='좋음'/></dd>
+										</dl>
+										<dl>
+                                            <dt>초미세먼지</dt>
+                                            <dd>나쁨<img src="${pageContext.request.contextPath}/travel/common/images/main/icon_dust_bad.png" alt='나쁨'/></dd>
+
+										</dl>
+									</div>
+											 <div class="vis-weather">
+     										   <p class="weather-date"></p>	
+   										</div>
+								</div>-->
+                         	
+								  <script>
+								  	$(document).ready(function(){
+								  		<c:forEach var="i" begin="1" end="50" step="1">
+								  			$(".spot${i} a").click(function(){
+								  				$("[id^='blinkerpop']").each(function(){
+								  					$(this).closest(".blinkerpop").hide();
+								  				});
+								  				$("#blinkerpop${i}").show();
+								  			});
+								  		</c:forEach>
+								  	  $(".pop_close").click(function(){
+								  	    //$("[id^='blinkerpop']").each(function(){
+								  	    	$(this).closest(".blinkerpop").hide();
+								  	    });
+								  	 
+								  	});
+							  	 </script>
+								  <div class="main_visual_content_cell_right">
+								  	 <div id="target" class="main_visual_content_cell_right_inr">
+								  	 	<div class="spot_title"><img src="${pageContext.request.contextPath}/images/travel/main/img_map_tit.png" alt="해수욕장 혼잡도 신호등" /></div>
+								  	 	<div class="spot_info"><img src="${pageContext.request.contextPath}/images/travel/main/img_info_box.png" alt="혼잡: 빨간색, 혼잡우려: 노란색, 적정: 녹색" /></div>
+									  	 <div class="blinker spot1"><a href="#" class="icon"><span class="name">해운대</span></a></div>
+									  	 <div class="blinker spot2"><a href="#" class="icon"><span class="name">광안리</span></a></div>
+									  	 <div class="blinker spot3"><a href="#" class="icon"><span class="name">송도</span></a></div>
+									  	 <div class="blinker spot4"><a href="#" class="icon"><span class="name">대천</span></a></div>
+									  	 <div class="blinker spot5"><a href="#" class="icon"><span class="name">다대포</span></a></div>
+									  	 <div class="blinker spot6"><a href="#" class="icon"><span class="name">경포</span></a></div>
+									  	 <div class="blinker spot7"><a href="#" class="icon"><span class="name">송정</span></a></div>
+									  	 <div class="blinker spot8"><a href="#" class="icon"><span class="name">낙산</span></a></div>
+									  	 <div class="blinker spot9"><a href="#" class="icon"><span class="name">속초</span></a></div>
+									  	 <div class="blinker spot10"><a href="#" class="icon"><span class="name">삼척</span></a></div>
+									  	 <div class="blinker spot11"><a href="#" class="icon"><span class="name">망상</span></a></div>
+									  	 <div class="blinker spot12"><a href="#" class="icon"><span class="name">맹방</span></a></div>
+									  	 <div class="blinker spot13"><a href="#" class="icon"><span class="name">추암</span></a></div>
+									  	 <div class="blinker spot14"><a href="#" class="icon"><span class="name">신지명사십리</span></a></div>
+								  	   	 <div class="blinker spot15"><a href="#" class="icon"><span class="name">만리포</span></a></div>
+									  	 <div class="blinker spot16"><a href="#" class="icon"><span class="name">일산</span></a></div>
+									  	 <div class="blinker spot17"><a href="#" class="icon"><span class="name">함덕</span></a></div>
+									  	 <div class="blinker spot18"><a href="#" class="icon"><span class="name">진하</span></a></div>
+									  	 <div class="blinker spot19"><a href="#" class="icon"><span class="name">하조대</span></a></div> 
+									  	 <div class="blinker spot20"><a href="#" class="icon"><span class="name">협재</span></a></div>
+									  	 <div class="blinker spot21"><a href="#" class="icon"><span class="name">고래불</span></a></div>
+									  	 <div class="blinker spot22"><a href="#" class="icon"><span class="name">주문진</span></a></div>
+									  	 <div class="blinker spot23"><a href="#" class="icon"><span class="name">춘장대</span></a></div>
+									  	 <div class="blinker spot24"><a href="#" class="icon"><span class="name">이호테우</span></a></div>
+									  	 <div class="blinker spot25"><a href="#" class="icon"><span class="name">꽃지</span></a></div>
+									  	 <div class="blinker spot26"><a href="#" class="icon"><span class="name">송지호</span></a></div>
+									  	 <div class="blinker spot27"><a href="#" class="icon"><span class="name">곽지</span></a></div>
+									  	 <div class="blinker spot28"><a href="#" class="icon"><span class="name">화진포</span></a></div>
+									  	 <div class="blinker spot29"><a href="#" class="icon"><span class="name">외옹치</span></a></div>
+									  	 <div class="blinker spot30"><a href="#" class="icon"><span class="name">금능</span></a></div>
+									  	 <div class="blinker spot31"><a href="#" class="icon"><span class="name">삼포</span></a></div>
+									  	 <div class="blinker spot32"><a href="#" class="icon"><span class="name">일광</span></a></div>
+									  	 <div class="blinker spot33"><a href="#" class="icon"><span class="name">몽산포</span></a></div>
+									  	 <div class="blinker spot34"><a href="#" class="icon"><span class="name">임랑</span></a></div>
+									  	 <div class="blinker spot35"><a href="#" class="icon"><span class="name">중문색달</span></a></div>
+									  	 <div class="blinker spot36"><a href="#" class="icon"><span class="name">무창포</span></a></div>
+									  	 <div class="blinker spot37"><a href="#" class="icon"><span class="name">김녕</span></a></div>
+									  	 <div class="blinker spot38"><a href="#" class="icon"><span class="name">안목</span></a></div>
+									  	 <div class="blinker spot39"><a href="#" class="icon"><span class="name">상주은모래비치</span></a></div>
+									  	 <div class="blinker spot40"><a href="#" class="icon"><span class="name">을왕리</span></a></div>
+									  	 <div class="blinker spot41"><a href="#" class="icon"><span class="name">삼봉</span></a></div>
+									  	 <div class="blinker spot42"><a href="#" class="icon"><span class="name">정동진</span></a></div>
+									  	 <div class="blinker spot43"><a href="#" class="icon"><span class="name">용화</span></a></div>
+									  	 <div class="blinker spot44"><a href="#" class="icon"><span class="name">등대</span></a></div>
+									  	 <div class="blinker spot45"><a href="#" class="icon"><span class="name">하나개</span></a></div>
+									  	 <div class="blinker spot46"><a href="#" class="icon"><span class="name">송지호오토캠핑장</span></a></div>
+									  	 <div class="blinker spot47"><a href="#" class="icon"><span class="name">관성솔밭</span></a></div>
+									  	 <div class="blinker spot48"><a href="#" class="icon"><span class="name">중광정</span></a></div>
+									  	 <div class="blinker spot49"><a href="#" class="icon"><span class="name">천진</span></a></div>
+									  	 <div class="blinker spot50"><a href="#" class="icon"><span class="name">신두리</span></a></div>
+									  	 <div class="time">기준시각<br/><span>18시30분</span></div>
+									  	 <div id="blinkerpop1" class="blinkerpop">
+								  	 		<div class="title">[부산]해운대 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>29,250명</li>
+								  	 				<li><span>개장일</span>2020년 6월 1일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111941">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+								  	 	 <div id="blinkerpop2" class="blinkerpop">
+								  	 		<div class="title">[부산]광안리 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>18,000명</li>
+								  	 				<li><span>개장일</span>2020년 7월 1일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110239">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop3" class="blinkerpop">
+								  	 		<div class="title">[부산]송도 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>10,000명</li>
+								  	 				<li><span>개장일</span>2020년 7월 1일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110780">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop4" class="blinkerpop">
+								  	 		<div class="title">[충청]대천 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>48,750명</li>
+								  	 				<li><span>개장일</span>2020년 7월 4일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110458">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop5" class="blinkerpop">
+								  	 		<div class="title">[부산]다대포 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>13,813명</li>
+								  	 				<li><span>개장일</span>2020년 7월 1일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110405">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop6" class="blinkerpop">
+								  	 		<div class="title">[강원]경포 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>26,377명</li>
+								  	 				<li><span>개장일</span>2020년 7월 17일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110072">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop7" class="blinkerpop">
+								  	 		<div class="title">[부산]송정 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>12,900명</li>
+								  	 				<li><span>개장일</span>2020년 6월 1일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111059">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop8" class="blinkerpop">
+								  	 		<div class="title">[강원]낙산 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>26,793명</li>
+								  	 				<li><span>개장일</span>2020년 7월 17일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110349">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop9" class="blinkerpop">
+								  	 		<div class="title">[강원]속초 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>6,000명</li>
+								  	 				<li><span>개장일</span>2020년 7월 10일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111039">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop10" class="blinkerpop">
+								  	 		<div class="title">[강원]삼척 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>14,825명</li>
+								  	 				<li><span>개장일</span>2020년 7월 10일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110894">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop11" class="blinkerpop">
+								  	 		<div class="title">[강원]망상 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>19,186명</li>
+								  	 				<li><span>개장일</span>2020년 7월 15일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110580">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop12" class="blinkerpop">
+								  	 		<div class="title">[강원]맹방 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>7,175명</li>
+								  	 				<li><span>개장일</span>2020년 7월 10일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110592">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop13" class="blinkerpop">
+								  	 		<div class="title">[강원]추암 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>1,948명</li>
+								  	 				<li><span>개장일</span>2020년 7월 15일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111738">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop14" class="blinkerpop">
+								  	 		<div class="title">[전남]신지명사십리 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>47,500명</li>
+								  	 				<li><span>개장일</span>2020년 7월 10일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111124">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop15" class="blinkerpop">
+								  	 		<div class="title">[충청]만리포 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>5,625명</li>
+								  	 				<li><span>개장일</span>2020년 6월 6일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110572">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop16" class="blinkerpop">
+								  	 		<div class="title">[울산]일산 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>9,461명</li>
+								  	 				<li><span>개장일</span>2020년 7월 1일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111470">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop17" class="blinkerpop">
+								  	 		<div class="title">[제주]함덕 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>5,500명</li>
+								  	 				<li><span>개장일</span>2020년 7월 1일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111899">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop18" class="blinkerpop">
+								  	 		<div class="title">[울산]진하 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>10,191명</li>
+								  	 				<li><span>개장일</span>2020년 7월 1일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111658">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop19" class="blinkerpop">
+								  	 		<div class="title">[강원]하조대 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>4,500명</li>
+								  	 				<li><span>개장일</span>2020년 7월 17일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID000293">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop20" class="blinkerpop">
+								  	 		<div class="title">[제주]협재 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>5,000명</li>
+								  	 				<li><span>개장일</span>2020년 7월 1일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111959">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop21" class="blinkerpop">
+								  	 		<div class="title">[경북]고래불 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>58,940명</li>
+								  	 				<li><span>개장일</span>2020년 7월 17일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110180">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop22" class="blinkerpop">
+								  	 		<div class="title">[강원]주문진 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>16,548명</li>
+								  	 				<li><span>개장일</span>2020년 7월 17일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111605">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop23" class="blinkerpop">
+								  	 		<div class="title">[충청]춘장대 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>23,438명</li>
+								  	 				<li><span>개장일</span>2020년 7월 11일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111741">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop24" class="blinkerpop">
+								  	 		<div class="title">[제주]이호테우 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>6,250명</li>
+								  	 				<li><span>개장일</span>2020년 7월 1일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000481">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop25" class="blinkerpop">
+								  	 		<div class="title">[충청]꽃지 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>8,000명</li>
+								  	 				<li><span>개장일</span>2020년 7월 4일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110338">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop26" class="blinkerpop">
+								  	 		<div class="title">[강원]송지호 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>8,343명</li>
+								  	 				<li><span>개장일</span>2020년 7월 15일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111063">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop27" class="blinkerpop">
+								  	 		<div class="title">[제주]곽지 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>7,000명</li>
+								  	 				<li><span>개장일</span>2020년 7월 1일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000482">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop28" class="blinkerpop">
+								  	 		<div class="title">[강원]화진포 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>15,403명</li>
+								  	 				<li><span>개장일</span>2020년 7월 1일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111998">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop29" class="blinkerpop">
+								  	 		<div class="title">[강원]외옹치 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>250명</li>
+								  	 				<li><span>개장일</span>2020년 7월 10일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000483">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop30" class="blinkerpop">
+								  	 		<div class="title">[제주]금능 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>2,500명</li>
+								  	 				<li><span>개장일</span>2020년 7월 1일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110313">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop31" class="blinkerpop">
+								  	 		<div class="title">[강원]삼포 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>8,640명</li>
+								  	 				<li><span>개장일</span>2020년 7월 10일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110902">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop32" class="blinkerpop">
+								  	 		<div class="title">[부산]일광 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>4,661명</li>
+								  	 				<li><span>개장일</span>2020년 7월 1일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111467">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop33" class="blinkerpop">
+								  	 		<div class="title">[충청]몽산포 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>3,188명</li>
+								  	 				<li><span>개장일</span>2020년 7월 4일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110626">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop34" class="blinkerpop">
+								  	 		<div class="title">[부산]임랑 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>3,658명</li>
+								  	 				<li><span>개장일</span>2020년 7월 1일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111476">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop35" class="blinkerpop">
+								  	 		<div class="title">[제주]중문색달 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>7,000명</li>
+								  	 				<li><span>개장일</span>2020년 7월 1일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111628">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop36" class="blinkerpop">
+								  	 		<div class="title">[충청]무창포 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>19,688명</li>
+								  	 				<li><span>개장일</span>2020년 7월 17일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110641">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop37" class="blinkerpop">
+								  	 		<div class="title">[제주]김녕 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>5,500명</li>
+								  	 				<li><span>개장일</span>2020년 7월 1일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110331">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop38" class="blinkerpop">
+								  	 		<div class="title">[강원]안목 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>4,171명</li>
+								  	 				<li><span>개장일</span>2020년 7월 17일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111168">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop39" class="blinkerpop">
+								  	 		<div class="title">[경남]상주은모래비치 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>104,598명</li>
+								  	 				<li><span>개장일</span>2020년 7월 5일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID007759">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop40" class="blinkerpop">
+								  	 		<div class="title">[인천]을왕리 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>4,725명</li>
+								  	 				<li><span>개장일</span>2020년 7월 1일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111438">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop41" class="blinkerpop">
+								  	 		<div class="title">[충청]삼봉 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>2,000명</li>
+								  	 				<li><span>개장일</span>2020년 7월 4일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110873">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop42" class="blinkerpop">
+								  	 		<div class="title">[강원]정동진 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>28,173명</li>
+								  	 				<li><span>개장일</span>2020년 7월 17일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID003274">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop43" class="blinkerpop">
+								  	 		<div class="title">[강원]용화 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>2,293명</li>
+								  	 				<li><span>개장일</span>2020년 7월 10일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111358">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop44" class="blinkerpop">
+								  	 		<div class="title">[강원]등대 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>243명</li>
+								  	 				<li><span>개장일</span>2020년 7월 10일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID110533">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop45" class="blinkerpop">
+								  	 		<div class="title">[인천]하나개 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>4,825명</li>
+								  	 				<li><span>개장일</span>2020년 7월 1일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111854">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop46" class="blinkerpop">
+								  	 		<div class="title">[강원]송지호오토캠핑장 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>4,496명</li>
+								  	 				<li><span>개장일</span>2020년 7월 1일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111062">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop47" class="blinkerpop">
+								  	 		<div class="title">[경북]관성솔밭 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>8,859명</li>
+								  	 				<li><span>개장일</span>2020년 7월 10일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000484">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop48" class="blinkerpop">
+								  	 		<div class="title">[강원]중광정 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>4,499명</li>
+								  	 				<li><span>개장일</span>2020년 7월 17일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID102542">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop49" class="blinkerpop">
+								  	 		<div class="title">[강원]천진 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>4,439명</li>
+								  	 				<li><span>개장일</span>2020년 7월 10일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=DEST000485">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  	 <div id="blinkerpop50" class="blinkerpop">
+								  	 		<div class="title">[충청]신두리 해수욕장<button class="pop_close">닫기</button></div>
+								  	 		<div class="reserv">
+								  	 			<span class="box_icon"></span>
+								  	 			<ul>
+								  	 				<li><span>수용인원</span>5,813명</li>
+								  	 				<li><span>개장일</span>2020년 7월 4일</li>
+								  	 			</ul>
+								  	 			<a href="/seantour_map/travel/destination/detail.do?destId=FCID111108">상세보기</a>
+								  	 		</div>
+								  	 	 </div>
+									  </div>
+								  </div>
+                                <div class="main_visual_content_cell_left">
+                                  <p class="tit"><strong>슬기로운</strong> 해수욕장 이용</p> 
+                                  <div class="reserv_lookup_box">
+                                    <div class="reserv_main_right">
+                                        <a href="/seantour_map/travel/reservation/area.do"><img src="${pageContext.request.contextPath}/images/travel/main/img_main_reserv_pull.png" alt="" /></a>
+                                    </div>
+                                    <div class="reserv_main_left">
+                                    <form id="reserv_view" action="/seantour_map/travel/reservation/reserv_view.do">
+                                        <strong for="my_reserv">나의 예약 <br />조회</strong>
+                                        <span><input type="text" id="reseName" name="reseName" placeholder="이름을 입력하세요." /></span>
+                                        <span><input type="text" id="reseTel" name="reseTel" maxlength="11" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="전화번호를 입력하세요." /></span>
+                                        <a href="javascript:fn_reservView();" class="btn">조회</a>
+                                    </form>
+                                    </div>
+                                	</div>
+								 </div>
+								  <div class="spot_search">
+								  	<div class="cssSelect">
+								  		<button type="button">부산광역시</button>
+								  		<ul class="lst">
+								  		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=강원">강원도</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경기">경기도</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경남">경상남도</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경북">경상북도</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=광주">광주광역시</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=대구">경기도</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=대전">대전광역시</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=부산">부산광역시</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=서울">서울특별시</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=세종">세종특별자치시</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=울산">울산광역시</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=인천">인천광역시</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=전남">전라남도</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=전북">전라북도</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=제주">제주도</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=충남">충청남도</a></li>
+                                		<li><a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=충북">충청북도</a></li>
+
+								  		</ul>
+							  		</div>
+								  </div>
+								</div>  
+							</div>
+					</div>
 				</div><!-- //spotzone -->
-            
-		<%-- 		<div class="section01 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+              <!-- <div class="section00">
+					<div class="inr">
+						<p>해수욕장 혼잡도 신호등은 <span>네이버</span>와 함께 합니다.</p>
+					</div> 
+				</div> -->
+				<div class="section01 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
 					<div class="minr">
 						<div class="event_box">
 					    	<a href="/seantour_map/travel/info_square/recommendation/index.jsp" class="btn-example"><img src="${pageContext.request.contextPath}/images/travel/main/img_main_banner_10pull.jpg" alt="" /></a>
@@ -420,7 +992,7 @@ function init() {
 					    	<a href="/seantour_map/travel/info_square/leaflet/index.jsp"><img src="${pageContext.request.contextPath}/images/travel/main/img_main_leaflet.png" alt="건강지키는 바다여행! 해양관광 리플렛 보러가기" /></a>
 					    </div>
 				    </div>
-			    </div> <!-- // section01 -->--%>  
+			    </div> <!-- // section01 -->  
 			    <div class="section02 aos-init aos-animate" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
 			    	<div class="minr">
 
@@ -733,13 +1305,13 @@ function init() {
 					    	</div>
 					    </div> --%>
 					<%-- 실제 데이터가 축적되면 이 부분까지 삭제 또는 주석 처리  --%>
-			
+					<%-- 실제 데이터가 축적되면 아래 c:import 영역을 주석 해제 바람
 						<c:import url="/travel/route/bestlatest.do" charEncoding="utf-8">
 						    <c:param name="pageUnit" value="5" />
 						</c:import>
+					--%>
 					
-					
-					<%-- <%-- 
+					<%-- 
 					    <div class="writer_recommend_box">
 					    	<div class="name_tit">여행작가<br />추천일정</div>
 					    	<div class="tit_box">
@@ -790,13 +1362,13 @@ function init() {
 								</div> 
 							</div>
 					    </div>
-					 --%>
+					
 						<c:import url="/travel/route/latest.do" charEncoding="utf-8">
 						    <c:param name="pageUnit" value="5" />
 						    <c:param name="titleLen" value="350" />
 						</c:import>
 
-			    	</div>
+			    	</div>--%>
 			    </div><!-- // section02 -->
 			     <c:import url="/travel/destination/recolist.do" charEncoding="utf-8"></c:import>
 			   <%--  <div class="section03 aos-init aos-animate" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
@@ -924,7 +1496,7 @@ function init() {
 						</div>
 					</div>
 				</div> --%><!-- // section03 --> 
-			   <div class="section04 aos-init aos-animate" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+			   <%-- <div class="section04 aos-init aos-animate" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
 					<div class="minr">
 	                    <div class="main_event_wrap">
 	                    	<div class="cont_tit">바다여행 축제일정</div>
@@ -1053,7 +1625,7 @@ function init() {
 							</ul>
 						</div>
 					</div>
-				</div><!-- // section04 --> 
+				</div><!-- // section04 --> --%>
 				<script>// <![CDATA[
 			       AOS.init({
 			          offset: 0,

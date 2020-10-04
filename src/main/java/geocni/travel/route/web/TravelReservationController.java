@@ -92,7 +92,7 @@ public class TravelReservationController {
 		return rtnVal;
 	}
 	
-	@RequestMapping(value="area.do")
+	/*@RequestMapping(value="area.do")
 	public String reservationArea(
 			 TravelRoute travelRoute
 			,TravelReservation travelReservation
@@ -136,7 +136,7 @@ public class TravelReservationController {
 		}
 		
 		return skinPath + "area";
-	}
+	}*/
 	
 	@RequestMapping(value="insert.do")
 	public String reservationInsert(

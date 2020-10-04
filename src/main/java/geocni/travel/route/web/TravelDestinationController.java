@@ -569,7 +569,7 @@ public class TravelDestinationController {
 		return "travel/main/" +"main";
 	}
 	
-	@RequestMapping(value="summerlist.do")
+	/*@RequestMapping(value="summerlist.do")
 	public String summerList(
 			 @ModelAttribute("searchVO") TravelDefaultVO searchVO
 			,TravelDestination travelDestination
@@ -602,5 +602,5 @@ public class TravelDestinationController {
 		
 		return "travel/destination/" + "summer_list";
 	}
-
+*/
 }
