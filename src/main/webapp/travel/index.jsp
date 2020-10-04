@@ -107,7 +107,7 @@
   		return returnStr;
   	}
    </script> -->
-  <script type="text/javascript">
+<!--   <script type="text/javascript">
 function fn_reservView(){
 	var reseName = $('#reseName').val();
 	var reseTel = $('#reseTel').val();
@@ -125,7 +125,7 @@ function fn_reservView(){
 	
 	location.href = "<c:url value='/travel/reservation/reserv_view.do'/>?reseName=" + encodeURI(reseName, "UTF-8") + "&reseTel=" + reseTel;
 }
-</script>
+</script> -->
 <%--<script>
 // Log events flag
 var logEvents = false;
