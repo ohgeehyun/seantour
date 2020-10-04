@@ -243,7 +243,8 @@ function init() {
 </script> --%>
 
   </head>
-<body onload="init();">
+<!-- <body onload="init();"> -->
+<body>
 	<div id="wrap">
 		<div id="accessibility"><a href="#content">본문 바로가기</a></div>
     <%--    <div id="pop">
@@ -298,7 +299,7 @@ function init() {
 									  <div class="main_visual_content_cell_right">
 									  	 <div class="main_visual_content_cell_right_inr">
 										  	 <div class="visual_arrow">
-											  	 <img src="./images/main/img_visual2_arrow.png" alt="" />
+											  	 <img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual2_arrow.png" alt="" />
 											  </div>
 										  	 <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=인천" class="point point1">인천광역시</a>
 										  	 <a href="${pageContext.request.contextPath}/travel/destination/list.do?destRegion=경기" class="point point2">경기도</a>
@@ -363,7 +364,7 @@ function init() {
 									  <div class="main_visual_content_cell_right">
 									  	 <div class="main_visual_content_cell_right_inr">
 										  	 <div class="visual_arrow">
-											  	 <img src="${pageContext.request.contextPath}/travel/common/images/main/main/img_visual_arrow2.png" alt="" />
+											  	 <img src="${pageContext.request.contextPath}/travel/common/images/main/img_visual2_arrow.png" alt="" />
 											  </div>
 										  	 <a href="#none" class="point point1">인천</a>
 										  	 <a href="#none" class="point point2">경기</a>
