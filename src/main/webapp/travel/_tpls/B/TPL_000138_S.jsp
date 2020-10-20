@@ -25,5 +25,4 @@
          <%@ include file="/WEB-INF/jsp/travel/tpl/navigation.jsp" %>
         <div id="content" class="cont_wrap ">
       
-            <div class="cont_body content">
 	           
