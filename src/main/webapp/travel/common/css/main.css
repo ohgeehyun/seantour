@@ -299,7 +299,18 @@ a.btn-layerClose:hover {
 	.reserv_main_left input{height:40px;}
 	.reserv_main_left .btn{width:calc(100% - 37% - 37% - 15px);height:40px;line-height:30px;margin-left:5px;}
 }
-
+/* **************************************** *
+ * leisure_box
+ * **************************************** */
+ .leisure_box{width:100%;}
+ .leisure_box a{display:block;width:100%;transition:all 0.4s;}
+ .leisure_box .pc{display:block;}
+ .leisure_box .mob{display:none;}
+ 
+ @media screen and (max-width:767px){
+ 	.leisure_box .pc{display:none;}
+ 	.leisure_box .mob{display:block;}
+ }
 /* **************************************** *
  * section01
  * **************************************** */

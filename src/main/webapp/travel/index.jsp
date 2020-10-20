@@ -418,10 +418,18 @@ function init() {
 					    	<a href="/seantour_map/travel/info_square/recommendation/index.jsp" class="btn-example"><img src="${pageContext.request.contextPath}/images/travel/main/img_main_banner_10pull.jpg" alt="" /></a>
 					    </div>
 					    <div class="leaflet_box">
-					    	<a href="/seantour_map/travel/info_square/leaflet/index.jsp"><img src="${pageContext.request.contextPath}/images/travel/main/img_main_leaflet.png" alt="건강지키는 바다여행! 해양관광 리플렛 보러가기" /></a>
+					    	<a href="/seantour_map/travel/info_square/leafet/index.jsp"><img src="${pageContext.request.contextPath}/images/travel/main/img_main_leaflet.png" alt="건강지키는 바다여행! 해양관광 리플렛 보러가기" /></a>
 					    </div>
 				    </div>
 			    </div> <!-- // section01 -->--%>  
+			    <div class="leisure_box">
+			    	<div class="minr">
+			    		<a href="/seantour_map/travel/info_square/safe_info/index.jsp;jsessionid=F86414AB8C891F78A7375BE2B3286F07.tomcat1">
+			    			<span class="pc"><img src="/seantour_map/images/travel/main/img_leisure.png" alt="" /></span>
+			    			<span class="mob"><img src="/seantour_map/images/travel/main/img_leisure_mob.png" alt="" /></span>
+			    		</a>
+		    		</div>
+			    </div>
 			    <div class="section02 aos-init aos-animate" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
 			    	<div class="minr">
 
