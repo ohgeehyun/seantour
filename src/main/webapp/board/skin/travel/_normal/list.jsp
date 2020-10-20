@@ -15,8 +15,9 @@
 	          
 	            <c:choose>
 					<c:when test ="${fn:contains(pageContext.request.requestURI , 'seantour_map/travel/info_square/notice/')}"></c:when>
+					<c:when test ="${fn:contains(pageContext.request.requestURI , 'seantour_map/travel/info_square/safe_info/')}"></c:when>					
 					<c:otherwise>
-					<!-- <div class="tabmenu">
+					 <div class="tabmenu">					 
 					 <c:if test="${fn:contains(pageContext.request.requestURI, 'seantour_map/travel/info_square/faq/')}">
 						<a href="#none">Q&A<span class="unfd sprh_com"></span></a>
 					 </c:if> 
@@ -43,7 +44,8 @@
 							<li><a href="<c:url value="/travel/info_square/updateinfo/index.jsp"/>"><span>정보수정제안</span></a></li>
 						</c:if>	
 						</ul>
-					</div>		 -->			
+						
+					</div>				
 					</c:otherwise>
 					</c:choose>
 	            
