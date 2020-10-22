@@ -9,11 +9,7 @@ import geocni.travel.route.domain.TravelDestination;
 
 @Repository("travelDestinationDAO")
 public class TravelDestinationDAO extends EgovComAbstractDAO {
-	//백준현
-	public List<?> selectTravelDestinationAllexcel(TravelDestination vo) throws Exception {    	
-		return list("travelDestinationDAO.selectRecoDestinationAllexcel", vo);
-	}
-	
+
     public List<?> selectTravelDestinationList(TravelDestination vo) throws Exception {
     	return list("travelDestinationDAO.selectTravelDestinationList", vo);
     }

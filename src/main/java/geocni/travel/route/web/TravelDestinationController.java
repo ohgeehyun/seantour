@@ -569,25 +569,35 @@ public class TravelDestinationController {
 	// 바다여행 모든 엑셀파일 만드는 컨트롤러 -백준현
 		@RequestMapping(value = "alldowexcel.do")
 		public String alldowexcel(@ModelAttribute("searchVO") TravelDefaultVO searchVO, TravelDestination travelDestination,
-				HttpServletResponse response, SessionStatus status,	Model model)
+				HttpServletResponse response, SessionStatus status,
+				@RequestParam(value = "excelPageno", required = false, defaultValue = "1") String excelPageno, Model model)
 				throws Exception {
-			try {								
+
+			try {
+				List<?> regionList = destService.selectTravelDestinationRegionList(travelDestination);
+				model.addAttribute("regionList", regionList);
 				JnitcmsmbrVO loginVO = JnitMgovUtil.getLoginMember();
 				if (!NullUtil.isEmpty(loginVO.getMbrId())) {
 					travelDestination.setDestUserId(loginVO.getMbrId());
 				}
-				status.setComplete();
-				
-				model.addAttribute("resultList", destService.selectTravelDestinationAllexcel(travelDestination));				
-				model.addAttribute("travelDestination", travelDestination);			
+				int iexcelPageno = Integer.parseInt(excelPageno);
+				travelDestination.setPageIndex(iexcelPageno);
+				travelDestination.setPageUnit(8);
+				travelDestination.setPageSize(propertiesService.getInt("pageSize"));
 
+				model.addAttribute("excelPageno", excelPageno);
+				model.addAllAttributes(destService.selectTravelDestinationListMap(travelDestination));
+				status.setComplete();
+
+				model.addAttribute("travelDestination", travelDestination);
 				response.setContentType("application/vnd.ms-excel");
-				response.setHeader("Content-Disposition", "attachment; filename=" + "AllDestinationExcelfile.xls");
+				response.setHeader("Content-Disposition", "attachment; filename=" + "DestinationExcelfile.xls");
 			} catch (NullPointerException e) {
 				log.debug(e);
 			} catch (SQLException e) {
 				log.debug(e);
 			}
+
 			return skinPath + "excelview";
 		}
 	/*

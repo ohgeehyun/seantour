@@ -36,7 +36,7 @@
 		<result property="myRecommCount" column="my_recomm_count" />
 		<result property="myClipCount" column="my_clip_count" />
 	</resultMap>
-	
+
 	<select id="travelDestinationDAO.selectTravelFilesList" resultClass="travelFiles">
 		<![CDATA[
 			SELECT
@@ -243,14 +243,7 @@
 			WHERE dest_id=#destId#
 		]]>
 	</select>
-	<sql id="travelDestinationDAO.travelDestinationCategoryClause">
-		<isNotEmpty property="destCategory" prepend="AND">
-			<![CDATA[	dest_category = #destCategory#	]]>
-		</isNotEmpty>
-		<isNotEmpty property="destRegion" prepend="AND">
-			<![CDATA[	dest_region = #destRegion#	]]>
-		</isNotEmpty>		
-	</sql>
+	
 	<sql id="travelDestinationDAO.travelDestinationWhereClause">
 		<isNotEmpty property="destRegion" prepend="AND">
 			<![CDATA[	a.dest_region = #destRegion#	]]>
@@ -279,19 +272,6 @@
 		</isEqual> 
 		--> 
 	</sql>
-	
-	<select id="travelDestinationDAO.selectRecoDestinationAllexcel"  parameterClass="travelDestinationVO" resultClass="travelDestinationVO">
-		<![CDATA[
-			SELECT
-				  dest_region AS destRegion	  
-				, dest_title AS destTitle
-				, dest_recomm_point AS destRecommPoint
-                , dest_address AS destAddress
-                , dest_category AS destCategory
-			FROM geo_destination WHERE 1=1
-		]]>
-		<include refid="travelDestinationDAO.travelDestinationCategoryClause" />		
-	</select>
 	
 	<select id="travelDestinationDAO.selectTravelDestinationList" parameterClass="travelDestinationVO" resultMap="travelDestinationMax" remapResults="true">
 		<![CDATA[
