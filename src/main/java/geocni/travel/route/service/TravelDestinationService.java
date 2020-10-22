@@ -12,6 +12,8 @@ public interface TravelDestinationService {
 	Map<String, Object> selectTravelDestinationListMap(TravelDestination vo) throws Exception;
 
 	List<?> selectTravelDestinationList(TravelDestination vo) throws Exception;
+	//백준현
+	List<?> selectTravelDestinationAllexcel(TravelDestination vo) throws Exception;
 
 	int selectTravelDestinationListCnt(TravelDestination vo) throws Exception;
 	

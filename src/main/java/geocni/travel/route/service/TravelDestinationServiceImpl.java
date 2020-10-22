@@ -280,5 +280,12 @@ public class TravelDestinationServiceImpl extends EgovAbstractServiceImpl implem
 		return paginationInfo;
 	}
 
+	@Override
+	public List<?> selectTravelDestinationAllexcel(TravelDestination vo) throws Exception {
+    	//백준현
+		return travelDestinationDAO.selectTravelDestinationAllexcel(vo);
+
+	}
+
 }
 
