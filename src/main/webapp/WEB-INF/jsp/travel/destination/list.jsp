@@ -89,6 +89,16 @@
 						<div class="page_num">
 							<p>총 게시물 <span><c:out value="${allCnt}" /></span>건</p>
 						</div>
+						<div>
+							<!-- pjh 엑셀파일다운로드 -->							
+							<input type ="hidden" value="${excelPageno}" name="excelPageno" id="excelPageno">
+							<input type ="button" onclick="fn_egov_down_excel(${excelPageno})" value = "엑셀파일 다운로드">						
+							
+						</div>
+						<div>
+							<!-- 백준현 모든엑셀파일다운로드  -->			
+							<input type ="button" onclick="fn_egov_down_allexcel(${iexcelPageno})" value = "모든엑셀파일 다운로드">																	
+						</div>
 						<div class="local_lst">
 							<ul>
 							<c:forEach var="result" items="${resultList}" varStatus="status">	
@@ -191,13 +201,18 @@ function registerTravelDestFeedback(obj, type) {
 	});
 }
 
-function fn_egov_link_page(pageNo){
+function fn_egov_link_page(pageNo){	
+	document.getElementById('excelPageno').value=pageNo;
 	document.getElementById("travelDestination").pageIndex.value = pageNo;
 	document.getElementById("travelDestination").action = "<c:url value='/travel/destination/list.do'/>";
    	document.getElementById("travelDestination").submit();
 }
 
-
+function fn_egov_down_excel(pageNo){
+	document.getElementById("travelDestination").pageIndex.value = pageNo;	
+	document.getElementById("travelDestination").action = "<c:url value='/travel/destination/dowexcel.do'/>";
+   	document.getElementById("travelDestination").submit();
+}
 </script>
 </body>
 
