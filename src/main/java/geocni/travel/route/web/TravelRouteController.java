@@ -72,7 +72,6 @@ public class TravelRouteController {
 			 * "redirect:/travel/login.jsp"; }
 			 * travelRoute.setRoutRegMember(loginVO.getMbrId());
 			 */
-
 			travelRoute.setRoutType("U");
 			travelRoute.setRoutOpen(open);
 		} else {
@@ -80,6 +79,8 @@ public class TravelRouteController {
 		}
 
 		// travelRoute.setPageUnit(propertiesService.getInt("pageUnit"));
+		int i_excelPageno = Integer.parseInt(iexcelPageno);
+		travelRoute.setPageIndex(i_excelPageno);
 		travelRoute.setPageUnit(9);
 		travelRoute.setPageSize(propertiesService.getInt("pageSize"));
 
@@ -453,8 +454,8 @@ public class TravelRouteController {
 	@RequestMapping(value = "dowexcel.do")
 	public String dowexcel(TravelRoute travelRoute, HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value = "open", required = false) String open,
-			@RequestParam(value = "allcnt", required = false) String allcnt,
 			@RequestParam(value = "iexcelPageno", required = false, defaultValue = "1") String iexcelPageno,
+			
 			SessionStatus status, Model model) throws Exception {
 		if (open != null && "Y".equals(open)) {
 
@@ -473,12 +474,13 @@ public class TravelRouteController {
 		travelRoute.setPageSize(propertiesService.getInt("pageSize"));
 		int iniexcelPageno = Integer.parseInt(iexcelPageno);
 		travelRoute.setPageIndex(iniexcelPageno);
-
+		
 		model.addAllAttributes(routeService.selectTravelRouteListMap(travelRoute));
 		status.setComplete();
-
+		
 		model.addAttribute("travelRoute", travelRoute);
 		model.addAttribute("open", open);
+		model.addAttribute("allCnt",1);
 		response.setContentType("application/vnd.ms-excel");
 		return skinPath + "excelview";
 	}
@@ -487,7 +489,7 @@ public class TravelRouteController {
 	@RequestMapping(value = "alldowexcel.do")
 	public String alldowexcel(TravelRoute travelRoute, HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value = "open", required = false) String open,
-			SessionStatus status, Model model)
+			@RequestParam(value = "allCnt", required = false) String allCnt, SessionStatus status, Model model)
 			throws Exception {
 		if (open != null && "Y".equals(open)) {
 			travelRoute.setRoutType("U");
@@ -497,10 +499,10 @@ public class TravelRouteController {
 			travelRoute.setRoutType("W");
 			response.setHeader("Content-Disposition", "attachment; filename=" + "AllRouteExcelfile.xls");
 		}
-		;
 		model.addAttribute("resultList", routeService.selectTravelRouteAllListMap(travelRoute));
-		model.addAttribute("travelRoute", travelRoute);				
+		model.addAttribute("travelRoute", travelRoute);
 		model.addAttribute("open", open);
+		model.addAttribute("allCnt", allCnt);
 		status.setComplete();
 
 		response.setContentType("application/vnd.ms-excel");

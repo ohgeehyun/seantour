@@ -77,8 +77,10 @@
 
 							<div>
 								<!-- 백준현 엑셀파일다운로드 -->
-								<input type="hidden" value="${iexcelPageno}" name="iexcelPageno"
-									id="iexcelPageno"> <input type="button"
+								<input type="hidden" value="${iexcelPageno}" name="iexcelPageno" id = "iexcelPageno">
+								<input type="hidden" value="${allCnt}" name="allCnt">
+							
+								 <input type="button"
 									onclick="fn_egov_down_excel(${iexcelPageno})" value="엑셀파일 다운로드">
 								<!-- fn_egov_down_excel(${iexcelPageno}) -->
 							</div>

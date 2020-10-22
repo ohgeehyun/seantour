@@ -140,7 +140,8 @@
                 , a.rout_reg_member AS routRegMember
                 , a.rout_region AS routRegion
                 , a.rout_hit AS routHit
-                , a.rout_reg_date AS routRegDate 
+                , a.rout_reg_date AS routRegDate
+                , a.rout_thumb_path AS routThumbPath
 				, b.mbr_nm  AS routRegMemberNm
             FROM geo_travel_route a
                 INNER JOIN jnitcmsmbr b ON a.rout_reg_member=b.mbr_id

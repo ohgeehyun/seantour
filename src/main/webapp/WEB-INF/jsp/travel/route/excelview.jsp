@@ -8,25 +8,40 @@
 </head>
 <body>
 	<table>
-		<tr>
-		<td><c:out value="제목"></c:out></td>
-		<td><c:out value="지역"></c:out></td>
-		<td><c:out value="작성자"></c:out></td>
-		<td><c:out value="조회수"></c:out></td>
-		<td><c:out value="추천수"></c:out></td>
-		</tr>
+		<c:choose>
+			<c:when test="${allCnt eq '1' or allCnt eq 1}"></c:when>
+			<c:otherwise>
+				<td style="font-weight: bold; text-align: center; color: red;"><c:out value="총게시물 수"></c:out></td>
+				<td style="text-align: center;">${allCnt}</td>
+			</c:otherwise>
+		</c:choose>		
+		<tr style="font-weight: bold; text-align: center; color: red;">			
+			<td><c:out value="제목"></c:out></td>
+			<td><c:out value="지역"></c:out></td>
+			<td><c:out value="작성자"></c:out></td>
+			<td><c:out value="조회수"></c:out></td>
+			<td><c:out value="추천수"></c:out></td>
+			<td><c:out value="이미지경로"></c:out></td>
+		</tr>		
 			<c:forEach var="result" items="${resultList}" varStatus="status">
 				<li>
 					<div>
-						<td>${result.routTitle}</td>
-						<td>${result.routRegion}</td>
-						<td>${result.routRegMemberNm}</td>
-						<td>${result.routHit}</td>
-						<td>${result.routRecomm}</td>
+						<td style = "text-align: center;">${result.routTitle}</td>
+						<td style = "text-align: center;">${result.routRegion}</td>
+						<td style = "text-align: center;">${result.routRegMemberNm}</td>
+						<td style = "text-align: center;">${result.routHit}</td>
+						<td style = "text-align: center;">${result.routRecomm}</td>
+						<td style = "text-align: center;">${result.routThumbPath}</td>
 						<tr>
 					</div>
 				</li>
 			</c:forEach>
 	</table>
+	<script>
+		let a = 0;
+		function a_stack(){
+			a++;
+		}
+	</script>
 </body>
 </html>
