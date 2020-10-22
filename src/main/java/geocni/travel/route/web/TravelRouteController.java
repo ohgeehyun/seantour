@@ -460,8 +460,10 @@ public class TravelRouteController {
 
 			travelRoute.setRoutType("U");
 			travelRoute.setRoutOpen(open);
+			response.setHeader("Content-Disposition", "attachment; filename=" + "MyRouteExcelfile.xls");
 		} else {
 			travelRoute.setRoutType("W");
+			response.setHeader("Content-Disposition", "attachment; filename=" + "RouteExcelfile.xls");
 		}
 
 		// travelRoute.setPageUnit(propertiesService.getInt("pageUnit"));
@@ -478,21 +480,29 @@ public class TravelRouteController {
 		model.addAttribute("travelRoute", travelRoute);
 		model.addAttribute("open", open);
 		response.setContentType("application/vnd.ms-excel");
-		response.setHeader("Content-Disposition", "attachment; filename=" + "RouteExcelfile.xls");
 		return skinPath + "excelview";
 	}
 
 	// 모든 엑셀파일 다운로드
 	@RequestMapping(value = "alldowexcel.do")
 	public String alldowexcel(TravelRoute travelRoute, HttpServletRequest request, HttpServletResponse response,
-			Model model)
+			@RequestParam(value = "open", required = false) String open,
+			SessionStatus status, Model model)
 			throws Exception {
-		System.out.println(routeService.selectTravelRouteAllListMap(travelRoute));
+		if (open != null && "Y".equals(open)) {
+			travelRoute.setRoutType("U");
+			travelRoute.setRoutOpen(open);
+			response.setHeader("Content-Disposition", "attachment; filename=" + "MyAllRouteExcelfile.xls");
+		} else {
+			travelRoute.setRoutType("W");
+			response.setHeader("Content-Disposition", "attachment; filename=" + "AllRouteExcelfile.xls");
+		}
 		model.addAttribute("allresult", routeService.selectTravelRouteAllListMap(travelRoute));
 		model.addAttribute("travelRoute", travelRoute);				
-		
+		model.addAttribute("open", open);
+		status.setComplete();
+
 		response.setContentType("application/vnd.ms-excel");
-		response.setHeader("Content-Disposition", "attachment; filename=" + "AllRouteExcelfile.xls");
 		return skinPath + "allexcelview";
 	}
 }

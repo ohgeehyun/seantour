@@ -146,7 +146,7 @@
                 INNER JOIN jnitcmsmbr b ON a.rout_reg_member=b.mbr_id
             WHERE 1=1
 		]]>
-		<include refid="travelRouteDAO.travelRouteWhereClause" />			
+		<include refid="travelRouteDAO.travelRouteWhereClause" />
 	</select>	
 	<select id="travelRouteDAO.selectTravelRouteList" parameterClass="travelRoute" resultClass="travelRoute">
 		<![CDATA[
