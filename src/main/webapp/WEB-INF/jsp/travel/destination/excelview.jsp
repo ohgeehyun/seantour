@@ -14,6 +14,7 @@
 			<td><c:out value="力格"></c:out></td>
 			<td><c:out value="墨抛绊府"></c:out></td>
 			<td><c:out value="林家"></c:out></td>
+			<td><c:out value="瘤开"></c:out></td>
 		</tr>
 		<c:forEach var="result" items="${resultList}" varStatus="status">
 			<li>
@@ -21,6 +22,7 @@
 					<td>${result.destTitle}</td>
 					<td>${result.destCategory}</td>
 					<td>${result.destAddress}</td>
+					<td>${result.destRegion}</td>
 					<tr>
 				</div>
 			</li>
