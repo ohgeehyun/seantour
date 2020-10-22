@@ -9,6 +9,8 @@ public interface TravelRouteService {
 
 	Map<String, Object> selectTravelRouteListMap(TravelRoute vo) throws Exception;
 
+	List<?> selectTravelRouteAllListMap(TravelRoute vo) throws Exception;//백준현 모든 리스트가져오기
+
 	List<?> selectTravelRouteList(TravelRoute vo) throws Exception;
 
 	int selectTravelRouteListCnt(TravelRoute vo) throws Exception;

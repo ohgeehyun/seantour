@@ -47,8 +47,7 @@
 									<option value="2" <c:if test="${travelRoute.searchCondition eq '2'}">selected</c:if>>글쓴이</option>
 								</select>
 								<form:input path="searchKeyword" cssClass="word" />
-								<input type="button" value='검색' class="bbs_btn" onclick="fn_egov_link_page(1);" />
-								
+								<input type="button" value='검색' class="bbs_btn" onclick="fn_egov_link_page(1);" />								
 							</fieldset>
 						</div>
 		               
@@ -57,6 +56,19 @@
 						<c:if test="${fn:length(resultList) eq 0}">
 							<p style="margin:0 auto;text-align:center;"><span>등록된 일정이 없습니다</span></p>
 						</c:if>
+						</div>
+						
+						<div>
+							<!-- 백준현 엑셀파일다운로드 -->							
+							<input type ="hidden" value="${iexcelPageno}" name="iexcelPageno" id="iexcelPageno">
+							<input type ="button" onclick="fn_egov_down_excel(${iexcelPageno})" value = "엑셀파일 다운로드">						
+							<!-- fn_egov_down_excel(${iexcelPageno}) -->	
+						</div>
+						<div>
+							<!-- 백준현 모든엑셀파일다운로드  -->			
+							<input type ="button" onclick="fn_egov_down_allexcel(${iexcelPageno})" value = "모든엑셀파일 다운로드">
+																	
+							<!-- fn_egov_down_excel(${iexcelPageno}) -->	
 						</div>
 						 <div class="recommend_lst">
 							<ul>
@@ -105,7 +117,9 @@
 							</ul>
 						</div>
 						<%-- <div id="page_navi" class="pagination"> --%>
+					
 						<ui:pagination paginationInfo="${paginationInfo}" type="travelFront" jsFunction="fn_egov_link_page" />
+						
 						<form:hidden path="pageIndex" />
 						<%-- </div> --%>
 
@@ -128,8 +142,10 @@
 	}
 	</style> -->
 	<script>
+
 	function fn_egov_link_page(pageNo){
 		document.getElementById("travelRoute").pageIndex.value = pageNo;
+		document.getElementById('iexcelPageno').value=pageNo;
 		if(location.href.split('?')[1] =='open=Y')
 			{
 			document.getElementById("travelRoute").action = "<c:url value='/travel/route/list.do?open=Y'/>";
@@ -138,6 +154,24 @@
 			{
 			document.getElementById("travelRoute").action = "<c:url value='/travel/route/list.do'/>";
 			}
+	   	document.getElementById("travelRoute").submit();
+	}
+	
+	function fn_egov_down_excel(pageNo){
+		document.getElementById("travelRoute").pageIndex.value = pageNo;
+		if(location.href.split('?')[1] =='open=Y')
+			{
+			document.getElementById("travelRoute").action = "<c:url value='/travel/route/dowexcel.do?open=Y'/>";
+			}
+		else
+			{
+			document.getElementById("travelRoute").action = "<c:url value='/travel/route/dowexcel.do'/>";
+			}
+	   	document.getElementById("travelRoute").submit();
+	}
+	
+	function fn_egov_down_allexcel(pageNo){
+		document.getElementById("travelRoute").action = "<c:url value='/travel/route/alldowexcel.do'/>";		
 	   	document.getElementById("travelRoute").submit();
 	}
 	</script>

@@ -297,4 +297,11 @@ public class TravelRouteServiceImpl extends EgovAbstractServiceImpl implements T
 		return paginationInfo;
 	}
 
+	@Override
+	public List<?> selectTravelRouteAllListMap(TravelRoute vo) throws Exception {		
+		@SuppressWarnings("unchecked")
+		List<TravelRoute> list = (List<TravelRoute>) travelRouteDAO.selectTravelRouteAllList(vo);		
+		return list;
+	}
+
 }

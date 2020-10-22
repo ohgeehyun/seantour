@@ -133,6 +133,21 @@
             LIMIT #firstIndex#, #recordCountPerPage#
 		]]>
 	</select>	
+	<select id="travelRouteDAO.selectTravelRouteAllList" parameterClass="travelRoute" resultClass="travelRoute">
+		<![CDATA[
+			SELECT 
+                 a.rout_title AS routTitle
+                , a.rout_reg_member AS routRegMember
+                , a.rout_region AS routRegion
+                , a.rout_hit AS routHit
+                , a.rout_reg_date AS routRegDate 
+				, b.mbr_nm  AS routRegMemberNm
+            FROM geo_travel_route a
+                INNER JOIN jnitcmsmbr b ON a.rout_reg_member=b.mbr_id
+            WHERE 1=1
+		]]>
+		<include refid="travelRouteDAO.travelRouteWhereClause" />			
+	</select>	
 	<select id="travelRouteDAO.selectTravelRouteList" parameterClass="travelRoute" resultClass="travelRoute">
 		<![CDATA[
 			SELECT

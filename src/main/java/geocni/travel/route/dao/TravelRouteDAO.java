@@ -13,7 +13,10 @@ public class TravelRouteDAO extends EgovComAbstractDAO {
 
     public List<?> selectTravelRouteList(TravelRoute vo) throws Exception {
 //    	return list("travelRouteDAO.selectTravelRouteList", vo);
-    	return list("travelRouteDAO.selectTravelRouteListAll", vo);
+    	return list("travelRouteDAO.selectTravelRouteListAll",vo);
+    }
+    public List<?> selectTravelRouteAllList(TravelRoute vo) throws Exception {
+    	return list("travelRouteDAO.selectTravelRouteAllList",vo);
     }
     
     public int selectTravelRouteListCnt(TravelRoute vo) {
