@@ -550,11 +550,12 @@ public class TravelDestinationController {
 			travelDestination.setPageIndex(iexcelPageno);
 			travelDestination.setPageUnit(8);
 			travelDestination.setPageSize(propertiesService.getInt("pageSize"));
-
+			
 			model.addAttribute("excelPageno", excelPageno);
 			model.addAllAttributes(destService.selectTravelDestinationListMap(travelDestination));
 			status.setComplete();
-
+			model.addAttribute("allCnt", 1);
+			
 			model.addAttribute("travelDestination", travelDestination);
 			response.setContentType("application/vnd.ms-excel");
 			response.setHeader("Content-Disposition", "attachment; filename=" + "DestinationExcelfile.xls");
@@ -569,6 +570,7 @@ public class TravelDestinationController {
 	// 바다여행 모든 엑셀파일 만드는 컨트롤러 -백준현
 		@RequestMapping(value = "alldowexcel.do")
 		public String alldowexcel(@ModelAttribute("searchVO") TravelDefaultVO searchVO, TravelDestination travelDestination,
+				@RequestParam(value = "allCnt", required = false, defaultValue = "1") String allCnt,
 				HttpServletResponse response, SessionStatus status,	Model model)
 				throws Exception {
 			try {								
@@ -580,7 +582,7 @@ public class TravelDestinationController {
 				
 				model.addAttribute("resultList", destService.selectTravelDestinationAllexcel(travelDestination));				
 				model.addAttribute("travelDestination", travelDestination);			
-
+				model.addAttribute("allCnt",allCnt);
 				response.setContentType("application/vnd.ms-excel");
 				response.setHeader("Content-Disposition", "attachment; filename=" + "AllDestinationExcelfile.xls");
 			} catch (NullPointerException e) {
