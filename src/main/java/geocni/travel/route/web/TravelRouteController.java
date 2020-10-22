@@ -497,12 +497,13 @@ public class TravelRouteController {
 			travelRoute.setRoutType("W");
 			response.setHeader("Content-Disposition", "attachment; filename=" + "AllRouteExcelfile.xls");
 		}
-		model.addAttribute("allresult", routeService.selectTravelRouteAllListMap(travelRoute));
+		;
+		model.addAttribute("resultList", routeService.selectTravelRouteAllListMap(travelRoute));
 		model.addAttribute("travelRoute", travelRoute);				
 		model.addAttribute("open", open);
 		status.setComplete();
 
 		response.setContentType("application/vnd.ms-excel");
-		return skinPath + "allexcelview";
+		return skinPath + "excelview";
 	}
 }
