@@ -93,12 +93,12 @@
 							<!-- 백준현 엑셀파일다운로드 -->							
 							<input type ="hidden" value="${excelPageno}" name="excelPageno" id="excelPageno">
 							<input type ="hidden" value="${allCnt}" name="allCnt">
-							<input type ="button" onclick="fn_egov_down_excel(${excelPageno})" value = "엑셀파일 다운로드">						
-							
+							<%-- <input type ="button" onclick="fn_egov_down_excel(${excelPageno})" value = "엑셀파일 다운로드">	 --%>					
+							<button type="button" class="btn_excel" onclick='fn_egov_down_excel(${excelPageno})'>엑셀</button>		
 						</div>
 						<div>
 							<!-- 백준현 모든엑셀파일다운로드  -->							
-							<input type ="button" onclick="fn_egov_down_allexcel()" value = "모든엑셀파일 다운로드">																	
+							<!-- <input type ="button" onclick="fn_egov_down_allexcel()" value = "모든엑셀파일 다운로드"> -->																	
 						</div>
 						<div class="local_lst">
 							<ul>

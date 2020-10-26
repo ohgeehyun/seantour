@@ -7,6 +7,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<style>
+  table {
+    width: 100%;
+    border: 1px solid #444444;
+  }
+  th, td {
+    border: 1px solid #444444;
+  }
+</style>
 </head>
 <body>
 	<table>
@@ -37,9 +46,9 @@
 					<td style = "text-align: center;">${result.destClipPoint}</td>
 					<td style = "text-align: center;">${result.destRecommPoint}</td>
 					<c:choose>
-						<c:when test="${result.destImgPath eq '' or result.destImgPath eq null}"><td style = "text-align: center;">이미지경로가 없습니다.</td></c:when>
+						<c:when test="${result.travelFileList[0].imgFilePath eq '' or result.travelFileList[0].imgFilePath eq null}"><td style = "text-align: center;">이미지경로가 없습니다.</td></c:when>
 						<c:otherwise>
-							<td style = "text-align: center;">${result.destImgPath}</td>
+							<td style = "text-align: center;">${result.travelFileList[0].imgFilePath}</td>
 						</c:otherwise>
 					</c:choose>
 			<tr>

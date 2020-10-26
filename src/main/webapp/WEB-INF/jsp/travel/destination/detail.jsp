@@ -93,7 +93,6 @@
 			}	
 		});
 }*/
-
  
     </script>
 </head>
@@ -143,10 +142,14 @@
 							<div class="info_lst">
 								<div class="clr">
 									<div class="icon_box">
+									<form:form commandName="destid" method="get">
+										<input type ="hidden" value="${travelDestination.destId}" name="destid" id="destid">
+										<button type="button" class="btn_excel" onclick='fn_egov_down_excel("<c:out value="${travelDestination.destId}"/>")'>엑셀</button>
 								        <%-- <p id="kakaolink">공유하기</p> --%>
 										<a id="kakaolink" href="javascript:;" onclick="shareTravelDestToKakao(this);" class="kakao" data-target-id='<c:out value="${travelDestination.destId}"/>' data-user-id='<c:out value="${loginVO.mbrId}"/>'>공유</a>
 										<a href="javascript:;" data-mbr-id='<c:out value="${loginVO.mbrId}"/>' data-dest-id='<c:out value="${travelDestination.destId}"/>' onclick="registerTravelDestFeedback(this, 'clip');return false;" class="clip <c:if test="${travelDestination.myClipCount gt 0}">on</c:if>">클립</a>
 										<a href="javascript:;" data-mbr-id='<c:out value="${loginVO.mbrId}"/>' data-dest-id='<c:out value="${travelDestination.destId}"/>' onclick="registerTravelDestFeedback(this);return false;" class="heart <c:if test="${travelDestination.myRecommCount gt 0}">on</c:if>">공감</a>
+									</form:form>
 									</div>
 								</div>
 								<ul class="list">
@@ -388,11 +391,19 @@ function deleteDestination(){
 		frm.submit();
 	}
 }
-<%-- function fn_egov_link_page(pageNo){
+/* function fn_egov_link_page(pageNo){
 	document.getElementById("travelDestination").pageIndex.value = pageNo;
 	document.getElementById("travelDestination").action = "<c:url value='/travel/destination/list.do'/>";
    	document.getElementById("travelDestination").submit();
-} --%>
+}  */
+
+function fn_egov_down_excel(destid){
+	 document.getElementById("destid").value = destid;	
+	document.getElementById("destid").action = "<c:url value='/travel/destination/excelDetail.do'/>";
+   	document.getElementById("destid").submit(); 
+   	return false;
+}
+
 
 </script>
 </body>

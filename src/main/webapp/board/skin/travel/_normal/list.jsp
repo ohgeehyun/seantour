@@ -6,13 +6,10 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ include file="/WEB-INF/jsp/jnit/board/header.jsp" %>
 
-            
        
        <div id="content" class="cont_wrap ">
-      
             <div class="cont_body">
 	            <div class="inr">
-	          
 	            <c:choose>
 					<c:when test ="${fn:contains(pageContext.request.requestURI , 'seantour_map/travel/info_square/notice/')}"></c:when>
 					<c:when test ="${fn:contains(pageContext.request.requestURI , 'seantour_map/travel/info_square/safe_info/')}"></c:when>					
@@ -64,7 +61,6 @@
 				<input type="image" id="btnSubmit" src="<c:url value="/board/_common/img/btnMove.gif" />" alt="<%= JnitboardController.isLanguage("이동",lang) %>"/>
 				</div>
 				</c:if> --%>
-					
 
 					<div class="search_box">
 						<fieldset>
@@ -98,8 +94,8 @@
 							<input name="searchKeyword" id="searchKeyword" type="text" class="word" value="" maxlength="35" placeholder="검색어를 입력하세요" value="<c:out value="${searchVO.searchKeyword}" />" /> 
 							<button class="button black" type="submit" value='<%= JnitboardController.isLanguage("검색",lang) %>' />검색
 						</fieldset>
-					</div>
-				
+					</div>                     
+
 
 	            	<div class="board_list">
 						<table class="tac" summary="<c:out value="${boardinfoVO.boardTitle}" /> <%= JnitboardController.isLanguage("의 게시글 목록으로",lang) %> <c:forEach var="k" items="${sIdx}" varStatus="status"><c:out value="${lbl[k]}" /><c:out value="${status.last ? '' : ','}" /></c:forEach> <%= JnitboardController.isLanguage("로 구성되어 있습니다.",lang) %>">

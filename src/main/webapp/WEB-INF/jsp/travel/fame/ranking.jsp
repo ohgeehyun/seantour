@@ -10,6 +10,8 @@
 		width: 60px;
 	}
 	div.fame_infobox, div.fame_scoreinfo_box {display: none;}
+	
+	
 	</style>
 	
 </head>
@@ -37,6 +39,10 @@
 								<li><a href="javascript:;" onclick="setFamePage(this);" ><span id ="menu2">명성이란?</span></a></li>
 							</ul>
 						</div>
+						<div>
+								<!-- 백준현 엑셀파일다운로드 -->
+								<button type="button" class="btn_excel" onclick='fn_egov_down_excel()'>엑셀</button>
+							</div>		
 						<div class="fame_lst">
 							<ul class="flst">
 							<c:forEach var="result" items="${resultList}" varStatus="status">
@@ -170,6 +176,14 @@
 		$("div.tabmenu >ul > li > a").toggleClass("on");
 		
 	}
+	
+	function fn_egov_down_excel(){
+
+		   location.href = "<c:url value='/travel/fame/alldowexcel.do'/>";
+		   
+		   return false;
+	}
+	
 	</script>
 </body>
 

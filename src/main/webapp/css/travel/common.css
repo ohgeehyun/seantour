@@ -93,6 +93,9 @@ label{display:inline-block; box-sizing:border-box; width:auto; vertical-align:mi
 .button.border:focus{border-color:#333;color:#444;}
 
 .btnArea{margin:30px 0 0;text-align:center;}
+.btn_excel{position:relative;display:inline-block;min-width:88px;height:29px;line-height:29px;padding-left:10px;background:#88929e;font-size:13px;color:#fff;}
+ .btn_excel:before{content:'';display:inline-block;width:18px;height:17px;position:absolute;top:50%;left:9px;margin-top:-9px;background:url(../../images/travel/common/icon_excel.gif) no-repeat 50% 50%;}
+
 
 /* 상단,좌측 제목 */
 .tbl{table-layout:fixed;box-sizing:border-box;width:100%;margin-bottom:5px; border-top:2px solid #384ea1;}
@@ -125,3 +128,5 @@ label{display:inline-block; box-sizing:border-box; width:auto; vertical-align:mi
 @media screen and (max-width:640px){
 	.button{width:70px;height:30px;line-height:30px;font-size:12px;}
 }
+
+ 

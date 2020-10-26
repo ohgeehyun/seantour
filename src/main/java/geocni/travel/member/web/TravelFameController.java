@@ -2,6 +2,7 @@ package geocni.travel.member.web;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import org.apache.commons.logging.Log;
@@ -13,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springmodules.validation.commons.DefaultBeanValidator;
@@ -25,6 +27,7 @@ import geocni.travel.member.domain.TravelFamePoint;
 import geocni.travel.member.domain.TravelReaction;
 import geocni.travel.member.service.TravelMemberService;
 import geocni.travel.route.domain.TravelDestination;
+import geocni.travel.route.domain.TravelRoute;
 import geocni.travel.route.service.TravelDestinationService;
 import geocni.travel.route.service.TravelRouteService;
 import jnit.cms.mbr.JnitcmsmbrService;
@@ -78,6 +81,24 @@ public class TravelFameController {
 		
 		return skinPath + "ranking";
 	}	
+	
+	
+	//  엑셀파일 다운로드
+		@RequestMapping(value = "fame/alldowexcel.do")
+		public String alldowexcel(TravelFamePoint famePoint, HttpServletRequest request, HttpServletResponse response,
+				 SessionStatus status, Model model)
+				throws Exception {
+		
+			
+			famePoint.setPageUnit(propertiesService.getInt("pageUnit"));
+			famePoint.setPageSize(propertiesService.getInt("pageSize"));
+			model.addAllAttributes(memberService.selectTravelFamePointListMap(famePoint));		
+
+			response.setContentType("application/vnd.ms-excel");
+			response.setHeader("Content-Disposition", "attachment; filename=" + "MyFameExcelfile.xls");
+			return skinPath + "excelview";
+		}
+		
 	
 	@ResponseBody
 	@RequestMapping(value="reco/insertAsync.do", produces="application/text;charset=utf8", method=RequestMethod.POST)

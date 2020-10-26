@@ -40,6 +40,7 @@ import egovframework.rte.fdl.property.EgovPropertyService;
 import geocni.travel.common.TravelDefaultVO;
 import geocni.travel.common.files.domain.TravelFiles;
 import geocni.travel.common.files.service.TravelFilesService;
+import geocni.travel.member.domain.TravelFamePoint;
 import geocni.travel.route.domain.TravelDestination;
 import geocni.travel.route.domain.TravelMain;
 import geocni.travel.route.service.TravelDestinationService;
@@ -221,6 +222,67 @@ public class TravelDestinationController {
 
 		return skinPath + "detail";
 	}
+	
+	@RequestMapping(value = "excelDetail.do")
+	public String excelDestinationDetail(@ModelAttribute("searchVO") TravelDefaultVO searchVO,
+			TravelDestination travelDestination, SessionStatus status, HttpServletRequest req, ModelMap model,
+			TravelMain travelMain,HttpServletResponse response,
+			@RequestParam(value = "destid", required = false, defaultValue = "1") String destid) throws Exception {
+
+			travelDestination.setDestId(destid);
+		try {
+
+			Calendar cal = Calendar.getInstance();
+			cal.add(Calendar.DATE, -1);
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
+			String datestr = sdf.format(cal.getTime());
+			String datestrtemp = datestr.substring(0, 8);
+
+			Calendar cal2 = Calendar.getInstance();
+			cal2.get(Calendar.DATE);
+			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMddHHmm");
+			String datestr2 = sdf2.format(cal2.getTime());
+			String datestrtemp2 = datestr2.substring(0, 8);
+
+			travelMain.setDatestrtemp(datestrtemp);
+			travelMain.setDatestrtemp2(datestrtemp2);
+			travelMain.setDestId(travelDestination.getDestId());
+
+			List<?> travelMainDestination = travelmainService.selectTravelMainDestination(travelMain);
+
+			JnitcmsmbrVO loginVO = JnitMgovUtil.getLoginMember();
+			if (!NullUtil.isEmpty(loginVO.getMbrId())) {
+				travelDestination.setDestUserId(loginVO.getMbrId());
+			}
+			model.addAttribute("travelMainDestination", travelMainDestination);
+			travelDestination = destService.selectTravelDestination(travelDestination);
+			model.addAttribute("travelDestination", travelDestination);
+
+			travelDestination.setDistance(50000); // 거리 30km about
+			travelDestination.setRecordCountPerPage(3);
+			// 인근 숙박시설
+			travelDestination.setDestCategory("숙박");
+			List<?> nearStayPoints = destService.selectTravelDestinationNearPointList(travelDestination);
+			model.addAttribute("nearStayPoints", nearStayPoints);
+			// 인근 놀이시설
+			travelDestination.setDestCategory("체험");
+			List<?> nearPlayPoints = destService.selectTravelDestinationNearPointList(travelDestination);
+			model.addAttribute("nearPlayPoints", nearPlayPoints);
+
+			status.setComplete();
+
+		} catch (NullPointerException e) {
+			log.error(e.getMessage());
+		} catch (Exception e) {
+			log.error(e.getMessage());
+		}
+		response.setContentType("application/vnd.ms-excel");
+		response.setHeader("Content-Disposition", "attachment; filename=" + "DetailExcelfile.xls");
+
+		return skinPath + "exceldetail";
+	}
+	
+	
 
 	@RequestMapping(value = "register.do")
 	public String registerTravelDestination(TravelDestination travelDestination, HttpServletRequest req, ModelMap model)
@@ -498,6 +560,43 @@ public class TravelDestinationController {
 		}
 
 		return skinPath + "stats";
+	}
+	
+	@RequestMapping(value = "statsExcel.do")
+	public String alldowexcel(TravelDestination travelDestination, HttpServletRequest request, HttpServletResponse response,
+			 SessionStatus status, Model model)
+			throws Exception {
+	
+		
+		try {
+			// travelDestination.setPageUnit(propertiesService.getInt("pageUnit"));
+			// travelDestination.setPageSize(propertiesService.getInt("pageSize"));
+			travelDestination.setRecordCountPerPage(30);
+			travelDestination.setDestSeason(null);
+			travelDestination.setDestRegion(null);
+
+			Map<?, ?> tagMap = destService.selectTravelDestinationStatsByTag(travelDestination);
+			model.addAttribute("tagMap", tagMap);
+
+			model.addAllAttributes(destService.selectTravelDestinationStatsBySeason(travelDestination));
+
+			model.addAttribute("travelDestination", travelDestination);
+
+			Integer recordCountPerPage = 6;
+			List<?> routeList = routeService.selectTravelRouteStats(recordCountPerPage);
+			model.addAttribute("routeList", routeList);
+
+			status.setComplete();
+
+		} catch (NullPointerException e) {
+			log.debug(e);
+		} catch (SQLException e) {
+			log.debug(e);
+		}
+
+		response.setContentType("application/vnd.ms-excel");
+		response.setHeader("Content-Disposition", "attachment; filename=" + "MyStatsExcelfile.xls");
+		return skinPath + "statsExcelview";
 	}
 
 	@ResponseBody

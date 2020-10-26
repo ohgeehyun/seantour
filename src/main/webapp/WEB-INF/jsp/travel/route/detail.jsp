@@ -74,15 +74,20 @@
 			            			<div class="info">
 			            				<ul class="list">
 			            					<li><c:out value="${travelRoute.routRegion}"/></li>
-			            					<li><c:out value="${fn:length(travelRoute.routeDailyList)-1}"/>박<c:out value="${fn:length(travelRoute.routeDailyList)}"/>일</li>
+			            					<li><c:out value="${fn:length(travelRoute.routeDailyList)-1}"/>박<c:out value="${fn:length(travelRoute.routeDailyList)}"/>일</li>	
 			            				</ul>
 			            				<%-- <p class="date">2020.03.02</p> --%>
 			            				<p class="date">
 			            					<fmt:parseDate value="${travelRoute.routRegDate}" var="parsedDate" pattern="yyyy-MM-dd HH:mm:ss.S"/>
 			            					<fmt:formatDate value="${parsedDate}" pattern="yyyy.MM.dd"/>
+			            					
 		            					</p>
 			            			</div>
 			            		</div>
+			            			<form:form commandName="routid" method="get">
+			            			<input type ="hidden" value="${travelRoute.routId}" name="routid" id="routid">
+									<button type="button" class="btn_excel" onclick='fn_egov_down_excel("<c:out value="${travelRoute.routId}"/>")'>엑셀</button>
+									</form:form>
 			            		<div class="memo_result_area">
 			            			<div class="memo_inner">
 			            				<c:out value="${travelRoute.routMemo}" escapeXml="false" />
@@ -270,6 +275,17 @@ function updateTravelRouteOpenStatus(routId){
 	frm.action = "<c:url value='/travel/member/updatemyroute.do'/>";
    	frm.submit();
 }
+
+function fn_egov_down_excel(routid)
+{
+		document.getElementById("routid").value = routid;	
+		document.getElementById("routid").action = "<c:url value='/travel/route/excelDetail.do'/>";
+  		document.getElementById("routid").submit(); 
+  	
+  	return false;
+}
+
+
 </script>
 </body>
 

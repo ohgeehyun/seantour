@@ -33,6 +33,10 @@
 							</ul>
 						</div>
 						<h3 class="fame_tit">추천 여행지</h3> 	
+							<div>
+								<!-- 백준현 엑셀파일다운로드 -->
+							<button type="button" class="btn_excel" onclick='fn_egov_down_excel()'>엑셀</button>
+							</div>		
 						<div class="recommend_tour_box">
 							<div class="tab_menu">
 								<ul>
@@ -186,6 +190,7 @@
                             	<c:if test="${not empty initRegion}">
 									<div class="map_status map01">
 										<h4 class="tit"><img src='<c:url value="/images/travel/content/${regionBan[initRegion.destRegion]}"/>' alt="<c:out value="${initRegion.destRegion}"/> 추천 여행지" /></h4>
+										
 										<div class="img">
 											<%-- <c:set var="regionImgPath" value="${empty initRegion.destImgPath ? '/images/travel/content/noimg.jpg' : 'http://seantour.com'.concat(initRegion.destImgPath)}" /> --%>
 										<c:if test="${fn:length(initRegion.travelFileList) eq 0}">	
@@ -366,5 +371,10 @@ function getTravelDestination(region, mapNo) {
 		}
 	});
 }
+	function fn_egov_down_excel(){
+	   location.href = "<c:url value='/travel/destination/statsExcel.do'/>";		   
+		  return false;
+		}
+	
 </script>
 </html>

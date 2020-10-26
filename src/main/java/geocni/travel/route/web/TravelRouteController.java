@@ -150,6 +150,33 @@ public class TravelRouteController {
 
 		return skinPath + "detail";
 	}
+	
+	@RequestMapping(value = "excelDetail.do")
+	public String excelDestinationDetail(@ModelAttribute("searchVO") TravelDefaultVO searchVO, TravelRoute travelRoute,
+			HttpServletRequest req, ModelMap model,HttpServletResponse response,
+			@RequestParam(value = "routid", required = false, defaultValue = "1") String routid) throws Exception {
+		
+			travelRoute.setRoutId(routid);
+		try {
+
+			if (NullUtil.isEmpty(travelRoute.getRoutId())) {
+				throw new NullPointerException("조회 대상 정보가 없습니다");
+			}
+
+			routeService.updateTravelRouteHitCount(travelRoute.getRoutId());
+
+			model.addAttribute("travelRoute", routeService.selectTravelRoute(travelRoute));
+
+		} catch (NullPointerException e) {
+			log.error(e.getMessage());
+		} catch (Exception e) {
+			log.error(e.getMessage());
+		}
+		response.setContentType("application/vnd.ms-excel");
+		response.setHeader("Content-Disposition", "attachment; filename=" + "DetailExcelfile.xls");
+
+		return skinPath + "exceldetail";
+	}
 
 	@RequestMapping(value = "register.do")
 	public String registerTravelRoute(TravelRoute travelRoute, TravelDestination travelDestination,
