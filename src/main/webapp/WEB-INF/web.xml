@@ -59,7 +59,7 @@
 
 	<context-param>
 		<param-name>jnitcmsLicenseKey</param-name>
-		<param-value>lthAOsiCSIDDi8KGaIDDBeA7hYdFOxgXghXze9GQulS2qQejmBLt6iNIscHJ23AOImQ1NiQolqjSFQHjn/YqXtmFUVl9xleHr3FF+do6maMDgkrh/kdl1PoWd4Wh+812</param-value>
+		<param-value>s7VWYDkbCqE5N1Uvi6KIAiRPCUhEy2MyM5RbmPdKnE+2qQejmBLt6iNIscHJ23AOImQ1NiQolqjSFQHjn/YqXtmFUVl9xleHr3FF+do6maMDgkrh/kdl1PoWd4Wh+812</param-value>
 	</context-param>
 
 	<!-- trick to javax.naming.namenotfoundexception -->

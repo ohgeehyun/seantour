@@ -196,6 +196,18 @@ public List<TravelMain> selectBeachPerCntInsert() throws Exception {
 	return travelMainDAO.selectBeachPerCntInsert(datestr);
 }
 
+	public List<?> selectTravelDestinationApi() throws Exception {
+		return travelMainDAO.selectTravelDestinationApi();
+	}
+
+	public List<?> selectTravelrouteApi() throws Exception {
+		return travelMainDAO.selectTravelrouteApi();
+	}
+
+	public List<?> selectTravelrouteDailyApi() throws Exception {
+		return travelMainDAO.selectTravelrouteDailyApi();
+	}
+
 //
 //	@Override
 //	public List<?> selectTravelRouteList(TravelRoute vo) throws Exception {

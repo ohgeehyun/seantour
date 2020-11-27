@@ -46,6 +46,19 @@ public class TravelMainDAO extends EgovComAbstractDAO {
 	public int selectDataExistCnt(String substring) {
 		return (int) select("travelMainDAO.selectDataExistCnt", substring);
 	}
+	
+	public List<?> selectTravelDestinationApi() throws Exception {
+		return list("travelMainDAO.selectTravelDestinationApi");
+	}
+
+	public List<?> selectTravelrouteApi() throws Exception {
+		return list("travelMainDAO.selectTravelrouteApi");
+	}
+
+	public List<?> selectTravelrouteDailyApi() throws Exception {
+		return list("travelMainDAO.selectTravelrouteDailyApi");
+	}
+
 //
 //    public List<?> selectTravelRouteList(TravelRoute vo) throws Exception {
 ////    	return list("travelRouteDAO.selectTravelRouteList", vo);

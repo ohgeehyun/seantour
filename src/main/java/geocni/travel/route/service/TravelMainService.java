@@ -20,6 +20,12 @@ public interface TravelMainService {
 	
 	List<?> selectTravelMainDestination(TravelMain travelMain) throws Exception;
 	
+	List<?>selectTravelDestinationApi() throws Exception;
+	
+	List<?>selectTravelrouteApi() throws Exception;
+	
+	List<?>selectTravelrouteDailyApi() throws Exception;
+	
 	int selectDataExistCnt(String substring) throws Exception;
 	
 //	int selectTravelRouteListCnt(TravelRoute vo) throws Exception;

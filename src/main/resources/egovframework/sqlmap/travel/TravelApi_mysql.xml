@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+
+
+<sqlMap namespace="travelApiDAO">
+
+	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias alias="geo_destinationVO" type="geocni.api.geo_destination" />
+	<typeAlias alias="geo_travel_routeVO" type="geocni.api.geo_travel_route" />
+	<typeAlias alias="geo_travel_route_dailyVO" type="geocni.api.geo_travel_route_daily" />
+	<typeAlias alias="fipa_area_codeVO" type="geocni.api.fipa_area_code" />
+	<typeAlias alias="fipa_contentVO" type="geocni.api.fipa_content" />
+	<typeAlias alias="geo_banfiltersVO" type="geocni.api.geo_ban_filters" />
+	<typeAlias alias="geo_clipboardVO" type="geocni.api.geo_clipboard" />
+	<typeAlias alias="geo_fame_historyVO" type="geocni.api.geo_fame_history" />
+	<typeAlias alias="geo_fame_pointVO" type="geocni.api.geo_fame_point" />
+	<typeAlias alias="geo_img_filesVO" type="geocni.api.geo_img_files" />
+		<typeAlias alias="geo_reactionVO" type="geocni.api.geo_img_reaction" />
+	<typeAlias alias="travelFiles" type="geocni.travel.common.files.domain.TravelFiles" />
+		
+	
+	<select id="travelApiDAO.selectTravelDestinationApi"  parameterClass="geo_destinationVO" resultClass="geo_destinationVO">
+		<![CDATA[
+			SELECT
+				*
+			FROM geo_destination
+		]]>
+	</select>
+	
+	<select id="travelApiDAO.selectTravelrouteApi"  parameterClass="geo_travel_routeVO" resultClass="geo_travel_routeVO">
+		<![CDATA[
+			SELECT
+				*
+			FROM geo_travel_route
+		]]>
+	</select>
+	
+	<select id="travelApiDAO.selectTravelroutedailyApi"  parameterClass="fipa_area_codeVO" resultClass="fipa_area_codeVO">
+		<![CDATA[
+			SELECT
+				*
+			FROM geo_travel_route_daily
+		]]>
+	</select>
+	
+		<select id="travelApiDAO.selectareacodeApi"  parameterClass="fipa_contentVO" resultClass="fipa_contentVO">
+		<![CDATA[
+			SELECT
+				*
+			FROM fipa_area_code
+		]]>
+	</select>
+	
+	<select id="travelApiDAO.selectcontentApi"  parameterClass="geo_travel_route_dailyVO" resultClass="geo_travel_route_dailyVO">
+		<![CDATA[
+			SELECT
+				*
+			FROM fipa_content
+		]]>
+	</select>
+	
+	<select id="travelApiDAO.selectclipboardApi"  parameterClass="geo_clipboardVO" resultClass="geo_clipboardVO">
+		<![CDATA[
+			SELECT
+				*
+			FROM geo_clipboard
+		]]>
+	</select>
+	
+	<select id="travelApiDAO.selectfamehistoryApi"  parameterClass="geo_fame_historyVO" resultClass="geo_fame_historyVO">
+		<![CDATA[
+			SELECT
+				*
+			FROM geo_fame_history
+		]]>
+	</select>
+	
+	<select id="travelApiDAO.selectfamepointApi"  parameterClass="geo_fame_pointVO" resultClass="geo_fame_pointVO">
+		<![CDATA[
+			SELECT
+				*
+			FROM geo_fame_point
+		]]>
+	</select>
+	
+		<select id="travelApiDAO.selectimgfilesApi"  parameterClass="geo_img_filesVO" resultClass="geo_img_filesVO">
+		<![CDATA[
+			SELECT
+				*
+			FROM geo_img_files
+		]]>
+	</select>
+	
+		<select id="travelApiDAO.selectreactionApi"  parameterClass="geo_reactionVO" resultClass="geo_reactionVO">
+		<![CDATA[
+			SELECT
+				*
+			FROM geo_reaction
+		]]>
+	</select>
+	
+
+
+
+</sqlMap>

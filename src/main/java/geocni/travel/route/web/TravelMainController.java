@@ -35,6 +35,9 @@ import egovframework.rte.psl.dataaccess.util.EgovMap;
 import geocni.travel.route.dao.TravelMainDAO;
 import geocni.travel.route.domain.TravelDestination;
 import geocni.travel.route.domain.TravelMain;
+import geocni.travel.route.domain.TravelDestination;
+import geocni.travel.route.domain.TravelRoute;
+import geocni.travel.route.domain.TravelRouteDaily;
 import geocni.travel.route.service.TravelMainService;
 
 import com.google.api.services.analytics.Analytics.Data;
@@ -56,6 +59,8 @@ public class TravelMainController {
     
     @Resource(name="travelMainDAO")
     private TravelMainDAO travelMainDAO;
+    
+    
     
 	@Resource(name = "egovMessageSource")
 	private EgovMessageSource msgSrc;
@@ -1149,6 +1154,54 @@ public class TravelMainController {
 	public JSONObject responseApi() throws Exception{
 	
 		List<?> api = (List<?>) mainService.selectBeachPerCntapi();
+		/*List<?> data = (List<?>) mainService.selectBeachPerCnt();*/
+		JSONObject sObject = new JSONObject();
+		
+		for(int i=0; i < api.size(); i++)
+		{
+			sObject.put("Beach"+ i , api.get(i));
+		}
+			
+		return sObject;
+	}
+	
+	@RequestMapping(value="getroutedailyApi.do")
+	@ResponseBody
+	public JSONObject routedailyApi() throws Exception{
+	
+		List<?> api = (List<?>) mainService.selectTravelrouteDailyApi();
+		/*List<?> data = (List<?>) mainService.selectBeachPerCnt();*/
+		JSONObject sObject = new JSONObject();
+		
+		for(int i=0; i < api.size(); i++)
+		{
+			sObject.put("Beach"+ i , api.get(i));
+		}
+			
+		return sObject;
+	}
+	
+	@RequestMapping(value="getDestinationApi.do")
+	@ResponseBody
+	public JSONObject destinationApi(TravelDestination traveldestination) throws Exception{
+	
+		List<?> api = (List<?>) mainService.selectTravelDestinationApi();
+		/*List<?> data = (List<?>) mainService.selectBeachPerCnt();*/
+		JSONObject sObject = new JSONObject();
+		
+		for(int i=0; i < api.size(); i++)
+		{
+			sObject.put("Beach"+ i , api.get(i));
+		}
+			
+		return sObject;
+	}
+	
+	@RequestMapping(value="getrouteApi.do")
+	@ResponseBody
+	public JSONObject routeApi() throws Exception{
+	
+		List<?> api = (List<?>) mainService.selectTravelrouteApi();
 		/*List<?> data = (List<?>) mainService.selectBeachPerCnt();*/
 		JSONObject sObject = new JSONObject();
 		

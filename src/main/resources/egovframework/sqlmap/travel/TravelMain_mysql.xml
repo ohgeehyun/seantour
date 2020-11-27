@@ -5,6 +5,39 @@
 
 	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
     <typeAlias alias="travelMain" type="geocni.travel.route.domain.TravelMain" />
+    <typeAlias alias="travelRoute" type="geocni.travel.route.domain.TravelRoute" />
+    <typeAlias alias="traveldestination" type="geocni.travel.route.domain.TravelDestination" />
+    <typeAlias alias="travelRouteDaily" type="geocni.travel.route.domain.TravelRouteDaily" />
+     
+     
+     
+	<resultMap id="travelDestinationMin" class="geocni.travel.route.domain.TravelDestination">
+		<result property="destId" column="dest_id" />
+		<result property="destTitle" column="dest_title" />
+		<result property="destAdSlogan" column="dest_ad_slogan" />
+		<result property="destRegion" column="dest_region" />
+		<result property="destCategory" column="dest_category" />
+		<result property="destTag" column="dest_tag" />
+		<result property="destWebsiteUrl" column="dest_website_url" />
+		<result property="destImgPath" column="dest_img_path" />
+		<result property="destPhone" column="dest_phone" />
+		<result property="destAddress" column="dest_address" />
+		<result property="destAxisX" column="dest_axis_x" />
+		<result property="destAxisY" column="dest_axis_y" />
+		<result property="destInformation" column="dest_information" />
+		<result property="destSeason" column="dest_season" />
+		<result property="destFeature" column="dest_feature" />
+		<result property="destDescription" column="dest_description" />
+		<result property="destRegDatetime" column="dest_reg_datetime" />
+        <result property="travelFileList" column="dest_id" select="travelDestinationDAO.selectTravelFilesList" ></result>
+	</resultMap>
+     
+     <resultMap id="travelDestinationMax" class="geocni.travel.route.domain.TravelDestination" extends="travelDestinationMin">
+		<result property="destRecommPoint" column="dest_recomm_point" />
+		<result property="destClipPoint" column="dest_clip_point" />
+		<result property="destWriter" column="dest_writer" />
+		<result property="destHit" column="dest_hit" />
+	</resultMap>
     
 	<select id="travelMainDAO.selectBeachPerCnt" parameterClass="java.lang.String" resultClass="travelMain">
         <![CDATA[
@@ -102,6 +135,68 @@
 			SELECT count(*) AS cnt
 			  FROM GEO_BEACH_CONGESTION
              WHERE ETL_DT = #datestr#
+        ]]>
+    </select>
+    
+    	<select id="travelMainDAO.selectTravelDestinationApi" parameterClass="traveldestination" resultMap="travelDestinationMax">
+        <![CDATA[
+			SELECT   dest_id
+				, dest_title 
+				, dest_ad_slogan
+				, dest_region
+				, dest_category
+				, dest_tag
+				, dest_website_url
+				, dest_img_path
+				, dest_phone
+				, dest_address
+				, dest_axis_x
+				, dest_axis_y
+				, dest_information
+				, dest_season
+				, dest_feature
+				, dest_description
+				, dest_recomm_point
+				, dest_clip_point
+				, dest_writer
+				, dest_reg_datetime
+				, dest_hit
+			  FROM geo_destination
+             WHERE 1=1
+        ]]>
+    </select>
+    
+    	<select id="travelMainDAO.selectTravelrouteApi"  parameterClass="travelRoute" resultClass="travelRoute">
+        <![CDATA[
+			SELECT    a.rout_id AS routId
+                , a.rout_title AS routTitle
+                , a.rout_reg_member AS routRegMember
+                , a.rout_region AS routRegion
+                , a.rout_thumb_path AS routThumbPath
+                , a.rout_memo AS routMemo
+                , a.rout_hit AS routHit
+                , a.rout_type AS routType
+                , a.rout_open AS routOpen
+                , a.rout_reg_date  AS routRegDate 
+				, b.mbr_nm AS routRegMemberNm
+			FROM geo_travel_route a
+				LEFT JOIN jnitcmsmbr b ON a.rout_reg_member=b.mbr_id
+			where 1=1
+        ]]>
+    </select>
+    
+    	<select id="travelMainDAO.selectTravelrouteDailyApi" parameterClass="travelRouteDaily" resultClass="travelRouteDaily">
+        <![CDATA[
+			  SELECT
+                  rout_id AS routId
+                , rout_days AS routDays
+                , rout_start_point AS routStartPoint
+                , rout_start_axis AS routStartAxis
+                , rout_dest_point AS routDestPoint
+                , rout_dest_axis AS routDestAxis
+                , rout_way_point AS routWayPoint
+            FROM geo_travel_route_daily
+             WHERE 1=1
         ]]>
     </select>
 	
