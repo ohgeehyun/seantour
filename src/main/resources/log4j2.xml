@@ -12,23 +12,23 @@
 
 	<!-- Logger 설정 -->
 	<Loggers>
-		<Logger name="java.sql" level="DEBUG" additivity="false">
+		<Logger name="java.sql" level="info" additivity="false">
 			<AppenderRef ref="console" />
 		</Logger>
-		<Logger name="egovframework" level="DEBUG" additivity="false">
+		<Logger name="egovframework" level="info" additivity="false">
 			<AppenderRef ref="console" />
 		</Logger>
-		<Logger name="jnit" level="DEBUG" additivity="false">
+		<Logger name="jnit" level="info" additivity="false">
 			<AppenderRef ref="console" />
 		</Logger>
-	    <Logger name="jdbc.sqltiming" level="INFO" additivity="false">
+	    <Logger name="jdbc.sqltiming" level="info" additivity="false">
 	        <AppenderRef ref="console" />
 	    </Logger>
-		<Logger name="org.springframework" level="DEBUG"
+		<Logger name="org.springframework" level="info"
 			additivity="false">
 			<AppenderRef ref="console" />
 		</Logger>
-		<Root level="DEBUG">
+		<Root level="ERROR">
 			<AppenderRef ref="console" />
 		</Root>
 	</Loggers>

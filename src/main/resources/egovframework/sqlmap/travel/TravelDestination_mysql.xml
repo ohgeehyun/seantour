@@ -240,9 +240,10 @@
 			</isNotEmpty>
 		<![CDATA[
 			FROM geo_destination a
-			WHERE dest_id=#destId#
+			WHERE dest_id=#destId# 	
 		]]>
 	</select>
+	
 	<sql id="travelDestinationDAO.travelDestinationCategoryClause">
 		<isNotEmpty property="destCategory" prepend="AND">
 			<![CDATA[	dest_category = #destCategory#	]]>
@@ -251,6 +252,7 @@
 			<![CDATA[	dest_region = #destRegion#	]]>
 		</isNotEmpty>		
 	</sql>
+	
 	<sql id="travelDestinationDAO.travelDestinationWhereClause">
 		<isNotEmpty property="destRegion" prepend="AND">
 			<![CDATA[	a.dest_region = #destRegion#	]]>
@@ -260,6 +262,9 @@
 		</isNotEmpty>
 		<isNotEmpty property="searchKeyword" prepend="AND">
 			<![CDATA[	a.dest_title LIKE CONCAT('%',#searchKeyword#,'%')	]]>
+		</isNotEmpty>
+		<isNotEmpty property="destTag" prepend="AND">
+			<![CDATA[	a.dest_tag = #destTag#	]]>
 		</isNotEmpty>
 		<isNotEmpty property="destTagList" prepend="AND">
 			<![CDATA[	a.dest_tag IN	]]>

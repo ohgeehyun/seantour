@@ -16,7 +16,7 @@
 	<typeAlias alias="geo_fame_historyVO" type="geocni.api.geo_fame_history" />
 	<typeAlias alias="geo_fame_pointVO" type="geocni.api.geo_fame_point" />
 	<typeAlias alias="geo_img_filesVO" type="geocni.api.geo_img_files" />
-		<typeAlias alias="geo_reactionVO" type="geocni.api.geo_img_reaction" />
+		<typeAlias alias="geo_reactionVO" type="geocni.api.geo_reaction" />
 	<typeAlias alias="travelFiles" type="geocni.travel.common.files.domain.TravelFiles" />
 		
 	
@@ -92,7 +92,7 @@
 		]]>
 	</select>
 	
-		<select id="travelApiDAO.selectreactionApi"  parameterClass="geo_reactionVO" resultClass="geo_reactionVO">
+		<select id="travelApiDAO.selectTravelreactionApi"  parameterClass="geo_reactionVO" resultClass="geo_reactionVO">
 		<![CDATA[
 			SELECT
 				*

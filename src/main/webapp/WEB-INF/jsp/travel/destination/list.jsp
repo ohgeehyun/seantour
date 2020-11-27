@@ -5,6 +5,7 @@
 <html lang="ko" class="skrollr skrollr-desktop">
 <head>
 	<%@ include file="/WEB-INF/jsp/travel/tpl/head.jsp" %>
+	
 </head>
 <body>
 	<div id="wrap">
@@ -28,7 +29,6 @@
 	            <div class="cont_body">
 		            <div class="inr">
 		            	<div class="bbsSrch bbsSrch2">
-		            	 
 							<fieldset>
 								<legend>검색</legend>
 								<form:select path="destRegion" cssClass="select" onchange="fn_egov_link_page(1);">
@@ -43,11 +43,76 @@
 									<option value="음식점" <c:if test="${travelDestination.destCategory eq '음식점'}">selected</c:if>>식당</option>
 									<option value="쇼핑" <c:if test="${travelDestination.destCategory eq '쇼핑'}">selected</c:if>>쇼핑</option>
 								</select>
+								<c:if test ="${param.destCategory eq '관광지'}">
+									<select class="select2" name="destTag" id="destTag" onchange="fn_egov_link_page(1);">
+										<option value="">전체</option>
+										<option value="공원" <c:if test="${travelDestination.destTag eq '공원'}">selected</c:if>>공원</option>
+										<option value="기타관광지" <c:if test="${travelDestination.destTag eq '기타관광지'}">selected</c:if>>기타관광지</option>
+										<option value="등대" <c:if test="${travelDestination.destTag eq '등대'}">selected</c:if>>등대</option>
+										<option value="문화유적" <c:if test="${travelDestination.destTag eq '문화유적'}">selected</c:if>>문화유적</option>
+										<option value="섬" <c:if test="${travelDestination.destTag eq '섬'}">selected</c:if>>섬</option>
+										<option value="어촌체험마을" <c:if test="${travelDestination.destTag eq '어촌체험마을'}">selected</c:if>>어촌체험마을</option>
+										<option value="영화" <c:if test="${travelDestination.destTag eq '영화'}">selected</c:if>>영화</option>
+										<option value="일출" <c:if test="${travelDestination.destTag eq '일출'}">selected</c:if>>일출</option>
+										<option value="전망대" <c:if test="${travelDestination.destTag eq '전망대'}">selected</c:if>>전망대</option>
+										<option value="전시관" <c:if test="${travelDestination.destTag eq '전시관'}">selected</c:if>>전시관</option>
+										<option value="체험프로그램" <c:if test="${travelDestination.destTag eq '체험프로그램'}">selected</c:if>>체험프로그램</option>
+										<option value="축제" <c:if test="${travelDestination.destTag eq '축제'}">selected</c:if>>축제</option>
+										<option value="항구" <c:if test="${travelDestination.destTag eq '항구'}">selected</c:if>>항구</option>
+									</select>
+								</c:if>
+								<c:if test ="${param.destCategory eq '숙박'}">
+									<select class="select2" name="destTag" id="destTag" onchange="fn_egov_link_page(1);">
+										<option value="">전체</option>
+										<option value="게스트하우스" <c:if test="${travelDestination.destTag eq '게스트하우스'}">selected</c:if>>게스트하우스</option>
+										<option value="리조트" <c:if test="${travelDestination.destTag eq '리조트'}">selected</c:if>>리조트</option>
+										<option value="민박" <c:if test="${travelDestination.destTag eq '민박'}">selected</c:if>>민박</option>
+										<option value="여관" <c:if test="${travelDestination.destTag eq '여관'}">selected</c:if>>여관</option>
+										<option value="캠핑장" <c:if test="${travelDestination.destTag eq '캠핑장'}">selected</c:if>>캠핑장</option>
+										<option value="펜션" <c:if test="${travelDestination.destTag eq '펜션'}">selected</c:if>>펜션</option>
+										<option value="호텔" <c:if test="${travelDestination.destTag eq '호텔'}">selected</c:if>>호텔</option>
+									</select>
+								</c:if>
+								<c:if test ="${param.destCategory eq '체험'}">
+									<select class="select2" name="destTag" id="destTag" onchange="fn_egov_link_page(1);">
+										<option value="">전체</option>
+										<option value="낚시터" <c:if test="${travelDestination.destTag eq '낚시터'}">selected</c:if>>낚시터</option>
+										<option value="마리나" <c:if test="${travelDestination.destTag eq '마리나'}">selected</c:if>>마리나</option>
+										<option value="수상여가" <c:if test="${travelDestination.destTag eq '수상여가'}">selected</c:if>>수상여가</option>
+										<option value="유람선" <c:if test="${travelDestination.destTag eq '유람선'}">selected</c:if>>유람선</option>
+										<option value="해수욕장" <c:if test="${travelDestination.destTag eq '해수욕장'}">selected</c:if>>해수욕장</option>
+										<option value="해안 자전거길" <c:if test="${travelDestination.destTag eq '해안 자전거길'}">selected</c:if>>해안 자전거길</option>
+										<option value="해안누리길" <c:if test="${travelDestination.destTag eq '해안누리길'}">selected</c:if>>해안누리길</option>
+										<option value="해안산책로" <c:if test="${travelDestination.destTag eq '해안산책로'}">selected</c:if>>해안산책로</option>
+										<option value="해안레포츠" <c:if test="${travelDestination.destTag eq '해안레포츠'}">selected</c:if>>해안레포츠</option>
+										<option value="기타 "<c:if test="${travelDestination.destTag eq '기타'}">selected</c:if>>기타</option>
+									</select>
+								</c:if>
+									<c:if test ="${param.destCategory eq '음식점'}">
+									<select class="select2" name="destTag" id="destTag" onchange="fn_egov_link_page(1);">
+										<option value="">전체</option>
+										<option value="식도락" <c:if test="${travelDestination.destTag eq '식도락'}">selected</c:if>>식도락</option>
+										<option value="양식" <c:if test="${travelDestination.destTag eq '양식'}">selected</c:if>>양식</option>
+										<option value="일식" <c:if test="${travelDestination.destTag eq '일식'}">selected</c:if>>일식</option>
+										<option value="중식" <c:if test="${travelDestination.destTag eq '중식'}">selected</c:if>>중식</option>
+										<option value="한식" <c:if test="${travelDestination.destTag eq '한식'}">selected</c:if>>한식</option>
+										<option value="횟집" <c:if test="${travelDestination.destTag eq '횟집'}">selected</c:if>>횟집</option>
+									</select>
+								</c:if>
+								<c:if test ="${param.destCategory eq '쇼핑'}">
+									<select class="select2" name="destTag" id="destTag" onchange="fn_egov_link_page(1);">
+										<option value="">전체</option>
+										<option value="가공" <c:if test="${travelDestination.destTag eq '낚시터'}">selected</c:if>>가공</option>
+										<option value="신선제품" <c:if test="${travelDestination.destTag eq '마리나'}">selected</c:if>>신선제품</option>
+										<option value="어시장" <c:if test="${travelDestination.destTag eq '수상여가'}">selected</c:if>>어시장</option>
+									</select>
+								</c:if>
+								
+								
 								<form:input path="searchKeyword" cssClass="word" />
 								<%-- <input name="searchWrd" type="text" size="30" class="word" value='' maxlength="35" onkeypress="doKeyPress(event);" title="검색어 입력" /> --%> 
 								<input type="button" value='검색' class="bbs_btn" onclick="fn_egov_link_page(1);" />
 							</fieldset>
-						
 						</div>
 
 						<%-- <div class="tabmenu colum6" name="destCatogory" id="destCategory" onchange="fn_egoc_link_page(1);"> --%>
@@ -85,7 +150,8 @@
 								<li><a href="<c:url value="/travel/destination/list.do?destCategory=체험&destRegion=${travelDestination.destRegion}"/>" <c:if test="${travelDestination.destCategory eq '체험'}">class="on"</c:if>><span>레져</span></a></li>
 							</ul>
 						</div>
-		               
+						
+						<c:import url="/travel/destination/checkbox.do" charEncoding="utf-8"></c:import>
 						<div class="page_num">
 							<p>총 게시물 <span><c:out value="${allCnt}" /></span>건</p>
 						</div>
