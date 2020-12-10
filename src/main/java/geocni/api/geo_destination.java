@@ -49,6 +49,8 @@ public class geo_destination {
 
 	private String dest_season;
 	
+	
+
 	public String getDest_id() {
 		return dest_id;
 	}

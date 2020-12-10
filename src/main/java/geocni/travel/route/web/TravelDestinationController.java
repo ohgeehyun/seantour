@@ -95,7 +95,64 @@ public class TravelDestinationController {
 			TravelDestination travelDestination, SessionStatus status,
 			@RequestParam(value = "excelPageno", required = false, defaultValue = "1") String excelPageno, Model model)
 			throws Exception {
-
+		
+		try {
+			
+			 if(travelDestination.getDestCategory() == "") {
+				 travelDestination.setTourism(null);
+				 travelDestination.setLodgment(null);
+				 travelDestination.setRestaurant(null);
+				 travelDestination.setShopping(null);
+				 travelDestination.setLeisure(null);
+				 travelDestination.setDestRegion(null);
+				 travelDestination.setSearchKeyword(null);
+			 }	
+			 if(travelDestination.getUrlparam() == "tourism") {
+				 travelDestination.setLodgment(null);
+				 travelDestination.setRestaurant(null);
+				 travelDestination.setShopping(null);
+				 travelDestination.setLeisure(null);
+				 travelDestination.setDestRegion(null);
+				 travelDestination.setSearchKeyword(null);
+			 }
+			 if(travelDestination.getUrlparam() == "lodgment") {
+				 travelDestination.setTourism(null);
+				 travelDestination.setRestaurant(null);
+				 travelDestination.setShopping(null);
+				 travelDestination.setLeisure(null);
+				 travelDestination.setDestRegion(null);
+				 travelDestination.setSearchKeyword(null);
+			 }
+			 if(travelDestination.getUrlparam() == "restaurant") {
+				 travelDestination.setTourism(null);
+				 travelDestination.setLodgment(null);
+				 travelDestination.setShopping(null);
+				 travelDestination.setLeisure(null);
+				 travelDestination.setDestRegion(null);
+				 travelDestination.setSearchKeyword(null);
+			 }
+			 if(travelDestination.getUrlparam() == "shopping") {
+				 travelDestination.setTourism(null);
+				 travelDestination.setLodgment(null);
+				 travelDestination.setRestaurant(null);
+				 travelDestination.setLeisure(null);
+				 travelDestination.setDestRegion(null);
+				 travelDestination.setSearchKeyword(null);
+			 }
+			 if(travelDestination.getUrlparam() == "leisure") {
+				 travelDestination.setTourism(null);
+				 travelDestination.setLodgment(null);
+				 travelDestination.setRestaurant(null);
+				 travelDestination.setShopping(null);
+				 travelDestination.setDestRegion(null);
+				 travelDestination.setSearchKeyword(null);
+			 }
+			 	
+		
+			}catch(NullPointerException e) {
+				log.debug(e);
+		 }
+			
 		try {
 			List<?> regionList = destService.selectTravelDestinationRegionList(travelDestination);
 			model.addAttribute("regionList", regionList);

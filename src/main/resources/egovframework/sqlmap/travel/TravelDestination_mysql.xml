@@ -253,6 +253,45 @@
 		</isNotEmpty>		
 	</sql>
 	
+	<sql id="travelDestinationDAO.checkWhereClause">
+	
+		<isNotEmpty property="tourism" prepend="AND">
+			dest_tag IN	
+			<iterate  property="tourism" open="(" close=")" conjunction=",">
+       	 		#tourism[]#
+    		</iterate>
+    	</isNotEmpty>
+    	
+    	<isNotEmpty property="lodgment" prepend="AND">
+			dest_tag IN	
+			<iterate  property="lodgment" open="(" close=")" conjunction=",">
+       	 		#lodgment[]#
+    		</iterate>
+    	</isNotEmpty>
+    	
+    	<isNotEmpty property="restaurant" prepend="AND">
+			dest_tag IN	
+			<iterate  property="restaurant" open="(" close=")" conjunction=",">
+       	 		#restaurant[]#
+    		</iterate>
+    	</isNotEmpty>
+    	
+    	<isNotEmpty property="shopping" prepend="AND">
+			dest_tag IN	
+			<iterate  property="shopping" open="(" close=")" conjunction=",">
+       	 		#shopping[]#
+    		</iterate>
+    	</isNotEmpty>
+    	
+    	<isNotEmpty property="leisure" prepend="AND">
+			dest_tag IN	
+			<iterate  property="leisure" open="(" close=")" conjunction=",">
+       	 		#leisure[]#
+    		</iterate>
+    	</isNotEmpty>
+		
+	</sql>
+	
 	<sql id="travelDestinationDAO.travelDestinationWhereClause">
 		<isNotEmpty property="destRegion" prepend="AND">
 			<![CDATA[	a.dest_region = #destRegion#	]]>
@@ -265,12 +304,6 @@
 		</isNotEmpty>
 		<isNotEmpty property="destTag" prepend="AND">
 			<![CDATA[	a.dest_tag = #destTag#	]]>
-		</isNotEmpty>
-		<isNotEmpty property="destTagList" prepend="AND">
-			<![CDATA[	a.dest_tag IN	]]>
-			<iterate property="destTagList" conjunction="," open="(" close=")">
-				<![CDATA[	#destTagList[]# ]]>
-			</iterate>
 		</isNotEmpty>
 		<!-- 
 		<isEqual prepend="AND" property="searchCondition" compareValue="0">
@@ -342,8 +375,9 @@
 			</isNotEmpty>
 		<![CDATA[
 			FROM geo_destination a
-			WHERE 1=1
+			WHERE 1=1 
 		]]>
+			<include refid="travelDestinationDAO.checkWhereClause" />
 			<include refid="travelDestinationDAO.travelDestinationWhereClause" />
 		<![CDATA[
 			ORDER BY dest_reg_datetime DESC, dest_id DESC
@@ -400,6 +434,7 @@
 				DEST_TITLE = '기성망양 해수욕장' or DEST_TITLE = '장사 해수욕장' or DEST_TITLE = '경정 해수욕장' or
 				DEST_TITLE = '와현모래숲해변' or DEST_TITLE = '옥계 해수욕장' or DEST_TITLE = '여차해변 해수욕장' or DEST_TITLE = '사량대항 해수욕장' or DEST_TITLE = '남일대 해수욕장'
 		]]>
+		col in ()
 			<include refid="travelDestinationDAO.travelDestinationWhereClause" />
 		<![CDATA[
 			ORDER BY dest_reg_datetime DESC, dest_id DESC
@@ -416,8 +451,9 @@
 			SELECT 
 				COUNT(*) totcnt
 			FROM geo_destination a
-			WHERE 1=1
+		    WHERE 1=1 
 		]]>
+			<include refid="travelDestinationDAO.checkWhereClause" />
 			<include refid="travelDestinationDAO.travelDestinationWhereClause" />
 	</select>
 	

@@ -28,7 +28,12 @@
 			additivity="false">
 			<AppenderRef ref="console" />
 		</Logger>
-		<Root level="ERROR">
+		<logger name="java.sql.Connection" level="DEBUG" additivity="false">
+
+	<appender-ref ref="console" />
+
+</logger>
+		<Root level="DEBUG">
 			<AppenderRef ref="console" />
 		</Root>
 	</Loggers>

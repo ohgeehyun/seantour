@@ -64,6 +64,27 @@ public class TravelDestination extends TravelDefaultVO {
     
     private List<TravelFiles> travelFileList;
     
+    private List<String> tourism;
+    
+    private List<String> lodgment;
+
+    private List<String> restaurant;
+    
+    private List<String> shopping;
+    
+    private List<?> leisure;
+    
+    private String urlparam;
+
+    
+	public String getUrlparam() {
+		return urlparam;
+	}
+
+	public void setUrlparam(String urlparam) {
+		this.urlparam = urlparam;
+	}
+
 	public String getDestId() {
 		return destId;
 	}
@@ -286,5 +307,50 @@ public class TravelDestination extends TravelDefaultVO {
 	public void setTravelFileList(List<TravelFiles> travelFileList) {
 		this.travelFileList = travelFileList;
 	}
+	
+	
+
+	public List<String> getTourism() {
+		return tourism;
+	}
+
+	public void setTourism(List<String> tourism) {
+		this.tourism = tourism;
+	}
+
+	public List<String> getLodgment() {
+		return lodgment;
+	}
+
+	public void setLodgment(List<String> lodgment) {
+		this.lodgment = lodgment;
+	}
+
+	public List<String> getRestaurant() {
+		return restaurant;
+	}
+
+	public void setRestaurant(List<String> restaurant) {
+		this.restaurant = restaurant;
+	}
+
+	public List<String> getShopping() {
+		return shopping;
+	}
+
+	public void setShopping(List<String> shopping) {
+		this.shopping = shopping;
+	}
+
+	public List<?> getLeisure() {
+		return leisure;
+	}
+
+	public void setLeisure(List<?> leisure) {
+		
+		this.leisure = leisure;
+	}
+	
+	
 
 }

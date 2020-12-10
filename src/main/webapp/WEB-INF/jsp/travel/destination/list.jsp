@@ -43,7 +43,7 @@
 									<option value="음식점" <c:if test="${travelDestination.destCategory eq '음식점'}">selected</c:if>>식당</option>
 									<option value="쇼핑" <c:if test="${travelDestination.destCategory eq '쇼핑'}">selected</c:if>>쇼핑</option>
 								</select>
-								<c:if test ="${param.destCategory eq '관광지'}">
+								<%-- <c:if test ="${param.destCategory eq '관광지'}">
 									<select class="select2" name="destTag" id="destTag" onchange="fn_egov_link_page(1);">
 										<option value="">전체</option>
 										<option value="공원" <c:if test="${travelDestination.destTag eq '공원'}">selected</c:if>>공원</option>
@@ -106,7 +106,7 @@
 										<option value="신선제품" <c:if test="${travelDestination.destTag eq '마리나'}">selected</c:if>>신선제품</option>
 										<option value="어시장" <c:if test="${travelDestination.destTag eq '수상여가'}">selected</c:if>>어시장</option>
 									</select>
-								</c:if>
+								</c:if> --%>
 								
 								
 								<form:input path="searchKeyword" cssClass="word" />
@@ -142,7 +142,7 @@
 							<span class="unfd sprh_com"></span>
 							</a>
 							<ul>
-								<li><a href="<c:url value="/travel/destination/list.do?destRegion=${travelDestination.destRegion}"/>" <c:if test="${empty travelDestination.destCategory}">class="on"</c:if>><span>전체</span></a></li>
+								<li><a href="<c:url value="/travel/destination/list.do?destCategory=&destRegion=${travelDestination.destRegion}"/>" <c:if test="${empty travelDestination.destCategory}">class="on"</c:if>><span>전체</span></a></li>
 								<li><a href="<c:url value="/travel/destination/list.do?destCategory=관광지&destRegion=${travelDestination.destRegion}"/>" <c:if test="${travelDestination.destCategory eq '관광지'}">class="on"</c:if>><span>관광</span></a></li>
 								<li><a href="<c:url value="/travel/destination/list.do?destCategory=숙박&destRegion=${travelDestination.destRegion}"/>" <c:if test="${travelDestination.destCategory eq '숙박'}">class="on"</c:if>><span>숙박</span></a></li>
 								<li><a href="<c:url value="/travel/destination/list.do?destCategory=음식점&destRegion=${travelDestination.destRegion}"/>" <c:if test="${travelDestination.destCategory eq '음식점'}">class="on"</c:if>><span>식당</span></a></li>
@@ -152,6 +152,7 @@
 						</div>
 						
 						<c:import url="/travel/destination/checkbox.do" charEncoding="utf-8"></c:import>
+						
 						<div class="page_num">
 							<p>총 게시물 <span><c:out value="${allCnt}" /></span>건</p>
 						</div>
@@ -223,7 +224,124 @@
 		width: 60px;
 	}
 	</style> -->
-	<script>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+	// Handler when the DOM is fully loaded
+	
+
+	if($("input:checkbox[name='tourism']")!= null){
+		var list = new Array();
+		var temp = $("input:checkbox[name='tourism']").length-1;
+		<c:forEach items="${travelDestination.tourism}" var="item2">
+	   		 list.push("${item2}");
+		</c:forEach>
+		
+		list.forEach(function(item,index){
+			 for(var i=0; i <= temp; i++){
+				if(list[index] == $("input:checkbox[name='tourism']")[i].value)
+					{
+						$("input:checkbox[name='tourism']")[i].checked = true;
+					}
+			 }
+		})
+	}
+
+	
+	if($("input:checkbox[name='lodgment']") != null){
+		var list = new Array();
+		var temp = $("input:checkbox[name='lodgment']").length-1;
+		<c:forEach items="${travelDestination.lodgment}" var="item2">
+	   		 list.push("${item2}");
+		</c:forEach>
+		
+		list.forEach(function(item,index){
+			 for(var i=0; i <= temp; i++){
+				if(list[index] == $("input:checkbox[name='lodgment']")[i].value)
+					{
+						$("input:checkbox[name='lodgment']")[i].checked = true;
+					}
+			 }
+		})
+	}
+	
+	if($("input:checkbox[name='restaurant']") != null){
+		var list = new Array();
+		var temp = $("input:checkbox[name='restaurant']").length-1;
+		<c:forEach items="${travelDestination.restaurant}" var="item2">
+	   		 list.push("${item2}");
+		</c:forEach>
+		
+		list.forEach(function(item,index){
+			 for(var i=0; i <= temp; i++){
+				if(list[index] == $("input:checkbox[name='restaurant']")[i].value)
+					{
+						$("input:checkbox[name='restaurant']")[i].checked = true;
+					}
+			 }
+		})
+	}
+	
+	if($("input:checkbox[name='shopping']") != null){
+		var list = new Array();
+		var temp = $("input:checkbox[name='shopping']").length-1;
+		<c:forEach items="${travelDestination.shopping}" var="item2">
+	   		 list.push("${item2}");
+		</c:forEach>
+		
+		list.forEach(function(item,index){
+			 for(var i=0; i <= temp; i++){
+				if(list[index] == $("input:checkbox[name='shopping']")[i].value)
+					{
+						$("input:checkbox[name='shopping']")[i].checked = true;
+					}
+			 }
+		})
+	}
+	
+	if($("input:checkbox[name='leisure']") != null){
+		var list = new Array();
+		var temp = $("input:checkbox[name='leisure']").length-1;
+		<c:forEach items="${travelDestination.leisure}" var="item2">
+	   		 list.push("${item2}");
+		</c:forEach>
+		
+		list.forEach(function(item,index){
+			 for(var i=0; i <= temp; i++){
+				if(list[index] == $("input:checkbox[name='leisure']")[i].value)
+					{
+						$("input:checkbox[name='leisure']")[i].checked = true;
+					}
+			 }
+		})
+	}
+	
+	});
+	
+	
+function getParam(sname) {
+
+    var params = location.search.substr(location.search.indexOf("?") + 1);
+
+    var sval = "";
+
+    params = params.split("&");
+
+    for (var i = 0; i < params.length; i++) {
+
+        temp = params[i].split("=");
+
+        if ([temp[0]] == sname) { sval = temp[1]; }
+
+    }
+
+    return sval;
+
+}
+
+
+
+	
+	
 // function registerTravelDestFeedback(userId, targetId, type) {
 function registerTravelDestFeedback(obj, type) {
 	var param, url;
@@ -269,6 +387,13 @@ function registerTravelDestFeedback(obj, type) {
 }
 
 function fn_egov_link_page(pageNo){	
+	document.getElementById('excelPageno').value=pageNo;
+	document.getElementById("travelDestination").pageIndex.value = pageNo;
+	document.getElementById("travelDestination").action = "<c:url value='/travel/destination/list.do'/>";
+   	document.getElementById("travelDestination").submit();
+}
+
+function fn_egov_link_check(pageNo){	
 	document.getElementById('excelPageno').value=pageNo;
 	document.getElementById("travelDestination").pageIndex.value = pageNo;
 	document.getElementById("travelDestination").action = "<c:url value='/travel/destination/list.do'/>";

@@ -170,7 +170,11 @@
 .local_lst li .tbox .location:before{content:'';display:inline-block;position:absolute;top:5px;left:0;width:13px;height:16px;background:url(/seantour_map/images/travel/content/icon_location.gif) no-repeat 0 0;}
 .local_lst li .icon_box{position:absolute;bottom:10px;right:10px;}
 
-
+/* **************************************** *
+ * checkBox
+ * **************************************** */
+.tagcheck{margin:-10px 0 20px;padding-bottom:15px;border-bottom:3px solid #eaeaea;}
+.tagcheck label{display:inline-block;padding-right:20px;vertical-align:middle;}
 /* **************************************** *
  * 바다여행 지역별  상세페이지
  * **************************************** */
@@ -778,6 +782,9 @@
 	.my_info_box .fame .fame_list li:before{height:60px;}
 	.my_info_box .fame .fame_list li .tit{font-size:13px;}
 	.my_info_box .fame .fame_list li .tit_num{margin-top:15px;font-size:16px;}
+	
+	.tagcheck{margin:15px 0 !important;}
+	.tagcheck label{font-size:12px;}
 }
 
 @media screen and (max-width:767px){
