@@ -39,7 +39,7 @@
 									<option value="">전체</option>
 									<option value="관광지" <c:if test="${travelDestination.destCategory eq '관광지'}">selected</c:if>>관광</option>
 									<option value="숙박" <c:if test="${travelDestination.destCategory eq '숙박'}">selected</c:if>>숙박</option>
-									<option value="체험" <c:if test="${travelDestination.destCategory eq '체험'}">selected</c:if>>레져</option>
+									<option value="레져" <c:if test="${travelDestination.destCategory eq '레져'}">selected</c:if>>레져</option>
 									<option value="음식점" <c:if test="${travelDestination.destCategory eq '음식점'}">selected</c:if>>식당</option>
 									<option value="쇼핑" <c:if test="${travelDestination.destCategory eq '쇼핑'}">selected</c:if>>쇼핑</option>
 								</select>
@@ -126,7 +126,7 @@
 								<c:when test = "${travelDestination.destCategory eq '숙박'}">
 								<c:out value="숙박"/>
 								</c:when>
-								<c:when test = "${travelDestination.destCategory eq '체험'}">
+								<c:when test = "${travelDestination.destCategory eq '레져'}">
 								<c:out value="레져"/>
 								</c:when>
 								<c:when test = "${travelDestination.destCategory eq '음식점'}">
@@ -147,7 +147,7 @@
 								<li><a href="<c:url value="/travel/destination/list.do?destCategory=숙박&destRegion=${travelDestination.destRegion}"/>" <c:if test="${travelDestination.destCategory eq '숙박'}">class="on"</c:if>><span>숙박</span></a></li>
 								<li><a href="<c:url value="/travel/destination/list.do?destCategory=음식점&destRegion=${travelDestination.destRegion}"/>" <c:if test="${travelDestination.destCategory eq '음식점'}">class="on"</c:if>><span>식당</span></a></li>
 								<li><a href="<c:url value="/travel/destination/list.do?destCategory=쇼핑&destRegion=${travelDestination.destRegion}"/>" <c:if test="${travelDestination.destCategory eq '쇼핑'}">class="on"</c:if>><span>쇼핑</span></a></li>
-								<li><a href="<c:url value="/travel/destination/list.do?destCategory=체험&destRegion=${travelDestination.destRegion}"/>" <c:if test="${travelDestination.destCategory eq '체험'}">class="on"</c:if>><span>레져</span></a></li>
+								<li><a href="<c:url value="/travel/destination/list.do?destCategory=레져&destRegion=${travelDestination.destRegion}"/>" <c:if test="${travelDestination.destCategory eq '레져'}">class="on"</c:if>><span>레져</span></a></li>
 							</ul>
 						</div>
 						

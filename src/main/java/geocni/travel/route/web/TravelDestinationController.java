@@ -104,48 +104,33 @@ public class TravelDestinationController {
 				 travelDestination.setRestaurant(null);
 				 travelDestination.setShopping(null);
 				 travelDestination.setLeisure(null);
-				 travelDestination.setDestRegion(null);
-				 travelDestination.setSearchKeyword(null);
+				 travelDestination.setDestRegion("");
+				 travelDestination.setSearchKeyword("");
 			 }	
-			 if(travelDestination.getUrlparam() == "tourism") {
-				 travelDestination.setLodgment(null);
-				 travelDestination.setRestaurant(null);
-				 travelDestination.setShopping(null);
-				 travelDestination.setLeisure(null);
-				 travelDestination.setDestRegion(null);
-				 travelDestination.setSearchKeyword(null);
-			 }
-			 if(travelDestination.getUrlparam() == "lodgment") {
+			 if( travelDestination.getUrlparam().equals("관광지") && !travelDestination.getDestCategory().equals(travelDestination.getUrlparam())) {
 				 travelDestination.setTourism(null);
-				 travelDestination.setRestaurant(null);
-				 travelDestination.setShopping(null);
-				 travelDestination.setLeisure(null);
-				 travelDestination.setDestRegion(null);
-				 travelDestination.setSearchKeyword(null);
+				 travelDestination.setDestRegion("");
+				 travelDestination.setSearchKeyword("");
 			 }
-			 if(travelDestination.getUrlparam() == "restaurant") {
-				 travelDestination.setTourism(null);
+			 if( travelDestination.getUrlparam().equals("숙박") && !travelDestination.getDestCategory().equals(travelDestination.getUrlparam())) {
 				 travelDestination.setLodgment(null);
-				 travelDestination.setShopping(null);
-				 travelDestination.setLeisure(null);
-				 travelDestination.setDestRegion(null);
-				 travelDestination.setSearchKeyword(null);
+				 travelDestination.setDestRegion("");
+				 travelDestination.setSearchKeyword("");
 			 }
-			 if(travelDestination.getUrlparam() == "shopping") {
-				 travelDestination.setTourism(null);
-				 travelDestination.setLodgment(null);
+			 if( travelDestination.getUrlparam().equals("음식점") && !travelDestination.getDestCategory().equals(travelDestination.getUrlparam())) {
 				 travelDestination.setRestaurant(null);
-				 travelDestination.setLeisure(null);
-				 travelDestination.setDestRegion(null);
-				 travelDestination.setSearchKeyword(null);
+				 travelDestination.setDestRegion("");
+				 travelDestination.setSearchKeyword("");
 			 }
-			 if(travelDestination.getUrlparam() == "leisure") {
-				 travelDestination.setTourism(null);
-				 travelDestination.setLodgment(null);
-				 travelDestination.setRestaurant(null);
+			 if( travelDestination.getUrlparam().equals("쇼핑") && !travelDestination.getDestCategory().equals(travelDestination.getUrlparam())) {
 				 travelDestination.setShopping(null);
-				 travelDestination.setDestRegion(null);
-				 travelDestination.setSearchKeyword(null);
+				 travelDestination.setDestRegion("");
+				 travelDestination.setSearchKeyword("");
+			 }
+			 if( travelDestination.getUrlparam().equals("레져") && !travelDestination.getDestCategory().equals(travelDestination.getUrlparam())) {
+				 travelDestination.setLeisure(null);
+				 travelDestination.setDestRegion("");
+				 travelDestination.setSearchKeyword("");
 			 }
 			 	
 		
