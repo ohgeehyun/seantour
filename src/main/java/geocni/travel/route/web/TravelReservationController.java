@@ -77,7 +77,7 @@ public class TravelReservationController {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH");
 		Date resvStDate = new Date();
 		try {
-			resvStDate = dateFormat.parse("2020-07-01 09");
+			resvStDate = dateFormat.parse("2021-03-01 09");
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -88,11 +88,11 @@ public class TravelReservationController {
 		} else {
 			rtnVal = true;	//오늘 날짜가 해수욕장 예약 시작일(resvStDate) 이후인 경우 true
 		}
-		rtnVal = false;	//해수욕장 예약 테스트 시 사용 : true=예약가능 / false=예약불가능
+		rtnVal = true;	//해수욕장 예약 테스트 시 사용 : true=예약가능 / false=예약불가능
 		return rtnVal;
 	}
 	
-/*	@RequestMapping(value="area.do")
+	@RequestMapping(value="area.do")
 	public String reservationArea(
 			 TravelRoute travelRoute
 			,TravelReservation travelReservation
@@ -136,7 +136,7 @@ public class TravelReservationController {
 		}
 		
 		return skinPath + "area";
-	}*/
+	}
 	
 	@RequestMapping(value="insert.do")
 	public String reservationInsert(

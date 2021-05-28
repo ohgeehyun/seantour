@@ -11,12 +11,13 @@
 						 <label><input type="checkbox" name="tourism" value="공원" >공원</label>
      					 <label><input type="checkbox" name="tourism" value="등대">등대</label>	
      					  <label><input type="checkbox" name="tourism" value="문화유적">문화유적</label>
-     					 <label><input type="checkbox" name="tourism" value="섬">섬</label>		
-     					  <label><input type="checkbox" name="tourism" value="어촌체험마을" >어촌체험마을</label>
+     					 <label><input type="checkbox" name="tourism" value="섬">섬</label>	
+     					  <label><input type="checkbox" name="tourism" value="승마장">승마장</label>	
+     					  <label><input type="checkbox" name="tourism" value="어촌체험" >어촌체험</label>
      					 <label><input type="checkbox" name="tourism" value="영화" >영화/드라마촬영지</label>		
      					  <label><input type="checkbox" name="tourism" value="일출" >일출/낙조경관도로</label>
      					 <label><input type="checkbox" name="tourism" value="전망대" >전망대/조망시설</label>		
-     					  <label><input type="checkbox" name="tourism" value="전시관" >전시관/미술관/박물관</label>
+     					  <label><input type="checkbox" name="tourism" value="전시관" >전시관/미술관/박물관/기념관</label>
      					 <label><input type="checkbox" name="tourism" value="체험프로그램">체험프로그램</label>	
      					 <label><input type="checkbox" name="tourism" value="축제" >축제/행사</label>
      					 <label><input type="checkbox" name="tourism" value="항구">항구</label>
@@ -43,15 +44,16 @@
 <c:if test ="${param.destCategory eq '레져'}">
 <div class = "tagcheck">
 						
-						 <label><input type="checkbox" name= "leisure" value="낚시터" >낚시터</label>
+						 <label><input type="checkbox" name= "leisure" value="낚시" >낚시</label>
      					 <label><input type="checkbox" name= "leisure" value="마리나">마리나</label>	
-     					  <label><input type="checkbox" name= "leisure" value="수상여가" >수상여가</label>
-     					 <label><input type="checkbox" name= "leisure" value="유람선">유람선/크루즈</label>		
+     					 <label><input type="checkbox" name= "leisure" value="유람선">유람선/크루즈</label>
+     					 <label><input type="checkbox" name= "leisure" value="유람선">케이블카</label>		
      					  <label><input type="checkbox" name="leisure" value="해수욕장">해수욕장</label>
      					 <label><input type="checkbox" name= "leisure" value="해안자전거길">해안 자전거길</label>		
      					  <label><input type="checkbox" name="leisure" value="해안누리길">해안누리길</label>
      					  <label><input type="checkbox" name="leisure" value="해안산책로">해안산책로</label>		
-     					  <label><input type="checkbox" name="leisure" value="해양스포츠">해양스포츠/장비임대</label>
+     					  <label><input type="checkbox" name="leisure" value="해양레포츠">해양레포츠</label>
+     					  <label><input type="checkbox" name="leisure" value="해양레포츠장비">해양레포츠장비</label>
      					  <label><input type="checkbox" name="leisure" value="기타">기타</label>	
      					    <label><input type="hidden" name="urlparam" value="레져"></label>		
      					 

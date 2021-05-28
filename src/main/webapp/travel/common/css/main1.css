@@ -221,103 +221,6 @@ a.btn-layerClose:hover {
 .spotzone .main_visual_content_cell .main_visual_content_cell_right .point:focus,
 .spotzone .main_visual_content_cell .main_visual_content_cell_right .point:active{width:50px;height:50px;background:url(/seantour_map/images/travel/main/icon_point_hover.png) no-repeat 0 0;background-size:cover;font-size:12px;color:#fff;line-height:50px;text-align:center;z-index:999;}
 
-.spotzone .time{position:absolute;top:35%;left:42%;font-family:'Notable-Regular';font-size:13px;font-weight:bold;color:#000;line-height:1.1;letter-spacing:-1px;}
-/*.spotzone .time:before{content:'';display:inline-block;position:absolute;top:0;left:0;width:43px;height:43px;background:url(/seantour_map/images/travel/main/icon_time.png) no-repeat 0 0;background-size:cover;}*/
-.spotzone .time span{font-size:24px;}
-
-
-/* **************************************** *
- * 혼잡도
- * **************************************** */
-/*#container.main{padding-top:78px;}*/
-#container.main .spotzone .main_visual_content_cell{padding-top:0 !important;}
-.spotzone .main_visual_content_cell .main_visual_content_cell_right_inr{float:right;position:relative;width:517px;height:789px;background:url(/seantour_map/images/travel/main/img_map_main3.png) no-repeat 0 0;background-size:100%;}
-.spotzone .spot_title{position:absolute;top:10px;left:-130px;}
-.spotzone .spot_info{position:absolute;bottom:10px;right:5px;width:43%;}
-.spotzone .spot_info img{width:100%;border-radius:0.5em;box-shadow:5px 5px 5px 5px rgba(0,0,0, 0.4);}
-.spotzone .spot{position:absolute;width:11px;height:11px;}
-.spotzone .blinker.spot1{left:79%;top:69%;}/* 해운대 */
-.spotzone .blinker.spot2{left:78.08%;top:70.38%}/* 광안리 */
-.spotzone .blinker.spot3{left:76%;top:72.8%;}/*송도 */
-.spotzone .blinker.spot4{left:12.34%;top:44.8%;}/* 대천 */
-.spotzone .blinker.spot5{left:74.33%;top:71.36%;}/* 다대포 */
-.spotzone .blinker.spot6{left:77%;top:18.5%;}/* 경포 */
-.spotzone .blinker.spot7{left:81%;top:67.5%;}/* 송정 */
-.spotzone .blinker.spot8{left:68.87%;top:12.33%;}/* 낙산 */
-.spotzone .blinker.spot9{left:65.87%;top:8.33%;}/* 속초 */
-.spotzone .blinker.spot10{left:83%;top:24.1%;}/* 삼척 */
-
-.spotzone .blinker.spot11{left:82.3%;top:22.5%;}/* 망상 */
-.spotzone .blinker.spot12{left:84.4%;top:25.5%;}/* 맹방 */
-.spotzone .blinker.spot13{left:85.4%;top:28.5%;}/* 추암 */
-.spotzone .blinker.spot14{left:21%;top:88.5%;}/* 신지 명사십리 */
-.spotzone .blinker.spot15{left:4.5%;top:36.5%;}/* 만리포 */
-.spotzone .blinker.spot16{left:88.3%;top:58.5%;}/* 일산 */
-.spotzone .blinker.spot17{left:26.5%;top:92%;}/* 함덕서우봉 */
-.spotzone .blinker.spot18{left:88%;top:60.5%;}/* 진하 */
-.spotzone .blinker.spot19{left:73.5%;top:15.8%;}/* 하조대 */
-.spotzone .blinker.spot20{left:17%;top:94.5%;}/* 협제 */
-.spotzone .blinker.spot21{left:87.3%;top:38.5%;}/* 고래불 */
-.spotzone .blinker.spot22{left:75%;top:17.3%;}/* 주문진 */
-.spotzone .blinker.spot23{left:12%;top:47.8%;}/* 춘장대 */
-.spotzone .blinker.spot24{left:22.5%;top:92.9%;}/* 이호테우 */ 
-.spotzone .blinker.spot25{left:8.5%;top:42.9%;}/* 꽃지 */
-.spotzone .blinker.spot26{left:63%;top:1.5%;}/* 송지호 */
-.spotzone .blinker.spot27{left:19.5%;top:94%;}/* 곽지괴물 */
-.spotzone .blinker.spot28{left:58.7%;top:-0.6%;}/* 화진포 */
-.spotzone .blinker.spot29{left:67.3%;top:10.5%;}/* 외옹치 */
-.spotzone .blinker.spot30{left:16%;top:95.8%;}/* 금능으뜸원  */
-.spotzone .blinker.spot31{left:63%;top:3.3%;}/* 삼포 */
-.spotzone .blinker.spot32{left:84.56%;top:66.8%;}/* 일광 */
-.spotzone .blinker.spot33{left:7%;top:40%;}/*몽산포 */
-.spotzone .blinker.spot34{left:84.5%;top:64.5%;}/* 임랑 */
-.spotzone .blinker.spot35{left:22.4%;top:98.8%;}/* 중문색달해변 */
-
-.spotzone .blinker.spot36{left:11%;top:46.3%;}/* 무창포 */
-.spotzone .blinker.spot37{left:29%;top:93.3%;}/* 김녕 */
-.spotzone .blinker.spot38{left:79%;top:20.3%;}/* 안목 */
-.spotzone .blinker.spot39{left:49.7%;top:79.5%;}/* 상주은모래비치 */
-.spotzone .blinker.spot40{left:15%;top:23.9%;}/* 을왕리 */
-.spotzone .blinker.spot41{left:6.5%;top:41.5%;}/* 삼봉 */
-.spotzone .blinker.spot42{left:80.2%;top:21.8%;}/* 정동진 */
-.spotzone .blinker.spot43{left:85%;top:27%;}/* 용화 */
-.spotzone .blinker.spot44{left:65%;top:6.8%;}/* 등대 */
-.spotzone .blinker.spot45{left:18%;top:24.4%;}/* 하나개 */
-.spotzone .blinker.spot46{left:60.5%;top:0.6%;}/*송지호오토캠핑 */
-.spotzone .blinker.spot47{left:89%;top:55%;}/* 관성 */
-.spotzone .blinker.spot48{left:72%;top:14.1%;}/* 중광정 */
-.spotzone .blinker.spot49{left:64.5%;top:5%;}/* 천진 */
-.spotzone .blinker.spot50{left:6%;top:34.5%;}/* 신두리 */
-
-
-.spotzone .blinker{position:absolute;/*width:120px;*/width:auto !important;}
-.spotzone .blinker .icon{position:relative;display:inline-block;width:19px;height:19px;}
-.spotzone .blinker .icon.red{background:url(/seantour_map/images/travel/main/icon_blinker_red.png) no-repeat 0 0;background-size:cover;}
-.spotzone .blinker .icon.yellow{background:url(/seantour_map/images/travel/main/icon_blinker_yellow.png) no-repeat 0 0;background-size:cover;}
-.spotzone .blinker .icon.green{background:url(/seantour_map/images/travel/main/icon_blinker_green.png) no-repeat 0 0;background-size:cover;}
-
-.spotzone .blinker a .name{display:none;position:absolute; left:30px; top:-3px;padding:5px 10px; text-align:center; line-height:1.2; background:#fff; border:1px solid #555; white-space:nowarp; border-radius:10px; font-size:12px; font-weight:bold;text-indent:0;padding:5px;white-space:nowrap;}   
-.spotzone .blinker a:hover .name,
-.spotzone .blinker a:focus .name,
-.spotzone .blinker a:active .name{display:block;}
-.spotzone .blinker .name:before {content:""; position:absolute; top:10px; left:-11px; width:10px; height:1px; background:#fff;}
-
-.blinkerpop {display:none;position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); background:#fff; border:1px solid #c9c9c9; width:390px; z-index:9999;}
-.blinkerpop .title {position:relative; background:#eaebec; color:#000; padding:10px 19px; font-size:16px; font-weight:bold; color:#1f4784;}
-.blinkerpop .title button {position:absolute; right:19px; top:50%; transform:translateY(-50%); font-size:0px; width:22px; height:22px; background:url(/seantour_map/images/travel/main/close_btn_pop.png) no-repeat 0 0;}
-.blinkerpop .reserv {position:relative;}
-.blinkerpop .reserv .box_icon {position:absolute; top:10px; left:30px; width:19px; height:65px; }
-.blinkerpop .reserv .box_icon.box_red {background:url(/seantour_map/images/travel/main/icon_blinker_red_ver2.png) no-repeat 0 0; background-size:cover;}
-.blinkerpop .reserv .box_icon.box_green {background:url(/seantour_map/images/travel/main/icon_blinker_green_ver2.png) no-repeat 0 0; background-size:cover;}
-.blinkerpop .reserv .box_icon.box_yellow {background:url(/seantour_map/images/travel/main/icon_blinker_yellow_ver2.png) no-repeat 0 0; background-size:cover;}
-.blinkerpop .reserv ul {padding:15px 15px 15px 75px;}
-.blinkerpop .reserv ul li {color:#000; line-height:27px;}
-.blinkerpop .reserv ul li span {position:relative; display:inline-block; width:90px;}
-.blinkerpop .reserv ul li span:after {content:""; position:absolute; right:15px; top:50%; transform:translateY(-50%); width:1px; height:13px; background:#999; vertical-align:middle;}
-.blinkerpop .reserv a {position:absolute; display:block; font-size:14px; padding:5px 8px; background:#1f4784; color:#fff; right:15px; top:50%; transform:translateY(-50%);}
-
-
-          
 .spotzone .main_visual_content_cell .spot_search{display:none;margin-top:35px;text-align:center;}
 .spotzone .main_visual_content_cell .spot_search .cssSelect{position:relative;display:inline-block;width: 50%; height:45px;}
 .spotzone .main_visual_content_cell .spot_search .cssSelect button{box-sizing:border-box; width: 100%; height:45px; padding:0 22px 0 20px; border:4px solid #ffff00; background:rgba(0,0,0,.6);border-radius:0.2em;font-size:13px; color:#fff; text-align: left;}
@@ -334,13 +237,12 @@ a.btn-layerClose:hover {
 .spotzone .main_visual_content_cell .visual_go .button{position:relative;width:260px;height:72px;line-height:72px;padding-left:40px;font-size:18px;color:#fff;}
 .spotzone .main_visual_content_cell .visual_go .button:before{content:'';display:inline-block;position:absolute;top:50%;left:53px;margin-top:-15.5px;width:30px;height:31px;}
 .spotzone .main_visual_content_cell .visual_go .button.mv_btn01{background:#047db2;}
-.spotzone .main_visual_content_cell .visual_go .button.mv_btn01:before{background:url(/seantour_map/images/travel/main/icon_mv1.png) no-repeat 0 0;background-size:cover;}
+.spotzone .main_visual_content_cell .visual_go .button.mv_btn01:before{background:url(../images/main/icon_mv1.png) no-repeat 0 0;background-size:cover;}
 .spotzone .main_visual_content_cell .visual_go .button.mv_btn02{background:#ff5050;}
-.spotzone .main_visual_content_cell .visual_go .button.mv_btn02:before{background:url(/seantour_map/images/travel/main/icon_mv2.png) no-repeat 0 0;background-size:cover;}
+.spotzone .main_visual_content_cell .visual_go .button.mv_btn02:before{background:url(../images/main/icon_mv2.png) no-repeat 0 0;background-size:cover;}
 .spotzone .main_visual_content_cell .visual_go .button:hover,
 .spotzone .main_visual_content_cell .visual_go .button:focus{background:#444;opacity:.8; box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19);}
           
-
 
 /* tit_box */
 .tit_box{position:relative;text-align:center;margin:55px 0 35px;}
@@ -397,7 +299,18 @@ a.btn-layerClose:hover {
 	.reserv_main_left input{height:40px;}
 	.reserv_main_left .btn{width:calc(100% - 37% - 37% - 15px);height:40px;line-height:30px;margin-left:5px;}
 }
-
+/* **************************************** *
+ * leisure_box
+ * **************************************** */
+ .leisure_box{width:100%;}
+ .leisure_box a{display:block;width:100%;transition:all 0.4s;}
+ .leisure_box .pc{display:block;}
+ .leisure_box .mob{display:none;}
+ 
+ @media screen and (max-width:767px){
+ 	.leisure_box .pc{display:none;}
+ 	.leisure_box .mob{display:block;}
+ }
 /* **************************************** *
  * section01
  * **************************************** */
@@ -691,33 +604,6 @@ a.btn-layerClose:hover {
   	.spotzone .main_visual_content_cell .visual_go .button{width:200px;height:55px;line-height:55px;padding-left:20px;font-size:16px;}
   	.spotzone .main_visual_content_cell .visual_go .button:before{left:22px;}
   	
-  	.spotzone .time{font-size:13px;}
-  	.spotzone .time:before{width:35px;height:35px;}
-	.spotzone .time span{font-size:18px;}
-	
-  	/***********혼잡도************/
-	/*#container.main{padding-top:60px;}*/
-	
-	#container.main .spotzone .main_visual_content_cell{padding-top:0 !important;}
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right{padding-left:12%;}
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right_inr{float:left;position:relative;width:317px;height:489px;background:url(/seantour_map/images/travel/main/img_map_main3.png) no-repeat 0 0;background-size:cover;}
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker{position:absolute;width:18%;height:6%;}
-	
-  	.spotzone .spot_title{top:-30px;}
-  	
-	.icon{position:absolute;/*top:-37px;right:-22px;*/display:inline-block;width:21px;height:67px;}
-	
-	
-	/* .spotzone .main_visual_content_cell .main_visual_content_cell_right .spot4 .icon,
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot7 .icon,
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot1 .icon,
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot2 .icon{right:66px;}
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot3 .icon{top:-62px;right:16px;} */
-	
-	.name{font-size:13px;line-height:1.8;}          
-	
-	.spotzone .main_visual_content_cell .visual_go .button{width:155px;}
-	  
   	
 	/* section01 */
 	.section01{height:120px;padding-top:28px;}
@@ -748,7 +634,6 @@ a.btn-layerClose:hover {
 
 
 @media screen and (max-width:1023px){
-/*#container.main{padding-top:60px;}*/
 	/* spotzone */
 	.spotzone .main_visual_content_cell{padding-top:0;}
 	.main_visual_content_cell_weather{top:26px;}
@@ -784,7 +669,7 @@ a.btn-layerClose:hover {
 	
 	.spotzone .list>li{height:550px;}
 	.spotzone .main_visual_wrap{height:550px;}
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right_inr{/*width:290px;height:400px;*/}
+	.spotzone .main_visual_content_cell .main_visual_content_cell_right_inr{width:290px;height:400px;}
 	.spotzone .main_visual_content_cell .visual_arrow{top:265px;left:-90px;width:75px;}
 	.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit{font-size:25px;}
 	.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit strong{font-size:43px;}
@@ -800,26 +685,6 @@ a.btn-layerClose:hover {
 	.spotzone .bx-controls a.bx-next{background:url(/seantour_map/images/travel/main/btn_bx_next_m.png) no-repeat 0 0;}
 	*/
 	
-	.spotzone .spot_title{top:5px;left:-130px;}
-	.spotzone .spot_title img{width:80%;}
-	
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right{padding-left:3%;}
-	
-	.spotzone .blinker .icon{width:12px;height:12px;}
-	/*.spotzone .blinker {width:30px;}*/
-	/*.spotzone .blinker a .name{display:none;}   
-	.spotzone .blinker a:hover .name {display:none;}*/  	
-	.blinkerpop{width:90%;}
-	.blinkerpop .reserv ul{padding:5px 5px 5px 45px;font-size:13px;}
-	.blinkerpop .reserv .box_icon{top:10px;left:10px;width:16px;height:55px;}
-	.blinkerpop .reserv a{position:static;width:70px;margin:15px auto 0;font-size:12px;text-align:center;}
-	
-	
-	.reserv_main_left span{margin-left:5px;}
-	.reserv_main_left strong{padding-left:0;}
-	.reserv_main_left strong:before{display:none;}
-	.reserv_main_left{padding:20px 10px;}
-	.reserv_main_left .btn{font-size:12px;}
 	
     /* tit_box */
     .tit_box{margin:35px 0 15px;}
@@ -849,7 +714,7 @@ a.btn-layerClose:hover {
 	/* spotzone */
 	.spotzone .list>li{height:400px;}
 	.spotzone .main_visual_wrap{/*position:relative;*/height:400px;}
-	
+	.spotzone .main_visual_content_cell>div{width:100%;}
 	.main_visual_content_cell_weather{left:50%;margin-left:-25%;padding:10px;}
 	.main_visual_content_cell_weather .weather img{width:23px;}
 	.main_visual_content_cell_weather .weather span{font-size:20px;}
@@ -857,40 +722,17 @@ a.btn-layerClose:hover {
 	.main_visual_content_cell_weather .dust{font-size:11px;}
 	.main_visual_content_cell_weather .dust dl{line-height:18px;}
 	.main_visual_content_cell_weather .dust dl dt{width:65px;}
-	/*.spotzone .main_visual_content_cell .main_visual_content_cell_left .img_lst{display:none;margin:0;}
+	.spotzone .main_visual_content_cell .main_visual_content_cell_left .img_lst{display:none;margin:0;}
 	.spotzone .main_visual_content_cell .main_visual_content_cell_right_inr{display:none;}
 	.spotzone .main_visual_content_cell .main_visual_content_cell_left{text-align:center;}
 	.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit{margin-top:0;}
 	.spotzone .main_visual_content_cell .spot_search{display:block;}
 	.spotzone .main_visual_content_cell .visual_go{position:absolute;left:0;bottom:0;}
 	.spotzone .main_visual_content_cell .visual_go .button{float:left;width:50%;margin:0;font-size:14px;}
-	*/
-	/*.spotzone .main_visual_content_cell>div{width:100%;}*/
-	/*.spotzone .main_visual_content_cell .main_visual_content_cell_right{width:100%;}*/
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker{width:12%;height:5%;}
-	.spotzone .blinker .name{font-size:12px;}
-	.spotzone .main_visual_wrap{height:550px;}
-	.spotzone .list>li{height:550px;}
-	.spotzone .main_visual_content_cell_left{/*display:none;*/}
-	.spotzone .main_visual_content_cell_left .tit{margin:25px 0 10px;}
-	.reserv_main_left{margin:10px 0 5px;}
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right_inr{float:right;margin:50px auto 0;padding:0;}
-	.spotzone .spot_title{top:-30px;left:0;}
-	.spotzone .spot_title img{width:70%;}
-	.spotzone .spot_info img{width:100%;height:auto;}
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker4 .icon, 
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker7 .icon, 
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker1 .icon, 
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .blinker2 .icon{right:37px;}
 	
-	/*.blinkerpop{position:static;transform:translate(0 , 0);width:300px;height:150px;}*/
-	
-	/* section00 */
-	.section00{padding:15px 0;}
-	.section00 p{font-size:24px;}
 	
 	/* section01 */
-	.section01{display:block;}
+	.section01{display:none;}
 	
 	/* section04 */
     .section04{padding:25px 0 30px;}
@@ -905,7 +747,7 @@ a.btn-layerClose:hover {
 	.tit_box .tit{font-size:20px;}
 	.tit_box .txt{font-size:12px;line-height:1.2;}
 	
-	/* spotzone 
+	/* spotzone */
 	.spotzone .list>li{height:360px;}
 	.spotzone .main_visual_wrap{height:360px;}
 	.spotzone .main_visual_content_cell .spot_search{margin-top:25px;}
@@ -913,32 +755,11 @@ a.btn-layerClose:hover {
 	.spotzone .main_visual_content_cell .spot_search .cssSelect.on .lst li a{font-size:12px;line-height:1.5;}
 	.spotzone .bx-controls .bx-controls-auto, 
 	.spotzone .bx-controls .bx-pager{bottom:18%;}
-	*/
-	.spotzone .main_visual_wrap{padding:0;}
-	.spotzone .main_visual_content_cell>div{width:100%;}
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right{width:100%;padding-left:0;}
-	/* .spotzone .main_visual_content_cell .main_visual_content_cell_right .spot4 .icon, 
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot7 .icon, 
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot1 .icon, 
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right .spot2 .icon{right:42px;} */
-	.spotzone .main_visual_wrap{height:850px;}
-	.spotzone .list>li{height:850px;}
-	.spotzone .main_visual_content_cell>div{width:100%;}
-	.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit{margin:15px 0 15px;font-size:22px;}
-	.spotzone .main_visual_content_cell .main_visual_content_cell_left .tit strong{font-size:40px;}
 	
-	.spotzone .time{font-size:11px;}
-  	.spotzone .time:before{width:35px;height:35px;}
-	.spotzone .time span{font-size:16px;}
-	
-
-	.section00 {padding:10px 0;}
-	.section00 p{font-size:18px;}
-	.section00 p span{font-size:20px;}
 	
 	/* section02 */
-	/*.section02 .col01 .img>a{height:260px;}
-   	.section02 .col01 .img>a>img{height:260px;}*/
+	.section02 .col01 .img>a{height:260px;}
+   	.section02 .col01 .img>a>img{height:260px;}
    	.section02 .col01 a,
 	.section02 .col01 a img{height:260px;}
     .section02 .vest_recommend_box .name_tit{width:120px !important;height:32px;line-height:32px;font-size:14px;}
@@ -995,19 +816,9 @@ a.btn-layerClose:hover {
 	
 	
  }   
- 
-@media screen and (max-width:600px){
-	.spotzone .blinker a .name{top:0;left:23px;padding:3px;line-height:1;font-size:7px;}
-	.spotzone .blinker a .name:before{top:4px;}
-
-}	
+ 	
 @media screen and (max-width:420px){
 	
-	.spotzone .main_visual_content_cell .main_visual_content_cell_right_inr{float:left;}
-	
-	.section01 .minr>div{float:none;width:100%;margin-left:0;}
-	.section01 .minr>div:first-child{margin-bottom:10px;}
-
 	/* section02 */
 	.section02 .col01 a,
 	.section02 .col01>a img{height:235px;}

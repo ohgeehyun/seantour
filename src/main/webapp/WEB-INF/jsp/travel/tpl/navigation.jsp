@@ -42,7 +42,7 @@
 		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/destination/list')}">바다여행</c:if>
 		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/destination/detail')}">바다여행</c:if>
 		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/destination/register')}">바다여행</c:if> 
-		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/destination/summer_list')}">한적한 해수욕장 25선</c:if>           
+		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/destination/summer_list')}">한적한 해수욕장 50선</c:if>           
 		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/member')}">마이페이지</c:if>
 		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/route')}">추천일정</c:if>
 		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/reservation')}">예약 시스템</c:if>
@@ -180,7 +180,7 @@
 								</c:if> 
 								 <c:if test="${fn:contains(pageContext.request.requestURI, 'travel/destination/summer_list')||
 												 fn:contains(pageContext.request.requestURI, 'travel/reservation')}">
-									<li><a href="<c:url value='/travel/destination/summerlist.do'/>">한적한 해수욕장25선</a></li>
+									<li><a href="<c:url value='/travel/destination/summerlist.do'/>">한적한 해수욕장50선</a></li>
 									<li><a href="<c:url value='/travel/reservation/area.do'/>">예약 시스템</a></li>							
 									</c:if>
 								
