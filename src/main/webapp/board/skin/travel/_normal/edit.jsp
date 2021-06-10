@@ -274,7 +274,7 @@
 				</div>
 
 				<input type="hidden" name="searchCondition" value="<c:out value='${param.searchCondition}'/>"/>
-				<input type="hidden" name="searchKeyword" value="<c:out value='${param.searchKeyword}'/>"/>
+				<input type="hidden" name="ㅣbtnSubmitsearchKeyword" value="<c:out value='${param.searchKeyword}'/>"/>
 				<input type="hidden" name="pageIndex" value="<c:out value='${param.pageIndex}'/>"/>
 				<input type="hidden" name="fileuploadList" id="fileuploadList" value=""/>
 			</form:form>

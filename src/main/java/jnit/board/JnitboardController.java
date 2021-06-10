@@ -13,6 +13,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.io.Reader;
 import java.math.BigDecimal;
 import java.net.HttpURLConnection;
@@ -32,6 +33,7 @@ import javax.annotation.Resource;
 import javax.imageio.IIOException;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import jnit.board.cmt.JnitboardcmtDefaultVO;
 import jnit.board.cmt.JnitboardcmtService;
@@ -2470,28 +2472,38 @@ public class JnitboardController {
 							if(delFileStr.indexOf(mainFileAltId) > -1) mainFileAltId = "";
 						}
 					}
-
+					
+					String temp = item.getFileName();
+					String temp2 = temp.substring(temp.lastIndexOf(".") + 1);
+				
 					//파일 존재시
 					if(item.getSize() > 0){
+						if(temp2 == "jsp" || temp2 == "asp" || temp2 == "js") {
+							System.out.println("file name : " + temp);
+							System.out.println("extension : " + temp2);
+						}else {
 						if("mainfile".equals(key) || "moviefile".equals(key)){
 							if(!"".equals(mainFileAltId)){
 								fileVO.setFileId(mainFileAltId);
 								String fileUrl = "/board/file/" + fileVO.getBoardId() + "/" + String.valueOf(fileVO.getBoardCntId()) + "/" + mainFileAltId + "/" + fileVO.getFileNm();
 								fileVO.setFileUrl(fileUrl);
-								fileService.updateJnitboardfile(fileVO);
-							}else{
+								fileService.updateJnitboardfile(fileVO);						
+							}else{					
+								
 								fileService.insertJnitboardfile(fileVO);
 							}
 						}else {
-							if(localVO.getBoardinfoVO().getUseFile()==1){
+							if(localVO.getBoardinfoVO().getUseFile()==1){ 
 								fileService.insertJnitboardfile(fileVO);
 							}
 						}
+					  }
 					}
 					sortKey = sortKey+1;
 				}
 				//위지윅에디터 이미지 처리
 				if(localVO.getBoardinfoVO().getUseImage()==1){
+
 					JnitboardfileVO fileVO = new JnitboardfileVO();
 					fileVO.setBoardId(boardId);
 					fileVO.setBoardCntId(boarddbVO.getId());

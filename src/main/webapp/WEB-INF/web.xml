@@ -161,6 +161,18 @@
 		<filter-name>deviceResolverRequestFilter</filter-name>
 		<url-pattern>/travel/*</url-pattern>
 	</filter-mapping>
+	
+	
+	<!-- Injection, XSS -->   
+	<filter> 
+	<filter-name>HTMLTagFilter</filter-name>
+ 		<filter-class>egovframework.com.cmm.filter.HTMLTagFilter</filter-class>
+ 	 </filter>
+  		 <filter-mapping> 
+   		 <filter-name>HTMLTagFilter</filter-name> 
+  		 <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+
 
 
 	<!-- AjaxTags configuration START -->
