@@ -123,7 +123,7 @@ public class JnitboardController {
 
 	@Resource(name = "jnitboardfileService")
 	private JnitboardfileService jnitboardfileService;
-
+	
 	private static final String uploadDir = EgovProperties.getProperty("Globals.fileStorePath");
     public static final String SEPERATOR = File.separator;
     public static final String BOARD_INFO_PATH = "board" + SEPERATOR + "_info" + SEPERATOR;
@@ -2478,9 +2478,8 @@ public class JnitboardController {
 				
 					//파일 존재시
 					if(item.getSize() > 0){
-						if(temp2 == "jsp" || temp2 == "asp" || temp2 == "js") {
-							System.out.println("file name : " + temp);
-							System.out.println("extension : " + temp2);
+						if(temp2.equals("jsp") || temp2.equals("asp") || temp2.equals("js")) {
+							 
 						}else {
 						if("mainfile".equals(key) || "moviefile".equals(key)){
 							if(!"".equals(mainFileAltId)){

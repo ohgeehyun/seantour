@@ -1,0 +1,386 @@
+@charset "utf-8";
+
+
+/* **************************************** *
+ * 2021 page 혼잡도
+ * **************************************** */
+
+.summer_area{width:100%;}
+.summer_area:after{content:'';display:block;clear:both;}
+.summer_area .summer_left{float:left;width:50%;max-width:605px;}
+.summer_area .summer_left img{width:100%;}
+.summer_area .summer_right{float:right;width:48%;}
+.summer_location .cssSelect{position:relative;display:inline-block;width: 100%; height:48px;}
+.summer_location .cssSelect button{box-sizing:border-box; width: 100%; height:48px; padding:0 22px 0 20px;background:none; border-bottom:2px solid #424238;font-size:20px; color:#333; text-align: left;}
+.summer_location .cssSelect button:after{position:absolute; top:30%; right:22px; width:0; height:0; border-top:14px solid #ccc; border-left:10px solid transparent; border-right:10px solid transparent; content:'';transition:all .25s;}
+.summer_location .cssSelect.on button:after{-webkit-transform:rotate(180deg); transform:rotate(180deg);}
+.summer_location .cssSelect .lst{display:none;z-index:9999; position:absolute; top:45px; left:0; box-sizing:border-box; width:100%;background:#fff;border:5px solid #ccc;}
+.summer_location .cssSelect.on .lst{display:block;padding:20px;}
+.summer_location .cssSelect.on .lst li a{display:block; padding: 0 20px; font-size: 18px; color:#333; line-height: 1.6;}
+.summer_location .cssSelect.on .lst li a:hover,
+.summer_location .cssSelect.on .lst li a:focus{background:#868484;color:#fff;}
+
+.spot_info{position:absolute;top:15px;left:0;width:40%;}
+
+.location_map{position:relative;width:auto;height:auto;}
+.location_map .blinker{display:inline-block;width:auto;height:18px;background:#171e3c;border-radius:0.2em;vertical-align:middle;}
+
+.icon{display:inline-block;width:auto;height:18px;padding:2px;padding-right:49px;}
+.icon.green{background:url(../../images/main_summer/icon_green.png) no-repeat 96% center;}
+.icon.yellow{background:url(../../images/main_summer/icon_yellow.png) no-repeat 96% center;}
+.icon.red{background:url(../../images/main_summer/icon_red.png) no-repeat 96% center;}
+.icon.on{width:55px;border-radius:0.2em;text-align:center;}
+.tbl_icon.icon.green.on{width:55px;background:#171e3c url(../../images/main_summer/icon_green.png) no-repeat center center;}
+.tbl_icon.icon.yellow.on{width:55px;background:#171e3c url(../../images/main_summer/icon_yellow.png) no-repeat center center;}
+.tbl_icon.icon.red.on{width:55px;background:#171e3c url(../../images/main_summer/icon_red.png) no-repeat center center;}
+.name{float:left;display:inline-block;padding:0 6px;background:#fff;border-radius:0.2em;font-size:12px;font-weight:600;color:#171e3c;line-height:14px;}
+
+.blinker.active{display:;}
+/******** 부산 ********/
+.location_map .blinker{position:absolute;}
+.location_map .blinker.spot1{/*top:239px;left:360px;*/top:43.42%;left:79%;}/* 임랑 */
+.location_map .blinker.spot2{/*top:268px;left:362px;*/top:47.85%;left:75.41%;}/* 일광 */
+.location_map .blinker.spot3{/*top:323px;left:272px;*/top:51.78%;left:69.75%;}/* 송정 */
+.location_map .blinker.spot4{/*top:290px;left:306px;*/top:57.67%;left:53.66%;}/* 해운대 */
+.location_map .blinker.spot5{/*top:308px;left:300px;*/top:55%;left:60.5%;}/* 광안리 */
+.location_map .blinker.spot6{/*top:388px;left:192px;*/top:69.28%;left:40%;}/* 송도 */
+.location_map .blinker.spot7{/*top:415px;left:135px;*/top:74.1%;left:28.12%;}/* 다대포 */
+
+/******** 강원도 ********/
+.location_map.map_ko .spot_info{left:initial;right:0;}
+.location_map .blinker.ko_spot1{top:65.5%;left:79%;}/* 강문 */
+.location_map .blinker.ko_spot2{top:65.2%;left:79%;}/* 경포대 */
+.location_map .blinker.ko_spot3{top:68.4%;left:79%;}/* 금진 */
+.location_map .blinker.ko_spot4{top:68.5%;left:79%;}/* 도직 */
+.location_map .blinker.ko_spot5{top:66.8%;left:79%;}/* 등명 */
+.location_map .blinker.ko_spot6{top:65.1%;left:79%;}/* 사근진 */
+.location_map .blinker.ko_spot7{top:64.1%;left:76%;}/* 사천 */
+.location_map .blinker.ko_spot8{top:64%;left:76%;}/* 사천진 */
+.location_map .blinker.ko_spot9{top:66%;left:79%;}/* 송정 */
+.location_map .blinker.ko_spot10{top:65%;left:79%;}/* 순긋 */
+.location_map .blinker.ko_spot11{top:66.2%;left:80%;}/* 안목 */
+.location_map .blinker.ko_spot12{top:66.6%;left:79%;}/* 안인 */
+.location_map .blinker.ko_spot13{top:63.9%;left:76%;}/* 연곡 */
+.location_map .blinker.ko_spot14{top:63.8%;left:77%;}/* 영진 */
+.location_map .blinker.ko_spot15{top:68.5%;left:79%;}/* 옥계 */
+.location_map .blinker.ko_spot16{top:68%;left:79%;}/* 정동진 */
+.location_map .blinker.ko_spot17{top:63.6%;left:73%;}/* 주문진해변 */
+.location_map .blinker.ko_spot18{top:69%;left:80%;}/*하평  */
+.location_map .blinker.ko_spot19{top:29.64%;left:52%;}/* 가진진 */
+.location_map .blinker.ko_spot20{top:31%;left:53%;}/* 거진11리 */
+.location_map .blinker.ko_spot21{top:30%;left:52%;}/* 거진1리 */
+.location_map .blinker.ko_spot22{top:40%;left:57%;}/* 공현진1리 */
+.location_map .blinker.ko_spot23{top:29.64%;left:50%;}/* 공현진2리 */
+.location_map .blinker.ko_spot24{top:48.5%;left:63%;}/* 교암리 */
+.location_map .blinker.ko_spot25{top:25.64%;left:45%;}/* 대진1리 */
+.location_map .blinker.ko_spot26{top:26.1%;left:46%;}/* 대진5리 */
+.location_map .blinker.ko_spot27{top:24.6%;left:44%;}/* 마차진 */
+.location_map .blinker.ko_spot28{top:21.64%;left:39%;}/* 명파리 */
+.location_map .blinker.ko_spot29{top:29.64%;left:50%;}/* 문암진2리 */
+.location_map .blinker.ko_spot30{top:29.64%;left:50%;}/* 문암캠핑장 */
+.location_map .blinker.ko_spot31{top:34.64%;left:55.5%;}/* 반암리 */
+.location_map .blinker.ko_spot32{top:43.3%;left:60%;}/* 백도 */
+.location_map .blinker.ko_spot33{top:47.1%;left:62%;}/* 봉수대 */
+.location_map .blinker.ko_spot34{top:52.28%;left:65%;}/* 봉포리 */
+.location_map .blinker.ko_spot35{top:48%;left:64%;}/* 삼포 */
+.location_map .blinker.ko_spot36{top:29.64%;left:52%;}/* 삼포2리 */
+.location_map .blinker.ko_spot37{top:43.5%;left:60%;}/* 송지호 */
+.location_map .blinker.ko_spot38{top:43.8%;left:51%;}/* 송지호오토캠핑장 */
+.location_map .blinker.ko_spot39{top:50%;left:64%;}/* 아야진리 */
+.location_map .blinker.ko_spot40{top:48.2%;left:63%;}/* 자작도 */
+.location_map .blinker.ko_spot41{top:52%;left:66%;}/* 천진리 */
+.location_map .blinker.ko_spot42{top:51.5%;left:65%;}/* 청간리 */
+.location_map .blinker.ko_spot43{top:26.2%;left:46.5%;}/* 초도리 */
+.location_map .blinker.ko_spot44{top:29.64%;left:52%;}/* 켄싱턴리조트 */
+.location_map .blinker.ko_spot45{top:27.2%;left:47%;}/* 화진포 */
+.location_map .blinker.ko_spot46{top:26.9%;left:46%;}/* 화진포 콘도 */
+.location_map .blinker.ko_spot47{top:68.8%;left:79%;}/* 노봉 */
+.location_map .blinker.ko_spot48{top:68.6%;left:79%;}/* 망상 */
+.location_map .blinker.ko_spot49{top:68.9%;left:79%;}/* 어달 */
+.location_map .blinker.ko_spot50{top:69.3%;left:81%;}/* 추암 */
+.location_map .blinker.ko_spot51{top:75%;left:85%;}/* 궁촌 */
+.location_map .blinker.ko_spot52{top:29.64%;left:83%;}/* 덕산 */
+.location_map .blinker.ko_spot53{top:72%;left:82%;}/* 맹방 */
+.location_map .blinker.ko_spot54{top:29.64%;left:60%;}/* 문암 */
+.location_map .blinker.ko_spot55{top:72.4%;left:83%;}/* 부남 */
+.location_map .blinker.ko_spot56{top:70%;left:82%;}/* 삼척 */
+.location_map .blinker.ko_spot57{top:71.6%;left:80%;}/* 오분(간이) */
+.location_map .blinker.ko_spot58{top:77%;left:85%;}/* 용화 */
+.location_map .blinker.ko_spot59{top:75.2%;left:85%;}/* 원평 */
+.location_map .blinker.ko_spot60{top:70.2%;left:82%;}/* 작은후진 */
+.location_map .blinker.ko_spot61{top:77.3%;left:85%;}/* 장호 */
+.location_map .blinker.ko_spot62{top:69.4%;left:81%;}/* 증산  */
+.location_map .blinker.ko_spot63{top:71.9%;left:82%;}/* 하맹방 */
+.location_map .blinker.ko_spot64{top:52.64%;left:67%;}/* 등대 */
+.location_map .blinker.ko_spot65{top:52.8%;left:68%;}/* 속초 */
+.location_map .blinker.ko_spot66{top:52.95%;left:68%;}/* 외옹치 */
+.location_map .blinker.ko_spot67{top:62.1%;left:74%;}/* 갯마을 */
+.location_map .blinker.ko_spot68{top:62%;left:64%;}/* 광진 */
+.location_map .blinker.ko_spot69{top:60.64%;left:73%;}/* 기사문 */
+.location_map .blinker.ko_spot70{top:56.4%;left:70%;}/* 낙산 */
+.location_map .blinker.ko_spot71{top:62.3%;left:76%;}/* 남애1 */
+.location_map .blinker.ko_spot72{top:62.2%;left:75%;}/* 남애3 */
+.location_map .blinker.ko_spot73{top:29.64%;left:60%;}/* 동산 */
+.location_map .blinker.ko_spot74{top:29.64%;left:60%;}/* 동산포 */
+.location_map .blinker.ko_spot75{top:57%;left:71%;}/* 동호 */
+.location_map .blinker.ko_spot76{top:54%;left:69%;}/* 물치 */
+.location_map .blinker.ko_spot77{top:60.9%;left:73.5%;}/* 북분 */
+.location_map .blinker.ko_spot78{top:55.3%;left:69.5%;}/* 설악 */
+.location_map .blinker.ko_spot79{top:29.64%;left:60%;}/* 송전 */
+.location_map .blinker.ko_spot80{top:62.5%;left:76%;}/* 원포 */
+.location_map .blinker.ko_spot81{top:60.95%;left:74%;}/* 인구 */
+.location_map .blinker.ko_spot82{top:60.8%;left:73%;}/* 잔교 */
+.location_map .blinker.ko_spot83{top:54.2%;left:69%;}/* 정암 */
+.location_map .blinker.ko_spot84{top:60.9%;left:74%;}/* 죽도 */
+.location_map .blinker.ko_spot85{top:29.64%;left:60%;}/* 중광정 */
+.location_map .blinker.ko_spot86{top:62.7%;left:76%;}/* 지  경 */
+.location_map .blinker.ko_spot87{top:58.64%;left:71%;}/* 하조대 */
+
+/******** 충청남도 ********/
+.location_map .blinker.cn_spot1{top:25%;left:39.42%;}/* 왜목마을 */
+.location_map .blinker.cn_spot2{top:24.5%;left:35.42%;}/* 난지섬 */
+.location_map .blinker.cn_spot3{top:61.5%;left:37%;}/* 대천 */
+.location_map .blinker.cn_spot4{top:64.5%;left:38.5%;}/* 무창포 */
+.location_map .blinker.cn_spot5{top:69.5%;left:38.15%;}/* 춘장대 */
+.location_map .blinker.cn_spot6{top:42%;left:22.5%;}/* 갈음이 */
+.location_map .blinker.cn_spot7{top:47.55%;left:28.5%;}/* 곰섬 */
+.location_map .blinker.cn_spot8{top:32.65%;left:24.95%;}/* 구례포 */
+.location_map .blinker.cn_spot9{top:35.05%;left:22.95%;}/* 구름포 */
+.location_map .blinker.cn_spot10{top:49%;left:30.25%;}/* 기지포 */
+.location_map .blinker.cn_spot11{top:52.4%;left:31.55%;}/* 꽃지 */
+.location_map .blinker.cn_spot12{top:29.65%;left:29.42%;}/* 꾸지나무골 */
+.location_map .blinker.cn_spot13{top:44.2%;left:29.15%;}/* 달산포 */
+.location_map .blinker.cn_spot14{top:46.45%;left:29.45%;}/* 마검포 */
+.location_map .blinker.cn_spot15{top:37.9%;left:21.35%;}/* 만리포 */
+.location_map .blinker.cn_spot16{top:43.4%;left:29.4%;}/* 몽산포 */
+.location_map .blinker.cn_spot17{top:56.5%;left:33%;}/* 바람아래 */
+.location_map .blinker.cn_spot18{top:50.7%;left:31.45%;}/* 밧개 */
+.location_map .blinker.cn_spot19{top:36.1%;left:22.65%;}/* 방주골(백리포) */
+.location_map .blinker.cn_spot20{top:51.7%;left:31.45%;}/* 방포 */
+.location_map .blinker.cn_spot21{top:48.15%;left:30.5%;}/* 백사장 */
+.location_map .blinker.cn_spot22{top:48.35%;left:30.25%;}/* 삼봉 */
+.location_map .blinker.cn_spot23{top:54.8%;left:31.55%;}/* 샛별 */
+.location_map .blinker.cn_spot24{top:35.15%;left:24%;}/* 신두리  */
+.location_map .blinker.cn_spot25{top:50%;left:31.25%;}/* 안면 */
+.location_map .blinker.cn_spot26{top:39%;left:21.15%;}/* 어은돌 */
+.location_map .blinker.cn_spot27{top:42.6%;left:24.5%;}/* 연포 */
+.location_map .blinker.cn_spot28{top:36.65%;left:23.65%;}/* 의항 */
+.location_map .blinker.cn_spot29{top:56%;left:32.65%;}/* 장삼포 */
+.location_map .blinker.cn_spot30{top:37%;left:22.35%;}/* 천리포 */
+.location_map .blinker.cn_spot31{top:45.25%;left:28.45%;}/* 청포대 */
+.location_map .blinker.cn_spot32{top:40%;left:21.65%;}/* 파도리 */
+.location_map .blinker.cn_spot33{top:31.85%;left:29.95%;}/* 학암포 */
+
+/******** 제주도 ********/
+.location_map.map_jj .spot_info{left:initial;right:0;}
+.location_map .blinker.jj_spot1{top:60.6%;left:20.61%;}/* 곽지 */
+.location_map .blinker.jj_spot2{top:68.55%;left:10.75%;}/* 금능 */
+.location_map .blinker.jj_spot3{top:50.3%;left:72%;}/* 김녕 */
+.location_map .blinker.jj_spot4{top:53.1%;left:53.91%;}/* 삼양 */
+.location_map .blinker.jj_spot5{top:50.5%;left:77.15%;}/* 월정 */
+.location_map .blinker.jj_spot6{top:55.85%;left:36.91%;}/* 이호 */
+.location_map .blinker.jj_spot7{top:51.55%;left:62.5%;}/* 함덕 */
+.location_map .blinker.jj_spot8{top:65.75%;left:11.61%;}/* 협재 */
+.location_map .blinker.jj_spot9{top:63.05%;left:81.95%;}/* 신양섭지 */
+.location_map .blinker.jj_spot10{top:82.1%;left:32.25%;}/* 중문색달 */
+.location_map .blinker.jj_spot11{top:74.65%;left:80.35%;}/* 표선 */
+.location_map .blinker.jj_spot12{top:82.65%;left:25.15%;}/* 화순금모래 */
+
+/******** 전라북도 ********/
+.location_map .blinker.jb_spot1{top:61.2%;left:23.71%;}/* 구시포 */
+.location_map .blinker.jb_spot2{top:59.64%;left:71%;}/* 동호 */
+.location_map .blinker.jb_spot3{top:44.8%;left:20.1%;}/* 선유도 */
+.location_map .blinker.jb_spot4{top:54.8%;left:23.7%;}/* 격포 */
+.location_map .blinker.jb_spot5{top:52.75%;left:26.15%;}/* 고사포 */
+.location_map .blinker.jb_spot6{top:56.65%;left:25.91%;}/* 모항 */
+.location_map .blinker.jb_spot7{top:51.55%;left:27.8%;}/* 변산 */
+.location_map .blinker.jb_spot8{top:55.75%;left:13.8%;}/* 위도 */
+
+/******** 전라남도 ********/
+.location_map .blinker.jn_spot1{top:49.2%;left:65.71%;}/* 금장 */
+.location_map .blinker.jn_spot2{top:46.1%;left:74.75%;}/* 나로우주 */
+.location_map .blinker.jn_spot3{top:42.9%;left:74.3%;}/* 남열해돋이 */
+.location_map .blinker.jn_spot4{top:54.8%;left:23.7%;}/* 대전 */
+.location_map .blinker.jn_spot5{top:52.75%;left:26.15%;}/* 덕흥 */
+.location_map .blinker.jn_spot6{top:46.2%;left:70.91%;}/* 발포 */
+.location_map .blinker.jn_spot7{top:46.7%;left:62.8%;}/* 연소 */
+.location_map .blinker.jn_spot8{top:47.8%;left:75.5%;}/* 염포 */
+.location_map .blinker.jn_spot9{top:41.75%;left:65%;}/* 용동 */
+.location_map .blinker.jn_spot10{top:48.4%;left:63.5%;}/* 익금 */
+.location_map .blinker.jn_spot11{top:40.75%;left:66.8%;}/* 풍류 */
+.location_map .blinker.jn_spot12{top:36.6%;left:32.8%;}/* 외달도 */
+.location_map .blinker.jn_spot13{top:39.5%;left:61.8%;}/* 율포솔밭 */
+.location_map .blinker.jn_spot14{top:25.6%;left:25.8%;}/* 대광 */
+.location_map .blinker.jn_spot15{top:41.9%;left:18.4%;}/* 돈목 */
+.location_map .blinker.jn_spot16{top:55.75%;left:13.8%;}/* 배낭기미 */
+.location_map .blinker.jn_spot17{top:34.7%;left:25.8%;}/* 백길 */
+.location_map .blinker.jn_spot18{top:33%;left:23.4%;}/* 분계 */
+.location_map .blinker.jn_spot19{top:30.75%;left:27.8%;}/* 설레미 */
+.location_map .blinker.jn_spot20{top:39.75%;left:21.8%;}/* 시목 */
+.location_map .blinker.jn_spot21{top:43.2%;left:22.4%;}/* 신도 */
+.location_map .blinker.jn_spot22{top:30.2%;left:27.8%;}/* 우전 */
+.location_map .blinker.jn_spot23{top:55.75%;left:13.8%;}/* 원평 */
+.location_map .blinker.jn_spot24{top:30%;left:27.8%;}/* 짱뚱어 */
+.location_map .blinker.jn_spot25{top:35.4%;left:25%;}/* 추포 */
+.location_map .blinker.jn_spot26{top:37%;left:19.8%;}/* 하트 */
+.location_map .blinker.jn_spot27{top:39.3%;left:0%;}/* 홍도 */
+.location_map .blinker.jn_spot28{top:44%;left:22.8%;}/* 황성금리 */
+.location_map .blinker.jn_spot29{top:36.65%;left:83.7%;}/* 만성리 */
+.location_map .blinker.jn_spot30{top:35.75%;left:83.8%;}/* 모사금 */
+.location_map .blinker.jn_spot31{top:39.65%;left:83.9%;}/* 무슬목 */
+.location_map .blinker.jn_spot32{top:41.15%;left:83.9%;}/* 방죽포 */
+.location_map .blinker.jn_spot33{top:47.5%;left:85.8%;}/* 안도 */
+.location_map .blinker.jn_spot34{top:38.65%;left:82.3%;}/* 웅천 */
+.location_map .blinker.jn_spot35{top:55.75%;left:13.8%;}/* 유림(거문도) */
+.location_map .blinker.jn_spot36{top:41.65%;left:80.8%;}/* 장등 */
+.location_map .blinker.jn_spot37{top:19.75%;left:35.8%;}/* 가마미 */
+.location_map .blinker.jn_spot38{top:18.9%;left:28.8%;}/* 송이도 */
+.location_map .blinker.jn_spot39{top:55.75%;left:13.8%;}/* 금일 명사십리 */
+.location_map .blinker.jn_spot40{top:58.3%;left:40.8%;}/* 보길 예송 */
+.location_map .blinker.jn_spot41{top:57%;left:44.8%;}/* 보길 중리 */
+.location_map .blinker.jn_spot42{top:58%;left:42.8%;}/* 보길 통리 */
+.location_map .blinker.jn_spot43{top:52.75%;left:56.8%;}/* 생일 금곡 */
+.location_map .blinker.jn_spot44{top:52%;left:52.7%;}/* 신지 동고 */
+.location_map .blinker.jn_spot45{top:52%;left:46.8%;}/* 신지명사십리 */
+.location_map .blinker.jn_spot46{top:49.75%;left:54.8%;}/* 약산 가사 */
+.location_map .blinker.jn_spot47{top:56.5%;left:53.4%;}/* 청산 신흥 */
+.location_map .blinker.jn_spot48{top:55.75%;left:51.8%;}/* 청산 지리 */
+.location_map .blinker.jn_spot49{top:41.4%;left:59.8%;}/* 수문 */
+.location_map .blinker.jn_spot50{top:55.75%;left:13.8%;}/* 가계 */
+.location_map .blinker.jn_spot51{top:55.75%;left:13.18%;}/* 관매도 */
+.location_map .blinker.jn_spot52{top:49.75%;left:33.2%;}/* 금갑 */
+.location_map .blinker.jn_spot53{top:55.75%;left:13.8%;}/* 신전 */
+.location_map .blinker.jn_spot54{top:26.3%;left:39%;}/* 돌머리 */
+.location_map .blinker.jn_spot55{top:51.7%;left:44%;}/* 사구미 */
+.location_map .blinker.jn_spot56{top:52.2%;left:41.8%;}/* 송호 */
+
+
+
+
+
+
+/******** 인천광역시 ********/
+.location_map .blinker.ic_spot1{top:55.3%;left:50.1%;}/* 떼뿌루 */
+.location_map .blinker.ic_spot2{top:54.7%;left:46.9%;}/* 서포리 */
+.location_map .blinker.ic_spot3{top:31.2%;left:70.05%;}/* 수기 */
+.location_map .blinker.ic_spot4{top:48.05%;left:73.7%;}/* 십리포 */
+.location_map .blinker.ic_spot5{top:32.35%;left:65.7%;}/* 옹암 */
+.location_map .blinker.ic_spot6{top:58.75%;left:60%;}/* 이일레 */
+.location_map .blinker.ic_spot7{top:49%;left:71.8%;}/* 장경리 */
+.location_map .blinker.ic_spot8{top:52.45%;left:61.8%;}/* 장골 */
+.location_map .blinker.ic_spot9{top:37.5%;left:65.7%;}/* 왕산 */
+.location_map .blinker.ic_spot10{top:38.55%;left:65.5%;}/* 을왕리 */
+.location_map .blinker.ic_spot11{top:43%;left:68.5%;}/* 하나개 */
+
+/******** 울산광역시 ********/
+.location_map .blinker.us_spot1{top:48%;left:68.3%;}/* 일산 */
+.location_map .blinker.us_spot2{top:64.05%;left:55.7%;}/* 진하 */
+
+/******** 경상남도 ********/
+.location_map .blinker.kn_spot1{top:65.3%;left:67.1%;}/* 구영 */
+.location_map .blinker.kn_spot2{top:78.2%;left:67.4%;}/* 구조라 */
+.location_map .blinker.kn_spot3{top:66.65%;left:68.05%;}/* 농소 */
+.location_map .blinker.kn_spot4{top:80.05%;left:60.5%;}/* 덕원 */
+.location_map .blinker.kn_spot5{top:72.2%;left:68.7%;}/* 덕포 */
+.location_map .blinker.kn_spot6{top:77.85%;left:66.5%;}/* 망치 */
+.location_map .blinker.kn_spot7{top:82.55%;left:61.9%;}/* 명사 */
+.location_map .blinker.kn_spot8{top:66.4%;left:64.8%;}/* 물안 */
+.location_map .blinker.kn_spot9{top:72.65%;left:60.3%;}/* 사곡 */
+.location_map .blinker.kn_spot10{top:83.9%;left:63.7%;}/* 여차 */
+.location_map .blinker.kn_spot11{top:68.25%;left:63.8%;}/* 옥계 */
+.location_map .blinker.kn_spot12{top:77.9%;left:67.1%;}/* 와현모래숲 */
+.location_map .blinker.kn_spot13{top:80.2%;left:64.5%;}/* 학동흑진주몽돌 */
+.location_map .blinker.kn_spot14{top:82.1%;left:65%;}/* 함목 */
+.location_map .blinker.kn_spot15{top:65.75%;left:66.2%;}/* 황포 */
+.location_map .blinker.kn_spot16{top:69.25%;left:68.5%;}/* 흥남 */
+.location_map .blinker.kn_spot17{top:80.9%;left:20.2%;}/* 두곡월포 */
+.location_map .blinker.kn_spot18{top:82.3%;left:17%;}/* 사촌 */
+.location_map .blinker.kn_spot19{top:83.6%;left:24.5%;}/* 상주은모래비치 */
+.location_map .blinker.kn_spot20{top:48.6%;left:27.2%;}/* 설리 */
+.location_map .blinker.kn_spot21{top:83.3%;left:26.6%;}/* 송정솔바람해변 */
+.location_map .blinker.kn_spot22{top:68.4%;left:19.5%;}/* 남일대 */
+.location_map .blinker.kn_spot23{top:73%;left:31.5%;}/* 광암 */
+.location_map .blinker.kn_spot24{top:83%;left:53.5%;}/* 비진도 */
+.location_map .blinker.kn_spot25{top:75.6%;left:38.5%;}/* 사량도 대항 */
+.location_map .blinker.kn_spot26{top:77.3%;left:51.3%;}/* 수륙 */
+
+/******** 경상북도 ********/
+.location_map .blinker.kb_spot1{top:57.3%;left:64.1%;}/* 관성 */
+.location_map .blinker.kb_spot2{top:54.65%;left:65.4%;}/* 나정 */
+.location_map .blinker.kb_spot3{top:56.25%;left:64.9%;}/* 봉길대왕암 */
+.location_map .blinker.kb_spot4{top:53.75%;left:65.5%;}/* 오류 */
+.location_map .blinker.kb_spot5{top:54.4%;left:64.7%;}/* 전촌 */
+.location_map .blinker.kb_spot6{top:33.35%;left:61.8%;}/* 경정 */
+.location_map .blinker.kb_spot7{top:30.5%;left:61.6%;}/* 고래불 */
+.location_map .blinker.kb_spot8{top:37.1%;left:60.8%;}/* 남호 */
+.location_map .blinker.kb_spot9{top:31%;left:62.2%;}/* 대진 */
+.location_map .blinker.kb_spot10{top:34.6%;left:62.4%;}/* 오보 */
+.location_map .blinker.kb_spot11{top:39.6%;left:60.6%;}/* 장사 */
+.location_map .blinker.kb_spot12{top:36.1%;left:61.5%;}/* 하저 */
+.location_map .blinker.kb_spot13{top:23.6%;left:63.4%;}/* 구산 */
+.location_map .blinker.kb_spot14{top:22.1%;left:62%;}/* 기성망양 */
+.location_map .blinker.kb_spot15{top:14.75%;left:61.2%;}/* 나곡 */
+.location_map .blinker.kb_spot16{top:17.3%;left:61.2%;}/* 망양정 */
+.location_map .blinker.kb_spot17{top:16.6%;left:61.2%;}/* 봉평 */
+.location_map .blinker.kb_spot18{top:16.65%;left:62%;}/* 후정 */
+.location_map .blinker.kb_spot19{top:27.2%;left:62.4%;}/* 후포 */
+.location_map .blinker.kb_spot20{top:48.1%;left:66.2%;}/* 구룡포 */
+.location_map .blinker.kb_spot21{top:48.6%;left:62.4%;}/* 도구 */
+.location_map .blinker.kb_spot22{top:46.4%;left:60.4%;}/* 영일대 */
+.location_map .blinker.kb_spot23{top:41.6%;left:60.3%;}/* 월포 */
+.location_map .blinker.kb_spot24{top:44.3%;left:61.5%;}/* 칠포 */
+.location_map .blinker.kb_spot25{top:40.4%;left:61.2%;}/* 화진 */
+
+
+@media screen and (max-width:1000px){
+	.summer_area > div{float:none !important;width:100% !important; margin:0 auto;}
+}
+@media screen and (max-width:640px){
+	.summer_location .cssSelect button{height:40px;font-size:16px;}
+	.summer_location .cssSelect button:after{border-top:10px solid #ccc; border-left:8px solid transparent; border-right:8px solid transparent;}
+	.summer_location .cssSelect .lst{top:40px;}
+	.summer_location .cssSelect.on .lst li a{font-size:14px;}
+	.name{font-size:10px;}
+}
+
+.brd_scroll{max-height:700px;overflow-y:auto;}
+.brd_list {border-bottom:1px solid #d2d2d2;}
+.brd_list {width:100%; word-break:break-all;}
+.brd_list thead th {position:relative;padding:12px 15px;border-bottom:2px solid #424238;color:#333;}
+.brd_list thead th:before{content:'';display:inline-block;position:absolute;top:50%;left:0;margin-top:-5px;width:1px;height:10px;background:#d2d2d2;}
+.brd_list thead th:first-child:before{display:none;}
+.brd_list tbody td {padding:10px 12px;border-bottom:1px solid #dcdee0}
+.brd_list tbody td img {vertical-align:middle}
+.brd_list tbody td.data a {font-size:13px;color:#ababac}
+.btn_loc{position:relative;display:inline-block;width:85px;height:33px;line-height:33px;padding-left:28px;background:#f6f6f6;border:1px solid #e8e8e8;border-radius:0.2em;font-size:12px;font-weight:600;color:#464646;}
+.btn_loc.on{background:#171e3c;color:#fff;}
+.btn_loc:before{content:'';display:inline-block;position:absolute;top:50%;left:7px;margin-top:-11.5px;width:20px;height:23px;background:url(../../images/main_summer/icon_summer_loc.png) no-repeat 0 50%;}
+
+@media screen and (max-width:768px){
+    
+    .brd_list *[data-table-type="brd_number"],
+    .brd_list *[data-table-type="brd_file_count"],
+    .brd_list *[data-table-type="brd_views_count"]{display:none;}
+    .brd_list th,
+    .brd_list td{font-size:14px;}
+    .brd_list *[data-table-type="brd_subject"]{width:calc(100% - 30%);}
+    .brd_list *[data-table-type="brd_subject"]:before{display:none;}
+    .brd_list *[data-table-type="brd_w_date"]{width:30%;}
+    
+}
+@media screen and (max-width:640px){
+    
+    .brd_list tbody td{padding:10px 15px;}
+    .brd_list th,
+    .brd_list td{font-size:13px;}
+    .btn_loc{width:65px;height:24px;line-height:24px;padding-left:18px;font-size:11px;}
+    .btn_loc:before{left:3px;background-size:60%;}
+    
+} 
+@media screen and (max-width:420px){
+    .brd_list thead th,
+    .brd_list tbody td{padding:10px 5px;}
+    .brd_list th,
+    .brd_list td{font-size:11px;}
+    
+}
