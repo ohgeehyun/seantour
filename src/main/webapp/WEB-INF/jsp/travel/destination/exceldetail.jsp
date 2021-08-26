@@ -34,6 +34,7 @@
 		
 				<li>
 					<div>
+				     <tr>
 						<td style = "text-align: center;">${travelDestination.destTitle}</td>
 						<td style = "text-align: center;">${travelDestination.destRegion}</td>
 						<td style = "text-align: center;">${travelDestination.destAddress}</td>
@@ -46,6 +47,7 @@
 							<c:forEach var="result" items="${nearStayPoints}" varStatus="status">
 						<td style = "text-align: center;">${result.destTitle}</td>
 						</c:forEach>
+					  </tr>
 					</div>
 	</table>
 	<script>

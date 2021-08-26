@@ -1,0 +1,76 @@
+	<select id="travelMainDAO.selectBeachPerCnt" parameterClass="java.lang.String" resultClass="travelMain">
+        <![CDATA[
+			SELECT ETL_DT AS etlDt
+			     , SEQ_ID AS seqId
+			     , POI_NM AS poiNm
+			     , UNIQ_POP AS uniqPop
+			     ,CONGESTION AS congstion
+			  FROM GEO_BEACH_CONGESTION
+            d WHERE ETL_DT = #datestr#
+        ]]>
+    </select>
+
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+    <insert id="travelMainDAO.insertBeachPer">
+		<![CDATA[
+			INSERT INTO GEO_BEACH_CONGESTION ( 
+			      ETL_DT 
+			     , SEQ_ID 
+			     , POI_NM 
+			     , UNIQ_POP
+			    , CONGESTION 
+			) VALUES ( 
+				  #etlDt#
+				, #seqId#
+				, #poiNm#
+				, #uniqPop#
+				,#congestion#;
+			)
+		]]>
+	</insert>
+
+
+
+
+1. 혼잡도 기준을 확실하게 커리 짤것 
+
+
+강원도 하나 줄음
+    
+
+    제주도 하나 늘음 
+
+
+
+
+------------------------------------------------혼잡도--------------------------------------- 간단한 알고리즘
+해수욕장 면적/4 는 수용 인원이 나옴. 1인당 4의 면적을 차지한다는 뜻
+
+수용 인원 이하로 Uniqpop 이 뽑히면 신호등 초록색이고
+
+수용인원 초과<  Uniqpop   <수용인원x2  일 경우에는 노란색
+
+수용인원x2 보다 크면 싹다 빨간색 
+
+---------------------------------------------------------------------------------------------
+
+
+이걸로 db에 집어넣게 끔하고 넣었으니 
+
+우린 가저와야한다 메인에서 db혼잡도 컬럼을보고 하드코딩부분을 바꿀수있게 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

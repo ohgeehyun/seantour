@@ -24,9 +24,10 @@
 			<c:forEach var="result" items="${resultList}" varStatus="status">
 				<li>
 					<div>
+						<tr>
 						<td style = "text-align: center;">${result.fameRanking}</td>
 						<td style = "text-align: center;">${result.fameUserNm}</td>
-						<tr>
+						</tr>
 					</div>
 				</li>
 			</c:forEach>

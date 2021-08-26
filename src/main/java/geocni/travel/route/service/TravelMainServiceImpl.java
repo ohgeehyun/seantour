@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import egovframework.com.cmm.EgovMessageSource;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import geocni.travel.route.dao.TravelMainDAO;
+import geocni.travel.route.domain.TravelDestination;
 import geocni.travel.route.domain.TravelMain;
 
 @Service("travelMainService")
@@ -63,6 +64,16 @@ public class TravelMainServiceImpl extends EgovAbstractServiceImpl implements Tr
 		return travelMainDAO.selectBeachPerCnt(datestr);
 	}
 	
+	public List<TravelMain> congestionExcel() throws Exception {
+	
+		return travelMainDAO.congestionExcel();
+	}
+	
+	public List<TravelMain> congestionOverExcel() throws Exception {
+		
+		return travelMainDAO.congestionOverExcel();
+	}
+	
 	@Override
 	public List<TravelMain> newselectBeachPerCnt() throws Exception {
 		//DB 호출해서 정보값 가져오도록 할것.
@@ -102,7 +113,7 @@ public class TravelMainServiceImpl extends EgovAbstractServiceImpl implements Tr
 	}
 	
 	@Override
-	public List<?> selectBeachPerCntapi() throws Exception {
+	public List<?> selectBeachPerCntapi(String date) throws Exception {
 		//DB 호출해서 정보값 가져오도록 할것.
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
@@ -136,7 +147,7 @@ public class TravelMainServiceImpl extends EgovAbstractServiceImpl implements Tr
 						
 		
 		System.out.println("------------------------"+datestr);
-		return (List<?>)travelMainDAO.selectBeachPerCntapi(datestr);
+		return (List<?>)travelMainDAO.selectBeachPerCntapi(date);
 	}
 
 	@Override
@@ -196,8 +207,15 @@ public List<TravelMain> selectBeachPerCntInsert() throws Exception {
 	return travelMainDAO.selectBeachPerCntInsert(datestr);
 }
 
-	public List<?> selectTravelDestinationApi() throws Exception {
-		return travelMainDAO.selectTravelDestinationApi();
+	public List<?> selectBeachInfo() throws Exception {
+		return travelMainDAO.selectBeachInfo();
+	}
+	public List<?> selectBeachDay() throws Exception {
+		return travelMainDAO.selectBeachDay();
+	}
+
+	public List<?> selectTravelDestinationApi(TravelDestination traveldestination) throws Exception {
+		return travelMainDAO.selectTravelDestinationApi(traveldestination);
 	}
 
 	public List<?> selectTravelrouteApi() throws Exception {

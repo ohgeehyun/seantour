@@ -31,9 +31,12 @@
             <c:if test="${fn:contains(pageContext.request.requestURI, 'travel/member')}">
 			<c:set value="sub05" var="sub_visual"/>
             </c:if> 
-               <c:if test="${fn:contains(pageContext.request.requestURI, 'travel/reservation')}">
+            <c:if test="${fn:contains(pageContext.request.requestURI, 'travel/reservation')}">
 			<c:set value="sub06" var="sub_visual"/>
             </c:if> 
+       		<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/beach/')}">
+			<c:set value="sub06" var="sub_visual"/>
+            </c:if>
 
             
              <div class="section_visual <c:out value="${sub_visual}"/> trans400">
@@ -58,6 +61,7 @@
 		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/faq_customer/')}">고객의소리</c:if>
 		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/updateinfo')}">정보수정제안</c:if>
 		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/leaflet')}">리플렛</c:if>
+		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/beach')}">해수욕장 현황</c:if>
 		        	</h2>
 		            <%-- <p class="txt trans300">${pageSlogan}</p> --%>
 		            <p class="txt trans300">특별하고 즐거움이 가득한 국내 바다여행</p>
@@ -78,6 +82,7 @@
 		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/route/')}"><a href="#none">추천일정</c:if>
 		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/fame')}"><a href="#none">명성</c:if>
 		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square')}"><a href="#none">정보광장</c:if>
+		            	<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/beach')}"><a href="#none">해수욕장 현황</c:if>
 			                	<span class="unfd">같은 레벨 메뉴 보기</span></a>
 			                <div>
 			                    <ul>
@@ -87,7 +92,8 @@
 											fn:contains(pageContext.request.requestURI, 'travel/member') || 
 											fn:contains(pageContext.request.requestURI, 'board/board') ||
 											fn:contains(pageContext.request.requestURI, 'travel/info_square')||
-											fn:contains(pageContext.request.requestURI, 'travel/reservation')
+											fn:contains(pageContext.request.requestURI, 'travel/reservation')||
+											fn:contains(pageContext.request.requestURI, 'travel/beach')
 											}">	
 				                    <li><a href="<c:url value='/travel/destination/list.do'/>">바다여행</a></li>
 				                    <li><a href="<c:url value='/travel/route/register.do'/>">나만의 여행지 만들기</a></li>
@@ -95,7 +101,7 @@
 				                    <li><a href="<c:url value='/travel/fame/ranking.do'/>">명성</a></li>
 				                    <li><a href="<c:url value='/travel/info_square/notice/index.jsp'/>">정보광장</a></li>
 				                    <li><a href="<c:url value='/travel/member/mypage.do'/>">마이페이지</a></li>
-				                    <li><a href="<c:url value='/travel/destination/summerlist.do'/>">여름시즌</a></li>
+				                 
 								</c:if>              
 			                	</ul>              
 			                </div>              
@@ -129,6 +135,7 @@
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/updateinfo')}"><a href="#none">Q&A</c:if>
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/leaflet')}"><a href="#none">리플렛</c:if>
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/recommendation')}"><a href="#none">추천10선</c:if>
+						<c:if test="${fn:contains(pageContext.request.requestURI, 'travel/info_square/safe_info')}"><a href="#none">수중레저 안전정보</c:if>
 						<%-- 
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'member/clipboard')}"><a href="#none">공지사항</c:if>
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'member/clipboard')}"><a href="#none">Q&A</c:if> 
@@ -177,6 +184,7 @@
 	                                <li><a href="<c:url value='/travel/info_square/recommendation/index.jsp'/>">추천10선</a></li>
 	                                <li><a href="<c:url value='/travel/info_square/info_policy/index.jsp'/>">저작권정책</a></li>
 	                                <li><a href="<c:url value='/travel/info_square/email/index.jsp'/>">이메일무단수집거부</a></li>
+	                                <li><a href="<c:url value='/travel/info_square/safe_info/index.jsp'/>">수중레저 안전정보</a></li>
 								</c:if> 
 								 <c:if test="${fn:contains(pageContext.request.requestURI, 'travel/destination/summer_list')||
 												 fn:contains(pageContext.request.requestURI, 'travel/reservation')}">

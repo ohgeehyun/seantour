@@ -2116,7 +2116,13 @@ public class JnitboardController {
 					fileVO.setFileSize(item.getSize());
 					fileVO.setIsmain(sortKey);
 					sortKey = sortKey + 1;
-	
+					
+					String temp = item.getFileName();
+					String temp2 = temp.substring(temp.lastIndexOf(".") + 1);
+				
+					
+					
+					
 					if(!NullUtil.nullString(request.getParameter("mainFileAlt")).equals("")){
 						fileVO.setExt01(request.getParameter("mainFileAlt"));
 					}
@@ -2126,15 +2132,20 @@ public class JnitboardController {
 					if(NullUtil.nullString(request.getParameter("moviefile")).equals(key)){
 						fileVO.setIsmain(2);
 					}
-	
+					if(temp2.equals("pdf")||temp2.equals("txt")||temp2.equals("bmp")||temp2.equals("jpg")||temp2.equals("gif")
+							||temp2.equals("png")||temp2.equals("jpeg")||temp2.equals("mp3")||temp2.equals("ogg")||temp2.equals("wma")||temp2.equals("wav")||temp2.equals("mpeg")
+							||temp2.equals("wmv")||temp2.equals("mp4")||temp2.equals("swf")||temp2.equals("hwp")||temp2.equals("doc")||temp2.equals("docx")||temp2.equals("ppt")
+							||temp2.equals("pptx")||temp2.equals("xml")||temp2.equals("zip")||temp2.equals("alz")||temp2.equals("rar")||temp2.equals("egg")
+							||temp2.equals("7z")||temp2.equals("xlsx")||temp2.equals("p12")||temp2.equals("avi")||temp2.equals("xls"))
+					{
 					if(item.getSize() > 0 && "mainfile".equals(key)){
 						fileVO.setIsmain(1);
 						fileService.insertJnitboardfile(fileVO);
 					}else if(localVO.getBoardinfoVO().getUseFile()==1){
 						fileService.insertJnitboardfile(fileVO);
 					}
+				 }
 				}
-	
 	
 				//위지윅에디터 이미지 처리
 				if(localVO.getBoardinfoVO().getUseImage()==1){
@@ -2478,24 +2489,31 @@ public class JnitboardController {
 				
 					//파일 존재시
 					if(item.getSize() > 0){
-						if(temp2.equals("jsp") || temp2.equals("asp") || temp2.equals("js")) {
-							 
-						}else {
-						if("mainfile".equals(key) || "moviefile".equals(key)){
-							if(!"".equals(mainFileAltId)){
-								fileVO.setFileId(mainFileAltId);
-								String fileUrl = "/board/file/" + fileVO.getBoardId() + "/" + String.valueOf(fileVO.getBoardCntId()) + "/" + mainFileAltId + "/" + fileVO.getFileNm();
-								fileVO.setFileUrl(fileUrl);
-								fileService.updateJnitboardfile(fileVO);						
-							}else{					
+						if(temp2.equals("pdf")||temp2.equals("txt")||temp2.equals("bmp")||temp2.equals("jpg")||temp2.equals("gif")
+								||temp2.equals("png")||temp2.equals("jpeg")||temp2.equals("mp3")||temp2.equals("ogg")||temp2.equals("wma")||temp2.equals("wav")||temp2.equals("mpeg")
+								||temp2.equals("wmv")||temp2.equals("mp4")||temp2.equals("swf")||temp2.equals("hwp")||temp2.equals("doc")||temp2.equals("docx")||temp2.equals("ppt")
+								||temp2.equals("pptx")||temp2.equals("xml")||temp2.equals("zip")||temp2.equals("alz")||temp2.equals("rar")||temp2.equals("egg")
+								||temp2.equals("7z")||temp2.equals("xlsx")||temp2.equals("p12")||temp2.equals("avi")||temp2.equals("xls")
+			)
 								
-								fileService.insertJnitboardfile(fileVO);
+						{
+							if("mainfile".equals(key) || "moviefile".equals(key)){
+								if(!"".equals(mainFileAltId)){
+									fileVO.setFileId(mainFileAltId);
+									String fileUrl = "/board/file/" + fileVO.getBoardId() + "/" + String.valueOf(fileVO.getBoardCntId()) + "/" + mainFileAltId + "/" + fileVO.getFileNm();
+									fileVO.setFileUrl(fileUrl);
+									fileService.updateJnitboardfile(fileVO);						
+								}else{					
+									
+									fileService.insertJnitboardfile(fileVO);
+								}
+							}else {
+								if(localVO.getBoardinfoVO().getUseFile()==1){ 
+									fileService.insertJnitboardfile(fileVO);
+								}
 							}
-						}else {
-							if(localVO.getBoardinfoVO().getUseFile()==1){ 
-								fileService.insertJnitboardfile(fileVO);
-							}
-						}
+						}else{
+					//허가되지않은 첨부파일
 					  }
 					}
 					sortKey = sortKey+1;

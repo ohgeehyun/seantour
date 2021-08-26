@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
@@ -365,15 +366,27 @@ public class TravelDestinationController {
 			String uploadDir = "/upload/travel/destination";
 			String root = PathUtil.getRealPath(request);
 			String fileDir = root + uploadDir;
-
+			String filename = "";
+			String fileExt = "";
+			boolean check = false;
+			
 			HashMap<String, EgovFormBasedFileVo> files = null;
 			EgovFileUploadUtil.type = "noSubPath";
 			files = EgovFileUploadUtil.uploadFormFiles(request, fileDir, maxFileSize);
 			EgovFileUploadUtil.type = null;
 			/******** 파일업로드 ********/
-
+			for (Entry<String, EgovFormBasedFileVo> entry : files.entrySet()) {
+		       filename = entry.getValue().getFileName();
+		       fileExt = filename.substring(filename.lastIndexOf(".") + 1);
+		       if(fileExt.equals("jpg")||fileExt.equals("jpeg")||fileExt.equals("bmp")||fileExt.equals("png")||fileExt.equals("png")){
+		    	  check = true;
+		       }else {
+		    	   break;
+		       }
+			} 
+			if(check==true) {
 			destService.insertTravelDestination(travelDestination, files);
-
+			}
 		} catch (NullPointerException e) {
 			log.debug(e);
 		} catch (SQLException e) {
@@ -423,7 +436,9 @@ public class TravelDestinationController {
 			String uploadDir = "/upload/travel/destination";
 			String root = PathUtil.getRealPath(request);
 			String fileDir = root + uploadDir;
-
+			String fileName ="";
+			String fileExt = "";
+			boolean check = true;
 			HashMap<String, EgovFormBasedFileVo> files = null;
 			EgovFileUploadUtil.type = "noSubPath";
 			files = EgovFileUploadUtil.uploadFormFiles(request, fileDir, maxFileSize);
@@ -456,22 +471,31 @@ public class TravelDestinationController {
 							file.delete();
 						}
 						travelFile.setImgFileNo(idx);
-						travelFilesService.updateTravelFiles(travelFile);
+						fileName=travelFile.getImgFileName();
+						fileExt=fileName.substring(fileName.lastIndexOf(".") + 1);
+						if(fileExt.equals("jpg")||fileExt.equals("jpeg")||fileExt.equals("bmp")||fileExt.equals("png")||fileExt.equals("png")) {
+							travelFilesService.updateTravelFiles(travelFile);	
+							check = true;
+						}else {
+							break;
+						}
 					} else {
 						fileList.add(travelFile);
 					}
 					serialNo++;
 				}
-
+				
 				if (fileList.size() > 0) {
+					if(check) {
 					travelFilesService.insertTravelFiles(fileList);
+					}
 				}
 			}
 			EgovFileUploadUtil.type = null;
 			/******** 파일업로드 ********/
-
+			if(check) {
 			destService.updateTravelDestination(travelDestination);
-
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

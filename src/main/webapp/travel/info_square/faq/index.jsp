@@ -18,17 +18,17 @@
 					 </c:if>	 
 						<ul>
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'seantour_map/travel/info_square/faq/')}">
-							<li><a href="<c:url value="/travel/info_square/faq/index.jsp"/>" class='on'><span>FAQ</span></a></li>
+							<li><a href="<c:url value="/travel/info_square/faq/index.jsp"/>" class='on'><span>Q&A</span></a></li>
 							<li><a href="<c:url value="/travel/info_square/faq_customer/index.jsp"/>"><span>고객의 소리</span></a></li>
 							<li><a href="<c:url value="/travel/info_square/updateinfo/index.jsp"/>"><span>정보수정제안</span></a></li>
 						</c:if>
 						<c:if test="${fn:contains(pageContext.request.requestURI, 'seantour_map/travel/info_square/updateinfo')}">
-							<li><a href="<c:url value="/travel/info_square/faq/index.jsp"/>"><span>FAQ</span></a></li>
+							<li><a href="<c:url value="/travel/info_square/faq/index.jsp"/>"><span>Q&A</span></a></li>
 							<li><a href="<c:url value="/travel/info_square/faq_customer/index.jsp"/>"><span>고객의 소리</span></a></li>
 							<li><a href="<c:url value="/travel/info_square/updateinfo/index.jsp"/>" class='on' ><span>정보수정제안</span></a></li>
 						</c:if>
 							<c:if test="${fn:contains(pageContext.request.requestURI, 'seantour_map/travel/info_square/faq_customer')}">
-							<li><a href="<c:url value="/travel/info_square/faq/index.jsp"/>"><span>FAQ</span></a></li>
+							<li><a href="<c:url value="/travel/info_square/faq/index.jsp"/>"><span>Q&A</span></a></li>
 							<li><a href="<c:url value="/travel/info_square/faq_customer/index.jsp"/>" class='on'><span>고객의 소리</span></a></li>
 							<li><a href="<c:url value="/travel/info_square/updateinfo/index.jsp"/>"><span>정보수정제안</span></a></li>
 						</c:if>	
@@ -40,6 +40,34 @@
 				      <section id="faq_con">
 				        <h2>FAQ 목록</h2>
 				        <ol>
+				         <li>
+				           <h3><span class="tit_bg">Q</span><a href="#none" onclick="return faq_open(this);"> 혼잡도 신호등 표시 기준은?</a></h3>
+				           <div class="con_inner">
+				           <span class="tit_bg">A</span>
+				           <p>생활속 거리두기 지침(최소 2m거리) 이행이 가능한 수준의 적정 이용객수* 대비 혼잡도를 “빨강-노랑-녹색”으로 표시<br> * 백사장내 최소 2m 거리 유지를 위해 1인당 소요 면적(약 4m2)을 기준으로 산정(적정인원 = 백사장 면적m2÷4m2) </p>
+				           </div>
+				          </li>
+				           <li>
+				            <h3><span class="tit_bg">Q</span><a href="#none" onclick="return faq_open(this);">혼잡도 신호등 "빨강(혼잡)인 경우 입장 불가능 한지?</a></h3>
+				            <div class="con_inner">
+				            <span class="tit_bg">A</span>
+				            <p>입장은 가능하나 편의용품 대여 등 일부 시설이용이 제한 될 수 있으므로, 주변 해수욕장 신호등을 확인하여 한적한 곳(녹색)을 찾아 이용하시면 안전하게 물놀이를 즐기실수 있습니다.</p>
+				            </div>
+				          </li>
+				            <li>ㄲ
+				            <h3><span class="tit_bg">Q</span><a href="#none" onclick="return faq_open(this);">사전예약 해수욕장 예약은 어디서 하나요?</a></h3>
+				            <div class="con_inner">
+				            <span class="tit_bg">A</span>
+				            <p>전국 25개 해수욕장이 사전예약제를 운영하며, 네이버 예약시스템을 통해 예약 후 안전하게 이용하실 수 있습니다.</p>
+				            </div>
+				          </li>
+				             <li>
+				            <h3><span class="tit_bg">Q</span><a href="#none" onclick="return faq_open(this);"> 사전예약 해수욕장을 예약없이 이용가능한가요?</a></h3>
+				            <div class="con_inner">
+				            <span class="tit_bg">A</span>
+				            <p> 예약없이 방문한 경우 현장에서 관리 인원이 현장예매 후 입장할 수 있도록 안내할 예정입니다.</p>
+				            </div>
+				          </li>
 				          <li>
 				            <h3><span class="tit_bg">Q</span><a href="#none" onclick="return faq_open(this);">나만의 여행지 만들기 사용 매뉴얼이 있나요?</a></h3>
 				            <div class="con_inner">

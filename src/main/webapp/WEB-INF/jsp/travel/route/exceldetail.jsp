@@ -28,11 +28,13 @@
 		
 				<li>
 					<div>
+						<tr>
 						<td style = "text-align: center;">${travelRoute.routTitle}</td>
 						<td style = "text-align: center;">${travelRoute.routType}</td>
 						<td style = "text-align: center;">${travelRoute.routHit}</td>
 						<td style = "text-align: center;">${travelRoute.routeDailyList[0].routWayPoint}</td>
-						<td style = "text-align: center;">${travelRoute.routeDailyList[0].routDays}</td>			
+						<td style = "text-align: center;">${travelRoute.routeDailyList[0].routDays}</td>
+						</tr>			
 					</div>
 	</table>
 	<script>

@@ -80,7 +80,7 @@
 								<input type="hidden" value="${iexcelPageno}" name="iexcelPageno" id = "iexcelPageno">
 								<input type="hidden" value="${allCnt}" name="allCnt">
 								
-								 <button type="button" class="btn_excel" onclick='fn_egov_down_excel(${excelPageno})'>엑셀</button>		
+								 <button type="button" class="btn_excel" onclick='fn_egov_down_excel(${iexcelPageno})'>엑셀</button>		
 								<!-- fn_egov_down_excel(${iexcelPageno}) -->
 							</div>
 							<div>

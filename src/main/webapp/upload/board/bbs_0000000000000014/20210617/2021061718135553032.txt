@@ -1,0 +1,36 @@
+
+신규 패키지 (geocni) 등록하면 
+context-common.xml에 아래 내용 등록
+	<context:component-scan base-package="geocni">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+
+
+egov-com-servlet.xml에도 아래 내용 등록
+	<context:component-scan base-package="geocni">
+		<context:include-filter expression="org.springframework.stereotype.Controller"
+			type="annotation" />
+		<context:exclude-filter expression="org.springframework.stereotype.Service"
+			type="annotation" />
+		<context:exclude-filter expression="org.springframework.stereotype.Repository"
+			type="annotation" />
+	</context:component-scan>
+    
+
+requestbody json사용하려면
+org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter 빈에 아래 내용 추가
+<property name="messageConverters">
+			<list>
+				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+					<!-- <bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter" 
+						> -->
+					<property name="supportedMediaTypes">
+						<list>
+							<value>application/json;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>

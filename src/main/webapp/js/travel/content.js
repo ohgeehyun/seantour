@@ -226,7 +226,7 @@ $(function(){
 	 var status = 'status';
 	//지도 온표시
 	$("#Map area").click(function(){
-		$("#map-image").attr("src", "./images/content/map_"+$(this).attr("class")+".png");
+		$("#map-image").attr("src", "/seantour_map/travel/images/main_summer/img_map_main.png");
 		//console.log($(this).attr("class"));
 	});
 });	

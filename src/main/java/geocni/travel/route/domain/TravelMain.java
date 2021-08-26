@@ -38,8 +38,58 @@ public class TravelMain extends TravelDefaultVO {
     
     private String datestrtemp2;
     
+    //해수욕장 오픈일
+    private String open;
+    //해수욕장 폐장일
+    private String closing;
     
-    public String getDatestrtemp2() {
+    
+    //도
+    private String area_name;
+    //시
+    private String area_name2;
+    
+    
+    
+    
+    
+    public String getOpen() {
+		return open;
+	}
+
+	public void setOpen(String open) {
+		this.open = open;
+	}
+
+	public String getClosing() {
+		return closing;
+	}
+
+	public void setClosing(String closing) {
+		this.closing = closing;
+	}
+
+	public String getArea_name2() {
+		return area_name2;
+	}
+
+	public void setArea_name2(String area_name2) {
+		this.area_name2 = area_name2;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public String getArea_name() {
+		return area_name;
+	}
+
+	public void setArea_name(String area_name) {
+		this.area_name = area_name;
+	}
+
+	public String getDatestrtemp2() {
     	return datestrtemp2;
     }
     

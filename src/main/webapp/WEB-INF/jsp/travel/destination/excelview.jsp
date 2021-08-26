@@ -39,6 +39,7 @@
 		<c:forEach var="result" items="${resultList}" varStatus="status">
 			<li>
 				<div>
+				<tr>
 					<td style = "text-align: center;">${result.destTitle}</td>
 					<td style = "text-align: center;">${result.destCategory}</td>
 					<td style = "text-align: center;">${result.destAddress}</td>
@@ -46,12 +47,12 @@
 					<td style = "text-align: center;">${result.destClipPoint}</td>
 					<td style = "text-align: center;">${result.destRecommPoint}</td>
 					<c:choose>
-						<c:when test="${result.travelFileList[0].imgFilePath eq '' or result.travelFileList[0].imgFilePath eq null}"><td style = "text-align: center;">이미지경로가 없습니다.</td></c:when>
+						<c:when test="${result.destImgPath eq '' or result.destImgPath eq null}"><td style = "text-align: center;">이미지경로가 없습니다.</td></c:when>
 						<c:otherwise>
-							<td style = "text-align: center;">${result.travelFileList[0].imgFilePath}</td>
+							<td style = "text-align: center;">${result.destImgPath}</td>
 						</c:otherwise>
 					</c:choose>
-			<tr>
+			</tr>
 			</div>
 			</li>
 		</c:forEach>

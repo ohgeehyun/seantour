@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width,maximum-scale=1,minimum-scale=1">
-	<meta hame="description" content="국내 여행지 소개,해수욕장 예약,해수욕장 혼잡도 확인, 일정 만들기, 추천일정, 공지사항, 예약, 리플렛 제공.">
+	<meta hame="description" content="국내 여행지 소개,해수욕장 예약,해수욕장 혼잡도 확인, 일정 만들기, 추천일정, 공지사항, 예약, 리플렛 제공,해수욕장 신호등, 해수욕장 사전예약, 한적한 해수욕장">
 	<title>바다여행 일정만들기</title>
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/travel/base.css'/>">
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/travel/font.css'/>">
@@ -15,6 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/travel/reserv.css'/>">
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/travel/slick.css'/>">
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/travel/aos.css'/>">
+	<link rel="stylesheet" type="text/css" href="<c:url value='/travel/common/css/content_summer.css'/>">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="<c:url value='/js/travel/jquery-1.12.2.min.js'/>"></script>
 	<script src="<c:url value='/js/travel/jquery.bxslider.js'/>"></script>
@@ -25,6 +26,7 @@
 	<script src="<c:url value='/js/travel/Sortable.js'/>"></script>
 	<script src="<c:url value='/js/travel/content.js'/>"></script>
 	<script src="<c:url value='/js/travel/travel.banfilter.js'/>"></script>
+	<script src="<c:url value='/travel/common/js/content_summer.js'/>"></script>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172483742-1"></script>
 	<script>
@@ -33,4 +35,6 @@
 	  gtag('js', new Date());
 	
 	  gtag('config', 'UA-172483742-1');
+	  
+	  
 	</script>

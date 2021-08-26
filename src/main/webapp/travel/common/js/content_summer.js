@@ -19,5 +19,6 @@ $(function() {
     	$('.blinker').eq(order).show();
     	$(".btn_loc").eq(order).addClass('on');
     	$(".tbodyc tr").eq(order).children("td").eq(1).children("span").addClass('on');
+    	
     });
 });

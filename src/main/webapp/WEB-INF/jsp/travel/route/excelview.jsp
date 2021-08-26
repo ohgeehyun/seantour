@@ -35,13 +35,14 @@
 			<c:forEach var="result" items="${resultList}" varStatus="status">
 				<li>
 					<div>
+						<tr>
 						<td style = "text-align: center;">${result.routTitle}</td>
 						<td style = "text-align: center;">${result.routRegion}</td>
 						<td style = "text-align: center;">${result.routRegMemberNm}</td>
 						<td style = "text-align: center;">${result.routHit}</td>
 						<td style = "text-align: center;">${result.routRecomm}</td>
 						<td style = "text-align: center;">${result.routThumbPath}</td>
-						<tr>
+						</tr>
 					</div>
 				</li>
 			</c:forEach>

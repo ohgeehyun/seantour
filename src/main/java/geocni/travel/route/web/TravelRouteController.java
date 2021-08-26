@@ -482,8 +482,9 @@ public class TravelRouteController {
 	public String dowexcel(TravelRoute travelRoute, HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value = "open", required = false) String open,
 			@RequestParam(value = "iexcelPageno", required = false, defaultValue = "1") String iexcelPageno,
-			
 			SessionStatus status, Model model) throws Exception {
+		
+		
 		if (open != null && "Y".equals(open)) {
 
 			travelRoute.setRoutType("U");

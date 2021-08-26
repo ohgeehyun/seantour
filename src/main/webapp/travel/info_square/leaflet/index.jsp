@@ -1,7 +1,9 @@
 <% response.setHeader("Cache-Control","no-store"); response.setHeader("Pragma","no-cache"); response.setDateHeader("Expires",0); if (request.getProtocol().equals("HTTP/1.1")) { response.setHeader("Cache-Control", "no-cache"); } %><%@ page contentType="text/html; charset=utf-8" %><%@ include file='/_common/header.jsp' %><%@ include file='/travel/_tpls/B/TPL_000138_S.jsp' %><% /*<!-- [-CONTENT-] -->*/ %><div class="inr">
 	<div class="leafletBox1">
-		<div class="map"><img src="/seantour_map/images/travel/content/img_leaflet01_02.jpg" alt="리플렛1" usemap="#Map1" /></div>
-		<map name="Map1">
+		<div class="map"><img src="/seantour_map/images/travel/content/img_leaflet01_01.jpg" alt="리플렛1" usemap="#Map1" /></div>
+		<div class="map"><img src="/seantour_map/images/travel/content/img_leaflet01_02.jpg" alt="리플렛2" usemap="#Map1" /></div>
+		<div class="map"><img src="/seantour_map/images/travel/content/img_leaflet01_03.jpg" alt="리플렛3" usemap="#Map1" /></div>
+		<%-- <map name="Map1">
 	        <area shape="rect" coords="1140,2144,1317,2194" href="/seantour_map/travel/destination/detail.do?destId=DEST000441" alt="북분 해수욕장">
 	        <area shape="rect" coords="1140,2201,1317,2251" href="/seantour_map/travel/destination/detail.do?destId=DEST000442" alt="노봉 해수욕장">
 	        <area shape="rect" coords="1142,2256,1318,2303" href="/seantour_map/travel/destination/detail.do?destId=DEST000443" alt="사천 해수옥장">
@@ -28,7 +30,7 @@
 	        <area shape="rect" coords="1357,2558,1562,2605" href="/seantour_map/travel/destination/detail.do?destId=DEST000464" alt="사량대항 해수욕장">
 	        <area shape="rect" coords="1356,2610,1548,2655" href="/seantour_map/travel/destination/detail.do?destId=DEST000465" alt="남일대 해수욕장">
 	        <area shape="rect" coords="1105,2989,1591,3156" href="${pageContext.request.contextPath}/images/travel/main/pull25.pdf" alt="한적한헤스역징25선">
-	      </map>               
+	      </map>  --%>              
 	</div>
               <script src="/seantour_map/js/travel/jquery.rwdImageMaps.min.js"></script>
 	<script>

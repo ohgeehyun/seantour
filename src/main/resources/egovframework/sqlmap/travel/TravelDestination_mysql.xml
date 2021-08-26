@@ -331,7 +331,7 @@
                 , dest_hit AS destHit
 			FROM geo_destination WHERE 1=1
 		]]>
-		<include refid="travelDestinationDAO.travelDestinationCategoryClause" />		
+		
 	</select>
 	
 	<select id="travelDestinationDAO.selectTravelDestinationList" parameterClass="travelDestinationVO" resultMap="travelDestinationMax" remapResults="true">

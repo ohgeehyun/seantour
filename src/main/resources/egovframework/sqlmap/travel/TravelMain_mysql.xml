@@ -38,6 +38,18 @@
 		<result property="destWriter" column="dest_writer" />
 		<result property="destHit" column="dest_hit" />
 	</resultMap>
+	
+	<sql id="travelMainDAO.checkWhereClause">
+		<isNotEmpty property="destRegion" prepend="AND"> 
+			<![CDATA[	dest_region = #destRegion#	]]>
+		</isNotEmpty>
+		<isNotEmpty property="destSeason" prepend="AND"> 
+			<![CDATA[	dest_season = #destSeason#	]]>
+		</isNotEmpty>
+		<isNotEmpty property="destCategory" prepend="AND"> 
+			<![CDATA[	dest_category = #destCategory#	]]>
+		</isNotEmpty>
+	</sql>
     
 	<select id="travelMainDAO.selectBeachPerCnt" parameterClass="java.lang.String" resultClass="travelMain">
         <![CDATA[
@@ -47,11 +59,37 @@
 			     , UNIQ_POP AS uniqPop
 			     , CONGESTION AS congestion
 			  FROM GEO_BEACH_CONGESTION
-             WHERE ETL_DT = (SELECT MAX(ETL_DT) FROM GEO_BEACH_CONGESTION)
+             WHERE ETL_DT = (SELECT MAX(ETL_DT) FROM GEO_BEACH_CONGESTION where  ETL_DT like '2021%')
         ]]>
     </select>
     
+    <select id="travelMainDAO.congestionExcel" parameterClass="java.lang.String" resultClass="travelMain">
+        <![CDATA[
+			SELECT ETL_DT AS etlDt
+			     , SEQ_ID AS seqId
+			     , POI_NM AS poiNm
+			     , UNIQ_POP AS uniqPop
+			     , CONGESTION AS congestion
+			  FROM GEO_BEACH_CONGESTION
+             WHERE ETL_DT = (SELECT MAX(ETL_DT) FROM GEO_BEACH_CONGESTION where  ETL_DT like '2021%1500')
+             OR ETL_DT = (SELECT MAX(ETL_DT) FROM GEO_BEACH_CONGESTION where  ETL_DT like '2021%1600')
+             OR ETL_DT = (SELECT MAX(ETL_DT) FROM GEO_BEACH_CONGESTION where  ETL_DT like '2021%1700')
+        ]]>
+    </select>
     
+    <select id="travelMainDAO.congestionOverExcel" parameterClass="java.lang.String" resultClass="travelMain">
+        <![CDATA[
+			SELECT ETL_DT AS etlDt
+			     , SEQ_ID AS seqId
+			     , POI_NM AS poiNm
+			     , UNIQ_POP AS uniqPop
+			     , CONGESTION AS congestion 
+			FROM GEO_BEACH_CONGESTION
+			WHERE ETL_DT >= CONCAT(date_format(sysdate(), '%Y%m%d'),'0900')
+			AND ETL_DT <= CONCAT(date_format(sysdate(), '%Y%m%d'),'1800')
+			AND CONGESTION > 1
+        ]]>
+    </select>
    
     <select id="travelMainDAO.selectTravelMainDestination" parameterClass="travelMain" resultClass="egovMap">
         <![CDATA[
@@ -80,6 +118,19 @@
         ]]>
     </select>
     
+    <select id="travelMainDAO.selectBeachInfo" parameterClass="java.lang.String" resultClass="egovMap">
+        <![CDATA[
+			SELECT *
+			  FROM GEO_BEACH_INFO
+        ]]>
+    </select>
+    
+    <select id="travelMainDAO.selectBeachDay" parameterClass="java.lang.String" resultClass="egovMap">
+        <![CDATA[
+			SELECT *
+			  FROM GEO_BEACH_OPTIME
+        ]]>
+    </select>
     
         
     <select id="travelMainDAO.selectBeachPerCntapi" parameterClass="java.lang.String" resultClass="egovMap">
@@ -90,7 +141,7 @@
 			     , UNIQ_POP AS uniqPop
 			     , CONGESTION AS congestion
 			  FROM GEO_BEACH_CONGESTION
-             WHERE ETL_DT = (SELECT MAX(ETL_DT) FROM GEO_BEACH_CONGESTION)
+             WHERE ETL_DT = (SELECT MAX(ETL_DT) FROM GEO_BEACH_CONGESTION where  ETL_DT like #date#)
         ]]>
     </select>
     
@@ -114,7 +165,7 @@
 	
 	<select id="travelMainDAO.selectCongestion" parameterClass="java.lang.String" resultClass="egovMap">
         <![CDATA[
-			SELECT AREA AS area
+			SELECT *
 			  FROM GEO_BEACH_INFO
         ]]>
     </select>
@@ -138,32 +189,28 @@
         ]]>
     </select>
     
-    	<select id="travelMainDAO.selectTravelDestinationApi" parameterClass="traveldestination" resultMap="travelDestinationMax">
+    	<select id="travelMainDAO.selectTravelDestinationApi" parameterClass="traveldestination" resultClass="egovMap">
         <![CDATA[
-			SELECT   dest_id
-				, dest_title 
-				, dest_ad_slogan
-				, dest_region
-				, dest_category
-				, dest_tag
-				, dest_website_url
-				, dest_img_path
-				, dest_phone
-				, dest_address
-				, dest_axis_x
-				, dest_axis_y
-				, dest_information
-				, dest_season
-				, dest_feature
-				, dest_description
-				, dest_recomm_point
-				, dest_clip_point
-				, dest_writer
-				, dest_reg_datetime
-				, dest_hit
-			  FROM geo_destination
+			select 
+				DEST_TITLE,
+				DEST_AD_SLOGAN,
+				DEST_REGION,
+				DEST_CATEGORY,
+				DEST_TAG,
+				DEST_WEBSITE_URL,
+				DEST_PHONE,
+				DEST_ADDRESS,
+				DEST_AXIS_X,
+				DEST_AXIS_Y,
+				DEST_FEATURE,
+				DEST_INFORMATION,
+				DEST_DESCRIPTION,
+				DEST_WAY_TO_GO,
+				DEST_SEASON
+				 FROM geo_destination
              WHERE 1=1
         ]]>
+         <include refid="travelMainDAO.checkWhereClause" />
     </select>
     
     	<select id="travelMainDAO.selectTravelrouteApi"  parameterClass="travelRoute" resultClass="travelRoute">
